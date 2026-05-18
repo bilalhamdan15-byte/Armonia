@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiche de personnage — Armonia</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+  --danger: #a02020;
+  --success: #2a7a3c;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+  min-height: 100vh;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+header.title-bar {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: var(--paper);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 36px;
+  color: var(--primary);
+  letter-spacing: 4px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+button:hover {
+  background: #1d4360;
+  transform: translateY(-1px);
+}
+button.secondary {
+  background: var(--accent);
+}
+button.secondary:hover {
+  background: #8a601a;
+}
+button.danger {
+  background: var(--danger);
+}
+.section {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.section h2 {
+  color: var(--primary);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 8px;
+  margin-top: 0;
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+.section h3 {
+  color: var(--accent);
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+.grid {
+  display: grid;
+  gap: 12px;
+}
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-6 { grid-template-columns: repeat(6, 1fr); }
+@media (max-width: 720px) {
+  .grid-2, .grid-3, .grid-4, .grid-6 { grid-template-columns: 1fr; }
+  .grid-2-mobile { grid-template-columns: repeat(2, 1fr) !important; }
+}
+.field {
+  display: flex;
+  flex-direction: column;
+}
+.field label {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--muted);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+input[type="text"], input[type="number"], select, textarea {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text);
+  width: 100%;
+}
+input[type="text"]:focus, input[type="number"]:focus, textarea:focus, select:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: -1px;
+}
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Caracs blocs */
+.carac-block {
+  background: linear-gradient(135deg, #fff8e8 0%, #f5ebd6 100%);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  padding: 12px 8px;
+  text-align: center;
+}
+.carac-block .carac-name {
+  font-weight: bold;
+  color: var(--primary);
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+.carac-block .carac-full {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.carac-block input[type="number"] {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  border: none;
+  background: transparent;
+  color: var(--primary);
+  padding: 0;
+}
+
+/* Stats dérivées */
+.stat-block {
+  background: var(--primary);
+  color: white;
+  border-radius: 8px;
+  padding: 14px 8px;
+  text-align: center;
+}
+.stat-block .stat-label {
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.stat-block .stat-value {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 4px 0;
+}
+.stat-block .stat-sub {
+  font-size: 12px;
+  opacity: 0.7;
+}
+.stat-block.warning {
+  background: var(--danger);
+}
+.stat-block .stat-edit {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  border-radius: 4px;
+  padding: 2px 4px;
+  font-size: 14px;
+  width: 40px;
+  text-align: center;
+}
+
+/* Compétence rangée */
+.comp-row {
+  display: grid;
+  grid-template-columns: 2fr 50px 60px 60px 60px;
+  gap: 6px;
+  align-items: center;
+  padding: 4px 0;
+  border-bottom: 1px dashed var(--border);
+  font-size: 14px;
+}
+.comp-row.header {
+  font-weight: bold;
+  color: var(--muted);
+  font-size: 12px;
+  border-bottom: 2px solid var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.comp-row input[type="number"] {
+  text-align: center;
+  font-weight: bold;
+  padding: 4px;
+}
+.comp-row .total {
+  text-align: center;
+  font-weight: bold;
+  color: var(--primary);
+  background: #f5ebd6;
+  padding: 4px;
+  border-radius: 4px;
+}
+.comp-family-header {
+  background: var(--accent);
+  color: white;
+  padding: 4px 8px;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin-top: 12px;
+  border-radius: 4px;
+}
+
+/* Affinités */
+.affinity-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 50px;
+  gap: 10px;
+  align-items: center;
+  padding: 6px 0;
+}
+.affinity-row .elem-name {
+  font-weight: bold;
+  color: var(--primary);
+}
+.affinity-row input[type="range"] {
+  width: 100%;
+}
+.affinity-row .value {
+  text-align: center;
+  font-weight: bold;
+  background: #f5ebd6;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+/* Atout / Items dynamiques */
+.dyn-list-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  background: #fffaf0;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  align-items: center;
+}
+.dyn-list-item input, .dyn-list-item select {
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: 1px dotted var(--border);
+}
+.dyn-list-item input:focus {
+  background: white;
+  border: 1px solid var(--primary);
+}
+.dyn-list-item button {
+  padding: 4px 10px;
+  font-size: 12px;
+  background: var(--danger);
+}
+.atout-item {
+  display: grid;
+  grid-template-columns: 1fr 70px 30px;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  background: #fffaf0;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  align-items: center;
+}
+.atout-item.used {
+  opacity: 0.5;
+  background: #eee;
+}
+.atout-item input[type="text"] {
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: 1px dotted var(--border);
+}
+.atout-item input[type="text"]:focus {
+  background: white;
+  border: 1px solid var(--primary);
+}
+.atout-item .lvl {
+  text-align: center;
+  font-weight: bold;
+  color: var(--accent);
+}
+.atout-item button {
+  padding: 4px 8px;
+  font-size: 12px;
+}
+button.add-btn {
+  background: var(--success);
+  font-size: 13px;
+  padding: 6px 14px;
+}
+
+/* Écho */
+.echo-counter {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin: 12px 0;
+}
+.echo-orb {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: #fffaf0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.echo-orb.filled {
+  background: radial-gradient(circle, #ffd700 0%, #a87830 100%);
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+.echo-orb:hover {
+  transform: scale(1.1);
+}
+
+/* Inventaire / Notes */
+.inv-row {
+  display: grid;
+  grid-template-columns: 1fr 70px 30px;
+  gap: 8px;
+  padding: 4px;
+  border-bottom: 1px dashed var(--border);
+  align-items: center;
+}
+.inv-row input {
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: 1px dotted var(--border);
+}
+.inv-row input:focus {
+  background: white;
+  border: 1px solid var(--primary);
+}
+
+/* Print */
+@media print {
+  body { background: white; padding: 0; }
+  .toolbar, .no-print, button { display: none !important; }
+  .section { break-inside: avoid; box-shadow: none; border-color: #888; }
+  header.title-bar { background: white; }
+}
+
+/* Notes section */
+.notes-area { width: 100%; min-height: 140px; }
+
+/* Small text */
+.muted { color: var(--muted); font-size: 12px; font-style: italic; }
+.formula { font-family: 'Courier New', monospace; font-size: 11px; color: var(--muted); }
+
+/* Symboles grid */
+.sym-category {
+  background: #fffaf0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+.sym-cat-title {
+  color: var(--accent);
+  font-weight: bold;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.sym-checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+@media (max-width: 720px) {
+  .sym-checkbox-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.sym-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.15s;
+}
+.sym-checkbox:hover { border-color: var(--primary); background: #f5ebd6; }
+.sym-checkbox input { width: auto; margin: 0; }
+.sym-checkbox.checked {
+  background: #d5e8f0;
+  border-color: var(--primary);
+  font-weight: bold;
+}
+.mot-item {
+  border: 1px solid var(--border);
+  background: #fffaf0;
+  padding: 8px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+/* Compteur de points */
+.points-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  background: #f5ebd6;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+.counter-label {
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 11px;
+}
+.counter-value {
+  font-weight: bold;
+  font-size: 16px;
+  color: var(--primary);
+}
+.counter-status {
+  font-style: italic;
+  font-size: 12px;
+}
+.points-counter.ok {
+  background: #d4f4dc;
+  border-color: var(--success);
+}
+.points-counter.ok .counter-value { color: var(--success); }
+.points-counter.ok .counter-status { color: var(--success); }
+.points-counter.warn {
+  background: #fff4d4;
+  border-color: #c8830e;
+}
+.points-counter.warn .counter-value { color: #c8830e; }
+.points-counter.warn .counter-status { color: #c8830e; }
+.points-counter.over {
+  background: #f7d4d4;
+  border-color: var(--danger);
+}
+.points-counter.over .counter-value { color: var(--danger); }
+.points-counter.over .counter-status { color: var(--danger); font-weight: bold; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="title-bar">
+  <h1>⚔ ARMONIA ⚔</h1>
+  <div class="subtitle">Fiche de personnage</div>
+</header>
+
+<div class="toolbar no-print">
+  <button onclick="saveJSON()">💾 Sauvegarder (JSON)</button>
+  <button class="secondary" onclick="loadJSON()">📂 Charger une fiche</button>
+  <button onclick="window.print()">🖨️ Imprimer / PDF</button>
+  <button class="danger" onclick="if(confirm('Effacer toute la fiche ?')) resetAll()">🗑️ Nouvelle fiche</button>
+  <input type="file" id="fileInput" accept=".json" style="display:none" onchange="handleFileLoad(event)">
+</div>
+
+<!-- IDENTITÉ -->
+<div class="section">
+  <h2>Identité</h2>
+  <div class="grid grid-3">
+    <div class="field"><label>Nom du personnage</label><input type="text" data-key="nom"></div>
+    <div class="field"><label>Joueur</label><input type="text" data-key="joueur"></div>
+    <div class="field"><label>Classe / Voie</label><input type="text" data-key="classe" placeholder="Guerrier, Mage, Ingénieur..."></div>
+    <div class="field"><label>Race <a href="bibliotheque_races.html" target="_blank" style="font-size:11px;color:var(--accent);text-decoration:underline;">📚 Bibliothèque</a></label>
+      <select data-key="race" id="race_select" onchange="onRaceChange()">
+        <option value="">— Sélectionne une race —</option>
+        <optgroup label="Humains">
+          <option value="Humains des villes">Humains des villes</option>
+          <option value="Tribu de la Forêt">Tribu de la Forêt</option>
+          <option value="Nordiques">Nordiques</option>
+          <option value="Sadiens">Sadiens (désert)</option>
+          <option value="Jindos">Jindos (îles)</option>
+        </optgroup>
+        <optgroup label="Elfes">
+          <option value="Hauts-Elfes">Hauts-Elfes</option>
+          <option value="Elfes Sylvestres">Elfes Sylvestres (des Bois)</option>
+          <option value="Elfes Noirs">Elfes Noirs (des Montagnes)</option>
+          <option value="Elfes Yle">Elfes Yle (Bannis)</option>
+        </optgroup>
+        <optgroup label="Nains">
+          <option value="Nains Montagnards">Nains Montagnards</option>
+          <option value="Forgefeux">Forgefeux</option>
+          <option value="Barbes d'Acier">Barbes d'Acier</option>
+        </optgroup>
+        <optgroup label="Orques">
+          <option value="Orques Guerriers">Orques Guerriers</option>
+          <option value="Orques Shamans">Orques Shamans</option>
+          <option value="Orques Chasseurs">Orques Chasseurs</option>
+        </optgroup>
+        <optgroup label="Hommes-bêtes">
+          <option value="Mi-félin">Mi-félin</option>
+          <option value="Mi-ours">Mi-ours</option>
+          <option value="Mi-taureau">Mi-taureau</option>
+          <option value="Mi-chien">Mi-chien</option>
+          <option value="Mi-loup">Mi-loup</option>
+          <option value="Mi-lapin">Mi-lapin</option>
+        </optgroup>
+        <optgroup label="Tengu">
+          <option value="Karasu-Tengu">Karasu-Tengu (Corbeaux)</option>
+          <option value="Taka-Tengu">Taka-Tengu (Faucons)</option>
+          <option value="Hane-Tengu">Hane-Tengu (Harmoniques)</option>
+        </optgroup>
+        <optgroup label="Autres races">
+          <option value="Vorpal">Vorpal</option>
+          <option value="Hobgobelins">Hobgobelins</option>
+          <option value="Kitsune">Kitsune</option>
+          <option value="Nagaji">Nagaji</option>
+          <option value="Vishkanya">Vishkanya</option>
+          <option value="Gnomes">Gnomes</option>
+          <option value="Halfelins">Halfelins</option>
+          <option value="Demi-elfes">Demi-elfes</option>
+        </optgroup>
+        <optgroup label="Lignées spéciales">
+          <option value="Géant-né">Géant-né</option>
+          <option value="Aasimars">Aasimars (Célestiel)</option>
+          <option value="Tiefling">Tiefling (Sang infernal)</option>
+          <option value="Dragonné">Dragonné</option>
+          <option value="Genasi">Genasi élémentaire (5 variantes)</option>
+          <option value="Construit">Construit / Homoncule</option>
+          <option value="Mort-vivant">Mort-vivant éveillé</option>
+          <option value="Réceptacle">Réceptacle d'âme</option>
+          <option value="Gobelin intelligent">Gobelin intelligent (mutant)</option>
+          <option value="Veilleur initié">Veilleur initié (héritage)</option>
+        </optgroup>
+        <option value="custom">— Race custom (à inventer avec le MJ) —</option>
+      </select>
+    </div>
+    <div class="field"><label>Sous-race / Précision</label><input type="text" data-key="sousrace" placeholder="Origine géographique, caste..."></div>
+    <div class="field"><label>Âge</label><input type="text" data-key="age"></div>
+  </div>
+  <div class="field" style="margin-top:12px">
+    <label>Description physique / personnalité</label>
+    <textarea data-key="description" placeholder="Apparence, traits de caractère marquants..."></textarea>
+  </div>
+  <div id="race_traits_panel" style="display:none; margin-top:14px; padding:12px; background:#f5ebd6; border-left:4px solid var(--accent); border-radius:4px;">
+    <div style="font-weight:bold; color:var(--primary); margin-bottom:6px;">📚 Bonus raciaux (rappel — à appliquer manuellement aux jets)</div>
+    <div id="race_traits_content" style="font-size:13px;"></div>
+  </div>
+</div>
+
+<!-- CARACTÉRISTIQUES -->
+<div class="section">
+  <h2>Caractéristiques <span class="muted">(0 à +3 · création : 2 pts, max +1/carac)</span></h2>
+  <div class="points-counter" id="counter_caracs">
+    <span class="counter-label">Points utilisés :</span>
+    <span class="counter-value" id="counter_caracs_val">0 / 2</span>
+    <span class="counter-status" id="counter_caracs_status"></span>
+  </div>
+  <div class="grid grid-6 grid-2-mobile">
+    <div class="carac-block">
+      <div class="carac-name">FOR</div>
+      <div class="carac-full">Force</div>
+      <input type="number" data-key="for" data-carac min="0" max="3" value="0" oninput="recompute()">
+    </div>
+    <div class="carac-block">
+      <div class="carac-name">DEX</div>
+      <div class="carac-full">Dextérité</div>
+      <input type="number" data-key="dex" data-carac min="0" max="3" value="0" oninput="recompute()">
+    </div>
+    <div class="carac-block">
+      <div class="carac-name">CON</div>
+      <div class="carac-full">Constitution</div>
+      <input type="number" data-key="con" data-carac min="0" max="3" value="0" oninput="recompute()">
+    </div>
+    <div class="carac-block">
+      <div class="carac-name">INT</div>
+      <div class="carac-full">Intelligence</div>
+      <input type="number" data-key="int" data-carac min="0" max="3" value="0" oninput="recompute()">
+    </div>
+    <div class="carac-block">
+      <div class="carac-name">SAG</div>
+      <div class="carac-full">Sagesse</div>
+      <input type="number" data-key="sag" data-carac min="0" max="3" value="0" oninput="recompute()">
+    </div>
+    <div class="carac-block">
+      <div class="carac-name">CHA</div>
+      <div class="carac-full">Charisme</div>
+      <input type="number" data-key="cha" data-carac min="0" max="3" value="0" oninput="recompute()">
+    </div>
+  </div>
+</div>
+
+<!-- STATS DÉRIVÉES -->
+<div class="section">
+  <h2>Stats dérivées <span class="muted">(calculées automatiquement)</span></h2>
+  <div class="grid grid-4 grid-2-mobile">
+    <div class="stat-block">
+      <div class="stat-label">Vitalité</div>
+      <div class="stat-value"><input type="number" class="stat-edit" data-key="vit_actuel" value="0" oninput="recompute()"> / <span id="vit_max">10</span></div>
+      <div class="stat-sub formula">10 + CON × 3</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-label">Éther</div>
+      <div class="stat-value"><input type="number" class="stat-edit" data-key="ether_actuel" value="3" oninput="recompute()"> / <span id="ether_max">3</span></div>
+      <div class="stat-sub formula">3 + INT + CON</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-label">Défense passive</div>
+      <div class="stat-value"><span id="defense">10</span></div>
+      <div class="stat-sub formula">10 + DEX + Défense + Armure</div>
+    </div>
+    <div class="stat-block" id="surcharge_block">
+      <div class="stat-label">Surcharge</div>
+      <div class="stat-value"><input type="number" class="stat-edit" data-key="surcharge" value="0" min="0" max="5" oninput="recompute()"> / 5</div>
+      <div class="stat-sub">À 5 = coma 3 jours</div>
+    </div>
+  </div>
+  <div style="margin-top: 14px;">
+    <div class="grid grid-3 grid-2-mobile">
+      <div class="field">
+        <label>Bonus d'armure</label>
+        <input type="number" data-key="armure_bonus" min="0" max="3" value="0" oninput="recompute()">
+      </div>
+      <div class="field">
+        <label>Bouclier (+2 si actif)</label>
+        <select data-key="bouclier" onchange="recompute()">
+          <option value="0">Non</option>
+          <option value="2">Oui (+2 Défense)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Action défensive (+5 ce tour)</label>
+        <select data-key="action_def" onchange="recompute()">
+          <option value="0">Non</option>
+          <option value="5">Oui (+5 Défense)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPÉTENCES -->
+<div class="section">
+  <h2>Compétences <span class="muted">(0 à +6 · création : 15 pts, cap initial +3)</span></h2>
+  <div class="points-counter" id="counter_comp">
+    <span class="counter-label">Points utilisés :</span>
+    <span class="counter-value" id="counter_comp_val">0 / 15</span>
+    <span class="counter-status" id="counter_comp_status"></span>
+  </div>
+  <div class="comp-row header">
+    <div>Compétence</div>
+    <div>Carac</div>
+    <div>Carac val.</div>
+    <div>Compétence</div>
+    <div>Total</div>
+  </div>
+  <div id="comp_list"></div>
+</div>
+
+<!-- AFFINITÉS -->
+<div class="section">
+  <h2>Affinités élémentaires <span class="muted">(-2 à +5 · création : 6 pts, max +3/élément)</span></h2>
+  <div class="points-counter" id="counter_aff">
+    <span class="counter-label">Points utilisés :</span>
+    <span class="counter-value" id="counter_aff_val">0 / 6</span>
+    <span class="counter-status" id="counter_aff_status"></span>
+  </div>
+  <div id="affinity_list"></div>
+</div>
+
+<!-- ATOUTS -->
+<div class="section">
+  <h2>Atouts narratifs <span class="muted">(+1/+2/+3 selon niveau · 1× par scène)</span></h2>
+  <div id="atouts_list"></div>
+  <button class="add-btn" onclick="addAtout()">+ Ajouter un Atout</button>
+  <div class="muted" style="margin-top: 8px;">Coche la case pour marquer comme « utilisé cette scène ». Décoche en début de scène suivante.</div>
+</div>
+
+<!-- POINTS D'ÉCHO -->
+<div class="section">
+  <h2>Points d'Écho <span class="muted">(ressource narrative)</span></h2>
+  <div class="grid grid-2">
+    <div>
+      <div class="field">
+        <label>Écho actuels</label>
+        <div class="echo-counter" id="echo_counter"></div>
+      </div>
+      <div class="field">
+        <label>Cap max</label>
+        <input type="number" data-key="echo_max" value="5" min="0" max="10" oninput="renderEcho()">
+      </div>
+    </div>
+    <div>
+      <h3>Promesses actives</h3>
+      <div id="promesses_list"></div>
+      <button class="add-btn" onclick="addPromesse()">+ Ajouter une Promesse</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAGIE SCRIPT -->
+<div class="section">
+  <h2>Magie Script</h2>
+  <h3>Symboles connus <span class="muted">(5 à la création · 8 pour Ingénieur)</span></h3>
+  <div class="points-counter" id="counter_sym">
+    <span class="counter-label">Symboles connus :</span>
+    <span class="counter-value" id="counter_sym_val">0 / 5</span>
+    <span class="counter-status" id="counter_sym_status"></span>
+  </div>
+  <div id="symboles_grid"></div>
+
+  <h3 style="margin-top: 16px;">Scripts inscrits sur objets</h3>
+  <div id="scripts_list"></div>
+  <button class="add-btn" onclick="addScript()">+ Ajouter un script</button>
+</div>
+
+<!-- MAGIE DES MOTS -->
+<div class="section">
+  <h2>Magie des Mots <span class="muted">(Langue Primordiale)</span></h2>
+  <div class="muted" style="margin-bottom: 8px;">Affinité Chaos +1 minimum requise. Mots découverts en campagne uniquement.</div>
+  <div id="mots_list"></div>
+  <button class="add-btn" onclick="addMot()">+ Ajouter un mot connu</button>
+</div>
+
+<!-- INVENTAIRE -->
+<div class="section">
+  <h2>Inventaire</h2>
+  <h3>Équipement porté</h3>
+  <div class="grid grid-3 grid-2-mobile">
+    <div class="field"><label>Arme principale</label><input type="text" data-key="arme_principale" placeholder="Ex : Épée moyenne (1d8+FOR)"></div>
+    <div class="field"><label>Arme secondaire</label><input type="text" data-key="arme_secondaire"></div>
+    <div class="field"><label>Armure</label><input type="text" data-key="armure" placeholder="Ex : Cuir légère (+1)"></div>
+  </div>
+  <h3 style="margin-top: 16px;">Sac et objets</h3>
+  <div id="inv_list"></div>
+  <button class="add-btn" onclick="addInv()">+ Ajouter un objet</button>
+  <div class="field" style="margin-top: 12px;">
+    <label>Or et richesses</label>
+    <input type="text" data-key="or" placeholder="Ex : 50 pièces d'or, gemme bleue">
+  </div>
+</div>
+
+<!-- NOTES -->
+<div class="section">
+  <h2>Notes libres</h2>
+  <textarea class="notes-area" data-key="notes" placeholder="Histoire du personnage, alliés rencontrés, ennemis, secrets, idées..."></textarea>
+</div>
+
+<footer style="text-align: center; color: var(--muted); padding: 20px; font-size: 12px;">
+  Armonia — Fiche de personnage V1 · Système créé par Bilal · <span class="muted">Sauvegarde automatique en local toutes les 5s</span>
+</footer>
+
+</div>
+
+<script>
+// ========== DATA STRUCTURE ==========
+
+const RACE_BONUSES = {
+  'Humains des villes': { affinities: '—', traits: ['Polyvalence : +1 à une compétence au choix', 'Réseau urbain : Atout "Contact en cité" gratuit en plus'] },
+  'Tribu de la Forêt': { affinities: 'Chaos +1', traits: ['Pisteur : +1 Nature & Survie', 'Lien aux bêtes : Intuition gratuite sur créatures naturelles'] },
+  'Nordiques': { affinities: 'Eau +1', traits: ['Endurance du Nord : +2 Vitalité max', 'Furie nordique : 1×/scène, Pousser sans risquer la conséquence aggravée'] },
+  'Sadiens': { affinities: 'Feu +1', traits: ['Survivant du désert : résiste chaleur/soif', 'Marchand-né : +1 Persuasion'] },
+  'Jindos': { affinities: 'Eau +1', traits: ['Nageur expert : +1 Athlétisme en eau', 'Navigateur : oriente sans erreur en mer'] },
+  'Hauts-Elfes': { affinities: 'Vent +1, Chaos +1', traits: ['INT supérieure : 3 points de carac à la création (au lieu de 2)', 'Magie supérieure : +1 jets de magie de sens'], penalty: '-1 CHA face aux humains' },
+  'Elfes Sylvestres': { affinities: 'Chaos +1, Vent +1', traits: ['Acuité elfique : +1 Vigilance', 'Archer naturel : +1 Armes à distance'] },
+  'Elfes Noirs': { affinities: 'Terre +1', traits: ['Forgeron-mage : combiner script + forge sans malus', 'Endurance d\'altitude : résiste froid montagneux'] },
+  'Elfes Yle': { affinities: '+1 à un élément au libre choix', traits: ['Adaptabilité : +1 à une compétence au choix', 'Longévité : âge avantageux'] },
+  'Nains Montagnards': { affinities: 'Terre +1', traits: ['Endurance naine : +1 Vitalité max', 'Pisteur de montagne : +1 Nature & Survie en rocheux'] },
+  'Forgefeux': { affinities: 'Feu +1', traits: ['Maître forgeron : +1 Artisanat (forge)', 'Foi en la forge : 1×/scène, Pousser Artisanat sans risque'] },
+  "Barbes d'Acier": { affinities: 'Terre +1, Feu +1', traits: ['Vision dans le noir (15m)', 'Maître forgeron : +1 Artisanat'], penalty: '−1m de déplacement' },
+  'Orques Guerriers': { affinities: 'Feu +1', traits: ['Force brute : +1 dégâts CàC', 'Cri de guerre : +2 Intimidation'] },
+  'Orques Shamans': { affinities: 'Chaos +1', traits: ['Don visionnaire : +1 Intuition', 'Communion avec esprits (1×/jour, info partielle MJ)'] },
+  'Orques Chasseurs': { affinities: 'Vent +1', traits: ['Pisteur : +1 Nature & Survie', 'Lien sauvage : +1 contre bêtes magiques'] },
+  'Mi-félin': { affinities: 'Vent +1', traits: ['Réflexes félins : +1 Acrobaties', 'Vision nocturne'] },
+  'Mi-ours': { affinities: 'Terre +1', traits: ['Force naturelle : FOR +1 au CàC', 'Résiste froid extrême'], penalty: '−1 Discrétion' },
+  'Mi-taureau': { affinities: 'Terre +1', traits: ['Charge dévastatrice : +2 dégâts après 5m+ de course', 'Robustesse : +2 Vitalité max'] },
+  'Mi-chien': { affinities: 'Vent +1', traits: ['Odorat surnaturel : +2 pistage', 'Loyauté : +1 contre charme/manipulation'] },
+  'Mi-loup': { affinities: 'Vent +1', traits: ['Odorat surnaturel : +2 pistage', 'Vitesse de meute : +2m déplacement'] },
+  'Mi-lapin': { affinities: 'Vent +1', traits: ['Saut amplifié : +2m vertical, ×2 horizontal', 'Réflexes vifs : +1 initiative'] },
+  'Karasu-Tengu': { affinities: 'Vent +1, Chaos +1', traits: ['Sagesse du vent : +1 Histoire & Religion', 'Méditation profonde : +1 Éther/h de méditation'] },
+  'Taka-Tengu': { affinities: 'Vent +1', traits: ['Vol complet (1 Éther/scène d\'envol prolongé)', 'Réflexes aériens : +1 esquive en hauteur'] },
+  'Hane-Tengu': { affinities: 'Vent +1', traits: ['Vol limité (Athlétisme DD 12, planer 1 min)', 'Legs du Vent : ignore chute jusqu\'à 5m', 'Saut amplifié : ×2 horizontal, +2m vertical'] },
+  'Vorpal': { affinities: 'Vent +1', traits: ['Saut amplifié : +2m vertical, ×2 horizontal', 'Sens du commerce : +1 Persuasion en négociation', 'Larcin instinctif : +1 Larcins'] },
+  'Hobgobelins': { affinities: 'Feu +1', traits: ['Discipline militaire : +1 initiative', 'Esprit d\'équipe : 1×/scène, +1 jet à un allié'] },
+  'Kitsune': { affinities: 'Chaos +1, Vent +1', traits: ['Illusionniste : 1 illusion mineure 1×/scène (sans Éther)', 'Charme : +1 Persuasion et Tromperie'] },
+  'Nagaji': { affinities: 'Terre +1', traits: ['Résistance au poison (avantage tous jets)', 'Présence imposante : +1 Intimidation', 'Loyauté absolue : Promesses comptent double (+4/-4 Écho)'] },
+  'Vishkanya': { affinities: 'Chaos +1', traits: ['Poison naturel : 1×/scène, empoisonner son arme (1d4 dég. supplémentaires pdt 3 tours)', 'Charme reptilien : +1 Tromperie'] },
+  'Gnomes': { affinities: 'Chaos +1', traits: ['Ingéniosité : +1 Artisanat', 'Curiosité : +1 Histoire & Religion', 'Petite taille : +1 Discrétion'] },
+  'Halfelins': { affinities: '—', traits: ['Chance halfeline : 1×/session, reroll gratuit (en plus des Écho)', 'Petite taille : +1 Discrétion', 'Voyageur : +1 Nature & Survie'] },
+  'Demi-elfes': { affinities: '+1 à un élément au libre choix', traits: ['Adaptabilité culturelle : +1 Persuasion', 'Longévité partielle (200 ans environ)'] },
+  'Géant-né': { affinities: 'Eau +1, Terre +1', traits: ['Stature imposante : +1 Intimidation, +2 Vitalité max', 'Résiste au froid extrême'], penalty: '−1 Discrétion (taille)' },
+  'Aasimars': { affinities: 'Chaos +1, Vent +1', traits: ['Aura de paix : 1×/scène, calme un PNJ hostile (Persuasion)', 'Lien céleste : +1 Volonté contre charme/peur'] },
+  'Tiefling': { affinities: 'Feu +1, Chaos +1', traits: ['Résiste au feu : −2 dégâts attaques de Feu', 'Présence troublante : +1 Intimidation'], penalty: '−1 social en société pieuse' },
+  'Dragonné': { affinities: '+1 à l\'élément du dragon ancestral (libre choix)', traits: ['Souffle élémentaire : 1×/scène, cône 5m, 1d6 + INT dégâts (élément)', 'Écailles : +1 Défense passive'] },
+  'Genasi': { affinities: '+2 à un élément (5 variantes : Feu/Eau/Vent/Terre/Chaos)', traits: ['Manipulation élémentaire mineure : 1 Éther = effet trivial gratuit', 'Marqué visiblement par son élément'] },
+  'Construit': { affinities: '+1 à l\'élément du créateur', traits: ['Pas besoin de respirer/manger/dormir', 'Résiste poisons et maladies'], penalty: 'Magie Chaos inopérante (à réparer par Artisanat). −1 CHA face aux non-magiciens' },
+  'Mort-vivant': { affinities: 'Chaos +2', traits: ['Pas besoin de respirer/manger/dormir', 'Vision nocturne', 'Résiste poisons et maladies'], penalty: 'Soins Chaos −2 sur lui. Peur instinctive des prêtres' },
+  'Réceptacle': { affinities: 'Chaos +1, +1 selon nature de l\'âme', traits: ['Présence d\'un conseiller : 1×/scène, le MJ donne un indice utile', 'Force mentale : +1 Volonté permanent'], penalty: 'Lutte intérieure : le MJ peut imposer un comportement 1×/session' },
+  'Gobelin intelligent': { affinities: 'Chaos +1', traits: ['Petite taille : +1 Discrétion', 'Intelligence rusée : +1 Tromperie', 'Vision nocturne'], penalty: '−2 social face humains/races nobles (xénophobie réflexe)' },
+  'Veilleur initié': { affinities: 'Chaos +1', traits: ['Sens des âmes : perçoit les mourants/esprits à 50m', 'Atout "Cercle des Veilleurs" gratuit (en plus des 2)', 'À combiner avec une race de base'] },
+  'custom': { affinities: 'À définir avec le MJ', traits: ['Choisis 1 affinité +1 + 1 ou 2 traits gratuits modestes', 'Doit être validé par le MJ pour équilibre'] }
+};
+
+const SYMBOLS = {
+  'Éléments': ['Feu', 'Eau', 'Vent', 'Terre', 'Chaos'],
+  'Formes': ['Lame', 'Pieu/Épine', 'Sphère/Boule', 'Mur/Pilier', 'Disque/Couche'],
+  'Modificateurs': ['Propulsion', 'Propagation', 'Multiple', 'Précision', 'Prolongation']
+};
+
+const CANONICAL_MOTS = [
+  { nom: '— Mot custom (saisir manuellement)', effet: '', niveau: 'Mineur' },
+  { nom: 'Yiel curare', effet: 'Soin instantané (3d6 PV)', niveau: 'Mineur' },
+  { nom: 'Lukai armentis', effet: 'Lumière intense aveuglante', niveau: 'Mineur' },
+  { nom: 'Iod ramelloth', effet: 'Voir le vrai visage (perce illusions, mensonges)', niveau: 'Mineur' },
+  { nom: 'Volturna sarn', effet: 'Repousser brutalement tous les ennemis à 10m', niveau: 'Majeur' },
+  { nom: 'Tjeran morth', effet: 'Briser un objet ou un lien magique à proximité', niveau: 'Majeur' },
+  { nom: 'Solen aer', effet: 'Ouvrir une voie (porte close, mur, passage caché)', niveau: 'Majeur' },
+  { nom: 'Sanluth ekron', effet: 'Lier 2 êtres ou objets par un fil invisible (1km)', niveau: 'Majeur' },
+  { nom: 'Echtar valhad', effet: 'Réveiller un esprit endormi', niveau: 'Suprême' }
+];
+
+const COMPETENCES = [
+  ['Combat', 'Armes au contact', 'for'],
+  ['Combat', 'Armes à distance', 'dex'],
+  ['Combat', 'Défense', 'dex'],
+  ['Physique', 'Athlétisme', 'for'],
+  ['Physique', 'Acrobaties', 'dex'],
+  ['Physique', 'Discrétion', 'dex'],
+  ['Physique', 'Vigilance', 'sag'],
+  ['Social', 'Persuasion', 'cha'],
+  ['Social', 'Tromperie', 'cha'],
+  ['Social', 'Intimidation', 'cha'],
+  ['Social', 'Intuition', 'sag'],
+  ['Savoir', 'Histoire & Religion', 'int'],
+  ['Savoir', 'Arcanes', 'int'],
+  ['Savoir', 'Médecine', 'int'],
+  ['Savoir', 'Nature & Survie', 'sag'],
+  ['Pratique', 'Artisanat', 'dex'],
+  ['Pratique', 'Larcins', 'dex'],
+  ['Pratique', 'Représentation', 'cha'],
+];
+
+const ELEMENTS = [
+  ['Feu', '🔥'],
+  ['Eau', '💧'],
+  ['Vent', '🍃'],
+  ['Terre', '🪨'],
+  ['Chaos', '✨'],
+];
+
+const CARAC_NAMES = { for: 'Force', dex: 'Dextérité', con: 'Constitution', int: 'Intelligence', sag: 'Sagesse', cha: 'Charisme' };
+
+// ========== STATE ==========
+
+let state = {
+  comp: {},      // { compName: value }
+  affinity: {},  // { element: value }
+  atouts: [],    // [{ nom, niveau, used }]
+  promesses: [], // [{ texte, statut }]
+  scripts: [],   // [{ nom, symboles, charges, cout }]
+  mots: [],      // [{ nom, effet, niveau }]
+  inv: [],       // [{ nom, qte }]
+  echo: 0,
+};
+
+// ========== INIT ==========
+
+function initComp() {
+  const list = document.getElementById('comp_list');
+  let lastFamily = '';
+  list.innerHTML = '';
+  COMPETENCES.forEach(([fam, name, carac]) => {
+    if (fam !== lastFamily) {
+      const h = document.createElement('div');
+      h.className = 'comp-family-header';
+      h.textContent = fam;
+      list.appendChild(h);
+      lastFamily = fam;
+    }
+    const row = document.createElement('div');
+    row.className = 'comp-row';
+    row.innerHTML = `
+      <div>${name}</div>
+      <div style="text-align:center; color: var(--muted); font-weight: bold;">${carac.toUpperCase()}</div>
+      <div style="text-align:center;" id="caracval_${name.replace(/[^a-zA-Z]/g,'')}">0</div>
+      <input type="number" min="0" max="6" value="0" data-comp="${name}" data-carac-link="${carac}" oninput="recompute()">
+      <div class="total" id="total_${name.replace(/[^a-zA-Z]/g,'')}">0</div>
+    `;
+    list.appendChild(row);
+  });
+}
+
+function onRaceChange() {
+  const select = document.getElementById('race_select');
+  const panel = document.getElementById('race_traits_panel');
+  const content = document.getElementById('race_traits_content');
+  const race = select.value;
+  if (!race || !RACE_BONUSES[race]) {
+    panel.style.display = 'none';
+    save();
+    return;
+  }
+  const bonus = RACE_BONUSES[race];
+  let html = `<div style="margin-bottom:6px;"><strong>Affinités :</strong> ${bonus.affinities}</div>`;
+  html += '<strong>Traits gratuits :</strong><ul style="margin:4px 0 0 0; padding-left:20px;">';
+  bonus.traits.forEach(t => { html += `<li>${t}</li>`; });
+  html += '</ul>';
+  if (bonus.penalty) html += `<div style="margin-top:6px; color:var(--danger);">⚠ ${bonus.penalty}</div>`;
+  content.innerHTML = html;
+  panel.style.display = 'block';
+  save();
+}
+
+function initSymbols() {
+  const grid = document.getElementById('symboles_grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  Object.entries(SYMBOLS).forEach(([cat, syms]) => {
+    const catDiv = document.createElement('div');
+    catDiv.className = 'sym-category';
+    catDiv.innerHTML = `<div class="sym-cat-title">${cat}</div>`;
+    const symGrid = document.createElement('div');
+    symGrid.className = 'sym-checkbox-grid';
+    syms.forEach(s => {
+      const label = document.createElement('label');
+      label.className = 'sym-checkbox';
+      const safe = s.replace(/[^a-zA-Z]/g, '_');
+      label.innerHTML = `<input type="checkbox" data-symbol="${s}" id="sym_${safe}" onchange="updateSymCounter(); save()"><span>${s}</span>`;
+      symGrid.appendChild(label);
+    });
+    catDiv.appendChild(symGrid);
+    grid.appendChild(catDiv);
+  });
+}
+
+function updateSymCounter() {
+  const checked = document.querySelectorAll('[data-symbol]:checked');
+  const count = checked.length;
+  // Update visual on each label
+  document.querySelectorAll('[data-symbol]').forEach(cb => {
+    cb.parentElement.classList.toggle('checked', cb.checked);
+  });
+  const div = document.getElementById('counter_sym');
+  const val = document.getElementById('counter_sym_val');
+  const status = document.getElementById('counter_sym_status');
+  if (!div || !val || !status) return;
+  val.textContent = count + ' / 5';
+  div.classList.remove('ok', 'warn', 'over');
+  if (count > 8) {
+    div.classList.add('over');
+    status.textContent = '⚠ Au-delà du cap Ingénieur (8 max)';
+  } else if (count > 5) {
+    div.classList.add('warn');
+    status.textContent = `Cap Ingénieur (${count}/8)`;
+  } else if (count === 5) {
+    div.classList.add('ok');
+    status.textContent = '✓ Création complète';
+  } else if (count < 5) {
+    div.classList.add('warn');
+    status.textContent = `${5 - count} symbole(s) à choisir`;
+  }
+}
+
+function initAffinity() {
+  const list = document.getElementById('affinity_list');
+  list.innerHTML = '';
+  ELEMENTS.forEach(([name, icon]) => {
+    const row = document.createElement('div');
+    row.className = 'affinity-row';
+    row.innerHTML = `
+      <div class="elem-name">${icon} ${name}</div>
+      <input type="range" min="-2" max="5" value="0" data-affinity="${name}" oninput="updateAffinityValue('${name}', this.value); save()">
+      <div class="value" id="aff_${name}">0</div>
+    `;
+    list.appendChild(row);
+  });
+}
+
+function updateAffinityValue(name, val) {
+  document.getElementById('aff_' + name).textContent = val >= 0 ? '+' + val : val;
+  state.affinity[name] = parseInt(val);
+  recompute();
+}
+
+// ========== ATOUTS ==========
+
+function addAtout(data) {
+  if (!data) data = { nom: '', niveau: 'I', used: false };
+  state.atouts.push(data);
+  renderAtouts();
+  save();
+}
+
+function removeAtout(idx) {
+  state.atouts.splice(idx, 1);
+  renderAtouts();
+  save();
+}
+
+function renderAtouts() {
+  const list = document.getElementById('atouts_list');
+  list.innerHTML = '';
+  state.atouts.forEach((a, idx) => {
+    const item = document.createElement('div');
+    item.className = 'atout-item' + (a.used ? ' used' : '');
+    item.innerHTML = `
+      <input type="text" value="${escapeHtml(a.nom)}" placeholder="Nom de l'Atout" oninput="state.atouts[${idx}].nom = this.value; save()">
+      <select onchange="state.atouts[${idx}].niveau = this.value; save()">
+        <option value="I" ${a.niveau === 'I' ? 'selected' : ''}>I (+1)</option>
+        <option value="II" ${a.niveau === 'II' ? 'selected' : ''}>II (+2)</option>
+        <option value="III" ${a.niveau === 'III' ? 'selected' : ''}>III (+3 ou effet)</option>
+      </select>
+      <button onclick="removeAtout(${idx})">×</button>
+    `;
+    list.appendChild(item);
+    // Add a "used" checkbox row beneath
+    const checkRow = document.createElement('div');
+    checkRow.style.cssText = 'padding: 4px 8px; margin-top: -4px; margin-bottom: 6px; font-size: 12px;';
+    checkRow.innerHTML = `
+      <label style="display: inline-flex; align-items: center; gap: 6px; color: var(--muted); cursor: pointer;">
+        <input type="checkbox" ${a.used ? 'checked' : ''} onchange="state.atouts[${idx}].used = this.checked; renderAtouts(); save()">
+        Utilisé cette scène
+      </label>
+    `;
+    list.appendChild(checkRow);
+  });
+}
+
+// ========== PROMESSES ==========
+
+function addPromesse(data) {
+  if (!data) data = { texte: '', statut: 'active' };
+  state.promesses.push(data);
+  renderPromesses();
+  save();
+}
+
+function removePromesse(idx) {
+  state.promesses.splice(idx, 1);
+  renderPromesses();
+  save();
+}
+
+function renderPromesses() {
+  const list = document.getElementById('promesses_list');
+  list.innerHTML = '';
+  state.promesses.forEach((p, idx) => {
+    const item = document.createElement('div');
+    item.className = 'dyn-list-item';
+    item.innerHTML = `
+      <input type="text" value="${escapeHtml(p.texte)}" placeholder="Ex : Reviens vivant à la maison" oninput="state.promesses[${idx}].texte = this.value; save()">
+      <select onchange="state.promesses[${idx}].statut = this.value; save()">
+        <option value="active" ${p.statut === 'active' ? 'selected' : ''}>Active</option>
+        <option value="tenue" ${p.statut === 'tenue' ? 'selected' : ''}>Tenue (+2 Écho)</option>
+        <option value="trahie" ${p.statut === 'trahie' ? 'selected' : ''}>Trahie (-2 Écho)</option>
+      </select>
+      <button onclick="removePromesse(${idx})">×</button>
+    `;
+    list.appendChild(item);
+  });
+}
+
+// ========== SCRIPTS ==========
+
+function addScript(data) {
+  if (!data) data = { nom: '', symboles: '', charges: '', cout: '' };
+  state.scripts.push(data);
+  renderScripts();
+  save();
+}
+
+function removeScript(idx) {
+  state.scripts.splice(idx, 1);
+  renderScripts();
+  save();
+}
+
+function renderScripts() {
+  const list = document.getElementById('scripts_list');
+  list.innerHTML = '';
+  state.scripts.forEach((s, idx) => {
+    const item = document.createElement('div');
+    item.style.cssText = 'border: 1px solid var(--border); background: #fffaf0; padding: 8px; border-radius: 4px; margin-bottom: 6px;';
+    item.innerHTML = `
+      <div style="display: grid; grid-template-columns: 2fr 3fr 1fr 1fr 30px; gap: 6px; align-items: center;">
+        <input type="text" value="${escapeHtml(s.nom)}" placeholder="Nom (ex : Brassard du Vent)" oninput="state.scripts[${idx}].nom = this.value; save()">
+        <input type="text" value="${escapeHtml(s.symboles)}" placeholder="Symboles (ex : Vent+Propulsion)" oninput="state.scripts[${idx}].symboles = this.value; save()">
+        <input type="text" value="${escapeHtml(s.charges)}" placeholder="Charges" oninput="state.scripts[${idx}].charges = this.value; save()">
+        <input type="text" value="${escapeHtml(s.cout)}" placeholder="Coût Éther" oninput="state.scripts[${idx}].cout = this.value; save()">
+        <button onclick="removeScript(${idx})">×</button>
+      </div>
+    `;
+    list.appendChild(item);
+  });
+}
+
+// ========== MOTS PRIMORDIAUX ==========
+
+function addMot(data) {
+  if (!data) data = { nom: '', effet: '', niveau: 'Mineur' };
+  state.mots.push(data);
+  renderMots();
+  save();
+}
+
+function removeMot(idx) {
+  state.mots.splice(idx, 1);
+  renderMots();
+  save();
+}
+
+function renderMots() {
+  const list = document.getElementById('mots_list');
+  list.innerHTML = '';
+  state.mots.forEach((m, idx) => {
+    const item = document.createElement('div');
+    item.className = 'mot-item';
+
+    // Build dropdown options
+    let dropdownOptions = '';
+    CANONICAL_MOTS.forEach(canon => {
+      const selected = canon.nom === m.nom ? 'selected' : '';
+      dropdownOptions += `<option value="${escapeHtml(canon.nom)}" ${selected}>${escapeHtml(canon.nom)}</option>`;
+    });
+    // If current name is custom (not in canonical list), add it as selected
+    const isCanonical = CANONICAL_MOTS.some(c => c.nom === m.nom);
+    if (!isCanonical && m.nom && m.nom !== CANONICAL_MOTS[0].nom) {
+      dropdownOptions += `<option value="${escapeHtml(m.nom)}" selected>${escapeHtml(m.nom)} (custom)</option>`;
+    }
+
+    item.innerHTML = `
+      <div style="display: grid; grid-template-columns: 1.5fr 2fr 1fr 30px; gap: 6px; align-items: center;">
+        <select onchange="selectMot(${idx}, this.value)" style="font-style: italic;">
+          ${dropdownOptions}
+        </select>
+        <input type="text" value="${escapeHtml(m.effet)}" placeholder="Effet" oninput="state.mots[${idx}].effet = this.value; save()">
+        <select onchange="state.mots[${idx}].niveau = this.value; save()">
+          <option value="Mineur" ${m.niveau === 'Mineur' ? 'selected' : ''}>Mineur (DD15, 4É)</option>
+          <option value="Majeur" ${m.niveau === 'Majeur' ? 'selected' : ''}>Majeur (DD20, 8É)</option>
+          <option value="Suprême" ${m.niveau === 'Suprême' ? 'selected' : ''}>Suprême (DD25, 16É)</option>
+        </select>
+        <button onclick="removeMot(${idx})">×</button>
+      </div>
+      ${!CANONICAL_MOTS.find(c => c.nom === m.nom && c.nom !== CANONICAL_MOTS[0].nom) ? `
+      <input type="text" value="${escapeHtml(m.nom === CANONICAL_MOTS[0].nom ? '' : m.nom)}" placeholder="Saisis ton mot custom ici..." style="margin-top: 6px; font-style: italic;" oninput="state.mots[${idx}].nom = this.value; save()">
+      ` : ''}
+    `;
+    list.appendChild(item);
+  });
+}
+
+function selectMot(idx, motName) {
+  const canon = CANONICAL_MOTS.find(c => c.nom === motName);
+  if (canon && canon.nom !== CANONICAL_MOTS[0].nom) {
+    // Pre-fill with canon values
+    state.mots[idx].nom = canon.nom;
+    state.mots[idx].effet = canon.effet;
+    state.mots[idx].niveau = canon.niveau;
+  } else {
+    // Custom mode
+    state.mots[idx].nom = canon ? '' : motName;
+  }
+  renderMots();
+  save();
+}
+
+// ========== INVENTAIRE ==========
+
+function addInv(data) {
+  if (!data) data = { nom: '', qte: '1' };
+  state.inv.push(data);
+  renderInv();
+  save();
+}
+
+function removeInv(idx) {
+  state.inv.splice(idx, 1);
+  renderInv();
+  save();
+}
+
+function renderInv() {
+  const list = document.getElementById('inv_list');
+  list.innerHTML = '';
+  state.inv.forEach((i, idx) => {
+    const item = document.createElement('div');
+    item.className = 'inv-row';
+    item.innerHTML = `
+      <input type="text" value="${escapeHtml(i.nom)}" placeholder="Objet" oninput="state.inv[${idx}].nom = this.value; save()">
+      <input type="text" value="${escapeHtml(i.qte)}" placeholder="Qté" oninput="state.inv[${idx}].qte = this.value; save()">
+      <button onclick="removeInv(${idx})">×</button>
+    `;
+    list.appendChild(item);
+  });
+}
+
+// ========== ÉCHO ==========
+
+function renderEcho() {
+  const max = parseInt(document.querySelector('[data-key="echo_max"]').value) || 5;
+  const current = state.echo;
+  const wrap = document.getElementById('echo_counter');
+  wrap.innerHTML = '';
+  for (let i = 0; i < max; i++) {
+    const orb = document.createElement('div');
+    orb.className = 'echo-orb' + (i < current ? ' filled' : '');
+    orb.onclick = () => {
+      if (i < current) state.echo = i;
+      else state.echo = i + 1;
+      renderEcho();
+      save();
+    };
+    wrap.appendChild(orb);
+  }
+}
+
+// ========== RECOMPUTE STATS ==========
+
+function recompute() {
+  // Read caracs
+  const caracs = {};
+  document.querySelectorAll('[data-carac]').forEach(input => {
+    caracs[input.dataset.key] = parseInt(input.value) || 0;
+  });
+  // Vit max
+  const vit_max = 10 + caracs.con * 3;
+  document.getElementById('vit_max').textContent = vit_max;
+  // Ether max
+  const ether_max = 3 + caracs.int + caracs.con;
+  document.getElementById('ether_max').textContent = ether_max;
+  // Défense
+  const compDef = parseInt(document.querySelector('[data-comp="Défense"]')?.value) || 0;
+  const armure = parseInt(document.querySelector('[data-key="armure_bonus"]').value) || 0;
+  const bouclier = parseInt(document.querySelector('[data-key="bouclier"]').value) || 0;
+  const actDef = parseInt(document.querySelector('[data-key="action_def"]').value) || 0;
+  const defense = 10 + caracs.dex + compDef + armure + bouclier + actDef;
+  document.getElementById('defense').textContent = defense;
+  // Surcharge warning
+  const sur = parseInt(document.querySelector('[data-key="surcharge"]').value) || 0;
+  document.getElementById('surcharge_block').classList.toggle('warning', sur >= 4);
+  // Compétences totals
+  let compTotal = 0;
+  let compOver = false;
+  document.querySelectorAll('[data-comp]').forEach(input => {
+    const compName = input.dataset.comp;
+    const caracLink = input.dataset.caracLink;
+    const compVal = parseInt(input.value) || 0;
+    compTotal += compVal;
+    if (compVal > 3) compOver = true;
+    const caracVal = caracs[caracLink] || 0;
+    const id = compName.replace(/[^a-zA-Z]/g,'');
+    document.getElementById('caracval_' + id).textContent = (caracVal >= 0 ? '+' : '') + caracVal;
+    const total = caracVal + compVal;
+    document.getElementById('total_' + id).textContent = (total >= 0 ? '+' : '') + total;
+  });
+
+  // === Compteurs de points ===
+  // Caracs : 2 pts à la création, max +1 par carac
+  const caracTotal = Object.values(caracs).reduce((a,b) => a + b, 0);
+  const caracOver = Object.values(caracs).some(v => v > 1);
+  updateCounter('caracs', caracTotal, 2, caracOver, 'Max +1 par carac à la création');
+
+  // Compétences : 15 pts à la création, cap initial +3
+  updateCounter('comp', compTotal, 15, compOver, 'Cap +3/compétence à la création');
+
+  // Affinités : 6 pts à la création, max +3 par élément
+  let affTotal = 0;
+  let affOver = false;
+  document.querySelectorAll('[data-affinity]').forEach(el => {
+    const v = parseInt(el.value) || 0;
+    affTotal += v;
+    if (v > 3) affOver = true;
+  });
+  updateCounter('aff', affTotal, 6, affOver, 'Max +3 par élément à la création');
+
+  save();
+}
+
+function updateCounter(id, used, target, overCap, capWarning) {
+  const div = document.getElementById('counter_' + id);
+  const val = document.getElementById('counter_' + id + '_val');
+  const status = document.getElementById('counter_' + id + '_status');
+  if (!div || !val || !status) return;
+  val.textContent = used + ' / ' + target;
+  div.classList.remove('ok', 'warn', 'over');
+  if (overCap) {
+    div.classList.add('over');
+    status.textContent = '⚠ ' + capWarning;
+  } else if (used > target) {
+    div.classList.add('over');
+    status.textContent = '⚠ Dépassement de ' + (used - target) + ' point(s) !';
+  } else if (used === target) {
+    div.classList.add('ok');
+    status.textContent = '✓ Création complète';
+  } else if (used < target) {
+    div.classList.add('warn');
+    status.textContent = (target - used) + ' point(s) à placer';
+  }
+}
+
+// ========== SAVE / LOAD ==========
+
+function getFormData() {
+  const data = { state: state };
+  document.querySelectorAll('[data-key]').forEach(el => {
+    if (el.dataset.affinity) return;
+    if (el.dataset.comp) return;
+    if (el.type === 'checkbox') data[el.dataset.key] = el.checked;
+    else data[el.dataset.key] = el.value;
+  });
+  // Compétences
+  data.competences = {};
+  document.querySelectorAll('[data-comp]').forEach(el => {
+    data.competences[el.dataset.comp] = el.value;
+  });
+  // Affinities
+  data.affinities = {};
+  document.querySelectorAll('[data-affinity]').forEach(el => {
+    data.affinities[el.dataset.affinity] = el.value;
+  });
+  // Symboles connus (cases cochées)
+  data.symboles_array = [];
+  document.querySelectorAll('[data-symbol]:checked').forEach(el => {
+    data.symboles_array.push(el.dataset.symbol);
+  });
+  return data;
+}
+
+function setFormData(data) {
+  if (!data) return;
+  // Reset state
+  state.atouts = data.state?.atouts || [];
+  state.promesses = data.state?.promesses || [];
+  state.scripts = data.state?.scripts || [];
+  state.mots = data.state?.mots || [];
+  state.inv = data.state?.inv || [];
+  state.affinity = data.state?.affinity || {};
+  state.echo = data.state?.echo || 0;
+  // Set inputs
+  Object.keys(data).forEach(key => {
+    if (key === 'state' || key === 'competences' || key === 'affinities') return;
+    const el = document.querySelector(`[data-key="${key}"]`);
+    if (el) {
+      if (el.type === 'checkbox') el.checked = data[key];
+      else el.value = data[key];
+    }
+  });
+  // Compétences
+  if (data.competences) {
+    Object.keys(data.competences).forEach(name => {
+      const el = document.querySelector(`[data-comp="${name}"]`);
+      if (el) el.value = data.competences[name];
+    });
+  }
+  // Affinities
+  if (data.affinities) {
+    Object.keys(data.affinities).forEach(name => {
+      const el = document.querySelector(`[data-affinity="${name}"]`);
+      if (el) { el.value = data.affinities[name]; updateAffinityValue(name, el.value); }
+    });
+  }
+  // Symboles connus (compatibilité : array nouveau format, sinon parse string ancien)
+  document.querySelectorAll('[data-symbol]').forEach(cb => cb.checked = false);
+  if (data.symboles_array && Array.isArray(data.symboles_array)) {
+    data.symboles_array.forEach(s => {
+      const cb = document.querySelector(`[data-symbol="${s}"]`);
+      if (cb) cb.checked = true;
+    });
+  } else if (data.symboles_connus) {
+    // Compatibilité ancien format texte
+    const syms = data.symboles_connus.split(',').map(s => s.trim());
+    syms.forEach(s => {
+      document.querySelectorAll('[data-symbol]').forEach(cb => {
+        if (cb.dataset.symbol.toLowerCase() === s.toLowerCase()) cb.checked = true;
+      });
+    });
+  }
+  updateSymCounter();
+  onRaceChange();
+  renderAtouts();
+  renderPromesses();
+  renderScripts();
+  renderMots();
+  renderInv();
+  renderEcho();
+  recompute();
+}
+
+function saveJSON() {
+  const data = getFormData();
+  const nom = data.nom || 'sans_nom';
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `armonia_${nom.replace(/[^a-zA-Z0-9]/g,'_')}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function loadJSON() {
+  document.getElementById('fileInput').click();
+}
+
+function handleFileLoad(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const data = JSON.parse(e.target.result);
+      setFormData(data);
+      alert('Fiche chargée avec succès !');
+    } catch (err) {
+      alert('Erreur lors du chargement : ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+function save() {
+  try {
+    localStorage.setItem('armonia_fiche', JSON.stringify(getFormData()));
+  } catch (e) {}
+}
+
+function autoload() {
+  try {
+    const saved = localStorage.getItem('armonia_fiche');
+    if (saved) setFormData(JSON.parse(saved));
+  } catch (e) {}
+}
+
+function resetAll() {
+  localStorage.removeItem('armonia_fiche');
+  location.reload();
+}
+
+// ========== UTIL ==========
+
+function escapeHtml(s) {
+  return String(s || '').replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[c]);
+}
+
+// ========== INITIALIZE ==========
+
+window.addEventListener('DOMContentLoaded', () => {
+  initComp();
+  initAffinity();
+  initSymbols();
+  autoload();
+  renderAtouts();
+  renderPromesses();
+  renderScripts();
+  renderMots();
+  renderInv();
+  renderEcho();
+  recompute();
+  // Save on input change everywhere
+  document.querySelectorAll('input, textarea, select').forEach(el => {
+    el.addEventListener('change', save);
+    el.addEventListener('input', save);
+  });
+  // Periodic save backup
+  setInterval(save, 5000);
+});
+</script>
+</body>
+</html>
