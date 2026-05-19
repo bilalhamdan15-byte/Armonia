@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bibliothèque des Armes & Armures — Armonia</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+  --danger: #a02020;
+  --success: #2a7a3c;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1200px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: var(--paper);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 30px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 14px 18px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.intro-box p { margin: 6px 0; font-size: 14px; }
+.intro-box strong { color: var(--primary); }
+.filters {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+.filter-btn {
+  background: var(--paper);
+  color: var(--primary);
+  border: 1px solid var(--accent);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.filter-btn:hover { background: #f5ebd6; }
+.filter-btn.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 14px;
+}
+.item-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.item-card h2 {
+  margin: 0 0 4px 0;
+  color: var(--primary);
+  font-size: 18px;
+}
+.item-card .item-cat {
+  color: var(--accent);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+.item-card .item-desc {
+  font-size: 13px;
+  margin: 8px 0;
+  line-height: 1.5;
+  font-style: italic;
+  color: #4a3825;
+}
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+.stat-tag {
+  display: inline-block;
+  padding: 3px 8px;
+  background: #f5ebd6;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: bold;
+}
+.stat-tag.dmg { background: #fde; border-color: #c47; color: #614; }
+.stat-tag.def { background: #def; border-color: #69b; color: #146; }
+.stat-tag.range { background: #efe; border-color: #6b6; color: #161; }
+.stat-tag.special { background: #ffe; border-color: #cb6; color: #642; }
+.item-card .special {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+  font-style: italic;
+}
+.item-card .culture {
+  font-size: 11px;
+  background: var(--accent);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-top: 6px;
+}
+.tier-section {
+  background: var(--paper);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 20px;
+}
+.tier-section h2 {
+  margin-top: 0;
+  color: var(--primary);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 8px;
+}
+.tier-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+.tier-table th {
+  background: var(--primary);
+  color: white;
+  padding: 8px;
+  text-align: left;
+  font-size: 13px;
+}
+.tier-table td {
+  padding: 8px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.tier-table tr.rustique td { background: #f0e8d0; }
+.tier-table tr.standard td { background: #fffaf0; }
+.tier-table tr.fin td { background: #e8f0f8; }
+.tier-table tr.maitre td { background: #f4e8ec; }
+.tier-table tr.legendaire td { background: linear-gradient(90deg, #f4e8ec 0%, #fff4d0 50%, #e8f4f0 100%); font-weight: bold; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="title-bar">
+  <h1>⚔️ ARMES & ARMURES D'ARMONIA</h1>
+  <div class="subtitle">Inventaire des outils de combat — du rustique au légendaire</div>
+</header>
+
+<div class="intro-box">
+  <p><strong>Comment lire :</strong> chaque arme indique ses dégâts de base (Standard tier). Les niveaux de qualité (voir section dédiée) modifient les statistiques. Les armes "culturelles" sont liées à une race ou un continent particulier.</p>
+  <p>⚠️ <strong>Liberté de combinaison :</strong> rien n'empêche un mage d'avoir une armure lourde ou un nain de tenir un arc — mais les pénalités d'armure restent (-Discrétion, -Acrobaties).</p>
+</div>
+
+<!-- NIVEAUX DE QUALITÉ -->
+<div class="tier-section">
+  <h2>🌟 Niveaux de qualité (Système de Craft)</h2>
+  <p style="margin: 8px 0; font-size: 13px;">Chaque arme/armure peut exister en 5 niveaux selon le talent de l'artisan qui l'a forgée. Les Maître et Légendaire requièrent un artisan expert et souvent des composants rares (loot de bêtes magiques).</p>
+  <table class="tier-table">
+    <thead><tr><th>Niveau</th><th>Effet sur l'arme</th><th>DD d'Artisanat pour craft</th></tr></thead>
+    <tbody>
+      <tr class="rustique"><td><strong>Rustique</strong></td><td>−1 dégâts (matériel pauvre, finition grossière)</td><td>DD 10</td></tr>
+      <tr class="standard"><td><strong>Standard</strong></td><td>Stats de base (qualité normale)</td><td>DD 12</td></tr>
+      <tr class="fin"><td><strong>Fin</strong></td><td>+1 dégâts (artisanat soigné)</td><td>DD 15</td></tr>
+      <tr class="maitre"><td><strong>Maître</strong></td><td>+1 dégâts ET 1 propriété spéciale (œuvre d'art)</td><td>DD 18 + composant rare</td></tr>
+      <tr class="legendaire"><td><strong>Légendaire</strong></td><td>+2 dégâts, 2 propriétés spéciales, peut accueillir 1 script (objet mythique)</td><td>DD 22 + composants exceptionnels + script magique</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top: 18px; color: var(--accent);">Propriétés spéciales (Maître et Légendaire)</h3>
+  <p style="font-size: 13px;">L'artisan choisit 1 (Maître) ou 2 (Légendaire) propriétés :</p>
+  <ul style="font-size: 13px; line-height: 1.7;">
+    <li>🗡️ <strong>Tranchant</strong> — ignore 1 point d'armure adverse</li>
+    <li>⚖️ <strong>Équilibré</strong> — +1 au jet d'attaque</li>
+    <li>🪶 <strong>Léger</strong> — −1 dégâts mais peut servir d'arme secondaire (en plus de la principale)</li>
+    <li>🔨 <strong>Brisant</strong> — peut briser une arme adverse (jet opposé)</li>
+    <li>☀️ <strong>Solaire</strong> — luit doucement, +1 dégâts vs créatures d'ombre/mort-vivants</li>
+    <li>❄️ <strong>Glacial</strong> — métal froid, +1 dégâts vs créatures de feu</li>
+    <li>🔥 <strong>Ardent</strong> — chaud au toucher, +1 dégâts vs créatures de glace/froid</li>
+    <li>⚡ <strong>Foudroyant</strong> — étincelles, +1 dégâts vs créatures d'eau/marines</li>
+    <li>🌱 <strong>Sève</strong> — végétal vivant, peut bourgeonner, +1 jets de Nature & Survie</li>
+    <li>👻 <strong>Spirituelle</strong> — peut toucher les fantômes et incorporels</li>
+    <li>🩸 <strong>Hémorragique</strong> — saignement (1 dégât supplémentaire au tour suivant)</li>
+    <li>🎯 <strong>Précise</strong> — portée doublée (armes à distance uniquement)</li>
+  </ul>
+</div>
+
+<div class="filters">
+  <button class="filter-btn active" onclick="filter('all')">Tout</button>
+  <button class="filter-btn" onclick="filter('legere')">Armes légères</button>
+  <button class="filter-btn" onclick="filter('moyenne')">Armes moyennes</button>
+  <button class="filter-btn" onclick="filter('lourde')">Armes lourdes</button>
+  <button class="filter-btn" onclick="filter('distance')">Armes à distance</button>
+  <button class="filter-btn" onclick="filter('exotique')">Armes exotiques</button>
+  <button class="filter-btn" onclick="filter('armure')">Armures</button>
+  <button class="filter-btn" onclick="filter('bouclier')">Boucliers</button>
+</div>
+
+<div class="item-grid" id="items"></div>
+
+</div>
+
+<script>
+const ITEMS = [
+  // === ARMES LÉGÈRES ===
+  { cat: 'legere', nom: 'Dague', desc: "Lame courte et discrète, glissée dans une botte ou à la ceinture. Arme du voleur, du duelliste, de l'assassin.", stats: [{type: 'dmg', label: '1d4 + FOR'}, {type: 'special', label: 'Dissimulable'}], special: "Peut être lancée (portée 5m). +1 dégâts si attaque sournoise.", culture: null },
+  { cat: 'legere', nom: 'Épée courte', desc: "Lame fine et maniable, populaire chez les gardes, éclaireurs et duellistes urbains.", stats: [{type: 'dmg', label: '1d6 + FOR'}, {type: 'special', label: 'Maniable'}], special: "Peut servir d'arme secondaire (en main gauche).", culture: null },
+  { cat: 'legere', nom: 'Hachette', desc: "Hache à une main, robuste et polyvalente. Outil et arme.", stats: [{type: 'dmg', label: '1d6 + FOR'}, {type: 'range', label: 'Portée 5m'}], special: "Peut être lancée.", culture: null },
+  { cat: 'legere', nom: 'Couteau de jet', desc: "Lame équilibrée pour le lancer. Souvent porté par 3 ou 6 sur le ceinturon.", stats: [{type: 'dmg', label: '1d4 + DEX'}, {type: 'range', label: 'Portée 8m'}], special: "Jet : utilise DEX au lieu de FOR. Lancer 3 à un seul tour à -2.", culture: null },
+  { cat: 'legere', nom: 'Rapière sadienne', desc: "Lame fine et longue venue des marchés du désert. Élégance et précision avant la force.", stats: [{type: 'dmg', label: '1d6 + DEX'}, {type: 'special', label: 'Finesse'}], special: "Utilise DEX pour les dégâts (au lieu de FOR). +1 jet d'attaque si seul vs un adversaire.", culture: 'Sadien' },
+  { cat: 'legere', nom: 'Stylet d\'assassin', desc: "Aiguille effilée, presque invisible. Faible dégât mais perce facilement.", stats: [{type: 'dmg', label: '1d4 + DEX'}, {type: 'special', label: 'Perçant'}], special: "Ignore 1 point d'armure. Difficile à parer (-1 à la Défense adverse contre cette arme).", culture: null },
+
+  // === ARMES MOYENNES ===
+  { cat: 'moyenne', nom: 'Épée longue', desc: "L'arme standard des soldats et aventuriers. Équilibrée, fiable, polyvalente.", stats: [{type: 'dmg', label: '1d8 + FOR'}, {type: 'special', label: 'Polyvalente'}], special: "Peut être tenue à 1 ou 2 mains (+1 dégâts à 2 mains).", culture: null },
+  { cat: 'moyenne', nom: 'Hache d\'armes', desc: "Plus brutale que l'épée, taille des plaies profondes mais demande plus d'effort.", stats: [{type: 'dmg', label: '1d8 + FOR'}, {type: 'special', label: 'Brutale'}], special: "Ignore 1 point d'armure légère/moyenne.", culture: null },
+  { cat: 'moyenne', nom: 'Masse d\'armes', desc: "Brise plutôt que coupe. Excellent contre les armures lourdes mais peu efficace contre les chairs nues.", stats: [{type: 'dmg', label: '1d8 + FOR'}, {type: 'special', label: 'Contondante'}], special: "+2 dégâts contre armure lourde. Peut étourdir sur réussite éclatante.", culture: null },
+  { cat: 'moyenne', nom: 'Lance', desc: "Allonge précieuse pour tenir à distance. Lance ou maintient, selon le besoin.", stats: [{type: 'dmg', label: '1d8 + FOR'}, {type: 'range', label: 'Portée 5m lancée'}, {type: 'special', label: 'Allonge'}], special: "Peut être lancée. Allonge : peut frapper un ennemi 2m plus loin que normal.", culture: null },
+  { cat: 'moyenne', nom: 'Cimeterre Sadien', desc: "Lame courbe et tranchante, parfaite pour les attaques rapides. Légère pour sa taille.", stats: [{type: 'dmg', label: '1d8 + FOR'}, {type: 'special', label: 'Critique étendu'}], special: "Coup d'éclat sur 19 ou 20 naturel (au lieu de 20 seulement).", culture: 'Sadien' },
+  { cat: 'moyenne', nom: 'Marteau de guerre nain', desc: "Compact, dense, capable de défoncer un mur. Symbole du forgeron-guerrier.", stats: [{type: 'dmg', label: '1d8 + FOR'}, {type: 'special', label: 'Perforant'}], special: "Ignore 1 point d'armure (toutes). +2 dégâts contre constructions/portes.", culture: 'Nain' },
+
+  // === ARMES LOURDES ===
+  { cat: 'lourde', nom: 'Épée à 2 mains', desc: "Lame longue, lourde, dévastatrice. Demande deux mains et de la place.", stats: [{type: 'dmg', label: '1d10 + FOR'}, {type: 'special', label: '2 mains, −1 init'}], special: "Demande deux mains. −1 initiative.", culture: null },
+  { cat: 'lourde', nom: 'Claymore nordique', desc: "L'arme du berserker. Énorme, dévastatrice, fait des trous dans les rangs ennemis.", stats: [{type: 'dmg', label: '1d10 + FOR'}, {type: 'special', label: '2 mains, −1 init'}], special: "Peut briser une arme adverse (jet opposé). +1 dégâts pendant Furie nordique.", culture: 'Nordique' },
+  { cat: 'lourde', nom: 'Hache de bataille', desc: "Lame large et lourde, dessine de larges arcs mortels. Symbole de la guerre brute.", stats: [{type: 'dmg', label: '1d10 + FOR'}, {type: 'special', label: '2 mains, −1 init'}], special: "Ignore 2 points d'armure (toutes).", culture: null },
+  { cat: 'lourde', nom: 'Lance de cavalerie', desc: "Longue lance utilisée à cheval pour percer les lignes ennemies. Brise souvent à l'impact.", stats: [{type: 'dmg', label: '1d10 + FOR'}, {type: 'special', label: '2 mains, allonge'}], special: "+1d8 dégâts si chargé à cheval (course de 5m+). Se brise sur coup d'éclat.", culture: null },
+  { cat: 'lourde', nom: 'Marteau de guerre lourd', desc: "Massif, demande deux mains et de la place. Peut écraser une tête ou défoncer une porte.", stats: [{type: 'dmg', label: '1d10 + FOR'}, {type: 'special', label: '2 mains, étourdissement'}], special: "Sur coup d'éclat : étourdit la cible 1 tour. Ignore 1 armure lourde.", culture: null },
+  { cat: 'lourde', nom: 'Maul nain', desc: "Plus marteau que hache, fait pour casser. Forgé pour les guerres de tunnels.", stats: [{type: 'dmg', label: '1d10 + FOR'}, {type: 'special', label: '2 mains'}], special: "+2 dégâts contre constructions/portes/golems. +1 contre armures lourdes.", culture: 'Nain' },
+
+  // === ARMES À DISTANCE ===
+  { cat: 'distance', nom: 'Arc court', desc: "Petit arc maniable, parfait pour les chasseurs et les éclaireurs.", stats: [{type: 'dmg', label: '1d6 + DEX'}, {type: 'range', label: 'Portée 30m'}], special: "Tir rapide (action principale).", culture: null },
+  { cat: 'distance', nom: 'Arc long', desc: "Plus puissant, plus loin. L'arme de prédilection des armées et des forestiers expérimentés.", stats: [{type: 'dmg', label: '1d8 + DEX'}, {type: 'range', label: 'Portée 60m'}], special: "Demande de la force (FOR ≥ +1 pour usage optimal).", culture: 'Elfes Sylvestres' },
+  { cat: 'distance', nom: 'Arc composite', desc: "Arc renforcé de corne et de tendon. Plus puissant pour sa taille.", stats: [{type: 'dmg', label: '1d8 + DEX +1'}, {type: 'range', label: 'Portée 50m'}], special: "+1 dégâts par rapport à un arc normal.", culture: 'Sadien' },
+  { cat: 'distance', nom: 'Arbalète légère', desc: "Mécanique précise, ne demande pas de muscle mais nécessite du temps pour recharger.", stats: [{type: 'dmg', label: '1d8 + DEX'}, {type: 'range', label: 'Portée 40m'}], special: "Recharge : 1 action mineure entre chaque tir. Pas de besoin de FOR.", culture: null },
+  { cat: 'distance', nom: 'Arbalète lourde', desc: "Plus puissante, mais demande une action complète pour recharger.", stats: [{type: 'dmg', label: '1d10 + DEX'}, {type: 'range', label: 'Portée 60m'}], special: "Recharge : 1 action complète. Ignore 1 armure.", culture: null },
+  { cat: 'distance', nom: 'Fronde', desc: "Simple, accessible, mortelle entre des mains expérimentées. Munitions gratuites (cailloux).", stats: [{type: 'dmg', label: '1d4 + DEX'}, {type: 'range', label: 'Portée 20m'}], special: "Munitions gratuites (cailloux). Discrétion +1 (silencieuse).", culture: null },
+  { cat: 'distance', nom: 'Javelot', desc: "Lance courte conçue pour être lancée. Compromis entre arme de jet et de mêlée.", stats: [{type: 'dmg', label: '1d6 + FOR'}, {type: 'range', label: 'Portée 15m'}], special: "Jet utilise FOR. Peut aussi servir au corps à corps.", culture: null },
+
+  // === ARMES EXOTIQUES ===
+  { cat: 'exotique', nom: 'Katana de Sol\'Ambaïre', desc: "Lame courbée et tranchante venue du continent céleste. Élégance et précision incarnées.", stats: [{type: 'dmg', label: '1d10 + DEX'}, {type: 'special', label: 'Finesse, 2 mains'}], special: "Utilise DEX. Coup d'éclat sur 19-20. Demande entraînement (Atout 'Style du Katana' conseillé).", culture: 'Sol\'Ambaïre' },
+  { cat: 'exotique', nom: 'Kama (Sol\'Ambaïre)', desc: "Faucille de combat, souvent en paire. Arme du moine ou du paysan-guerrier.", stats: [{type: 'dmg', label: '1d6 + DEX'}, {type: 'special', label: 'Finesse, paire'}], special: "Utilise DEX. Peut être utilisée en paire (1 attaque bonus à -2).", culture: 'Sol\'Ambaïre' },
+  { cat: 'exotique', nom: 'Shuriken', desc: "Étoiles de jet, projetées par 3 ou 6 à la fois. Discrètes, mortelles.", stats: [{type: 'dmg', label: '1d4 + DEX'}, {type: 'range', label: 'Portée 10m'}], special: "Peut lancer 3 par tour (à -2 chaque). Discrétion +1.", culture: 'Sol\'Ambaïre' },
+  { cat: 'exotique', nom: 'Boomerang Jindo', desc: "Bois courbé qui revient à son lanceur. Outil de chasse et de guerre des îles.", stats: [{type: 'dmg', label: '1d6 + DEX'}, {type: 'range', label: 'Portée 15m'}], special: "Revient automatiquement au lanceur si raté. À récupérer manuellement si touché.", culture: 'Jindo' },
+  { cat: 'exotique', nom: 'Fouet', desc: "Long cuir tressé. Peut désarmer, immobiliser, blesser à distance modérée.", stats: [{type: 'dmg', label: '1d4 + DEX'}, {type: 'range', label: 'Portée 3m'}], special: "Peut désarmer ou saisir au lieu de blesser (jet opposé). Allonge sans dégâts max.", culture: null },
+  { cat: 'exotique', nom: 'Bâton de moine', desc: "Bâton sobre, mais maniable comme un katana entre les mains d'un maître.", stats: [{type: 'dmg', label: '1d6 + DEX'}, {type: 'special', label: 'Finesse, paire'}], special: "Utilise DEX. Peut frapper aux 2 bouts (1 attaque bonus à -2).", culture: 'Moine' },
+  { cat: 'exotique', nom: 'Hallebarde', desc: "Lance + hache combinées, taille et perce. Longue, demande de la place.", stats: [{type: 'dmg', label: '1d10 + FOR'}, {type: 'special', label: '2 mains, allonge 3m'}], special: "Allonge 3m. Peut faire chuter une cible (Manœuvre Bousculer améliorée).", culture: null },
+  { cat: 'exotique', nom: 'Glaive', desc: "Lame de hallebarde mais courbe, élégante. Arme de garde noble.", stats: [{type: 'dmg', label: '1d10 + FOR'}, {type: 'special', label: '2 mains, allonge 3m'}], special: "Allonge 3m. Style très visible (+1 Persuasion ou Intimidation selon contexte).", culture: null },
+
+  // === ARMURES ===
+  { cat: 'armure', nom: 'Vêtements rembourrés', desc: "Tissus épais et matelassés. Le minimum pour ne pas combattre nu.", stats: [{type: 'def', label: 'Défense +1'}, {type: 'special', label: 'Légère'}], special: "Aucune pénalité.", culture: null },
+  { cat: 'armure', nom: 'Cuir simple', desc: "Cuir tanné, souple, économique. L'armure standard de l'aventurier modeste.", stats: [{type: 'def', label: 'Défense +1'}, {type: 'special', label: 'Légère'}], special: "Aucune pénalité.", culture: null },
+  { cat: 'armure', nom: 'Cuir clouté', desc: "Cuir renforcé de pointes métalliques. Plus protecteur mais plus visible.", stats: [{type: 'def', label: 'Défense +1'}, {type: 'special', label: 'Légère'}], special: "Mains nues = +1 dégâts à l'utilisateur (en cas de saisie).", culture: null },
+  { cat: 'armure', nom: 'Tunique Sylvestre', desc: "Cuir tressé de fibres végétales magiques. Camouflage naturel en forêt.", stats: [{type: 'def', label: 'Défense +1'}, {type: 'special', label: 'Camouflage'}], special: "+1 Discrétion en forêt ou environnement naturel.", culture: 'Elfes Sylvestres' },
+  { cat: 'armure', nom: 'Cuir bouilli', desc: "Cuir durci au bain. Rigide, plus protecteur que le cuir simple.", stats: [{type: 'def', label: 'Défense +2'}, {type: 'special', label: 'Moyenne'}], special: "−1 Discrétion, −1 Acrobaties.", culture: null },
+  { cat: 'armure', nom: 'Cotte de mailles', desc: "Mailles d'anneaux entrelacés. Le standard de l'infanterie lourde.", stats: [{type: 'def', label: 'Défense +2'}, {type: 'special', label: 'Moyenne'}], special: "−1 Discrétion, −1 Acrobaties. Bruit caractéristique.", culture: null },
+  { cat: 'armure', nom: 'Écailles osseuses', desc: "Plaques d'os animal cousues sur cuir. Brutal mais efficace.", stats: [{type: 'def', label: 'Défense +2'}, {type: 'special', label: 'Moyenne'}], special: "−1 Discrétion, −1 Acrobaties. +1 Intimidation.", culture: null },
+  { cat: 'armure', nom: 'Plaques nordiques', desc: "Plaques de fer rivetées sur cuir épais. Conçues pour le froid extrême et le combat.", stats: [{type: 'def', label: 'Défense +2'}, {type: 'special', label: 'Moyenne'}], special: "−1 Discrétion, −1 Acrobaties. Résiste au froid (+1 jets contre froid).", culture: 'Nordique' },
+  { cat: 'armure', nom: 'Cuirasse', desc: "Plaque solide sur le torse, bras et jambes en cuir. Compromis poids/protection.", stats: [{type: 'def', label: 'Défense +3'}, {type: 'special', label: 'Lourde'}], special: "−2 Discrétion, −2 Acrobaties, −1 init.", culture: null },
+  { cat: 'armure', nom: 'Plate naine runique', desc: "Plaques pleines gravées de runes naines. Protection légendaire des forgerons-guerriers.", stats: [{type: 'def', label: 'Défense +3'}, {type: 'special', label: 'Lourde, runique'}], special: "−2 Discrétion, −2 Acrobaties, −1 init. +1 résistance à 1 élément choisi à la création.", culture: 'Nain' },
+  { cat: 'armure', nom: 'Plate complète', desc: "Couverture totale en plaques articulées. Forteresse mobile, mais lente.", stats: [{type: 'def', label: 'Défense +3'}, {type: 'special', label: 'Lourde'}], special: "−2 Discrétion, −2 Acrobaties, −1 init.", culture: null },
+  { cat: 'armure', nom: 'Cottes lamellaires', desc: "Petites plaques nouées entre elles. Style oriental venu de Sol'Ambaïre.", stats: [{type: 'def', label: 'Défense +3'}, {type: 'special', label: 'Lourde'}], special: "−2 Discrétion, −2 Acrobaties, −1 init. Plus mobile que les plates (Acrobaties seulement −1).", culture: 'Sol\'Ambaïre' },
+
+  // === BOUCLIERS ===
+  { cat: 'bouclier', nom: 'Targe', desc: "Petit bouclier rond, parfois sanglé à l'avant-bras. Mobile mais protection limitée.", stats: [{type: 'def', label: 'Défense +1'}, {type: 'special', label: 'Petit'}], special: "Occupe la main mais permet quand même quelques gestes (-1 sur jets d'Artisanat avec cette main).", culture: null },
+  { cat: 'bouclier', nom: 'Bouclier rond', desc: "Bouclier standard du fantassin. Bon compromis taille/protection.", stats: [{type: 'def', label: 'Défense +2'}, {type: 'special', label: 'Standard'}], special: "Occupe une main.", culture: null },
+  { cat: 'bouclier', nom: 'Bouclier nordique', desc: "Lourd, en bois renforcé de fer. Sert aussi d'arme contondante.", stats: [{type: 'def', label: 'Défense +2'}, {type: 'special', label: 'Frappant'}], special: "Peut frapper : action principale, 1d6 + FOR contondant, +1 Bousculer.", culture: 'Nordique' },
+  { cat: 'bouclier', nom: 'Pavois', desc: "Énorme bouclier pavois, presque mural. Pose au sol pour faire bouclier vivant.", stats: [{type: 'def', label: 'Défense +3'}, {type: 'special', label: '−1 init'}], special: "Occupe une main et −1 init. Posé au sol = +5 Défense mais immobile.", culture: null }
+];
+
+function renderItems(filter = 'all') {
+  const grid = document.getElementById('items');
+  grid.innerHTML = '';
+  const filtered = filter === 'all' ? ITEMS : ITEMS.filter(i => i.cat === filter);
+  filtered.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'item-card';
+
+    const catLabel = {
+      'legere': 'Arme légère',
+      'moyenne': 'Arme moyenne',
+      'lourde': 'Arme lourde',
+      'distance': 'Arme à distance',
+      'exotique': 'Arme exotique',
+      'armure': 'Armure',
+      'bouclier': 'Bouclier'
+    }[item.cat];
+
+    let statsHTML = '<div class="stats-row">';
+    item.stats.forEach(s => {
+      statsHTML += `<span class="stat-tag ${s.type}">${s.label}</span>`;
+    });
+    statsHTML += '</div>';
+
+    card.innerHTML = `
+      <div class="item-cat">${catLabel}</div>
+      <h2>${item.nom}</h2>
+      ${item.culture ? `<div class="culture">⚜ ${item.culture}</div>` : ''}
+      <div class="item-desc">${item.desc}</div>
+      ${statsHTML}
+      <div class="special">${item.special}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function filter(cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderItems(cat);
+}
+
+renderItems();
+</script>
+</body>
+</html>
