@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Armonia — Jeu de Rôle</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+  min-height: 100vh;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+header.title-bar {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 30px 20px;
+  background: var(--paper);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 48px;
+  color: var(--primary);
+  letter-spacing: 5px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 8px;
+  font-size: 18px;
+}
+header.title-bar .quote {
+  color: var(--accent);
+  font-style: italic;
+  margin-top: 14px;
+  font-size: 14px;
+}
+.intro {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  border-radius: 4px;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.2s;
+  display: block;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+.card .icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+.card h2 {
+  margin: 0 0 8px 0;
+  color: var(--primary);
+  font-size: 22px;
+}
+.card .description {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.card .badge {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 3px 10px;
+  background: var(--accent);
+  color: white;
+  border-radius: 12px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--muted);
+  font-size: 13px;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="title-bar">
+  <h1>⚔ ARMONIA ⚔</h1>
+  <div class="subtitle">Jeu de Rôle médiéval-fantastique</div>
+  <div class="quote">« Là où la magie est revenue. Là où la dévastation s'approche. »</div>
+</header>
+
+<div class="intro">
+  <p style="margin: 0 0 8px 0;"><strong>Bienvenue dans l'univers d'Armonia.</strong></p>
+  <p style="margin: 0;">Tu trouveras ici tous les documents nécessaires pour rejoindre la table : le livret de règles, ta fiche de personnage interactive, et la bibliothèque des races jouables.</p>
+</div>
+
+<div class="cards">
+
+  <a href="Armonia_Livret_de_regles_V1.pdf" class="card" target="_blank">
+    <div class="icon">📖</div>
+    <h2>Livret de règles</h2>
+    <div class="description">Les règles complètes du système : caractéristiques, compétences, magie (Sens, Script, Mots), combat, et plus.</div>
+    <div class="badge">PDF · 24 pages</div>
+  </a>
+
+  <a href="fiche_personnage.html" class="card">
+    <div class="icon">📝</div>
+    <h2>Fiche de personnage</h2>
+    <div class="description">Crée ton personnage avec calculs automatiques. Sauvegarde et charge tes fiches en JSON, exporte en PDF.</div>
+    <div class="badge">Interactive</div>
+  </a>
+
+  <a href="bibliotheque_races.html" class="card">
+    <div class="icon">📚</div>
+    <h2>Bibliothèque des Races</h2>
+    <div class="description">41 races et lignées jouables, avec descriptions, affinités élémentaires et traits raciaux.</div>
+    <div class="badge">Référence</div>
+  </a>
+
+  <a href="armonia_clac_clac.json" class="card" download>
+    <div class="icon">🦴</div>
+    <h2>Exemple : Clac Clac</h2>
+    <div class="description">Une fiche pré-remplie d'un personnage atypique : un squelette invocation orphelin. À charger dans la fiche.</div>
+    <div class="badge">JSON · Exemple</div>
+  </a>
+
+  <a href="armonia_hane_tengu.json" class="card" download>
+    <div class="icon">🪶</div>
+    <h2>Exemple : Hane-Tengu</h2>
+    <div class="description">Une fiche pré-remplie d'un messager Tengu hybride, plumes et lien aux vents.</div>
+    <div class="badge">JSON · Exemple</div>
+  </a>
+
+</div>
+
+<footer>
+  Système créé par Bilal · Univers d'Armonia · 2026
+</footer>
+
+</div>
+</body>
+</html>

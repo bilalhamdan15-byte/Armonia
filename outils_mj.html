@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outils du MJ — Armonia 🤫</title>
+<style>
+:root {
+  --bg: #1a1a2e;
+  --paper: #2a2a3e;
+  --primary: #c9a85a;
+  --accent: #d97c47;
+  --text: #f4e8d0;
+  --muted: #9a8a7a;
+  --border: #3a3a4e;
+  --danger: #c44040;
+  --success: #5aa850;
+  --info: #5a8ec9;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+  min-height: 100vh;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: var(--paper);
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 30px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.warning-banner {
+  background: var(--danger);
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-weight: bold;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+.tab-nav {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 0;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  background: var(--paper);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  padding: 10px 18px;
+  cursor: pointer;
+  border-radius: 8px 8px 0 0;
+  font-family: inherit;
+  font-size: 15px;
+}
+.tab-btn.active {
+  background: var(--primary);
+  color: var(--bg);
+  font-weight: bold;
+}
+.tab-content {
+  display: none;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 0 8px 8px 8px;
+  padding: 20px;
+}
+.tab-content.active { display: block; }
+.tab-content h2 {
+  color: var(--primary);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 8px;
+  margin-top: 0;
+}
+.tab-content h3 {
+  color: var(--accent);
+  margin-top: 18px;
+  margin-bottom: 8px;
+}
+.grid { display: grid; gap: 12px; }
+.grid-2 { grid-template-columns: 1fr 1fr; }
+.grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+.grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+@media (max-width: 720px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
+.field { display: flex; flex-direction: column; }
+.field label {
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+input, select, textarea {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  width: 100%;
+}
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: -1px;
+}
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+button {
+  background: var(--primary);
+  color: var(--bg);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 14px;
+}
+button:hover { background: var(--accent); }
+
+/* Estimator result box */
+.result-box {
+  background: var(--bg);
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+  padding: 18px;
+  margin-top: 16px;
+}
+.result-box h3 {
+  margin-top: 0;
+  color: var(--primary);
+}
+.result-line {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--border);
+}
+.result-line:last-child { border-bottom: none; }
+.result-line .label { color: var(--muted); }
+.result-line .value {
+  font-weight: bold;
+  color: var(--primary);
+  font-size: 18px;
+}
+.result-line .value.success { color: var(--success); }
+.result-line .value.danger { color: var(--danger); }
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 12px;
+  background: var(--bg);
+}
+table th {
+  background: var(--accent);
+  color: var(--bg);
+  padding: 8px;
+  text-align: left;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+table td {
+  padding: 8px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+table tr:hover td { background: rgba(201, 168, 90, 0.1); }
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+@media (max-width: 720px) {
+  .checkbox-grid { grid-template-columns: 1fr 1fr; }
+}
+.checkbox-grid label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--text);
+}
+.checkbox-grid label:hover { border-color: var(--primary); }
+.checkbox-grid input[type="checkbox"] { width: auto; margin: 0; }
+.checkbox-grid input[type="checkbox"]:checked + span {
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.formula {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.help-text {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 8px;
+}
+
+.secret-zone {
+  background: linear-gradient(135deg, #2a2a3e 0%, #1a1a2e 100%);
+  border: 2px dashed var(--danger);
+  padding: 14px;
+  border-radius: 8px;
+}
+.secret-zone::before {
+  content: "🤫 SECRET MJ — NE PAS MONTRER";
+  display: block;
+  color: var(--danger);
+  font-weight: bold;
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="title-bar">
+  <h1>🎲 OUTILS DU MJ — ARMONIA 🎲</h1>
+  <div class="subtitle">Calculateur de sorts · Tables · Notes secrètes</div>
+</header>
+
+<div class="warning-banner">
+  ⚠️ Ce fichier est pour TOI uniquement. Ne le partage pas avec tes joueurs.
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('estimator')">🧮 Estimateur de sorts</button>
+  <button class="tab-btn" onclick="showTab('tables')">📊 Tables de référence</button>
+  <button class="tab-btn" onclick="showTab('combat')">⚔ Combat rapide</button>
+  <button class="tab-btn" onclick="showTab('notes')">🤫 Notes secrètes</button>
+</div>
+
+<!-- ESTIMATEUR DE SORTS -->
+<div id="tab_estimator" class="tab-content active">
+  <h2>Estimateur de sort improvisé</h2>
+  <p class="help-text">Un joueur improvise un effet (cône de flamme, mur de glace, etc.) ? Coche les paramètres et tu obtiens DD, coût Éther et dégâts/effets suggérés.</p>
+
+  <div class="grid grid-2">
+    <div class="field">
+      <label>Type de magie</label>
+      <select id="est_type" onchange="estimate()">
+        <option value="sens">Magie de Sens (élémentaire)</option>
+        <option value="script">Magie Script (compositionnelle)</option>
+        <option value="mot">Magie des Mots (langue primordiale)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Élément / Affinité</label>
+      <select id="est_element" onchange="estimate()">
+        <option value="Feu">🔥 Feu</option>
+        <option value="Eau">💧 Eau</option>
+        <option value="Vent">🍃 Vent</option>
+        <option value="Terre">🪨 Terre</option>
+        <option value="Chaos">✨ Chaos (soin/primordial)</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="field">
+      <label>Puissance ressentie</label>
+      <select id="est_power" onchange="estimate()">
+        <option value="mineur">Mineur (étincelle, jet d'eau)</option>
+        <option value="standard" selected>Standard (boule de feu)</option>
+        <option value="puissant">Puissant (pieux multiples)</option>
+        <option value="spectaculaire">Spectaculaire (carbonisation zone)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Zone d'effet</label>
+      <select id="est_zone" onchange="estimate()">
+        <option value="single">Cible unique</option>
+        <option value="line">Ligne (5m × 1m)</option>
+        <option value="cone">Cône (5m)</option>
+        <option value="sphere">Sphère (3m de rayon)</option>
+        <option value="large">Grande zone (10m+)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Durée</label>
+      <select id="est_duration" onchange="estimate()">
+        <option value="instant">Instantané</option>
+        <option value="round">1 round</option>
+        <option value="minute">1 minute</option>
+        <option value="scene">1 scène</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="grid grid-2">
+    <div class="field">
+      <label>Portée</label>
+      <select id="est_range" onchange="estimate()">
+        <option value="touch">Toucher</option>
+        <option value="close" selected>Courte (5m)</option>
+        <option value="medium">Moyenne (10-20m)</option>
+        <option value="long">Longue (30-50m)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Difficulté narrative (modificateur MJ)</label>
+      <select id="est_mod" onchange="estimate()">
+        <option value="-3">Facilité (-3 DD)</option>
+        <option value="0" selected>Standard</option>
+        <option value="3">Plus dur (+3 DD)</option>
+        <option value="5">Très complexe (+5 DD)</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="result-box">
+    <h3>📋 Résultat suggéré</h3>
+    <div class="result-line">
+      <span class="label">Difficulté du jet (DD)</span>
+      <span class="value" id="result_dd">15</span>
+    </div>
+    <div class="result-line">
+      <span class="label">Coût en Éther</span>
+      <span class="value" id="result_cost">2</span>
+    </div>
+    <div class="result-line">
+      <span class="label">Dégâts suggérés</span>
+      <span class="value" id="result_damage">2d6</span>
+    </div>
+    <div class="result-line">
+      <span class="label">Effet de zone</span>
+      <span class="value" id="result_zone">Cible unique</span>
+    </div>
+    <div class="result-line">
+      <span class="label">Type de jet</span>
+      <span class="value" id="result_roll">1d20 + INT + Affinité Feu</span>
+    </div>
+    <div class="formula" id="result_formula" style="margin-top: 10px;">—</div>
+    <p class="help-text" id="result_advice" style="margin-top: 10px;">—</p>
+  </div>
+</div>
+
+<!-- TABLES -->
+<div id="tab_tables" class="tab-content">
+  <h2>Tables de référence rapides</h2>
+
+  <h3>🎯 Difficultés usuelles</h3>
+  <table>
+    <thead><tr><th>Niveau</th><th>DD</th><th>Exemple</th></tr></thead>
+    <tbody>
+      <tr><td>Très facile</td><td>5</td><td>Un enfant pourrait</td></tr>
+      <tr><td>Facile</td><td>10</td><td>Un adulte sans effort</td></tr>
+      <tr><td>Standard</td><td>15</td><td>Un professionnel</td></tr>
+      <tr><td>Difficile</td><td>20</td><td>Demande de la maîtrise</td></tr>
+      <tr><td>Très difficile</td><td>25</td><td>Exploit</td></tr>
+      <tr><td>Héroïque</td><td>30</td><td>Limite du possible</td></tr>
+    </tbody>
+  </table>
+
+  <h3>📐 Paliers de réussite</h3>
+  <table>
+    <thead><tr><th>Résultat</th><th>Effet</th></tr></thead>
+    <tbody>
+      <tr><td>1 naturel</td><td>Échec catastrophique / Bourde</td></tr>
+      <tr><td>&lt; DD</td><td>Échec</td></tr>
+      <tr><td>DD à DD+1</td><td>Réussite à l'arraché (avec coût)</td></tr>
+      <tr><td>DD+2 à DD+5</td><td>Pleine réussite</td></tr>
+      <tr><td>DD+6+</td><td>Réussite éclatante (+50% effet OU tactique)</td></tr>
+      <tr><td>20 naturel</td><td>Coup d'éclat héroïque</td></tr>
+    </tbody>
+  </table>
+
+  <h3>⚔ Dégâts d'armes</h3>
+  <table>
+    <thead><tr><th>Arme</th><th>Dégâts</th><th>Spécial</th></tr></thead>
+    <tbody>
+      <tr><td>Mains nues / dague</td><td>1d4 + FOR</td><td>Légère</td></tr>
+      <tr><td>Arme légère</td><td>1d6 + FOR</td><td>—</td></tr>
+      <tr><td>Arme moyenne</td><td>1d8 + FOR</td><td>Standard</td></tr>
+      <tr><td>Arme lourde 2M</td><td>1d10 + FOR</td><td>−1 init</td></tr>
+      <tr><td>Arc / Arbalète</td><td>1d6 ou 1d8 + DEX</td><td>Portée</td></tr>
+    </tbody>
+  </table>
+
+  <h3>🔥 Coûts magie de sens</h3>
+  <table>
+    <thead><tr><th>Niveau</th><th>DD</th><th>Éther</th><th>Effet de base</th></tr></thead>
+    <tbody>
+      <tr><td>Mineur</td><td>10</td><td>1</td><td>1d4 dégâts ou 1d6 PV soin</td></tr>
+      <tr><td>Standard</td><td>15</td><td>2</td><td>2d6 dégâts</td></tr>
+      <tr><td>Puissant</td><td>20</td><td>4</td><td>3d6 dégâts</td></tr>
+      <tr><td>Spectaculaire</td><td>25</td><td>8</td><td>4d8 dégâts</td></tr>
+    </tbody>
+  </table>
+
+  <h3>📜 Magie Script</h3>
+  <table>
+    <thead><tr><th>Action</th><th>DD</th><th>Coût</th></tr></thead>
+    <tbody>
+      <tr><td>Création (par sym au-delà du 1er)</td><td>10 + 3/sym</td><td>1 Éther/sym (investi)</td></tr>
+      <tr><td>Activation script pré-inscrit</td><td>—</td><td>= nb symboles</td></tr>
+      <tr><td>Script spontané</td><td>10 + 3/sym</td><td>nb sym + 1</td></tr>
+    </tbody>
+  </table>
+
+  <h3>🗣️ Magie des Mots</h3>
+  <table>
+    <thead><tr><th>Niveau</th><th>DD</th><th>Éther</th></tr></thead>
+    <tbody>
+      <tr><td>Mineur</td><td>15</td><td>4</td></tr>
+      <tr><td>Majeur</td><td>20</td><td>8</td></tr>
+      <tr><td>Suprême</td><td>25</td><td>16</td></tr>
+    </tbody>
+  </table>
+
+  <h3>🛡️ Armures et Défense</h3>
+  <table>
+    <thead><tr><th>Armure</th><th>Bonus Défense</th><th>Pénalité</th></tr></thead>
+    <tbody>
+      <tr><td>Aucune</td><td>+0</td><td>—</td></tr>
+      <tr><td>Légère</td><td>+1</td><td>—</td></tr>
+      <tr><td>Moyenne</td><td>+2</td><td>−1 Discrétion/Acrobaties</td></tr>
+      <tr><td>Lourde</td><td>+3</td><td>−2 Discrétion/Acro, −1 init</td></tr>
+      <tr><td>Bouclier</td><td>+2 (occupe une main)</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <h3>📊 Calculs dérivés rapides</h3>
+  <table>
+    <thead><tr><th>Donnée</th><th>Formule</th></tr></thead>
+    <tbody>
+      <tr><td>Vitalité max</td><td>10 + CON × 3</td></tr>
+      <tr><td>Éther max</td><td>3 + INT + CON</td></tr>
+      <tr><td>Défense passive</td><td>10 + DEX + Comp Défense + Armure</td></tr>
+      <tr><td>Initiative</td><td>1d20 + DEX</td></tr>
+      <tr><td>Surcharge → coma</td><td>5 Surcharges = coma 3 jours</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- COMBAT RAPIDE -->
+<div id="tab_combat" class="tab-content">
+  <h2>Calculateur de combat rapide</h2>
+  <p class="help-text">Tu veux balancer une attaque d'un PNJ rapidement ? Entre les valeurs, lance le résultat.</p>
+
+  <div class="grid grid-2">
+    <div class="field">
+      <label>Attaque du PNJ (FOR/DEX + comp)</label>
+      <input type="number" id="combat_attack" value="3">
+    </div>
+    <div class="field">
+      <label>Défense du PJ (10 + DEX + Défense + armure)</label>
+      <input type="number" id="combat_defense" value="13">
+    </div>
+  </div>
+
+  <div class="grid grid-2" style="margin-top: 8px;">
+    <div class="field">
+      <label>Dégâts du PNJ (ex : 1d8+2)</label>
+      <input type="text" id="combat_damage" value="1d8+2">
+    </div>
+    <div class="field">
+      <label>—</label>
+      <button onclick="rollAttack()">🎲 Lancer l'attaque</button>
+    </div>
+  </div>
+
+  <div class="result-box" id="combat_result">
+    <h3>Résultat</h3>
+    <div class="help-text">Clique "🎲 Lancer l'attaque" pour roller.</div>
+  </div>
+
+  <h3 style="margin-top: 20px;">🎲 Lanceur de dés générique</h3>
+  <div class="grid grid-2">
+    <div class="field">
+      <label>Notation (ex : 2d6+3, 1d20, 3d10)</label>
+      <input type="text" id="dice_notation" value="1d20" onkeypress="if(event.key==='Enter') rollDice()">
+    </div>
+    <div class="field">
+      <label>—</label>
+      <button onclick="rollDice()">🎲 Lancer</button>
+    </div>
+  </div>
+  <div class="result-box" id="dice_result">
+    <div class="help-text">Tape une notation et clique Lancer.</div>
+  </div>
+</div>
+
+<!-- NOTES SECRÈTES -->
+<div id="tab_notes" class="tab-content">
+  <h2>Notes secrètes de campagne</h2>
+  <p class="help-text">Tout ce que tu écris ici reste sur ton ordinateur (sauvegarde locale). Tes joueurs ne le verront jamais.</p>
+
+  <div class="secret-zone">
+    <textarea id="secret_notes" placeholder="Twists prévus, vraies stats des boss, identités cachées, événements à venir, indices à distribuer..." style="min-height: 400px;" oninput="saveSecretNotes()"></textarea>
+  </div>
+
+  <button onclick="exportSecretNotes()" style="margin-top: 12px;">📥 Exporter les notes (texte)</button>
+  <button onclick="if(confirm('Effacer toutes les notes secrètes ?')) clearSecretNotes()" style="background: var(--danger); margin-top: 12px; margin-left: 8px;">🗑️ Effacer</button>
+</div>
+
+</div>
+
+<script>
+// === Navigation ===
+function showTab(name) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab_' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// === Estimateur de sorts ===
+function estimate() {
+  const type = document.getElementById('est_type').value;
+  const element = document.getElementById('est_element').value;
+  const power = document.getElementById('est_power').value;
+  const zone = document.getElementById('est_zone').value;
+  const duration = document.getElementById('est_duration').value;
+  const range = document.getElementById('est_range').value;
+  const mod = parseInt(document.getElementById('est_mod').value) || 0;
+
+  let baseDD, baseCost, baseDamage;
+  let powerName, rollType;
+
+  // Base par type + puissance
+  const sensTable = {
+    'mineur':       { dd: 10, cost: 1, dmg: '1d4' },
+    'standard':     { dd: 15, cost: 2, dmg: '2d6' },
+    'puissant':     { dd: 20, cost: 4, dmg: '3d6' },
+    'spectaculaire':{ dd: 25, cost: 8, dmg: '4d8' }
+  };
+
+  if (type === 'sens') {
+    const b = sensTable[power];
+    baseDD = b.dd; baseCost = b.cost; baseDamage = b.dmg;
+    rollType = `1d20 + INT + Affinité ${element}`;
+    powerName = power;
+  } else if (type === 'script') {
+    // Approximation : nb de symboles selon puissance
+    const sym = { 'mineur': 2, 'standard': 3, 'puissant': 4, 'spectaculaire': 5 }[power];
+    baseDD = 10 + 3 * (sym - 1);
+    baseCost = sym;
+    baseDamage = sensTable[power].dmg;
+    rollType = `1d20 + INT + Arcanes (création) — ${sym} symboles`;
+    powerName = `${sym} symboles`;
+  } else if (type === 'mot') {
+    const motTable = {
+      'mineur':       { dd: 15, cost: 4, dmg: '3d6' },
+      'standard':     { dd: 15, cost: 4, dmg: '3d6' },
+      'puissant':     { dd: 20, cost: 8, dmg: '4d8' },
+      'spectaculaire':{ dd: 25, cost: 16, dmg: '6d10' }
+    };
+    const b = motTable[power];
+    baseDD = b.dd; baseCost = b.cost; baseDamage = b.dmg;
+    rollType = `1d20 + INT + Affinité Chaos (mot primordial)`;
+    powerName = power;
+  }
+
+  // Modificateurs zone
+  const zoneMods = {
+    'single':  { dd: 0, cost: 0,  label: 'Cible unique', dmgMult: 1.0 },
+    'line':    { dd: 2, cost: 1,  label: 'Ligne 5m × 1m (touche tous sur la ligne)', dmgMult: 0.7 },
+    'cone':    { dd: 3, cost: 2,  label: 'Cône 5m (1d4+1 cibles)', dmgMult: 0.6 },
+    'sphere':  { dd: 4, cost: 3,  label: 'Sphère 3m (touche tous dans la zone)', dmgMult: 0.5 },
+    'large':   { dd: 6, cost: 5,  label: 'Grande zone 10m+ (zone massive)', dmgMult: 0.5 }
+  };
+  const z = zoneMods[zone];
+
+  // Durée
+  const durMods = {
+    'instant': { dd: 0, cost: 0 },
+    'round':   { dd: 1, cost: 0 },
+    'minute':  { dd: 3, cost: 1 },
+    'scene':   { dd: 6, cost: 3 }
+  };
+  const d = durMods[duration];
+
+  // Portée
+  const rangeMods = {
+    'touch':  { dd: -2, cost: 0 },
+    'close':  { dd: 0,  cost: 0 },
+    'medium': { dd: 1,  cost: 0 },
+    'long':   { dd: 3,  cost: 1 }
+  };
+  const r = rangeMods[range];
+
+  const finalDD = Math.max(5, baseDD + z.dd + d.dd + r.dd + mod);
+  const finalCost = Math.max(1, baseCost + z.cost + d.cost + r.cost);
+
+  // Dégâts ajustés selon zone (en moyenne)
+  // Conserve la notation mais ajuste par mult si zone large
+  let finalDamage = baseDamage;
+  if (z.dmgMult < 1.0) {
+    // Réduire les dégâts par cible si zone large
+    const match = baseDamage.match(/(\d+)d(\d+)(\+(\d+))?/);
+    if (match) {
+      const nDice = Math.max(1, Math.floor(parseInt(match[1]) * z.dmgMult));
+      finalDamage = `${nDice}d${match[2]}${match[4] ? '+' + match[4] : ''} par cible`;
+    }
+  }
+
+  // Affichage
+  document.getElementById('result_dd').textContent = finalDD;
+  document.getElementById('result_cost').textContent = finalCost + ' Éther';
+  document.getElementById('result_damage').textContent = element === 'Chaos' && (power === 'mineur') ? `Effet variable (soin/contrôle)` : finalDamage;
+  document.getElementById('result_zone').textContent = z.label;
+  document.getElementById('result_roll').textContent = rollType;
+
+  // Formule explicative
+  document.getElementById('result_formula').textContent =
+    `Base : DD ${baseDD} (${powerName}) | +${z.dd} (zone) +${d.dd} (durée) +${r.dd} (portée) +${mod} (mod MJ) = ${finalDD}`;
+
+  // Conseil narratif
+  let advice = '';
+  if (type === 'sens' && power === 'spectaculaire') advice = "💡 À ce niveau, le sort attire l'attention sur des kilomètres. Conséquences narratives à prévoir.";
+  else if (type === 'mot') advice = "⚠️ Échec critique = 1d6 dégâts directs + 3 Surcharges (coma probable). Impact narratif fort.";
+  else if (type === 'script' && finalCost >= 6) advice = "💡 Coût élevé : risque de Surcharge si pas assez d'Éther.";
+  else if (z.dmgMult < 0.7) advice = "💡 Zone large = dégâts par cible réduits, mais peut toucher plusieurs ennemis.";
+  else advice = "💡 Effet équilibré pour la puissance demandée.";
+  document.getElementById('result_advice').textContent = advice;
+}
+
+// === Combat ===
+function rollAttack() {
+  const attack = parseInt(document.getElementById('combat_attack').value) || 0;
+  const defense = parseInt(document.getElementById('combat_defense').value) || 0;
+  const dmgStr = document.getElementById('combat_damage').value;
+
+  const roll = 1 + Math.floor(Math.random() * 20);
+  const total = roll + attack;
+  const margin = total - defense;
+
+  let palier, color;
+  if (roll === 1) { palier = "🎲 1 NATUREL — Bourde !"; color = 'danger'; }
+  else if (roll === 20) { palier = "✨ 20 NATUREL — Coup d'éclat !"; color = 'success'; }
+  else if (margin < 0) { palier = "❌ Échec (ratée)"; color = 'danger'; }
+  else if (margin <= 1) { palier = "⚠ Touche à l'arraché (avec effet défenseur)"; color = ''; }
+  else if (margin <= 5) { palier = "✓ Pleine réussite"; color = 'success'; }
+  else { palier = "💥 Touche solide (+50% dégâts OU effet tactique)"; color = 'success'; }
+
+  // Roll damage if hit
+  let dmg = '';
+  if (roll === 20 || (roll !== 1 && margin >= 0)) {
+    const dmgMatch = dmgStr.match(/(\d+)d(\d+)([+-]\d+)?/);
+    if (dmgMatch) {
+      let total = 0;
+      const n = parseInt(dmgMatch[1]);
+      const d = parseInt(dmgMatch[2]);
+      const bonus = dmgMatch[3] ? parseInt(dmgMatch[3]) : 0;
+      const rolls = [];
+      for (let i = 0; i < n; i++) {
+        const r = 1 + Math.floor(Math.random() * d);
+        total += r;
+        rolls.push(r);
+      }
+      total += bonus;
+      // Apply solid hit bonus
+      if (margin >= 6 && roll !== 20) total = Math.floor(total * 1.5);
+      if (roll === 20) total = n * d + bonus + d; // max + 1 bonus die
+      dmg = `Dégâts : ${total} (${rolls.join('+')}${bonus ? ' + ' + bonus : ''})`;
+      if (margin >= 6 && roll !== 20) dmg += ' x1.5 (touche solide)';
+      if (roll === 20) dmg += ' (max + dé bonus)';
+    }
+  }
+
+  document.getElementById('combat_result').innerHTML = `
+    <h3>Résultat du jet d'attaque</h3>
+    <div class="result-line"><span class="label">Dé tiré</span><span class="value">${roll}</span></div>
+    <div class="result-line"><span class="label">Total (1d20 + ${attack})</span><span class="value">${total}</span></div>
+    <div class="result-line"><span class="label">Défense visée</span><span class="value">${defense}</span></div>
+    <div class="result-line"><span class="label">Marge</span><span class="value ${color}">${margin >= 0 ? '+' : ''}${margin}</span></div>
+    <div class="result-line"><span class="label">Palier</span><span class="value ${color}">${palier}</span></div>
+    ${dmg ? `<div class="result-line"><span class="label">${dmg}</span></div>` : ''}
+  `;
+}
+
+function rollDice() {
+  const notation = document.getElementById('dice_notation').value.trim();
+  const match = notation.match(/(\d+)d(\d+)([+-]\d+)?/);
+  if (!match) {
+    document.getElementById('dice_result').innerHTML = '<div class="help-text" style="color: var(--danger);">Notation invalide. Exemple : 2d6+3</div>';
+    return;
+  }
+  const n = parseInt(match[1]);
+  const d = parseInt(match[2]);
+  const bonus = match[3] ? parseInt(match[3]) : 0;
+  const rolls = [];
+  let total = 0;
+  for (let i = 0; i < n; i++) {
+    const r = 1 + Math.floor(Math.random() * d);
+    rolls.push(r);
+    total += r;
+  }
+  total += bonus;
+  document.getElementById('dice_result').innerHTML = `
+    <h3>🎲 ${notation}</h3>
+    <div class="result-line"><span class="label">Résultats individuels</span><span class="value">${rolls.join(' + ')}</span></div>
+    ${bonus !== 0 ? `<div class="result-line"><span class="label">Bonus</span><span class="value">${bonus >= 0 ? '+' : ''}${bonus}</span></div>` : ''}
+    <div class="result-line"><span class="label">TOTAL</span><span class="value success" style="font-size: 28px;">${total}</span></div>
+  `;
+}
+
+// === Notes secrètes ===
+function saveSecretNotes() {
+  const notes = document.getElementById('secret_notes').value;
+  try { localStorage.setItem('armonia_mj_notes', notes); } catch(e) {}
+}
+
+function loadSecretNotes() {
+  try {
+    const saved = localStorage.getItem('armonia_mj_notes');
+    if (saved) document.getElementById('secret_notes').value = saved;
+  } catch(e) {}
+}
+
+function clearSecretNotes() {
+  document.getElementById('secret_notes').value = '';
+  try { localStorage.removeItem('armonia_mj_notes'); } catch(e) {}
+}
+
+function exportSecretNotes() {
+  const notes = document.getElementById('secret_notes').value;
+  const blob = new Blob([notes], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'armonia_notes_mj_' + new Date().toISOString().slice(0,10) + '.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// === Init ===
+window.addEventListener('DOMContentLoaded', () => {
+  loadSecretNotes();
+  estimate();
+});
+</script>
+</body>
+</html>
