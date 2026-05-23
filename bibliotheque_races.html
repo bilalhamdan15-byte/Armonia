@@ -187,7 +187,6 @@ header.title-bar .subtitle {
   <button class="filter-btn" onclick="filter('nains')">Nains</button>
   <button class="filter-btn" onclick="filter('orques')">Orques</button>
   <button class="filter-btn" onclick="filter('hommes-betes')">Hommes-bêtes</button>
-  <button class="filter-btn" onclick="filter('tengu')">Tengu</button>
   <button class="filter-btn" onclick="filter('autres')">Autres races</button>
   <button class="filter-btn" onclick="filter('lignees')">Lignées spéciales</button>
 </div>
@@ -402,7 +401,7 @@ const RACES = [
 
   // === TENGU ===
   {
-    cat: 'tengu', nom: 'Karasu-Tengu (Corbeaux)',
+    cat: 'autres', nom: 'Karasu-Tengu (Corbeaux)',
     desc: "Sages, mystiques, gardiens des traditions. Ce sont les lettrés, les scribes, les moines du vent. Ils maîtrisent la magie du vent sous sa forme la plus spirituelle. Très respectés mais rarement combattants.",
     affinities: [{el: 'Vent', val: 1}, {el: 'Chaos', val: 1}],
     traits: [
@@ -411,7 +410,7 @@ const RACES = [
     ]
   },
   {
-    cat: 'tengu', nom: 'Taka-Tengu (Faucons)',
+    cat: 'autres', nom: 'Taka-Tengu (Faucons)',
     desc: "Guerriers, éclaireurs, protecteurs du royaume. Ils servent de gardes aux falaises et de patrouilles aériennes. Les plus fiers, attachés à l'honneur et aux duels rituels. Ceux que les humains redoutent le plus.",
     affinities: [{el: 'Vent', val: 1}],
     traits: [
@@ -420,7 +419,7 @@ const RACES = [
     ]
   },
   {
-    cat: 'tengu', nom: 'Hane-Tengu (Harmoniques)',
+    cat: 'autres', nom: 'Hane-Tengu (Harmoniques)',
     desc: "Hybrides plus humains que volants. Pont culturel entre les Tengu et les humains. Artisans, musiciens, combattants légers, éclaireurs. Ce sont eux qui voyagent le plus dans le monde — « ceux qui marchent entre ciel et terre ».",
     affinities: [{el: 'Vent', val: 1}],
     traits: [
@@ -628,7 +627,7 @@ function renderRaces(filter = 'all') {
 
     const catLabel = {
       'humains': 'Humain', 'elfes': 'Elfe', 'nains': 'Nain', 'orques': 'Orque',
-      'hommes-betes': 'Homme-bête', 'tengu': 'Tengu', 'autres': 'Autre race'
+      'hommes-betes': 'Homme-bête', 'autres': 'Autre race'
     }[r.cat];
 
     let affHTML = '';
