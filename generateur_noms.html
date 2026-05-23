@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Générateur de noms — Armonia</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+}
+.container { max-width: 900px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 18px;
+  background: var(--paper);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 30px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.controls {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 20px;
+}
+label {
+  display: block;
+  font-weight: bold;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+select, input[type="number"], button {
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: white;
+}
+select, input[type="number"] {
+  width: 100%;
+  margin-bottom: 12px;
+}
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+}
+button:hover { background: var(--accent); }
+.results {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  min-height: 200px;
+}
+.results h2 {
+  color: var(--accent);
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+.name-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.name-item {
+  background: #f5ebd6;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  color: var(--primary);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.name-item:hover {
+  background: var(--accent);
+  color: white;
+  transform: scale(1.05);
+}
+.copied {
+  background: var(--accent) !important;
+  color: white !important;
+}
+.region-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.region-card {
+  background: var(--paper);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 12px;
+}
+.region-card h3 {
+  margin: 0 0 6px 0;
+  font-size: 14px;
+  color: var(--primary);
+}
+.region-card.selected {
+  border-color: var(--accent);
+  box-shadow: 0 2px 8px rgba(168,120,48,0.3);
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="title-bar">
+  <h1>🏷️ GÉNÉRATEUR DE NOMS</h1>
+  <div class="subtitle">Inventer une ville, un village, un lieu d'Armonia</div>
+</header>
+
+<div class="controls">
+  <label>Région</label>
+  <select id="region">
+    <option value="lumini">🌳 Lumini — Commerce, douceur, érudition</option>
+    <option value="solambaire">🌅 Sol'Ambaïre — Oriental, céleste, sacré</option>
+    <option value="noord">❄️ No'Ord — Nordique, dur, glacé</option>
+    <option value="virtus">⚔ Virtus — Militaire impérial</option>
+    <option value="armonia">👑 Principauté d'Armonia — Royal, noble, judiciaire</option>
+    <option value="heledera">🏝️ Heledera — Archipel, refuges, mixte</option>
+  </select>
+
+  <label>Nombre de noms à générer</label>
+  <input type="number" id="count" value="12" min="1" max="50">
+
+  <button onclick="generate()">🎲 Générer les noms</button>
+</div>
+
+<div class="results">
+  <h2 id="results-title">Cliquez "Générer" pour commencer</h2>
+  <div class="name-list" id="results"></div>
+</div>
+
+</div>
+
+<script>
+const NAMES = {
+  lumini: {
+    prefix: ['Lumi', 'Aube', 'Pierre', 'Pont', 'Sol', 'Champ', 'Vin', 'Chant', 'Chêne', 'Mont', 'Belle', 'Cap', 'Sève',
+             'Sept', 'Petite', 'Plaine', 'Bourg', 'Roseau', 'Marche', 'Veille', 'Fontaine', 'Vert', 'Pré', 'Doux',
+             'Bois', 'Clair', 'Lampe', 'Sceau', 'Pavé', 'Halle', 'Coeur', 'Cour', 'Forêt', 'Pomme', 'Soie', 'Olive'],
+    suffix: ['-port', '-ville', '-bourg', '-fort', '-lune', "-d'Or", "-d'Argent", '-Forêt', '-Marchand', '-lisse',
+             '-doré', '-sur-Lac', "-d'Aube", '-Roi', '-le-Beau', '-en-Val', '-aux-Pins', '-le-Mage', '-de-Soie']
+  },
+  solambaire: {
+    prefix: ['Tsu', 'Suza', 'Yumi', 'Yose', 'Akat', 'Kura', 'Ryou', 'Tenshi', 'Akiro', 'Yusen', 'Lazo', 'Ascend',
+             'Hoshi', 'Yume', 'Mira', 'Astir', 'Vann', 'Léth', 'Lunar', 'Kara', 'Pére', 'Soufla', 'Téhin',
+             'Aïru', 'Soren', 'Kazu', 'Hara', 'Vyena', 'Mei', 'Sora', 'Nori', 'Atsu', 'Yumeji'],
+    suffix: ['-Raji', '-ku', '-ya', '-na', '-ai', '-wa', '-ji', '-no', '-san', '-kura', '-bo', '-do', '-mi',
+             '-ne', '-ri', '-yo', '-ka', '-hara', '-sora', '-mei', '-tachi', '-shiro', '-mizu']
+  },
+  noord: {
+    prefix: ['Skarn', 'Frost', 'Iggdr', 'Kald', 'Vindja', 'Bjorn', 'Hring', 'Ulf', 'Vargs', 'Stein', 'Snov',
+             'Eik', 'Storm', 'Vinter', 'Yul', 'Drang', 'Helge', 'Snorr', 'Hjalt', 'Drak', 'Ailse', 'Glace',
+             'Loup', 'Ours', 'Vent', 'Pic', 'Forge', 'Brume'],
+    suffix: ['-holm', '-fell', '-gard', '-vik', '-port', '-fjord', '-mark', '-borg', '-skar', '-heim',
+             '-sund', '-vold', '-fall', '-mar', '-vorn', '-saekr', '-hammar', '-nort', '-kar', '-fenn']
+  },
+  virtus: {
+    prefix: ['Ferr', 'Hard', 'Coron', 'Lance', 'Haute', 'Pile', 'Castel', 'Acier', 'Aurore', 'Plomb', 'Tour',
+             'Vrai', 'Couronne', 'Sentin', 'Aigle', 'Armad', 'Soldé', 'Tovari', 'Hauteb', 'Mont', 'Sang', 'Tornar'],
+    suffix: ['-fort', '-bourg', '-port', '-mar', '-ar', '-ius', '-veille', '-nord', '-sud', '-tir', '-aroth',
+             "-d'Or", '-de-Loup', '-de-Fer', '-Royal', '-Imperial', '-de-Marbre', '-Forge']
+  },
+  armonia: {
+    prefix: ['Rose', 'Lys', 'Saphir', 'Jasmin', 'Or', 'Diadème', 'Pavillon', 'Sceau', 'Aurore', 'Lampe',
+             'Pétale', 'Cour', 'Veille', 'Couronne', 'Pearl', 'Iris', 'Magister'],
+    suffix: ['-Royal', "-d'Or", "-d'Argent", '-Souveraine', '-Sacré', '-Couronne', '-Suprême', '-Bleue',
+             '-Aurore', '-de-Lune', '-de-Cour', '-Princière']
+  },
+  heledera: {
+    prefix: ['Vorpal', 'Halfel', 'Gnome', 'Yle', 'Cordé', 'Aube', 'Bourse', 'Sable', 'Ciel', 'Coquill',
+             'Or', 'Atelier', 'Lagon', 'Île', 'Conseil', 'Refuge', 'Helèdè', 'Hélèd'],
+    suffix: ['-heim', '-port', '-fuge', '-Île', '-Côte', '-Doré', '-Mer', '-Bleu', '-Sereine', '-Lune',
+             '-Vert', '-Sud', '-aux-Lapins', '-atelier', '-mer', '-Aubé']
+  }
+};
+
+function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+function generate() {
+  const region = document.getElementById('region').value;
+  const count = parseInt(document.getElementById('count').value) || 12;
+  const cfg = NAMES[region];
+  const generated = new Set();
+
+  let attempts = 0;
+  while (generated.size < count && attempts < count * 10) {
+    let name;
+    const r = Math.random();
+    if (r < 0.6) {
+      name = pick(cfg.prefix) + pick(cfg.suffix);
+    } else if (r < 0.85) {
+      name = pick(cfg.prefix) + '-' + pick(cfg.prefix);
+    } else {
+      name = pick(cfg.prefix) + pick(cfg.suffix) + pick(cfg.suffix.filter(s => !s.startsWith('-d')));
+    }
+    generated.add(name);
+    attempts++;
+  }
+
+  const regionName = document.getElementById('region').options[document.getElementById('region').selectedIndex].text;
+  document.getElementById('results-title').textContent = `${count} noms pour ${regionName}`;
+  const html = Array.from(generated).map(n => `<div class="name-item" onclick="copyName(this, '${n.replace(/'/g, "\\'")}')">${n}</div>`).join('');
+  document.getElementById('results').innerHTML = html;
+}
+
+function copyName(el, name) {
+  navigator.clipboard.writeText(name).then(() => {
+    el.classList.add('copied');
+    setTimeout(() => el.classList.remove('copied'), 1000);
+  });
+}
+</script>
+</body>
+</html>

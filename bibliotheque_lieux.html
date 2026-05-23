@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bibliothèque des Lieux — Armonia</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+  --danger: #a02020;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1200px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: var(--paper);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 30px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 14px 18px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.intro-box p { margin: 6px 0; font-size: 14px; }
+.search-bar { margin-bottom: 12px; }
+.search-bar input {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+}
+.filters {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+  justify-content: center;
+}
+.filter-btn {
+  background: var(--paper);
+  color: var(--primary);
+  border: 1px solid var(--accent);
+  padding: 8px 14px;
+  border-radius: 18px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+}
+.filter-btn.active {
+  background: var(--primary);
+  color: white;
+}
+.places-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 14px;
+}
+.place-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.place-card.region-lumini { border-left: 4px solid #7a9a4a; }
+.place-card.region-solambaire { border-left: 4px solid #c4a040; }
+.place-card.region-noord { border-left: 4px solid #5a8eaa; }
+.place-card.region-virtus { border-left: 4px solid #a04040; }
+.place-card.region-armonia { border-left: 4px solid #c060a0; }
+.place-card.region-heledera { border-left: 4px solid #c47a40; }
+.place-card.region-other { border-left: 4px solid #8a7a5a; }
+.place-card h2 {
+  margin: 0 0 4px 0;
+  color: var(--primary);
+  font-size: 19px;
+}
+.place-cat {
+  color: var(--accent);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+.place-region {
+  font-size: 11px;
+  background: var(--accent);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+.place-desc {
+  font-size: 13px;
+  margin: 8px 0;
+  line-height: 1.5;
+  font-style: italic;
+  color: #4a3825;
+}
+.place-card h3 {
+  color: var(--accent);
+  font-size: 12px;
+  margin: 10px 0 4px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 3px;
+}
+.facts-list {
+  font-size: 13px;
+  line-height: 1.6;
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+}
+.facts-list li::before {
+  content: "▸ ";
+  color: var(--accent);
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="title-bar">
+  <h1>🗺️ BIBLIOTHÈQUE DES LIEUX</h1>
+  <div class="subtitle">Univers d'Armonia — Cités, sanctuaires, ruines</div>
+</header>
+
+<div class="intro-box">
+  <p><strong>Comment lire :</strong> chaque carte décrit un lieu canonique d'Armonia avec sa région, sa fonction, et ce que les joueurs y trouvent.</p>
+  <p>🎲 Pour inventer un nouveau lieu, utilise le <a href="generateur_noms.html" style="color:var(--primary);font-weight:bold;">Générateur de noms</a>.</p>
+</div>
+
+<div class="search-bar">
+  <input type="text" id="search" placeholder="🔍 Rechercher (nom, région, type...)" oninput="renderPlaces()">
+</div>
+
+<div class="filters">
+  <button class="filter-btn active" onclick="filter('all')">Tout</button>
+  <button class="filter-btn" onclick="filter('lumini')">🌳 Lumini</button>
+  <button class="filter-btn" onclick="filter('solambaire')">🌅 Sol'Ambaïre</button>
+  <button class="filter-btn" onclick="filter('noord')">❄️ No'Ord</button>
+  <button class="filter-btn" onclick="filter('virtus')">⚔ Virtus</button>
+  <button class="filter-btn" onclick="filter('armonia')">👑 Armonia</button>
+  <button class="filter-btn" onclick="filter('heledera')">🏝️ Heledera</button>
+  <button class="filter-btn" onclick="filter('other')">🌍 Autres</button>
+</div>
+
+<div class="places-grid" id="places"></div>
+
+</div>
+
+<script>
+const PLACES = [
+  // === LUMINI ===
+  { region:'lumini', cat:'Capitale', nom:"Me'yn Prus",
+    desc:"Capitale commerciale d'Armonia. Siège mondial de la Guilde des Marchands. Plus grande ville du continent Lumini.",
+    facts:["Population : ~40 000 âmes","Banque internationale d'Armonia","Sécurité : Milice mercenaire dirigée par Lyad Feqra (ex-aventurier)","A repoussé l'attaque des Griffons Azure et Vermillon","Marchés exotiques, artisans renommés"] },
+  { region:'lumini', cat:'Cité volante', nom:'Villa Virtue',
+    desc:"Cité aristocratique flottant au-dessus de Lumini, portée par un cristal de mana géant inscrit de centaines de scripts de vent.",
+    facts:["Siège de la Guilde des Aventuriers","Mécène : Lotain Ur Windor","Groupe d'aventuriers vedette : les Météores d'Or","L'artéfact magique le plus puissant connu (cristal géant)","Si le cristal se brisait, la cité tomberait"] },
+  { region:'lumini', cat:'Village', nom:'Etelin',
+    desc:"Petit village forestier au nord de Lumini. Orphelinat de Jack Argenti, le Veilleur, et Lyssana Argenti.",
+    facts:["Point de départ probable des PJ","PNJ-clé : Golrik (ex-aventurier, tavernier, ami de Jack)","Veille sur les enfants de l'orphelinat","Lié au village où Damaïr et Tera ont grandi","Possède un cristal OMI pour la communication"] },
+  { region:'lumini', cat:'Forêt sacrée', nom:'Forêt Julia',
+    desc:"Forêt antique rebaptisée du nom de Julia, héroïne moderne symbole de l'unité humains-elfes.",
+    facts:["Habitants : Elfes Sylvestres + Tribu de la Forêt","Dryades, esprits forestiers","Site sacré — intrus armés mal tolérés","Lieu de cérémonies elfes anciennes"] },
+  { region:'lumini', cat:'Royaume montagneux', nom:'Fer In Gal',
+    desc:"Massif montagneux abritant les Nains et les Elfes des Montagnes (Elfes Noirs). Cohabitation ancestrale difficile mais respectueuse.",
+    facts:["Habitants : Nains Barbes d'Acier, Forgefeux, Montagnards + Elfes Noirs","Productions : métal runique, armes et armures de qualité, bijoux ouvragés","Forge légendaire des Forgefeux","Tradition de neutralité commerciale"] },
+  { region:'lumini', cat:'Cité', nom:'Lumiport',
+    desc:"Grand port côtier de Lumini. Cœur du commerce maritime avec Heledera et No'Ord.",
+    facts:["Port commercial majeur","Liens marchands avec Cordéheim (Heledera) et Sørvald (No'Ord)","Quartier des marins jindos importé","Tavernes et entrepôts gigantesques"] },
+  { region:'lumini', cat:'Centre érudit', nom:'Mille-Pignons',
+    desc:"Cité-collège réputée pour ses bibliothèques et son école de magie de sens.",
+    facts:["École de magie élémentaire de Lumini","Bibliothèque de la Primadis Octa Magis (filiale)","Étudiants de partout dans le monde","Quartier des scribes"] },
+
+  // === SOL'AMBAÏRE ===
+  { region:'solambaire', cat:'Capitale neutre', nom:'Solenwa',
+    desc:"Capitale de la zone centrale neutre de Sol'Ambaïre, située au cœur du continent entre les 5 royaumes des Célestes.",
+    facts:["Lieu de la Convention des 5 Célestes","Diplomates de chaque royaume Céleste","Zone démilitarisée","Architecture mêlant les 5 styles royaux"] },
+  { region:'solambaire', cat:'Royaume Tengu', nom:'Tsu-Raji',
+    desc:"Royaume des Tengu, sur les falaises chantantes. Le vent y porte les voix des ancêtres.",
+    facts:["3 castes : Karasu (lettrés), Taka (guerriers), Hane (hybrides)","Pont culturel avec les humains","Religion : Voile des Cinq Vents","Falaises où le vent produit des sons étranges"] },
+  { region:'solambaire', cat:'Royaume Céleste', nom:'Téhin',
+    desc:"Capitale du Royaume Septentrional, premier des 5 Célestes. Architecture de pierre blanche, hauts toits courbes.",
+    facts:["Premier des 5 Célestes","Architecture orientale traditionnelle","Garde céleste vétue de soie dorée"] },
+  { region:'solambaire', cat:'Cité', nom:'Yusena',
+    desc:"Cité-port du Royaume Méridional. Échanges commerciaux avec Heledera et les îles Jindos.",
+    facts:["Port méridional de Sol'Ambaïre","Marché aux soieries et épices","Bateaux à voiles colorées"] },
+  { region:'solambaire', cat:'Sanctuaire', nom:'Karuwa',
+    desc:"Sanctuaire ancien des Cinq Célestes, perdu dans les montagnes centrales. Pèlerinage rituel.",
+    facts:["Site sacré des Célestes","Moines anciens, gardiens des écrits","Légende : c'est ici que les Célestes auraient déposé leurs armes après leur dernière guerre"] },
+  { region:'solambaire', cat:'Cité culturelle', nom:'Suzaku',
+    desc:"Cité des arts et des spectacles. Renommée pour ses chants traditionnels et ses théâtres en plein air.",
+    facts:["Théâtres traditionnels","École de représentation (musique/danse)","Festival annuel des Mille Lanternes"] },
+
+  // === NO'ORD ===
+  { region:'noord', cat:'Capitale portuaire', nom:'Brumelune',
+    desc:"Grande cité portuaire des fjords. Centre du commerce maritime nordique, marquée par sa brume bleue permanente.",
+    facts:["Plus grande ville de No'Ord","Port des drakkars nordiques","Marchés de fourrures, métal runique, alcool fort","Rumeurs : créatures sous la brume des fjords"] },
+  { region:'noord', cat:'Forteresse naine', nom:'Jotunfell',
+    desc:"Forteresse des Nains Barbes d'Acier, creusée dans la montagne. Implacable, ancienne, dense.",
+    facts:["Forteresse imprenable","Forge runique des Forgefeux","Source de métal runique","Cohabitation avec Elfes des Montagnes"] },
+  { region:'noord', cat:'Montagne sacrée', nom:'Ællskarn',
+    desc:"Montagne sous laquelle pulse le Nœud du Givre, l'un des 12 Nœuds du Monde visibles.",
+    facts:["Nœud du Monde visible","Géant du Givre originel dormirait dessous","Aurores boréales conscientes","Lieu sacré des shamans nordiques"] },
+  { region:'noord', cat:'Village duels', nom:'Skjalgr',
+    desc:"Village des duels sacrés. C'est ici que se règlent les disputes entre clans par le combat ritualisé.",
+    facts:["Arènes sacrées","Code du duel strict","Skalds (bardes-juges)","Réputation : 'Là où le sang lave l'honneur'"] },
+  { region:'noord', cat:'Port frontalier', nom:'Sørvald',
+    desc:"Port méridional de No'Ord, frontière avec Lumini. Mélange culturel intense.",
+    facts:["Route maritime principale vers Lumini","Mélange Nordique-Luminien","Taxes commerciales d'Armonia","Tavernes multilingues"] },
+  { region:'noord', cat:'Forêt boréale', nom:'Thrymgard',
+    desc:"Forêt boréale immense. Terre des Mi-loups et Mi-ours. Esprits sylvestres hostiles aux intrus armés.",
+    facts:["Habitants : Mi-loups, Mi-ours","Esprits forestiers nordiques","Boss mythique : Le Roi-Loup","Lieu d'embuscades fréquentes"] },
+  { region:'noord', cat:'Désert gelé', nom:'Hrímfall',
+    desc:"Désert de glaces vivantes. Région la plus dangereuse de No'Ord, interdite même aux Nordiques.",
+    facts:["Glaces mouvantes, illusions, anomalies magiques","Lieu probable d'un Nœud du Monde caché","Boss mythique : Léviathan de Neige","Les Gardiens de Hrímfall, entités semblables à des anges de glace"] },
+
+  // === VIRTUS ===
+  { region:'virtus', cat:'Capitale impériale', nom:'Virtus',
+    desc:"Capitale impériale de Virtus Al Alle. Forteresse-cité militaire, symbole de la puissance humaine.",
+    facts:["Architecture militaire massive","Académie d'armes","Tradition de discipline stricte","Politique : Empire expansionniste contenu"] },
+  { region:'virtus', cat:'Forteresse frontalière', nom:'Argaroth',
+    desc:"Forteresse défensive sur les frontières de Virtus. Première ligne contre les menaces extérieures.",
+    facts:["Garnison permanente de 5000 soldats","Murailles à 3 anneaux","Surveille les routes vers Sol'Ambaïre"] },
+  { region:'virtus', cat:'Cité-port', nom:'Heimport',
+    desc:"Grand port militaire de Virtus. Construction navale et déploiement de flotte impériale.",
+    facts:["Chantiers navals impériaux","Flotte de guerre","Académie navale","Discipline draconienne"] },
+  { region:'virtus', cat:'Cité de l\'aigle', nom:'Aigle-de-Fer',
+    desc:"Cité-citadelle nichée dans les montagnes. Symbole : l'aigle qui domine la plaine.",
+    facts:["Vue panoramique sur la plaine","Garnison d'élite : les Aigles Noirs","Forteresse de prestige"] },
+
+  // === ARMONIA (Principauté) ===
+  { region:'armonia', cat:'Capitale du monde', nom:'Armonia',
+    desc:"La cité d'Armonia, qui donne son nom au monde. Capitale judiciaire, siège des Roses d'Armonia.",
+    facts:["Conseil des Grandes Familles (gouvernance)","Roses d'Armonia (ordre judiciaire autonome)","Cours suprêmes du monde","Architecture mêlant tous les styles","Lieu probable du Nœud d'Armonia (central, secret)"] },
+  { region:'armonia', cat:'Cour suprême', nom:'Sceau-Royal',
+    desc:"Cité-cour où siègent les hauts magistrats des Roses d'Armonia. Justice impitoyable, équité absolue.",
+    facts:["Siège des Roses","Tribunaux impériaux","Bibliothèque juridique du monde","Quartier des avocats et scribes"] },
+  { region:'armonia', cat:'Cité royale', nom:'Roseheim',
+    desc:"Résidence d'apparat des dirigeants de la Principauté d'Armonia. Cérémonies, audiences, diplomatie.",
+    facts:["Palais princier","Roseraies royales","Audiences diplomatiques","Coronation rituelle"] },
+  { region:'armonia', cat:'Veille royale', nom:'Justhar',
+    desc:"Cité-garnison de la garde royale d'Armonia. Élite militaire et police judiciaire.",
+    facts:["Garde des Roses","Académie de chevalerie","Justice et exécution rapide","Quartier des prisons hautes"] },
+
+  // === HELEDERA ===
+  { region:'heledera', cat:'Capitale archipel', nom:'Cordéheim',
+    desc:"Capitale d'Heledera. Conseil des Cinq Îles, banque marchande alternative à Me'yn Prus.",
+    facts:["Conseil des Cinq Îles (1 représentant par île majeure)","Banque d'Heledera (alternative à la Guilde des Marchands)","Société hétéroclite : Vorpal, Halfelins, Gnomes, Elfes Yle","Pirates et corsaires tolérés s'ils paient leur dîme"] },
+  { region:'heledera', cat:'Cité vorpal', nom:'Vorpalheim',
+    desc:"Cité dominée par les Vorpal (lapins humanoïdes). Banquiers, voleurs, marchands rusés.",
+    facts:["Banque vorpal","Réseau d'informateurs","Marché aux objets précieux","Quartier des tunnels (souterrains)"] },
+  { region:'heledera', cat:'Île halfeline', nom:'Halfellium',
+    desc:"Île tranquille peuplée de Halfelins. Auberges accueillantes, fêtes joyeuses, voyageurs bienvenus.",
+    facts:["Auberges célèbres","Festivals saisonniers","Atmosphère hospitalière","Refuge des voyageurs lassés"] },
+  { region:'heledera', cat:'Atelier gnome', nom:'Gnomeport',
+    desc:"Cité-atelier des Gnomes. Inventions, gadgets, mécanismes ingénieux. Quelques explosions de temps en temps.",
+    facts:["Inventions et prototypes","Marché aux mécanismes","Quelques explosions accidentelles","Liens avec les Ingénieurs de Lumini"] },
+  { region:'heledera', cat:'Refuge elfe', nom:'Ylefuge',
+    desc:"Refuge originel des Elfes Yle (les Bannis) après leur exil par les Hauts-Elfes. Berceau de leur culture moderne.",
+    facts:["Cœur culturel des Elfes Yle","Bibliothèque des Bannis","Cérémonies de métissage","Histoire des persécutions enregistrée"] },
+
+  // === LIEUX MYTHIQUES / AUTRES ===
+  { region:'other', cat:'Nœud du Monde', nom:'Nœud du Givre (Ællskarn)',
+    desc:"L'un des 12 Nœuds du Monde, sous la montagne d'Ællskarn. Visible et puissant — fait pulser la magie nordique.",
+    facts:["Influence : aurores boréales, magie runique, tempêtes, naissance des shamans","Géant du Givre dormirait dessous","Réveiller le Nœud = cataclysme","Site sacré des Nordiques"] },
+  { region:'other', cat:'Nœud du Monde', nom:"Nœud d'Armonia (caché)",
+    desc:"Nœud central du monde, sous la cité d'Armonia. Probablement secret du Conseil et des Roses.",
+    facts:["Possiblement source d'harmonie politique","Connu seulement des Roses","Pourrait expliquer le destin singulier de la cité"] },
+  { region:'other', cat:'Nœud du Monde', nom:'Nœud des Falaises (Tsu-Raji)',
+    desc:"Nœud sous Tsu-Raji, lié au vent. Alimente le don de vol des Tengu et la magie spirituelle des Karasu.",
+    facts:["Aurores chantantes","Voix dans les vents","Cinq Vents incarnés","Lieu de pèlerinage Tengu"] },
+  { region:'other', cat:'Ruines anciennes', nom:'Mur du Souvenir',
+    desc:"Ruines de runes géantes dans le Nord. Vestiges des Géants du Givre. On y trouve des inscriptions pré-Rupture.",
+    facts:["Runes anciennes encore lisibles","Site d'apprentissage de la magie runique","Quêtes pour Veilleurs et érudits","Souvent gardé par des Hrimdraugr"] },
+  { region:'other', cat:'Cité interdite', nom:"Grotte du Vent Blanc",
+    desc:"Lieu spirituel reculé du nord. Sanctuaire des Veilleurs orientaux. Accessible uniquement aux initiés.",
+    facts:["Site spirituel","Initiations de Veilleurs","Connaissance ancienne préservée","Le vent y porte les voix des âmes"] },
+  { region:'other', cat:'Forêt ancienne', nom:'Thrymgard (cœur)',
+    desc:"Le cœur le plus profond de la forêt boréale. Là où le Roi-Loup règne. Personne ne revient indemne.",
+    facts:["Antre du Roi-Loup","Mi-loups ancestraux","Dryades Gelées","Boss : le Roi-Loup et sa meute"] },
+  { region:'other', cat:'Île mystérieuse', nom:'Île-Sang',
+    desc:"Petite île de Heledera maudite. Rituels interdits y ont été pratiqués. Personne n'y vit officiellement.",
+    facts:["Maudite par les Veilleurs","Anciens rituels du Culte des Échos","Évitée par les marins","Quêtes secrètes pour les PJ braves"] }
+];
+
+function renderPlaces() {
+  const grid = document.getElementById('places');
+  const filter = window.currentFilter || 'all';
+  const search = (document.getElementById('search').value || '').toLowerCase();
+  grid.innerHTML = '';
+
+  const filtered = PLACES.filter(p => {
+    const matchCat = filter === 'all' || p.region === filter;
+    const matchSearch = !search ||
+      p.nom.toLowerCase().includes(search) ||
+      p.desc.toLowerCase().includes(search) ||
+      p.cat.toLowerCase().includes(search);
+    return matchCat && matchSearch;
+  });
+
+  const regionLabels = {
+    lumini: '🌳 Lumini', solambaire: "🌅 Sol'Ambaïre", noord: "❄️ No'Ord",
+    virtus: '⚔ Virtus', armonia: '👑 Armonia', heledera: '🏝️ Heledera', other: '🌍 Autre'
+  };
+
+  filtered.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'place-card region-' + p.region;
+    card.innerHTML = `
+      <div class="place-cat">${p.cat}</div>
+      <h2>${p.nom}</h2>
+      <span class="place-region">${regionLabels[p.region]}</span>
+      <div class="place-desc">${p.desc}</div>
+      <h3>Caractéristiques</h3>
+      <ul class="facts-list">${p.facts.map(f => `<li>${f}</li>`).join('')}</ul>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function filter(reg) {
+  window.currentFilter = reg;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderPlaces();
+}
+
+window.currentFilter = 'all';
+renderPlaces();
+</script>
+</body>
+</html>

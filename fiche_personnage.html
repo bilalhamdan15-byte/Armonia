@@ -753,10 +753,14 @@ button.add-btn {
 <!-- MAGIE SCRIPT -->
 <div class="section">
   <h2>Magie Script</h2>
-  <h3>Symboles connus <span class="muted">(5 à la création · 8 pour Ingénieur)</span></h3>
+  <h3>Symboles connus <span class="muted">(2 à la création · 4 pour Ingénieur)</span></h3>
+  <label style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; background: #fffaf0; border: 1px solid var(--border); border-radius: 4px; margin-bottom: 10px; cursor: pointer; font-size: 13px;">
+    <input type="checkbox" data-key="is_ingenieur" onchange="updateSymCounter(); save()">
+    <span>🛠️ <strong>Je suis Ingénieur</strong> (cap symboles à 4)</span>
+  </label>
   <div class="points-counter" id="counter_sym">
     <span class="counter-label">Symboles connus :</span>
-    <span class="counter-value" id="counter_sym_val">0 / 5</span>
+    <span class="counter-value" id="counter_sym_val">0 / 2</span>
     <span class="counter-status" id="counter_sym_status"></span>
   </div>
   <div id="symboles_grid"></div>
@@ -992,24 +996,25 @@ function updateSymCounter() {
   document.querySelectorAll('[data-symbol]').forEach(cb => {
     cb.parentElement.classList.toggle('checked', cb.checked);
   });
+  const isIngenieur = document.querySelector('[data-key="is_ingenieur"]')?.checked || false;
+  const cap = isIngenieur ? 4 : 2;
   const div = document.getElementById('counter_sym');
   const val = document.getElementById('counter_sym_val');
   const status = document.getElementById('counter_sym_status');
   if (!div || !val || !status) return;
-  val.textContent = count + ' / 5';
+  val.textContent = count + ' / ' + cap;
   div.classList.remove('ok', 'warn', 'over');
-  if (count > 8) {
+  if (count > cap) {
     div.classList.add('over');
-    status.textContent = '⚠ Au-delà du cap Ingénieur (8 max)';
-  } else if (count > 5) {
-    div.classList.add('warn');
-    status.textContent = `Cap Ingénieur (${count}/8)`;
-  } else if (count === 5) {
+    status.textContent = isIngenieur
+      ? `⚠ Au-delà du cap Ingénieur (${cap} max à la création)`
+      : `⚠ Au-delà du cap (${cap} max — coche "Je suis Ingénieur" pour ${4})`;
+  } else if (count === cap) {
     div.classList.add('ok');
-    status.textContent = '✓ Création complète';
-  } else if (count < 5) {
+    status.textContent = '✓ Création complète' + (isIngenieur ? ' (Ingénieur)' : '');
+  } else if (count < cap) {
     div.classList.add('warn');
-    status.textContent = `${5 - count} symbole(s) à choisir`;
+    status.textContent = `${cap - count} symbole(s) à choisir` + (isIngenieur ? ' (Ingénieur)' : '');
   }
 }
 
