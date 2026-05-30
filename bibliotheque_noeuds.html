@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les 12 Nœuds du Monde — Armonia</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+  --danger: #a02020;
+  --feu: #c44040;
+  --eau: #4a7aaa;
+  --vent: #5aa850;
+  --terre: #a87830;
+  --chaos: #8a4a8a;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1200px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 22px;
+  background: linear-gradient(135deg, #fffaf0 0%, #f5ebd6 100%);
+  border: 3px double var(--accent);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 30px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--accent);
+  margin-top: 8px;
+}
+header.title-bar .quote {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 12px;
+  font-style: italic;
+}
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 14px 18px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.intro-box p { margin: 6px 0; font-size: 14px; line-height: 1.5; }
+.intro-box strong { color: var(--primary); }
+.filters {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+  justify-content: center;
+}
+.filter-btn {
+  background: var(--paper);
+  color: var(--primary);
+  border: 1px solid var(--accent);
+  padding: 8px 14px;
+  border-radius: 18px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+}
+.filter-btn.active {
+  background: var(--primary);
+  color: white;
+}
+.nodes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 14px;
+}
+.node-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  transition: transform 0.15s;
+}
+.node-card:hover { transform: translateY(-2px); }
+.node-card.element-feu { border-left: 4px solid var(--feu); }
+.node-card.element-eau { border-left: 4px solid var(--eau); }
+.node-card.element-vent { border-left: 4px solid var(--vent); }
+.node-card.element-terre { border-left: 4px solid var(--terre); }
+.node-card.element-chaos { border-left: 4px solid var(--chaos); }
+.node-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+.node-card h2 {
+  margin: 0;
+  color: var(--primary);
+  font-size: 20px;
+}
+.node-num {
+  color: var(--accent);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+.node-status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.status-visible { background: #d4f4d4; color: #2a6a2a; }
+.status-cache { background: #e4d4e4; color: #6a3a6a; }
+.status-dormant { background: #d4d4e4; color: #3a3a8a; }
+.status-eveille { background: #f4d4a4; color: #8a4a1a; }
+.status-corrompu { background: #f4d4d4; color: #8a2a2a; }
+.status-perdu { background: #d4d4d4; color: #555; }
+.element-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 8px 0;
+}
+.element-tag {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: bold;
+  color: white;
+}
+.element-tag.feu { background: var(--feu); }
+.element-tag.eau { background: var(--eau); }
+.element-tag.vent { background: var(--vent); }
+.element-tag.terre { background: var(--terre); }
+.element-tag.chaos { background: var(--chaos); }
+.node-card .location {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 8px;
+}
+.node-card .desc {
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 10px 0;
+  color: #4a3825;
+}
+.node-card h3 {
+  color: var(--accent);
+  font-size: 12px;
+  margin: 12px 0 4px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 3px;
+}
+.facts-list, .hook-list {
+  font-size: 13px;
+  line-height: 1.5;
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+}
+.facts-list li::before { content: "▸ "; color: var(--accent); font-weight: bold; }
+.hook-list li::before { content: "⚔ "; color: var(--feu); }
+.mj-note {
+  background: rgba(168,120,48,0.08);
+  border-left: 3px solid var(--accent);
+  padding: 8px 10px;
+  margin-top: 12px;
+  font-size: 12px;
+  font-style: italic;
+  color: #6a4a25;
+  border-radius: 4px;
+}
+.mj-note::before {
+  content: "💡 ";
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="title-bar">
+  <h1>🌌 LES DOUZE NŒUDS DU MONDE 🌌</h1>
+  <div class="subtitle">Points cardinaux de la magie d'Armonia</div>
+  <div class="quote">« Là où le monde respire, là où il dort, là où il rêve. »</div>
+</header>
+
+<div class="intro-box">
+  <p><strong>Qu'est-ce qu'un Nœud du Monde ?</strong> Un point géographique où la magie est concentrée à un niveau exceptionnel. Chaque Nœud influence son environnement immédiat — climat, faune, mutations magiques, comportements. Les Nœuds sont le squelette mystique d'Armonia.</p>
+  <p><strong>État après la Rupture :</strong> Plusieurs Nœuds sont devenus dormants ou cachés. Le retour de la magie il y a 40 ans a réveillé certains d'entre eux. Trois sont aujourd'hui visiblement actifs. Les neuf autres sont à découvrir, ou délibérément cachés.</p>
+  <p>⚠️ <strong>Les Nœuds sont la clé des grandes campagnes.</strong> Réveiller ou corrompre un Nœud peut changer le destin d'un continent.</p>
+</div>
+
+<div class="filters">
+  <button class="filter-btn active" onclick="filter('all')">Les 12</button>
+  <button class="filter-btn" onclick="filter('visible')">Visibles</button>
+  <button class="filter-btn" onclick="filter('cache')">Cachés</button>
+  <button class="filter-btn" onclick="filter('dormant')">Dormants</button>
+  <button class="filter-btn" onclick="filter('eveille')">Réveillés récemment</button>
+  <button class="filter-btn" onclick="filter('corrompu')">Corrompus</button>
+  <button class="filter-btn" onclick="filter('perdu')">Perdus</button>
+</div>
+
+<div class="nodes-grid" id="nodes"></div>
+
+</div>
+
+<script>
+const NODES = [
+  // === 1. NŒUD DU GIVRE (VISIBLE - canon) ===
+  {
+    num: 1, status: 'visible', element: ['eau'],
+    nom: 'Nœud du Givre',
+    location: '❄️ Sous la montagne d\'Ællskarn · No\'Ord',
+    desc: "Le plus connu des Nœuds visibles. Pulse sous les montagnes du Nord, alimentant la magie runique nordique et les phénomènes climatiques magiques de No'Ord. Un Géant du Givre originel sommeillerait sous ses cristaux.",
+    facts: [
+      "Statut : VISIBLE et actif depuis le retour de la magie",
+      "Influence : aurores boréales conscientes, magie runique, tempêtes magiques",
+      "Mutations engendrées : Loups Albâtres, Ours Runiques, Tisseuses de Givre, Hrimdraugr",
+      "Gardiens spirituels : Shamans nordiques, Veilleurs du Nord"
+    ],
+    hooks: [
+      "Un Géant du Givre commence à s'éveiller — il faut décider : laisser ou empêcher ?",
+      "Des cristaux runiques sont volés et utilisés à mauvais escient",
+      "Un Jarl veut briser le Nœud pour étendre sa domination"
+    ],
+    mj: "Le plus iconique. À utiliser pour des campagnes nordiques. Sa pleine activation pourrait être un boss de fin de campagne."
+  },
+
+  // === 2. NŒUD D'ARMONIA (CACHÉ - canon) ===
+  {
+    num: 2, status: 'cache', element: ['chaos'],
+    nom: "Nœud d'Armonia",
+    location: '⚖️ Sous la cité d\'Armonia · Principauté centrale',
+    desc: "Le Nœud le plus subtil. Caché sous la cité éponyme, il rayonne une influence d'harmonisation politique. Connu seulement des plus hauts initiés des Roses d'Armonia.",
+    facts: [
+      "Statut : CACHÉ (secret du Conseil)",
+      "Influence : pacification politique, équilibre des forces, justice",
+      "Origine probable du destin singulier de la cité d'Armonia",
+      "Gardiens : Les Roses d'Armonia (gardent le secret)",
+      "Effet collatéral : la cité ne connaît pas de guerre civile depuis 800 ans"
+    ],
+    hooks: [
+      "Un cultiste tente de révéler le Nœud au monde pour briser l'équilibre",
+      "Les Roses recrutent un PJ pour le protéger d'une menace inconnue",
+      "Un mage rival découvre son existence — comment le PJ va-t-il réagir ?"
+    ],
+    mj: "Hook politique. Idéal pour intrigues nobles et complots à Armonia. Les Roses peuvent être amies ou ennemies des PJ selon leurs actions."
+  },
+
+  // === 3. NŒUD DES FALAISES CHANTANTES (VISIBLE - canon) ===
+  {
+    num: 3, status: 'visible', element: ['vent'],
+    nom: 'Nœud des Falaises Chantantes',
+    location: '🍃 Sous Tsu-Raji · Sol\'Ambaïre',
+    desc: "Nœud du vent, alimentant le don de vol des Tengu et la magie spirituelle des Karasu. Les falaises chantent — c'est sa voix.",
+    facts: [
+      "Statut : VISIBLE et vénéré",
+      "Influence : magie du vent amplifiée, vol des Tengu, voix dans les courants d'air",
+      "Vénéré par les 3 castes Tengu",
+      "Source du Voile des Cinq Vents (religion Tengu)",
+      "Aurores chantantes nocturnes"
+    ],
+    hooks: [
+      "Aïruka le Vent Vagabond se manifeste à travers le Nœud — quel message ?",
+      "Un Karasu corrompu détourne la magie du Nœud",
+      "Les Tengu demandent aux PJ de purifier une partie du Nœud souillée"
+    ],
+    mj: "Hook spirituel pour campagnes à Sol'Ambaïre. Bonne porte d'entrée pour PJ Tengu."
+  },
+
+  // === 4. NŒUD DU BRASIER ===
+  {
+    num: 4, status: 'dormant', element: ['feu'],
+    nom: 'Nœud du Brasier',
+    location: '🔥 Sous le Volcan Endormi · Désert Sadien',
+    desc: "Au cœur du désert, sous un ancien volcan endormi. Sa chaleur magique a façonné le climat aride et les créatures du feu de la région.",
+    facts: [
+      "Statut : DORMANT (commence à se réveiller doucement)",
+      "Influence : climat brûlant, salamandres géantes, scorpions runiques",
+      "Origine probable du peuple sadien (résistance naturelle au feu)",
+      "Légende : un Phénix ancien y aurait pondu son œuf",
+      "Cultes : Marchands sadiens lui font des offrandes pour le commerce"
+    ],
+    hooks: [
+      "Le volcan tremble — quelque chose s'éveille",
+      "Un œuf de Phénix est annoncé : début d'une quête majeure",
+      "Une caravane sadienne disparaît mystérieusement près du Nœud",
+      "Des Géants du Feu remontent à la surface"
+    ],
+    mj: "Parfait équilibre avec le Nœud du Givre. Un MJ peut faire jouer la tension Nord/Sud (givre vs brasier)."
+  },
+
+  // === 5. NŒUD DES PROFONDEURS ===
+  {
+    num: 5, status: 'cache', element: ['eau'],
+    nom: 'Nœud des Profondeurs',
+    location: '🌊 Sous l\'Archipel d\'Heledera · fond marin',
+    desc: "Un Nœud immergé dans les abysses, sous l'archipel d'Heledera. Inaccessible aux mortels normaux, il influence les courants océaniques et les créatures marines magiques.",
+    facts: [
+      "Statut : CACHÉ (sous des profondeurs inatteignables)",
+      "Influence : courants océaniques, Krakens, Léviathans marins, Narvals Runés",
+      "Vénéré dans le folklore des Jindos sous le nom de 'Cœur des Marées'",
+      "Gardiens probables : Sirènes Boréales, créatures aboleths",
+      "Pourrait expliquer l'existence des îles flottantes étranges"
+    ],
+    hooks: [
+      "Une expédition Jindo cherche à l'atteindre — mission suicide ?",
+      "Un Aboleth émerge des abysses, prétendant être son gardien",
+      "Les marées se dérèglent : le Nœud bouge",
+      "Un cristal trouvé sur une plage permet d'y plonger (mais à quel prix ?)"
+    ],
+    mj: "Pour campagnes maritimes. Très Lovecraftien dans le ton possible."
+  },
+
+  // === 6. NŒUD DE LA FORÊT MÈRE ===
+  {
+    num: 6, status: 'visible', element: ['chaos', 'vent'],
+    nom: 'Nœud de la Forêt Mère',
+    location: '🌳 Au cœur de la Forêt Julia · Lumini',
+    desc: "Cœur vivant de la Forêt Julia, sanctuaire des Elfes Sylvestres et de la Tribu de la Forêt. Plus qu'un Nœud, il semble être une conscience végétale ancienne.",
+    facts: [
+      "Statut : VISIBLE mais protégé par les gardiens elfes",
+      "Influence : croissance végétale magique, animaux empathes, soins par la nature",
+      "Gardiens : Elfes Sylvestres + Tribu de la Forêt + Dryades éveillées",
+      "Lié à Julia (l'héroïne moderne) — son corps reposerait à proximité",
+      "Considéré comme le Nœud le plus 'bienveillant'"
+    ],
+    hooks: [
+      "Une maladie magique commence à attaquer le Nœud",
+      "Des bûcherons impériaux de Virtus tentent d'exploiter la forêt",
+      "Julia se manifeste comme un esprit aux PJ dignes",
+      "Une partie de la forêt 'marche' soudainement"
+    ],
+    mj: "Hook narratif positif. Lieu d'accueil sacré pour les PJ purs ou repentants."
+  },
+
+  // === 7. NŒUD DE LA PIERRE ANTIQUE ===
+  {
+    num: 7, status: 'dormant', element: ['terre'],
+    nom: 'Nœud de la Pierre Antique',
+    location: '⛰️ Sous Fer In Gal · Massif Nain-Elfique',
+    desc: "Sous les halls les plus profonds de Fer In Gal. Source légendaire du métal runique et de la magie de forge des Nains. Les Forgefeux le considèrent sacré.",
+    facts: [
+      "Statut : DORMANT (mais visité par les Nains pour leurs rituels)",
+      "Influence : métal runique pur, forge magique, longévité naine",
+      "Gardiens : Forgefeux, Nains Barbes d'Acier les plus anciens",
+      "Origine probable du secret de la Rupture (les Nains seraient responsables)",
+      "Légende : c'est ici que les Anciens Êtres ont conçu l'arme qui a brisé le monde"
+    ],
+    hooks: [
+      "Un Forgeron-Nain demande aux PJ d'aller chercher du métal runique au Nœud",
+      "Un Élémentaire de Terre titanesque émerge accidentellement",
+      "La Rupture aurait été causée ici : les PJ peuvent-ils trouver la vérité ?",
+      "Un Géant des collines descend pour réveiller le Nœud"
+    ],
+    mj: "Lien direct avec la grande histoire (Rupture). Pour campagnes politiques/mystères nains."
+  },
+
+  // === 8. NŒUD DU CHAOS SAUVAGE ===
+  {
+    num: 8, status: 'eveille', element: ['chaos'],
+    nom: 'Nœud du Chaos Sauvage',
+    location: '✨ Cœur de Hrímfall · Glaces Vivantes de No\'Ord',
+    desc: "Le plus instable. Au centre des Glaces Vivantes, là où la magie elle-même devient imprévisible. C'est l'origine des Échos de la Rupture.",
+    facts: [
+      "Statut : RÉVEILLÉ RÉCEMMENT (depuis le retour de la magie)",
+      "Influence : anomalies magiques, illusions vivantes, failles spatiales",
+      "Engendre : Échos de la Rupture, Glacies Animæ, Marcheurs de Givre",
+      "Possède une CONSCIENCE chaotique propre",
+      "Personne ne peut y rester longtemps sans devenir fou"
+    ],
+    hooks: [
+      "Un PJ commence à recevoir des visions venant du Nœud — manipulation ou message ?",
+      "Une faille spatiale s'ouvre près d'un village",
+      "Le Nœud tente de communiquer dans la 'langue primordiale' (mots !)",
+      "Une expédition disparaît : un seul survivant revient, méconnaissable"
+    ],
+    mj: "Le Nœud le plus DANGEREUX et le plus inspirant narrativement. Lié à la 'dévastation à venir' du titre du livre 2 ?"
+  },
+
+  // === 9. NŒUD DES CINQ VENTS ===
+  {
+    num: 9, status: 'visible', element: ['vent'],
+    nom: 'Nœud des Cinq Vents',
+    location: '🌅 Centre neutre de Sol\'Ambaïre',
+    desc: "Au cœur de la zone neutre entre les 5 royaumes Célestes. C'est le point où les 5 Vents s'équilibrent — et où les 5 Célestes se sont rassemblés jadis.",
+    facts: [
+      "Statut : VISIBLE et révéré",
+      "Influence : équilibre politique entre les 5 royaumes Célestes",
+      "Site de la Convention des Cinq Célestes (assemblée diplomatique)",
+      "Vénéré par tous les peuples de Sol'Ambaïre",
+      "Les Célestes y ont déposé leurs anciennes armes après leur dernière guerre"
+    ],
+    hooks: [
+      "Un Céleste affaibli se manifeste près du Nœud",
+      "Une faction veut s'emparer des armes déposées",
+      "Le Nœud bouge : la zone neutre pourrait disparaître",
+      "Une cérémonie diplomatique tourne mal — les PJ doivent agir"
+    ],
+    mj: "Pour campagnes diplomatiques à Sol'Ambaïre. Site idéal pour climax politique."
+  },
+
+  // === 10. NŒUD D'OMBRE ===
+  {
+    num: 10, status: 'corrompu', element: ['chaos'],
+    nom: "Nœud d'Ombre",
+    location: '🌑 Sous une île maudite · au large',
+    desc: "Un Nœud corrompu par d'anciens rituels interdits, il y a des siècles. Marqué par une présence maléfique persistante. Évité par tous les marins sains d'esprit.",
+    facts: [
+      "Statut : CORROMPU (par d'anciens rituels)",
+      "Influence : nécromancie, illusions noires, malédictions",
+      "Engendre : Wraiths, Spectres, créatures incorporelles",
+      "Lié à l'Ombre (entité antagoniste du livre 1)",
+      "Une malédiction frappe quiconque y débarque sans préparation"
+    ],
+    hooks: [
+      "Une faction tente de réveiller pleinement le Nœud",
+      "Un Chevalier de la Mort y revient — Glad Artor ? (lien Clac Clac !)",
+      "Une fortune perdue d'aventuriers gît sur l'île — qui osera ?",
+      "Le Nœud s'étend : les îles voisines commencent à être affectées"
+    ],
+    mj: "Hook MAJEUR pour Clac Clac : Glad Artor (son papa) pourrait reposer ici en tant que Chevalier de la Mort. Ouvre une quête personnelle."
+  },
+
+  // === 11. NŒUD DE L'ESPRIT ===
+  {
+    num: 11, status: 'perdu', element: ['chaos'],
+    nom: "Nœud de l'Esprit",
+    location: '🪶 Quelque part en mer · entre Lumini et Sol\'Ambaïre',
+    desc: "Le seul Nœud que personne ne sait localiser précisément. Errant ? Submergé ? Détaché du monde ? Les Veilleurs en parlent comme du 'Nœud des Âmes', berceau des Réceptacles.",
+    facts: [
+      "Statut : PERDU — localisation inconnue",
+      "Influence supposée : Réceptacles d'âme, communication avec les morts, magie spirituelle",
+      "Lié aux Veilleurs (Silver Argenti, Jack Argenti)",
+      "Les âmes des Veilleurs y reposent peut-être",
+      "Le poème du Veilleur ('J'allume le phare qui guide vos âmes') s'y réfère",
+      "Les Damaïr et Jack ont entrevu sa présence en rêve"
+    ],
+    hooks: [
+      "Un PJ Veilleur reçoit en rêve la localisation approximative",
+      "Une expédition maritime pour retrouver le Nœud — quête mythique",
+      "Silver Argenti se manifeste à un PJ qui dort en mer",
+      "Un Réceptacle d'âme inattendu apparaît parmi les PJ"
+    ],
+    mj: "LE Nœud le plus narrativement chargé. Lien direct avec les Veilleurs et le poème. Idéal pour fin de campagne lyrique."
+  },
+
+  // === 12. NŒUD SANS NOM ===
+  {
+    num: 12, status: 'cache', element: ['chaos', 'feu', 'eau', 'vent', 'terre'],
+    nom: 'Le Nœud Sans Nom',
+    location: '🌌 ??? · Lieu interdit',
+    desc: "Le douzième Nœud. Mentionné dans les écrits les plus anciens mais jamais localisé. Certains pensent qu'il n'existe pas. D'autres qu'il EST la Rupture incarnée. Quoi qu'il soit, il est lié au destin final d'Armonia.",
+    facts: [
+      "Statut : CACHÉ — peut-être inexistant, peut-être le plus puissant",
+      "Influence supposée : LA Rupture elle-même",
+      "Aucun élément (ou TOUS les éléments)",
+      "Les Io séeim (Anciens Êtres) en parlaient comme du 'Centre'",
+      "Sa découverte marquerait l'apocalypse OU la rédemption d'Armonia",
+      "Lié à la 'dévastation à venir' du livre 2"
+    ],
+    hooks: [
+      "Climax de campagne épique : le trouver et décider de son sort",
+      "L'Ombre cherche à le réveiller pour briser le monde",
+      "Les Veilleurs cherchent à le sceller à jamais",
+      "Jack Argenti pourrait connaître sa localisation — où est-il ?"
+    ],
+    mj: "BOSS FINAL ULTIME de campagne. À garder mystérieux jusqu'à la fin. Lien direct avec 'Le calme avant la dévastation'."
+  }
+];
+
+function renderNodes(filter = 'all') {
+  const grid = document.getElementById('nodes');
+  grid.innerHTML = '';
+  const filtered = filter === 'all' ? NODES : NODES.filter(n => n.status === filter);
+
+  filtered.forEach(n => {
+    const card = document.createElement('div');
+    const primaryElement = n.element[0];
+    card.className = `node-card element-${primaryElement}`;
+
+    const statusLabels = {
+      'visible': '🟢 Visible', 'cache': '🟣 Caché', 'dormant': '🔵 Dormant',
+      'eveille': '🟠 Réveillé', 'corrompu': '🔴 Corrompu', 'perdu': '⚪ Perdu'
+    };
+
+    const elementHTML = n.element.map(e => {
+      const labels = {feu:'🔥 Feu', eau:'💧 Eau', vent:'🍃 Vent', terre:'🪨 Terre', chaos:'✨ Chaos'};
+      return `<span class="element-tag ${e}">${labels[e]}</span>`;
+    }).join('');
+
+    card.innerHTML = `
+      <div class="node-header">
+        <div>
+          <div class="node-num">Nœud N°${n.num}</div>
+          <h2>${n.nom}</h2>
+        </div>
+        <span class="node-status status-${n.status}">${statusLabels[n.status]}</span>
+      </div>
+      <div class="location">${n.location}</div>
+      <div class="element-tags">${elementHTML}</div>
+      <div class="desc">${n.desc}</div>
+      <h3>Caractéristiques</h3>
+      <ul class="facts-list">${n.facts.map(f => `<li>${f}</li>`).join('')}</ul>
+      <h3>Hooks de campagne</h3>
+      <ul class="hook-list">${n.hooks.map(h => `<li>${h}</li>`).join('')}</ul>
+      <div class="mj-note">${n.mj}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function filter(status) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderNodes(status);
+}
+
+renderNodes();
+</script>
+</body>
+</html>

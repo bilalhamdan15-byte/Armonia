@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Ordre des Veilleurs</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+  --danger: #a02020;
+  --secret: #5a3a6a;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 24px;
+  background: linear-gradient(135deg, #fffaf0 0%, #e8dcc0 100%);
+  border: 3px double var(--primary);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 32px;
+  color: var(--primary);
+  letter-spacing: 4px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--accent);
+  margin-top: 8px;
+  font-size: 16px;
+}
+header.title-bar .quote {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 12px;
+  font-style: italic;
+}
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.intro-box strong { color: var(--primary); }
+.section-title {
+  font-size: 22px;
+  color: var(--primary);
+  margin: 28px 0 14px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+  letter-spacing: 1px;
+}
+
+.mission-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.mission-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+.mission-card .icon { font-size: 28px; margin-bottom: 6px; }
+.mission-card h3 {
+  margin: 4px 0 6px 0;
+  font-size: 15px;
+  color: var(--primary);
+}
+.mission-card p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.pyramid {
+  background: var(--paper);
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  padding: 22px;
+  margin: 16px 0;
+}
+.pyramid-row {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 10px 0;
+}
+.pyramid-block {
+  text-align: center;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  color: white;
+  min-width: 200px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+.pyramid-block .role {
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+.pyramid-block .num {
+  font-size: 11px;
+  font-weight: normal;
+  opacity: 0.9;
+  margin-top: 4px;
+  font-style: italic;
+}
+.pyramid-block.mentor { background: linear-gradient(135deg, var(--primary), #1a4566); }
+.pyramid-block.haute  { background: linear-gradient(135deg, var(--secret), #3a1a4a); }
+.pyramid-block.maitre { background: linear-gradient(135deg, var(--accent), #7a5810); }
+.pyramid-block.ens    { background: linear-gradient(135deg, #6a8c4a, #4a6a2a); }
+.pyramid-block.appr   { background: linear-gradient(135deg, var(--muted), #5a4830); }
+
+.character-card {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  margin: 10px 0;
+}
+.character-card .avatar {
+  font-size: 42px;
+  width: 60px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.character-card .info { flex: 1; }
+.character-card h3 {
+  margin: 0 0 4px 0;
+  color: var(--primary);
+  font-size: 17px;
+}
+.character-card .role-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--accent);
+  color: white;
+  border-radius: 10px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+.character-card p {
+  margin: 6px 0 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.character-card.canon { border-left: 4px solid var(--primary); }
+.character-card.tovalidate { border-left: 4px solid var(--accent); background: #fff8e8; }
+
+.secret-box {
+  background: linear-gradient(135deg, #fff5f5 0%, #fde0e0 100%);
+  border: 2px solid var(--danger);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 20px 0;
+  position: relative;
+}
+.secret-box::before {
+  content: '⚠ SECRET MAJEUR — connu de Jack et de quelques rares';
+  position: absolute;
+  top: -12px;
+  left: 16px;
+  background: var(--danger);
+  color: white;
+  padding: 3px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+.secret-box h2 {
+  margin: 6px 0 10px 0;
+  color: var(--danger);
+  font-size: 20px;
+}
+.secret-box p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 8px 0;
+}
+
+.qg-box {
+  background: linear-gradient(135deg, #fffaf0 0%, #f5ebd6 100%);
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 16px 0;
+}
+.qg-box h2 {
+  margin: 0 0 8px 0;
+  color: var(--accent);
+  font-size: 20px;
+}
+.qg-box h3 {
+  margin: 14px 0 6px 0;
+  color: var(--primary);
+  font-size: 15px;
+}
+.qg-box p { font-size: 14px; line-height: 1.6; margin: 6px 0; }
+.qg-box ul { font-size: 14px; line-height: 1.7; margin: 6px 0 6px 18px; padding: 0; }
+
+.communication-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+}
+.communication-grid .comm-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+}
+.comm-card .icon { font-size: 32px; }
+.comm-card h3 {
+  color: var(--primary);
+  margin: 6px 0;
+  font-size: 16px;
+}
+.comm-card p { font-size: 13px; line-height: 1.5; margin: 4px 0; }
+
+.recruit-block {
+  display: flex;
+  gap: 14px;
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 12px 16px;
+  border-radius: 4px;
+  margin: 8px 0;
+}
+.recruit-block .letter {
+  font-size: 32px;
+  color: var(--primary);
+  font-weight: bold;
+  width: 40px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.recruit-block .desc h3 {
+  margin: 0 0 4px 0;
+  color: var(--primary);
+  font-size: 15px;
+}
+.recruit-block .desc p { margin: 4px 0; font-size: 13px; line-height: 1.5; }
+
+.legend-box {
+  background: linear-gradient(135deg, #e8e0d0 0%, #d8c8a8 100%);
+  border-radius: 8px;
+  padding: 18px;
+  margin: 16px 0;
+  text-align: center;
+  font-style: italic;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.hooks-box {
+  background: var(--paper);
+  border-left: 4px solid var(--accent);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin: 16px 0;
+}
+.hooks-box p {
+  margin: 8px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.nav-back {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 13px;
+}
+.nav-back:hover { text-decoration: underline; }
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<a href="index.html" class="nav-back">← Retour au sommaire</a>
+
+<header class="title-bar">
+  <h1>👁 L'ORDRE DES VEILLEURS</h1>
+  <div class="subtitle">Gardiens de l'équilibre, accompagnateurs des âmes</div>
+  <div class="quote">« Nous ne ramenons rien. Nous empêchons le monde de se souvenir. »</div>
+</header>
+
+<div class="intro-box">
+  <p>Né au lendemain de la <strong>Rupture</strong>, l'<strong>Ordre des Veilleurs</strong> est l'institution la plus secrète d'Armonia. Fondé en partie par <strong>Fulgura</strong> (le maudit, le premier Veilleur), maintenu siècle après siècle, l'Ordre n'existe que pour une raison : <strong>maintenir l'équilibre du monde sans magie ancienne</strong> — ou, depuis le Retour, gérer les conséquences de sa rupture.</p>
+  <p>Depuis la mort de Silver, c'est <strong>Jack Argenti</strong> qui en porte la charge en tant que <em>Mentor</em>.</p>
+</div>
+
+<h2 class="section-title">🎯 Les quatre missions de l'Ordre</h2>
+
+<div class="mission-grid">
+  <div class="mission-card">
+    <div class="icon">⚖️</div>
+    <h3>Maintenir l'équilibre</h3>
+    <p>Empêcher la résurgence de la magie ancienne. Surveiller les Nœuds du Monde. Détecter les déséquilibres.</p>
+  </div>
+  <div class="mission-card">
+    <div class="icon">🔍</div>
+    <h3>Traquer les anomalies</h3>
+    <p>Runes anciennes retrouvées, artefacts oubliés, monstres magiques résurgents. Les localiser, les neutraliser, parfois les sceller à nouveau.</p>
+  </div>
+  <div class="mission-card">
+    <div class="icon">🕊️</div>
+    <h3>Accompagner les âmes</h3>
+    <p>Le passage des âmes vers l'au-delà est lui-même une anomalie magique. Les Veilleurs guident celles qui se perdent, calment celles qui errent.</p>
+  </div>
+  <div class="mission-card">
+    <div class="icon">🛡️</div>
+    <h3>Empêcher la rupture finale</h3>
+    <p>Depuis le Retour de la magie, la Dévastation qui vient menace tout. L'Ordre doit comprendre et contrer.</p>
+  </div>
+</div>
+
+<h2 class="section-title">⛧ Hiérarchie · style Confrérie</h2>
+
+<div class="pyramid">
+  <div class="pyramid-row">
+    <div class="pyramid-block mentor">
+      <div class="role">MENTOR</div>
+      <div class="num">1 seul · Jack Argenti</div>
+    </div>
+  </div>
+  <div class="pyramid-row">
+    <div class="pyramid-block haute">
+      <div class="role">HAUTES AUTORITÉS</div>
+      <div class="num">cercle restreint · 3 personnes (Jack inclus)</div>
+    </div>
+  </div>
+  <div class="pyramid-row">
+    <div class="pyramid-block maitre">
+      <div class="role">MAÎTRES</div>
+      <div class="num">~7 à 10 · répartis géographiquement</div>
+    </div>
+  </div>
+  <div class="pyramid-row">
+    <div class="pyramid-block ens">
+      <div class="role">ENSEIGNANTS</div>
+      <div class="num">plusieurs sous chaque Maître</div>
+    </div>
+  </div>
+  <div class="pyramid-row">
+    <div class="pyramid-block appr">
+      <div class="role">APPRENTIS</div>
+      <div class="num">corps mouvant — chaque Enseignant en forme</div>
+    </div>
+  </div>
+</div>
+
+<div class="intro-box" style="border-left-color: var(--accent);">
+  <p><strong>Fonctionnement</strong> : un Maître dirige une région et a sous son ordre <strong>des Enseignants</strong>. Les Enseignants apprennent aux Apprentis les <em>us et coutumes</em> des Veilleurs — combat silencieux, lecture de runes anciennes, identification d'anomalies, rites de passage des âmes. Un Apprenti peut devenir Enseignant après plusieurs années de service confirmé. Un Enseignant devient rarement Maître — il faut qu'un poste se libère et que le Mentor valide.</p>
+</div>
+
+<h2 class="section-title">👥 Les têtes connues de l'Ordre</h2>
+
+<div class="character-card canon">
+  <div class="avatar">⚡</div>
+  <div class="info">
+    <div class="role-tag">Mentor</div>
+    <h3>Jack Argenti</h3>
+    <p><strong>Successeur de Silver.</strong> Vit officiellement à l'orphelinat d'Etelin avec Lyssana. S'absente fréquemment pour ses missions de Veilleur. Cheveux gris-argenté mêlés de brun-noir (héritage du transfert de Silver), lunettes rondes, chemise blanche et gilet gris. Maîtrise la <strong>foudre blanche</strong> — héritée de la lignée de Fulgura. Sait tout ce qui doit être su, y compris le sceau Alm-Merthas.</p>
+  </div>
+</div>
+
+<div class="character-card canon">
+  <div class="avatar">🛡️</div>
+  <div class="info">
+    <div class="role-tag">Haute Autorité</div>
+    <h3>Aqua</h3>
+    <p><strong>L'une des trois apprenties originelles de Silver</strong> (avec Pebacci et Oupac), formée dès l'enfance par le maudit. Fille de <strong>Kejai</strong>, ancien majordome de la demeure de Silver. Aujourd'hui environ <strong>64 ans</strong>, devenue Haute Autorité aux côtés de Jack. Cheveux foncés tirant vers le bleu — couleur exceptionnellement rare. Combat avec un <strong>bouclier lourd et une lance</strong>, dotée d'une force quasi surhumaine forgée par des décennies de discipline. Elle a formé Lyse en son temps. Sait pour le sceau Alm-Merthas — c'est elle qui a aidé Jack à le poser.</p>
+  </div>
+</div>
+
+<div class="character-card canon">
+  <div class="avatar">⚡</div>
+  <div class="info">
+    <div class="role-tag">Haute Autorité</div>
+    <h3>Vesper</h3>
+    <p><strong>Disciple direct de Jack</strong> — le plus jeune des trois Hautes Autorités. Cheveux <strong>blonds peignés en arrière</strong>, <strong>lunettes</strong> rondes ou rectangulaires, port élégant. Manie une <strong>rapière</strong> avec une précision chirurgicale. Maîtrise la foudre — mais ses éclairs sont <strong>jaunes</strong>, signe qu'il n'a pas (encore) atteint la maîtrise blanche de son maître. Esprit vif, parfois cassant. Représente la <em>relève</em> au sein de l'Ordre, et son ascension rapide est l'une des audaces récentes de Jack.</p>
+  </div>
+</div>
+
+<div class="character-card canon">
+  <div class="avatar">⚙️</div>
+  <div class="info">
+    <div class="role-tag">Maître</div>
+    <h3>Oupac</h3>
+    <p>Apprenti originel de Silver, aujourd'hui environ 64 ans. <strong>Ingénieur génial</strong> — inventeur de l'arbalète-poignet qu'il avait conçue pour le jeune Jack dans le livre 1. Maîtrise des poudres explosives, des mécanismes, des cartes secrètes. Méconnu comme combattant mais redoutable quand il s'y met. Probable contact discret entre l'Ordre et la classe Ingénieur du monde. Son atelier — où qu'il se trouve — est l'un des arsenaux les mieux gardés d'Armonia.</p>
+  </div>
+</div>
+
+<div class="character-card canon">
+  <div class="avatar">📜</div>
+  <div class="info">
+    <div class="role-tag">Maître</div>
+    <h3>Pebacci</h3>
+    <p>Apprenti originel de Silver, aujourd'hui environ 64 ans. <strong>Cartographe et archiviste</strong> de l'Ordre — celui à qui Silver confiait l'étude des cartes anciennes (notamment celles de la Tour du Renouveau). Mémoire phénoménale, parle plusieurs langues mortes. Probablement le Maître affecté à la bibliothèque cachée du QG de Me'yn Prus.</p>
+  </div>
+</div>
+
+<div class="secret-box">
+  <h2>🔒 Alm enfermé dans Merthas</h2>
+  <p>À la fin du livre 1, <strong>Alm</strong> (oncle de Shura, alors chef de la Guilde des Aventuriers) avait passé suffisamment de temps proche de <strong>Merthas</strong> pour qu'un <strong>lien magique</strong> se forme entre eux. Cette connexion a rendu possible un <strong>scellement</strong> — l'âme d'Alm a été enfermée à l'intérieur du corps de Merthas, et c'est <em>Alm qui regarde, qui ressent, qui sait</em>, depuis l'intérieur, ce que fait son geôlier.</p>
+  <p>Officiellement, <strong>Merthas continue de diriger la Guilde des Aventuriers</strong> — apparence sauvegardée pour ne rien révéler à Shura et au reste du monde. Mais en réalité, <strong>Alm voit tout</strong>. Toutes les informations qui transitent par la Guilde lui parviennent. Toutes les missions confiées par les royaumes, toutes les rumeurs des aventuriers, toutes les anomalies signalées.</p>
+  <p>Cela fait de la Guilde des Aventuriers le <strong>réseau de renseignement le plus complet d'Armonia</strong> — et Jack y a un accès direct, via Alm-dans-Merthas.</p>
+  <p><strong>Connus du sceau</strong> : <em>Jack, Aqua, [la 3e Haute Autorité]</em>. Personne d'autre. Pas Lyssana, pas Shura, pas les Maîtres ordinaires.</p>
+  <p style="border-top:1px dashed var(--danger); padding-top:10px; margin-top:14px; font-style:italic;"><strong>Le danger</strong> : si le scellement vacille, Merthas reprend le contrôle — et le réseau bascule du jour au lendemain dans le camp de l'Ombre. Maintenir le sceau est l'<em>obsession discrète de Jack</em>.</p>
+</div>
+
+<h2 class="section-title">⚡ La Lignée de la Foudre</h2>
+
+<div class="intro-box" style="border-left-color: #d4a857; background: linear-gradient(135deg, #fffef0 0%, #fff5d0 100%);">
+  <p><strong>Fulgura</strong> — premier nom de Silver — signifie « foudre » dans une langue oubliée. Ce n'est pas un hasard : Silver maîtrisait la foudre, et il la transmettait à ses disciples comme un art sacré. La couleur de l'éclair révèle la place du Veilleur dans la lignée :</p>
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-top: 12px;">
+    <div style="background:white; border-radius:6px; padding:12px; border-left:4px solid #f5f5f5;">
+      <strong style="color:#888;">⚡ Foudre blanche</strong>
+      <p style="font-size:13px; margin:6px 0 0 0;">Maîtrise du Mentor. <strong>Jack</strong> l'a obtenue par le transfert d'énergie vitale de Silver à sa mort. Avant lui, seul Silver/Fulgura la possédait.</p>
+    </div>
+    <div style="background:white; border-radius:6px; padding:12px; border-left:4px solid #d4a857;">
+      <strong style="color:#a87830;">⚡ Foudre jaune</strong>
+      <p style="font-size:13px; margin:6px 0 0 0;">Maîtrise du disciple confirmé. <strong>Vesper</strong> en est l'exemple actuel. Stade qui précède la blanche — il faut généralement des décennies pour le franchir.</p>
+    </div>
+    <div style="background:white; border-radius:6px; padding:12px; border-left:4px solid #6a8caf;">
+      <strong style="color:#6a8caf;">⚡ Foudre bleue</strong>
+      <p style="font-size:13px; margin:6px 0 0 0;">Maîtrise de l'apprenti. Réservée aux jeunes Veilleurs qui montrent un don pour l'art. Quelques apprentis l'ont actuellement.</p>
+    </div>
+  </div>
+  <p style="margin-top:12px; font-size:13px;"><em>Note : tous les Veilleurs ne maîtrisent pas la foudre — c'est une discipline interne à la lignée Silver/Jack, transmise uniquement aux apprentis directs du Mentor. Les autres Veilleurs ont chacun leur art (Aqua : force martiale, Oupac : ingénierie, Pebacci : érudition).</em></p>
+</div>
+
+<h2 class="section-title">🏛️ Base d'opérations</h2>
+
+<div class="qg-box">
+  <h2>Le QG · dans la Cité Marchande (Me'yn Prus, Lumini)</h2>
+  <p>Le quartier général est caché en plein cœur de <strong>Me'yn Prus</strong>, la grande cité marchande de Lumini. Son apparence extérieure est celle d'un <strong>grand bâtiment marchand à étages</strong> — une sorte de <em>« super marché médiéval »</em> où on échange grains, étoffes, métaux, parchemins, denrées exotiques. Personne ne soupçonne qu'au-dessus, en dessous et derrière les étals se cachent les salles de l'Ordre.</p>
+
+  <h3>Couches du bâtiment</h3>
+  <ul>
+    <li><strong>Rez et niveaux marchands</strong> — vrais commerces, vrais clients. Couverture parfaite.</li>
+    <li><strong>Arrière-cour & entrepôts</strong> — déchargement des marchandises, mais aussi des messages, des relais d'aventuriers, des artefacts à analyser.</li>
+    <li><strong>Étages cachés</strong> — réservés aux Veilleurs. Bibliothèque des anomalies, salles d'entraînement, dortoirs des Apprentis de passage, infirmerie.</li>
+    <li><strong>Sous-sol scellé</strong> — la chambre des Hautes Autorités. Accessible uniquement par invitation directe. C'est là, dit-on, que se prennent les décisions qui changent le monde.</li>
+  </ul>
+
+  <h3>Sous-bases dans le monde</h3>
+  <p>Chaque <strong>Guilde des Aventuriers</strong> du monde abrite, sans le savoir ou en le sachant à demi, une <strong>sous-base Veilleur</strong>. Une petite pièce, un coffre, un agent infiltré, parfois un Enseignant qui se fait passer pour un aventurier en semi-retraite. C'est la couverture parfaite : qui s'étonnerait de croiser un vieux Veilleur dans une taverne d'aventuriers ?</p>
+  <p>Ce réseau de sous-bases est <strong>rendu possible précisément par Alm-dans-Merthas</strong> à la tête de la Guilde mondiale.</p>
+</div>
+
+<h2 class="section-title">📜 Communication</h2>
+
+<div class="communication-grid">
+  <div class="comm-card">
+    <div class="icon">🕊️</div>
+    <h3>Pigeons voyageurs</h3>
+    <p>Méthode principale, mondaine en apparence. Chaque sous-base élève quelques pigeons dressés. Discrets, rapides à courte distance, anodins à l'œil des espions.</p>
+  </div>
+  <div class="comm-card">
+    <div class="icon">✨</div>
+    <h3>Magie · situations spéciales</h3>
+    <p>Pour les urgences ou les transmissions de très haut niveau, les Veilleurs utilisent la <strong>magie</strong> — script de communication, mots primordiaux, ou cristaux jumeaux (<em>OMI</em>). Toujours en dernier recours : la magie laisse des traces que d'autres pourraient lire.</p>
+  </div>
+</div>
+
+<h2 class="section-title">🌱 Recrutement</h2>
+
+<div class="recruit-block">
+  <div class="letter">A</div>
+  <div class="desc">
+    <h3>Orphelins recueillis</h3>
+    <p>Voie la plus naturelle. Des enfants sans famille — touchés par une anomalie magique, témoins d'un événement étrange, ou simplement remarquables — sont recueillis et formés. Etelin (l'orphelinat de Jack et Lyssana) est un vivier discret.</p>
+  </div>
+</div>
+
+<div class="recruit-block">
+  <div class="letter">D</div>
+  <div class="desc">
+    <h3>Cooptation discrète après observation longue</h3>
+    <p>Voie alternative pour les adultes. Un Enseignant repère une personne (souvent un aventurier confirmé, parfois un érudit) pendant des mois, voire des années. Évalue son caractère, sa discrétion, son rapport à la magie. Puis, un soir, l'aborde. La conversation décide de tout.</p>
+  </div>
+</div>
+
+<h2 class="section-title">👻 Statut public</h2>
+
+<div class="legend-box">
+  Les Veilleurs sont une <strong>légende vague</strong>. Les vieux marins en parlent comme on parle des fantômes. Les paysans murmurent qu'« un Veilleur passe » quand un voyageur sombre traverse leur village. Aucune institution officielle ne les reconnaît. Aucune carte ne marque leur QG. Aucune liste de noms n'existe. Ceux qui essaient d'écrire à leur sujet finissent par perdre leurs notes — ou la mémoire.
+</div>
+
+<h2 class="section-title">🎲 Hooks de campagne</h2>
+
+<div class="hooks-box">
+  <p>• Un <strong>PJ orphelin</strong> est discrètement repéré par un Enseignant pendant une mission anodine. Une invitation lui parvient des semaines plus tard.</p>
+  <p>• Le <strong>scellement Alm-Merthas vacille</strong>. Merthas tente de reprendre le contrôle. Les PJ sont missionnés sans savoir l'enjeu réel.</p>
+  <p>• Un <strong>Maître régional disparaît</strong>. Ses pigeons reviennent vides. Aqua envoie les PJ enquêter.</p>
+  <p>• Un <strong>pigeon Veilleur</strong> arrive blessé chez les PJ avec un message crucial — mais le destinataire est mort.</p>
+  <p>• Les PJ découvrent par hasard une <strong>sous-base Veilleur</strong> dans une Guilde où ils ont l'habitude d'aller. Comment réagit l'Ordre ?</p>
+  <p>• <strong>Alm parvient à communiquer</strong> de l'intérieur de Merthas avec un PJ via un rêve. Que demande-t-il ? Aide ? Délivrance ? Silence ?</p>
+  <p>• Un <strong>ancien Veilleur déchu</strong> revient avec un fragment d'information sur le 12e Nœud. Ami ou piège ?</p>
+  <p>• La <strong>Guilde des Aventuriers d'une grande ville</strong> est attaquée. Les PJ doivent comprendre si c'est un coup contre la Guilde ou contre la sous-base cachée.</p>
+</div>
+
+<footer>
+  L'Ordre des Veilleurs · Codex d'Armonia · Système Bilal · 2026
+</footer>
+
+</div>
+</body>
+</html>
