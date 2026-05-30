@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Histoire d'Armonia — Timeline</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+  --danger: #a02020;
+
+  --era-anciens: #8a4a8a;
+  --era-rupture: #c44040;
+  --era-humaine: #a87830;
+  --era-retour: #2a7a3c;
+  --era-present: #2E5B7C;
+  --era-future: #555;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 22px;
+  background: linear-gradient(135deg, #fffaf0 0%, #f5ebd6 100%);
+  border: 3px double var(--accent);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 32px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--accent);
+  margin-top: 8px;
+  font-size: 16px;
+}
+header.title-bar .quote {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 12px;
+  font-style: italic;
+}
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.intro-box p { margin: 6px 0; font-size: 14px; line-height: 1.5; }
+.intro-box strong { color: var(--primary); }
+
+.calendar-box {
+  background: var(--paper);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 24px;
+}
+.calendar-box h3 {
+  margin-top: 0;
+  color: var(--primary);
+  font-size: 18px;
+}
+.calendar-box p {
+  font-size: 13px;
+  margin: 4px 0;
+}
+.calendar-box .system {
+  background: #f5ebd6;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-top: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 48px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom,
+    var(--era-anciens) 0%, var(--era-anciens) 16%,
+    var(--era-rupture) 17%, var(--era-rupture) 22%,
+    var(--era-humaine) 23%, var(--era-humaine) 62%,
+    var(--era-retour) 63%, var(--era-retour) 82%,
+    var(--era-present) 83%, var(--era-present) 95%,
+    var(--era-future) 96%);
+  border-radius: 2px;
+}
+.era-header {
+  position: relative;
+  margin: 32px 0 16px 0;
+}
+.era-header::before {
+  content: '';
+  position: absolute;
+  left: -40px;
+  top: 8px;
+  width: 24px;
+  height: 24px;
+  background: white;
+  border: 4px solid;
+  border-radius: 50%;
+}
+.era-header.anciens::before { border-color: var(--era-anciens); }
+.era-header.rupture::before { border-color: var(--era-rupture); }
+.era-header.humaine::before { border-color: var(--era-humaine); }
+.era-header.retour::before { border-color: var(--era-retour); }
+.era-header.present::before { border-color: var(--era-present); }
+.era-header.future::before { border-color: var(--era-future); }
+
+.era-header h2 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+.era-header.anciens h2 { color: var(--era-anciens); }
+.era-header.rupture h2 { color: var(--era-rupture); }
+.era-header.humaine h2 { color: var(--era-humaine); }
+.era-header.retour h2 { color: var(--era-retour); }
+.era-header.present h2 { color: var(--era-present); }
+.era-header.future h2 { color: var(--era-future); }
+.era-header .era-range {
+  color: var(--muted);
+  font-size: 13px;
+  font-style: italic;
+  margin-top: 4px;
+}
+.era-desc {
+  background: var(--paper);
+  border-left: 4px solid;
+  padding: 12px 16px;
+  margin: 12px 0 20px 0;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.6;
+  font-style: italic;
+  color: #4a3825;
+}
+.era-desc.anciens { border-left-color: var(--era-anciens); }
+.era-desc.rupture { border-left-color: var(--era-rupture); }
+.era-desc.humaine { border-left-color: var(--era-humaine); }
+.era-desc.retour { border-left-color: var(--era-retour); }
+.era-desc.present { border-left-color: var(--era-present); }
+.era-desc.future { border-left-color: var(--era-future); }
+
+.event {
+  position: relative;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin: 10px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+.event::before {
+  content: '';
+  position: absolute;
+  left: -32px;
+  top: 18px;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  border: 2px solid var(--paper);
+}
+.event.major::before {
+  width: 14px;
+  height: 14px;
+  left: -35px;
+  top: 16px;
+  background: var(--danger);
+}
+.event-date {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+.event h3 {
+  margin: 4px 0;
+  color: var(--primary);
+  font-size: 16px;
+}
+.event.major h3 { color: var(--danger); }
+.event p {
+  margin: 6px 0 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #4a3825;
+}
+.event .characters {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+}
+.event .characters strong { color: var(--primary); font-weight: bold; }
+
+@media (max-width: 720px) {
+  .timeline { padding-left: 28px; }
+  .timeline::before { left: 8px; width: 3px; }
+  .era-header::before { left: -22px; width: 18px; height: 18px; }
+  .event::before { left: -22px; }
+  .event.major::before { left: -25px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="title-bar">
+  <h1>📜 HISTOIRE D'ARMONIA</h1>
+  <div class="subtitle">Chronologie des Âges</div>
+  <div class="quote">« Le monde n'a pas toujours été ainsi. Il s'est brisé une fois. Il pourrait se briser encore. »</div>
+</header>
+
+<div class="intro-box">
+  <p><strong>L'histoire d'Armonia</strong> s'organise autour d'un événement central : <strong>la Rupture</strong>, il y a 1040 ans. C'est elle qui sert de zéro au calendrier.</p>
+  <p>Avant la Rupture : âges mythiques des Anciens Êtres. Après : 1000 ans de domination humaine sans magie, puis le Retour il y a 40 ans, et le présent — où la dévastation s'approche.</p>
+</div>
+
+<div class="calendar-box">
+  <h3>📅 Calendrier d'Armonia</h3>
+  <p>L'année courante est <strong>1040 AR</strong> (Après la Rupture). On compte les années en <strong>AR</strong> (Après Rupture) ou <strong>AvR</strong> (Avant Rupture).</p>
+  <div class="system">
+    Année 0 = LA RUPTURE<br>
+    Année 1 AR à 1000 AR = Ère Humaine sans magie<br>
+    Année 1000 AR = Le Retour de la magie (Jack Argenti)<br>
+    Année 1040 AR = PRÉSENT (livre 2, Damaïr a ~16 ans)
+  </div>
+</div>
+
+<div class="timeline">
+
+  <!-- ============ ÈRE DES ANCIENS ============ -->
+  <div class="era-header anciens">
+    <h2>🌌 L'Ère des Anciens</h2>
+    <div class="era-range">Avant l'an 0 · Temps mythique, indéterminé</div>
+  </div>
+  <div class="era-desc anciens">
+    Ère légendaire. Les <strong>Io séeim</strong>, les Anciens Êtres, régnaient sur un monde unifié. Géants du Givre, Célestes, Veilleurs primordiaux — toutes ces forces étaient à leur apogée. Les Nœuds du Monde pulsaient à pleine puissance. La magie était partout, dans tout, à tout instant.
+  </div>
+
+  <div class="event">
+    <div class="event-date">Temps mythique · AvR ∞</div>
+    <h3>L'Émergence des Io séeim</h3>
+    <p>Les Anciens Êtres naissent du chaos primordial. Ce sont des entités quasi-divines, géants colossaux qui sculptent les continents et établissent les Douze Nœuds du Monde. Chacun gouverne une portion du monde et un aspect de la magie.</p>
+    <div class="characters">Origines mythiques de : <strong>Géants du Givre</strong> (No'Ord), <strong>Cinq Célestes</strong> (Sol'Ambaïre)</div>
+  </div>
+
+  <div class="event">
+    <div class="event-date">Pré-Rupture · AvR ?</div>
+    <h3>L'Âge d'Or de la Magie</h3>
+    <p>La magie est l'air que respire le monde. Les races se multiplient : Nains, Elfes (sous toutes leurs formes), Hommes-bêtes, Tengu, Vorpal, Kitsune... Cohabitation prospère. Les Géants forgent les runes anciennes. Les Célestes règnent en sagesse sur Sol'Ambaïre.</p>
+    <div class="characters">Naissance des cultures : <strong>Voile des Cinq Vents</strong>, <strong>Les Cinq Célestes</strong> (religion)</div>
+  </div>
+
+  <div class="event">
+    <div class="event-date">Pré-Rupture · AvR 100-50</div>
+    <h3>Les Premières Tensions</h3>
+    <p>Les Io séeim divergent. Certains veulent étendre leur domaine. D'autres veulent fermer les frontières. Les premiers conflits éclatent entre les Cinq Célestes — voilà pourquoi Sol'Ambaïre a 5 royaumes répartis aux extrémités du continent, avec un centre disputé.</p>
+  </div>
+
+  <div class="event major">
+    <div class="event-date">AvR ? · La Guerre des Anciens Êtres</div>
+    <h3>⚔️ Le Combat des Io séeim</h3>
+    <p>Aux temps anciens, des <strong>êtres puissants</strong> — les <strong>Io séeim</strong>, les Anciens Êtres — peuplaient le monde. Leur combat faisait succomber le monde lui-même. Les continents furent arrachés les uns aux autres, créant les océans actuels. La magie était partout, dans tout, à tout instant — et c'est précisément cela qui rendait le conflit destructeur : la magie était à la fois l'arme, le carburant et le champ de bataille des Anciens.</p>
+    <div class="characters">Conséquences : <strong>séparation des continents</strong>, monde au bord de la fin</div>
+  </div>
+
+  <div class="event">
+    <div class="event-date">AvR ? · L'Acte des Six</div>
+    <h3>🛡️ Le Groupe des Six Aventuriers</h3>
+    <p>Voyant que le combat des Anciens allait anéantir le monde entier, <strong>un groupe de six aventuriers</strong> se réunit autour d'idéaux communs et décida de l'impensable : <strong>produire une magie pour refaire le monde</strong> selon leur vision. À leur tête, un guerrier qu'on connaîtrait plus tard sous bien d'autres noms — <strong>Fulgura</strong>, « celui qui faisait trembler toute une armée ». C'était son nom le plus ancien. On l'appellera ensuite Liam, Raiko, Ting… et enfin <strong>Silver Argenti</strong>.</p>
+    <div class="characters">Émergence du <strong>Groupe des Six</strong> · leur chef : <strong>Fulgura</strong> (le futur Silver)</div>
+  </div>
+
+  <!-- ============ LA RUPTURE ============ -->
+  <div class="era-header rupture">
+    <h2>💥 La Rupture</h2>
+    <div class="era-range">An 0 · L'événement central, il y a mille ans</div>
+  </div>
+  <div class="era-desc rupture">
+    Les Anciens, comprenant ce que les Six tentaient, essayèrent de les arrêter — mais il était trop tard. La magie destinée à refaire le monde était déjà à l'œuvre. <strong>Dans un dernier élan, les Anciens maudirent le chef du groupe : Fulgura.</strong> Sa condamnation fut triple — <strong>vie éternelle</strong>, <strong>tristesse perpétuelle liée à la perte des êtres chers</strong>, et <strong>un monde où la magie n'existerait plus</strong>. Le sort déborda sur sa lignée : les femmes Argenti mourraient désormais en couches sans magie. C'est cet événement que les peuples appelleront, mille ans plus tard, <em>la Rupture</em>.
+  </div>
+
+  <div class="event major">
+    <div class="event-date">An 0 · LA RUPTURE</div>
+    <h3>🌑 La Malédiction de Fulgura</h3>
+    <p>Le sort frappa. <strong>Fulgura fut condamné</strong> à l'éternité, à la tristesse, à voir mourir tous ceux qu'il aimerait — dans un monde où la magie aurait disparu. Les Io séeim, brisés par le sort des Six et par leur propre malédiction lancée en retour, s'effondrèrent dans la légende. La magie quitta le monde : les Nœuds sombrèrent dans le sommeil, les races magiques perdirent leur essence et s'endormirent, les dieux s'affaiblirent. Les Géants du Givre, eux, virent leur magie se cristalliser dans la terre — leur souffle devint le vent du Nord, leur mémoire devint les runes.</p>
+    <p>Le sort des cinq autres aventuriers du groupe n'est pas connu — peut-être morts dans l'opération, peut-être dispersés, peut-être épargnés mais brisés. Seul Fulgura porte la malédiction explicite. Il survivra à tous les autres.</p>
+    <div class="characters">Maudit : <strong>Fulgura</strong> (futur Silver Argenti) · Disparition : <strong>magie, races magiques, dieux affaiblis</strong> · Fin des <strong>Géants du Givre</strong></div>
+  </div>
+
+  <div class="event">
+    <div class="event-date">An 0 · Au lendemain</div>
+    <h3>👻 Le Premier des Veilleurs</h3>
+    <p>Fulgura, désormais immortel, comprit lentement ce qui lui arrivait. À mesure que les siècles passaient, il rejoignit un mouvement qui prenait forme parmi ceux qui n'avaient pas tout oublié : <strong>les Veilleurs</strong>. Leur mission n'était PAS de ramener la magie — c'était l'inverse. Les Veilleurs <strong>maintiennent l'équilibre</strong> du monde nouveau, traquent et neutralisent toute anomalie magique résurgente (runes anciennes, artefacts oubliés, monstres magiques rares), et <strong>accompagnent les âmes vers l'au-delà</strong> — passage qui, en l'absence de magie, est lui-même une anomalie. Fulgura devint l'un d'entre eux. Avec le temps, il prendrait d'autres noms.</p>
+    <div class="characters"><strong>Fulgura</strong> rejoint les <strong>Veilleurs</strong></div>
+  </div>
+
+  <!-- ============ ÈRE HUMAINE ============ -->
+  <div class="era-header humaine">
+    <h2>👥 L'Ère Humaine</h2>
+    <div class="era-range">An 1 à 1000 AR · 1000 ans sans magie</div>
+  </div>
+  <div class="era-desc humaine">
+    Mille années où l'humanité domine seule un monde sans magie. Les ruines des Anciens sont pillées. Les royaumes humains se construisent sur les vestiges. L'oubli s'installe peu à peu — beaucoup en viennent à croire que la magie n'a jamais existé. Mais quelques-uns gardent la mémoire et la vigilance : <strong>les Veilleurs</strong>, gardiens de l'équilibre du monde nouveau. Parmi eux, sous bien des noms à travers les époques, <strong>Fulgura le maudit</strong>.
+  </div>
+
+  <div class="event">
+    <div class="event-date">An 1-100 AR</div>
+    <h3>L'Âge du Chaos</h3>
+    <p>Les humains errent dans un monde sans magie ni dieux. Famine, peste, guerres territoriales. Les ruines des Anciens sont gardées par des bêtes ordinaires qui ont muté lors de la Rupture (premières "bêtes magiques" semi-magiques).</p>
+  </div>
+
+  <div class="event">
+    <div class="event-date">An 100-300 AR</div>
+    <h3>L'Émergence des Royaumes</h3>
+    <p>Les premiers royaumes humains se stabilisent. <strong>Virtus Al Alle</strong> émerge comme empire militaire dominant à l'est. <strong>Seaher it Nam</strong> et <strong>Urf inor</strong> se constituent. Les rivalités entre rois humains commencent.</p>
+    <div class="characters">Fondation de : <strong>Virtus Al Alle</strong>, <strong>Seaher it Nam</strong>, <strong>Urf inor</strong></div>
+  </div>
+
+  <div class="event">
+    <div class="event-date">An 300-500 AR</div>
+    <h3>La Fondation d'Armonia</h3>
+    <p>Sur une péninsule centrale, une cité-état est fondée. Elle prend le nom d'Armonia — "harmonie". Elle se veut neutre, judiciaire, médiatrice entre les royaumes humains. Très tôt, son destin singulier intrigue : la cité connaît une stabilité politique presque magique.</p>
+    <div class="characters">Fondation des <strong>Roses d'Armonia</strong> (ordre judiciaire)</div>
+  </div>
+
+  <div class="event">
+    <div class="event-date">An 500-700 AR</div>
+    <h3>L'Âge des Marchands</h3>
+    <p>Sur le continent de Lumini, une nouvelle force émerge : la <strong>Guilde des Marchands</strong>. Elle s'établit à Me'yn Prus et tisse un réseau commercial mondial qui transcende les frontières politiques. Les Veilleurs s'organisent en ordre discret, présents partout, jamais visibles.</p>
+    <div class="characters">Fondation : <strong>Guilde des Marchands</strong> · structuration des <strong>Veilleurs</strong></div>
+  </div>
+
+  <div class="event">
+    <div class="event-date">An 700-900 AR</div>
+    <h3>La Guerre Froide des Royaumes</h3>
+    <p>Les royaumes humains entrent dans une période de tensions permanentes. Conflits territoriaux, espionnage, alliances brisées. Armonia maintient l'équilibre comme arbitre. Les Veilleurs, eux, traquent les anomalies magiques de plus en plus rares mais persistantes : une rune retrouvée dans des ruines, une bête semi-magique aux confins, un artefact qui aurait dû rester perdu. Ils les neutralisent.</p>
+    <div class="characters">Mission des <strong>Veilleurs</strong> : maintenir l'équilibre du monde sans magie</div>
+  </div>
+
+  <div class="event">
+    <div class="event-date">An 1-1000 AR</div>
+    <h3>👁️ Fulgura, le Veilleur sous mille noms</h3>
+    <p>Pendant les <strong>mille ans de l'Ère Humaine</strong>, le maudit traverse les siècles. Il prend des identités successives — <strong>Liam, Raiko, Ting</strong> — pour ne pas attirer l'attention sur son immortalité. Il voit naître et mourir des royaumes, des civilisations, des langues, des descendants. Il engendre des générations sans même le savoir, dispersées au fil du temps. Sa lignée porte le poids : les femmes Argenti meurent en couches dans ce monde privé de magie. Lui ne meurt pas. Il veille.</p>
+    <div class="characters"><strong>Fulgura</strong> sous ses identités successives · multiplication discrète de la <strong>lignée Argenti</strong></div>
+  </div>
+
+  <div class="event">
+    <div class="event-date">An 900-1000 AR</div>
+    <h3>Les Signes — alerte des Veilleurs</h3>
+    <p>Les anomalies magiques se multiplient. Des bêtes qui parlent, des lueurs aux Nœuds dormants, des runes qui semblent se réveiller seules. Les Veilleurs s'alarment : l'équilibre vacille. Sous le nom de <strong>Silver Argenti</strong>, Fulgura prend en charge directement les anomalies les plus graves. Il ne sait pas encore que quelqu'un, dans l'ombre, prépare bien plus qu'une anomalie.</p>
+    <div class="characters">Émergence de <strong>Silver Argenti</strong> · l'Ordre des Veilleurs en alerte</div>
+  </div>
+
+  <!-- ============ ÈRE DU RETOUR ============ -->
+  <div class="era-header retour">
+    <h2>✨ L'Ère du Retour</h2>
+    <div class="era-range">An 1000 à 1040 AR · Le réveil du monde</div>
+  </div>
+  <div class="era-desc retour">
+    Il y a 40 ans, la magie revient — non comme une libération espérée, mais comme une <strong>brèche</strong> que les Veilleurs n'ont pas su refermer. Brutalement, inégalement, partout. Les races endormies se réveillent. Les dieux affaiblis reprennent souffle. Les Nœuds pulsent à nouveau. Le monde de jadis se remet à exister — mais 1000 ans ont passé, les humains sont devenus innombrables, et rien n'est plus comme avant.
+  </div>
+
+  <div class="event major">
+    <div class="event-date">An 1000 AR · LE RETOUR</div>
+    <h3>🌟 Le Retour de la Magie</h3>
+    <p>Jack Argenti, jeune homme issu de la lignée Argenti par sa mère <strong>Elline</strong> (morte en couches sous la malédiction) et fils d'<strong>Eliart</strong> (simple aventurier sans lien avec les Argenti), part en voyage avec son grand-père maternel <strong>Silver</strong>. Au fil de leur périple (raconté dans <em>Le Veilleur de Nuit</em>), Jack devient un <strong>Réceptacle d'âme</strong>.</p>
+    <p>Mais dans l'ombre, un autre descendant caché de Silver — <strong>Merthas</strong>, manipulé par une <strong>Ombre</strong> ancienne — orchestre l'événement depuis longtemps. Des êtres lui sont apparus en rêve, lui promettant de ramener sa femme et sa fille mortes à la malédiction, <strong>en échange du rétablissement de la magie ancienne</strong>. Le combat final brise l'équilibre que les Veilleurs maintenaient depuis mille ans.</p>
+    <p>Silver, rassemblant ses dernières forces, transmet son énergie vitale à Jack pour le sauver — <strong>et avec elle, possiblement, sa malédiction d'immortalité</strong>. Les cheveux de Jack virent à l'argenté. Silver s'éteint. La magie revient en torrent.</p>
+    <div class="characters"><strong>Jack Argenti</strong> · <strong>Silver / Fulgura</strong> (mort en transmettant) · <strong>Merthas</strong> · l'<strong>Ombre</strong></div>
+  </div>
+
+  <div class="event">
+    <div class="event-date">An 1001-1010 AR</div>
+    <h3>Le Réveil des Races · choc démographique</h3>
+    <p>Les Nains émergent de Fer In Gal. Les Elfes Sylvestres reviennent à la Forêt Julia. Les Hommes-bêtes refont surface dans les régions sauvages. Les Tengu de Tsu-Raji reprennent leur vol. Les Hauts Elfes sortent de leur retraite. Mais les races réveillées font une découverte amère : pendant qu'elles dormaient, <strong>les humains se sont multipliés en nombre écrasant</strong>. Les royaumes humains tiennent les terres, les ressources, les routes. Le monde n'est plus à elles. Les tensions politiques s'installent durablement.</p>
+    <p>Les humains, eux, sont <strong>perturbés</strong> : 1000 ans sans magie, et soudain des bêtes parlent, des géants émergent, des forces qu'ils croyaient mythes deviennent voisins. Adaptation forcée, peurs anciennes ravivées.</p>
+    <div class="characters">Réveil des races · <strong>tensions démographiques durables</strong> humains/races magiques</div>
+  </div>
+
+  <div class="event">
+    <div class="event-date">An 1005-1020 AR</div>
+    <h3>L'Édification de Villa Virtue</h3>
+    <p>Des Elfes Yle (les Bannis, race en pleine croissance démographique) inscrivent des scripts de vent géants sur un cristal de mana colossal. La cité aristocratique de Villa Virtue est ainsi élevée au-dessus de Lumini. La Guilde des Aventuriers y établit son siège mondial.</p>
+    <div class="characters">Fondation : <strong>Villa Virtue</strong>, <strong>Guilde des Aventuriers</strong></div>
+  </div>
+
+  <div class="event">
+    <div class="event-date">An 1010-1025 AR</div>
+    <h3>La Course à l'Armement Magique</h3>
+    <p>Les royaumes humains, terrifiés par le réveil des races magiques, lancent une course à l'acquisition de connaissances magiques. Espionnage, vols de scripts, recrutement de mages. La <strong>Primadis Octa Magis</strong> est fondée comme institution magique officielle.</p>
+    <div class="characters">Fondation : <strong>Primadis Octa Magis</strong>, tensions <strong>Virtus / Lumini / Sol'Ambaïre</strong></div>
+  </div>
+
+  <div class="event">
+    <div class="event-date">An 1015-1025 AR</div>
+    <h3>L'Héroïsme de Julia</h3>
+    <p>Une jeune femme nommée <strong>Julia</strong> devient une héroïne moderne, symbole d'unité humains-elfes. Elle médie un conflit entre Tribu de la Forêt et un royaume humain, sauvant la forêt elfe. À sa mort tragique, la forêt antique est rebaptisée <strong>Forêt Julia</strong>.</p>
+    <div class="characters"><strong>Julia</strong> (héroïne moderne)</div>
+  </div>
+
+  <div class="event">
+    <div class="event-date">An 1020 AR</div>
+    <h3>Jack Argenti adulte fonde l'orphelinat d'Etelin</h3>
+    <p>Jack épouse <strong>Lyssana Argenti</strong>, jeune femme aux cheveux rouge feu, magicienne accomplie. Ensemble, ils fondent un orphelinat près du village d'Etelin, au nord de Lumini. Ils recueillent des enfants perdus dans le chaos du Retour. Jack s'absente fréquemment pour ses missions de Veilleur.</p>
+    <div class="characters"><strong>Jack & Lyssana Argenti</strong>, début des PNJ-clés</div>
+  </div>
+
+  <div class="event">
+    <div class="event-date">An 1022 AR</div>
+    <h3>Naissance de Shura Argenti</h3>
+    <p>Premier enfant biologique de Jack et Lyssana. Élevé dans l'orphelinat avec les enfants adoptés. Très tôt, devient l'aîné protecteur. Apprend le combat avec son père et les bases magiques avec sa mère.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-date">An 1024-1026 AR</div>
+    <h3>Arrivées de Damaïr, Tera, Lydia</h3>
+    <p>Trois enfants orphelins arrivent à des moments différents. <strong>Damaïr</strong>, érudit né, et <strong>Tera</strong>, combattant par nature, deviennent frères inséparables. <strong>Lydia</strong>, orpheline des contrées du nord, jeune mais combattante hors pair, complète le trio des "Gardiens" qui veillent sur les plus jeunes.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-date">An 1030-1035 AR</div>
+    <h3>La Bataille des Griffons de Me'yn Prus</h3>
+    <p>Des griffons mutants Azure et Vermillon attaquent Me'yn Prus. <strong>Lyad Feqra</strong>, ex-aventurier et chef de la milice locale, les repousse héroïquement. Cet exploit lui assure le respect éternel de la Guilde des Marchands.</p>
+    <div class="characters"><strong>Lyad Feqra</strong>, défenseur de Me'yn Prus</div>
+  </div>
+
+  <div class="event">
+    <div class="event-date">An 1038 AR</div>
+    <h3>Lotain Ur Windor mécène les Météores d'Or</h3>
+    <p>Un riche noble nommé <strong>Lotain Ur Windor</strong> finance le groupe d'aventuriers le plus célèbre du monde, les <strong>Météores d'Or</strong>. Leurs exploits font de la noblesse de Villa Virtue les rois du prestige social. Lotain influence des votes politiques par son seul soutien aux Météores.</p>
+    <div class="characters"><strong>Lotain Ur Windor</strong>, <strong>Météores d'Or</strong></div>
+  </div>
+
+  <!-- ============ PRÉSENT ============ -->
+  <div class="era-header present">
+    <h2>⚡ Le Présent</h2>
+    <div class="era-range">An 1040 AR · Aujourd'hui (livre 2)</div>
+  </div>
+  <div class="era-desc present">
+    L'année actuelle. Les races et les royaumes coexistent, mais sous tension. Les Nœuds du Monde se manifestent. Une menace nouvelle gronde — des monstres qui n'auraient pas dû exister apparaissent. C'est l'année du <strong>"calme avant la dévastation"</strong>.
+  </div>
+
+  <div class="event major">
+    <div class="event-date">An 1040 AR · LE PRÉSENT</div>
+    <h3>🦴 L'Émergence des Goblins Intelligents</h3>
+    <p>Les premiers <strong>goblins intelligents</strong> apparaissent. Capables de parler, de planifier, de s'organiser en horde. Une mutation inexplicable. Sont-ils créés par un Nœud corrompu ? Une force agissante derrière l'ombre ? L'attaque sur l'orphelinat d'Etelin marque le début de la <em>dévastation à venir</em>.</p>
+    <div class="characters"><strong>Damaïr</strong> (16 ans), <strong>Tera</strong>, <strong>Shura</strong> font face. <strong>Jack disparaît</strong> en mission</div>
+  </div>
+
+  <div class="event">
+    <div class="event-date">An 1040 AR · Quelques semaines</div>
+    <h3>Damaïr découvre la Langue Primordiale</h3>
+    <p>Sur un brûlure intense d'éther, Damaïr entend en rêve les premiers <strong>mots primordiaux</strong> (Yiel curare, langue de la création). Lyssana en révèle la nature à ses fils. Jack est introuvable — où est-il ?</p>
+  </div>
+
+  <div class="event">
+    <div class="event-date">An 1040 AR · Aujourd'hui</div>
+    <h3>Damaïr part en voyage</h3>
+    <p>Damaïr décide de quitter l'orphelinat pour parcourir le monde, retrouver son père adoptif Jack, et comprendre la nature des changements en cours. Il fait la promesse à Tera de revenir.</p>
+    <p>C'est ici que les PJ entrent en scène.</p>
+    <div class="characters">Début de la <strong>nouvelle génération d'aventuriers</strong> — les PJ</div>
+  </div>
+
+  <!-- ============ FUTUR ============ -->
+  <div class="era-header future">
+    <h2>❓ L'Ère à Venir</h2>
+    <div class="era-range">An 1041+ AR · Le futur incertain</div>
+  </div>
+  <div class="era-desc future">
+    Le futur est entre les mains des PJ. Les Nœuds s'agitent. Les races se positionnent. L'Ombre rôde toujours. Les Veilleurs cherchent à comprendre. Quelque chose monte du fond du temps — et personne ne sait si Armonia survivra à ce qui vient.
+  </div>
+
+  <div class="event">
+    <div class="event-date">Futur · ???</div>
+    <h3>La Dévastation ?</h3>
+    <p>Le titre du livre 2 ne ment pas. Quelque chose se prépare. L'Ombre, qui manipulait Merthas, n'a pas dit son dernier mot. Les goblins intelligents ne sont qu'une avant-garde. Jack a hérité d'une charge dont il ignore encore les contours. À toi de découvrir — et de décider — ce qui suivra.</p>
+    <div class="characters">À écrire avec tes PJ</div>
+  </div>
+
+</div>
+
+</div>
+</body>
+</html>
