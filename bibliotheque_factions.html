@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factions & Organisations d'Armonia</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+  --danger: #a02020;
+
+  --protect: #6a4a3a;
+  --marchands: #b89030;
+  --aventuriers: #a8a0c4;
+  --tribu: #3a7a3c;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 24px;
+  background: linear-gradient(135deg, #fffaf0 0%, #e8e0d0 50%, #fffaf0 100%);
+  border: 3px double var(--protect);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 30px;
+  color: var(--protect);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--accent);
+  margin-top: 8px;
+  font-size: 16px;
+}
+header.title-bar .quote {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 12px;
+  font-style: italic;
+}
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.intro-box strong { color: var(--primary); }
+.section-title {
+  font-size: 24px;
+  color: var(--primary);
+  margin: 32px 0 14px 0;
+  padding-bottom: 8px;
+  border-bottom: 3px double var(--accent);
+  letter-spacing: 2px;
+}
+
+.protect-box {
+  background: linear-gradient(135deg, #fffaf0 0%, #f0e0d0 100%);
+  border: 2px solid var(--protect);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 14px 0;
+}
+.protect-box h2 {
+  margin: 0 0 10px 0;
+  color: var(--protect);
+  font-size: 22px;
+}
+.protect-box h3 {
+  color: var(--protect);
+  font-size: 16px;
+  margin: 14px 0 6px 0;
+}
+.protect-box p { font-size: 14px; line-height: 1.6; margin: 6px 0; }
+.protect-box ul { font-size: 14px; line-height: 1.7; margin: 6px 0 6px 18px; padding: 0; }
+
+.fondateurs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  margin: 12px 0;
+}
+.fondateur-card {
+  background: white;
+  border: 2px solid var(--protect);
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  gap: 12px;
+}
+.fondateur-card .avatar {
+  font-size: 36px;
+  width: 50px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.fondateur-card .info { flex: 1; }
+.fondateur-card h3 {
+  margin: 0 0 4px 0;
+  color: var(--protect);
+  font-size: 16px;
+}
+.fondateur-card .role-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--protect);
+  color: white;
+  border-radius: 10px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.fondateur-card p {
+  margin: 4px 0 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.secret-box {
+  background: linear-gradient(135deg, #fff5f5 0%, #fde0e0 100%);
+  border: 2px solid var(--danger);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 16px 0;
+  position: relative;
+}
+.secret-box::before {
+  content: '⚠ SECRET MAJEUR';
+  position: absolute;
+  top: -12px;
+  left: 16px;
+  background: var(--danger);
+  color: white;
+  padding: 3px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+.secret-box h2 {
+  margin: 6px 0 10px 0;
+  color: var(--danger);
+  font-size: 20px;
+}
+.secret-box p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 8px 0;
+}
+
+.guildes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 14px;
+}
+.guilde-card {
+  background: var(--paper);
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+}
+.guilde-card.marchands { border-color: var(--marchands); }
+.guilde-card.aventuriers { border-color: var(--aventuriers); }
+.guilde-card.tribu { border-color: var(--tribu); }
+.guilde-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+}
+.guilde-card.marchands h3 { color: var(--marchands); }
+.guilde-card.aventuriers h3 { color: var(--aventuriers); }
+.guilde-card.tribu h3 { color: var(--tribu); }
+.guilde-card p { font-size: 13px; line-height: 1.55; margin: 6px 0; }
+.guilde-card strong { color: var(--text); }
+
+.crossref-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin: 10px 0;
+}
+.crossref-box h3 {
+  margin: 0 0 6px 0;
+  color: var(--primary);
+  font-size: 16px;
+}
+.crossref-box p { margin: 4px 0; font-size: 13px; line-height: 1.5; }
+.crossref-box a { color: var(--accent); text-decoration: underline; }
+
+.hooks-box {
+  background: var(--paper);
+  border-left: 4px solid var(--accent);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin: 16px 0;
+}
+.hooks-box p {
+  margin: 8px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.nav-back {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 13px;
+}
+.nav-back:hover { text-decoration: underline; }
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<a href="index.html" class="nav-back">← Retour au sommaire</a>
+
+<header class="title-bar">
+  <h1>⚔ FACTIONS & ORGANISATIONS ⚔</h1>
+  <div class="subtitle">Protectoria Antares · Guildes · Tribu de la Forêt</div>
+  <div class="quote">« Derrière chaque grande œuvre, une organisation. Derrière chaque organisation, des hommes. »</div>
+</header>
+
+<div class="intro-box">
+  <p>Le monde d'Armonia est tenu par une mosaïque d'<strong>organisations</strong> — certaines officielles, d'autres secrètes, d'autres simples titres ou licences. Cette bibliothèque rassemble les factions qui ne sont ni religieuses (voir <a href="bibliotheque_pantheons.html" style="color:var(--accent);">Panthéons</a>), ni dédiées aux Veilleurs (voir <a href="bibliotheque_veilleurs.html" style="color:var(--accent);">Veilleurs</a>) ou aux Roses (voir <a href="bibliotheque_armonia.html" style="color:var(--accent);">Cité d'Armonia</a>) — mais qui touchent tout aussi profondément la vie quotidienne du monde.</p>
+</div>
+
+<h2 class="section-title">🛡️ Le Protéctoriat Antares</h2>
+
+<div class="protect-box">
+  <h2>Le Titre, pas le Groupe</h2>
+  <p><strong>Protéctoriat Antares</strong> n'est pas un groupe unifié — c'est <strong>une autorisation</strong>, un titre. L'organisation du même nom octroie ce titre aux mercenaires qui passent son examen. Une fois titularisé, le mercenaire peut se présenter aux nobles pour proposer ses services — récupération de ressources magiques sur monstres, missions de protection, contrats « gris » que la Guilde des Aventuriers ne touche pas.</p>
+
+  <p>Les détenteurs du titre sont comme des aventuriers, mais <strong>moins à cheval sur l'éthique</strong>. Ils peuvent s'occuper d'affaires pas très légales. Comme partout, il y a parmi eux des <strong>bons</strong> et des <strong>mauvais</strong> — le titre lui-même n'est pas une garantie morale, c'est une licence d'opérer.</p>
+
+  <p>Une fois titularisé, chaque mercenaire prend son <strong>propre nom de scène</strong> et opère pour son compte. Le titre est lié à un sceau de cire et à un parchemin officiel.</p>
+
+  <h3>L'organisation mère</h3>
+  <p>L'<strong>organisation Protéctoriat Antares</strong> a été fondée immédiatement après le <strong>Retour de la magie</strong> (vers 1000-1005 AR). C'était le <strong>premier groupe de mercenaires créé</strong> dans le nouveau monde magique — pour répondre à la nouvelle demande : artefacts à récupérer, monstres réveillés à neutraliser, missions « grises » à mener.</p>
+
+  <p>Aujourd'hui, ses <strong>six fondateurs sont presque tous à la retraite</strong> — mais ils restent les juges qui examinent les nouveaux candidats. Aucun titre n'est octroyé sans passer devant un fondateur.</p>
+
+  <h3>Le siège</h3>
+  <p>Le siège du Protéctoriat se trouve à <strong>Virtus Al Alle</strong>, l'empire militaire de l'est. Ce choix n'est pas un hasard : Virtus est un royaume où les contrats mercenaires sont culturellement normaux, où la noblesse est nombreuse, et où Ross Von Listaire — le président — siège également comme <strong>juge de sa ville</strong>.</p>
+</div>
+
+<h3 style="color:var(--protect); margin-top:24px;">Les 6 fondateurs · « Les Premiers Mercenaires »</h3>
+
+<div class="fondateurs-grid">
+
+  <div class="fondateur-card">
+    <div class="avatar">⚖️</div>
+    <div class="info">
+      <div class="role-tag">Président</div>
+      <h3>Ross Von Listaire</h3>
+      <p>Président du Protéctoriat, aujourd'hui également <strong>juge de sa ville</strong> (Virtus Al Alle). Fonde son autorité morale sur sa double charge — mercenaire et magistrat. Octroie personnellement les titres aux candidats remarquables.</p>
+    </div>
+  </div>
+
+  <div class="fondateur-card">
+    <div class="avatar">🏹</div>
+    <div class="info">
+      <div class="role-tag">Fondatrice · Archère</div>
+      <h3>Sara l'Archère d'élite</h3>
+      <p>Tireuse d'élite, capable de toucher un fil de soie à 200 m. Quasi à la retraite mais accepte encore quelques contrats de précision haute exigence. On dit qu'elle ne rate jamais — sauf quand elle le décide.</p>
+    </div>
+  </div>
+
+  <div class="fondateur-card">
+    <div class="avatar">🗡️</div>
+    <div class="info">
+      <div class="role-tag">Fondateur · Assassin</div>
+      <h3>Nimas l'Assassin</h3>
+      <p>Assassin de profession — mais <em>pas forcément une mauvaise personne</em>. A toujours choisi ses cibles selon un code personnel. Plus discret depuis sa retraite. Vit-il encore à Virtus, ou ailleurs ?</p>
+    </div>
+  </div>
+
+  <div class="fondateur-card">
+    <div class="avatar">👊</div>
+    <div class="info">
+      <div class="role-tag">Fondateur · Combat</div>
+      <h3>Ross le Poing Furieux</h3>
+      <p><em>Différent de Ross Von Listaire</em>. Maître du combat à mains nues. Connu pour avoir mis K.O. un ours runique en duel. Aujourd'hui maître d'arts martiaux dans une école obscure.</p>
+    </div>
+  </div>
+
+  <div class="fondateur-card">
+    <div class="avatar">⚡</div>
+    <div class="info">
+      <div class="role-tag">Fondatrice · Guerrière-Magicienne</div>
+      <h3>Aqua la Guerrière-Magicienne</h3>
+      <p>Canon livre 1. La <strong>même Aqua</strong> qui est aujourd'hui <strong>Haute Autorité des Veilleurs</strong>. Son passé au Protéctoriat est un secret bien gardé. Combine lance + bouclier lourd + force surhumaine.</p>
+    </div>
+  </div>
+
+  <div class="fondateur-card">
+    <div class="avatar">🛡️</div>
+    <div class="info">
+      <div class="role-tag">Fondateur · Tank</div>
+      <h3>Waren le Bouclier Vivant</h3>
+      <p>Sa spécialité : protéger les autres. Bouclier-tour gigantesque, armure scellée. Aurait survécu à un coup de souffle direct d'un Géant du Givre éveillé. Aujourd'hui retiré dans une auberge qu'il gère lui-même.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="secret-box">
+  <h2>Le Noble Mystérieux</h2>
+  <p>D'après les chroniques anciennes du Protéctoriat, l'organisation a parfois été soutenue par un <strong>noble dont l'identité est restée inconnue</strong>. Ce noble est crédité comme l'<strong>une des raisons pour lesquelles la magie est revenue dans le monde</strong>.</p>
+  <p>Ce qu'on sait à 1040 AR :</p>
+  <ul>
+    <li>Il s'agit de <strong>quelqu'un de Me'yn Prus</strong> (la cité marchande de Lumini)</li>
+    <li>Ce n'est PAS Ross Von Listaire</li>
+    <li>Son identité reste un mystère même pour les fondateurs vieillissants — il a toujours communiqué par intermédiaires</li>
+    <li>Ses motivations restent floues — finance-t-il le Protéctoriat pour récupérer des artefacts magiques utiles à ses propres jeux ? Pour orienter le monde dans une direction qu'il connaît ?</li>
+  </ul>
+  <p style="border-top:1px dashed var(--danger); padding-top:10px; margin-top:14px; font-style:italic;">À découvrir en jeu. Un PJ qui creuserait son identité enclencherait une intrigue à très haute portée.</p>
+</div>
+
+<h2 class="section-title">🏛️ Les Guildes & la Tribu</h2>
+
+<div class="guildes-grid">
+
+  <div class="guilde-card marchands">
+    <h3>⚖️ La Guilde des Marchands</h3>
+    <p><strong>Siège mondial</strong> : Me'yn Prus, Lumini.</p>
+    <p>La plus puissante institution commerciale d'Armonia. Tisse un réseau qui transcende les frontières politiques — caravanes Karambol, flottes Daluvio, contrats avec tous les royaumes.</p>
+    <p>Sert aussi de <strong>banque</strong>. Maintient sa neutralité politique pour préserver son rôle d'arbitre commercial.</p>
+    <p><strong>Lyad Feqra</strong> commande la milice locale de Me'yn Prus depuis la Bataille des Griffons.</p>
+    <p><em>Secret abrité</em> : le QG des Veilleurs est caché à l'intérieur même de la Guilde, à Me'yn Prus.</p>
+  </div>
+
+  <div class="guilde-card aventuriers">
+    <h3>☁️ La Guilde des Aventuriers</h3>
+    <p><strong>Siège mondial</strong> : Villa Virtue (cité volante au-dessus de Lumini).</p>
+    <p>Financée par la noblesse. Le groupe le plus célèbre : les <strong>Météores d'Or</strong>, mécénés par <strong>Lotain Ur Windor</strong>, dont la renommée influence des votes politiques.</p>
+    <p>Concurrence permanente avec les Marchands sur les marchés d'escortes, missions de sécurité, exploration.</p>
+    <p><strong>Officiellement dirigée par Alm</strong> (oncle de Shura). <em>En réalité, Merthas habite ce corps</em> — voir <a href="bibliotheque_veilleurs.html">bibliothèque Veilleurs</a> pour le secret du scellement.</p>
+  </div>
+
+  <div class="guilde-card tribu">
+    <h3>🌳 La Tribu de la Forêt</h3>
+    <p><strong>Base</strong> : Forêt Julia, Lumini (et villages dispersés).</p>
+    <p>Plus tribu spirituelle qu'organisation officielle. Vénère la nature et <strong>Féiy</strong> (renouveau). Coexistence avec les Elfes Sylvestres en harmonie depuis la médiation de Julia.</p>
+    <p><strong>Doctrine</strong> : tolérance, compassion, coexistence harmonieuse avec l'environnement.</p>
+    <p><strong>Activités</strong> : protection des écosystèmes, médiation, opposition aux projets de routes à travers la Forêt.</p>
+    <p>Conseille parfois la <strong>Maison Vœnir</strong> (Armonia) sur des affaires liées aux esprits naturels morts.</p>
+  </div>
+
+</div>
+
+<h2 class="section-title">🔗 Renvois vers les autres factions du monde</h2>
+
+<div class="crossref-box">
+  <h3>👁 L'Ordre des Veilleurs</h3>
+  <p>Ordre secret, gardien de l'équilibre du monde sans magie. Dirigé par Jack Argenti. Aqua, Vesper, Oupac, Pebacci y sont membres. QG à Me'yn Prus, dans le Hub de la Guilde des Marchands. <a href="bibliotheque_veilleurs.html">Voir la bibliothèque Veilleurs →</a></p>
+</div>
+
+<div class="crossref-box">
+  <h3>🌹 Les Roses d'Armonia</h3>
+  <p>Ordre judiciaire autonome de la Cité d'Armonia. Dirigées par Rose-Indra. Cheveux vermillon, arme rituelle personnelle. <a href="bibliotheque_armonia.html">Voir la bibliothèque Armonia →</a></p>
+</div>
+
+<div class="crossref-box">
+  <h3>🌟 Spriius Luminatis</h3>
+  <p>Prêtres officiels de Jei'nia, Déesse du Soleil. Défendent les opprimés, répandent la lumière. <a href="bibliotheque_pantheons.html">Voir la bibliothèque Panthéons →</a></p>
+</div>
+
+<div class="crossref-box">
+  <h3>🏛️ Le Conseil des Six (Armonia)</h3>
+  <p>Les six grandes familles qui gouvernent la cité d'Armonia : Von Guinity, Daluvio, Karambol, Vœnir, Aurale, Garance. <a href="bibliotheque_armonia.html">Voir la bibliothèque Armonia →</a></p>
+</div>
+
+<div class="crossref-box">
+  <h3>⛧ Les 5 Célestes & le Cercle d'Anh</h3>
+  <p>Système politique-religieux de Sol'Ambaïre : 5 Célestes (Deïn ilt), 5 royaumes, Cercle d'Anh neutre. <a href="bibliotheque_celestes.html">Voir la bibliothèque Sol'Ambaïre →</a></p>
+</div>
+
+<h2 class="section-title">🎲 Hooks de campagne</h2>
+
+<div class="hooks-box">
+  <p>• Un PJ veut <strong>obtenir le titre de Protectoria Antares</strong>. Il doit passer devant un fondateur. Lequel l'examine ? Quelle épreuve ?</p>
+  <p>• Un <strong>mercenaire Protectoria</strong> a outrepassé son code et accepté un contrat de meurtre politique. Les autres titulaires sont missionnés pour le ramener.</p>
+  <p>• Un PJ découvre par hasard l'<strong>identité du noble mystérieux</strong>. Que faire de cette information ?</p>
+  <p>• Aqua refuse de parler de son passé Protéctoriat. Quelque chose la hante de cette époque.</p>
+  <p>• <strong>Ross le Poing Furieux</strong> propose une école de combat à un PJ — au prix d'un secret.</p>
+  <p>• Une <strong>guerre commerciale</strong> entre Marchands et Aventuriers explose. Les PJ sont engagés des deux côtés sans le savoir.</p>
+  <p>• <strong>Nimas l'Assassin</strong> contacte les PJ pour leur demander d'épargner sa cible — il refuse pour la première fois un contrat.</p>
+  <p>• Une <strong>missionnaire Spriius Luminatis</strong> arrive à l'orphelinat d'Etelin. Elle veut prêcher la Lumière. Réception mitigée.</p>
+
+</div>
+
+<footer>
+  Factions & Organisations · Codex d'Armonia · Système Bilal · 2026
+</footer>
+
+</div>
+</body>
+</html>

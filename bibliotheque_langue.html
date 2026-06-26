@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Langue Ancienne d'Armonia</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+  --rituel: #7a4a8a;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 24px;
+  background: linear-gradient(135deg, #fffaf0 0%, #e8e0f0 50%, #fffaf0 100%);
+  border: 3px double var(--rituel);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 32px;
+  color: var(--rituel);
+  letter-spacing: 5px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--accent);
+  margin-top: 8px;
+  font-size: 16px;
+}
+header.title-bar .quote {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 12px;
+  font-style: italic;
+}
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--rituel);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.intro-box strong { color: var(--rituel); }
+.section-title {
+  font-size: 22px;
+  color: var(--rituel);
+  margin: 28px 0 14px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+  letter-spacing: 1px;
+}
+.subsection-title {
+  font-size: 17px;
+  color: var(--accent);
+  margin: 16px 0 10px 0;
+  letter-spacing: 1px;
+}
+
+.lexique-table, .conj-table, .pronoms-table {
+  width: 100%;
+  background: var(--paper);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 10px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.lexique-table th, .lexique-table td,
+.conj-table th, .conj-table td,
+.pronoms-table th, .pronoms-table td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.lexique-table th, .conj-table th, .pronoms-table th {
+  background: var(--rituel);
+  color: white;
+  letter-spacing: 1px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.lexique-table td.langue, .conj-table td.forme {
+  font-family: 'Courier New', monospace;
+  color: var(--rituel);
+  font-weight: bold;
+  font-size: 15px;
+}
+.pronoms-table td.pronom {
+  font-family: 'Courier New', monospace;
+  color: var(--primary);
+  font-weight: bold;
+  font-size: 16px;
+}
+.lexique-table tr:hover, .conj-table tr:hover, .pronoms-table tr:hover {
+  background: rgba(122, 74, 138, 0.05);
+}
+.lexique-table tr:last-child td, .conj-table tr:last-child td, .pronoms-table tr:last-child td { border-bottom: none; }
+
+.section-box {
+  background: var(--paper);
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin: 12px 0;
+}
+.section-box p { font-size: 14px; line-height: 1.6; margin: 6px 0; }
+.section-box ul { font-size: 14px; line-height: 1.7; margin: 6px 0 6px 18px; padding: 0; }
+
+.exemple-box {
+  background: linear-gradient(135deg, #fffaf0 0%, #f0e0f0 100%);
+  border: 2px solid var(--rituel);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 14px 0;
+}
+.exemple-box h3 {
+  margin: 0 0 10px 0;
+  color: var(--rituel);
+  font-size: 16px;
+}
+.exemple-phrase {
+  background: white;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin: 10px 0;
+  font-family: 'Courier New', monospace;
+  font-size: 15px;
+  color: var(--rituel);
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-left: 4px solid var(--accent);
+}
+.exemple-traduction {
+  font-style: italic;
+  color: var(--text);
+  font-size: 14px;
+  margin: 6px 0 4px 0;
+}
+.exemple-analyse {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 4px 0 0 0;
+  line-height: 1.4;
+}
+
+.mots-prim-box {
+  background: linear-gradient(135deg, #fff8e8 0%, #fff0d0 100%);
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 16px 0;
+}
+.mots-prim-box h2 {
+  margin: 0 0 10px 0;
+  color: var(--accent);
+  font-size: 20px;
+}
+.mots-prim-box p { font-size: 14px; line-height: 1.6; margin: 6px 0; }
+
+.nav-back {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 13px;
+}
+.nav-back:hover { text-decoration: underline; }
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<a href="index.html" class="nav-back">← Retour au sommaire</a>
+
+<header class="title-bar">
+  <h1>𓂀 LA LANGUE ANCIENNE 𓂀</h1>
+  <div class="subtitle">Codex linguistique d'Armonia</div>
+  <div class="quote">« Quand on parle cette langue, le monde écoute. »</div>
+</header>
+
+<div class="intro-box">
+  <p>La <strong>Langue Ancienne</strong> est la langue parlée par les <strong>Io séeim</strong> et leurs proches mortels avant la Rupture. Elle a presque entièrement disparu de l'usage quotidien — mais quelques fragments survivent : noms des divinités, vocabulaire rituel, et surtout les <strong>Mots Primordiaux</strong> qui sont sa forme cérémonielle figée.</p>
+  <p>Ce que tu trouveras ici est ce qu'on a pu reconstituer du système : <strong>vocabulaire de base</strong>, <strong>pronoms</strong>, <strong>conjugaisons</strong>, et <strong>phrases-modèles</strong>. La langue continue d'être découverte au fil des campagnes — chaque rune trouvée, chaque manuscrit déchiffré ajoute un mot.</p>
+</div>
+
+<h2 class="section-title">📜 Lexique de base</h2>
+
+<table class="lexique-table">
+  <thead>
+    <tr><th>Langue ancienne</th><th>Traduction française</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="langue">Seid</td><td>de, des</td><td>Préposition de provenance / appartenance</td></tr>
+    <tr><td class="langue">memtai</td><td>ouvrir (infinitif)</td><td>Verbe (radical : memte-)</td></tr>
+    <tr><td class="langue">gein</td><td>mes</td><td>Possessif 1re sg</td></tr>
+    <tr><td class="langue">dullalle</td><td>toi, vous, vos</td><td>Pronom oblique 2e personne (sg et pl)</td></tr>
+    <tr><td class="langue">al</td><td>part</td><td>Nom : portion, fraction</td></tr>
+    <tr><td class="langue">ol</td><td>qui</td><td>Pronom relatif / interrogatif</td></tr>
+    <tr><td class="langue">isp</td><td>mot</td><td>Nom : parole, énoncé</td></tr>
+    <tr><td class="langue">Mets</td><td>Honneur</td><td>Concept central de la culture ancienne</td></tr>
+    <tr><td class="langue">mokae</td><td>être (infinitif)</td><td>Verbe (radical : moka-)</td></tr>
+    <tr><td class="langue">utelven</td><td>vertus</td><td>Nom pluriel</td></tr>
+  </tbody>
+</table>
+
+<p style="font-size:13px; color:var(--muted); font-style:italic; margin-top:8px;">Ce lexique s'étend à chaque session — manuscrits trouvés, runes déchiffrées, paroles entendues en rêve.</p>
+
+<h2 class="section-title">🔤 Pronoms personnels</h2>
+
+<table class="pronoms-table">
+  <thead>
+    <tr><th>Pronom ancien</th><th>Personne</th><th>Équivalent français</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="pronom">Oa</td><td>1re sg</td><td>je</td></tr>
+    <tr><td class="pronom">Oe</td><td>2e sg</td><td>tu</td></tr>
+    <tr><td class="pronom">Oi</td><td>3e sg</td><td>il / elle</td></tr>
+    <tr><td class="pronom">Ol</td><td>1re pl</td><td>nous</td></tr>
+    <tr><td class="pronom">O'ul</td><td>2e pl</td><td>vous</td></tr>
+    <tr><td class="pronom">Oil</td><td>3e pl</td><td>ils / elles</td></tr>
+  </tbody>
+</table>
+
+<div class="section-box">
+  <p>Tous les pronoms commencent par <strong>O-</strong> (marqueur grammatical du pronom personnel). La forme singulière simple (Oa, Oe, Oi) et la forme plurielle suit avec consonne d'appui (-l, -'ul, -il).</p>
+  <p>Note : <strong>dullalle</strong> (toi/vous/vos) est une forme oblique distincte — utilisée dans certains contextes formels ou rituels où le pronom-sujet n'est pas approprié.</p>
+</div>
+
+<h2 class="section-title">🧮 Conjugaison — deux verbes-modèles</h2>
+
+<h3 class="subsection-title">Verbe <code style="background:#f0e0d0; padding:2px 6px; border-radius:4px; color:var(--rituel);">mokae</code> — être</h3>
+
+<table class="conj-table">
+  <thead>
+    <tr><th>Pronom</th><th>Forme conjuguée</th><th>Traduction</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="pronom" style="color:var(--primary);font-family:'Courier New';font-weight:bold;">Oa</td><td class="forme">Moka'i</td><td>je suis</td></tr>
+    <tr><td class="pronom" style="color:var(--primary);font-family:'Courier New';font-weight:bold;">Oe</td><td class="forme">Mokaol</td><td>tu es</td></tr>
+    <tr><td class="pronom" style="color:var(--primary);font-family:'Courier New';font-weight:bold;">Oi</td><td class="forme">Moka'u</td><td>il / elle est</td></tr>
+    <tr><td class="pronom" style="color:var(--primary);font-family:'Courier New';font-weight:bold;">Ol</td><td class="forme">Mokaal</td><td>nous sommes</td></tr>
+    <tr><td class="pronom" style="color:var(--primary);font-family:'Courier New';font-weight:bold;">O'ul</td><td class="forme">Mokael</td><td>vous êtes</td></tr>
+    <tr><td class="pronom" style="color:var(--primary);font-family:'Courier New';font-weight:bold;">Oil</td><td class="forme">Mokai</td><td>ils / elles sont</td></tr>
+  </tbody>
+</table>
+
+<h3 class="subsection-title">Verbe <code style="background:#f0e0d0; padding:2px 6px; border-radius:4px; color:var(--rituel);">memtei</code> — ouvrir</h3>
+
+<table class="conj-table">
+  <thead>
+    <tr><th>Pronom</th><th>Forme conjuguée</th><th>Traduction</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="pronom" style="color:var(--primary);font-family:'Courier New';font-weight:bold;">Oa</td><td class="forme">Memte'i</td><td>j'ouvre</td></tr>
+    <tr><td class="pronom" style="color:var(--primary);font-family:'Courier New';font-weight:bold;">Oe</td><td class="forme">Memte'ol</td><td>tu ouvres</td></tr>
+    <tr><td class="pronom" style="color:var(--primary);font-family:'Courier New';font-weight:bold;">Oi</td><td class="forme">Memte'ul</td><td>il / elle ouvre</td></tr>
+    <tr><td class="pronom" style="color:var(--primary);font-family:'Courier New';font-weight:bold;">Ol</td><td class="forme">Memtea</td><td>nous ouvrons</td></tr>
+    <tr><td class="pronom" style="color:var(--primary);font-family:'Courier New';font-weight:bold;">O'ul</td><td class="forme">Memteil</td><td>vous ouvrez</td></tr>
+    <tr><td class="pronom" style="color:var(--primary);font-family:'Courier New';font-weight:bold;">Oil</td><td class="forme">Memtail</td><td>ils / elles ouvrent</td></tr>
+  </tbody>
+</table>
+
+<div class="section-box">
+  <p><strong>Règle générale</strong> : la conjugaison est <strong>suffixale</strong>. On prend le radical du verbe (moka-, memte-) et on lui ajoute un suffixe lié au pronom.</p>
+  <p>Les terminaisons varient légèrement selon la <strong>voyelle finale du radical</strong> — c'est ce qu'on appelle l'<strong>harmonie vocalique</strong>. La voyelle du radical influence celle du suffixe (par exemple : moka- → Moka'i, mais memte- → Memte'i).</p>
+</div>
+
+<h2 class="section-title">💬 Phrases-modèles</h2>
+
+<div class="exemple-box">
+  <h3>Phrase 1 — Affirmation simple</h3>
+  <div class="exemple-phrase">Oa moka'i ol al seid utelven.</div>
+  <div class="exemple-traduction">« Je suis celui qui [est] part des vertus. »</div>
+  <div class="exemple-analyse">Oa (je) · moka'i (être 1sg) · ol (qui) · al (part) · seid (de, des) · utelven (vertus)</div>
+</div>
+
+<div class="exemple-box">
+  <h3>Phrase 2 — Action collective</h3>
+  <div class="exemple-phrase">Ol memtea gein isp seid Mets.</div>
+  <div class="exemple-traduction">« Nous ouvrons mes mots d'Honneur. »</div>
+  <div class="exemple-analyse">Ol (nous) · memtea (ouvrir 1pl) · gein (mes) · isp (mot) · seid (de) · Mets (Honneur)</div>
+</div>
+
+<div class="exemple-box">
+  <h3>Phrase 3 — Question / appel rituel</h3>
+  <div class="exemple-phrase">Ol mokai ol memtail dullalle ?</div>
+  <div class="exemple-traduction">« Qui sont ceux qui t'ouvrent ? »</div>
+  <div class="exemple-analyse">Ol (relatif "qui") · mokai (être 3pl) · ol (qui) · memtail (ouvrir 3pl) · dullalle (te / à toi)</div>
+</div>
+
+<div class="exemple-box">
+  <h3>Phrase 4 — Bénédiction rituelle (à graver sur une stèle)</h3>
+  <div class="exemple-phrase">Mokai utelven seid Mets.</div>
+  <div class="exemple-traduction">« Que les vertus de l'Honneur soient. »</div>
+  <div class="exemple-analyse">Mokai (sont) · utelven (vertus) · seid (de) · Mets (Honneur). Forme courte, monumentale, typique des inscriptions sacrées.</div>
+</div>
+
+<h2 class="section-title">🔮 Lien avec les Mots Primordiaux</h2>
+
+<div class="mots-prim-box">
+  <h2>Une forme rituelle figée</h2>
+  <p>Les <strong>Mots Primordiaux</strong> (Yiel curare, Lukai armentis, Iod ramelloth, etc.) sont des <strong>phrases figées</strong> de la Langue Ancienne dans sa forme <em>cérémonielle</em>. Leur grammaire ne suit plus la conjugaison vivante — ce sont des formules rituelles fossilisées, à la manière des prières latines de notre monde.</p>
+  <p>Quand un mortel prononce un Mot Primordial, il ne <em>parle</em> pas la langue — il <strong>la déclenche</strong>. La langue elle-même répond. C'est pourquoi les Mots sont si puissants et si dangereux.</p>
+  <p>Au cours de la campagne, certains érudits (les prêtres de <strong>Handu'zo</strong>, certains Veilleurs, les bibliothécaires de Velhar) tenteront peut-être de <strong>reconstruire la grammaire complète</strong> des Mots Primordiaux pour en créer de nouveaux — c'est un projet épique de fin de campagne.</p>
+  <p>Voir la <a href="bibliotheque_magie.html" style="color:var(--accent); text-decoration:underline;">bibliothèque de la Magie</a> pour la liste des 8 Mots Primordiaux canon.</p>
+</div>
+
+<h2 class="section-title">🎲 Hooks de campagne linguistiques</h2>
+
+<div class="section-box">
+  <p>• Un PJ trouve une <strong>stèle ancienne</strong> couverte d'inscriptions. Combien de mots peut-il déchiffrer ?</p>
+  <p>• Un manuscrit du <strong>Mur du Souvenir</strong> (No'Ord) contient un nouveau verbe inconnu. Sa traduction reste à découvrir.</p>
+  <p>• Un PJ rêve qu'il <strong>parle</strong> couramment la Langue Ancienne. Au réveil, il a oublié — sauf un mot. Lequel ?</p>
+  <p>• Une bibliothécaire de <strong>Velhar</strong> propose au PJ d'échanger un mot inconnu contre un service. À quel prix ?</p>
+  <p>• Un PNJ <strong>baron Von Guinity</strong> demande à un PJ de lui traduire une phrase — la traduction le perturbe.</p>
+  <p>• Une cérémonie de la Tribu de la Forêt utilise une <strong>bénédiction en Langue Ancienne</strong>. Que dit-elle vraiment ?</p>
+  <p>• Un projet de fin de campagne : créer un <strong>nouveau Mot Primordial</strong> à partir des règles reconstituées. Risques magiques majeurs.</p>
+</div>
+
+<footer>
+  La Langue Ancienne · Codex linguistique · Système Bilal · 2026
+</footer>
+
+</div>
+</body>
+</html>
