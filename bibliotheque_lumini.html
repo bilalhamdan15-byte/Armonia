@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumini — Continent du Commerce</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+
+  --meyn: #b89030;
+  --etelin: #6a8c4a;
+  --julia: #2a7a3c;
+  --villa: #a8a0c4;
+  --sylvarn: #5070a0;
+  --vallee: #c0a050;
+  --cote: #d4a857;
+  --massif: #7a6840;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 24px;
+  background: linear-gradient(135deg, #fffaf0 0%, #f5e8d0 50%, #fffaf0 100%);
+  border: 3px double var(--accent);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 32px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--accent);
+  margin-top: 8px;
+  font-size: 16px;
+}
+header.title-bar .quote {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 12px;
+  font-style: italic;
+}
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.intro-box strong { color: var(--primary); }
+.section-title {
+  font-size: 22px;
+  color: var(--primary);
+  margin: 28px 0 14px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+  letter-spacing: 1px;
+}
+
+.geo-box {
+  background: linear-gradient(135deg, #fffaf0 0%, #f0e6cf 100%);
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 14px 0;
+}
+.geo-box h2 {
+  margin: 0 0 10px 0;
+  color: var(--accent);
+  font-size: 20px;
+}
+.geo-box p { font-size: 14px; line-height: 1.7; margin: 6px 0; }
+.geo-box ul { font-size: 14px; line-height: 1.7; margin: 6px 0 6px 18px; padding: 0; }
+
+.lieux-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 14px;
+}
+.lieu-card {
+  background: var(--paper);
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+  position: relative;
+}
+.lieu-card.meyn { border-color: var(--meyn); }
+.lieu-card.etelin { border-color: var(--etelin); }
+.lieu-card.julia { border-color: var(--julia); }
+.lieu-card.villa { border-color: var(--villa); }
+.lieu-card.sylvarn { border-color: var(--sylvarn); }
+.lieu-card.vallee { border-color: var(--vallee); }
+.lieu-card.cote { border-color: var(--cote); }
+.lieu-card.massif { border-color: var(--massif); }
+
+.lieu-card .canon-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--primary);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.lieu-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--border);
+}
+.lieu-icon {
+  font-size: 36px;
+  width: 50px;
+  text-align: center;
+}
+.lieu-name { flex: 1; }
+.lieu-name h2 {
+  margin: 0;
+  font-size: 19px;
+  letter-spacing: 1px;
+}
+.lieu-card.meyn h2 { color: var(--meyn); }
+.lieu-card.etelin h2 { color: var(--etelin); }
+.lieu-card.julia h2 { color: var(--julia); }
+.lieu-card.villa h2 { color: var(--villa); }
+.lieu-card.sylvarn h2 { color: var(--sylvarn); }
+.lieu-card.vallee h2 { color: var(--vallee); }
+.lieu-card.cote h2 { color: var(--cote); }
+.lieu-card.massif h2 { color: var(--massif); }
+.lieu-name .position {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+}
+.lieu-card .info {
+  font-size: 13px;
+  line-height: 1.55;
+}
+.lieu-card .info p { margin: 6px 0; }
+.lieu-card .info strong { color: var(--text); }
+.lieu-card .tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--accent);
+  color: white;
+  border-radius: 10px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-right: 4px;
+  margin-top: 4px;
+}
+
+.julia-box {
+  background: linear-gradient(135deg, #f0fff0 0%, #d8f0d5 100%);
+  border: 2px solid var(--julia);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 16px 0;
+}
+.julia-box h3 {
+  margin: 0 0 10px 0;
+  color: var(--julia);
+  font-size: 18px;
+}
+.julia-box p { font-size: 14px; line-height: 1.6; margin: 6px 0; }
+
+.gouv-box {
+  background: var(--paper);
+  border: 2px solid var(--primary);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 14px 0;
+}
+.gouv-box h2 {
+  margin: 0 0 10px 0;
+  color: var(--primary);
+  font-size: 20px;
+}
+.gouv-box p { font-size: 14px; line-height: 1.6; margin: 6px 0; }
+.gouv-box ul { font-size: 14px; line-height: 1.7; margin: 6px 0 6px 18px; padding: 0; }
+
+.tensions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  margin: 12px 0;
+}
+.tension-card {
+  background: var(--paper);
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  padding: 12px 14px;
+}
+.tension-card h3 {
+  margin: 0 0 6px 0;
+  color: var(--accent);
+  font-size: 15px;
+}
+.tension-card p { margin: 4px 0; font-size: 13px; line-height: 1.5; }
+.tension-card.interne { border-left-color: var(--meyn); }
+.tension-card.interne h3 { color: var(--meyn); }
+.tension-card.externe { border-left-color: var(--sylvarn); }
+.tension-card.externe h3 { color: var(--sylvarn); }
+
+.hooks-box {
+  background: var(--paper);
+  border-left: 4px solid var(--accent);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin: 16px 0;
+}
+.hooks-box p {
+  margin: 8px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.nav-back {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 13px;
+}
+.nav-back:hover { text-decoration: underline; }
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<a href="index.html" class="nav-back">← Retour au sommaire</a>
+
+<header class="title-bar">
+  <h1>🌿 LUMINI 🌿</h1>
+  <div class="subtitle">Continent du commerce, des forêts et de l'orphelinat</div>
+  <div class="quote">« Au sud de la cité, là où tout fleurit et où tout s'échange — et où nos héros sont nés. »</div>
+</header>
+
+<div class="intro-box">
+  <p><strong>Lumini</strong> est l'un des grands continents d'Armonia, situé <strong>au sud de la cité d'Armonia</strong>. C'est le continent du <strong>commerce</strong>, des <strong>forêts profondes</strong>, des <strong>cités libres</strong> — et c'est ici, dans un orphelinat perdu dans la forêt nord, que ton aventure commence.</p>
+  <p>Pas de roi. Pas d'empire. Une <strong>fédération souple de cités libres</strong> où la <strong>Guilde des Marchands</strong> dicte plus de choses que n'importe quel conseil. Ici, l'or et les contrats remplacent les épées — la plupart du temps.</p>
+</div>
+
+<h2 class="section-title">🌤️ Climat & géographie</h2>
+
+<div class="geo-box">
+  <h2>Un continent fleurissant</h2>
+  <p><strong>Climat</strong> : sud chaud-méditerranéen, nord tempéré-forestier. Le centre est doux toute l'année, ce qui en fait l'un des greniers d'Armonia.</p>
+  <p><strong>Géographie</strong> : côtes longues et accessibles au sud (commerce maritime), grandes forêts profondes au nord (Forêt Julia, terres des Elfes Sylvestres et de la Tribu de la Forêt), plaines fertiles au centre, et <strong>Massif des Échos</strong> à l'est qui sépare Lumini de Sol'Ambaïre.</p>
+  <p><strong>Fertilité</strong> : élevée. Vignobles, vergers, blé, oliviers au sud. Bois précieux au nord. Mines modestes mais régulières à l'est.</p>
+  <p><strong>Ce qui rend Lumini stratégique</strong> :</p>
+  <ul>
+    <li>Position centrale entre Armonia (au nord), Sol'Ambaïre (à l'est), No'Ord (au nord-est par mer)</li>
+    <li>Climat clément qui permet une population dense</li>
+    <li>Routes commerciales convergentes — Me'yn Prus est le carrefour mondial</li>
+  </ul>
+</div>
+
+<h2 class="section-title">🏛️ Les 8 lieux majeurs</h2>
+
+<div class="lieux-grid">
+
+  <div class="lieu-card meyn">
+    <span class="canon-badge">📖 Canon</span>
+    <div class="lieu-header">
+      <div class="lieu-icon">⚖️</div>
+      <div class="lieu-name">
+        <h2>Me'yn Prus</h2>
+        <div class="position">Sud, côte · Capitale marchande</div>
+      </div>
+    </div>
+    <div class="info">
+      <p><strong>La cité marchande du monde.</strong> QG mondial de la Guilde des Marchands. Lyad Feqra y commande la milice locale.</p>
+      <p><strong>Population</strong> : très diverse — humains, demi-elfes, hommes-bêtes, jindos, ex-aventuriers, érudits.</p>
+      <p><strong>Secret</strong> : c'est ici qu'est caché le <strong>QG des Veilleurs</strong> (sous couverture marchande — le « super-marché médiéval » à étages).</p>
+      <p><strong>Architecture</strong> : grandes halles couvertes, port à plusieurs bassins, quartiers spécialisés (épices, étoffes, livres, banques).</p>
+      <p><span class="tag">Marchands</span><span class="tag">Veilleurs secret</span><span class="tag">Banques</span></p>
+    </div>
+  </div>
+
+  <div class="lieu-card etelin">
+    <span class="canon-badge">📖 Canon</span>
+    <div class="lieu-header">
+      <div class="lieu-icon">🏡</div>
+      <div class="lieu-name">
+        <h2>Etelin</h2>
+        <div class="position">Nord, forêt · Village + orphelinat</div>
+      </div>
+    </div>
+    <div class="info">
+      <p><strong>Petit village forestier</strong> dans le nord du continent, en lisière de la Forêt Julia. Population : 200-300 âmes.</p>
+      <p><strong>L'orphelinat de Jack et Lyssana</strong> y est installé — c'est le foyer de tes PJ.</p>
+      <p><strong>La taverne</strong> est tenue par <strong>Golrik</strong>, ex-aventurier, Veilleur discret, ami de Jack.</p>
+      <p><strong>Économie</strong> : bois, chasse, herbes, contrats discrets avec la Forêt Julia.</p>
+      <p><strong>Atmosphère</strong> : paisible, soudée. Tout le monde se connaît. Les étrangers se repèrent en deux heures.</p>
+      <p><span class="tag">Orphelinat</span><span class="tag">Golrik</span><span class="tag">Foyer des PJ</span></p>
+    </div>
+  </div>
+
+  <div class="lieu-card julia">
+    <span class="canon-badge">📖 Canon</span>
+    <div class="lieu-header">
+      <div class="lieu-icon">🌳</div>
+      <div class="lieu-name">
+        <h2>Forêt Julia</h2>
+        <div class="position">Nord-centre · Forêt sacrée</div>
+      </div>
+    </div>
+    <div class="info">
+      <p><strong>Grande forêt antique</strong>, rebaptisée du nom de l'héroïne moderne <strong>Julia</strong> à sa mort tragique.</p>
+      <p><strong>Habitants</strong> : <strong>Elfes Sylvestres</strong> (gardiens), <strong>Tribu de la Forêt</strong> (humains symbiotes), <strong>demi-elfes</strong> (lignée des unions mixtes acceptées par Julia).</p>
+      <p><strong>Au cœur</strong> : le <strong>Nœud de la Forêt Mère</strong>, conscience végétale ancienne — l'un des Douze Nœuds.</p>
+      <p><strong>Loi</strong> : pas de bûcheronnage hors zones tolérées. La Guilde des Marchands ronge ses freins.</p>
+      <p><span class="tag">Sylvestres</span><span class="tag">Tribu</span><span class="tag">Nœud</span></p>
+    </div>
+  </div>
+
+  <div class="julia-box">
+    <h3>🌹 Julia, l'héroïne moderne (Canon)</h3>
+    <p>Vers <strong>1015-1025 AR</strong>, une jeune femme nommée <strong>Julia</strong> médie un conflit majeur entre la Tribu de la Forêt et un royaume humain qui voulait défricher. Elle <strong>sauve la forêt elfe</strong> au prix de sa vie. À sa mort, les Elfes Sylvestres et les humains se réunissent pour la première fois — la forêt antique est <strong>rebaptisée Forêt Julia</strong>.</p>
+    <p>Symbole de l'<strong>unité elfes-humains</strong>, son héritage a permis les unions mixtes. C'est ce qui explique pourquoi la lignée des <strong>demi-elfes</strong> est si présente à Lumini, alors qu'elle est rare ailleurs.</p>
+    <p>On dit que son esprit veille encore sur la forêt. Certains pèlerins prétendent l'avoir entrevue au pied du Nœud de la Forêt Mère.</p>
+  </div>
+
+  <div class="lieu-card villa">
+    <span class="canon-badge">📖 Canon</span>
+    <div class="lieu-header">
+      <div class="lieu-icon">☁️</div>
+      <div class="lieu-name">
+        <h2>Villa Virtue</h2>
+        <div class="position">Au-dessus du centre · Cité volante</div>
+      </div>
+    </div>
+    <div class="info">
+      <p><strong>Cité aristocratique</strong> portée par un <strong>cristal de mana colossal</strong>, élevée au-dessus du centre de Lumini par des scripts de vent gigantesques (gravés par les Elfes Yle).</p>
+      <p><strong>Siège mondial</strong> de la <strong>Guilde des Aventuriers</strong>. Officiellement dirigée par Alm — <em>en réalité, Alm est scellé dans le corps de Merthas</em> (voir bibliothèque Veilleurs).</p>
+      <p><strong>Société</strong> : noblesse fortunée, mécènes, aventuriers stars (les Météores d'Or de Lotain Ur Windor), érudits.</p>
+      <p><strong>Accès</strong> : nacelle de vent depuis Lumini. Réservée aux invités ou aux contrats officiels.</p>
+      <p><span class="tag">Volante</span><span class="tag">Aventuriers</span><span class="tag">Aristocratie</span></p>
+    </div>
+  </div>
+
+  <div class="lieu-card sylvarn">
+    <div class="lieu-header">
+      <div class="lieu-icon">⚓</div>
+      <div class="lieu-name">
+        <h2>Sylvarn</h2>
+        <div class="position">Nord-est · Port hybride</div>
+      </div>
+    </div>
+    <div class="info">
+      <p><strong>Port nord-est</strong> de Lumini. Gateway vers No'Ord par voie maritime. Population mêlée : Luministes et nordiques.</p>
+      <p><strong>Culture hybride</strong> : tavernes nordiques, hivers froids inhabituels (vents du Nord), langues mélangées (parler nordique-luministe).</p>
+      <p><strong>Économie</strong> : poissons, fourrures, métaux nordiques, alcools forts. Marché noir actif.</p>
+      <p><strong>Tension permanente</strong> : entre influences luministe et nordique. Identité hésitante.</p>
+      <p><span class="tag">Port</span><span class="tag">Hybride</span><span class="tag">Marché noir</span></p>
+    </div>
+  </div>
+
+  <div class="lieu-card vallee">
+    <div class="lieu-header">
+      <div class="lieu-icon">🌾</div>
+      <div class="lieu-name">
+        <h2>Vallée d'Aether</h2>
+        <div class="position">Centre · Grenier agricole</div>
+      </div>
+    </div>
+    <div class="info">
+      <p><strong>Plaine centrale fertile</strong> : champs de blé, vergers, vignobles, élevage. C'est le grenier de Lumini — et indirectement, d'Armonia.</p>
+      <p><strong>Population</strong> : paysans libres, familles propriétaires, fermes-domaines. Pas de noblesse.</p>
+      <p><strong>Légende locale</strong> : la vallée porte le nom « Aether » car les premières récoltes après la Rupture furent inexpliquablement abondantes — comme si le sol gardait un souvenir magique.</p>
+      <p><strong>Économie</strong> : convois de Karambol partent d'ici vers tous les royaumes.</p>
+      <p><span class="tag">Agricole</span><span class="tag">Karambol</span><span class="tag">Paysans libres</span></p>
+    </div>
+  </div>
+
+  <div class="lieu-card cote">
+    <div class="lieu-header">
+      <div class="lieu-icon">🏖️</div>
+      <div class="lieu-name">
+        <h2>Côte d'Or</h2>
+        <div class="position">Sud-ouest · Villégiature</div>
+      </div>
+    </div>
+    <div class="info">
+      <p><strong>Côte ensoleillée</strong> au sud-ouest, plages claires, criques cachées, climat chaud toute l'année.</p>
+      <p><strong>Lieu de villégiature</strong> des nobles d'Armonia, des grandes familles marchandes, des aventuriers en demi-retraite.</p>
+      <p><strong>Villas privées</strong>, ports de plaisance, jardins parfumés. Une élégance ostentatoire.</p>
+      <p><strong>Sous la surface</strong> : intrigues politiques, contrats signés en secret, rendez-vous discrets entre familles ennemies.</p>
+      <p><span class="tag">Villégiature</span><span class="tag">Intrigues</span><span class="tag">Élite</span></p>
+    </div>
+  </div>
+
+  <div class="lieu-card massif">
+    <div class="lieu-header">
+      <div class="lieu-icon">⛰️</div>
+      <div class="lieu-name">
+        <h2>Massif des Échos</h2>
+        <div class="position">Est · Chaîne montagneuse</div>
+      </div>
+    </div>
+    <div class="info">
+      <p><strong>Chaîne de montagnes</strong> qui sépare Lumini de Sol'Ambaïre. Hautes, dangereuses, peu peuplées.</p>
+      <p><strong>Légende</strong> : on dit que les vents qui le traversent <em>répètent les voix anciennes</em> — d'où son nom.</p>
+      <p><strong>Habitants</strong> : ermites, brigands, vétérans en exil, quelques tribus isolées.</p>
+      <p><strong>Ruines</strong> : nombreuses ruines pré-Rupture, parfois habitées par des créatures résurgentes depuis le Retour.</p>
+      <p><strong>Passage</strong> : un seul col praticable, contrôlé par Karambol (péage).</p>
+      <p><span class="tag">Dangereux</span><span class="tag">Ruines</span><span class="tag">Brigands</span></p>
+    </div>
+  </div>
+
+</div>
+
+<h2 class="section-title">⚖️ Gouvernance — Fédération souple</h2>
+
+<div class="gouv-box">
+  <h2>Le Conseil des Marchands</h2>
+  <p><strong>Lumini n'a pas de roi.</strong> C'est une fédération souple de cités libres et de territoires autonomes. Les arbitrages se font à Me'yn Prus, devant le <strong>Conseil des Marchands</strong> — qui n'est <em>pas</em> un gouvernement, mais une chambre de commerce surdimensionnée. Quand un conflit menace les routes, le Conseil tranche.</p>
+
+  <ul>
+    <li><strong>Chaque cité</strong> (Me'yn Prus, Etelin, Sylvarn, etc.) a son propre conseil local — généralement marchand-paysan-milicien.</li>
+    <li><strong>La Forêt Julia</strong> est autonome — gérée par les Anciens Sylvestres et la Tribu de la Forêt selon des lois orales.</li>
+    <li><strong>Villa Virtue</strong> est juridiquement indépendante — aristocratie, Guilde des Aventuriers, ses propres règles.</li>
+    <li><strong>La Côte d'Or</strong> est de facto contrôlée par les villas — accords entre nobles plutôt que loi formelle.</li>
+    <li><strong>Le Massif des Échos</strong> est sans loi formelle — terre de personne.</li>
+  </ul>
+
+  <p>Concrètement, <strong>la Guilde des Marchands est l'arbitre de fait</strong> : qui contrôle les routes contrôle la politique. La Guilde des Aventuriers la concurrence sur certains marchés (escortes, missions de sécurité), d'où la <em>tension permanente</em> entre Me'yn Prus et Villa Virtue.</p>
+</div>
+
+<h2 class="section-title">⚔️ Tensions internes</h2>
+
+<div class="tensions-grid">
+
+  <div class="tension-card interne">
+    <h3>Me'yn Prus ↔ Villa Virtue</h3>
+    <p>Rivalité Marchands/Aventuriers. Qui contrôle les escortes, les missions, les routes ? Conflit silencieux et permanent — alimenté en sous-main par les jeux d'Alm-dans-Merthas.</p>
+  </div>
+
+  <div class="tension-card interne">
+    <h3>Forêt Julia ↔ Guilde des Marchands</h3>
+    <p>Les marchands aimeraient ouvrir des routes plus larges à travers la forêt. La Tribu refuse. Les Sylvestres refusent. Tension qui n'a pas explosé… encore.</p>
+  </div>
+
+  <div class="tension-card interne">
+    <h3>Sylvarn ↔ identité</h3>
+    <p>La cité hésite entre intégration luministe et autonomie pro-nordique. Faction « rester avec Lumini » contre faction « partir avec No'Ord ». Pourrait dégénérer.</p>
+  </div>
+
+  <div class="tension-card interne">
+    <h3>Côte d'Or ↔ Vallée d'Aether</h3>
+    <p>Les nobles de la Côte regardent de haut les paysans libres. Les paysans regardent avec méfiance les villas et leurs intrigues. Petite guerre des classes.</p>
+  </div>
+
+</div>
+
+<h2 class="section-title">🌐 Relations externes</h2>
+
+<div class="tensions-grid">
+
+  <div class="tension-card externe">
+    <h3>Lumini ↔ Sol'Ambaïre</h3>
+    <p>Pont commercial via le Massif des Échos : <strong>Maelyr ↔ Vallée d'Aether</strong>. Alliance stable.</p>
+  </div>
+
+  <div class="tension-card externe">
+    <h3>Lumini ↔ No'Ord</h3>
+    <p>Via Sylvarn. Relations tendues mais commerce nécessaire. Les Nordiques tolèrent Lumini comme partenaire — pas comme allié.</p>
+  </div>
+
+  <div class="tension-card externe">
+    <h3>Lumini ↔ Cité d'Armonia</h3>
+    <p>Respect filial. Lumini est le « grand frère commercial » d'Armonia. Le Conseil des Six d'Armonia tient compte de Me'yn Prus.</p>
+  </div>
+
+  <div class="tension-card externe">
+    <h3>Lumini ↔ Heledera (archipel)</h3>
+    <p>Concurrence maritime. La Banque d'Heledera est l'alternative à la Guilde des Marchands. Les Daluvio (Armonia) jouent sur les deux tableaux.</p>
+  </div>
+
+</div>
+
+<h2 class="section-title">🎲 Hooks de campagne</h2>
+
+<div class="hooks-box">
+  <p>• L'<strong>orphelinat d'Etelin</strong> est attaqué — début du livre 2 et probable début de campagne. Les PJ doivent défendre, fuir, ou se venger.</p>
+  <p>• Un <strong>convoi Karambol</strong> est attaqué dans le Massif des Échos. La Vallée d'Aether en dépend. Les PJ sont engagés.</p>
+  <p>• Une <strong>délégation Sylvestre</strong> arrive à Me'yn Prus pour protester contre une nouvelle route. Les PJ servent d'escorte — et sont tirés au milieu de la dispute.</p>
+  <p>• Une <strong>villa de la Côte d'Or</strong> est le lieu d'un meurtre élégant. Les Roses d'Armonia demandent aux PJ d'enquêter discrètement.</p>
+  <p>• <strong>Sylvarn</strong> entre en sécession — les factions s'affrontent. Lumini doit intervenir ou perdre la cité.</p>
+  <p>• Un <strong>aventurier de Villa Virtue</strong> propose une mission louche aux PJ. Couverture officielle ou piège ?</p>
+  <p>• Un <strong>fantôme entendu</strong> dans le Massif des Échos répète le nom d'un PJ. Pourquoi ?</p>
+  <p>• L'<strong>esprit de Julia</strong> apparaît à un PJ digne au pied du Nœud de la Forêt Mère. Quelle est sa requête ?</p>
+  <p>• Un <strong>pèlerin venu d'Heledera</strong> propose un contrat alternatif aux Karambol. Trahison ou opportunité ?</p>
+
+</div>
+
+<footer>
+  Lumini · Continent du commerce et des forêts · Codex d'Armonia · Système Bilal · 2026
+</footer>
+
+</div>
+</body>
+</html>
