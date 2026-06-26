@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bibliothèque des Races — Armonia</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+  --danger: #a02020;
+  --success: #2a7a3c;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1200px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: var(--paper);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 32px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.filters {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+.filter-btn {
+  background: var(--paper);
+  color: var(--primary);
+  border: 1px solid var(--accent);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.filter-btn:hover { background: #f5ebd6; }
+.filter-btn.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+.race-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 16px;
+}
+.race-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  transition: transform 0.15s;
+}
+.race-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.race-card h2 {
+  margin: 0 0 4px 0;
+  color: var(--primary);
+  font-size: 22px;
+}
+.race-card .race-cat {
+  color: var(--accent);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+.race-card .race-desc {
+  font-size: 14px;
+  margin: 10px 0;
+  line-height: 1.5;
+  font-style: italic;
+  color: #4a3825;
+}
+.race-card h3 {
+  color: var(--accent);
+  font-size: 13px;
+  margin-top: 14px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 4px;
+}
+.race-card .bonus-list {
+  font-size: 14px;
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+}
+.race-card .bonus-list li {
+  padding: 3px 0;
+}
+.race-card .bonus-list li::before {
+  content: "▸ ";
+  color: var(--accent);
+  font-weight: bold;
+}
+.race-card .affinity-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+.race-card .affinity-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #f5ebd6;
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.race-card .affinity-tag.feu { background: #fdd; border-color: #d44; color: #911; }
+.race-card .affinity-tag.eau { background: #cdf; border-color: #57b; color: #137; }
+.race-card .affinity-tag.vent { background: #dfd; border-color: #6b6; color: #161; }
+.race-card .affinity-tag.terre { background: #ed7; border-color: #a83; color: #543; }
+.race-card .affinity-tag.chaos { background: #ecd; border-color: #95a; color: #618; }
+.race-card .affinity-tag.libre { background: #ddd; border-color: #888; color: #333; }
+.race-card .penalty {
+  font-size: 13px;
+  color: var(--danger);
+  margin-top: 8px;
+  font-style: italic;
+}
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 14px 18px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.intro-box p { margin: 6px 0; font-size: 14px; }
+.intro-box strong { color: var(--primary); }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="title-bar">
+  <h1>📚 BIBLIOTHÈQUE DES RACES</h1>
+  <div class="subtitle">Univers d'Armonia — 31 races jouables</div>
+</header>
+
+<div class="intro-box">
+  <p><strong>Comment lire cette bibliothèque :</strong> chaque race propose une <strong>Affinité élémentaire bonus</strong> (en plus de tes 6 points de création) et 1 ou 2 <strong>Traits gratuits</strong> qui s'ajoutent à tes choix.</p>
+  <p>⚠️ <strong>Tu peux toujours créer une race personnalisée</strong> avec ton MJ — comme Clac Clac Clac Clac. Discute avec lui pour valider tes choix de bonus.</p>
+</div>
+
+<div class="filters">
+  <button class="filter-btn active" onclick="filter('all')">Toutes</button>
+  <button class="filter-btn" onclick="filter('humains')">Humains</button>
+  <button class="filter-btn" onclick="filter('elfes')">Elfes</button>
+  <button class="filter-btn" onclick="filter('nains')">Nains</button>
+  <button class="filter-btn" onclick="filter('orques')">Orques</button>
+  <button class="filter-btn" onclick="filter('hommes-betes')">Hommes-bêtes</button>
+  <button class="filter-btn" onclick="filter('autres')">Autres races</button>
+  <button class="filter-btn" onclick="filter('lignees')">Lignées spéciales</button>
+</div>
+
+<div class="race-grid" id="races"></div>
+
+</div>
+
+<script>
+const RACES = [
+  // === HUMAINS ===
+  {
+    cat: 'humains', nom: 'Humains des villes',
+    desc: "Polyvalents et adaptables, les Humains des villes connaissent toutes les ficelles des métiers urbains. Marchands, artisans, érudits, soldats — ils peuplent les capitales et tirent leur force de leur diversité.",
+    affinities: [],
+    traits: [
+      "Polyvalence : +1 à une compétence au choix à la création",
+      "Réseau urbain : Atout 'Contact en cité' gratuit (en plus des 2 Atouts normaux)"
+    ]
+  },
+  {
+    cat: 'humains', nom: 'Tribu de la Forêt',
+    desc: "Gardiens de lieux sacrés, alliés des Elfes Sylvestres, ils vivent en harmonie avec la nature. Leur talent à l'arc rivalise avec celui des elfes eux-mêmes.",
+    affinities: [{el: 'Chaos', val: 1}],
+    traits: [
+      "Pisteur : +1 Nature & Survie",
+      "Lien aux bêtes : Intuition gratuite sur les créatures naturelles"
+    ]
+  },
+  {
+    cat: 'humains', nom: 'Nordiques',
+    desc: "Ils vivent pour se battre. Leur sang bouillonne à l'approche du combat. Leurs muscles sont forgés par le froid du nord et leur cœur par les chants des Jarls.",
+    affinities: [{el: 'Eau', val: 1}],
+    traits: [
+      "Endurance du Nord : +2 Vitalité max",
+      "Furie nordique : 1× par scène, peut Pousser le jet sans risquer la conséquence aggravée"
+    ]
+  },
+  {
+    cat: 'humains', nom: 'Sadiens',
+    desc: "Humains du désert. Leur peau dorée et leur regard perçant cachent une endurance hors norme. Ils sont habiles dans les vastes étendues arides et redoutés en marchandage.",
+    affinities: [{el: 'Feu', val: 1}],
+    traits: [
+      "Survivant du désert : résiste naturellement à la chaleur et à la soif",
+      "Marchand-né : +1 Persuasion"
+    ]
+  },
+  {
+    cat: 'humains', nom: 'Jindos',
+    desc: "Humains des îles tropicales. Réputés pour leur agilité, leur maîtrise des océans et leur connaissance des vents marins. Les meilleurs marins d'Armonia.",
+    affinities: [{el: 'Eau', val: 1}],
+    traits: [
+      "Nageur expert : +1 Athlétisme en milieu aquatique",
+      "Navigateur : s'oriente sans erreur en mer, lit les courants"
+    ]
+  },
+
+  // === ELFES ===
+  {
+    cat: 'elfes', nom: 'Hauts-Elfes',
+    desc: "Autrefois vénérés comme des dieux pour leur puissance magique, aujourd'hui amoindris depuis le retour de la magie. Ils gardent leur arrogance et leur haine ancienne des humains.",
+    affinities: [{el: 'Vent', val: 1}, {el: 'Chaos', val: 1}],
+    traits: [
+      "INT supérieure : 3 points de carac à la création au lieu de 2",
+      "Magie supérieure : +1 à tous les jets de magie de sens"
+    ],
+    penalty: "-1 CHA face aux humains (rancune ancienne palpable)"
+  },
+  {
+    cat: 'elfes', nom: 'Elfes Sylvestres (des Bois)',
+    desc: "Vivent aujourd'hui avec la Tribu de la Forêt qui a perpétué leurs traditions pendant la Rupture. Honorés de cette protection, ils sont des archers et trackers hors pair.",
+    affinities: [{el: 'Chaos', val: 1}, {el: 'Vent', val: 1}],
+    traits: [
+      "Acuité elfique : +1 Vigilance",
+      "Archer naturel : +1 Armes à distance"
+    ]
+  },
+  {
+    cat: 'elfes', nom: 'Elfes Noirs (des Montagnes)',
+    desc: "Peau cendrée par l'exposition aux fournaises naines. Les seuls elfes tolérés par les Nains grâce à leurs talents de forgerons. Ils combinent magie et artisanat avec maîtrise.",
+    affinities: [{el: 'Terre', val: 1}],
+    traits: [
+      "Forgeron-mage : peut combiner magie script et forge sans malus",
+      "Endurance d'altitude : résiste au manque d'oxygène et au froid montagneux"
+    ]
+  },
+  {
+    cat: 'elfes', nom: 'Elfes Yle (Bannis)',
+    desc: "Autrefois bannis par les Hauts-Elfes, ils ont rejoint les autres races pour vivre et s'adapter. Mélangés, métissés, en pleine croissance démographique — ils portent l'idéologie de l'unité.",
+    affinities: [{el: 'Libre', val: 1, label: '+1 à un élément au choix'}],
+    traits: [
+      "Adaptabilité : +1 à une compétence au choix",
+      "Longévité : âge avantageux, mémoire profonde"
+    ]
+  },
+
+  // === NAINS ===
+  {
+    cat: 'nains', nom: 'Nains Montagnards',
+    desc: "Vivent à l'extérieur des cités naines, peu attachés au système hiérarchique. Ils sont des nomades de montagne, durs au mal et libres d'esprit.",
+    affinities: [{el: 'Terre', val: 1}],
+    traits: [
+      "Endurance naine : +1 Vitalité max",
+      "Pisteur de montagne : +1 Nature & Survie en environnement rocheux"
+    ]
+  },
+  {
+    cat: 'nains', nom: 'Forgefeux',
+    desc: "Nains très liés à leur foi : forger est une bénédiction. Seul le plus chaud des brasiers révèle l'âme du métal. Maîtres du fer rouge et des incantations runiques au marteau.",
+    affinities: [{el: 'Feu', val: 1}],
+    traits: [
+      "Maître forgeron : +1 Artisanat (forge)",
+      "Foi en la forge : 1× par scène, peut Pousser un jet d'Artisanat sans risquer la conséquence aggravée"
+    ]
+  },
+  {
+    cat: 'nains', nom: "Nains Barbes d'Acier",
+    desc: "La race principale des Nains. Leurs artisans ont permis la Rupture de la magie il y a 1000 ans — un secret bien gardé. Forge en glace et métal runique. Très anciens, proches des Géants du Givre.",
+    affinities: [{el: 'Terre', val: 1}, {el: 'Feu', val: 1}],
+    traits: [
+      "Vision dans le noir : voit dans les ténèbres normales jusqu'à 15m",
+      "Maître forgeron : +1 Artisanat"
+    ],
+    penalty: "Mouvement réduit (-1m de déplacement par tour)"
+  },
+
+  // === ORQUES ===
+  {
+    cat: 'orques', nom: 'Orques Guerriers',
+    desc: "Puissants et féroces, ils incarnent l'archétype du combattant brut. Mais derrière la barbarie réputée se cachent parfois honneur, code, et culture du défi.",
+    affinities: [{el: 'Feu', val: 1}],
+    traits: [
+      "Force brute : +1 dégâts au corps à corps",
+      "Cri de guerre : +2 Intimidation en combat ouvert"
+    ]
+  },
+  {
+    cat: 'orques', nom: 'Orques Shamans',
+    desc: "Gardiens des esprits ancestraux orques. Communient avec les vents, les ancêtres, les forces du givre. Ils interprètent les songes et conseillent les Chefs.",
+    affinities: [{el: 'Chaos', val: 1}],
+    traits: [
+      "Don visionnaire : +1 Intuition",
+      "Communion avec les esprits : peut consulter une fois par jour un esprit ancestral (info partielle, à la discrétion du MJ)"
+    ]
+  },
+  {
+    cat: 'orques', nom: 'Orques Chasseurs',
+    desc: "Pisteurs féroces, traqueurs des bêtes magiques et des proies impossibles. Liés à la nature sauvage et à la chasse rituelle.",
+    affinities: [{el: 'Vent', val: 1}],
+    traits: [
+      "Pisteur : +1 Nature & Survie",
+      "Lien à la nature sauvage : +1 sur jets contre bêtes magiques connues"
+    ]
+  },
+
+  // === HOMMES-BÊTES ===
+  {
+    cat: 'hommes-betes', nom: 'Mi-félin',
+    desc: "Élégants et silencieux, les Mi-félins ont une grâce instinctive. Leurs sens félins et leur souplesse les rendent excellents éclaireurs et escaladeurs. Souvent solitaires mais charmants en société.",
+    affinities: [{el: 'Vent', val: 1}],
+    traits: [
+      "Réflexes félins : +1 Acrobaties",
+      "Vision nocturne : voit dans la pénombre comme en plein jour"
+    ]
+  },
+  {
+    cat: 'hommes-betes', nom: 'Mi-ours',
+    desc: "Massifs et puissants, les Mi-ours sont des protecteurs nés. Ils incarnent la force brute mais aussi la patience et la sagesse. Souvent druidiques ou guerriers de tribu.",
+    affinities: [{el: 'Terre', val: 1}],
+    traits: [
+      "Force naturelle : FOR compte +1 au combat corps à corps",
+      "Résiste au froid extrême"
+    ],
+    penalty: "-1 Discrétion (corpulence imposante)"
+  },
+  {
+    cat: 'hommes-betes', nom: 'Mi-taureau',
+    desc: "Massifs, droits dans leur posture, les Mi-taureaux portent leur héritage avec fierté. Honneur, force, parole donnée. Ils sont souvent gardes, forgerons ou défenseurs de causes. Leurs cornes sont un signe de noblesse.",
+    affinities: [{el: 'Terre', val: 1}],
+    traits: [
+      "Charge dévastatrice : +2 dégâts si attaque après une course de 5m+",
+      "Robustesse : +2 Vitalité max"
+    ]
+  },
+  {
+    cat: 'hommes-betes', nom: 'Mi-chien',
+    desc: "Loyaux et fidèles, les Mi-chiens sont reconnus pour leur courage et leur sens du devoir. Souvent gardes, messagers ou compagnons dévoués. Leur odorat fait d'eux d'excellents pisteurs. Très attachés à leur 'meute' (groupe d'aventuriers).",
+    affinities: [{el: 'Vent', val: 1}],
+    traits: [
+      "Odorat surnaturel : +2 sur jets de pistage",
+      "Loyauté : +1 sur jets contre charme ou manipulation"
+    ]
+  },
+  {
+    cat: 'hommes-betes', nom: 'Mi-loup',
+    desc: "Sauvages et libres, les Mi-loups vivent en meutes ou en marge des sociétés humaines. Pisteurs hors pair, ils sont rapides et solidaires. Liés au cycle de la lune et à leurs frères de meute.",
+    affinities: [{el: 'Vent', val: 1}],
+    traits: [
+      "Odorat surnaturel : +2 sur jets de pistage",
+      "Vitesse de meute : +2m de déplacement par tour"
+    ]
+  },
+  {
+    cat: 'hommes-betes', nom: 'Mi-lapin',
+    desc: "Discrets et toujours en alerte, les Mi-lapins sont d'excellents éclaireurs. Leur agilité et leur perception aiguisée en font des espions et messagers redoutables. Souvent timides en société, ils s'épanouissent en plein air. Méfiance et fuite sont leur instinct premier.",
+    affinities: [{el: 'Vent', val: 1}],
+    traits: [
+      "Saut amplifié : +2m vertical, double la distance horizontale",
+      "Réflexes vifs : +1 à l'initiative"
+    ]
+  },
+
+  // === TENGU ===
+  {
+    cat: 'autres', nom: 'Karasu-Tengu (Corbeaux)',
+    desc: "Sages, mystiques, gardiens des traditions. Ce sont les lettrés, les scribes, les moines du vent. Ils maîtrisent la magie du vent sous sa forme la plus spirituelle. Très respectés mais rarement combattants.",
+    affinities: [{el: 'Vent', val: 1}, {el: 'Chaos', val: 1}],
+    traits: [
+      "Sagesse du vent : +1 Histoire & Religion",
+      "Méditation profonde : récupère +1 Éther par heure de méditation"
+    ]
+  },
+  {
+    cat: 'autres', nom: 'Taka-Tengu (Faucons)',
+    desc: "Guerriers, éclaireurs, protecteurs du royaume. Ils servent de gardes aux falaises et de patrouilles aériennes. Les plus fiers, attachés à l'honneur et aux duels rituels. Ceux que les humains redoutent le plus.",
+    affinities: [{el: 'Vent', val: 1}],
+    traits: [
+      "Vol complet : peut voler pour toute la scène (1 Éther par scène d'envol prolongé)",
+      "Réflexes aériens : +1 esquive en hauteur ou en vol"
+    ]
+  },
+  {
+    cat: 'autres', nom: 'Hane-Tengu (Harmoniques)',
+    desc: "Hybrides plus humains que volants. Pont culturel entre les Tengu et les humains. Artisans, musiciens, combattants légers, éclaireurs. Ce sont eux qui voyagent le plus dans le monde — « ceux qui marchent entre ciel et terre ».",
+    affinities: [{el: 'Vent', val: 1}],
+    traits: [
+      "Vol limité : Athlétisme DD 12 pour planer 1 minute sur courte distance",
+      "Legs du Vent : ignore les dégâts de chute jusqu'à 5m",
+      "Saut amplifié : double la distance horizontale, +2m vertical"
+    ]
+  },
+
+  // === AUTRES RACES ===
+  {
+    cat: 'autres', nom: 'Vorpal',
+    desc: "Lapins humanoïdes de grande taille, dotés d'une intelligence semblable à celle des humains. Très habiles et rapides. Souvent réputés pour être des voleurs ou… des banquiers. Tactiques fines et patte légère.",
+    affinities: [{el: 'Vent', val: 1}],
+    traits: [
+      "Saut amplifié : +2m vertical, double horizontal",
+      "Sens du commerce : +1 Persuasion en négociation",
+      "Larcin instinctif : +1 Larcins"
+    ]
+  },
+  {
+    cat: 'autres', nom: 'Hobgobelins',
+    desc: "Organisés et disciplinés, souvent issus de cultures militaires. Fort sens de la hiérarchie et de l'ordre. Une race d'élite par rapport aux gobelins, étrangère à la dispersion chaotique de leurs cousins.",
+    affinities: [{el: 'Feu', val: 1}],
+    traits: [
+      "Discipline militaire : +1 à l'initiative",
+      "Esprit d'équipe : 1× par scène, donne +1 au jet d'un allié à portée de voix"
+    ]
+  },
+  {
+    cat: 'autres', nom: 'Tengu (sans caste précise)',
+    desc: "Corbeaux humanoïdes dotés d'une grande agilité et d'une affinité pour les voyages et les récits. Voir les sous-castes pour plus de précisions.",
+    affinities: [{el: 'Vent', val: 1}],
+    traits: [
+      "Legs du Vent : ignore les dégâts de chute jusqu'à 5m",
+      "Voir Karasu / Taka / Hane pour les capacités spécifiques de caste"
+    ]
+  },
+  {
+    cat: 'autres', nom: 'Kitsune',
+    desc: "Renards anthropomorphes dotés de pouvoirs magiques, souvent rusés et mystérieux. Maîtres de l'illusion et du déguisement. Leurs queues multiples sont signe de sagesse — et de danger.",
+    affinities: [{el: 'Chaos', val: 1}, {el: 'Vent', val: 1}],
+    traits: [
+      "Illusionniste : peut produire 1 illusion mineure 1×/scène sans coût d'Éther",
+      "Charme : +1 Persuasion et Tromperie"
+    ]
+  },
+  {
+    cat: 'autres', nom: 'Nagaji',
+    desc: "Reptiles humanoïdes, souvent vénérés pour leur force et leur dévotion. Loyaux à leurs serments jusqu'à la mort. Cultures rituelles intenses, codes d'honneur stricts.",
+    affinities: [{el: 'Terre', val: 1}],
+    traits: [
+      "Résistance au poison : avantage sur tous les jets contre poison",
+      "Présence imposante : +1 Intimidation",
+      "Loyauté absolue : les Promesses comptent double (+4 Écho si tenue, -4 si trahie)"
+    ]
+  },
+  {
+    cat: 'autres', nom: 'Vishkanya',
+    desc: "Êtres reptiliens dotés de poison et de charme, souvent énigmatiques et intrigants. Leur sang lui-même est venimeux. Beauté trompeuse et instinct de prédateur.",
+    affinities: [{el: 'Chaos', val: 1}],
+    traits: [
+      "Poison naturel : peut empoisonner son arme 1×/scène (1d4 dégâts supplémentaires pendant 3 tours)",
+      "Charme reptilien : +1 Tromperie"
+    ]
+  },
+  {
+    cat: 'autres', nom: 'Gnomes',
+    desc: "Espiègles et curieux, les gnomes sont des créatures petites mais ingénieuses. Souvent passionnées par la magie et la découverte. Inventeurs nés, ils ont peuplé Armonia de gadgets parfois géniaux, parfois explosifs.",
+    affinities: [{el: 'Chaos', val: 1}],
+    traits: [
+      "Ingéniosité : +1 Artisanat",
+      "Curiosité : +1 Histoire & Religion",
+      "Petite taille : +1 Discrétion"
+    ]
+  },
+  {
+    cat: 'autres', nom: 'Halfelins',
+    desc: "Amicaux et chanceux, les halfelins sont des voyageurs et des explorateurs nés. Accueillis avec chaleur partout où ils vont. Petits, agiles, optimistes — la chance semble les suivre.",
+    affinities: [],
+    traits: [
+      "Chance halfeline : 1× par session, peut faire un reroll gratuit (en plus des Écho)",
+      "Petite taille : +1 Discrétion",
+      "Voyageur : +1 Nature & Survie"
+    ]
+  },
+  {
+    cat: 'autres', nom: 'Demi-elfes',
+    desc: "Issus de l'union d'humains et d'elfes (souvent Sylvestres ou Yle). Métissage culturel et physique. Leur longévité partielle et leur adaptabilité en font des intermédiaires recherchés.",
+    affinities: [{el: 'Libre', val: 1, label: '+1 à un élément au choix'}],
+    traits: [
+      "Adaptabilité culturelle : +1 Persuasion",
+      "Longévité partielle : vivent 200 ans environ"
+    ]
+  },
+
+  // === LIGNÉES SPÉCIALES ===
+  {
+    cat: 'lignees', nom: 'Géant-né',
+    desc: "Descendants affaiblis des anciens Géants du Givre, après la Rupture. Plus grands que la moyenne (2m+), peau légèrement bleutée, cheveux pâles. Ils gardent en mémoire ancestrale le murmure des montagnes.",
+    affinities: [{el: 'Eau', val: 1}, {el: 'Terre', val: 1}],
+    traits: [
+      "Stature imposante : +1 Intimidation, +2 Vitalité max",
+      "Résiste au froid extrême : avantage sur tous les jets contre le froid"
+    ],
+    penalty: "-1 Discrétion (taille difficile à dissimuler)"
+  },
+  {
+    cat: 'lignees', nom: 'Aasimars (Célestiel)',
+    desc: "Descendants des 5 Célestes de Sol'Ambaïre. Yeux dorés, légère lueur sous la peau dans le noir. Reconnaissables, parfois adorés, parfois redoutés. Le retour de la magie a réveillé leur héritage.",
+    affinities: [{el: 'Chaos', val: 1}, {el: 'Vent', val: 1}],
+    traits: [
+      "Aura de paix : 1×/scène, peut calmer un PNJ hostile (jet Persuasion)",
+      "Lien céleste : +1 sur tous les jets de Volonté contre charme ou peur"
+    ]
+  },
+  {
+    cat: 'lignees', nom: 'Tiefling (Sang infernal)',
+    desc: "Issus du contact ancien avec des démons. Cornes, queue parfois, yeux rougeoyants. Souvent mal vus en société pieuse — mais respectés des Veilleurs qui voient au-delà des apparences.",
+    affinities: [{el: 'Feu', val: 1}, {el: 'Chaos', val: 1}],
+    traits: [
+      "Résiste au feu : -2 dégâts de toute attaque de Feu",
+      "Présence troublante : +1 Intimidation"
+    ],
+    penalty: "-1 social en société pieuse (méfiance, voire hostilité ouverte)"
+  },
+  {
+    cat: 'lignees', nom: 'Dragonné',
+    desc: "Issus du sang de dragons — créatures légendaires qu'on dit endormies dans les Nœuds du Monde. Écailles sur les bras et le visage. Hérite de l'élément de son ancêtre draconique.",
+    affinities: [{el: 'Libre', val: 1, label: '+1 à l\'élément du dragon ancestral'}],
+    traits: [
+      "Souffle élémentaire : 1×/scène, attaque de cône 5m, 1d6 + INT dégâts (élément choisi)",
+      "Écailles : +1 à la Défense passive"
+    ]
+  },
+  {
+    cat: 'lignees', nom: 'Genasi élémentaire',
+    desc: "Humanoïdes nés au contact d'un Nœud du Monde, marqués par un élément. Cheveux de feu, peau d'écorce, traits de vent... 5 variantes possibles : Feu, Eau, Vent, Terre, ou Chaos. Choisis l'élément à la création.",
+    affinities: [{el: 'Libre', val: 2, label: '+2 à un élément (double bonus)'}],
+    traits: [
+      "Manipulation élémentaire mineure : 1 Éther = effet trivial gratuit (allumer bougie, courant d'air, glace fondre, etc.)",
+      "Marqué visiblement par son élément (cheveux/peau/yeux particuliers)"
+    ]
+  },
+  {
+    cat: 'lignees', nom: 'Construit / Homoncule',
+    desc: "Création de magie script avancée, animé par un cœur de cristal de mana. Œuvre d'un Ingénieur de haut niveau, ou héritage retrouvé d'un atelier oublié. Conscient, mais étranger à la chair.",
+    affinities: [{el: 'Libre', val: 1, label: '+1 à l\'élément du créateur ou du cristal'}],
+    traits: [
+      "Pas besoin de respirer, manger ou dormir",
+      "Résistance aux poisons et maladies (corps non-vivant)"
+    ],
+    penalty: "Magie de soin Chaos inopérante (à 'réparer' par jet Artisanat à la place). -1 CHA face aux non-magiciens (peur du non-vivant)"
+  },
+  {
+    cat: 'lignees', nom: 'Mort-vivant éveillé',
+    desc: "Squelette, goule, revenant — toute forme de mort-vivant ayant conservé conscience et libre arbitre. Souvent lié à un ancien nécromancien ou à un nœud chaotique. Catégorie générique pour Clac Clac et autres concepts.",
+    affinities: [{el: 'Chaos', val: 2}],
+    traits: [
+      "Pas besoin de respirer, manger ou dormir",
+      "Vision nocturne",
+      "Résiste aux poisons et maladies"
+    ],
+    penalty: "Magie de soin Chaos -2 sur lui (les sorts de vie ne lui sont pas naturels). Peur instinctive des prêtres et paladins"
+  },
+  {
+    cat: 'lignees', nom: "Réceptacle d'âme",
+    desc: "Personne portant en elle une âme étrangère (référence au livre 1, comme Jack qui devient un réceptacle). L'âme peut être celle d'un ancêtre, d'un mort célèbre, d'un Veilleur, ou d'une entité bienveillante. Souvent inconnu du porteur lui-même au départ.",
+    affinities: [{el: 'Chaos', val: 1}, {el: 'Libre', val: 1, label: '+1 selon la nature de l\'âme portée'}],
+    traits: [
+      "Présence d'un conseiller : 1×/scène, le MJ donne un indice utile via la voix intérieure de l'âme",
+      "Force mentale : +1 Volonté permanent"
+    ],
+    penalty: "Lutte intérieure : le MJ peut imposer un comportement particulier 1×/session (l'âme étrangère se manifeste)"
+  },
+  {
+    cat: 'lignees', nom: 'Gobelin intelligent (mutant)',
+    desc: "Référence directe à la menace du livre 2 — gobelins qui parlent et s'organisent. Rare en début de campagne, mais possible pour un joueur audacieux. Peau verte ou grise, taille modeste, yeux luisants d'intelligence rusée.",
+    affinities: [{el: 'Chaos', val: 1}],
+    traits: [
+      "Petite taille : +1 Discrétion",
+      "Intelligence rusée : +1 Tromperie",
+      "Vision nocturne"
+    ],
+    penalty: "-2 social face aux humains et races nobles (considéré comme monstre par beaucoup, xénophobie réflexe)"
+  },
+  {
+    cat: 'lignees', nom: 'Veilleur initié',
+    desc: "Pas une race en soi, mais un héritage spirituel. Humain ou autre race ayant été initié aux mystères des Veilleurs (l'ordre de Silver Argenti et Jack). Se combine avec une race de base (Veilleur humain, Veilleur elfe Yle, etc.) — choisis ta race habituelle ET coche ce trait.",
+    affinities: [{el: 'Chaos', val: 1}],
+    traits: [
+      "Sens des âmes : perçoit la présence d'un mourant ou d'un esprit à 50m",
+      "Atout 'Cercle des Veilleurs' gratuit (en plus des 2 Atouts normaux)"
+    ]
+  }
+];
+
+function renderRaces(filter = 'all') {
+  const grid = document.getElementById('races');
+  grid.innerHTML = '';
+  const filtered = filter === 'all' ? RACES : RACES.filter(r => r.cat === filter);
+  filtered.forEach(r => {
+    const card = document.createElement('div');
+    card.className = 'race-card';
+
+    const catLabel = {
+      'humains': 'Humain', 'elfes': 'Elfe', 'nains': 'Nain', 'orques': 'Orque',
+      'hommes-betes': 'Homme-bête', 'autres': 'Autre race'
+    }[r.cat];
+
+    let affHTML = '';
+    if (r.affinities && r.affinities.length > 0) {
+      affHTML = '<div class="affinity-row">';
+      r.affinities.forEach(a => {
+        const cls = a.el.toLowerCase();
+        const label = a.label || `${a.el} ${a.val >= 0 ? '+' : ''}${a.val}`;
+        affHTML += `<span class="affinity-tag ${cls}">${label}</span>`;
+      });
+      affHTML += '</div>';
+    } else {
+      affHTML = '<div class="affinity-row"><span class="affinity-tag">Aucune affinité bonus</span></div>';
+    }
+
+    card.innerHTML = `
+      <div class="race-cat">${catLabel}</div>
+      <h2>${r.nom}</h2>
+      <div class="race-desc">${r.desc}</div>
+      <h3>Affinités bonus</h3>
+      ${affHTML}
+      <h3>Traits raciaux gratuits</h3>
+      <ul class="bonus-list">
+        ${r.traits.map(t => `<li>${t}</li>`).join('')}
+      </ul>
+      ${r.penalty ? `<div class="penalty">⚠ ${r.penalty}</div>` : ''}
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function filter(cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderRaces(cat);
+}
+
+renderRaces();
+</script>
+</body>
+</html>

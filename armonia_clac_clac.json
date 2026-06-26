@@ -1,0 +1,74 @@
+{
+  "state": {
+    "atouts": [
+      {"nom": "Réassemblage osseux", "niveau": "I", "used": false},
+      {"nom": "Lien avec Moony", "niveau": "I", "used": false}
+    ],
+    "promesses": [
+      {"texte": "Retrouver mon papa Glad Artor", "statut": "active"},
+      {"texte": "Toujours protéger Moony", "statut": "active"}
+    ],
+    "scripts": [],
+    "mots": [],
+    "inv": [
+      {"nom": "Sac du Trésor Inversé (artéfact unique)", "qte": "1"},
+      {"nom": "Babioles volées (clés, bouchons, cuillères)", "qte": "12"},
+      {"nom": "Sa flamme bleue (essence de vie, dans la cage thoracique)", "qte": "1"}
+    ],
+    "affinity": {},
+    "echo": 3
+  },
+  "nom": "Clac Clac Clac Clac",
+  "joueur": "Joueur de Clac Clac",
+  "classe": "Invocation orpheline / Voleur",
+  "race": "Invocation orpheline",
+  "sousrace": "Squelette créé par Glad Artor",
+  "age": "Inconnu (au moins 50 ans)",
+  "description": "Petit squelette articulé, flamme bleue brillant dans sa cage thoracique. Communique uniquement en 'clac clac'. Mignon et dangereux à la fois.",
+  "for": "0",
+  "dex": "1",
+  "con": "0",
+  "int": "0",
+  "sag": "1",
+  "cha": "0",
+  "vit_actuel": "10",
+  "ether_actuel": "3",
+  "echo_max": "5",
+  "surcharge": "0",
+  "armure_bonus": "0",
+  "bouclier": "0",
+  "action_def": "0",
+  "symboles_connus": "Pas de scripts maîtrisés (le Sac Inversé est un artéfact unique)",
+  "arme_principale": "Ses propres os (1d4 + DEX)",
+  "arme_secondaire": "Tête boomerang (1d6 + DEX, revient)",
+  "armure": "Aucune (os exposés)",
+  "or": "Quelques piécettes volées",
+  "notes": "HISTOIRE :\nInvocation loyale du Chevalier de la Mort Glad Artor. Quand son papa est tombé en bataille, il l'a placé dans le Sac du Trésor Inversé et l'a jeté dans une rivière. Clac Clac s'est retrouvé aux Objets Perdus pendant des semaines avant d'être adopté par Moony.\n\nPARTICULARITÉ : Flamme bleue dans la cage thoracique. Tant qu'elle brûle, il peut se réassembler en 10s même démembré. Si elle s'éteint = mort vraie.\n\nATTAQUES TYPIQUES :\n- Lancer d'os : 1d4 + DEX, à distance\n- Tête boomerang : 1d6 + DEX, revient automatiquement\n- Doigt mitraillette : 3 attaques de 1d3 + DEX, consomme ses doigts (regen 10s)\n- Explosion n'Os Éabonde : pas de dégâts, Intimidation à 10m\n\nULTI : SAC DU TRÉSOR INVERSÉ (1×/scène, 2 Écho pour réutiliser)\nAction principale + jet 1d20 :\n1-2 : Arme gigantesque/épique → effet RIDICULE ou inexistant\n3-9 : Arme classe → effet médiocre\n10-17 : Arme banale, bidon → dégâts corrects (1d6)\n18-20 : Objet pitoyable (cure-dent !) → effet DIVIN destructeur (3d10)\n\nTHÈMES : deuil de Glad Artor (papa), nouveau lien avec Moony (sœur), résilience osseuse, humour involontaire.",
+  "competences": {
+    "Armes au contact": "0",
+    "Armes à distance": "3",
+    "Défense": "0",
+    "Athlétisme": "0",
+    "Acrobaties": "2",
+    "Discrétion": "2",
+    "Vigilance": "2",
+    "Persuasion": "1",
+    "Tromperie": "0",
+    "Intimidation": "1",
+    "Intuition": "1",
+    "Histoire & Religion": "0",
+    "Arcanes": "0",
+    "Médecine": "0",
+    "Nature & Survie": "0",
+    "Artisanat": "0",
+    "Larcins": "2",
+    "Représentation": "1"
+  },
+  "affinities": {
+    "Feu": "-1",
+    "Eau": "0",
+    "Vent": "2",
+    "Terre": "2",
+    "Chaos": "3"
+  }
+}

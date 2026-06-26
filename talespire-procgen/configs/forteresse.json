@@ -1,0 +1,16 @@
+{
+  "_info": "Config forteresse. Lance avec : python procgen.py --config configs/forteresse.json",
+
+  "size"  : "60x60",
+  "ground": "stone",
+  "seed"  : null,
+
+  "add": [
+    "donjon:1",
+    "tour:4",
+    "caserne:2",
+    "forge:1"
+  ],
+
+  "output": null
+}

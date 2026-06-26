@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carte d'Armonia — Preview</title>
+<style>
+:root {
+  --bg: #d4b896;
+  --paper: #f5ebd6;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --danger: #a02020;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: linear-gradient(135deg, #c9a878 0%, #b89868 100%);
+  color: var(--text);
+  margin: 0;
+  padding: 12px;
+  min-height: 100vh;
+}
+.container { max-width: 1400px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  margin-bottom: 16px;
+  padding: 18px;
+  background: var(--paper);
+  border: 3px double var(--accent);
+  border-radius: 8px;
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 32px;
+  color: var(--primary);
+  letter-spacing: 5px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--accent);
+  margin-top: 6px;
+}
+header.title-bar .quote {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 8px;
+  font-style: italic;
+}
+.map-wrap {
+  background: var(--paper);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+.map-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid #c9b896;
+  background: linear-gradient(135deg, #5a8aaa 0%, #3a6a8a 100%);
+}
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+  margin-top: 16px;
+  padding: 12px;
+  background: var(--paper);
+  border: 1px solid #c9b896;
+  border-radius: 6px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+.legend-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid var(--accent);
+}
+#info-panel {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 340px;
+  background: var(--paper);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  display: none;
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 100;
+}
+#info-panel.active { display: block; }
+#info-panel .close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  color: var(--danger);
+  font-weight: bold;
+}
+#info-panel h2 {
+  margin: 0 0 4px 0;
+  color: var(--primary);
+  font-size: 22px;
+}
+#info-panel .info-type {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent);
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+#info-panel p { font-size: 14px; line-height: 1.6; margin: 8px 0; }
+#info-panel h3 {
+  color: var(--accent);
+  font-size: 13px;
+  margin: 12px 0 4px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #c9b896;
+  padding-bottom: 3px;
+}
+#info-panel ul { font-size: 13px; line-height: 1.5; padding-left: 16px; }
+
+.continent-region { transition: opacity 0.2s; cursor: pointer; }
+.continent-region:hover { opacity: 0.85; }
+.city circle, .knot circle { transition: r 0.2s; }
+.city:hover circle { r: 8; }
+.knot:hover circle { r: 11; }
+.city, .knot, .floating-city { cursor: pointer; }
+.label {
+  font-family: 'Georgia', serif;
+  pointer-events: none;
+  fill: var(--text);
+  text-shadow: 0 0 3px var(--paper), 0 0 3px var(--paper);
+}
+.label-region {
+  font-size: 26px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  fill: var(--primary);
+}
+.label-medium {
+  font-size: 14px;
+  font-style: italic;
+  fill: var(--muted);
+}
+.label-city { font-size: 11px; font-weight: bold; }
+.intro-info {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  border-radius: 4px;
+}
+@media (max-width: 720px) {
+  #info-panel {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-height: 60vh;
+    border-radius: 8px 8px 0 0;
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="title-bar">
+  <h1>⚜ CARTE D'ARMONIA ⚜</h1>
+  <div class="subtitle">Le Monde Brisé par la Rupture</div>
+  <div class="quote">« Là où la magie est revenue. Là où la dévastation s'approche. »</div>
+</header>
+
+<div class="intro-info">
+  <p style="margin:0;"><strong>🗺️ Carte preview interactive.</strong> Clique sur un continent ou une cité pour lire sa description. Cette carte simplifie la géographie réelle — la carte détaillée Azgaar est gérée par ton MJ.</p>
+</div>
+
+<div class="map-wrap">
+  <svg class="map-svg" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="2" dy="2" stdDeviation="2" flood-opacity="0.3"/>
+      </filter>
+      <radialGradient id="cloud-grad">
+        <stop offset="0%" stop-color="#fff" stop-opacity="0.6"/>
+        <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+
+    <!-- Compass rose -->
+    <g transform="translate(80, 80)">
+      <circle r="34" fill="rgba(245,235,214,0.85)" stroke="#a87830" stroke-width="2"/>
+      <path d="M 0 -28 L 5 0 L 0 28 L -5 0 Z" fill="#a87830"/>
+      <path d="M -28 0 L 0 5 L 28 0 L 0 -5 Z" fill="#a87830" opacity="0.6"/>
+      <text x="0" y="-38" text-anchor="middle" font-size="11" font-weight="bold" fill="#3a2818">N</text>
+      <text x="38" y="4" text-anchor="middle" font-size="11" fill="#3a2818">E</text>
+      <text x="0" y="48" text-anchor="middle" font-size="11" fill="#3a2818">S</text>
+      <text x="-38" y="4" text-anchor="middle" font-size="11" fill="#3a2818">O</text>
+    </g>
+
+    <!-- === NO'ORD (TOP-LEFT) === -->
+    <g class="continent-region" data-info="noord">
+      <path d="M 120 100 Q 230 70 340 100 Q 420 130 450 200 Q 460 280 430 350 Q 380 410 280 420 Q 180 410 120 360 Q 90 280 100 200 Q 110 130 120 100 Z"
+        fill="#f0c8d8" stroke="#a04060" stroke-width="2" filter="url(#shadow)"/>
+      <!-- Ice/glaciers -->
+      <path d="M 180 130 Q 250 110 320 140 Q 380 175 360 220 Q 280 235 220 215 Q 175 195 180 130 Z"
+        fill="#fff" opacity="0.55"/>
+      <text x="280" y="250" class="label label-region" text-anchor="middle">NO'ORD</text>
+      <text x="280" y="278" class="label label-medium" text-anchor="middle">Terres Glacées · 7 Jarls</text>
+    </g>
+
+    <!-- Ællskarn (Nœud du Givre) -->
+    <g class="knot" data-info="aellskarn">
+      <circle cx="260" cy="160" r="6" fill="#fff" stroke="#5a8eaa" stroke-width="2"/>
+      <text x="275" y="164" class="label label-city" font-size="10">❄ Ællskarn</text>
+    </g>
+    <g class="city" data-info="brumelune">
+      <circle cx="200" cy="350" r="5" fill="#a87830" stroke="#3a2818" stroke-width="1"/>
+      <text x="210" y="355" class="label label-city">Brumelune</text>
+    </g>
+    <g class="city" data-info="jotunfell">
+      <circle cx="360" cy="190" r="5" fill="#a87830" stroke="#3a2818" stroke-width="1"/>
+      <text x="370" y="195" class="label label-city">Jotunfell</text>
+    </g>
+    <g class="city" data-info="sorvald">
+      <circle cx="320" cy="395" r="5" fill="#a87830" stroke="#3a2818" stroke-width="1"/>
+      <text x="330" y="400" class="label label-city">Sørvald</text>
+    </g>
+
+    <!-- === LUMINI (TOP-RIGHT GRAND) === -->
+    <g class="continent-region" data-info="lumini">
+      <path d="M 620 130 Q 750 110 880 130 Q 1000 160 1080 210 Q 1130 280 1100 360 Q 1050 430 950 450 Q 850 460 750 440 Q 670 420 620 380 Q 580 320 580 250 Q 590 180 620 130 Z"
+        fill="#c8e8c8" stroke="#508050" stroke-width="2" filter="url(#shadow)"/>
+      <!-- Forest patch (Forêt Julia) -->
+      <ellipse cx="730" cy="380" rx="42" ry="28" fill="#3a5a3a" opacity="0.5"/>
+      <!-- Mountains (Fer In Gal) -->
+      <path d="M 920 320 L 940 295 L 960 320 L 980 290 L 1000 315 L 990 335 L 950 340 L 930 335 Z"
+        fill="#a89878" stroke="#6a5a3a" stroke-width="1"/>
+      <text x="860" y="290" class="label label-region" text-anchor="middle">LUMINI</text>
+      <text x="860" y="316" class="label label-medium" text-anchor="middle">Terres du Commerce</text>
+    </g>
+    <!-- Cities of Lumini -->
+    <g class="city" data-info="meynprus">
+      <circle cx="850" cy="240" r="7" fill="#c4a040" stroke="#3a2818" stroke-width="1"/>
+      <text x="862" y="245" class="label label-city">Me'yn Prus</text>
+    </g>
+    <g class="city" data-info="etelin">
+      <circle cx="700" cy="360" r="5" fill="#a87830" stroke="#3a2818" stroke-width="1"/>
+      <text x="710" y="365" class="label label-city">Etelin</text>
+    </g>
+    <g class="floating-city" data-info="villa-virtue">
+      <ellipse cx="970" cy="200" rx="55" ry="16" fill="url(#cloud-grad)"/>
+      <path d="M 925 188 Q 950 178 970 178 Q 995 178 1015 188 Q 1020 200 1005 205 L 940 205 Q 925 200 925 188 Z"
+        fill="#d8c898" stroke="#a87830" stroke-width="1.5" filter="url(#shadow)"/>
+      <path d="M 965 180 L 970 165 L 975 180 Z" fill="#a87830"/>
+      <text x="970" y="176" class="label label-city" text-anchor="middle" font-weight="bold">Villa Virtue</text>
+      <text x="970" y="225" class="label" font-size="9" font-style="italic" text-anchor="middle" fill="#fff">cité volante</text>
+    </g>
+    <g class="city" data-info="fer-in-gal">
+      <circle cx="960" cy="325" r="5" fill="#a87830" stroke="#3a2818" stroke-width="1"/>
+      <text x="970" y="330" class="label label-city">Fer In Gal</text>
+    </g>
+
+    <!-- === ARMONIA (PETITE PÉNINSULE entre Lumini et No'Ord) === -->
+    <g class="continent-region" data-info="armonia-principaute">
+      <path d="M 480 200 Q 540 180 580 210 Q 600 240 595 280 Q 580 320 540 330 Q 490 330 475 300 Q 465 250 480 200 Z"
+        fill="#c8e8d8" stroke="#508060" stroke-width="2" filter="url(#shadow)"/>
+      <text x="535" y="255" class="label label-region" text-anchor="middle" font-size="18">ARMONIA</text>
+      <text x="535" y="275" class="label label-medium" text-anchor="middle" font-size="11">Principauté</text>
+    </g>
+    <!-- La cité d'Armonia à la pointe -->
+    <g class="city" data-info="armonia-cite">
+      <circle cx="520" cy="320" r="7" fill="#c44040" stroke="#3a2818" stroke-width="1.5"/>
+      <text x="500" y="345" class="label label-city" font-weight="bold" font-size="13">★ Armonia</text>
+    </g>
+    <!-- Nœud central -->
+    <g class="knot" data-info="noeud-armonia">
+      <circle cx="520" cy="320" r="11" fill="none" stroke="#c4a040" stroke-width="2" opacity="0.6"/>
+    </g>
+
+    <!-- === SOL'AMBAÏRE (BOTTOM-LEFT) === -->
+    <g class="continent-region" data-info="solambaire">
+      <path d="M 100 530 Q 220 510 360 530 Q 460 560 500 630 Q 510 720 460 790 Q 360 830 230 820 Q 130 800 90 740 Q 70 660 80 590 Q 90 555 100 530 Z"
+        fill="#d8e8b8" stroke="#808040" stroke-width="2" filter="url(#shadow)"/>
+      <text x="290" y="680" class="label label-region" text-anchor="middle">SOL'AMBAÏRE</text>
+      <text x="290" y="708" class="label label-medium" text-anchor="middle">Les Cinq Célestes</text>
+    </g>
+    <g class="city" data-info="solenwa">
+      <circle cx="290" cy="650" r="6" fill="#a87830" stroke="#3a2818" stroke-width="1"/>
+      <text x="300" y="655" class="label label-city">Solenwa</text>
+    </g>
+    <g class="city" data-info="tsuraji">
+      <circle cx="380" cy="570" r="6" fill="#7a4a8a" stroke="#3a2818" stroke-width="1"/>
+      <text x="390" y="575" class="label label-city">Tsu-Raji</text>
+    </g>
+    <g class="city" data-info="tehin">
+      <circle cx="170" cy="580" r="5" fill="#a87830" stroke="#3a2818" stroke-width="1"/>
+      <text x="118" y="585" class="label label-city">Téhin</text>
+    </g>
+    <g class="knot" data-info="noeud-tengu">
+      <circle cx="380" cy="570" r="10" fill="none" stroke="#c4a040" stroke-width="2" opacity="0.6"/>
+    </g>
+
+    <!-- === VIRTUS (FAR-RIGHT, ALENSIUMIA orange) === -->
+    <g class="continent-region" data-info="virtus">
+      <path d="M 1180 280 Q 1280 260 1340 320 Q 1370 400 1330 480 Q 1260 530 1180 510 Q 1130 470 1140 400 Q 1145 330 1180 280 Z"
+        fill="#f0d0a8" stroke="#a06030" stroke-width="2" filter="url(#shadow)"/>
+      <text x="1235" y="390" class="label label-region" text-anchor="middle" font-size="22">VIRTUS</text>
+      <text x="1235" y="412" class="label label-medium" text-anchor="middle" font-size="11">Empire de Virtus Al Alle</text>
+    </g>
+    <g class="city" data-info="virtus-cite">
+      <circle cx="1240" cy="370" r="6" fill="#a87830" stroke="#3a2818" stroke-width="1"/>
+      <text x="1252" y="375" class="label label-city">Virtus</text>
+    </g>
+    <g class="city" data-info="argaroth">
+      <circle cx="1200" cy="440" r="5" fill="#a87830" stroke="#3a2818" stroke-width="1"/>
+      <text x="1148" y="445" class="label label-city">Argaroth</text>
+    </g>
+
+    <!-- === HELEDERA (BOTTOM-RIGHT, archipel) === -->
+    <g class="continent-region" data-info="heledera">
+      <ellipse cx="950" cy="640" rx="50" ry="32" fill="#f0c08a" stroke="#a06030" stroke-width="1.5"/>
+      <ellipse cx="1080" cy="680" rx="38" ry="22" fill="#f0c08a" stroke="#a06030" stroke-width="1.5"/>
+      <ellipse cx="1200" cy="640" rx="32" ry="20" fill="#f0c08a" stroke="#a06030" stroke-width="1.5"/>
+      <ellipse cx="1080" cy="770" rx="60" ry="30" fill="#f0c08a" stroke="#a06030" stroke-width="1.5"/>
+      <ellipse cx="1280" cy="760" rx="40" ry="20" fill="#f0c08a" stroke="#a06030" stroke-width="1.5"/>
+      <text x="1100" y="735" class="label label-region" text-anchor="middle" font-size="22">HELEDERA</text>
+      <text x="1100" y="755" class="label label-medium" text-anchor="middle" font-size="11">Archipel des Refuges</text>
+    </g>
+    <g class="city" data-info="cordeheim">
+      <circle cx="950" cy="640" r="6" fill="#c4a040" stroke="#3a2818" stroke-width="1"/>
+      <text x="900" y="623" class="label label-city">Cordéheim</text>
+    </g>
+    <g class="city" data-info="vorpalheim">
+      <circle cx="1080" cy="680" r="5" fill="#a87830" stroke="#3a2818" stroke-width="1"/>
+      <text x="1090" y="685" class="label label-city">Vorpalheim</text>
+    </g>
+    <g class="city" data-info="halfellium">
+      <circle cx="1200" cy="640" r="5" fill="#a87830" stroke="#3a2818" stroke-width="1"/>
+      <text x="1210" y="645" class="label label-city">Halfellium</text>
+    </g>
+
+    <!-- Nœuds cachés -->
+    <g class="knot" data-info="noeud-cache" transform="translate(700, 480)">
+      <circle r="5" fill="#a04040" opacity="0.4"/>
+      <text y="4" text-anchor="middle" font-size="10" fill="white">?</text>
+    </g>
+    <g class="knot" data-info="noeud-cache" transform="translate(1240, 720)">
+      <circle r="5" fill="#a04040" opacity="0.4"/>
+      <text y="4" text-anchor="middle" font-size="10" fill="white">?</text>
+    </g>
+
+    <!-- Routes commerciales -->
+    <path d="M 320 395 Q 430 360 520 320" stroke="#8a6830" stroke-width="2" stroke-dasharray="4,4" fill="none" opacity="0.6"/>
+    <path d="M 520 320 Q 700 280 850 240" stroke="#8a6830" stroke-width="2" stroke-dasharray="4,4" fill="none" opacity="0.6"/>
+    <path d="M 850 240 Q 1050 300 1240 370" stroke="#8a6830" stroke-width="2" stroke-dasharray="4,4" fill="none" opacity="0.6"/>
+    <path d="M 850 240 Q 900 450 950 640" stroke="#8a6830" stroke-width="2" stroke-dasharray="4,4" fill="none" opacity="0.6"/>
+    <path d="M 290 650 Q 450 600 520 320" stroke="#8a6830" stroke-width="2" stroke-dasharray="4,4" fill="none" opacity="0.6"/>
+
+    <!-- Sea labels -->
+    <text x="680" y="80" class="label" text-anchor="middle" font-size="16" fill="#1a3a4a" font-style="italic" opacity="0.7">Mer du Nord</text>
+    <text x="60" y="450" class="label" text-anchor="middle" font-size="14" fill="#1a3a4a" font-style="italic" opacity="0.7" transform="rotate(-90, 60, 450)">Océan Occidental</text>
+    <text x="1350" y="600" class="label" text-anchor="middle" font-size="14" fill="#1a3a4a" font-style="italic" opacity="0.7" transform="rotate(90, 1350, 600)">Mer Orientale</text>
+    <text x="700" y="870" class="label" text-anchor="middle" font-size="16" fill="#1a3a4a" font-style="italic" opacity="0.7">Mers du Sud</text>
+  </svg>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><span class="legend-icon" style="background:#f0c8d8"></span><span>No'Ord — Glaces nordiques</span></div>
+  <div class="legend-item"><span class="legend-icon" style="background:#c8e8c8"></span><span>Lumini — Commerce</span></div>
+  <div class="legend-item"><span class="legend-icon" style="background:#c8e8d8"></span><span>Armonia — Cité-Principauté</span></div>
+  <div class="legend-item"><span class="legend-icon" style="background:#d8e8b8"></span><span>Sol'Ambaïre — Célestes</span></div>
+  <div class="legend-item"><span class="legend-icon" style="background:#f0d0a8"></span><span>Virtus — Empire militaire</span></div>
+  <div class="legend-item"><span class="legend-icon" style="background:#f0c08a"></span><span>Heledera — Archipel des Refuges</span></div>
+  <div class="legend-item"><span class="legend-icon" style="background:#c44040; border-radius:50%"></span><span>Cité capitale</span></div>
+  <div class="legend-item"><span class="legend-icon" style="background:#fff; border-color:#5a8eaa; border-radius:50%"></span><span>Nœud du Monde visible</span></div>
+  <div class="legend-item"><span class="legend-icon" style="background:#a04040; opacity:.4; border-radius:50%"></span><span>Nœud du Monde caché</span></div>
+</div>
+
+</div>
+
+<div id="info-panel">
+  <span class="close" onclick="closeInfo()">×</span>
+  <div id="info-content"></div>
+</div>
+
+<script>
+const INFO = {
+  'noord': { type:'Continent Nord', title:"NO'ORD — Terres Glacées",
+    content:`<p>Continent du Nord, froid et hostile. Sculpté par les Géants du Givre dans des temps anciens.</p>
+    <h3>Régions</h3><ul><li>Montagnes d'Ællskarn (Nœud du Givre)</li><li>Fjords de Brumelune</li><li>Forêts Boréales de Thrymgard</li><li>Glaces Vivantes d'Hrímfall</li></ul>
+    <h3>Peuples</h3><ul><li>Humains Nordiques (7 Jarls)</li><li>Orques du Froid</li><li>Nains Barbes d'Acier</li><li>Mi-loups, Mi-ours</li></ul>` },
+  'aellskarn': { type:'Nœud du Monde visible', title:'❄ Ællskarn — Le Nœud du Givre',
+    content:`<p>Montagne sacrée du nord. L'un des 12 Nœuds du Monde, visible et actif.</p><p>Sous ces pics, un Géant du Givre originel sommeille.</p>
+    <h3>Effets</h3><ul><li>Aurores conscientes</li><li>Magie runique amplifiée</li><li>Mutations de bêtes (Loups Albâtres, Ours Runiques)</li></ul>` },
+  'brumelune': { type:'Cité portuaire', title:'Brumelune',
+    content:`<p>Grande cité portuaire des Fjords. Centre du commerce maritime nordique, marquée par sa brume bleue permanente.</p>` },
+  'jotunfell': { type:'Forteresse naine', title:'Jotunfell',
+    content:`<p>Cité-forteresse des Nains Barbes d'Acier. Forges runiques des Forgefeux, métal runique pur.</p>` },
+  'sorvald': { type:'Port frontalier', title:'Sørvald',
+    content:`<p>Port méridional de No'Ord, frontière commerciale avec Lumini. Mélange culturel intense.</p>` },
+  'lumini': { type:'Continent Est', title:'LUMINI — Terres du Commerce',
+    content:`<p>Le grand continent du commerce et de l'érudition. Couvre la majeure partie de l'est.</p>
+    <h3>Lieux clés</h3><ul><li>Me'yn Prus (Guilde des Marchands)</li><li>Villa Virtue (cité volante)</li><li>Etelin (village des Argenti)</li><li>Forêt Julia (Elfes Sylvestres)</li><li>Fer In Gal (Nains + Elfes Noirs)</li></ul>
+    <p>Organisé en principautés, duchés et bourgs. Capitale commerciale : Me'yn Prus.</p>` },
+  'meynprus': { type:'Capitale commerciale', title:"Me'yn Prus",
+    content:`<p>Siège mondial de la Guilde des Marchands. Plus grande ville de Lumini.</p>
+    <h3>Importance</h3><ul><li>Banque internationale</li><li>Marchés exotiques</li><li>Milice : Lyad Feqra</li><li>A repoussé les Griffons Azure et Vermillon</li></ul>` },
+  'villa-virtue': { type:'Cité volante', title:'Villa Virtue — Cité du Ciel',
+    content:`<p>Cité aristocratique flottant au-dessus de Lumini, portée par un cristal de mana géant.</p>
+    <h3>Importance</h3><ul><li>Siège de la Guilde des Aventuriers</li><li>Les Météores d'Or sont basés ici</li><li>Mécénat : Lotain Ur Windor</li><li>L'artéfact magique le plus puissant connu</li></ul>` },
+  'etelin': { type:'Village', title:'Etelin — Le village des orphelins',
+    content:`<p>Petit village forestier de Lumini. Orphelinat de Jack Argenti et Lyssana Argenti.</p>
+    <h3>Personnages clés</h3><ul><li>Jack Argenti "le professeur"</li><li>Lyssana Argenti (cheveux rouge feu)</li><li>Shura (fils, aventurier)</li><li>Damaïr et Tera (frères adoptés)</li><li>Golrik (tavernier-veilleur)</li></ul>` },
+  'fer-in-gal': { type:'Royaume montagneux', title:'Fer In Gal',
+    content:`<p>Massif des Nains et Elfes Noirs. Cohabitation ancestrale, forge runique, métal pur.</p>` },
+  'armonia-principaute': { type:'Principauté centrale', title:"Principauté d'Armonia",
+    content:`<p>Petite péninsule entre Lumini et No'Ord. Cœur politique et judiciaire du monde.</p>
+    <p>À la pointe sud : la <strong>Cité d'Armonia</strong>, qui donne son nom au monde.</p>` },
+  'armonia-cite': { type:'★ Capitale du monde', title:"Cité d'Armonia",
+    content:`<p>LA capitale d'Armonia, à la pointe de la péninsule. Donne son nom au monde.</p>
+    <h3>Institutions</h3><ul><li>Conseil des Grandes Familles</li><li>Roses d'Armonia (ordre judiciaire autonome)</li><li>Cours suprêmes du monde</li></ul>
+    <h3>Particularité</h3><ul><li>Possible Nœud du Monde central (secret du Conseil)</li></ul>` },
+  'noeud-armonia': { type:'Nœud secret', title:"Nœud d'Armonia",
+    content:`<p>Nœud central possible sous la cité d'Armonia. Connu peut-être seulement des Roses.</p>
+    <p>Source d'harmonie politique invisible — pourrait expliquer le destin singulier de la cité.</p>` },
+  'solambaire': { type:'Continent Sud', title:"SOL'AMBAÏRE — Les Cinq Célestes",
+    content:`<p>Continent des 5 Célestes (Deïn ilt). Royaumes répartis aux extrémités, zone neutre centrale.</p>
+    <h3>Régions</h3><ul><li>Tsu-Raji (Royaume Tengu)</li><li>4 royaumes Célestes périphériques</li><li>Zone neutre centrale (Solenwa)</li></ul>
+    <p>Style oriental, codes d'honneur stricts.</p>` },
+  'solenwa': { type:'Capitale neutre', title:'Solenwa',
+    content:`<p>Capitale de la zone centrale neutre. Convention des 5 Célestes, diplomates de chaque royaume.</p>` },
+  'tsuraji': { type:'Royaume Tengu', title:'Tsu-Raji — Falaises Chantantes',
+    content:`<p>Royaume des Tengu. Falaises où le vent porte les voix des ancêtres.</p>
+    <h3>3 castes Tengu</h3><ul><li>Karasu (sages, scribes)</li><li>Taka (guerriers)</li><li>Hane (hybrides voyageurs)</li></ul>
+    <p>Religion : Voile des Cinq Vents</p>` },
+  'tehin': { type:'Royaume Céleste', title:'Téhin',
+    content:`<p>Capitale du Royaume Septentrional. Architecture orientale traditionnelle, garde céleste vêtue de soie dorée.</p>` },
+  'noeud-tengu': { type:'Nœud du Monde visible', title:"Nœud des Falaises",
+    content:`<p>Nœud sous Tsu-Raji, lié au vent. Alimente le don de vol des Tengu et la magie spirituelle des Karasu.</p>` },
+  'virtus': { type:'Empire militaire', title:'VIRTUS — Empire de Virtus Al Alle',
+    content:`<p>Empire humain militaire à l'est. Discipline stricte, expansionnisme contenu.</p>
+    <h3>Réputation</h3><ul><li>Académies d'armes renommées</li><li>Forces armées d'élite</li><li>Tensions avec les autres royaumes humains</li></ul>` },
+  'virtus-cite': { type:'Capitale impériale', title:'Virtus',
+    content:`<p>Forteresse-cité militaire, symbole de la puissance humaine.</p>` },
+  'argaroth': { type:'Forteresse', title:'Argaroth',
+    content:`<p>Forteresse défensive sur les frontières. Première ligne contre les menaces extérieures.</p>` },
+  'heledera': { type:'Archipel des Refuges', title:'HELEDERA — Les Îles des Refuges',
+    content:`<p>« Là où le banni devient libre. »</p>
+    <p>Confédération maritime indépendante. Refuge historique des races minoritaires.</p>
+    <h3>Habitants</h3><ul><li>Vorpal (banquiers/marchands)</li><li>Halfelins (voyageurs)</li><li>Gnomes (ingénieurs)</li><li>Elfes Yle (Bannis)</li><li>Présence Jindos</li></ul>
+    <h3>Société</h3><ul><li>Conseil des Cinq Îles</li><li>Banque d'Heledera (alternative aux Marchands)</li><li>Pirates et corsaires tolérés</li></ul>` },
+  'cordeheim': { type:'Capitale archipel', title:'Cordéheim',
+    content:`<p>Capitale d'Heledera. Conseil des Cinq Îles, banque marchande alternative.</p>` },
+  'vorpalheim': { type:'Cité vorpal', title:'Vorpalheim',
+    content:`<p>Cité dominée par les Vorpal. Banquiers, voleurs, marchands rusés.</p>` },
+  'halfellium': { type:'Île halfeline', title:'Halfellium',
+    content:`<p>Île tranquille des Halfelins. Auberges, festivals, voyageurs bienvenus.</p>` },
+  'noeud-cache': { type:'Nœud du Monde caché', title:'Nœud Inconnu',
+    content:`<p>Anomalie magique détectée. L'un des 12 Nœuds du Monde, possiblement caché ou dormant.</p>
+    <p><em>Localisation : à toi de découvrir en campagne.</em></p>` }
+};
+
+function showInfo(key) {
+  const data = INFO[key];
+  if (!data) return;
+  const panel = document.getElementById('info-panel');
+  document.getElementById('info-content').innerHTML = `
+    <div class="info-type">${data.type}</div>
+    <h2>${data.title}</h2>
+    ${data.content}
+  `;
+  panel.classList.add('active');
+}
+function closeInfo() { document.getElementById('info-panel').classList.remove('active'); }
+document.querySelectorAll('[data-info]').forEach(el => {
+  el.addEventListener('click', e => { e.stopPropagation(); showInfo(el.dataset.info); });
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeInfo(); });
+</script>
+</body>
+</html>

@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Système de Craft — Armonia</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+  --danger: #a02020;
+  --success: #2a7a3c;
+
+  --rustique: #a09080;
+  --standard: #7a9aa0;
+  --fin: #4a8aa0;
+  --maitre: #a04a8a;
+  --legendaire: linear-gradient(90deg, #c9a85a 0%, #c44040 50%, #4a8aa0 100%);
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1200px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: var(--paper);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 30px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 14px 18px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.intro-box p { margin: 6px 0; font-size: 14px; }
+.intro-box strong { color: var(--primary); }
+
+.section {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.section h2 {
+  color: var(--primary);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 8px;
+  margin-top: 0;
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+.section h3 {
+  color: var(--accent);
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin: 14px 0;
+}
+.step {
+  background: #f5ebd6;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  padding: 14px;
+  text-align: center;
+}
+.step .step-num {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.step h4 {
+  margin: 4px 0;
+  color: var(--primary);
+  font-size: 15px;
+}
+.step p {
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  background: white;
+}
+table th {
+  background: var(--primary);
+  color: white;
+  padding: 8px;
+  text-align: left;
+  font-size: 13px;
+}
+table td {
+  padding: 8px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+tr.tier-rustique td { background: #e8dcc4; }
+tr.tier-standard td { background: #fffaf0; }
+tr.tier-fin td { background: #d4e4ec; }
+tr.tier-maitre td { background: #ecd4dc; }
+tr.tier-legendaire td { background: linear-gradient(90deg, #fff4d0 0%, #f4e8ec 50%, #d4e4f0 100%); font-weight: bold; }
+
+.filters {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  justify-content: center;
+}
+.filter-btn {
+  background: var(--paper);
+  color: var(--primary);
+  border: 1px solid var(--accent);
+  padding: 8px 14px;
+  border-radius: 18px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+}
+.filter-btn.active {
+  background: var(--primary);
+  color: white;
+}
+.filter-btn:hover { background: #f5ebd6; }
+.filter-btn.active:hover { background: var(--primary); }
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 14px;
+}
+.recipe-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.recipe-card .recipe-cat {
+  color: var(--accent);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+.recipe-card h3 {
+  margin: 4px 0 6px 0;
+  color: var(--primary);
+  font-size: 18px;
+  border: none;
+}
+.recipe-card .effect {
+  font-size: 13px;
+  font-style: italic;
+  margin: 6px 0 12px 0;
+  color: #4a3825;
+}
+.recipe-card h4 {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 10px 0 4px 0;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 3px;
+}
+.recipe-card .components, .recipe-card .stats {
+  font-size: 13px;
+  line-height: 1.6;
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+}
+.recipe-card .components li::before { content: "▸ "; color: var(--accent); }
+.recipe-card .stats li::before { content: "🛠️ "; }
+.tier-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: bold;
+  margin-top: 6px;
+  color: white;
+}
+.tier-badge.rustique { background: var(--rustique); }
+.tier-badge.standard { background: var(--standard); }
+.tier-badge.fin { background: var(--fin); }
+.tier-badge.maitre { background: var(--maitre); }
+.tier-badge.legendaire { background: linear-gradient(90deg, #c9a85a 0%, #c44040 100%); }
+
+.comp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+.comp-card {
+  background: #f5ebd6;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px;
+}
+.comp-card h4 {
+  margin: 0 0 4px 0;
+  color: var(--accent);
+  font-size: 13px;
+}
+.comp-card p {
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text);
+}
+.comp-card .source {
+  font-size: 11px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 4px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="title-bar">
+  <h1>🔨 SYSTÈME DE CRAFT</h1>
+  <div class="subtitle">Forger, alchimiser, enchanter en Armonia</div>
+</header>
+
+<div class="intro-box">
+  <p><strong>Pourquoi crafter ?</strong> Le craft permet de transformer les composants récoltés (sur les monstres, dans la nature, en mines) en équipement supérieur. Chaque artisan compétent peut produire du matériel de qualité variable selon son talent.</p>
+  <p>🎯 <strong>Compétence clé</strong> : <strong>Artisanat</strong> (généralement avec DEX ou INT selon la spécialité). Les Ingénieurs sont les seuls à pouvoir intégrer des scripts magiques aux objets Légendaires.</p>
+</div>
+
+<!-- PROCESSUS -->
+<div class="section">
+  <h2>1. Le processus de craft</h2>
+  <p>Crafter un objet suit toujours les mêmes 5 étapes. Le temps total dépend du tier visé.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4>Récolter</h4>
+      <p>Loots de monstres, plantes, mines, marchés</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4>Préparer</h4>
+      <p>Atelier adapté (forge, alchimie, scriptorium)</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4>Composer</h4>
+      <p>Réunir tous les composants de la recette</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h4>Jet d'Artisanat</h4>
+      <p>1d20 + DEX/INT + Artisanat vs DD du tier</p>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <h4>Résultat</h4>
+      <p>Selon palier de réussite (voir paliers)</p>
+    </div>
+  </div>
+</div>
+
+<!-- TIERS -->
+<div class="section">
+  <h2>2. Les 5 tiers de qualité</h2>
+  <table>
+    <thead><tr><th>Tier</th><th>DD Artisanat</th><th>Temps</th><th>Effet sur l'objet</th><th>Composants spéciaux</th></tr></thead>
+    <tbody>
+      <tr class="tier-rustique"><td><strong>Rustique</strong></td><td>DD 10</td><td>1h</td><td>−1 dégâts / −1 Défense</td><td>Aucun (matériel de base)</td></tr>
+      <tr class="tier-standard"><td><strong>Standard</strong></td><td>DD 12</td><td>2h</td><td>Stats de base</td><td>Aucun</td></tr>
+      <tr class="tier-fin"><td><strong>Fin</strong></td><td>DD 15</td><td>4h</td><td>+1 dégâts / +1 Défense</td><td>Composant Fin (1)</td></tr>
+      <tr class="tier-maitre"><td><strong>Maître</strong></td><td>DD 18</td><td>1 journée</td><td>+1 + 1 propriété spéciale</td><td>Composant Maître (1) + composants Fin (2)</td></tr>
+      <tr class="tier-legendaire"><td><strong>Légendaire</strong></td><td>DD 22</td><td>1 semaine</td><td>+2 + 2 propriétés + 1 script magique</td><td>Composant Légendaire (1) + Maître (1) + Fin (3)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Lecture des paliers de réussite (au craft)</h3>
+  <table>
+    <thead><tr><th>Résultat du jet</th><th>Effet</th></tr></thead>
+    <tbody>
+      <tr><td>1 naturel</td><td>Bourde : matériel détruit, composants rares perdus</td></tr>
+      <tr><td>&lt; DD</td><td>Échec : matériel récupérable (50%), composants rares préservés</td></tr>
+      <tr><td>DD à DD+1</td><td>Réussite à l'arraché : objet au tier visé mais avec petit défaut esthétique</td></tr>
+      <tr><td>DD+2 à DD+5</td><td>Pleine réussite : objet au tier visé, parfait</td></tr>
+      <tr><td>DD+6 ou +</td><td>Réussite éclatante : objet monte d'1 tier (gratuit) !</td></tr>
+      <tr><td>20 naturel</td><td>Chef-d'œuvre : monte d'1 tier ET tu obtiens un bonus narratif (artisan signé, célèbre)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- PROPRIÉTÉS SPÉCIALES -->
+<div class="section">
+  <h2>3. Propriétés spéciales (Maître et Légendaire)</h2>
+  <p>L'artisan choisit la(les) propriété(s) au moment du craft. Les armes ont des propriétés différentes des armures.</p>
+
+  <h3>Pour les armes</h3>
+  <ul style="line-height: 1.8; font-size: 14px;">
+    <li>🗡️ <strong>Tranchant</strong> — ignore 1 point d'armure</li>
+    <li>⚖️ <strong>Équilibré</strong> — +1 au jet d'attaque</li>
+    <li>🔨 <strong>Brisant</strong> — peut briser une arme adverse (jet opposé)</li>
+    <li>☀️ <strong>Solaire</strong> — +1 dégâts vs ombre/morts-vivants</li>
+    <li>❄️ <strong>Glacial</strong> — +1 dégâts vs créatures de feu</li>
+    <li>🔥 <strong>Ardent</strong> — +1 dégâts vs créatures de glace/froid</li>
+    <li>⚡ <strong>Foudroyant</strong> — +1 dégâts vs créatures d'eau</li>
+    <li>🩸 <strong>Hémorragique</strong> — +1 dégâts au tour suivant (saignement)</li>
+    <li>🎯 <strong>Précise</strong> — portée doublée (armes à distance uniquement)</li>
+    <li>👻 <strong>Spirituelle</strong> — peut toucher les incorporels</li>
+    <li>🌱 <strong>Sève</strong> — +1 Nature & Survie en plus</li>
+  </ul>
+
+  <h3>Pour les armures</h3>
+  <ul style="line-height: 1.8; font-size: 14px;">
+    <li>💪 <strong>Solide</strong> — +1 Vitalité max</li>
+    <li>🪶 <strong>Allégée</strong> — annule 1 point de pénalité (Discrétion ou Acrobaties)</li>
+    <li>🛡️ <strong>Résiste un élément</strong> — −2 dégâts d'un élément choisi (Feu/Eau/Vent/Terre/Chaos)</li>
+    <li>✨ <strong>Résiste à la magie</strong> — −2 dégâts magiques génériques</li>
+    <li>🌀 <strong>Camouflée</strong> — +2 Discrétion en environnement spécifique (forêt, désert, etc.)</li>
+    <li>👁️ <strong>Vigilante</strong> — +1 Vigilance</li>
+    <li>🔧 <strong>Réparable</strong> — peut être réparée en 1h au lieu de devoir refaire</li>
+  </ul>
+</div>
+
+<!-- COMPOSANTS -->
+<div class="section">
+  <h2>4. Les composants — par origine</h2>
+  <p>Les composants sont la clé du craft. Plus le tier visé est haut, plus les composants sont rares (et viennent souvent de monstres puissants).</p>
+
+  <h3>🌳 Composants de base (achetables en cité)</h3>
+  <div class="comp-grid">
+    <div class="comp-card"><h4>Fer brut</h4><p>Lingot basique pour armes et armures</p><p class="source">📍 Mines, marchés</p></div>
+    <div class="comp-card"><h4>Bois solide</h4><p>Chêne, frêne, hêtre — manches et bois d'arc</p><p class="source">📍 Forêts, marchés</p></div>
+    <div class="comp-card"><h4>Cuir tanné</h4><p>Peau d'animaux ordinaires, traitée</p><p class="source">📍 Tanneurs, chasseurs</p></div>
+    <div class="comp-card"><h4>Tissus rembourrés</h4><p>Pour armures légères et vêtements</p><p class="source">📍 Tisserands</p></div>
+    <div class="comp-card"><h4>Charbon</h4><p>Pour les forges</p><p class="source">📍 Marchés, mines</p></div>
+  </div>
+
+  <h3>🐺 Composants Fin (loots de bêtes magiques mineures)</h3>
+  <div class="comp-grid">
+    <div class="comp-card"><h4>Peau de Loup Albâtre</h4><p>Immune au froid, cape d'isolation</p><p class="source">📍 Loup Albâtre (No'Ord)</p></div>
+    <div class="comp-card"><h4>Crocs glacés</h4><p>Pointes pour armes Glaciales</p><p class="source">📍 Loup Albâtre, Serpent de Givre</p></div>
+    <div class="comp-card"><h4>Cuir de Sanglier magique</h4><p>Renforcement d'armure légère</p><p class="source">📍 Sangliers magiques</p></div>
+    <div class="comp-card"><h4>Os runique</h4><p>Os de monstre touché par la magie</p><p class="source">📍 Hrimdraugr, squelettes</p></div>
+    <div class="comp-card"><h4>Bois givré</h4><p>Bois magique de la forêt boréale</p><p class="source">📍 Forêt Thrymgard</p></div>
+    <div class="comp-card"><h4>Sang concentré</h4><p>Composant alchimique de base</p><p class="source">📍 Stirges, vampires inférieurs</p></div>
+    <div class="comp-card"><h4>Glandes de toile</h4><p>Pour cordes magiques</p><p class="source">📍 Tisseuse de Givre, araignées géantes</p></div>
+    <div class="comp-card"><h4>Écailles vertes</h4><p>Résistance poison mineure</p><p class="source">📍 Wyvern, Yuan-Ti</p></div>
+  </div>
+
+  <h3>🐉 Composants Maître (loots de créatures majeures)</h3>
+  <div class="comp-grid">
+    <div class="comp-card"><h4>Peau runée</h4><p>Peut accueillir 1 script magique</p><p class="source">📍 Ours Runique, Narval Runé</p></div>
+    <div class="comp-card"><h4>Cuir de Bulette</h4><p>Armure presque indestructible</p><p class="source">📍 Bulette (squale terrestre)</p></div>
+    <div class="comp-card"><h4>Bois sacré</h4><p>Composant pour bâton de mage</p><p class="source">📍 Sylvanien, Dryade éveillée</p></div>
+    <div class="comp-card"><h4>Œil de cyclope</h4><p>Composant pour objet de divination</p><p class="source">📍 Cyclope</p></div>
+    <div class="comp-card"><h4>Cristal de Tempête</h4><p>Pour bâtons orageux</p><p class="source">📍 Esprit des Tempêtes</p></div>
+    <div class="comp-card"><h4>Cœur abyssal</h4><p>Composant interdit (corrompu)</p><p class="source">📍 Démons des abîmes</p></div>
+    <div class="comp-card"><h4>Plumes irisées</h4><p>Pour cape de lumière</p><p class="source">📍 Couatl, Harpe Boréale</p></div>
+    <div class="comp-card"><h4>Étincelle primordiale</h4><p>Cœur d'élémentaire de feu</p><p class="source">📍 Élémentaire de Feu</p></div>
+  </div>
+
+  <h3>👑 Composants Légendaires (loots de boss / artéfacts uniques)</h3>
+  <div class="comp-grid">
+    <div class="comp-card"><h4>Cœur runique d'Ours</h4><p>Pour armes Légendaires runiques</p><p class="source">📍 Ours Runique (parfait)</p></div>
+    <div class="comp-card"><h4>Corne du Narval Runé</h4><p>Support pour 8 symboles script</p><p class="source">📍 Narval Runé adulte</p></div>
+    <div class="comp-card"><h4>Crocs du Roi-Loup</h4><p>Arme Légendaire prédateur</p><p class="source">📍 Roi-Loup (boss Thrymgard)</p></div>
+    <div class="comp-card"><h4>Écaille de Léviathan</h4><p>Bouclier Mythique anti-froid</p><p class="source">📍 Léviathan de Neige</p></div>
+    <div class="comp-card"><h4>Carapace de Tarrasque</h4><p>Armure unique du monde</p><p class="source">📍 Tarrasque (event unique de campagne)</p></div>
+    <div class="comp-card"><h4>Écailles draconiques</h4><p>Armures Légendaires élémentaires</p><p class="source">📍 Dragon Adulte de l'élément</p></div>
+    <div class="comp-card"><h4>Fragment de Nœud</h4><p>Composant ultime magique</p><p class="source">📍 Nœud du Monde (extraction = quête)</p></div>
+    <div class="comp-card"><h4>Fragment d'écho</h4><p>Chaos pur cristallisé</p><p class="source">📍 Échos de la Rupture</p></div>
+  </div>
+</div>
+
+<!-- RECETTES -->
+<div class="section">
+  <h2>5. Recettes — exemples par catégorie</h2>
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterRecipes('all')">Toutes</button>
+    <button class="filter-btn" onclick="filterRecipes('arme')">Armes</button>
+    <button class="filter-btn" onclick="filterRecipes('armure')">Armures</button>
+    <button class="filter-btn" onclick="filterRecipes('potion')">Potions</button>
+    <button class="filter-btn" onclick="filterRecipes('talisman')">Talismans</button>
+    <button class="filter-btn" onclick="filterRecipes('outil')">Outils</button>
+    <button class="filter-btn" onclick="filterRecipes('script')">Objets script (Ingénieur)</button>
+  </div>
+  <div class="recipe-grid" id="recipes"></div>
+</div>
+
+<!-- LIENS AVEC AUTRES SYSTÈMES -->
+<div class="section">
+  <h2>6. Intégration avec les autres systèmes</h2>
+  <h3>🪄 Avec la Magie Script (Ingénieur)</h3>
+  <p>Un objet Légendaire peut accueillir <strong>1 script magique inscrit lors de sa fabrication</strong>. Seul un Ingénieur peut le faire. Le script ajoute un effet activable (ex : épée + script "Feu+Lame" = épée qui s'enflamme à la commande).</p>
+
+  <h3>🐺 Avec le Bestiaire</h3>
+  <p>Les loots des monstres listés dans le bestiaire sont la <strong>source principale des composants Fin/Maître/Légendaires</strong>. Garde-le sous la main pour savoir ce que tes joueurs peuvent récolter sur chaque créature.</p>
+
+  <h3>⚔ Avec la Bibliothèque des Armes</h3>
+  <p>Toutes les armes de la bibliothèque peuvent être craftées au tier voulu. Le craft <strong>ne crée pas d'arme nouvelle</strong>, il en améliore la qualité. Une arme Légendaire = arme de base + composants + script.</p>
+
+  <h3>🎯 Avec les Points d'Écho</h3>
+  <p>1 Écho peut être dépensé pour <strong>relancer un jet de craft raté</strong>. 2 Écho peuvent transformer un échec en réussite à l'arraché. Ne peut pas transformer une bourde (1 naturel).</p>
+</div>
+
+</div>
+
+<script>
+const RECIPES = [
+  // === ARMES ===
+  {
+    cat: 'arme', nom: 'Épée longue de fer',
+    tier: 'standard',
+    effect: "Arme moyenne standard. 1d8 + FOR dégâts.",
+    components: ["2 Fer brut", "1 Bois solide", "1 Cuir tanné (poignée)"],
+    stats: ["Jet d'Artisanat : 1d20 + DEX + Artisanat vs DD 12", "Temps : 2h", "Atelier : Forge"]
+  },
+  {
+    cat: 'arme', nom: 'Épée fine de noble',
+    tier: 'fin',
+    effect: "Lame plus tranchante. 1d8+1 + FOR dégâts, +1 prestige.",
+    components: ["3 Fer purifié (acier)", "1 Bois solide", "1 Cuir fin", "1 Composant Fin (ex : Crocs glacés ou Os runique)"],
+    stats: ["DD 15", "Temps : 4h", "Forge ou atelier de précision"]
+  },
+  {
+    cat: 'arme', nom: "Hache d'Ours Runique",
+    tier: 'maitre',
+    effect: "Hache moyenne avec propriété Tranchant. 1d8+1 + FOR dégâts, ignore 1 armure.",
+    components: ["3 Fer purifié", "1 Bois solide", "1 Peau runée d'Ours Runique", "2 Composants Fin"],
+    stats: ["DD 18", "Temps : 1 journée", "Forge runique (Nain ou maître)"]
+  },
+  {
+    cat: 'arme', nom: 'Lame du Roi-Loup',
+    tier: 'legendaire',
+    effect: "Épée légendaire +2 dégâts, propriétés Tranchant + Hémorragique, peut accueillir 1 script. 1d8+2 + FOR + saignement.",
+    components: ["Crocs du Roi-Loup", "1 Cœur runique d'Ours", "3 Composants Fin", "Acier purifié", "Script optionnel inscrit par Ingénieur"],
+    stats: ["DD 22", "Temps : 1 semaine", "Forge maître + Ingénieur (pour script)"]
+  },
+  {
+    cat: 'arme', nom: 'Arc long Sylvestre',
+    tier: 'fin',
+    effect: "Arc long elfique. 1d8+1 + DEX dégâts, portée 60m, +1 prestige.",
+    components: ["2 Bois givré", "1 Corde de tendon magique", "1 Cuir fin"],
+    stats: ["DD 15", "Temps : 4h", "Atelier sylvestre"]
+  },
+  {
+    cat: 'arme', nom: 'Arc de la Tisseuse',
+    tier: 'maitre',
+    effect: "Arc avec propriété Précise (portée doublée). 1d8+1 + DEX, portée 120m.",
+    components: ["2 Bois sacré (Sylvanien)", "1 Soie de Tisseuse de Givre", "1 Composant Fin"],
+    stats: ["DD 18", "Temps : 1 journée", "Atelier sylvestre maître"]
+  },
+
+  // === ARMURES ===
+  {
+    cat: 'armure', nom: 'Cuir clouté standard',
+    tier: 'standard',
+    effect: "Armure légère +1 Défense.",
+    components: ["3 Cuir tanné", "1 Fer brut (clous)", "Tissus rembourrés"],
+    stats: ["DD 12", "Temps : 3h", "Atelier de tanneur"]
+  },
+  {
+    cat: 'armure', nom: 'Cape du Loup Albâtre',
+    tier: 'fin',
+    effect: "Cape légère immune au froid (+1 résistance froid, +1 Discrétion en neige).",
+    components: ["1 Peau de Loup Albâtre", "2 Cuir fin", "Coutures runiques"],
+    stats: ["DD 15", "Temps : 4h", "Atelier sylvestre ou nordique"]
+  },
+  {
+    cat: 'armure', nom: 'Plate naine runique',
+    tier: 'maitre',
+    effect: "Armure lourde +3 Défense + Résiste un élément (au choix). Pénalité -2 Disc/Acro, -1 init.",
+    components: ["6 Fer purifié", "1 Cuir épais", "2 Os runiques", "1 Composant Fin (élément choisi)"],
+    stats: ["DD 18", "Temps : 1 journée", "Forge naine (Forgefeux idéal)"]
+  },
+  {
+    cat: 'armure', nom: 'Armure du Léviathan',
+    tier: 'legendaire',
+    effect: "Armure légendaire +3 Défense + 2 propriétés (Résiste froid + Solide), accueille 1 script.",
+    components: ["Écaille de Léviathan", "1 Cœur runique", "3 Composants Fin", "Bouclier intégré (option)"],
+    stats: ["DD 22", "Temps : 1 semaine", "Forge maîtresse + Ingénieur"]
+  },
+  {
+    cat: 'armure', nom: 'Tunique de Dryade',
+    tier: 'fin',
+    effect: "Tunique légère +1 Défense + Camouflage forêt (+2 Discrétion forêt).",
+    components: ["1 Sève d'éveil (Dryade)", "2 Tissus végétaux", "1 Cuir fin"],
+    stats: ["DD 15", "Temps : 4h", "Atelier sylvestre"]
+  },
+
+  // === POTIONS ===
+  {
+    cat: 'potion', nom: 'Potion de soin léger',
+    tier: 'standard',
+    effect: "Restaure 1d6 PV en buvant. Action principale.",
+    components: ["1 Herbe médicinale", "1 Sang concentré", "Eau pure"],
+    stats: ["DD 12 (Alchimie = Artisanat + INT)", "Temps : 30 min", "Atelier alchimique"]
+  },
+  {
+    cat: 'potion', nom: 'Potion de soin majeur',
+    tier: 'fin',
+    effect: "Restaure 3d6 PV. Goût amer.",
+    components: ["2 Herbes médicinales", "1 Sang ancien (vampire ou semblable)", "1 Composant Fin"],
+    stats: ["DD 15", "Temps : 1h", "Atelier alchimique"]
+  },
+  {
+    cat: 'potion', nom: 'Potion de Régénération (Troll)',
+    tier: 'maitre',
+    effect: "Régénère 1d6 PV/tour pendant 5 tours. Cumul avec autres soins.",
+    components: ["1 Cœur de Troll", "2 Herbes spécifiques", "1 Composant Fin"],
+    stats: ["DD 18", "Temps : 1 journée", "Atelier alchimique avancé"]
+  },
+  {
+    cat: 'potion', nom: 'Élixir de résistance au feu',
+    tier: 'fin',
+    effect: "Réduit les dégâts de feu de 50% pendant 1 scène.",
+    components: ["1 Sang de Salamandre géante", "1 Écaille rouge", "Composants alchimiques"],
+    stats: ["DD 15", "Temps : 1h", "Atelier alchimique"]
+  },
+  {
+    cat: 'potion', nom: 'Potion oracle',
+    tier: 'maitre',
+    effect: "Visions floues du futur immédiat (1h). MJ donne 1 indice utile.",
+    components: ["1 Venin visionnaire de Scorpion Runique", "Herbes psychotropes", "1 Composant Fin"],
+    stats: ["DD 18", "Temps : 1 journée", "Atelier alchimique + concentration"]
+  },
+  {
+    cat: 'potion', nom: 'Élixir de Bête Phasée',
+    tier: 'maitre',
+    effect: "L'utilisateur apparaît à 1m de sa vraie position : -3 aux attaques contre lui pendant 1 scène.",
+    components: ["1 Œil de Bête Phasée", "Herbes d'illusion", "2 Composants Fin"],
+    stats: ["DD 18", "Temps : 1 journée", "Atelier alchimique avancé"]
+  },
+
+  // === TALISMANS ===
+  {
+    cat: 'talisman', nom: 'Amulette de protection',
+    tier: 'standard',
+    effect: "+1 jet de Volonté contre la peur (porté autour du cou).",
+    components: ["1 Cuir tanné", "1 Pierre semi-précieuse", "Symbole sacré gravé"],
+    stats: ["DD 12", "Temps : 2h", "Atelier de bijouterie"]
+  },
+  {
+    cat: 'talisman', nom: 'Œil de Couatl',
+    tier: 'maitre',
+    effect: "Détecte le mensonge automatiquement quand porté. Brille légèrement face au mal.",
+    components: ["1 Plume de Couatl", "1 Cristal pur", "1 Composant Fin"],
+    stats: ["DD 18", "Temps : 1 journée", "Atelier de bijouterie maître"]
+  },
+  {
+    cat: 'talisman', nom: 'Sceau du Veilleur',
+    tier: 'maitre',
+    effect: "Permet de communiquer brièvement avec un esprit (1×/jour). Lien aux Veilleurs.",
+    components: ["1 Argent pur", "1 Plume sacrée d'Aïruka", "Bénédiction d'un Veilleur"],
+    stats: ["DD 18", "Temps : 1 journée", "Sanctuaire des Veilleurs nécessaire"]
+  },
+  {
+    cat: 'talisman', nom: 'Bague des Promesses',
+    tier: 'legendaire',
+    effect: "Quand le porteur fait une Promesse formelle, le gain d'Écho est +1 (3 si tenue, -3 si trahie).",
+    components: ["1 Anneau d'or pur", "1 Cristal de Nœud", "Gravure runique de Veilleur"],
+    stats: ["DD 22", "Temps : 1 semaine", "Forge maîtresse + bénédiction Veilleur"]
+  },
+
+  // === OUTILS ===
+  {
+    cat: 'outil', nom: "Kit de crochetage fin",
+    tier: 'fin',
+    effect: "+1 jet de Larcins lors du crochetage. Réutilisable.",
+    components: ["1 Acier", "Petits outils précis", "1 Cuir fin"],
+    stats: ["DD 15", "Temps : 4h", "Atelier de précision"]
+  },
+  {
+    cat: 'outil', nom: "Lanterne de soleil",
+    tier: 'maitre',
+    effect: "Lanterne magique qui produit lumière solaire. Effective vs vampires et morts-vivants.",
+    components: ["1 Cristal de tempête", "1 Œil de Will-o-Wisp", "1 Acier ouvragé"],
+    stats: ["DD 18", "Temps : 1 journée", "Forge + alchimie"]
+  },
+  {
+    cat: 'outil', nom: "Corde de Tisseuse",
+    tier: 'fin',
+    effect: "Corde magique 30m, supporte un éléphant, résistante au feu.",
+    components: ["1 Glandes de toile (Tisseuse)", "2 Fibres végétales", "Soin alchimique"],
+    stats: ["DD 15", "Temps : 4h", "Atelier sylvestre"]
+  },
+  {
+    cat: 'outil', nom: "OMI (cristal jumeau)",
+    tier: 'legendaire',
+    effect: "Communication instantanée entre 2 OMI jumeaux, illimitée. Distance ne compte pas.",
+    components: ["2 Cristaux purs (taillés en jumeaux)", "1 Fragment de Nœud", "Script 'Lien' (Sanluth ekron)", "1 Composant Maître"],
+    stats: ["DD 22", "Temps : 1 semaine", "Maître Ingénieur uniquement"]
+  },
+
+  // === OBJETS SCRIPT (INGÉNIEUR) ===
+  {
+    cat: 'script', nom: 'Brassard du Vent',
+    tier: 'fin',
+    effect: "Brassard avec script Vent + Propulsion. Repousse les flèches ou propulse les attaques. 10 charges.",
+    components: ["1 Cuir épais", "1 Plume irisée", "Inscription script (3 Éther investis)"],
+    stats: ["DD 15 (Artisanat + INT)", "Temps : 4h", "Scriptorium d'Ingénieur"]
+  },
+  {
+    cat: 'script', nom: 'Bâton-tube projectile',
+    tier: 'standard',
+    effect: "Tube en bois avec script Vent. Tire une pierre à grande vitesse (1d6+DEX dégâts, 5 charges).",
+    components: ["1 Bois solide", "Inscription script Vent (1 Éther investi)"],
+    stats: ["DD 12", "Temps : 2h", "Scriptorium d'Ingénieur"]
+  },
+  {
+    cat: 'script', nom: 'Dague-Pilier de Damaïr',
+    tier: 'maitre',
+    effect: "Dague avec script Terre + Pilier inscrit. Sur activation : un pilier surgit du sol (propulsion ou abri). 10 charges.",
+    components: ["1 Acier purifié", "1 Bois solide", "1 Os runique", "Inscription script (4 Éther investis)"],
+    stats: ["DD 18", "Temps : 1 journée", "Scriptorium d'Ingénieur"]
+  },
+  {
+    cat: 'script', nom: 'Bouclier du Cristal',
+    tier: 'legendaire',
+    effect: "Bouclier +3 Défense avec script de Réflexion magique : 1×/scène, renvoie 50% d'un sort à son lanceur.",
+    components: ["1 Cristal pur", "1 Plate de fer runique", "1 Composant Maître", "Script Légendaire de Réflexion (8 Éther investis)"],
+    stats: ["DD 22", "Temps : 1 semaine", "Maître Ingénieur uniquement"]
+  }
+];
+
+function renderRecipes(filter = 'all') {
+  const grid = document.getElementById('recipes');
+  grid.innerHTML = '';
+  const filtered = filter === 'all' ? RECIPES : RECIPES.filter(r => r.cat === filter);
+  filtered.forEach(r => {
+    const card = document.createElement('div');
+    card.className = 'recipe-card';
+    const catLabel = {
+      'arme': 'Arme', 'armure': 'Armure', 'potion': 'Potion',
+      'talisman': 'Talisman', 'outil': 'Outil', 'script': 'Objet script'
+    }[r.cat];
+    card.innerHTML = `
+      <div class="recipe-cat">${catLabel}</div>
+      <h3>${r.nom}</h3>
+      <span class="tier-badge ${r.tier}">${r.tier.charAt(0).toUpperCase() + r.tier.slice(1)}</span>
+      <div class="effect">${r.effect}</div>
+      <h4>Composants requis</h4>
+      <ul class="components">${r.components.map(c => `<li>${c}</li>`).join('')}</ul>
+      <h4>Spécifications</h4>
+      <ul class="stats">${r.stats.map(s => `<li>${s}</li>`).join('')}</ul>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function filterRecipes(cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderRecipes(cat);
+}
+
+renderRecipes();
+</script>
+</body>
+</html>

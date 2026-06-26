@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panthéons d'Armonia</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+
+  --ruth: #a83a40;
+  --feiy: #4a8a4a;
+  --handu: #5a6a9a;
+  --keiy: #3a2a5a;
+  --jeinia: #d4a040;
+  --airuk: #7a6090;
+
+  --nord: #4a7090;
+  --light: #d4a040;
+  --tribu: #3a7a3c;
+  --merc: #6a4a3a;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 24px;
+  background: linear-gradient(135deg, #fffaf0 0%, #f5e8d0 50%, #fffaf0 100%);
+  border: 3px double var(--primary);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 32px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--accent);
+  margin-top: 8px;
+  font-size: 16px;
+}
+header.title-bar .quote {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 12px;
+  font-style: italic;
+}
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.intro-box strong { color: var(--primary); }
+.section-title {
+  font-size: 24px;
+  color: var(--primary);
+  margin: 32px 0 14px 0;
+  padding-bottom: 8px;
+  border-bottom: 3px double var(--accent);
+  letter-spacing: 2px;
+}
+.subsection-title {
+  font-size: 18px;
+  color: var(--accent);
+  margin: 18px 0 10px 0;
+  letter-spacing: 1px;
+}
+
+.dieu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 14px;
+}
+.dieu-card {
+  background: var(--paper);
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+  position: relative;
+}
+.dieu-card.ruth { border-color: var(--ruth); }
+.dieu-card.feiy { border-color: var(--feiy); }
+.dieu-card.handu { border-color: var(--handu); }
+.dieu-card.keiy { border-color: var(--keiy); }
+.dieu-card.jeinia { border-color: var(--jeinia); }
+.dieu-card.airuk { border-color: var(--airuk); }
+.dieu-card.nord { border-color: var(--nord); }
+.dieu-card.mineur { border-color: var(--muted); border-style: dashed; }
+.dieu-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--border);
+}
+.dieu-icon {
+  font-size: 36px;
+  width: 50px;
+  text-align: center;
+}
+.dieu-name { flex: 1; }
+.dieu-name h2 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+.dieu-card.ruth h2 { color: var(--ruth); }
+.dieu-card.feiy h2 { color: var(--feiy); }
+.dieu-card.handu h2 { color: var(--handu); }
+.dieu-card.keiy h2 { color: var(--keiy); }
+.dieu-card.jeinia h2 { color: var(--jeinia); }
+.dieu-card.airuk h2 { color: var(--airuk); }
+.dieu-card.nord h2 { color: var(--nord); }
+.dieu-card.mineur h2 { color: var(--muted); }
+.dieu-name .domaine {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 2px;
+}
+.dieu-card .info { font-size: 13px; line-height: 1.55; }
+.dieu-card .info p { margin: 6px 0; }
+.dieu-card .info strong { color: var(--text); }
+.dieu-card .vertu-publique {
+  background: rgba(168, 120, 48, 0.1);
+  padding: 8px 12px;
+  border-radius: 5px;
+  margin: 10px 0;
+  font-size: 12px;
+  font-style: italic;
+}
+.dieu-card .tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--accent);
+  color: white;
+  border-radius: 10px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-right: 4px;
+  margin-top: 4px;
+}
+
+.mapping-table {
+  width: 100%;
+  background: var(--paper);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 12px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.mapping-table th, .mapping-table td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.mapping-table th {
+  background: var(--accent);
+  color: white;
+  letter-spacing: 1px;
+  font-size: 11px;
+}
+.mapping-table tr:hover { background: rgba(168, 120, 48, 0.05); }
+.mapping-table tr:last-child td { border-bottom: none; }
+
+.culte-box {
+  background: var(--paper);
+  border-left: 4px solid;
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin: 12px 0;
+}
+.culte-box.spriius { border-left-color: var(--light); background: linear-gradient(135deg, #fffaf0 0%, #fff5d0 100%); }
+.culte-box.tribu { border-left-color: var(--tribu); background: linear-gradient(135deg, #fffaf0 0%, #e0f0d8 100%); }
+.culte-box h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+}
+.culte-box.spriius h3 { color: #a87830; }
+.culte-box.tribu h3 { color: var(--tribu); }
+.culte-box p { font-size: 13px; line-height: 1.55; margin: 6px 0; }
+
+.status-box {
+  background: linear-gradient(135deg, #fffaf0 0%, #f0e6cf 100%);
+  border: 2px solid var(--primary);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 18px 0;
+}
+.status-box h2 {
+  margin: 0 0 10px 0;
+  color: var(--primary);
+  font-size: 20px;
+}
+.status-box p { font-size: 14px; line-height: 1.6; margin: 6px 0; }
+
+.hooks-box {
+  background: var(--paper);
+  border-left: 4px solid var(--accent);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin: 16px 0;
+}
+.hooks-box p {
+  margin: 8px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.nav-back {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 13px;
+}
+.nav-back:hover { text-decoration: underline; }
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<a href="index.html" class="nav-back">← Retour au sommaire</a>
+
+<header class="title-bar">
+  <h1>⛧ PANTHÉONS D'ARMONIA ⛧</h1>
+  <div class="subtitle">Divinités majeures, mineures, et nordiques</div>
+  <div class="quote">« Les dieux sont revenus avec la magie — mais affaiblis. Leurs voix sont rêves, leurs miracles sont rares. »</div>
+</header>
+
+<div class="intro-box">
+  <p><strong>État des divinités en 1040 AR</strong> : Les dieux et déesses d'Armonia ont été <strong>affaiblis</strong> par la Rupture (1000 ans sans magie, foi humaine diminuée). Avec le Retour de la magie il y a 40 ans, ils sont revenus — mais leur puissance d'antan n'est pas restaurée. Leurs apparitions sont <em>rarissimes</em>. Leurs prêtres reçoivent des visions confuses. Leur lutte silencieuse pour regagner influence et dévotion est l'un des grands jeux invisibles du monde.</p>
+</div>
+
+<h2 class="section-title">🌟 Les 5 Divinités Majeures</h2>
+
+<p style="font-size:14px; line-height:1.6;">Cinq dieux et déesses majeurs régissent les forces fondamentales du monde. Sur Sol'Ambaïre, ils sont représentés publiquement par les <strong>5 Célestes (Deïn ilt)</strong> qui incarnent leurs <em>vertus</em> visibles — mais l'attribut profond de chaque divinité est masqué derrière la vertu. Ailleurs, ils sont vénérés directement.</p>
+
+<div class="dieu-grid">
+
+  <div class="dieu-card ruth">
+    <div class="dieu-header">
+      <div class="dieu-icon">⚔️</div>
+      <div class="dieu-name">
+        <h2>Ruth'a</h2>
+        <div class="domaine">Dieu Guerrier · Force</div>
+      </div>
+    </div>
+    <div class="vertu-publique">Vertu publique (via Hyal-Roon) : <strong>Honneur stoïque</strong></div>
+    <div class="info">
+      <p><strong>Attribut caché</strong> : la Force brute, la guerre, la victoire chèrement payée.</p>
+      <p>Vénéré par les guerriers de tous les royaumes humains. Sanctuaires bâtis sur les anciens champs de bataille. Ses prêtres portent toujours une arme — symbole et réalité.</p>
+      <p>Lien avec Roon-Vyr (Sol'Ambaïre) et certains cultes secondaires nordiques.</p>
+      <p><span class="tag">Guerre</span><span class="tag">Force</span><span class="tag">Honneur</span></p>
+    </div>
+  </div>
+
+  <div class="dieu-card feiy">
+    <div class="dieu-header">
+      <div class="dieu-icon">🌱</div>
+      <div class="dieu-name">
+        <h2>Féiy</h2>
+        <div class="domaine">Déesse du Renouveau</div>
+      </div>
+    </div>
+    <div class="vertu-publique">Vertu publique (via Mae-Lor) : <strong>Abondance</strong></div>
+    <div class="info">
+      <p><strong>Attribut caché</strong> : le Renouveau — cycles, naissances, retour des saisons, secondes chances.</p>
+      <p>Vénérée par les paysans, sages-femmes, jardiniers, druides. Sanctuaires fleuris au printemps. Ses prêtres marquent leur front d'une feuille au début de chaque cycle.</p>
+      <p>Lien avec Maelyr (Sol'Ambaïre), la Vallée d'Aether (Lumini), la Tribu de la Forêt.</p>
+      <p><span class="tag">Renouveau</span><span class="tag">Cycles</span><span class="tag">Naissances</span></p>
+    </div>
+  </div>
+
+  <div class="dieu-card handu">
+    <div class="dieu-header">
+      <div class="dieu-icon">📚</div>
+      <div class="dieu-name">
+        <h2>Handu'zo</h2>
+        <div class="domaine">Dieu de la Sagesse</div>
+      </div>
+    </div>
+    <div class="vertu-publique">Vertu publique (via Sîr-Vhel) : <strong>Sagesse / Érudition</strong></div>
+    <div class="info">
+      <p><strong>Attribut caché</strong> : la Sagesse profonde — la divinité la plus « honnête » dans son rapport entre vertu publique et attribut. Mémoire, savoir, patience.</p>
+      <p>Vénéré par les érudits, archivistes, juges, Veilleurs (officieusement). Sanctuaires-bibliothèques. Ses prêtres tiennent un journal quotidien — la perte du journal est un péché.</p>
+      <p>Lien avec Velhar (Sol'Ambaïre) et l'université de Velhar.</p>
+      <p><span class="tag">Sagesse</span><span class="tag">Mémoire</span><span class="tag">Patience</span></p>
+    </div>
+  </div>
+
+  <div class="dieu-card keiy">
+    <div class="dieu-header">
+      <div class="dieu-icon">🌙</div>
+      <div class="dieu-name">
+        <h2>Kéiy'ka</h2>
+        <div class="domaine">Déesse de la Nuit</div>
+      </div>
+    </div>
+    <div class="vertu-publique">Vertu publique (via Ay-Senna) : <strong>Verticalité / Contemplation</strong></div>
+    <div class="info">
+      <p><strong>Attribut caché</strong> : la Nuit étoilée, les secrets, les passages cachés, la part d'ombre nécessaire à la vie.</p>
+      <p>Vénérée par les astronomes, espions, conspirateurs, mystiques. Ses prêtres pratiquent le silence rituel et marchent pieds nus la nuit. Les Tengu de Tsu-Raji la honorent en secret comme « la déesse au-dessus du Vent ».</p>
+      <p>Lien avec Tsu-Raji (Sol'Ambaïre), la Maison Aurale (Armonia).</p>
+      <p><span class="tag">Nuit</span><span class="tag">Secrets</span><span class="tag">Étoiles</span></p>
+    </div>
+  </div>
+
+  <div class="dieu-card jeinia">
+    <div class="dieu-header">
+      <div class="dieu-icon">☀️</div>
+      <div class="dieu-name">
+        <h2>Jei'nia</h2>
+        <div class="domaine">Déesse du Soleil</div>
+      </div>
+    </div>
+    <div class="vertu-publique">Vertu publique (via Kor-Drun) : <strong>Ferveur / Brasier</strong></div>
+    <div class="info">
+      <p><strong>Attribut caché</strong> : le Soleil pur, la lumière qui révèle, la chaleur qui réchauffe ou brûle selon l'intention.</p>
+      <p>Vénérée largement. Ses <strong>esprits de la lumière</strong> sont des fragments-serviteurs qui voyagent dans le monde — les <strong>Spriius Luminatis</strong> sont ses prêtres officiels. Sanctuaires orientés est-ouest. Ses prêtres portent des robes blanches ou dorées.</p>
+      <p>Lien avec Drun-Kar (Sol'Ambaïre), la Côte d'Or (Lumini), et les sociétés humaines en général.</p>
+      <p><span class="tag">Soleil</span><span class="tag">Lumière</span><span class="tag">Vérité</span></p>
+    </div>
+  </div>
+
+  <div class="dieu-card airuk">
+    <div class="dieu-header">
+      <div class="dieu-icon">🜂</div>
+      <div class="dieu-name">
+        <h2>Aïruk</h2>
+        <div class="domaine">Le Vent Vagabond · 6e esprit</div>
+      </div>
+    </div>
+    <div class="vertu-publique">Né du conflit des 5 Célestes — pas d'avatar</div>
+    <div class="info">
+      <p>Esprit <strong>né du conflit</strong> des Cinq Célestes. Pas de domaine, pas de royaume, pas de prêtres officiels.</p>
+      <p>Espion divin, conscience collective des Cinq, éclat de rire qui révèle. Ancêtre des Tengu, honoré secrètement à Tsu-Raji par-delà la vénération officielle d'Ay-Senna.</p>
+      <p>Se manifeste rarement, sous forme d'oiseau ou de vagabond, au bon moment.</p>
+      <p><span class="tag">Tengu</span><span class="tag">Espion</span><span class="tag">Sixième</span></p>
+    </div>
+  </div>
+
+</div>
+
+<h3 class="subsection-title">🎭 Mapping Célestes ↔ Divinités Majeures</h3>
+
+<table class="mapping-table">
+  <thead>
+    <tr><th>Céleste (vertu publique)</th><th>Divinité cachée</th><th>Domaine réel</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Hyal-Roon</strong> · Honneur stoïque</td><td><strong>Ruth'a</strong></td><td>Force brute, guerre</td></tr>
+    <tr><td><strong>Sîr-Vhel</strong> · Sagesse</td><td><strong>Handu'zo</strong></td><td>Sagesse profonde, mémoire</td></tr>
+    <tr><td><strong>Mae-Lor</strong> · Abondance</td><td><strong>Féiy</strong></td><td>Renouveau, cycles, fertilité</td></tr>
+    <tr><td><strong>Kor-Drun</strong> · Ferveur (brasier)</td><td><strong>Jei'nia</strong></td><td>Soleil, lumière révélatrice</td></tr>
+    <tr><td><strong>Ay-Senna</strong> · Contemplation (zénith)</td><td><strong>Kéiy'ka</strong></td><td>Nuit étoilée, secrets, passages</td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-title">✨ Les 5 Divinités Mineures</h2>
+
+<p style="font-size:14px; line-height:1.6;">Vénérées localement, plus spécialisées, plus accessibles. Leurs prêtres sont souvent des laïcs — un artisan, un marin, un voyageur. Pas de grands temples, mais des chapelles ou des autels portatifs.</p>
+
+<div class="dieu-grid">
+
+  <div class="dieu-card mineur">
+    <div class="dieu-header">
+      <div class="dieu-icon">🌊</div>
+      <div class="dieu-name">
+        <h2>Kael'mar</h2>
+        <div class="domaine">Mer, marées, marins</div>
+      </div>
+    </div>
+    <div class="info">
+      <p>Vénérée par les marins luministes, pêcheurs Daluvio, navigateurs jindos. On lui jette une pièce d'argent avant chaque grand voyage.</p>
+      <p>Sanctuaires : criques côtières, vieux phares. Prêtres : capitaines à la retraite.</p>
+    </div>
+  </div>
+
+  <div class="dieu-card mineur">
+    <div class="dieu-header">
+      <div class="dieu-icon">⚖️</div>
+      <div class="dieu-name">
+        <h2>Tam'oth</h2>
+        <div class="domaine">Commerce, contrats, échanges justes</div>
+      </div>
+    </div>
+    <div class="info">
+      <p>Vénéré par la Guilde des Marchands, banquiers de Me'yn Prus, négociants Karambol. Sa balance est gravée sur tous les contrats officiels.</p>
+      <p>Sanctuaires : salles d'enchères, halles couvertes. Prêtres : ex-marchands honorés.</p>
+    </div>
+  </div>
+
+  <div class="dieu-card mineur">
+    <div class="dieu-header">
+      <div class="dieu-icon">💀</div>
+      <div class="dieu-name">
+        <h2>Drei'val</h2>
+        <div class="domaine">Morts, passages, secrets emportés</div>
+      </div>
+    </div>
+    <div class="info">
+      <p>Vénéré par les prêtres funéraires, la Maison Vœnir d'Armonia, certains Veilleurs.</p>
+      <p>Sanctuaires : tombes anciennes, catacombes. Prêtres : marqués au front d'une croix noire.</p>
+    </div>
+  </div>
+
+  <div class="dieu-card mineur">
+    <div class="dieu-header">
+      <div class="dieu-icon">🔨</div>
+      <div class="dieu-name">
+        <h2>Bren'kar</h2>
+        <div class="domaine">Forge, métaux runiques, marteaux</div>
+      </div>
+    </div>
+    <div class="info">
+      <p>Vénéré par les Nains de Fer In Gal, les Forgefeux, les forgerons-mages, certains Ingénieurs.</p>
+      <p>Sanctuaires : forges anciennes, ateliers nobles. Prêtres : forgerons retraités avec un marteau gravé.</p>
+    </div>
+  </div>
+
+  <div class="dieu-card mineur">
+    <div class="dieu-header">
+      <div class="dieu-icon">🐎</div>
+      <div class="dieu-name">
+        <h2>Vey'lon</h2>
+        <div class="domaine">Voyageurs, routes, chemins inattendus</div>
+      </div>
+    </div>
+    <div class="info">
+      <p>Vénéré par les caravaniers Karambol, pèlerins, aventuriers itinérants. On grave son sigle (un X dans un cercle) aux carrefours.</p>
+      <p>Sanctuaires : auberges de routes, anciens relais. Prêtres : voyageurs réformés.</p>
+    </div>
+  </div>
+
+</div>
+
+<h2 class="section-title">❄️ Panthéon de No'Ord</h2>
+
+<p style="font-size:14px; line-height:1.6;">Avant la Rupture, les <strong>Géants du Givre</strong> régnaient sur No'Ord. La Rupture les a mis en sommeil — leur souffle devint le vent du nord, leur mémoire devint les runes. Le panthéon humain nordique honore à la fois les <strong>dieux vivants</strong> et les <strong>Géants ancestraux</strong> dont l'écho persiste.</p>
+
+<div class="dieu-grid">
+
+  <div class="dieu-card nord">
+    <div class="dieu-header">
+      <div class="dieu-icon">🗻</div>
+      <div class="dieu-name">
+        <h2>Olh'mur le Dormant</h2>
+        <div class="domaine">Géant primordial, père des Géants du Givre</div>
+      </div>
+    </div>
+    <div class="info">
+      <p>Endormi sous <strong>Ællskarn</strong>. Son souffle est le vent du Nord. Vénération de respect ancestral — pas de prières directes, juste des offrandes silencieuses aux montagnes.</p>
+      <p>« Quand le vent gémit, Olh'mur rêve. »</p>
+    </div>
+  </div>
+
+  <div class="dieu-card nord">
+    <div class="dieu-header">
+      <div class="dieu-icon">👁️</div>
+      <div class="dieu-name">
+        <h2>Sed'ohr le Borgne</h2>
+        <div class="domaine">Maître des Runes, Père des Veillées</div>
+      </div>
+    </div>
+    <div class="info">
+      <p>A sacrifié un œil pour graver les premières runes nordiques. Patron des shamans, skalds, écrivains de runes, morts au combat.</p>
+      <p>Ses prêtres se bandent un œil en signe d'honneur — certains se le crèvent vraiment.</p>
+    </div>
+  </div>
+
+  <div class="dieu-card nord">
+    <div class="dieu-header">
+      <div class="dieu-icon">⚡</div>
+      <div class="dieu-name">
+        <h2>Kha'durn le Marteleur</h2>
+        <div class="domaine">Combat juste, tonnerre</div>
+      </div>
+    </div>
+    <div class="info">
+      <p>Dieu le plus populaire de No'Ord. Chaque guerrier le prie avant un combat. Patron des berserkers, des duels rituels, des orages de combat.</p>
+      <p>Sanctuaires : pics frappés par la foudre. Prêtres : forgerons-prêcheurs marqués de cicatrices d'éclair.</p>
+    </div>
+  </div>
+
+  <div class="dieu-card nord">
+    <div class="dieu-header">
+      <div class="dieu-icon">🔥</div>
+      <div class="dieu-name">
+        <h2>Mei'thra du Foyer</h2>
+        <div class="domaine">Renouveau, foyer, naissances</div>
+      </div>
+    </div>
+    <div class="info">
+      <p>Protège les femmes et nouveau-nés du froid mortel. Patron des sages-femmes, feux d'âtre, foyers familiaux.</p>
+      <p>Lien indirect avec Féiy (du panthéon majeur) — certains érudits pensent que Mei'thra est un aspect nordique de Féiy.</p>
+    </div>
+  </div>
+
+  <div class="dieu-card nord">
+    <div class="dieu-header">
+      <div class="dieu-icon">⚖️</div>
+      <div class="dieu-name">
+        <h2>Khel'tar le Manchot</h2>
+        <div class="domaine">Justice nordique</div>
+      </div>
+    </div>
+    <div class="info">
+      <p>A perdu une main en scellant un démon des glaces. Patron des Jarls qui tranchent. Honneur, parole donnée, serments inviolables.</p>
+      <p>Les Jarls jurent sur son nom — rompre le serment est socialement et magiquement dangereux.</p>
+    </div>
+  </div>
+
+  <div class="dieu-card nord">
+    <div class="dieu-header">
+      <div class="dieu-icon">🦊</div>
+      <div class="dieu-name">
+        <h2>Slai'kha le Vent Trompeur</h2>
+        <div class="domaine">Ruse, changement</div>
+      </div>
+    </div>
+    <div class="info">
+      <p>Pas vénéré dans les temples publics, mais respecté par superstition. Patron secret des bandits, espions, Mi-loups rusés, voleurs honorables.</p>
+      <p>« On ne nomme pas Slai'kha à voix haute — on le siffle. »</p>
+    </div>
+  </div>
+
+</div>
+
+<h3 class="subsection-title">🐺 2 Entités mythiques nordiques</h3>
+
+<div class="dieu-grid">
+
+  <div class="dieu-card nord">
+    <div class="dieu-header">
+      <div class="dieu-icon">🐺</div>
+      <div class="dieu-name">
+        <h2>Ur'mhin le Loup-Roi</h2>
+        <div class="domaine">Ancêtre légendaire des Mi-loups</div>
+      </div>
+    </div>
+    <div class="info">
+      <p>Endormi quelque part dans <strong>Thrymgard</strong>. S'il s'éveille pleinement, fin du monde nordique annoncée.</p>
+      <p>Certains Mi-loups les plus radicaux travaillent à son réveil. Slai'kha est dit l'avoir épargné par caprice.</p>
+    </div>
+  </div>
+
+  <div class="dieu-card nord">
+    <div class="dieu-header">
+      <div class="dieu-icon">🐍</div>
+      <div class="dieu-name">
+        <h2>Vey'sshen le Serpent</h2>
+        <div class="domaine">Serpent des Profondeurs</div>
+      </div>
+    </div>
+    <div class="info">
+      <p>Serpent colossal endormi sous les <strong>Fjords de Brumelune</strong>. Lié au <strong>Nœud des Profondeurs</strong>.</p>
+      <p>Quand les marées de Brumelune sont anormales, les vieux marins disent : « Vey'sshen tourne dans son sommeil. »</p>
+    </div>
+  </div>
+
+</div>
+
+<h2 class="section-title">🕯️ Les 3 grands cultes</h2>
+
+<div class="culte-box spriius">
+  <h3>🌟 Spriius Luminatis — Les Prêtres de la Lumière</h3>
+  <p><strong>Culte officiel de Jei'nia, Déesse du Soleil.</strong> Ils vénèrent ses <em>esprits de la lumière</em> — fragments-serviteurs qui voyagent dans le monde pour défendre la justice, la vérité, et les opprimés.</p>
+  <p><strong>Doctrine</strong> : la lumière intérieure est une réalité, pas une métaphore. La répandre dans les ténèbres du monde est un devoir.</p>
+  <p><strong>Tenue</strong> : robes blanches ou dorées, fil d'or au poignet. Les plus dévots portent un soleil tatoué.</p>
+  <p><strong>Activités</strong> : libérations d'esclaves, écritures publiques, défense des accusés sans avocat, soins gratuits dans les quartiers pauvres.</p>
+</div>
+
+<div class="culte-box tribu">
+  <h3>🌳 Tribu de la Forêt — Culte de la Nature</h3>
+  <p>Culte essentiellement <strong>luministe</strong>, concentré dans la Forêt Julia et ses environs. Vénère <strong>Féiy</strong> (renouveau) mais aussi des esprits sylvestres mineurs.</p>
+  <p><strong>Doctrine</strong> : tolérance, compassion, coexistence harmonieuse avec l'environnement. Tout être vivant est une voix de Féiy.</p>
+  <p><strong>Tenue</strong> : vêtements en lin et écorce. Pas de bijoux. Marques végétales temporaires sur la peau.</p>
+  <p><strong>Activités</strong> : protection des écosystèmes, médiation entre humains et elfes (héritage de Julia), opposition aux projets de routes à travers la Forêt.</p>
+</div>
+
+<h2 class="section-title">📜 Statut des divinités en 1040 AR</h2>
+
+<div class="status-box">
+  <h2>Une remontée lente</h2>
+  <p>Avant la Rupture, les divinités étaient puissantes — interventions directes, oracles précis, miracles fréquents. Après la Rupture, elles ont <strong>disparu</strong> en même temps que la magie. Pendant 1000 ans, les humains ont continué les rituels par tradition — sans réponse.</p>
+  <p>Depuis le Retour de la magie (an 1000), les divinités sont <strong>revenues</strong> — mais affaiblies. Leurs apparitions physiques sont <em>rarissimes</em>. Leurs miracles sont rares et de petite échelle. Elles communiquent surtout par <strong>visions confuses</strong> données à leurs prêtres.</p>
+  <p>La <strong>croyance humaine</strong>, elle aussi, est restée diminuée. Beaucoup de paysans honorent les dieux par habitude sans vraiment y croire. Cette double faiblesse — magique et dévotionnelle — explique pourquoi les divinités luttent pour regagner leur ancienne influence.</p>
+  <p>Hook narratif puissant : <em>les divinités cherchent activement des prêtres dévots. Recevoir un signe d'un dieu en 1040 AR est extrêmement rare — et lourd de conséquences.</em></p>
+</div>
+
+<h2 class="section-title">🎲 Hooks de campagne</h2>
+
+<div class="hooks-box">
+  <p>• Un PJ reçoit une vision claire de <strong>Handu'zo</strong> — premier signe divin clair depuis le Retour. Quelle est sa mission ?</p>
+  <p>• <strong>Mei'thra</strong> et <strong>Féiy</strong> sont-elles vraiment deux divinités, ou la même sous deux noms ? Un Veilleur veut le savoir.</p>
+  <p>• Un culte clandestin honore <strong>Aïruk</strong> à Tsu-Raji. Les autorités d'Ay-Senna l'apprennent.</p>
+  <p>• Un <strong>esprit de la lumière de Jei'nia</strong> apparaît à un PJ, lui demandant un service — mais comment vérifier qu'il est authentique et non une illusion ?</p>
+  <p>• Un Mi-loup prêche le réveil d'<strong>Ur'mhin</strong>. Doit-il être stoppé ?</p>
+  <p>• Les marées de Brumelune sont anormales — <strong>Vey'sshen tourne</strong>. Une expédition pour comprendre.</p>
+  <p>• Un prêtre de <strong>Drei'val</strong> demande aux PJ d'enterrer correctement un noble corrompu — quelle vérité cherche-t-il à étouffer (ou à révéler) ?</p>
+  <p>• Un convoi Karambol jure avoir vu <strong>Vey'lon</strong> en personne sur la route. Délire collectif ou apparition ?</p>
+  <p>• Les <strong>Spriius Luminatis</strong> recrutent dans l'orphelinat d'Etelin. L'un des PJ est intéressé.</p>
+
+</div>
+
+<footer>
+  Panthéons d'Armonia · 5 majeures + 5 mineures + Nord + cultes · Codex · 2026
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Cité d'Armonia — Conseil & Roses</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+  --rose: #c4324a;
+
+  --vong: #6a3a4a;
+  --dalu: #2a6a8a;
+  --kara: #8a6a30;
+  --voen: #3a3a4a;
+  --aura: #7a6a90;
+  --gara: #b04050;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 24px;
+  background: linear-gradient(135deg, #fffaf0 0%, #f5ebd6 100%);
+  border: 3px double var(--primary);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 32px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--accent);
+  margin-top: 8px;
+  font-size: 16px;
+}
+header.title-bar .quote {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 12px;
+  font-style: italic;
+}
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.intro-box strong { color: var(--primary); }
+.section-title {
+  font-size: 22px;
+  color: var(--primary);
+  margin: 28px 0 14px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+  letter-spacing: 1px;
+}
+
+.families-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 16px;
+}
+.family-card {
+  background: var(--paper);
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+}
+.family-card.vong { border-color: var(--vong); }
+.family-card.dalu { border-color: var(--dalu); }
+.family-card.kara { border-color: var(--kara); }
+.family-card.voen { border-color: var(--voen); }
+.family-card.aura { border-color: var(--aura); }
+.family-card.gara { border-color: var(--gara); }
+.family-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--border);
+}
+.family-icon {
+  font-size: 36px;
+  width: 50px;
+  text-align: center;
+}
+.family-name { flex: 1; }
+.family-name h2 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+.family-card.vong h2 { color: var(--vong); }
+.family-card.dalu h2 { color: var(--dalu); }
+.family-card.kara h2 { color: var(--kara); }
+.family-card.voen h2 { color: var(--voen); }
+.family-card.aura h2 { color: var(--aura); }
+.family-card.gara h2 { color: var(--gara); }
+.family-name .specialite {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 2px;
+}
+.family-card .info {
+  font-size: 13px;
+  line-height: 1.5;
+}
+.family-card .info p { margin: 6px 0; }
+.family-card .info strong { color: var(--text); }
+.family-card .chef {
+  background: rgba(168, 120, 48, 0.08);
+  padding: 8px 12px;
+  border-radius: 5px;
+  margin: 10px 0;
+  font-size: 13px;
+}
+.family-card .tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--accent);
+  color: white;
+  border-radius: 10px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-right: 4px;
+  margin-top: 4px;
+}
+.family-card.canon-mark {
+  position: relative;
+}
+.family-card.canon-mark::after {
+  content: '📖 Canon livre 1';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--primary);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.conseil-box {
+  background: linear-gradient(135deg, #fffaf0 0%, #f0e6cf 100%);
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 16px 0;
+}
+.conseil-box h2 {
+  margin: 0 0 12px 0;
+  color: var(--accent);
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+.conseil-box p { font-size: 14px; line-height: 1.6; margin: 8px 0; }
+.conseil-box ul { font-size: 14px; line-height: 1.7; margin: 6px 0 6px 18px; padding: 0; }
+
+.roses-box {
+  background: linear-gradient(135deg, #fff5f5 0%, #fde5e9 100%);
+  border: 2px solid var(--rose);
+  border-radius: 10px;
+  padding: 22px;
+  margin: 20px 0;
+}
+.roses-box h2 {
+  margin: 0 0 8px 0;
+  color: var(--rose);
+  font-size: 22px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+.roses-box .quote-rose {
+  text-align: center;
+  font-style: italic;
+  color: var(--muted);
+  margin: 0 0 14px 0;
+  font-size: 13px;
+}
+.roses-box h3 {
+  color: var(--rose);
+  font-size: 16px;
+  margin: 14px 0 6px 0;
+}
+.roses-box p { font-size: 14px; line-height: 1.6; margin: 6px 0; }
+.roses-hierarchy {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+  margin: 12px 0;
+}
+.rose-rank {
+  background: white;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  border-left: 4px solid var(--rose);
+}
+.rose-rank .grade {
+  font-weight: bold;
+  color: var(--rose);
+  font-size: 14px;
+}
+.rose-rank .cheveux {
+  font-size: 11px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 4px;
+}
+.rose-rank .nb {
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.rose-indra-box {
+  background: white;
+  border: 2px solid var(--rose);
+  border-radius: 10px;
+  padding: 14px;
+  margin: 14px 0;
+  display: flex;
+  gap: 14px;
+}
+.rose-indra-box .avatar {
+  font-size: 42px;
+  width: 60px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.rose-indra-box .info h3 {
+  margin: 0 0 4px 0;
+  color: var(--rose);
+  font-size: 17px;
+}
+.rose-indra-box .info .role-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--rose);
+  color: white;
+  border-radius: 10px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+.rose-indra-box .info p { margin: 6px 0 0 0; font-size: 13px; line-height: 1.5; }
+
+.tour-box {
+  background: linear-gradient(180deg, #fffef2 0%, #fff8d8 50%, #f7e8a0 100%);
+  border: 3px double var(--accent);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  position: relative;
+}
+.tour-box::before {
+  content: '🔒 SECRET MAJEUR — connu seulement de Jack et Rose-Indra';
+  position: absolute;
+  top: -12px;
+  left: 16px;
+  background: var(--primary);
+  color: white;
+  padding: 3px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+.tour-box h2 {
+  margin: 6px 0 12px 0;
+  color: var(--primary);
+  font-size: 22px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+.tour-box p { font-size: 14px; line-height: 1.7; margin: 8px 0; }
+
+.hooks-box {
+  background: var(--paper);
+  border-left: 4px solid var(--accent);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin: 16px 0;
+}
+.hooks-box p {
+  margin: 8px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.nav-back {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 13px;
+}
+.nav-back:hover { text-decoration: underline; }
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<a href="index.html" class="nav-back">← Retour au sommaire</a>
+
+<header class="title-bar">
+  <h1>👑 LA CITÉ D'ARMONIA</h1>
+  <div class="subtitle">Capitale du monde — Conseil des Six & Roses d'Armonia</div>
+  <div class="quote">« Il n'y a pas de roi. Il n'y a pas de chef. Il n'y a que l'équilibre — et ceux qui le tiennent. »</div>
+</header>
+
+<div class="intro-box">
+  <p><strong>Armonia</strong> est la cité-capitale qui a donné son nom au monde. Sur une péninsule centrale, elle se veut neutre, judiciaire, médiatrice. Elle n'a ni roi ni chef — elle est dirigée par un <strong>Conseil de Six grandes familles nobles</strong>, sous la garde vigilante des <strong>Roses d'Armonia</strong>.</p>
+  <p>Très tôt, son destin singulier a intrigué : la cité connaît une <strong>stabilité politique presque magique</strong>. Personne, hors d'un cercle très restreint, n'en connaît la véritable raison.</p>
+</div>
+
+<h2 class="section-title">🏛️ Les Six Grandes Familles</h2>
+
+<div class="families-grid">
+
+  <div class="family-card vong canon-mark">
+    <div class="family-header">
+      <div class="family-icon">🐉</div>
+      <div class="family-name">
+        <h2>Maison Von Guinity</h2>
+        <div class="specialite">La Maison des Dragons</div>
+      </div>
+    </div>
+    <div class="chef">👤 <strong>Baron Drake Von Guinity</strong> — doyen, manipulateur, joue ses propres jeux</div>
+    <div class="info">
+      <p><strong>Ancienneté</strong> : millénaire — présente depuis « des milliers d'années ».</p>
+      <p><strong>Pouvoir</strong> : savoirs occultes, artefacts d'avant la Rupture, manipulation discrète des autres familles.</p>
+      <p><strong>Quartier</strong> : domaine reculé dans une partie isolée de la capitale, gardé par des hommes au sceau du dragon.</p>
+      <p><strong>Au Conseil</strong> : souvent en désaccord, vote contre par principe. Antagoniste latente.</p>
+      <p><span class="tag">Ancien</span><span class="tag">Occulte</span><span class="tag">Antagoniste</span></p>
+    </div>
+  </div>
+
+  <div class="family-card dalu">
+    <div class="family-header">
+      <div class="family-icon">⚓</div>
+      <div class="family-name">
+        <h2>Maison Daluvio</h2>
+        <div class="specialite">Marchande maritime</div>
+      </div>
+    </div>
+    <div class="chef">👤 <strong>Matrone Caralia Daluvio</strong>, ~60 ans, ancienne capitaine de flotte</div>
+    <div class="info">
+      <p><strong>Pouvoir</strong> : flotte commerciale étendue, ports privés, contrats avec Velhar et Maelyr (Sol'Ambaïre), maisons à No'Ord.</p>
+      <p><strong>Enrichissement</strong> : le Retour de la magie a multiplié par dix le commerce intercontinental. Les nouvelles communautés (races réveillées) sont autant de nouveaux clients.</p>
+      <p><strong>Au Conseil</strong> : pragmatique, votes commerciaux. Alliée naturelle de Karambol.</p>
+      <p><span class="tag">Maritime</span><span class="tag">Riche</span><span class="tag">Pragmatique</span></p>
+    </div>
+  </div>
+
+  <div class="family-card kara">
+    <div class="family-header">
+      <div class="family-icon">🐎</div>
+      <div class="family-name">
+        <h2>Maison Karambol</h2>
+        <div class="specialite">Marchande terrestre</div>
+      </div>
+    </div>
+    <div class="chef">👤 <strong>Patriarche Halian Karambol</strong>, ~55 ans, ancien maître de caravane</div>
+    <div class="info">
+      <p><strong>Pouvoir</strong> : routes caravanières mondiales, oasis fixes, relais de chevaux entre tous les royaumes.</p>
+      <p><strong>Enrichissement</strong> : transports des races réveillées vers leurs nouvelles installations, négociations avec Drun-Kar, Maelyr, No'Ord. Le réseau Karambol est devenu indispensable.</p>
+      <p><strong>Au Conseil</strong> : alliée des Daluvio. Très populaire chez le peuple — chaque ouvrier connaît un parent qui travaille pour eux.</p>
+      <p><span class="tag">Terrestre</span><span class="tag">Populaire</span><span class="tag">Routes</span></p>
+    </div>
+  </div>
+
+  <div class="family-card voen">
+    <div class="family-header">
+      <div class="family-icon">💀</div>
+      <div class="family-name">
+        <h2>Maison Vœnir</h2>
+        <div class="specialite">Magie chaotique des morts</div>
+      </div>
+    </div>
+    <div class="chef">👤 <strong>Dame Selenor Vœnir</strong>, gardienne des tombes familiales</div>
+    <div class="info">
+      <p><strong>Spécialité magique</strong> : entendre les <em>dernières paroles</em> des morts récents, voir leurs derniers regards, parfois animer brièvement leur main pour signer un parchemin.</p>
+      <p><strong>Source</strong> : un <strong>Nœud corrompu</strong> enterré sous leur manoir, hérité de génération en génération.</p>
+      <p><strong>Au Conseil</strong> : froide, calculatrice. Les Roses la consultent parfois pour résoudre des crimes — coopération à la fois nécessaire et glaçante.</p>
+      <p><span class="tag">Nécromancie</span><span class="tag">Justice</span><span class="tag">Froide</span></p>
+    </div>
+  </div>
+
+  <div class="family-card aura">
+    <div class="family-header">
+      <div class="family-icon">⏳</div>
+      <div class="family-name">
+        <h2>Maison Aurale</h2>
+        <div class="specialite">Magie chaotique du temps fragile</div>
+      </div>
+    </div>
+    <div class="chef">👤 <strong>Seigneur Ilion Aurale</strong>, génie reclus de 40 ans qui en paraît 25</div>
+    <div class="info">
+      <p><strong>Spécialité magique</strong> : manipule de <em>petits écarts temporels</em> — fige une seconde une scène, peut remonter de 6 secondes maximum, voit des <em>fantômes du temps</em> (échos de passants disparus depuis longtemps).</p>
+      <p><strong>Source</strong> : un fragment d'artefact pré-Rupture, trouvé par son aïeul dans des ruines.</p>
+      <p><strong>Au Conseil</strong> : mystique, peu présent. Vote rarement. Apparaît dans les moments clés, comme s'il savait quand sa voix compterait.</p>
+      <p><span class="tag">Temps</span><span class="tag">Reclus</span><span class="tag">Prophétique</span></p>
+    </div>
+  </div>
+
+  <div class="family-card gara">
+    <div class="family-header">
+      <div class="family-icon">🩸</div>
+      <div class="family-name">
+        <h2>Maison Garance</h2>
+        <div class="specialite">Magie chaotique du sang</div>
+      </div>
+    </div>
+    <div class="chef">👤 <strong>Comtesse Vérine Garance</strong>, ~35 ans, femme magnifique et redoutable</div>
+    <div class="info">
+      <p><strong>Spécialité magique</strong> : avec une goutte de sang, <em>lit la lignée</em> de quiconque, transmet une douleur ou une vigueur à un proche, accélère une cicatrisation.</p>
+      <p><strong>Source</strong> : un pacte fait par son arrière-grand-mère avec une entité chaotique. Le pacte se renouvelle <em>de mère en fille</em> à chaque génération — toujours par le sang.</p>
+      <p><strong>Au Conseil</strong> : ambitieuse, séductrice. Alliée temporaire avec qui sert ses intérêts du moment.</p>
+      <p><span class="tag">Sang</span><span class="tag">Pacte</span><span class="tag">Séduction</span></p>
+    </div>
+  </div>
+
+</div>
+
+<h2 class="section-title">⚖️ Le Conseil des Six</h2>
+
+<div class="conseil-box">
+  <h2>LE PALAIS DES SIX</h2>
+  <p style="text-align:center; font-style:italic; color:var(--muted);">« Six voix, un équilibre. »</p>
+  <p>Le Conseil siège au cœur de la cité, dans le <strong>Palais des Six</strong> — un édifice octogonal aux six trônes disposés en cercle (le septième siège, vide et toujours visible, rappelle qu'aucun roi ne pourrait jamais y prendre place).</p>
+
+  <h3 style="color:var(--primary); margin-top:14px;">Règles de vote</h3>
+  <ul>
+    <li><strong>Affaires courantes</strong> : majorité simple — 4 voix sur 6 suffisent.</li>
+    <li><strong>Changements de la Loi sacrée d'Armonia</strong> : <strong>unanimité requise</strong> — 6 voix sur 6. C'est ce qui empêche toute famille de transformer la cité à sa convenance.</li>
+    <li><strong>Veto des Roses</strong> : les Roses d'Armonia ne votent pas, mais possèdent un <strong>droit de veto absolu</strong> si une décision viole la Loi sacrée. Aucun Conseil n'a osé contester un veto depuis 200 ans.</li>
+  </ul>
+
+  <h3 style="color:var(--primary);">Alliances actuelles (1040 AR)</h3>
+  <ul>
+    <li><strong>Bloc marchand</strong> : Daluvio + Karambol — votent presque toujours ensemble.</li>
+    <li><strong>Bloc occulte</strong> : Von Guinity + Vœnir — votent parfois ensemble mais pour des raisons différentes.</li>
+    <li><strong>Voix isolées</strong> : Aurale (silencieux), Garance (mercenaire).</li>
+  </ul>
+  <p>Conséquence : la majorité simple est <strong>volatile</strong> — Garance fait souvent basculer les votes.</p>
+</div>
+
+<h2 class="section-title">🌹 Les Roses d'Armonia</h2>
+
+<div class="roses-box">
+  <h2>🌹 LES ROSES D'ARMONIA</h2>
+  <div class="quote-rose">« Nous sommes la Loi. Nous sommes la mémoire. Nous sommes les épines. »</div>
+
+  <p>Les Roses sont l'<strong>ordre judiciaire autonome</strong> d'Armonia. Elles rendent la justice au-dessus du Conseil — leur sceau est craint dans toutes les provinces. Elles ne reçoivent d'ordres de personne, pas même des familles.</p>
+
+  <div class="rose-indra-box">
+    <div class="avatar">🌹</div>
+    <div class="info">
+      <div class="role-tag">Cheffe — canon livre 1</div>
+      <h3>Rose-Indra</h3>
+      <p><strong>Rose Première</strong> de l'Ordre. Son vrai nom est Indra — « Rose » est son titre officiel en tant que cheffe. Cheveux <strong>vermillon profond</strong>, armée d'un <strong>fouet rituel</strong> tressé de cuir et de fils d'argent. Connue de Silver puis de Jack — elle est l'une des très rares personnes au monde à connaître le secret de la Tour du Renouveau.</p>
+    </div>
+  </div>
+
+  <h3>Hiérarchie</h3>
+  <div class="roses-hierarchy">
+    <div class="rose-rank">
+      <div class="grade">Rose Première</div>
+      <div class="cheveux">Vermillon profond</div>
+      <div class="nb">1 seule — Indra</div>
+    </div>
+    <div class="rose-rank">
+      <div class="grade">Roses Anciennes</div>
+      <div class="cheveux">Vermillon</div>
+      <div class="nb">~5 à 7 — vétéranes</div>
+    </div>
+    <div class="rose-rank">
+      <div class="grade">Roses</div>
+      <div class="cheveux">Vermillon clair</div>
+      <div class="nb">~30 à 50 — soldates de la Loi</div>
+    </div>
+    <div class="rose-rank">
+      <div class="grade">Apprenties</div>
+      <div class="cheveux">Cheveux naturels</div>
+      <div class="nb">une vingtaine — formation</div>
+    </div>
+  </div>
+
+  <h3>Recrutement & formation</h3>
+  <p><strong>Ouvert aux femmes uniquement</strong> par tradition millénaire (mais nul ne sait pourquoi exactement — Indra elle-même n'en parle pas). Les candidates sont repérées vers 14-16 ans pour leur <strong>caractère</strong> (sens de la justice incorruptible) plus que leur force ou leur magie.</p>
+  <p>La formation dure <strong>7 à 10 ans</strong>. C'est l'entraînement aux <em>arts mystiques</em> — combat rituel, lecture du langage des âmes, jeûnes prolongés — qui fait progressivement virer les cheveux au vermillon. Une apprentie dont les cheveux ne changent pas après 10 ans est libérée sans honte.</p>
+
+  <h3>Armement</h3>
+  <p>Chaque Rose a une <strong>arme rituelle personnelle</strong> qu'elle choisit le jour où ses cheveux commencent à virer. Indra a choisi le fouet. D'autres Roses portent rapière, dague double, arc court, lance fine. Toutes savent combattre à mains nues. <strong>Aucune Rose ne porte d'armure lourde</strong> — c'est interdit par tradition. Tenues de cuir souple vermillon, capes noires.</p>
+</div>
+
+<h2 class="section-title">🗼 La Tour du Renouveau</h2>
+
+<div class="tour-box">
+  <h2>LA TOUR DU RENOUVEAU</h2>
+  <p>Au cœur d'Armonia s'élève une tour blanche, ancienne, qu'aucune carte officielle ne place exactement. Elle est dite <em>« lieu de culte »</em> et personne ne s'y rend en pèlerinage. Aucune cérémonie n'y est jamais célébrée. C'est précisément ce qui devrait éveiller les soupçons.</p>
+
+  <p>La <strong>vérité</strong>, connue seulement de Jack Argenti et de Rose-Indra :</p>
+
+  <p>La Tour est bâtie sur un <strong>petit Nœud caché</strong> — pas un des Douze grands, mais un <em>mineur</em>, ignoré dans les chroniques. Au sommet de la Tour, dans une chambre que nul autre ne peut atteindre, repose un <strong>artefact laissé par Fulgura/Silver</strong> il y a des siècles. Cet artefact agit en continu sur la ville entière : il <strong>calme les esprits</strong>, atténue les vengeances impulsives, rend les coups d'État presque impossibles à enflammer. C'est l'origine de la stabilité « presque magique » d'Armonia.</p>
+
+  <p>Cet artefact n'efface pas la volonté — un meurtre prémédité reste possible. Mais une émeute spontanée, une trahison passionnée, un coup de sang collectif… tout cela s'éteint avant même de prendre forme. C'est pour cela que les Familles, même les plus toxiques, finissent toujours par négocier plutôt que se massacrer.</p>
+
+  <p style="border-top:1px dashed var(--primary); padding-top:10px; margin-top:14px; font-style:italic;"><strong>Le risque</strong> : si l'artefact venait à se taire — par vol, par usure, par désactivation —, Armonia exploserait en quelques mois. Les vieilles vendettas remontent. Von Guinity attaquerait Vœnir. Garance retournerait Daluvio contre Karambol. La cité-arbitre du monde sombrerait dans la guerre civile.</p>
+</div>
+
+<h2 class="section-title">🎲 Hooks de campagne</h2>
+
+<div class="hooks-box">
+  <p>• Un <strong>vol au Palais des Six</strong> — un objet symbolique a disparu. Quelle famille est responsable ?</p>
+  <p>• Le <strong>Baron Von Guinity</strong> invite les PJ à son domaine — manipulation, recrutement, ou véritable danger ?</p>
+  <p>• Une <strong>Rose Ancienne disparaît</strong> en mission. Indra demande discrètement aux PJ de la retrouver.</p>
+  <p>• La <strong>Comtesse Garance</strong> propose à un PJ un pacte de sang — petite faveur, grand prix.</p>
+  <p>• Le <strong>Seigneur Aurale</strong> sort de sa retraite et vote sans raison apparente. Que sait-il que les autres ignorent ?</p>
+  <p>• Un crime parfait dans la cité. Les <strong>Roses consultent Dame Vœnir</strong> — les PJ accompagnent l'entrevue.</p>
+  <p>• Les marchands <strong>Daluvio et Karambol</strong> se disputent un contrat colossal. L'un des deux essaie de saboter l'autre.</p>
+  <p>• L'<strong>artefact de la Tour du Renouveau</strong> faiblit. Jack convoque les PJ. Mission ultra-secrète.</p>
+  <p>• Une <strong>apprentie Rose</strong> approche les PJ — elle a vu quelque chose qu'elle ne devait pas voir, et a peur pour sa vie.</p>
+</div>
+
+<footer>
+  La Cité d'Armonia · Conseil des Six & Roses · Codex du Monde · Système Bilal · 2026
+</footer>
+
+</div>
+</body>
+</html>

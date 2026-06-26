@@ -1,0 +1,18 @@
+{
+  "manifestVersion": 1,
+  "name": "Armonia ProcGen",
+  "summary": "Générateur de maps procédurales — sol, bâtiments, chemins.",
+  "version": "1.2",
+  "entryPoint": "/index.html",
+  "api": {
+    "version": "0.1",
+    "initTimeout": 10,
+    "subscriptions": {
+      "symbiote": { "onStateChangeEvent": "handleSymbioteStateChange" }
+    }
+  },
+  "environment": {
+    "webViewBackgroundColor": "#111827",
+    "extras": ["colorStyles"]
+  }
+}

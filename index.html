@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Armonia — Jeu de Rôle</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+  min-height: 100vh;
+}
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+header.title-bar {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 30px 20px;
+  background: var(--paper);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 48px;
+  color: var(--primary);
+  letter-spacing: 5px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 8px;
+  font-size: 18px;
+}
+header.title-bar .quote {
+  color: var(--accent);
+  font-style: italic;
+  margin-top: 14px;
+  font-size: 14px;
+}
+.intro {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  border-radius: 4px;
+}
+.section-title {
+  font-size: 22px;
+  color: var(--primary);
+  margin: 28px 0 14px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+  letter-spacing: 1px;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+.card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.2s;
+  display: block;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+.card .icon {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+.card h2 {
+  margin: 0 0 8px 0;
+  color: var(--primary);
+  font-size: 20px;
+}
+.card .description {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.card .badge {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 3px 10px;
+  background: var(--accent);
+  color: white;
+  border-radius: 12px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.card.essential .badge { background: #c44040; }
+.card.tool .badge { background: #2a7a3c; }
+.card.world .badge { background: #5a8eaa; }
+.card.reference .badge { background: var(--accent); }
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--muted);
+  font-size: 13px;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="title-bar">
+  <h1>⚔ ARMONIA ⚔</h1>
+  <div class="subtitle">Jeu de Rôle médiéval-fantastique</div>
+  <div class="quote">« Là où la magie est revenue. Là où la dévastation s'approche. »</div>
+</header>
+
+<div class="intro">
+  <p style="margin: 0 0 8px 0;"><strong>Bienvenue dans l'univers d'Armonia.</strong></p>
+  <p style="margin: 0;">Tu trouveras ici toutes les ressources pour rejoindre la table : règles, fiches, bibliothèques d'objets et de races, carte du monde, et outils de jeu.</p>
+</div>
+
+<h2 class="section-title">📖 Pour commencer</h2>
+<div class="cards">
+
+  <a href="Armonia_Livret_de_regles_V1.pdf" class="card essential" target="_blank">
+    <div class="icon">📖</div>
+    <h2>Livret de règles</h2>
+    <div class="description">Les règles complètes du système : caractéristiques, compétences, magie (Sens, Script, Mots), combat.</div>
+    <div class="badge">PDF · 24 pages</div>
+  </a>
+
+  <a href="fiche_personnage.html" class="card essential">
+    <div class="icon">📝</div>
+    <h2>Fiche de personnage</h2>
+    <div class="description">Crée ton personnage avec calculs automatiques. Sauvegarde et charge tes fiches en JSON.</div>
+    <div class="badge">Interactive</div>
+  </a>
+
+</div>
+
+<h2 class="section-title">📚 Bibliothèques de référence</h2>
+<div class="cards">
+
+  <a href="bibliotheque_races.html" class="card reference">
+    <div class="icon">🧝</div>
+    <h2>Races & Lignées</h2>
+    <div class="description">41 races et lignées jouables avec affinités, traits et lore.</div>
+    <div class="badge">Référence</div>
+  </a>
+
+  <a href="bibliotheque_armes.html" class="card reference">
+    <div class="icon">⚔️</div>
+    <h2>Armes & Armures</h2>
+    <div class="description">41 armes et armures avec 5 niveaux de qualité (Rustique → Légendaire).</div>
+    <div class="badge">Référence</div>
+  </a>
+
+  <a href="bibliotheque_craft.html" class="card reference">
+    <div class="icon">🔨</div>
+    <h2>Système de Craft</h2>
+    <div class="description">Règles complètes, composants par origine, 26 recettes d'objets.</div>
+    <div class="badge">Référence</div>
+  </a>
+
+  <a href="bibliotheque_lieux.html" class="card reference">
+    <div class="icon">🗺️</div>
+    <h2>Lieux d'Armonia</h2>
+    <div class="description">38 lieux canoniques : cités, sanctuaires, ruines, Nœuds du Monde.</div>
+    <div class="badge">Référence</div>
+  </a>
+
+  <a href="bibliotheque_noeuds.html" class="card reference">
+    <div class="icon">💠</div>
+    <h2>Les 12 Nœuds du Monde</h2>
+    <div class="description">Les 12 points de pouvoir magique de la planète. Statut, gardien, magie associée, secrets.</div>
+    <div class="badge">Référence</div>
+  </a>
+
+  <a href="bibliotheque_celestes.html" class="card reference">
+    <div class="icon">🜂</div>
+    <h2>Sol'Ambaïre & les 5 Célestes</h2>
+    <div class="description">Les Deïn ilt, les 5 royaumes, le Cercle d'Anh, Aïruk le 6e esprit, géopolitique du continent.</div>
+    <div class="badge">Lore</div>
+  </a>
+
+  <a href="bibliotheque_veilleurs.html" class="card reference">
+    <div class="icon">👁</div>
+    <h2>L'Ordre des Veilleurs</h2>
+    <div class="description">Hiérarchie type Confrérie (Mentor Jack → Maîtres → Apprentis), QG caché à Me'yn Prus, secret Alm-Merthas.</div>
+    <div class="badge">Lore</div>
+  </a>
+
+  <a href="bibliotheque_armonia.html" class="card reference">
+    <div class="icon">👑</div>
+    <h2>La Cité d'Armonia</h2>
+    <div class="description">6 grandes familles, Conseil des Six, Roses d'Armonia (Indra), Tour du Renouveau et son artefact secret.</div>
+    <div class="badge">Lore</div>
+  </a>
+
+  <a href="bibliotheque_magie.html" class="card reference">
+    <div class="icon">✨</div>
+    <h2>La Magie d'Armonia</h2>
+    <div class="description">3 couches (Sens, Script, Mots), Éther, 15 symboles avec recettes prêtes, 8 mots primordiaux canon, dangers.</div>
+    <div class="badge">Système</div>
+  </a>
+
+  <a href="bibliotheque_lumini.html" class="card reference">
+    <div class="icon">🌿</div>
+    <h2>Lumini</h2>
+    <div class="description">Continent du commerce et des forêts. 8 lieux (Me'yn Prus, Etelin, Forêt Julia, Villa Virtue…), gouvernance, tensions.</div>
+    <div class="badge">Lore</div>
+  </a>
+
+  <a href="bibliotheque_pantheons.html" class="card reference">
+    <div class="icon">⛧</div>
+    <h2>Panthéons d'Armonia</h2>
+    <div class="description">5 divinités majeures (Ruth'a, Féiy, Handu'zo, Kéiy'ka, Jei'nia) + 5 mineures + 8 nordiques + cultes (Spriius Luminatis, Tribu).</div>
+    <div class="badge">Lore</div>
+  </a>
+
+  <a href="bibliotheque_langue.html" class="card reference">
+    <div class="icon">𓂀</div>
+    <h2>La Langue Ancienne</h2>
+    <div class="description">Lexique, pronoms, conjugaisons (mokae, memtei), exemples de phrases, lien avec les Mots Primordiaux.</div>
+    <div class="badge">Lore</div>
+  </a>
+
+  <a href="bibliotheque_factions.html" class="card reference">
+    <div class="icon">⚔</div>
+    <h2>Factions & Organisations</h2>
+    <div class="description">Protectoria Antares (6 fondateurs, Ross Von Listaire), Guildes (Marchands, Aventuriers), Tribu de la Forêt.</div>
+    <div class="badge">Lore</div>
+  </a>
+
+</div>
+
+<h2 class="section-title">🌍 Le monde</h2>
+<div class="cards">
+
+  <a href="carte_armonia.html" class="card world">
+    <div class="icon">🗺️</div>
+    <h2>Carte d'Armonia</h2>
+    <div class="description">Carte preview interactive du monde. Continents, capitales, Nœuds du Monde — cliquables pour découvrir le lore.</div>
+    <div class="badge">Interactive</div>
+  </a>
+
+  <a href="timeline_armonia.html" class="card world">
+    <div class="icon">📜</div>
+    <h2>Histoire & Timeline</h2>
+    <div class="description">Chronologie complète : des Anciens à la Rupture, Ère Humaine, Retour de la magie, présent. Calendrier en AR.</div>
+    <div class="badge">Lore</div>
+  </a>
+
+</div>
+
+<h2 class="section-title">📜 Exemples de personnages</h2>
+<div class="cards">
+
+  <a href="armonia_clac_clac.json" class="card tool" download>
+    <div class="icon">🦴</div>
+    <h2>Clac Clac</h2>
+    <div class="description">Squelette invocation orphelin, fiche pré-remplie à charger dans l'outil.</div>
+    <div class="badge">JSON · Exemple</div>
+  </a>
+
+  <a href="armonia_hane_tengu.json" class="card tool" download>
+    <div class="icon">🪶</div>
+    <h2>Hane-Tengu</h2>
+    <div class="description">Messager Tengu hybride, fiche pré-remplie d'exemple.</div>
+    <div class="badge">JSON · Exemple</div>
+  </a>
+
+</div>
+
+<footer>
+  Système créé par Bilal · Univers d'Armonia · 2026
+</footer>
+
+</div>
+</body>
+</html>

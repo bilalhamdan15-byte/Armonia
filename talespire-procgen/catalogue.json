@@ -1,0 +1,88 @@
+{
+  "_info": "Catalogue d'assets TaleSpire pour le générateur procédural.",
+  "_source": "Tous les GUIDs sont vérifiés sur talestavern.com (talespire://asset/GUID)",
+  "_howto_add": "1. Trouve un asset sur talestavern.com  2. Copie le GUID du lien talespire://asset/GUID  3. Ajoute-le dans la bonne catégorie avec ses tags",
+
+  "ground": [
+    {
+      "_info_cat": "Tuiles de sol extérieur (village, place, chemin). Tag 'path' = chemin pavé."
+    },
+    { "guid": "ee0d3511-24a3-4f6b-995d-3e54de38de3b", "name": "Moorgoth Floor 01",      "tags": [],         "source": "talestavern.com/asset/moorgoth-floor-01" },
+    { "guid": "dadda343-2dcd-4a2e-883d-b28144976907", "name": "Moorgoth Floor 02",      "tags": [],         "source": "talestavern.com/asset/moorgoth-floor-02" },
+    { "guid": "d02e420c-ef0b-44e4-9e1b-4e2af1c28eef", "name": "Moorgoth Floor 03",      "tags": [],         "source": "talestavern.com/asset/moorgoth-floor-03" },
+    { "guid": "1ed5c9be-6178-4fed-8aea-6db6eed06d6b", "name": "Moorgoth Floor Rounded", "tags": ["path"],   "source": "talestavern.com/asset/moorgoth-floor-rounded" },
+    { "guid": "5e38122e-f09c-47aa-8cb0-d9e122a894e9", "name": "Castle Ruins Stone 1×1", "tags": ["path", "stone"], "source": "talestavern.com/asset/castle-ruins-floor-stone-1x1" }
+  ],
+
+  "floor": [
+    {
+      "_info_cat": "Tuiles de sol intérieur. Tags : 'indoor' (bâtiment), 'stone' (donjon), 'wood' (taverne)."
+    },
+    { "guid": "cf6063bb-5c6e-4107-b3e9-9c0c5ac75768", "name": "Tavern Floor 01",           "tags": ["indoor", "wood"],  "source": "talestavern.com/asset/tavern-floor-01" },
+    { "guid": "680a8f4e-6a4b-4194-beda-416be3c4ac47", "name": "Tavern Floor 02",           "tags": ["indoor", "wood"],  "source": "talestavern.com/asset/tavern-floor-02" },
+    { "guid": "6f3d2d32-f1bb-429b-b50b-2dc8d235f2d8", "name": "Moorgoth Medieval Floor 01","tags": ["indoor", "stone"], "source": "talestavern.com/asset/moorgoth-medieval-floor-01" },
+    { "guid": "604ca0e5-07bb-4544-8c09-f541f2203bf1", "name": "Moorgoth Medieval Floor 02","tags": ["indoor", "stone"], "source": "talestavern.com/asset/moorgoth-medieval-floor-02" },
+    { "guid": "b31d6355-009a-45bd-a2f1-19e162c017b9", "name": "Moorgoth Medieval Floor 03","tags": ["indoor", "stone"], "source": "talestavern.com/asset/moorgoth-medieval-floor-03" },
+    { "guid": "6373ce3d-54ee-4d89-ba32-bccbac401e1b", "name": "Moorgoth Medieval Floor 04","tags": ["indoor", "stone"], "source": "talestavern.com/asset/moorgoth-medieval-floor-04" },
+    { "guid": "68e492d3-c9a7-4666-bffc-411ddc69d2ad", "name": "Moorgoth Medieval Floor 05","tags": ["indoor", "stone"], "source": "talestavern.com/asset/moorgoth-medieval-floor-05" },
+    { "guid": "b83392b1-8833-43c9-a97f-2ac3df659e66", "name": "Cave Floor Rock 01",        "tags": ["stone"],           "source": "talestavern.com/asset/cave-floor-rock-01" },
+    { "guid": "ce6a2235-664f-43e8-a744-d5743623701d", "name": "Cave Floor Rock 02",        "tags": ["stone"],           "source": "talestavern.com/asset/cave-floor-rock-2" },
+    { "guid": "ea5589dc-507a-4e0d-bf48-b097c8318a38", "name": "Cave Floor Rock 03",        "tags": ["stone"],           "source": "talestavern.com/asset/cave-floor-rock-03" },
+    { "guid": "0207e67f-6bba-4eb3-a343-54bf2d4d35d3", "name": "Cave Floor Rock 04",        "tags": ["stone"],           "source": "talestavern.com/asset/cave-floor-rock-04" }
+  ],
+
+  "wall": [
+    {
+      "_info_cat": "Tuiles de mur. Tag 'wood' = rural/taverne, 'stone' = château/donjon."
+    },
+    { "guid": "e8ff11e1-d229-43b7-8f9f-dfad32fc43b2", "name": "External Wall 2×2 A",        "tags": ["wood"],  "source": "talestavern.com/asset/external-wall-2x2-unique-wall-a-stripped" },
+    { "guid": "723b9472-ccf6-435a-a558-0606c4785c90", "name": "External Wall 2×2 B",        "tags": ["wood"],  "source": "talestavern.com/asset/external-wall-2x2-unique-wall-b-stripped" },
+    { "guid": "89c04719-ce1a-43fc-86e5-2371be806733", "name": "Castle Ruins Wallbase Large", "tags": ["stone"], "source": "talestavern.com/asset/castle-ruins-wallbase-large" },
+    { "guid": "310a6c14-cab8-429d-bfb2-6a9aeed27f35", "name": "Castle Ruins Wallbase 01",   "tags": ["stone"], "source": "talestavern.com/asset/castle-ruins-wallbase-01" },
+    { "guid": "b303b449-3d35-4b4c-8739-44f9a1e7d110", "name": "Castle Ruins Wallbase 02",   "tags": ["stone"], "source": "talestavern.com/asset/castle-ruins-wallbase-02" },
+    { "guid": "c06fdfb8-bf24-4234-99c7-3a72a5aacb02", "name": "Cave Wall 01",               "tags": ["stone"], "source": "talestavern.com/asset/cave-wall-01" },
+    { "guid": "8405574e-c75b-4146-b08d-ff9007ac95ac", "name": "Cave Wall 02",               "tags": ["stone"], "source": "talestavern.com/asset/cave-wall-02" },
+    { "guid": "39f5b1a9-6316-4d13-90d6-12a0bac9c38e", "name": "Cave Wall 03",               "tags": ["stone"], "source": "talestavern.com/asset/cave-wall-03" }
+  ],
+
+  "roof": [
+    {
+      "_info_cat": "Tuiles de toit. 'city' = toit ardoise urbain, 'log' = toit bois dragon."
+    },
+    { "guid": "46dd2ebe-45ca-4e5c-bd72-444f940de626", "name": "City Roof 1×1",       "tags": ["city"], "source": "talestavern.com/asset/city-roof-1x1" },
+    { "guid": "f7f15d3e-6da3-4117-8870-a1ccb0d5a3e9", "name": "City Roof 2×2",       "tags": ["city"], "source": "talestavern.com/asset/city-roof-2x2" },
+    { "guid": "dc995d00-0c99-4739-bc87-81d19f36cc89", "name": "City Roof Side 1×1",  "tags": ["city"], "source": "talestavern.com/asset/city-roof-side-1x1" },
+    { "guid": "25772d02-9406-440c-9916-f0b5aa629f6b", "name": "City Roof Side 2×1",  "tags": ["city"], "source": "talestavern.com/asset/city-roof-side-2x1" },
+    { "guid": "2ed9e3ad-a04e-42c0-bbfe-3bc5d4ef1edd", "name": "Log 2×2 Dragon Roof", "tags": ["log"],  "source": "talestavern.com/asset/log-2x2-dragon-roof" },
+    { "guid": "cce636e7-5462-42a5-95a3-b2452c4fa6eb", "name": "Log 1×1 Dragon Roof", "tags": ["log"],  "source": "talestavern.com/asset/log-1x1-dragon-roof" }
+  ],
+
+  "door": [
+    {
+      "_info_cat": "Portes."
+    },
+    { "guid": "a4982efe-9eef-4b7a-a5a1-489bcb7857ea", "name": "Castle Door 2×2 Tall Single", "tags": [], "source": "talestavern.com/asset/castle-door-2x2-tall-double-single" },
+    { "guid": "8f30b3ec-22a2-4b83-a2e4-d15d8aae7ad6", "name": "Castle Door 2×2 Tall Double", "tags": [], "source": "talestavern.com/asset/castle-door-2x2-tall-double" }
+  ],
+
+  "nature": [
+    {
+      "_info_cat": "Végétation. Tag 'tree' = arbre (utilisé pour la périphérie du village)."
+    },
+    { "guid": "6a365371-2719-4c46-8179-26bbfad9f185", "name": "Tree w Mushrooms Base 01", "tags": ["tree"], "source": "talestavern.com/asset/tree-w-mushrooms-base-01" },
+    { "guid": "6ca1dec4-c997-4e59-9e97-3e9f68fa599c", "name": "Tree w Mushrooms Base 02", "tags": ["tree"], "source": "talestavern.com/asset/tree-w-mushrooms-base-02" },
+    { "guid": "01dcdd32-35fe-4264-8c83-c827c84395c5", "name": "Tree w Mushrooms Mid 01",  "tags": ["tree"], "source": "talestavern.com/asset/tree-w-mushrooms-mid-01" },
+    { "guid": "628d670a-e6e2-4644-9b80-cf7ead664e10", "name": "Tree w Mushrooms Mid 02",  "tags": ["tree"], "source": "talestavern.com/asset/tree-w-mushrooms-mid-02" },
+    { "guid": "bde3cd3b-d65e-4870-b382-668c422e2783", "name": "Swamp Tree Base 01",       "tags": ["tree"], "source": "talestavern.com/asset/swamp-tree-base-01" },
+    { "guid": "bb56c594-f8aa-4fa5-8a0b-f059a5a45ae1", "name": "Swamp Tree Base 02",       "tags": ["tree"], "source": "talestavern.com/asset/swamp-tree-base-02" },
+    { "guid": "24f43e36-e8a4-4ea9-80b3-be32045eb75c", "name": "Dead Tree 01 (Snow)",      "tags": ["tree"], "source": "talestavern.com/asset/dead-tree-01-snow" }
+  ],
+
+  "prop": [
+    {
+      "_info_cat": "Props décoratifs. Tags importants : 'well', 'market', 'torch', 'chest', 'barrel'.",
+      "_howto": "Cherche le prop sur talestavern.com et ajoute son GUID ici avec le bon tag.",
+      "_example": { "guid": "TON-GUID-ICI", "name": "Puits du village", "tags": ["well"], "source": "talestavern.com/asset/..." }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "_info": "Config village médiéval. Lance avec : python procgen.py --config configs/village.json",
+
+  "size"  : "40x40",
+  "ground": "grass",
+  "seed"  : null,
+
+  "add": [
+    "taverne:1",
+    "maison:4",
+    "forge:1",
+    "marche:1"
+  ],
+
+  "output": null
+}

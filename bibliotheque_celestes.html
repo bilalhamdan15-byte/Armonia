@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sol'Ambaïre — Les 5 Célestes</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+
+  --hyal: #6a8caf;
+  --sir: #d4a857;
+  --kor: #a8332a;
+  --mae: #5a7a3c;
+  --ay: #b8a070;
+  --airuk: #7a6090;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 24px;
+  background: linear-gradient(135deg, #fffaf0 0%, #f5ebd6 100%);
+  border: 3px double var(--accent);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 32px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--accent);
+  margin-top: 8px;
+  font-size: 16px;
+}
+header.title-bar .quote {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 12px;
+  font-style: italic;
+}
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.intro-box strong { color: var(--primary); }
+.section-title {
+  font-size: 22px;
+  color: var(--primary);
+  margin: 28px 0 14px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+  letter-spacing: 1px;
+}
+
+.celestes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+}
+.celeste-card {
+  background: var(--paper);
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+  position: relative;
+}
+.celeste-card.hyal { border-color: var(--hyal); }
+.celeste-card.sir  { border-color: var(--sir); }
+.celeste-card.kor  { border-color: var(--kor); }
+.celeste-card.mae  { border-color: var(--mae); }
+.celeste-card.ay   { border-color: var(--ay); }
+.celeste-card.airuk { border-color: var(--airuk); background: #f9f4ff; }
+
+.celeste-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--border);
+}
+.celeste-icon {
+  font-size: 36px;
+  width: 50px;
+  text-align: center;
+}
+.celeste-name {
+  flex: 1;
+}
+.celeste-name h2 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+.celeste-card.hyal h2 { color: var(--hyal); }
+.celeste-card.sir h2 { color: var(--sir); }
+.celeste-card.kor h2 { color: var(--kor); }
+.celeste-card.mae h2 { color: var(--mae); }
+.celeste-card.ay h2 { color: var(--ay); }
+.celeste-card.airuk h2 { color: var(--airuk); }
+.celeste-name .vent {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 2px;
+}
+.celeste-trait {
+  font-size: 13px;
+  color: var(--text);
+  margin: 10px 0;
+  padding: 8px 12px;
+  background: rgba(168, 120, 48, 0.08);
+  border-radius: 5px;
+}
+.celeste-symbole {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 6px;
+}
+.royaume-block {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: #f8f1e0;
+  border-radius: 6px;
+  border-left: 3px solid;
+}
+.celeste-card.hyal .royaume-block { border-left-color: var(--hyal); }
+.celeste-card.sir .royaume-block { border-left-color: var(--sir); }
+.celeste-card.kor .royaume-block { border-left-color: var(--kor); }
+.celeste-card.mae .royaume-block { border-left-color: var(--mae); }
+.celeste-card.ay .royaume-block { border-left-color: var(--ay); }
+.royaume-block h3 {
+  margin: 0 0 4px 0;
+  font-size: 15px;
+  color: var(--primary);
+}
+.royaume-block p {
+  margin: 4px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--accent);
+  color: white;
+  border-radius: 10px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-right: 4px;
+  margin-top: 4px;
+}
+
+.cercle-box {
+  background: linear-gradient(135deg, #fffaf0 0%, #f0e6cf 100%);
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+}
+.cercle-box h2 {
+  margin: 0 0 10px 0;
+  color: var(--accent);
+  font-size: 22px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+.cercle-box p { font-size: 14px; line-height: 1.6; margin: 8px 0; }
+
+.geopol-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+}
+.geopol-card {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  border-radius: 4px;
+  padding: 12px 14px;
+}
+.geopol-card h3 {
+  margin: 0 0 6px 0;
+  color: var(--primary);
+  font-size: 15px;
+}
+.geopol-card p { margin: 4px 0; font-size: 13px; line-height: 1.5; }
+.geopol-card .status {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+.status.conflict { background: #f0d0c8; color: var(--kor); }
+.status.allied  { background: #d5e8d8; color: #2a7a3c; }
+.status.neutral { background: #e0d8c0; color: var(--muted); }
+.status.tense   { background: #f3e3a8; color: #8a6a20; }
+
+.statut-box {
+  background: var(--paper);
+  border: 1px dashed var(--accent);
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.nav-back {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 13px;
+}
+.nav-back:hover { text-decoration: underline; }
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<a href="index.html" class="nav-back">← Retour au sommaire</a>
+
+<header class="title-bar">
+  <h1>🜂 SOL'AMBAÏRE</h1>
+  <div class="subtitle">Le continent des Cinq Vents</div>
+  <div class="quote">« Là où chaque souffle est une voix divine, et où le silence n'existe qu'au Cercle. »</div>
+</header>
+
+<div class="intro-box">
+  <p>Sol'Ambaïre est l'un des grands continents d'Armonia, séparé en <strong>cinq royaumes</strong> répartis aux extrémités du territoire. Chaque royaume est né du souffle d'un <strong>Céleste</strong> — un des <strong>Deïn ilt</strong>, les Cinq Vents personnifiés. La taille de chaque royaume reflète la <em>force d'antan</em> de son Céleste.</p>
+  <p>Au centre, là où les Cinq Vents se croisent, aucun royaume ne règne : c'est le <strong>Cercle d'Anh</strong>, lieu sacré et neutre. Et au-dessus de tout cela plane <strong>Aïruk</strong>, le sixième esprit né du conflit des Cinq, ancêtre spirituel des Tengu.</p>
+</div>
+
+<h2 class="section-title">🌬️ Les Cinq Célestes — Deïn ilt</h2>
+
+<div class="celestes-grid">
+
+  <div class="celeste-card hyal">
+    <div class="celeste-header">
+      <div class="celeste-icon">❄️</div>
+      <div class="celeste-name">
+        <h2>Hyal-Roon</h2>
+        <div class="vent">Vent du Givre · Nord</div>
+      </div>
+    </div>
+    <div class="celeste-trait"><strong>Honneur stoïque, fidélité au serment.</strong> Hyal-Roon ne pardonne jamais une parole donnée et rompue. Ses prêtres jurent dans le sang.</div>
+    <div class="celeste-symbole">Symbole : lame bleue couronnée de cristaux</div>
+    <div class="royaume-block">
+      <h3>Royaume : Roon-Vyr</h3>
+      <p><strong>Géographie</strong> : montagnes nordiques, vallées gelées, fjords intérieurs.</p>
+      <p><strong>Société</strong> : clans guerriers, codes de duel, forge du <em>métal-givre</em>.</p>
+      <p><strong>Rivalités</strong> : tensions ancestrales avec Drun-Kar (sud).</p>
+      <p><span class="tag">Guerrier</span><span class="tag">Forge</span><span class="tag">Clans</span></p>
+    </div>
+  </div>
+
+  <div class="celeste-card sir">
+    <div class="celeste-header">
+      <div class="celeste-icon">🌅</div>
+      <div class="celeste-name">
+        <h2>Sîr-Vhel</h2>
+        <div class="vent">Vent d'Aurore · Est</div>
+      </div>
+    </div>
+    <div class="celeste-trait"><strong>Sagesse, mémoire, érudition.</strong> Sîr-Vhel veille sur ceux qui apprennent. Ses temples sont des bibliothèques. Ses prêtres tiennent un journal au quotidien.</div>
+    <div class="celeste-symbole">Symbole : œil ouvert sur un disque levant</div>
+    <div class="royaume-block">
+      <h3>Royaume : Velhar</h3>
+      <p><strong>Géographie</strong> : côtes orientales, archipels littéraux, lagunes.</p>
+      <p><strong>Société</strong> : marins-érudits, bibliothèques flottantes, grande université de Velhar.</p>
+      <p><strong>Alliances</strong> : commerce solide avec Maelyr.</p>
+      <p><span class="tag">Érudits</span><span class="tag">Marins</span><span class="tag">Université</span></p>
+    </div>
+  </div>
+
+  <div class="celeste-card kor">
+    <div class="celeste-header">
+      <div class="celeste-icon">🔥</div>
+      <div class="celeste-name">
+        <h2>Kor-Drun</h2>
+        <div class="vent">Vent du Brasier · Sud</div>
+      </div>
+    </div>
+    <div class="celeste-trait"><strong>Ferveur, courage, vendetta.</strong> Kor-Drun est le feu de l'âme. Ses prêtres marquent leur peau au fer rouge. Les vendettas se transmettent sur sept générations.</div>
+    <div class="celeste-symbole">Symbole : soleil noir percé d'une flèche</div>
+    <div class="royaume-block">
+      <h3>Royaume : Drun-Kar</h3>
+      <p><strong>Géographie</strong> : terres arides du sud, savanes brûlées, oasis isolées.</p>
+      <p><strong>Société</strong> : cavaliers tribaux, codes de vendetta, échanges avec les peuples sadiens.</p>
+      <p><strong>Rivalités</strong> : ennemi ancestral de Roon-Vyr (Nord).</p>
+      <p><span class="tag">Cavaliers</span><span class="tag">Tribus</span><span class="tag">Vendetta</span></p>
+    </div>
+  </div>
+
+  <div class="celeste-card mae">
+    <div class="celeste-header">
+      <div class="celeste-icon">🌿</div>
+      <div class="celeste-name">
+        <h2>Mae-Lor</h2>
+        <div class="vent">Vent des Sèves · Ouest</div>
+      </div>
+    </div>
+    <div class="celeste-trait"><strong>Abondance, négoce, ruse souriante.</strong> Mae-Lor sourit toujours — même quand il dépouille. Ses prêtres tiennent les meilleures auberges du continent.</div>
+    <div class="celeste-symbole">Symbole : feuille d'argent enlacée d'or</div>
+    <div class="royaume-block">
+      <h3>Royaume : Maelyr</h3>
+      <p><strong>Géographie</strong> : forêts et fleuves de l'ouest, terres fertiles, marchés-villages.</p>
+      <p><strong>Société</strong> : agriculteurs-marchands, foires saisonnières, allié naturel de la Guilde des Marchands de Lumini.</p>
+      <p><strong>Alliances</strong> : pont commercial vers Lumini et Velhar.</p>
+      <p><span class="tag">Marchands</span><span class="tag">Agriculteurs</span><span class="tag">Foires</span></p>
+    </div>
+  </div>
+
+  <div class="celeste-card ay">
+    <div class="celeste-header">
+      <div class="celeste-icon">⛩️</div>
+      <div class="celeste-name">
+        <h2>Ay-Senna</h2>
+        <div class="vent">Vent du Zénith · Hauts plateaux centraux</div>
+      </div>
+    </div>
+    <div class="celeste-trait"><strong>Verticalité, justice, contemplation.</strong> Ay-Senna regarde tout d'en haut. Ses prêtres ne parlent jamais en bas — ils descendent quand ils ont quelque chose à dire.</div>
+    <div class="celeste-symbole">Symbole : tour blanche couronnée d'une plume</div>
+    <div class="royaume-block">
+      <h3>Royaume : Tsu-Raji</h3>
+      <p><strong>Géographie</strong> : hauts plateaux et <em>Falaises Chantantes</em>, refuge des Tengu.</p>
+      <p><strong>Société</strong> : royaume sacerdotal-aérien, monastères-aires, codes d'honneur Tengu.</p>
+      <p><strong>Statut</strong> : neutralité officielle, sympathies discrètes pour Velhar.</p>
+      <p><span class="tag">Tengu</span><span class="tag">Sacerdotal</span><span class="tag">Falaises Chantantes</span></p>
+    </div>
+  </div>
+
+  <div class="celeste-card airuk">
+    <div class="celeste-header">
+      <div class="celeste-icon">🜂</div>
+      <div class="celeste-name">
+        <h2>Aïruk</h2>
+        <div class="vent">Le Vent Vagabond · Sixième esprit, sans royaume</div>
+      </div>
+    </div>
+    <div class="celeste-trait"><strong>Né du conflit des Cinq.</strong> Aïruk n'a pas de domaine, pas de royaume, pas de prêtres officiels. Il est l'espion, la conscience collective, l'éclat de rire qui révèle la vérité que les Cinq taisent.</div>
+    <div class="celeste-symbole">Symbole : plume vagabonde sur un tourbillon</div>
+    <div class="royaume-block">
+      <h3>Présence dans le monde</h3>
+      <p>Officiellement, les Tengu servent Ay-Senna. <strong>En secret</strong>, beaucoup d'entre eux honorent Aïruk — leur véritable ancêtre — par des rites cachés. Cette double allégeance crée une <em>tension religieuse</em> latente à Tsu-Raji.</p>
+      <p>Aïruk se manifeste rarement, et toujours sous forme d'<strong>oiseau ou de vagabond</strong> qui apparaît au bon moment.</p>
+      <p><span class="tag">Espion divin</span><span class="tag">Tengu</span><span class="tag">Conscience</span></p>
+    </div>
+  </div>
+
+</div>
+
+<h2 class="section-title">⭕ Le Cercle d'Anh — Centre Neutre</h2>
+
+<div class="cercle-box">
+  <h2>⭕ LE CERCLE D'ANH</h2>
+  <p style="text-align:center; font-style:italic; color:var(--muted); margin-top:0;">« Là où les Cinq Vents se croisent, aucun roi ne peut bâtir. »</p>
+  <p>Au centre géographique exact de Sol'Ambaïre s'étend un <strong>plateau circulaire</strong>, parfaitement plat, où les vents des Cinq Célestes s'entrelacent. Aucun royaume n'a le droit d'y dresser de murs. Aucune armée ne peut le franchir en armes. Seuls peuvent y entrer : <strong>les représentants des Cinq royaumes</strong>, <strong>un greffier Tengu</strong>, et <strong>les pèlerins désarmés</strong>.</p>
+
+  <p><strong>L'Assemblée des Vents</strong> s'y réunit quand un conflit oppose deux royaumes. Un représentant par royaume, plus le greffier Tengu (héritier d'Aïruk). Les jugements rendus sont gravés sur des <strong>stèles d'obsidienne</strong> que personne n'a le droit de déplacer — la plus ancienne date de 80 AR.</p>
+
+  <p><strong>Détail mystérieux</strong> : au cœur exact du Cercle, on trouve une <strong>fosse circulaire</strong> sans fond apparent. On dit que ceux qui y jettent un objet entendent, des jours plus tard, le vent leur murmurer la vérité qu'ils cherchaient. Aucun Veilleur n'a réussi à expliquer ce phénomène.</p>
+</div>
+
+<h2 class="section-title">🌙 Statut des Célestes en 1040 AR</h2>
+
+<div class="statut-box">
+  <p>Pendant les 1000 ans de la Rupture, les Cinq Célestes ont <strong>dormi</strong>. Aucune apparition, aucun miracle, aucune voix. Les peuples de Sol'Ambaïre ont continué à les honorer par tradition — mais sans réponse.</p>
+
+  <p>Depuis le <strong>Retour de la magie (1000 AR)</strong>, les Célestes ont commencé à <strong>rêver à voix haute</strong>. Leurs prêtres reçoivent des <em>visions confuses</em>, des fragments, des images. Aucun message clair. Les apparitions physiques restent <strong>rarissimes</strong> — quand un Céleste se manifeste, c'est un événement national : taille colossale, voix qui fait trembler les pierres, durée de quelques secondes.</p>
+
+  <p>Chaque royaume est donc gouverné concrètement par un <strong>Conseil de Régence</strong> qui dirige <em>au nom du Céleste endormi</em>. Cette régence rend les structures politiques fragiles : si un Céleste se réveillait pleinement, il pourrait <strong>balayer tout le système</strong>.</p>
+
+  <p style="font-style:italic; color:var(--muted); border-top:1px dashed var(--border); padding-top:10px; margin-top:14px;">Hook MJ : un PJ pourrait recevoir un fragment de vision d'un Céleste — utile pour orienter une campagne.</p>
+</div>
+
+<h2 class="section-title">🗺️ Géopolitique de Sol'Ambaïre · An 1040</h2>
+
+<div class="geopol-grid">
+
+  <div class="geopol-card">
+    <span class="status conflict">CONFLIT FROID</span>
+    <h3>Roon-Vyr ↔ Drun-Kar</h3>
+    <p><strong>Rivalité ancestrale</strong> — Nord contre Sud, Givre contre Brasier. Conflits frontaliers réguliers, raids saisonniers, mariages politiques rompus.</p>
+  </div>
+
+  <div class="geopol-card">
+    <span class="status allied">ALLIANCE</span>
+    <h3>Velhar ↔ Maelyr</h3>
+    <p><strong>Alliance commerciale solide</strong> — Velhar fournit le savoir, Maelyr les denrées. Pont marchand entrelacé avec la Guilde des Marchands de Lumini.</p>
+  </div>
+
+  <div class="geopol-card">
+    <span class="status neutral">NEUTRE OFFICIEL</span>
+    <h3>Tsu-Raji</h3>
+    <p>Officiellement neutre dans tous les conflits internes. Sympathies discrètes pour Velhar (érudition partagée). Les Tengu portent les messages que personne d'autre n'oserait porter.</p>
+  </div>
+
+  <div class="geopol-card">
+    <span class="status tense">RESPECTUEUX</span>
+    <h3>Sol'Ambaïre ↔ Armonia</h3>
+    <p>Sol'Ambaïre <strong>respecte la cité-arbitre</strong>. Les Roses d'Armonia tranchent les différends que le Cercle d'Anh ne peut résoudre seul. Cas rares, mais précédents importants.</p>
+  </div>
+
+  <div class="geopol-card">
+    <span class="status tense">TENSIONS ANCIENNES</span>
+    <h3>Roon-Vyr ↔ No'Ord (Vaal'Skyria)</h3>
+    <p>Conflits anciens — référencés dans le Codex Nordique. Roon-Vyr est aux premières lignes des tensions avec No'Ord. Les raids des Nordiques sont une menace réelle pour les côtes nord de Sol'Ambaïre.</p>
+  </div>
+
+  <div class="geopol-card">
+    <span class="status allied">COMMERCE INTENSE</span>
+    <h3>Maelyr ↔ Lumini</h3>
+    <p>Pont commercial majeur via la <strong>Guilde des Marchands</strong> à Me'yn Prus. Caravanes, foires, banques. Maelyr est le visage économique de Sol'Ambaïre vers l'extérieur.</p>
+  </div>
+
+</div>
+
+<h2 class="section-title">🎲 Hooks de campagne</h2>
+
+<div class="intro-box" style="border-left-color: var(--accent);">
+  <p>• <strong>L'Assemblée des Vents</strong> est convoquée d'urgence — les PJ sont missionnés pour escorter un témoin essentiel jusqu'au Cercle d'Anh.</p>
+  <p>• Un <strong>Céleste se réveille à demi</strong> dans un royaume — son Conseil de Régence panique. Les PJ doivent décider : soutenir le Conseil ou laisser le Céleste reprendre son pouvoir ?</p>
+  <p>• La <strong>fosse du Cercle d'Anh</strong> a renvoyé un objet qu'on y avait jeté il y a 200 ans. Que dit-elle ?</p>
+  <p>• Une stèle d'obsidienne <strong>a disparu</strong> du Cercle — sacrilège impensable. Qui ? Comment ? Pourquoi ?</p>
+  <p>• Un <strong>Tengu de Tsu-Raji</strong> demande aux PJ un service — au nom d'Aïruk, pas d'Ay-Senna. Hérésie ou révélation ?</p>
+  <p>• <strong>Vendetta de Drun-Kar</strong> : un PJ découvre qu'il est, par sa lignée, marqué par une vendetta vieille de cinq générations. Comment s'en libérer ?</p>
+  <p>• Une <strong>université de Velhar</strong> détient un fragment de prophétie qui mentionne le 12e Nœud. Les PJ doivent le voler, le copier ou l'authentifier.</p>
+</div>
+
+<footer>
+  Sol'Ambaïre · Codex Mondial d'Armonia · Système Bilal · 2026
+</footer>
+
+</div>
+</body>
+</html>

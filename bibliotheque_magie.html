@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magie d'Armonia — Sens, Script, Mots</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+  --danger: #a02020;
+
+  --feu: #c44040;
+  --eau: #2a6a8a;
+  --vent: #7aa8c0;
+  --terre: #8a6a30;
+  --chaos: #7a4a8a;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 24px;
+  background: linear-gradient(135deg, #fffaf0 0%, #f0e0d0 50%, #fffaf0 100%);
+  border: 3px double var(--accent);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 32px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--accent);
+  margin-top: 8px;
+  font-size: 16px;
+}
+header.title-bar .quote {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 12px;
+  font-style: italic;
+}
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.intro-box strong { color: var(--primary); }
+.section-title {
+  font-size: 24px;
+  color: var(--primary);
+  margin: 32px 0 14px 0;
+  padding-bottom: 8px;
+  border-bottom: 3px double var(--accent);
+  letter-spacing: 2px;
+}
+.subsection-title {
+  font-size: 18px;
+  color: var(--accent);
+  margin: 18px 0 10px 0;
+  letter-spacing: 1px;
+}
+
+/* ÉTHER */
+.ether-box {
+  background: linear-gradient(135deg, #fffaf0 0%, #e8e0f0 100%);
+  border: 2px solid var(--chaos);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 14px 0;
+}
+.ether-box h2 {
+  margin: 0 0 8px 0;
+  color: var(--chaos);
+  font-size: 20px;
+}
+.ether-box .formule {
+  background: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--chaos);
+  text-align: center;
+  margin: 10px 0;
+}
+.ether-box ul { margin: 8px 0 8px 18px; padding: 0; line-height: 1.6; font-size: 14px; }
+.ether-box ul li { margin: 4px 0; }
+
+/* TABLEAU DE NIVEAUX */
+.dd-table {
+  width: 100%;
+  background: var(--paper);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 10px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.dd-table th, .dd-table td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.dd-table th {
+  background: var(--accent);
+  color: white;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+.dd-table td { font-size: 13px; }
+.dd-table tbody tr:last-child td { border-bottom: none; }
+.dd-table tbody tr:hover { background: rgba(168, 120, 48, 0.05); }
+
+/* AFFINITÉS */
+.affinites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin: 10px 0;
+}
+.affinite-card {
+  background: var(--paper);
+  border-top: 4px solid;
+  border-radius: 6px;
+  padding: 12px;
+  text-align: center;
+}
+.affinite-card.feu { border-top-color: var(--feu); }
+.affinite-card.eau { border-top-color: var(--eau); }
+.affinite-card.vent { border-top-color: var(--vent); }
+.affinite-card.terre { border-top-color: var(--terre); }
+.affinite-card.chaos { border-top-color: var(--chaos); }
+.affinite-card .icon { font-size: 36px; margin-bottom: 6px; }
+.affinite-card h4 { margin: 4px 0; font-size: 16px; }
+.affinite-card.feu h4 { color: var(--feu); }
+.affinite-card.eau h4 { color: var(--eau); }
+.affinite-card.vent h4 { color: var(--vent); }
+.affinite-card.terre h4 { color: var(--terre); }
+.affinite-card.chaos h4 { color: var(--chaos); }
+.affinite-card p { font-size: 12px; margin: 4px 0; line-height: 1.4; }
+
+/* SYMBOLES SCRIPT */
+.symboles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
+  margin: 10px 0;
+}
+.symbole-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.15s;
+}
+.symbole-card:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.symbole-card .icon { font-size: 32px; margin-bottom: 4px; }
+.symbole-card h4 { margin: 4px 0; font-size: 14px; color: var(--primary); }
+.symbole-card .cat {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.symbole-card.element { border-left: 4px solid var(--feu); }
+.symbole-card.forme { border-left: 4px solid var(--terre); }
+.symbole-card.modificateur { border-left: 4px solid var(--chaos); }
+.symbole-card p { font-size: 11px; margin: 4px 0 0 0; line-height: 1.4; color: var(--text); }
+
+/* RECETTES SCRIPT */
+.recettes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 12px;
+  margin: 12px 0;
+}
+.recette-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.recette-card h4 {
+  margin: 0 0 6px 0;
+  color: var(--primary);
+  font-size: 15px;
+}
+.recette-formula {
+  background: #f0e8d0;
+  padding: 8px 10px;
+  border-radius: 5px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  margin: 6px 0;
+  color: var(--text);
+  letter-spacing: 0.5px;
+}
+.recette-card p { margin: 6px 0; font-size: 13px; line-height: 1.4; }
+.recette-card .cost {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--chaos);
+  color: white;
+  border-radius: 10px;
+  font-size: 11px;
+  margin-top: 6px;
+}
+
+/* MOTS PRIMORDIAUX */
+.mots-table {
+  width: 100%;
+  background: var(--paper);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.mots-table th, .mots-table td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.mots-table th {
+  background: var(--chaos);
+  color: white;
+  letter-spacing: 1px;
+  font-size: 12px;
+}
+.mots-table td { font-size: 13px; line-height: 1.5; }
+.mots-table .mot {
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  color: var(--chaos);
+  font-size: 14px;
+}
+.mots-table .niveau {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.mots-table .niveau.mineur { background: #d5e8d8; color: #2a7a3c; }
+.mots-table .niveau.majeur { background: #f3e3a8; color: #8a6a20; }
+.mots-table .niveau.supreme { background: #f0d0c8; color: var(--feu); }
+.mots-table tbody tr:hover { background: rgba(122, 74, 138, 0.05); }
+.mots-table tbody tr:last-child td { border-bottom: none; }
+
+/* DANGERS */
+.dangers-box {
+  background: linear-gradient(135deg, #fff5f5 0%, #fde0e0 100%);
+  border: 2px solid var(--danger);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 16px 0;
+}
+.dangers-box h2 { margin: 0 0 10px 0; color: var(--danger); font-size: 20px; }
+.dangers-box ul { margin: 8px 0 8px 18px; padding: 0; line-height: 1.7; font-size: 14px; }
+.dangers-box ul li { margin: 6px 0; }
+.dangers-box strong { color: var(--danger); }
+
+.nav-back {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 13px;
+}
+.nav-back:hover { text-decoration: underline; }
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<a href="index.html" class="nav-back">← Retour au sommaire</a>
+
+<header class="title-bar">
+  <h1>✨ LA MAGIE D'ARMONIA ✨</h1>
+  <div class="subtitle">Sens · Script · Mots primordiaux</div>
+  <div class="quote">« La magie est trois langues. Tous savent la première. Peu écrivent la deuxième. Rares prononcent la troisième. »</div>
+</header>
+
+<div class="intro-box">
+  <p>La magie d'Armonia s'articule en <strong>trois couches</strong> distinctes mais complémentaires :</p>
+  <p>1. <strong>La Magie de Sens</strong> — élémentaire, intuitive, accessible à tous selon l'affinité.</p>
+  <p>2. <strong>La Magie Script</strong> — symbolique, compositionnelle, savoir d'érudits et d'ingénieurs.</p>
+  <p>3. <strong>La Magie des Mots</strong> — la Langue Primordiale, à découvrir en jeu, à prononcer avec terreur.</p>
+  <p>Toutes trois consomment la même ressource : l'<strong>Éther</strong>.</p>
+</div>
+
+<h2 class="section-title">⚡ L'Éther — Ressource de toute magie</h2>
+
+<div class="ether-box">
+  <h2>🔋 Réserve d'Éther</h2>
+  <div class="formule">Réserve max = 3 + INT + CON</div>
+  <ul>
+    <li>PJ normaux : entre 3 et 9 points</li>
+    <li><strong>Récupération</strong> : complète après une nuit, moitié après 1 h de repos calme</li>
+    <li><strong>Surcharge</strong> : si tu dépenses plus que ta réserve, tu prends des points de <em>Surcharge</em> (−1 à tous les jets pendant 24 h par point)</li>
+    <li><strong>5 Surcharges</strong> = <strong>coma de 3 jours</strong> (référence Damaïr dans le livre 2)</li>
+  </ul>
+  <h3 style="color:var(--chaos); margin-top:14px;">Renforcement physique magique</h3>
+  <ul>
+    <li><strong>1 Éther</strong> → +5 à un jet physique (avant le lancer)</li>
+    <li><strong>2 Éther</strong> → +5 dégâts sur une attaque réussie</li>
+  </ul>
+</div>
+
+<h2 class="section-title">🔥 Magie de Sens — Élémentaire & Intuitive</h2>
+
+<p style="font-size:14px; line-height:1.6;">Accessible à tous selon l'<strong>affinité</strong>. Demande concentration. Cinq éléments existent. À la création, le PJ répartit <strong>6 points d'Affinité</strong> (max +3 par élément, peut descendre à −2 sur un élément).</p>
+
+<h3 class="subsection-title">Les 5 affinités élémentaires</h3>
+
+<div class="affinites-grid">
+  <div class="affinite-card feu">
+    <div class="icon">🔥</div>
+    <h4>Feu</h4>
+    <p>Flammes, chaleur, lumière vive. Offensif direct.</p>
+  </div>
+  <div class="affinite-card eau">
+    <div class="icon">💧</div>
+    <h4>Eau</h4>
+    <p>Liquide, glace, courants. Contrôle, soin léger.</p>
+  </div>
+  <div class="affinite-card vent">
+    <div class="icon">💨</div>
+    <h4>Vent</h4>
+    <p>Souffles, pressions, mobilité. Vitesse, projection.</p>
+  </div>
+  <div class="affinite-card terre">
+    <div class="icon">🪨</div>
+    <h4>Terre</h4>
+    <p>Roche, racines, mur. Défense, contrôle de terrain.</p>
+  </div>
+  <div class="affinite-card chaos">
+    <div class="icon">✨</div>
+    <h4>Chaos</h4>
+    <p>Soins, croissance, mort, mots primordiaux. L'inattendu.</p>
+  </div>
+</div>
+
+<h3 class="subsection-title">Jet de magie de Sens</h3>
+<p style="font-size:14px;"><strong>1d20 + INT + Affinité élément vs DD</strong></p>
+
+<table class="dd-table">
+  <thead>
+    <tr><th>Puissance du sort</th><th>DD</th><th>Coût Éther</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Mineur — étincelle, mèche, brise</td><td>10</td><td>1</td></tr>
+    <tr><td>Standard — boule de feu, vague, pieu</td><td>15</td><td>2</td></tr>
+    <tr><td>Puissant — mur élémentaire, vortex</td><td>20</td><td>4</td></tr>
+    <tr><td>Spectaculaire — tornade, geyser, dragon de flammes</td><td>25</td><td>8</td></tr>
+  </tbody>
+</table>
+
+<h3 class="subsection-title">Sous-cas Chaos — Soins</h3>
+<table class="dd-table">
+  <thead>
+    <tr><th>Soin</th><th>DD</th><th>PV récupérés</th><th>Coût Éther</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Léger</td><td>12</td><td>1d6</td><td>2</td></tr>
+    <tr><td>Moyen</td><td>15</td><td>2d6</td><td>4</td></tr>
+    <tr><td>Majeur</td><td>18</td><td>3d6</td><td>6</td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-title">📜 Magie Script — Symboles & Composition</h2>
+
+<p style="font-size:14px; line-height:1.6;">Inscription de <strong>symboles sur un support</strong> (bâton, brassard, peau, sol, parchemin). Le script est activé en dépensant de l'Éther. <strong>Pas besoin de concentration</strong> à l'activation, mais le <strong>coût Éther est élevé</strong> et la composition est l'enjeu.</p>
+
+<p style="font-size:14px;">À la création, un PJ connaît <strong>2 symboles</strong> au choix. Un <strong>Ingénieur en connaît 4</strong>, plus 3 bonus de classe. Apprendre un nouveau symbole en jeu coûte de l'XP et nécessite un maître ou un manuscrit.</p>
+
+<h3 class="subsection-title">Les 15 symboles de base</h3>
+
+<h4 style="color:var(--feu); margin:14px 0 6px 0;">🔥 Éléments (5)</h4>
+<div class="symboles-grid">
+  <div class="symbole-card element"><div class="icon">🔥</div><div class="cat">Élément</div><h4>Feu</h4><p>Flamme, chaleur</p></div>
+  <div class="symbole-card element"><div class="icon">💧</div><div class="cat">Élément</div><h4>Eau</h4><p>Liquide, glace</p></div>
+  <div class="symbole-card element"><div class="icon">💨</div><div class="cat">Élément</div><h4>Vent</h4><p>Souffle, pression</p></div>
+  <div class="symbole-card element"><div class="icon">🪨</div><div class="cat">Élément</div><h4>Terre</h4><p>Roche, racine</p></div>
+  <div class="symbole-card element"><div class="icon">✨</div><div class="cat">Élément</div><h4>Chaos</h4><p>L'inattendu</p></div>
+</div>
+
+<h4 style="color:var(--terre); margin:14px 0 6px 0;">🛠️ Formes (5)</h4>
+<div class="symboles-grid">
+  <div class="symbole-card forme"><div class="icon">⚔️</div><div class="cat">Forme</div><h4>Lame</h4><p>Tranchant orienté</p></div>
+  <div class="symbole-card forme"><div class="icon">🗲</div><div class="cat">Forme</div><h4>Pieu</h4><p>Pointe perforante</p></div>
+  <div class="symbole-card forme"><div class="icon">⚪</div><div class="cat">Forme</div><h4>Sphère</h4><p>Boule projetée</p></div>
+  <div class="symbole-card forme"><div class="icon">🧱</div><div class="cat">Forme</div><h4>Mur</h4><p>Pilier, paroi</p></div>
+  <div class="symbole-card forme"><div class="icon">⬢</div><div class="cat">Forme</div><h4>Disque</h4><p>Couche plate</p></div>
+</div>
+
+<h4 style="color:var(--chaos); margin:14px 0 6px 0;">⚙️ Modificateurs (5)</h4>
+<div class="symboles-grid">
+  <div class="symbole-card modificateur"><div class="icon">🚀</div><div class="cat">Modif</div><h4>Propulsion</h4><p>Vitesse, projection</p></div>
+  <div class="symbole-card modificateur"><div class="icon">🌐</div><div class="cat">Modif</div><h4>Propagation</h4><p>Zone, étend</p></div>
+  <div class="symbole-card modificateur"><div class="icon">✖️</div><div class="cat">Modif</div><h4>Multiple</h4><p>Plusieurs instances</p></div>
+  <div class="symbole-card modificateur"><div class="icon">🎯</div><div class="cat">Modif</div><h4>Précision</h4><p>Visée fine</p></div>
+  <div class="symbole-card modificateur"><div class="icon">⏱️</div><div class="cat">Modif</div><h4>Prolongation</h4><p>Durée</p></div>
+</div>
+
+<h3 class="subsection-title">Règles de composition (résumé)</h3>
+<table class="dd-table">
+  <thead><tr><th>Action</th><th>Jet</th><th>Coût Éther</th><th>Note</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Script pré-inscrit</strong> (atelier, 1h/symbole)</td><td>1d20 + INT + Arcanes vs DD 10 + 3 par symbole au-delà du 1er</td><td>1/symbole investi définitivement</td><td>Échec = matériel & éther perdus</td></tr>
+    <tr><td><strong>Activation d'un script pré-inscrit</strong></td><td>—</td><td>nb de symboles</td><td>Action gratuite si porté · 1 charge consommée</td></tr>
+    <tr><td><strong>Script spontané</strong> (combat, max 3 symboles)</td><td>1d20 + INT + Arcanes vs DD 10 + 3 par symbole</td><td>nb symboles + 1 Éther</td><td>Matière malléable requise · usage unique</td></tr>
+  </tbody>
+</table>
+
+<p style="font-size:13px; margin-top:8px;"><strong>Capacités selon support</strong> : bois 3-5 charges · métal/cuir 10 · cristal 20+ · mana 50+</p>
+
+<h3 class="subsection-title">⚙️ Bonus de la classe Ingénieur</h3>
+<ul style="font-size:14px; line-height:1.6;">
+  <li>Connaît <strong>3 symboles bonus</strong> dès la création (total : 4 de base + 3 = 7)</li>
+  <li><strong>−1 Éther</strong> sur activation de ses propres scripts (minimum 1)</li>
+  <li><strong>Œil de l'artisan</strong> : identifie les symboles d'un script étranger</li>
+  <li>Peut <strong>recharger</strong> un script épuisé (moitié du coût initial)</li>
+  <li>À haut niveau : <strong>artefacts permanents</strong> + cristaux jumeaux (OMI)</li>
+</ul>
+
+<h3 class="subsection-title">🧪 Recettes prêtes à l'emploi</h3>
+
+<div class="recettes-grid">
+
+  <div class="recette-card">
+    <h4>🔥 Lance de Feu</h4>
+    <div class="recette-formula">Feu + Lame + Propulsion</div>
+    <p>Lance enflammée projetée sur cible. Brûle ce qu'elle touche. 1d8 dégâts.</p>
+    <span class="cost">3 Éther</span>
+  </div>
+
+  <div class="recette-card">
+    <h4>🪨 Pieux jaillissants</h4>
+    <div class="recette-formula">Terre + Pieu + Multiple</div>
+    <p>Plusieurs pieux de pierre surgissent du sol sous les ennemis. 1d6 par pieu, 3 pieux max.</p>
+    <span class="cost">3 Éther</span>
+  </div>
+
+  <div class="recette-card">
+    <h4>🧱 Mur de pierre</h4>
+    <div class="recette-formula">Terre + Mur + Prolongation</div>
+    <p>Mur de roche large de 3 m, dure 5 tours. Bloque ligne de vue et projectiles.</p>
+    <span class="cost">3 Éther</span>
+  </div>
+
+  <div class="recette-card">
+    <h4>💧 Sphère d'eau précise</h4>
+    <div class="recette-formula">Eau + Sphère + Précision</div>
+    <p>Sphère lancée avec précision absolue (ne rate pas si DD réussi). Repousse, éteint un feu.</p>
+    <span class="cost">3 Éther</span>
+  </div>
+
+  <div class="recette-card">
+    <h4>💨 Disque de Vent (bouclier)</h4>
+    <div class="recette-formula">Vent + Disque + Prolongation</div>
+    <p>Disque de vent répulsif autour du porteur. Dévie projectiles (jet de DEX +5), 3 tours.</p>
+    <span class="cost">3 Éther</span>
+  </div>
+
+  <div class="recette-card">
+    <h4>🔥 Pluie de Feu</h4>
+    <div class="recette-formula">Feu + Sphère + Multiple + Propagation</div>
+    <p>Plusieurs petites boules de feu pleuvent sur une zone de 5×5 m. 1d6 par cible touchée.</p>
+    <span class="cost">4 Éther</span>
+  </div>
+
+  <div class="recette-card">
+    <h4>💨 Lame de Vent</h4>
+    <div class="recette-formula">Vent + Lame + Précision</div>
+    <p>Lame d'air tranchante invisible. 1d8+2 dégâts, ignore armure de cuir.</p>
+    <span class="cost">3 Éther</span>
+  </div>
+
+  <div class="recette-card">
+    <h4>❄️ Piège de Glace</h4>
+    <div class="recette-formula">Eau + Pieu + Précision + Prolongation</div>
+    <p>Pic de glace dissimulé au sol. Déclenche au passage : 1d10 + immobilisé 1 tour.</p>
+    <span class="cost">4 Éther</span>
+  </div>
+
+  <div class="recette-card">
+    <h4>🔫 Bâton-tube nordique (canon)</h4>
+    <div class="recette-formula">Vent + Pieu + Propulsion</div>
+    <p>Bâton-tube avec pierre : propulse violemment la pierre comme une balle. 2d6 perforants.</p>
+    <span class="cost">3 Éther</span>
+  </div>
+
+  <div class="recette-card">
+    <h4>📡 Cristaux jumeaux (OMI)</h4>
+    <div class="recette-formula">Eau + Chaos + Propagation + Précision</div>
+    <p>Paire de cristaux liés : communication instantanée vocale. Portée : continent. <em>Réservé Ingénieur haut niveau.</em></p>
+    <span class="cost">8 Éther initiaux, 1 Éther/usage</span>
+  </div>
+
+</div>
+
+<h3 class="subsection-title">❄️ Variante nordique — la Magie runique</h3>
+<p style="font-size:14px; line-height:1.6;">La magie runique de No'Ord est une <strong>branche régionale</strong> de la Magie Script. Les Nordiques gravent leurs symboles sur <strong>os, pierre et glace</strong> plutôt que sur cuir et métal. Les runes <em>gèlent la réalité un instant</em>, obligent le monde à « avancer selon un ordre ». Mêmes mécaniques que le Script, mais variations esthétiques et certains glyphes propres (à découvrir auprès des shamans).</p>
+
+<h2 class="section-title">🗣️ Magie des Mots — La Langue Primordiale</h2>
+
+<p style="font-size:14px; line-height:1.6;">La couche la plus rare et la plus dangereuse. Mots de <strong>création</strong> prononcés à voix haute. Effets puissants et immédiats. À <strong>découvrir en jeu uniquement</strong> — jamais achetable à la création.</p>
+
+<h3 class="subsection-title">Prérequis</h3>
+<ul style="font-size:14px; line-height:1.6;">
+  <li><strong>Affinité Chaos +1 minimum</strong> — sinon perception des sons mais incapacité de prononcer correctement</li>
+  <li>Connaître le mot — voir l'acquisition ci-dessous</li>
+</ul>
+
+<h3 class="subsection-title">Acquisition d'un mot</h3>
+<ul style="font-size:14px; line-height:1.6;">
+  <li>Rêves & visions (événement narratif)</li>
+  <li>Manuscrits anciens (trésor de campagne)</li>
+  <li>Enseignement d'un PNJ (Veilleur, érudit primordial)</li>
+  <li>Contact avec un Nœud du Monde</li>
+  <li>Don d'une entité supérieure (esprit, Géant, Céleste)</li>
+</ul>
+
+<h3 class="subsection-title">Lancer un mot</h3>
+<p style="font-size:14px;"><strong>Action principale · 1d20 + INT + Affinité Chaos vs DD</strong></p>
+<table class="dd-table">
+  <thead><tr><th>Niveau</th><th>DD</th><th>Coût Éther</th></tr></thead>
+  <tbody>
+    <tr><td>Mineur</td><td>15</td><td>4</td></tr>
+    <tr><td>Majeur</td><td>20</td><td>8</td></tr>
+    <tr><td>Suprême</td><td>25</td><td>16</td></tr>
+  </tbody>
+</table>
+
+<h3 class="subsection-title">📖 Lexique canon — 8 mots connus</h3>
+
+<table class="mots-table">
+  <thead>
+    <tr><th>Mot</th><th>Effet</th><th>Niveau</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="mot">Yiel curare</td>
+      <td>Soin instantané — 3d6 PV récupérés (canon livre 2)</td>
+      <td><span class="niveau mineur">Mineur</span></td>
+    </tr>
+    <tr>
+      <td class="mot">Lukai armentis</td>
+      <td>Lumière intense aveuglante — DD CON 15 ou aveuglé 1d4 tours</td>
+      <td><span class="niveau mineur">Mineur</span></td>
+    </tr>
+    <tr>
+      <td class="mot">Iod ramelloth</td>
+      <td>Voir le vrai visage — perce illusions, déguisements, mensonges flagrants pendant 1 minute</td>
+      <td><span class="niveau mineur">Mineur</span></td>
+    </tr>
+    <tr>
+      <td class="mot">Volturna sarn</td>
+      <td>Repousser brutalement — tous les ennemis à 10 m projetés en arrière (DD FOR ou tombent)</td>
+      <td><span class="niveau majeur">Majeur</span></td>
+    </tr>
+    <tr>
+      <td class="mot">Tjeran morth</td>
+      <td>Briser — un objet ou un lien magique en cours est annulé/détruit</td>
+      <td><span class="niveau majeur">Majeur</span></td>
+    </tr>
+    <tr>
+      <td class="mot">Solen aer</td>
+      <td>Ouvrir une voie — porte close, mur fissuré, passage caché s'ouvre (limite : pas de magie défensive active)</td>
+      <td><span class="niveau majeur">Majeur</span></td>
+    </tr>
+    <tr>
+      <td class="mot">Sanluth ekron</td>
+      <td>Lier deux êtres ou objets par un fil invisible — distance max 1 km, dure 1 jour</td>
+      <td><span class="niveau majeur">Majeur</span></td>
+    </tr>
+    <tr>
+      <td class="mot">Echtar valhad</td>
+      <td>Réveiller un esprit endormi — danger réel : l'esprit peut être hostile, libre, ou impossible à recoucher</td>
+      <td><span class="niveau supreme">Suprême</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="font-size:12px; color:var(--muted); font-style:italic; margin-top:8px;">Le MJ peut créer d'autres mots primordiaux selon les besoins de la campagne. Les mots ci-dessus sont les seuls actuellement répertoriés.</p>
+
+<h2 class="section-title">⚠️ Dangers communs</h2>
+
+<div class="dangers-box">
+  <h2>🩸 Risques de la magie</h2>
+  <ul>
+    <li><strong>Surconsommation d'Éther</strong> : au-delà de la réserve, Surcharge (−1 jets pendant 24 h / point). 5 Surcharges = coma.</li>
+    <li><strong>1 naturel sur un mot primordial</strong> : 1d6 dégâts directs + 3 Surcharges (coma probable — comme Damaïr dans le livre 2). Saignement de nez. Souvenirs flous pendant des jours.</li>
+    <li><strong>Échec critique d'un script</strong> : 1d4 dégâts si support porté à même la peau (brûlure de scarification).</li>
+    <li><strong>Magie de Sens, 1 naturel</strong> : <em>retour de magie</em> — l'effet est doublé mais hors de contrôle (cible aléatoire, durée aléatoire, etc.).</li>
+    <li><strong>Mot primordial bien prononcé</strong> : vibration ressentie alentour. Bêtes magiques et esprits réagissent. Nœuds du Monde proches peuvent s'éveiller. <em>Les Veilleurs le sentent.</em></li>
+  </ul>
+</div>
+
+<h2 class="section-title">🎲 Hooks de campagne magiques</h2>
+
+<div class="intro-box" style="border-left-color: var(--chaos);">
+  <p>• Un PJ <strong>rêve d'un mot</strong> inconnu — qui parle dans son sommeil ? Que veut cette voix ?</p>
+  <p>• Un <strong>manuscrit ancien</strong> contient un 9e mot primordial. Mais quelqu'un d'autre le cherche aussi.</p>
+  <p>• Un Ingénieur PJ tente de <strong>graver un mot primordial dans un script</strong> — projet épique, plusieurs sessions, fin de campagne.</p>
+  <p>• Un script spontané d'un PJ rate critiquement — la matière inscrite se met à <strong>parler</strong>.</p>
+  <p>• Un PJ approche un <strong>Nœud du Monde</strong> et entend la voix d'un mot non-encore appris. Recevra-t-il le don ?</p>
+  <p>• Quelqu'un (Garance ? Vœnir ?) a découvert comment <strong>voler une affinité</strong> par rituel sanglant.</p>
+  <p>• Un <strong>artefact pré-Rupture</strong> contient une <em>réserve d'Éther brut</em> — bénédiction ou drogue ?</p>
+  <p>• L'<strong>artefact de la Tour du Renouveau</strong> est en fait un mot primordial gravé à perpétuité — qui le prononcerait à l'envers ?</p>
+</div>
+
+<footer>
+  La Magie d'Armonia · Sens, Script, Mots · Système Bilal · 2026
+</footer>
+
+</div>
+</body>
+</html>

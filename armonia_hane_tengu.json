@@ -1,0 +1,76 @@
+{
+  "state": {
+    "atouts": [
+      {"nom": "Diplomate des Vents", "niveau": "I", "used": false},
+      {"nom": "Œil aérien", "niveau": "I", "used": false}
+    ],
+    "promesses": [
+      {"texte": "Servir le Vent du Zénith — l'Harmonie", "statut": "active"}
+    ],
+    "scripts": [
+      {"nom": "Brassard du Vent", "symboles": "Vent + Propulsion", "charges": "10", "cout": "2"}
+    ],
+    "mots": [],
+    "inv": [
+      {"nom": "Sac de messager", "qte": "1"},
+      {"nom": "Plume sacrée d'Aïruka", "qte": "1"},
+      {"nom": "Pierre d'orientation", "qte": "1"},
+      {"nom": "Rations de voyage", "qte": "5"}
+    ],
+    "affinity": {},
+    "echo": 3
+  },
+  "nom": "Aïrukai (à personnaliser)",
+  "joueur": "Joueur Tengu",
+  "classe": "Messager / Éclaireur",
+  "race": "Tengu",
+  "sousrace": "Hane-Tengu (caste Harmonique)",
+  "age": "23 ans",
+  "description": "Plumes sur les avant-bras et le dos, yeux jaunes vifs. Sourire en bec discret. Toujours en mouvement, sa cape se gonfle au moindre courant d'air.",
+  "for": "0",
+  "dex": "1",
+  "con": "0",
+  "int": "0",
+  "sag": "1",
+  "cha": "0",
+  "vit_actuel": "10",
+  "ether_actuel": "3",
+  "echo_max": "5",
+  "surcharge": "0",
+  "armure_bonus": "1",
+  "bouclier": "0",
+  "action_def": "0",
+  "symboles_connus": "Vent, Propulsion, Précision, Sphère, Multiple",
+  "arme_principale": "Arc court (1d6 + DEX)",
+  "arme_secondaire": "Couteau de jet (1d4 + DEX)",
+  "armure": "Tunique de cuir des falaises (+1)",
+  "or": "20 pièces d'argent, 1 médaillon doré",
+  "notes": "RACE : Hane-Tengu (caste Harmonique) — pont culturel entre Tengu et humains.\n\nTRAITS RACIAUX GRATUITS (en plus des Atouts, à appliquer au moment des jets) :\n- Legs du Vent : ignore les dégâts de chute jusqu'à 5m, ignore les terrains difficiles aériens\n- Saut amplifié : double la distance horizontale, +2m vertical\n- Vol limité : jet Athlétisme DD 12 pour planer 1 minute sur courte distance\n- Affinité Vent naturelle : +1 SUPPLÉMENTAIRE à l'Affinité Vent au-delà des 6 pts de création (à appliquer manuellement au moment des jets de Vent → Vent effectif = +4 en jeu)\n\nRELIGION : Le Voile des Cinq Vents — chaque vent une vertu :\n- Nord = Discipline\n- Sud = Liberté\n- Est = Sagesse\n- Ouest = Courage\n- Zénith = Harmonie (le vent suivi par ce personnage)\n\nORIGINES : Tsu-Raji (Royaume des Falaises Chantantes), continent Sol'Ambaïre. Caste Harmonique = hybride plus humain que les Karasu ou Taka. Voyage le plus, vu comme 'marchant entre ciel et terre'. Pas de loyauté nationale — allégeance au vent.\n\nDIPLOMATIE : Les Tengu sont des messagers neutres entre royaumes. Détestés des Hauts Elfes, respectés des Hommes-Bêtes, utilisés par les Marchands et la Guilde des Aventuriers.",
+  "competences": {
+    "Armes au contact": "0",
+    "Armes à distance": "1",
+    "Défense": "0",
+    "Athlétisme": "2",
+    "Acrobaties": "3",
+    "Discrétion": "2",
+    "Vigilance": "3",
+    "Persuasion": "2",
+    "Tromperie": "0",
+    "Intimidation": "0",
+    "Intuition": "1",
+    "Histoire & Religion": "0",
+    "Arcanes": "0",
+    "Médecine": "0",
+    "Nature & Survie": "0",
+    "Artisanat": "0",
+    "Larcins": "0",
+    "Représentation": "1"
+  },
+  "affinities": {
+    "Feu": "0",
+    "Eau": "1",
+    "Vent": "3",
+    "Terre": "1",
+    "Chaos": "1"
+  }
+}
