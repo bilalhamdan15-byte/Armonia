@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>Etape 6 - nouvel escalier</title>
+<style>body{font-family:system-ui,sans-serif;background:#1a1611;color:#e8dfc9;padding:24px;max-width:900px;margin:0 auto}
+h1{color:#d4a13a;border-bottom:2px solid #5c3a1a;padding-bottom:8px}
+.card{background:#2a2418;border:1px solid #4a3820;border-radius:8px;padding:20px;margin:20px 0}
+textarea.code{width:100%;height:100px;background:#0f0d08;color:#a8c060;border:1px solid #5c3a1a;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;white-space:nowrap;overflow:auto}
+button{background:#5c3a1a;color:#e8dfc9;border:none;padding:12px 24px;border-radius:4px;cursor:pointer;margin-top:8px;font-size:15px;font-weight:600}button:hover{background:#7c4a2a}
+.info{background:#1a2a1a;border-left:4px solid #a8c060;padding:14px;margin:16px 0;border-radius:4px;font-size:14px}
+.warn{background:#2a1a1a;border-left:4px solid #c0602a;padding:14px;margin:16px 0;border-radius:4px;font-size:14px}</style></head><body>
+<h1>Étape 6 — nouvel escalier + ouverture à l'étage 2</h1>
+<div class="info">8×8, 2 étages, coins+murs+fenêtres (déjà validés). Nouveau : ton asset <code>fd31ea7e</code> à la place de l'ancien escalier, et un trou de 1×2 tuiles découpé dans le plancher de l'étage 2 à l'endroit où l'escalier arrive (sinon on monterait dans un plafond plein).</div>
+<div class="warn"><b>Hypothèse à vérifier</b> — je n'ai qu'un seul exemple de placement de ton asset (une pièce, une rotation). J'ai posé 2 pièces empilées entre les 2 étages : une à Y=0.5 (niveau sol étage 1), une à Y=1.75 (mi-hauteur), décalées d'une tuile en Z pour monter. Si ça ne s'aligne pas bien en jeu (marches qui se chevauchent, décalage, trou pas au bon endroit), dis-moi comment ça devrait s'articuler et j'ajuste.</div>
+<h2>8×8 × 2 étages, nouvel escalier</h2>
+<div class="card"><textarea class="code" id="c0" readonly onclick="this.select()">H4sIAAAAAAAC/0XUv2sUQRjG8dkf8WdATbcWrs3aJB5cp9hErYRgpx4qojiFWAimsZGw2NmNjSDEyi7VoWihg6TzrU78A8SUp4JYTGNEcN95v+I1z+0872eW44Wb7c4+lW7BOffg8LlL65dPXni6//H737++P983nF37fOPh7qmja1unn71eP/Dkvp5t3Do2G/88svrm4tsTxx+9PKRn727f/Hjv+t6zr75uLl79cOXOhs59G/9ZOLi19uLL+c3RmbvjcjgLhThH7oz02/Dc9PWPMmcRimlt/bS2fnjOfc5Bqe9rzZ1RX6vvF51Tryk6n3v12k9r6y3z+4bPpLR7NPvOVfmeri/y+3Jv92har6n9/8/qHku717ntJYqGvqXv6Jed84x4vMd7vMd7vMd7vOAFL3jBC17wghf8Cr9AU72mek31uW/oW/qOfln34tif+YAP+IAP+IAP+IRP+IRP+IRP+IRP+Enp2J95TfWa6nPf0Lf0Hf3gIz7iIz7iIz7iIz7inZtXdsO8sv3PK9v/vLL9D31D39J39Hn/5j3eM++Z98x75oV5YV54n/A+wQte8IJfKcxr2r7Na9q+zee+pe/o877NB3zAB3zAB3zAB3zCJ3zCJ3zCJ3zCJ/ykNK9p+zavafs2n/uWvqPP+zYf8REf8REf8REfy3/70v+VvvbDyfZSX/8F5ILuXS4FAAA=</textarea><button onclick="cp('c0',this)">📋 Copier</button></div>
+<script>function cp(id,b){const t=document.getElementById(id);t.select();t.setSelectionRange(0,999999);try{const o=document.execCommand('copy');b.textContent=o?'✓ Copié !':'❌ Ctrl+A+C';setTimeout(()=>b.textContent='📋 Copier',3000)}catch(e){b.textContent='❌ Ctrl+A+C'}}</script>
+</body></html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>Etape 13 - Faitage a 2 niveaux + mur de pignon</title>
+<style>body{font-family:system-ui,sans-serif;background:#1a1611;color:#e8dfc9;padding:24px;max-width:900px;margin:0 auto}
+h1{color:#d4a13a;border-bottom:2px solid #5c3a1a;padding-bottom:8px}
+.card{background:#2a2418;border:1px solid #4a3820;border-radius:8px;padding:20px;margin:20px 0}
+textarea.code{width:100%;height:120px;background:#0f0d08;color:#a8c060;border:1px solid #5c3a1a;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;white-space:nowrap;overflow:auto}
+button{background:#5c3a1a;color:#e8dfc9;border:none;padding:12px 24px;border-radius:4px;cursor:pointer;margin-top:8px;font-size:15px;font-weight:600}button:hover{background:#7c4a2a}
+.info{background:#1a2a1a;border-left:4px solid #a8c060;padding:14px;margin:16px 0;border-radius:4px;font-size:14px}</style></head><body>
+<h1>Étape 13 — faîtage à 2 niveaux + mur de pignon</h1>
+<div class="info">Reconstruit depuis ta correction manuelle en jeu. Structure :<br><br>
+- <b>10727582</b> + <b>bd1e0ed2</b> : about + planches sur les 2 colonnes extérieures (x=0 et x=6, alignées sur les coins), niveau du toit (y=5.0).<br>
+- <b>1928adc8</b> (nouveau) : mur plat de pignon, 4 colonnes centrales (x=2-5), ferme le bas du triangle aux 2 façades.<br>
+- <b>baaf3839</b> + <b>bd1e0ed2</b> : 2e faîtage, surélevé (+1.75), sur les 2 colonnes internes (x=2 et x=4), referme le haut du triangle.<br><br>
+Recréé exactement depuis les coordonnées de ton slab de correction — pas encore testé sur notre générateur en conditions réelles.<br><br>
+<b>À vérifier :</b> le pignon est-il complètement fermé (plus de trou nulle part) ? Les 2 niveaux de faîtage s'alignent-ils bien avec le mur de pignon entre les deux ?</div>
+<h2>Taverne 8×8×2 — faîtage v2</h2>
+<div class="card"><textarea class="code" id="c0" readonly onclick="this.select()">H4sIAAAAAAAC/1XUTYhOURzH8fO8eBsT421xLVybK5kxmdQgmxk2aIyUl8lb5CxkQaZkIz3ZKeoiSrHAzksmYsEhWXBKzXhbKGGW4yVZnBJSzv/8v4+Xu/l17u9+7nPvOec+wz+Gn1dNizHm6MHBtvWPHq+9du/zuBPtryfX4zl/fX42Y+a8nqvdL9/M6N3xamI8925Rf+f2VX3rLradGu5es2B/Tzx3qG3FxsFNC1efnXTswc/vny7IdVvf7jj8Y+nsvivLzt0ebDl5QM4tW3rj7srWSytObjjzzd7KLspvvJgy5/6sxW7V/adLRmaNnO6XZzmya85w19dpPXf6786be/TmVLH3du8c2bdtQu+tD+dbtzzZvOeIXPex69e4yVf6Lr9feb5z+d6uqpHj2QRjGnXJh+2N+kA1jSuScVzxqY/vFnO005iOio4lZVwyLhkHxoGx3t/UJHvGazZaNR9O1zQZfU5f0LebmsVbvMVbvMVbvMVbPM+fUrzHe7zHe7zHezzvm1K8pHhJ8anP6HP6gj76f+cn+pTRp4xe5y+jz+kL+vb/51N8wAd8wAd8wAe8rqemeEnxaX2n02f0OX1BH73DO7zDO7zDO7zDO3wZd5C+vze6H+I4a9S/VFNWyspQXfuhuvZxnPqUUYlv1CVHO2WfeiO/L17Sy/WpFy/9UF17TW+Ot+j6H2+RdSkraWwk5Tmb+7I5P8192Zyf5r5szk+6T6ve58/9M+6b8X5pvvW5JXU/SzYq6f1Sr88tqb2k9H8PfR6T3lMOfZ54ZPQ5fUEf59tyicVbvMVbvMVbvMV7vMd7vMd7vMd7vMd38AaS4iXFS4pPfUaf0xf0ab8Y9ov6El/iS3yJL/ElPuADPuADPuADPuADfkD/FFPq96JeUr8X9anP6Qv69L2od3iHd3iHd3iHd3hjxmp6h7Garv9YTdd/rKbrH/uMPqcv6NP6q7d4i7d4i7d4i7d4j/d4j/d4j/d4j+uoqJPUdVcnqeuuLvU559N6qytxJa7ElbgSl/qCPq23+oAP+IAP+IAP+IAfqKqX1PVWL6nrrT71OX1Bn9ZbvcM7vMM7vMM7vKs2583z/QxUJX8DbEhCiWIIAAA=</textarea><button onclick="cp('c0',this)">📋 Copier</button></div>
+<script>function cp(id,b){const t=document.getElementById(id);t.select();t.setSelectionRange(0,999999);try{const o=document.execCommand('copy');b.textContent=o?'✓ Copié !':'❌ Ctrl+A+C';setTimeout(()=>b.textContent='📋 Copier',3000)}catch(e){b.textContent='❌ Ctrl+A+C'}}</script>
+</body></html>

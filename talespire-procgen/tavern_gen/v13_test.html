@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>V13 · Placement intelligent</title>
+<style>
+body{font-family:system-ui,sans-serif;background:#1a1611;color:#e8dfc9;padding:24px;max-width:1000px;margin:0 auto}
+h1{color:#d4a13a;border-bottom:2px solid #5c3a1a;padding-bottom:8px}
+h2{color:#c07a2a;margin-top:24px}
+.card{background:#2a2418;border:1px solid #4a3820;border-radius:8px;padding:20px;margin:20px 0}
+textarea.code{width:100%;height:120px;background:#0f0d08;color:#a8c060;border:1px solid #5c3a1a;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;white-space:nowrap;overflow:auto}
+button.copy{background:#5c3a1a;color:#e8dfc9;border:none;padding:12px 24px;border-radius:4px;cursor:pointer;margin-top:8px;font-size:15px;font-weight:600}
+button.copy:hover{background:#7c4a2a}
+.info{background:#1a2a1a;border-left:4px solid #a8c060;padding:14px;margin:16px 0;border-radius:4px;font-size:14px}
+</style></head><body>
+<h1>V13 · Placement intelligent du mobilier</h1>
+<div class="info">
+Les clusters ont été classés par <b>affinité</b> à partir de leurs positions dans la Tavern originale :
+<ul>
+<li><b>Clusters "mur"</b> (contre un mur du bâtiment source) : placés contre les murs de la nouvelle maison → cheminée, bar, décor mural</li>
+<li><b>Clusters "centre"</b> (au milieu du bâtiment source) : placés au centre → tables, chaises</li>
+</ul>
+Résultat attendu : cheminée/bar contre un mur, tables au milieu, décor bien réparti.
+</div>
+<h2>🍺 Taverne · 10×8×2</h2>
+<div class="card">
+<textarea class="code" id="c0" readonly onclick="this.select()">H4sIAN4tXmoC/03Vb4hVRRgG8Dn3XFzSFZdryZ4UznXtsILX9ENEYeZdzd22q+6GWNuqYHUM3ShMRPtQeJLZDybRpGkZRruW4Z8EwVoxR1lDc4i0tTD6Z5GGXF1L0/mQWdm88z6C98vDzjO/2bnszOyJv0+czIk7hBD9ybaaK317mw9VggMvvVHXE7ixw4NDai8+c3rm7ol/2qvb7xrMu7ElsyojWr6e0rLlaO9Ukf+xSPM6t4r6rCOZ+VbXjuqlC6PG0djY976b8uUrLU1renvnfdBzZAaN1b3QOuPTFadbu+8fPvv2jav259zYyHUPPfzqNxseeXv+1FlzG+vX0u9YVTd93vLHJrZuum3toevXBt+td2NzXh+6pNL1ZtOhH5qePXvko5Z2N3bfU1OXhguHtb2zOd5d3nV8Iv2O57r/WLHcrGw6eGrxmPjnM+fpd3w/bc+a63dOa37/r0mTi7MXP9noxpa92Lpp5eKZbesfPNh3+Z+ro8ke6B7TM3z06OYPK0tfXt21+hcaW7/zQu8Tk841b9vaOX1uw4FK6MYa/w337t++tbLz6Iq+69sW/UbzWk50f9KZfjsrO9m1bkppRw2NFavz9y3YuLDymj4+b/P5PY+SPXtj/2fnLm5o+3jOrua7vxh5hubtO5s3NX33Tl/bO7h+VLl6ye/l6UVfPb+gpmnv+S21ncceX9LjxmxghWooh7XuS5XHifDzoBiqggiv5IrhQL0I/xPFsD0R4YygGmYjhNA5LYrjs9yp3GWxqDFzP1fD/kK/W6caluN+MYzWicvisFunzs3/3a3T7g7DNbfOwFjhP+UhGW1HZLWc/QVOEXGWY/RJFsjQz89Tuvk+3Xyfbr5PN5/7JHN/arcPv77bby0nr18NeX3aJ3q/vp+fp+T1/XyfvL6fz71ff6CGv8VATXkIZ1bL2V/gFBH6GH2CfoIQKXwKn8Kn8Cl8Cp/Cp/AG3sAbeANv4A28gTfwpYA9JXlK8pTkfR+hj9En6J1X8ApewSt4Ba/gFbyCt/AW3sJbeAtv4S28he/IsackT0mekrzvI/Qx+gT9BDq/7DW8htfwGl7Da3gN706x95TkKclTkvd9hD5Gn6B3XsJLeAkv4SW8hJfwEv4nMV60D83yv9K9c/cqclluEPhkQYo0yBLfpEAhLbIjx6mRxZBTIv29nJDlU6RB0nqUCknrUGokrUMpkf7e+X1xGmQp4FRIi+zIcWpkMeSUSH+f/b44DZLW431xWiStx/vjpPV4f5zzc0dEu/s7RP79oHNaCiYPp/mlYNlIWr8UXI75e/J9oXdCiGOBf4/Cqzn/HoU3+N0K78k9EKgGum88/9bPzZ/5vSCHIkIfo0/Q+/eCPyl8Cp/Cp/ApfAqfwhv4m/sx8AbewBt4A2/g+fxw8vdn789BAX2EPkafoPfvBXsFr+AVvIJX8Cq4+Xdgb+EtvIW38Bbewlt4C8/nnJPfC/b+3BbQR+hj9Al6/16w1/AaXsNreA2v4TU83ytOfi/Y+3tSQB+hj9En6P17wV7CS3gJL+ElvISX8Hz/OPn88fnl/4voI/Qx+gS9P3/sU/gUPoVP4VP4FD6FN/AG3sAbeANv4A28ged3gvPW++fvewF9hD5Gn6D354+9glfwCl7BK3gFr+AtvIW38Bbewlt4C2/h+T3j5PPH3r9LBfQR+hh9gt6fP/YaXsNreA2v4TW8huf3k5PPH3v/DhbQR+hj9Al6f/7YS3gJL+ElvISX8BL+f4t5VKMODAAA</textarea>
+<button class="copy" onclick="doCopy('c0',this)">📋 Copier</button>
+</div><h2>🏠 Maison · 8×6×2</h2>
+<div class="card">
+<textarea class="code" id="c1" readonly onclick="this.select()">H4sIAN4tXmoC/0XUQUhUQRgH8HlvF5dKU4zCzWCNii4reRfRrXQrLYLQFoswmsI26NClk/gSPJiHJorqYKQVkpAQRCcnWcloDmFqEFlEhyC2jCyaQ+Wl+eb7m+/yZ+f/m327s9/bmb8zc6EoFUJMLZaUfjvzoXm89qf99WD7YuDWuttay7Pz9dmh5yMNIv6+htY674qqKLej+WZ+rLj0ddM2Wtt65239y0vZTN/ISPv94ek9tLZhcO++y6+vHbh1rKHtyM6qAVq7WLG7/UJH7f4bawYml/8s3q5wa+PVzzqepg63jDZ/X7BL859Dt3boytru1vz1zOS7zLlP0w+zdW5tofFR3/LmxpZ7v3fV1Rw8fTLl1ib6twyXVVe3jLae7enN936ke2Rn+p90yjdt0Vx+sD49lqC1iVNdr84fT2Qefxkq7XxxtLvLrV11RVOFiK0Li7HCRiGk0KKmPAp7xA/RtT4SyvURHYy7mkoiehv3mrNQySmSUaBD38cpXe/T9T5dHxeiGOP9xRjvd/er5OT9vo9T8n7f+6T9J4JirKusEKYDEY9KC+5dZxP8qWYTTSWc/DlnE4VKTpFEn6LvxV7CS3gJL+ElvIE38AbewBt4A58O2FOSpyRPSd73SfTOK3gFr+AVvIJX8Bbewlt4C2/hLXwuZE9JnpI8JXnfJ9E7r+E1vIbX8Bpew/MVBRJpkGmekEAhLTIXcmqkn6dUFJdIg6T9lBZJ+yg10s+Lvy+nQaYDToW0yFzIqZF+Dv19OQ2S9lMqpEXSfr4/55Tg54F6nrPVi+dw9Xn53yfR+znkS8JLeAkv4SW8gTfwBt7AG3gDz+fPyXPInpLnkD2fsxAKXsGvPO8KXsEreAtv4W2wch7sLbyF59+dk+eQfS5k7/skej+H7DW8htfwGl7D8zxw8vnT/wcnnz/9f6D3589ewkt4CS/hJbyBN/AG3sAbeAPPc8jJ588+jXnxfRK9P3/2Cl7BK3gFr+AtvIW38CvzaOEtPM8/J58/+1zI3vdJ9P782Wt4Da/hNbyG/we98LtVOgcAAA==</textarea>
+<button class="copy" onclick="doCopy('c1',this)">📋 Copier</button>
+</div><h2>🛒 Boutique · 7×6×1</h2>
+<div class="card">
+<textarea class="code" id="c2" readonly onclick="this.select()">H4sIAN4tXmoC/03TXUhUQRQH8LnrZS2ztI2CdYk1ihBZy4eKhMK7Pmz04VdRiRX0cQPN2iACfejhKvggBQ0mUZLQ15sZgVGIIEskDUJK0EMfL+GGrVgUNA+ZUc2Z85ealz97zm+Guffcnfw5+SoklgshLiVmwltef993N/eh1T3Q9skxtf1Dl4vK5hv33J/uWR/5tXqMap0dOyJbK1bU9b4fLW3dsK6Tahe/zcYmprprH3Znz6e/dG2kWntxzcELhyp2X1/aM7YwPzewxNTqrha07D3Tlxx7l2zLPn+wq9zUtp/c2Zp3bFl9/834kDf4soL2jldOpKvOHakfGk41OpMtBVR7W/2oa6GkOnXvx+bK0trTJ+jO7Wc7Rsr7Vnr9VfEbpW8+DoRMLftn5NnM52v1j+sGU5smVk3T3qdZV+U/2VbTc2eud42X+0q10VPHp9JH85PDs7cKm18cbqG7JJxKp6FIiN9OEGqIBW6zgUGhcEvMwUFU2OWFA9pu6pyZCKeIBk5TyPZdStO3afo2Td8VIpfHp+TyvDCnOd9mJsIpoujHhfDhfXgf3of34X14Ba/gFbyCV/AKPuGwpyRPSZ6SvO1H0Tdewkt4CS/hJbyE1/AaXsNreA2v4ZtC7CnJU5KnJG/7UfSN7xBlonht4Kbs+xVYgeMjFTLBE3MkUiPtXATPz4sHro9USPKUGmnna39Lcdt8HyWhK8KLZdwak5kYzeH/eyx+L7hVISfP+Z/jOfPy4X14H37xXB9ewSt4Ba/gFbyC5+fn5Dmzp+Q5s7d9O2f2El7CS3gJL+E1vIbX8Bpew2t4fu+cPGf2/H9BP4q+8X8BevlFhKYEAAA=</textarea>
+<button class="copy" onclick="doCopy('c2',this)">📋 Copier</button>
+</div>
+<script>
+function doCopy(id,btn){
+  const ta=document.getElementById(id);ta.select();ta.setSelectionRange(0,999999);
+  try{const ok=document.execCommand('copy');btn.textContent=ok?'✓ Copié !':'❌ Ctrl+A+C';setTimeout(()=>btn.textContent='📋 Copier',3000)}
+  catch(e){btn.textContent='❌ Ctrl+A+C'}
+}
+</script></body></html>

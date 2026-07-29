@@ -1,0 +1,1548 @@
+{
+  "signature_clusters": [
+    {
+      "cluster": {
+        "id": 4,
+        "size": 6,
+        "origin": [
+          15.79,
+          1.29,
+          10.27
+        ],
+        "w": 1.68,
+        "d": 0.98,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "07a525c0-b6f2-46b3-be4b-01bb7c9110a0",
+            "dx": 0.71,
+            "dy": 0.0,
+            "dz": 0.1,
+            "rot": 11
+          },
+          {
+            "guid": "0c06ebc1-66ec-45dd-ad2d-f1f4f3a824eb",
+            "dx": 0.08,
+            "dy": 1.25,
+            "dz": 0.98,
+            "rot": 12
+          },
+          {
+            "guid": "0c6d83dd-01af-42c0-bd04-948921b49bd8",
+            "dx": 1.07,
+            "dy": 1.25,
+            "dz": 0.21,
+            "rot": 12
+          },
+          {
+            "guid": "2f02b24b-20f4-4874-aa45-80167ca9e1b0",
+            "dx": 1.47,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 14
+          },
+          {
+            "guid": "46ceac75-5f3c-4f09-9370-30b8be5a213e",
+            "dx": 1.68,
+            "dy": 0.2,
+            "dz": 0.57,
+            "rot": 17
+          },
+          {
+            "guid": "48448b13-d38a-4a93-985b-3d4c53271889",
+            "dx": 0.0,
+            "dy": 1.25,
+            "dz": 0.41,
+            "rot": 23
+          }
+        ],
+        "comp": {
+          "07a525c0": 1,
+          "0c06ebc1": 1,
+          "0c6d83dd": 1,
+          "2f02b24b": 1,
+          "46ceac75": 1,
+          "48448b13": 1
+        },
+        "affinity": "wall_E"
+      },
+      "rare_guids": [
+        "2f02b24b-20f4-4874-aa45-80167ca9e1b0",
+        "07a525c0-b6f2-46b3-be4b-01bb7c9110a0"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 21,
+        "size": 6,
+        "origin": [
+          0.93,
+          0.94,
+          8.77
+        ],
+        "w": 0.82,
+        "d": 0.44,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "0f8bad52-f928-4a51-a4e2-892312fc15be",
+            "dx": 0.1,
+            "dy": 1.6,
+            "dz": 0.37,
+            "rot": 18
+          },
+          {
+            "guid": "1be9f074-cfca-4d85-ae85-e36f6eed8226",
+            "dx": 0.38,
+            "dy": 0.0,
+            "dz": 0.08,
+            "rot": 0
+          },
+          {
+            "guid": "6eca30c5-6d39-4f5b-adb3-465101ce680a",
+            "dx": 0.82,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 0
+          },
+          {
+            "guid": "b9786c77-942a-4011-9a39-1f9820d8e49d",
+            "dx": 0.0,
+            "dy": 0.36,
+            "dz": 0.42,
+            "rot": 18
+          },
+          {
+            "guid": "b9786c77-942a-4011-9a39-1f9820d8e49d",
+            "dx": 0.38,
+            "dy": 0.35,
+            "dz": 0.36,
+            "rot": 19
+          },
+          {
+            "guid": "c2b9ffe3-ece6-4f93-b44e-ab462eca13e2",
+            "dx": 0.78,
+            "dy": 0.35,
+            "dz": 0.44,
+            "rot": 0
+          }
+        ],
+        "comp": {
+          "0f8bad52": 1,
+          "1be9f074": 1,
+          "6eca30c5": 1,
+          "b9786c77": 2,
+          "c2b9ffe3": 1
+        },
+        "affinity": "wall_W"
+      },
+      "rare_guids": [
+        "b9786c77-942a-4011-9a39-1f9820d8e49d",
+        "c2b9ffe3-ece6-4f93-b44e-ab462eca13e2",
+        "6eca30c5-6d39-4f5b-adb3-465101ce680a",
+        "1be9f074-cfca-4d85-ae85-e36f6eed8226"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 5,
+        "size": 4,
+        "origin": [
+          10.81,
+          2.54,
+          10.61
+        ],
+        "w": 0.64,
+        "d": 0.64,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "07a525c0-b6f2-46b3-be4b-01bb7c9110a0",
+            "dx": 0.0,
+            "dy": 0.61,
+            "dz": 0.53,
+            "rot": 13
+          },
+          {
+            "guid": "0c06ebc1-66ec-45dd-ad2d-f1f4f3a824eb",
+            "dx": 0.24,
+            "dy": 0.0,
+            "dz": 0.64,
+            "rot": 12
+          },
+          {
+            "guid": "48448b13-d38a-4a93-985b-3d4c53271889",
+            "dx": 0.23,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 1
+          },
+          {
+            "guid": "c2b9ffe3-ece6-4f93-b44e-ab462eca13e2",
+            "dx": 0.64,
+            "dy": 0.79,
+            "dz": 0.53,
+            "rot": 0
+          }
+        ],
+        "comp": {
+          "07a525c0": 1,
+          "0c06ebc1": 1,
+          "48448b13": 1,
+          "c2b9ffe3": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "07a525c0-b6f2-46b3-be4b-01bb7c9110a0",
+        "c2b9ffe3-ece6-4f93-b44e-ab462eca13e2"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 7,
+        "size": 4,
+        "origin": [
+          6.33,
+          0.54,
+          10.28
+        ],
+        "w": 0.55,
+        "d": 0.97,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "0c06ebc1-66ec-45dd-ad2d-f1f4f3a824eb",
+            "dx": 0.54,
+            "dy": 2.0,
+            "dz": 0.97,
+            "rot": 12
+          },
+          {
+            "guid": "48448b13-d38a-4a93-985b-3d4c53271889",
+            "dx": 0.49,
+            "dy": 2.0,
+            "dz": 0.41,
+            "rot": 0
+          },
+          {
+            "guid": "a1eaaa92-2f59-46e6-a5a2-5a425322bb4b",
+            "dx": 0.0,
+            "dy": 0.75,
+            "dz": 0.11,
+            "rot": 18
+          },
+          {
+            "guid": "b75be820-955c-4b5d-8dbc-cd5599e9b051",
+            "dx": 0.55,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 14
+          }
+        ],
+        "comp": {
+          "0c06ebc1": 1,
+          "48448b13": 1,
+          "a1eaaa92": 1,
+          "b75be820": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "b75be820-955c-4b5d-8dbc-cd5599e9b051",
+        "a1eaaa92-2f59-46e6-a5a2-5a425322bb4b"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 30,
+        "size": 4,
+        "origin": [
+          15.0,
+          1.29,
+          9.08
+        ],
+        "w": 0.24,
+        "d": 0.83,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "1800a25a-5880-4525-976a-a9e8efea1623",
+            "dx": 0.12,
+            "dy": 0.0,
+            "dz": 0.83,
+            "rot": 15
+          },
+          {
+            "guid": "3bd89f21-81cc-4147-82a1-a155a4a0c443",
+            "dx": 0.24,
+            "dy": 0.0,
+            "dz": 0.11,
+            "rot": 22
+          },
+          {
+            "guid": "ba61ff18-e8b8-4ba0-bfed-ac897bfe62ff",
+            "dx": 0.14,
+            "dy": 0.0,
+            "dz": 0.65,
+            "rot": 0
+          },
+          {
+            "guid": "fa777637-f260-4d29-8448-979e8a8bb29e",
+            "dx": 0.0,
+            "dy": 1.25,
+            "dz": 0.0,
+            "rot": 0
+          }
+        ],
+        "comp": {
+          "1800a25a": 1,
+          "3bd89f21": 1,
+          "ba61ff18": 1,
+          "fa777637": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "ba61ff18-e8b8-4ba0-bfed-ac897bfe62ff",
+        "1800a25a-5880-4525-976a-a9e8efea1623",
+        "3bd89f21-81cc-4147-82a1-a155a4a0c443"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 22,
+        "size": 3,
+        "origin": [
+          8.69,
+          5.54,
+          3.38
+        ],
+        "w": 0.66,
+        "d": 0.06,
+        "y_floor": 1,
+        "props": [
+          {
+            "guid": "123c7881-2d35-4e0e-92db-bb2069242181",
+            "dx": 0.66,
+            "dy": 0.0,
+            "dz": 0.02,
+            "rot": 0
+          },
+          {
+            "guid": "3a1d2e5e-dfba-4ba1-b40a-5747d17c52f5",
+            "dx": 0.36,
+            "dy": 0.0,
+            "dz": 0.06,
+            "rot": 0
+          },
+          {
+            "guid": "71ded691-2336-4302-a657-e98f7a0162be",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 0
+          }
+        ],
+        "comp": {
+          "123c7881": 1,
+          "3a1d2e5e": 1,
+          "71ded691": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "71ded691-2336-4302-a657-e98f7a0162be"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 31,
+        "size": 3,
+        "origin": [
+          0.6,
+          2.54,
+          7.04
+        ],
+        "w": 0.93,
+        "d": 0.42,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "1800a25a-5880-4525-976a-a9e8efea1623",
+            "dx": 0.0,
+            "dy": 0.47,
+            "dz": 0.42,
+            "rot": 10
+          },
+          {
+            "guid": "3bd89f21-81cc-4147-82a1-a155a4a0c443",
+            "dx": 0.25,
+            "dy": 0.6,
+            "dz": 0.3,
+            "rot": 2
+          },
+          {
+            "guid": "a01c85bb-1b0d-461b-a64b-697d7f6a7fdf",
+            "dx": 0.93,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 0
+          }
+        ],
+        "comp": {
+          "1800a25a": 1,
+          "3bd89f21": 1,
+          "a01c85bb": 1
+        },
+        "affinity": "wall_W"
+      },
+      "rare_guids": [
+        "1800a25a-5880-4525-976a-a9e8efea1623",
+        "3bd89f21-81cc-4147-82a1-a155a4a0c443",
+        "a01c85bb-1b0d-461b-a64b-697d7f6a7fdf"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 33,
+        "size": 3,
+        "origin": [
+          11.51,
+          2.0,
+          4.52
+        ],
+        "w": 0.66,
+        "d": 0.89,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "2c1ee99e-fd8f-4e0a-b4a2-f0bad51deec0",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 6
+          },
+          {
+            "guid": "3ff3d2ba-827b-4270-b288-dfd93c7031cd",
+            "dx": 0.66,
+            "dy": 0.54,
+            "dz": 0.89,
+            "rot": 0
+          },
+          {
+            "guid": "3ff3d2ba-827b-4270-b288-dfd93c7031cd",
+            "dx": 0.25,
+            "dy": 0.54,
+            "dz": 0.26,
+            "rot": 8
+          }
+        ],
+        "comp": {
+          "2c1ee99e": 1,
+          "3ff3d2ba": 2
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "2c1ee99e-fd8f-4e0a-b4a2-f0bad51deec0"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 59,
+        "size": 3,
+        "origin": [
+          10.62,
+          5.54,
+          2.63
+        ],
+        "w": 0.22,
+        "d": 0.25,
+        "y_floor": 1,
+        "props": [
+          {
+            "guid": "603f6c03-950c-4e47-9c11-8c4b99592d7b",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 0
+          },
+          {
+            "guid": "70b365de-4c29-4b1c-8e05-b48a8b3bd6fa",
+            "dx": 0.22,
+            "dy": 0.0,
+            "dz": 0.01,
+            "rot": 11
+          },
+          {
+            "guid": "70b365de-4c29-4b1c-8e05-b48a8b3bd6fa",
+            "dx": 0.02,
+            "dy": 0.0,
+            "dz": 0.25,
+            "rot": 0
+          }
+        ],
+        "comp": {
+          "603f6c03": 1,
+          "70b365de": 2
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "603f6c03-950c-4e47-9c11-8c4b99592d7b",
+        "70b365de-4c29-4b1c-8e05-b48a8b3bd6fa"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 3,
+        "size": 2,
+        "origin": [
+          2.78,
+          0.54,
+          8.45
+        ],
+        "w": 0.46,
+        "d": 0.45,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "06e62c7c-d434-4cf3-a2e8-e06904536be7",
+            "dx": 0.0,
+            "dy": 0.76,
+            "dz": 0.45,
+            "rot": 0
+          },
+          {
+            "guid": "123c7881-2d35-4e0e-92db-bb2069242181",
+            "dx": 0.46,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 16
+          }
+        ],
+        "comp": {
+          "06e62c7c": 1,
+          "123c7881": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "06e62c7c-d434-4cf3-a2e8-e06904536be7"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 9,
+        "size": 2,
+        "origin": [
+          9.44,
+          2.04,
+          10.0
+        ],
+        "w": 0.63,
+        "d": 0.42,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "0c6d83dd-01af-42c0-bd04-948921b49bd8",
+            "dx": 0.63,
+            "dy": 0.79,
+            "dz": 0.42,
+            "rot": 12
+          },
+          {
+            "guid": "e27b409d-073f-4fcd-8f37-54f62d419d81",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 2
+          }
+        ],
+        "comp": {
+          "0c6d83dd": 1,
+          "e27b409d": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "e27b409d-073f-4fcd-8f37-54f62d419d81"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 12,
+        "size": 2,
+        "origin": [
+          7.06,
+          5.54,
+          3.17
+        ],
+        "w": 0.23,
+        "d": 0.48,
+        "y_floor": 1,
+        "props": [
+          {
+            "guid": "0f4b4c68-d247-473b-9cc5-a13d0004db20",
+            "dx": 0.23,
+            "dy": 0.0,
+            "dz": 0.48,
+            "rot": 0
+          },
+          {
+            "guid": "b585ce47-645a-4cd6-80d1-6a8b3b2ca907",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 0
+          }
+        ],
+        "comp": {
+          "0f4b4c68": 1,
+          "b585ce47": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "0f4b4c68-d247-473b-9cc5-a13d0004db20",
+        "b585ce47-645a-4cd6-80d1-6a8b3b2ca907"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 49,
+        "size": 2,
+        "origin": [
+          9.77,
+          5.54,
+          7.8
+        ],
+        "w": 0.37,
+        "d": 0.48,
+        "y_floor": 1,
+        "props": [
+          {
+            "guid": "43497110-74ba-49dd-8539-0d4d149577b9",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 3
+          },
+          {
+            "guid": "74ee856d-c872-4176-bdd5-651c1fdee2e9",
+            "dx": 0.37,
+            "dy": 0.0,
+            "dz": 0.48,
+            "rot": 0
+          }
+        ],
+        "comp": {
+          "43497110": 1,
+          "74ee856d": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "43497110-74ba-49dd-8539-0d4d149577b9",
+        "74ee856d-c872-4176-bdd5-651c1fdee2e9"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 57,
+        "size": 2,
+        "origin": [
+          10.45,
+          5.54,
+          7.02
+        ],
+        "w": 0.5,
+        "d": 0.14,
+        "y_floor": 1,
+        "props": [
+          {
+            "guid": "56c31bad-1fbd-4650-a645-eed9f4efd2e6",
+            "dx": 0.5,
+            "dy": 0.0,
+            "dz": 0.14,
+            "rot": 11
+          },
+          {
+            "guid": "56c31bad-1fbd-4650-a645-eed9f4efd2e6",
+            "dx": 0.0,
+            "dy": 0.06,
+            "dz": 0.0,
+            "rot": 11
+          }
+        ],
+        "comp": {
+          "56c31bad": 2
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "56c31bad-1fbd-4650-a645-eed9f4efd2e6"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 60,
+        "size": 2,
+        "origin": [
+          13.95,
+          0.54,
+          2.93
+        ],
+        "w": 0.7,
+        "d": 0.03,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "65e28f8c-9e8e-48fd-abbf-88dfb5d4385e",
+            "dx": 0.7,
+            "dy": 0.0,
+            "dz": 0.03,
+            "rot": 12
+          },
+          {
+            "guid": "65e28f8c-9e8e-48fd-abbf-88dfb5d4385e",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 0
+          }
+        ],
+        "comp": {
+          "65e28f8c": 2
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "65e28f8c-9e8e-48fd-abbf-88dfb5d4385e"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 61,
+        "size": 2,
+        "origin": [
+          17.07,
+          0.44,
+          2.51
+        ],
+        "w": 0.2,
+        "d": 0.65,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "693d6238-5d03-4f0b-9a99-1fad40abcd2d",
+            "dx": 0.2,
+            "dy": 0.1,
+            "dz": 0.65,
+            "rot": 18
+          },
+          {
+            "guid": "c804e3b7-b607-4236-89a1-eb921640e8ef",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 0
+          }
+        ],
+        "comp": {
+          "693d6238": 1,
+          "c804e3b7": 1
+        },
+        "affinity": "wall_E"
+      },
+      "rare_guids": [
+        "693d6238-5d03-4f0b-9a99-1fad40abcd2d",
+        "c804e3b7-b607-4236-89a1-eb921640e8ef"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 73,
+        "size": 2,
+        "origin": [
+          12.23,
+          0.52,
+          10.58
+        ],
+        "w": 0.09,
+        "d": 0.07,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "94ab7724-d0fb-401f-b718-1a1556a75374",
+            "dx": 0.0,
+            "dy": 0.8,
+            "dz": 0.07,
+            "rot": 0
+          },
+          {
+            "guid": "94ab7724-d0fb-401f-b718-1a1556a75374",
+            "dx": 0.09,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 0
+          }
+        ],
+        "comp": {
+          "94ab7724": 2
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "94ab7724-d0fb-401f-b718-1a1556a75374"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 77,
+        "size": 2,
+        "origin": [
+          0.7,
+          2.54,
+          5.74
+        ],
+        "w": 0.03,
+        "d": 0.01,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "96497870-6576-4f45-923e-bdb6f0fcf31b",
+            "dx": 0.03,
+            "dy": 0.49,
+            "dz": 0.01,
+            "rot": 0
+          },
+          {
+            "guid": "b303fd27-a8b9-4ba2-aac5-74b6fba560e4",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 0
+          }
+        ],
+        "comp": {
+          "96497870": 1,
+          "b303fd27": 1
+        },
+        "affinity": "wall_W"
+      },
+      "rare_guids": [
+        "96497870-6576-4f45-923e-bdb6f0fcf31b"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 81,
+        "size": 2,
+        "origin": [
+          9.25,
+          0.04,
+          10.0
+        ],
+        "w": 0.63,
+        "d": 0.21,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "ab5555c8-bcd8-48d3-bab5-0f3e99e87b15",
+            "dx": 0.0,
+            "dy": 0.5,
+            "dz": 0.21,
+            "rot": 5
+          },
+          {
+            "guid": "e544b784-866e-436c-80f7-1c3283ebfa51",
+            "dx": 0.63,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 16
+          }
+        ],
+        "comp": {
+          "ab5555c8": 1,
+          "e544b784": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "ab5555c8-bcd8-48d3-bab5-0f3e99e87b15",
+        "e544b784-866e-436c-80f7-1c3283ebfa51"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 85,
+        "size": 2,
+        "origin": [
+          7.75,
+          0.04,
+          2.0
+        ],
+        "w": 0.37,
+        "d": 0.0,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "d4cf8cbc-a334-4c7c-8369-7c3754ea511d",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 12
+          },
+          {
+            "guid": "d61e4dbb-43d9-4fe7-8d0f-cca7d2aa626b",
+            "dx": 0.37,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 12
+          }
+        ],
+        "comp": {
+          "d4cf8cbc": 1,
+          "d61e4dbb": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "d4cf8cbc-a334-4c7c-8369-7c3754ea511d",
+        "d61e4dbb-43d9-4fe7-8d0f-cca7d2aa626b"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 0,
+        "size": 1,
+        "origin": [
+          16.44,
+          0.54,
+          4.17
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "03f3aca5-260f-417f-aa3b-1a37d24d2a1f",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 0
+          }
+        ],
+        "comp": {
+          "03f3aca5": 1
+        },
+        "affinity": "wall_E"
+      },
+      "rare_guids": [
+        "03f3aca5-260f-417f-aa3b-1a37d24d2a1f"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 1,
+        "size": 1,
+        "origin": [
+          13.0,
+          0.54,
+          11.5
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "0569aaca-0f0a-4386-a469-e5c9925e262f",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 0
+          }
+        ],
+        "comp": {
+          "0569aaca": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "0569aaca-0f0a-4386-a469-e5c9925e262f"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 2,
+        "size": 1,
+        "origin": [
+          4.0,
+          0.54,
+          11.5
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "0569aaca-0f0a-4386-a469-e5c9925e262f",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 0
+          }
+        ],
+        "comp": {
+          "0569aaca": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "0569aaca-0f0a-4386-a469-e5c9925e262f"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 27,
+        "size": 1,
+        "origin": [
+          6.11,
+          0.54,
+          7.42
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "17785d5a-43ca-401e-ba33-1cc5eff01ad4",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 0
+          }
+        ],
+        "comp": {
+          "17785d5a": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "17785d5a-43ca-401e-ba33-1cc5eff01ad4"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 28,
+        "size": 1,
+        "origin": [
+          6.05,
+          0.54,
+          8.85
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "17785d5a-43ca-401e-ba33-1cc5eff01ad4",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 4
+          }
+        ],
+        "comp": {
+          "17785d5a": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "17785d5a-43ca-401e-ba33-1cc5eff01ad4"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 29,
+        "size": 1,
+        "origin": [
+          5.27,
+          0.54,
+          9.35
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "17785d5a-43ca-401e-ba33-1cc5eff01ad4",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 17
+          }
+        ],
+        "comp": {
+          "17785d5a": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "17785d5a-43ca-401e-ba33-1cc5eff01ad4"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 32,
+        "size": 1,
+        "origin": [
+          7.15,
+          3.74,
+          5.64
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 1,
+        "props": [
+          {
+            "guid": "22e2f43b-f234-4061-a5ae-2401c134db4f",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 12
+          }
+        ],
+        "comp": {
+          "22e2f43b": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "22e2f43b-f234-4061-a5ae-2401c134db4f"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 34,
+        "size": 1,
+        "origin": [
+          6.49,
+          5.54,
+          7.09
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 1,
+        "props": [
+          {
+            "guid": "2ed62f17-ca95-4705-a69d-6ee25930261a",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 16
+          }
+        ],
+        "comp": {
+          "2ed62f17": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "2ed62f17-ca95-4705-a69d-6ee25930261a"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 35,
+        "size": 1,
+        "origin": [
+          10.04,
+          5.54,
+          6.07
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 1,
+        "props": [
+          {
+            "guid": "36131b72-b944-4bc2-880c-54576c6afe79",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 14
+          }
+        ],
+        "comp": {
+          "36131b72": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "36131b72-b944-4bc2-880c-54576c6afe79"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 58,
+        "size": 1,
+        "origin": [
+          8.93,
+          7.04,
+          2.88
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 2,
+        "props": [
+          {
+            "guid": "5fbe277b-21a6-40bf-af19-011cf51e9fea",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 18
+          }
+        ],
+        "comp": {
+          "5fbe277b": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "5fbe277b-21a6-40bf-af19-011cf51e9fea"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 62,
+        "size": 1,
+        "origin": [
+          12.49,
+          6.75,
+          6.02
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 2,
+        "props": [
+          {
+            "guid": "78518a65-5ca6-454e-b2cd-603f33d19823",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 18
+          }
+        ],
+        "comp": {
+          "78518a65": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "78518a65-5ca6-454e-b2cd-603f33d19823"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 71,
+        "size": 1,
+        "origin": [
+          11.51,
+          1.96,
+          3.56
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "90eaff27-4bdf-4400-8061-a294a650d96e",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 6
+          }
+        ],
+        "comp": {
+          "90eaff27": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "90eaff27-4bdf-4400-8061-a294a650d96e"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 72,
+        "size": 1,
+        "origin": [
+          2.02,
+          0.64,
+          7.07
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "9182a61a-e7c5-4b11-8693-849659b0d761",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 0
+          }
+        ],
+        "comp": {
+          "9182a61a": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "9182a61a-e7c5-4b11-8693-849659b0d761"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 74,
+        "size": 1,
+        "origin": [
+          13.0,
+          4.54,
+          12.5
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 1,
+        "props": [
+          {
+            "guid": "94fff01b-1af0-49e6-a933-b9237795589f",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 0
+          }
+        ],
+        "comp": {
+          "94fff01b": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "94fff01b-1af0-49e6-a933-b9237795589f"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 75,
+        "size": 1,
+        "origin": [
+          4.0,
+          4.54,
+          12.5
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 1,
+        "props": [
+          {
+            "guid": "94fff01b-1af0-49e6-a933-b9237795589f",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 0
+          }
+        ],
+        "comp": {
+          "94fff01b": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "94fff01b-1af0-49e6-a933-b9237795589f"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 76,
+        "size": 1,
+        "origin": [
+          11.09,
+          3.83,
+          5.52
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 1,
+        "props": [
+          {
+            "guid": "953a7aca-73a7-4740-9546-7c30993f6118",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 12
+          }
+        ],
+        "comp": {
+          "953a7aca": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "953a7aca-73a7-4740-9546-7c30993f6118"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 82,
+        "size": 1,
+        "origin": [
+          8.06,
+          0.54,
+          8.29
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "ab5555c8-bcd8-48d3-bab5-0f3e99e87b15",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 4
+          }
+        ],
+        "comp": {
+          "ab5555c8": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "ab5555c8-bcd8-48d3-bab5-0f3e99e87b15"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 83,
+        "size": 1,
+        "origin": [
+          12.91,
+          0.17,
+          2.68
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "ac4e845b-254e-40e9-b1be-3eb7e924d24c",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 0
+          }
+        ],
+        "comp": {
+          "ac4e845b": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "ac4e845b-254e-40e9-b1be-3eb7e924d24c"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 86,
+        "size": 1,
+        "origin": [
+          6.0,
+          2.04,
+          1.96
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "d61e4dbb-43d9-4fe7-8d0f-cca7d2aa626b",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 12
+          }
+        ],
+        "comp": {
+          "d61e4dbb": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "d61e4dbb-43d9-4fe7-8d0f-cca7d2aa626b"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 91,
+        "size": 1,
+        "origin": [
+          12.49,
+          6.75,
+          22.18
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 2,
+        "props": [
+          {
+            "guid": "fb04f74e-fd7a-4243-92ba-30cdaba18574",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 6
+          }
+        ],
+        "comp": {
+          "fb04f74e": 1
+        },
+        "affinity": "wall_S"
+      },
+      "rare_guids": [
+        "fb04f74e-fd7a-4243-92ba-30cdaba18574"
+      ]
+    },
+    {
+      "cluster": {
+        "id": 92,
+        "size": 1,
+        "origin": [
+          15.0,
+          2.54,
+          8.14
+        ],
+        "w": 0.0,
+        "d": 0.0,
+        "y_floor": 0,
+        "props": [
+          {
+            "guid": "fb04f74e-fd7a-4243-92ba-30cdaba18574",
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+            "rot": 12
+          }
+        ],
+        "comp": {
+          "fb04f74e": 1
+        },
+        "affinity": "center"
+      },
+      "rare_guids": [
+        "fb04f74e-fd7a-4243-92ba-30cdaba18574"
+      ]
+    }
+  ]
+}

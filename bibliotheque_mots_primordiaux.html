@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mots Primordiaux — Codex étendu</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+  --danger: #a02020;
+  --rituel: #7a4a8a;
+
+  --canon: #2a7a3c;
+  --nouveau: #a87830;
+  --mineur: #d5e8d8;
+  --majeur: #f3e3a8;
+  --supreme: #f0d0c8;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+
+header.title-bar {
+  text-align: center;
+  padding: 24px;
+  background: linear-gradient(135deg, #fffaf0 0%, #e8e0f0 50%, #fffaf0 100%);
+  border: 3px double var(--rituel);
+  border-radius: 8px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 32px;
+  color: var(--rituel);
+  letter-spacing: 4px;
+}
+header.title-bar .subtitle {
+  color: var(--accent);
+  font-style: italic;
+  font-size: 15px;
+  margin-top: 8px;
+}
+header.title-bar .quote {
+  color: var(--muted);
+  font-style: italic;
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--rituel);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.intro-box strong { color: var(--rituel); }
+
+.section-title {
+  font-size: 22px;
+  color: var(--rituel);
+  margin: 28px 0 12px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+  letter-spacing: 1px;
+}
+
+.mots-table {
+  width: 100%;
+  background: var(--paper);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  margin: 12px 0;
+}
+.mots-table th, .mots-table td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.mots-table th {
+  background: var(--rituel);
+  color: white;
+  letter-spacing: 1px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.mots-table .mot {
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  color: var(--rituel);
+  font-size: 15px;
+  white-space: nowrap;
+}
+.mots-table .niveau {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.niveau.mineur { background: var(--mineur); color: #2a7a3c; }
+.niveau.majeur { background: var(--majeur); color: #8a6a20; }
+.niveau.supreme { background: var(--supreme); color: var(--danger); }
+.mots-table .canon-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  background: var(--canon);
+  color: white;
+  border-radius: 8px;
+  font-size: 10px;
+  margin-left: 6px;
+}
+.mots-table tbody tr:hover { background: rgba(122, 74, 138, 0.05); }
+.mots-table tbody tr:last-child td { border-bottom: none; }
+
+.acquisition-box {
+  background: linear-gradient(135deg, #fffaf0 0%, #f0e6cf 100%);
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 16px 0;
+}
+.acquisition-box h2 {
+  margin: 0 0 10px 0;
+  color: var(--accent);
+  font-size: 18px;
+}
+.acquisition-box p { font-size: 13px; line-height: 1.6; margin: 6px 0; }
+.acquisition-box ul { font-size: 13px; line-height: 1.7; margin: 6px 0 6px 20px; padding: 0; }
+
+.nav-back {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body>
+<div class="container">
+
+<a href="index.html" class="nav-back">← Retour au sommaire</a>
+
+<header class="title-bar">
+  <h1>🗣️ MOTS PRIMORDIAUX</h1>
+  <div class="subtitle">Codex étendu · 24 mots à découvrir en jeu</div>
+  <div class="quote">« Un mot bien prononcé peut déplacer un roi. Un mot mal prononcé peut te tuer. »</div>
+</header>
+
+<div class="intro-box">
+  <p><strong>Ce codex</strong> présente les Mots Primordiaux connus des érudits. Certains sont canoniquement enseignés dans les livres (marqués <span class="canon-badge" style="display:inline-block;padding:2px 6px;background:#2a7a3c;color:white;border-radius:8px;font-size:10px;">canon</span>) ; d'autres sont des découvertes potentielles pour les PJ en campagne.</p>
+  <p><strong>Rappel</strong> : un Mot ne s'apprend jamais à la création. Il se découvre — par rêve, par manuscrit, par entité, par contact avec un Nœud. Voir la <a href="bibliotheque_magie.html" style="color:var(--accent);">bibliothèque de la Magie</a> pour les mécaniques complètes.</p>
+</div>
+
+<h2 class="section-title">📖 Mots Mineurs (DD 15 · 4 Éther)</h2>
+
+<table class="mots-table">
+  <thead>
+    <tr><th>Mot</th><th>Effet</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="mot">Yiel curare <span class="canon-badge">canon</span></td>
+      <td><strong>Soin instantané</strong> — cible récupère 3d6 PV. Le plus commun.</td>
+    </tr>
+    <tr>
+      <td class="mot">Lukai armentis <span class="canon-badge">canon</span></td>
+      <td><strong>Lumière aveuglante</strong> — cible en ligne de mire fait CON DD 15 ou aveuglée 1d4 tours.</td>
+    </tr>
+    <tr>
+      <td class="mot">Iod ramelloth <span class="canon-badge">canon</span></td>
+      <td><strong>Voir le vrai visage</strong> — perce illusions, déguisements, mensonges flagrants pendant 1 minute.</td>
+    </tr>
+    <tr>
+      <td class="mot">Selen okhta</td>
+      <td><strong>Voix qui porte</strong> — la voix du prononceur porte à 100m clairement, malgré vent, foule ou distance.</td>
+    </tr>
+    <tr>
+      <td class="mot">Nireth vaal</td>
+      <td><strong>Silence de plume</strong> — silence total autour du prononceur, 3m de rayon, 1 minute. Ni bruit de pas ni respiration.</td>
+    </tr>
+    <tr>
+      <td class="mot">Karum thal</td>
+      <td><strong>Feu bref</strong> — flamme de la taille du poing dans la main. Ne brûle pas la main. Dure 5 min.</td>
+    </tr>
+    <tr>
+      <td class="mot">Vend'oren</td>
+      <td><strong>Souffle protecteur</strong> — dévie 1 flèche ou projectile visé (réaction).</td>
+    </tr>
+    <tr>
+      <td class="mot">Krem alani</td>
+      <td><strong>Sceau discret</strong> — marque une porte, un objet — quiconque l'ouvre laisse une trace magique visible pour le prononceur pendant 24h.</td>
+    </tr>
+    <tr>
+      <td class="mot">Solari deth</td>
+      <td><strong>Réveil doux</strong> — réveille sans effrayer une personne endormie à 10m.</td>
+    </tr>
+    <tr>
+      <td class="mot">Threl morra</td>
+      <td><strong>Écoute des morts récents</strong> — entend les 3 derniers mots prononcés par une personne morte depuis moins d'une heure. Utile pour enquêtes.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 class="section-title">⚡ Mots Majeurs (DD 20 · 8 Éther)</h2>
+
+<table class="mots-table">
+  <thead>
+    <tr><th>Mot</th><th>Effet</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="mot">Volturna sarn <span class="canon-badge">canon</span></td>
+      <td><strong>Repousser</strong> — tous les ennemis à 10m projetés en arrière (DD FOR ou tombent).</td>
+    </tr>
+    <tr>
+      <td class="mot">Tjeran morth <span class="canon-badge">canon</span></td>
+      <td><strong>Briser</strong> — un objet ou un lien magique en cours est annulé/détruit.</td>
+    </tr>
+    <tr>
+      <td class="mot">Solen aer <span class="canon-badge">canon</span></td>
+      <td><strong>Ouvrir une voie</strong> — porte close, mur fissuré, passage caché s'ouvre. Ne fonctionne pas contre magie défensive active.</td>
+    </tr>
+    <tr>
+      <td class="mot">Sanluth ekron <span class="canon-badge">canon</span></td>
+      <td><strong>Lier</strong> — deux êtres ou objets liés par un fil invisible, distance max 1 km, dure 1 jour. Utile pour surveiller ou retrouver.</td>
+    </tr>
+    <tr>
+      <td class="mot">Merah velka</td>
+      <td><strong>Ralentir</strong> — une cible ou une scène à 5m ralentit à moitié pour 3 tours. Coeur, chute, courant.</td>
+    </tr>
+    <tr>
+      <td class="mot">Korian ferthos</td>
+      <td><strong>Fin d'effet magique</strong> — annule un effet magique persistant (script actif, sort en cours, malédiction récente).</td>
+    </tr>
+    <tr>
+      <td class="mot">Asalim kthar</td>
+      <td><strong>Ombre obéissante</strong> — crée une ombre brève qui obéit à un ordre simple. Espionne, effraie, saisit un objet léger. 5 min.</td>
+    </tr>
+    <tr>
+      <td class="mot">Pirenn nostarum</td>
+      <td><strong>Image fantomatique</strong> — projette une image de soi ou d'un objet connu à 100m. Ne parle pas.</td>
+    </tr>
+    <tr>
+      <td class="mot">Duran horeth</td>
+      <td><strong>Fer qui plie</strong> — une lame ou armure ennemie perd sa dureté pendant 1 combat. Un chevalier redoutable devient vulnérable.</td>
+    </tr>
+    <tr>
+      <td class="mot">Vess'kal orn</td>
+      <td><strong>Marcheur du vent</strong> — le prononceur peut se déplacer sans bruit et sans laisser d'empreinte pendant 10 minutes. Combine parfaitement avec discrétion.</td>
+    </tr>
+    <tr>
+      <td class="mot">Yeltrun aïs</td>
+      <td><strong>Chair qui se souvient</strong> — la cible ressent brièvement la douleur d'une ancienne blessure (émotionnelle ou physique), test SAG DD 20 ou hébétée 1 tour. Cruel.</td>
+    </tr>
+    <tr>
+      <td class="mot">Halur mistra</td>
+      <td><strong>Foudre brève</strong> — un éclair mineur frappe une cible dans les 10m. 3d6 dégâts électriques + DEX DD 15 ou 1 tour perdu.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 class="section-title">🌌 Mots Suprêmes (DD 25 · 16 Éther)</h2>
+
+<table class="mots-table">
+  <thead>
+    <tr><th>Mot</th><th>Effet</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="mot">Echtar valhad <span class="canon-badge">canon</span></td>
+      <td><strong>Réveiller esprit endormi</strong> — un esprit, entité ou créature endormie s'éveille. Danger réel : peut être hostile, libre, impossible à recoucher.</td>
+    </tr>
+    <tr>
+      <td class="mot">Nel'muraï voth</td>
+      <td><strong>Effacer une trace</strong> — un événement passé récent (max 1 heure) est effacé de la mémoire des témoins directs. Rime avec la Rupture — usage extrêmement rare et dangereux.</td>
+    </tr>
+    <tr>
+      <td class="mot">Karnath ulen</td>
+      <td><strong>Sceller un Nœud</strong> — un petit Nœud, une rune active ou une source d'anomalie magique est temporairement scellée (24h). Coût lourd, épuisant.</td>
+    </tr>
+    <tr>
+      <td class="mot">Sorenth mai</td>
+      <td><strong>Voyage entre les Veilles</strong> — transporte le prononceur et 2 alliés proches d'un lieu connu vers un autre lieu connu, en 3 souffles. Ne fonctionne qu'entre deux endroits qui portent le même symbole gravé (à préparer).</td>
+    </tr>
+    <tr>
+      <td class="mot">Iel'vandra korth</td>
+      <td><strong>Voir le fil du temps</strong> — voit les 6 dernières heures d'un lieu comme une brume mouvante. Coûteux, physiquement épuisant. Idéal pour enquêtes lourdes.</td>
+    </tr>
+    <tr>
+      <td class="mot">Fulgur amanth</td>
+      <td><strong>La foudre blanche</strong> — l'éclair de la lignée Fulgura. Frappe titanesque (5d10 dégâts + zone 3m). Seul un descendant Argenti confirmé peut le prononcer sans catastrophe.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 class="section-title">💀 Mots Interdits (à découvrir avec précaution)</h2>
+
+<table class="mots-table" style="border: 2px solid var(--danger);">
+  <thead>
+    <tr style="background: var(--danger);"><th>Mot</th><th>Effet — Interdit</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="mot" style="color:var(--danger);">Umbrik torrez</td>
+      <td>Ouvrir une brèche vers l'Ombre. Sur 1 nat, l'Ombre prend le prononceur. Interdit par les Veilleurs. À ne jamais prononcer.</td>
+    </tr>
+    <tr>
+      <td class="mot" style="color:var(--danger);">Neverokh mia</td>
+      <td>Retirer la magie d'une région pour 1 minute. Répétition de la Rupture à petite échelle. Anéantit toute magie active dans un rayon de 100m — y compris celle des alliés.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="acquisition-box">
+  <h2>📚 Comment un PJ apprend un Mot ?</h2>
+  <p>Un Mot ne s'achète pas — il se <strong>gagne narrativement</strong>. Quelques exemples :</p>
+  <ul>
+    <li><strong>Rêve prophétique</strong> — un Céleste, un ancêtre, ou Aïruk envoie un mot en songe</li>
+    <li><strong>Manuscrit ancien</strong> — trouvé dans des ruines pré-Rupture, un temple, une bibliothèque</li>
+    <li><strong>Enseignement PNJ</strong> — un Veilleur, un érudit de Handu'zo, une bibliothécaire de Velhar</li>
+    <li><strong>Contact avec un Nœud</strong> — méditer près d'un Nœud actif peut susciter un mot</li>
+    <li><strong>Don d'une entité</strong> — un esprit, un Géant du Givre semi-éveillé, une âme accompagnée</li>
+    <li><strong>Reconstruction linguistique</strong> — un érudit qui étudie la Langue Ancienne peut déduire un Mot (projet de fin de campagne, plusieurs sessions)</li>
+  </ul>
+  <p><strong>Note MJ</strong> : ne distribue pas les Mots comme des sorts d'un catalogue. Chaque Mot appris devrait avoir une <em>histoire</em> — le PJ se souviendra du soir où il l'a reçu.</p>
+</div>
+
+<div class="acquisition-box" style="border-color: var(--danger); background: linear-gradient(135deg, #fff5f5 0%, #fde0e0 100%);">
+  <h2 style="color: var(--danger);">⚠️ Dangers de la prononciation</h2>
+  <p>Toujours en vigueur :</p>
+  <ul>
+    <li><strong>1 naturel</strong> = 1d6 dégâts directs + 3 Surcharges (coma probable)</li>
+    <li><strong>Vibration ressentie</strong> alentour — les bêtes magiques et les Veilleurs le sentent à 500m</li>
+    <li><strong>Nœuds proches peuvent s'éveiller</strong> — un mot suprême près d'un Nœud dormant peut le tirer de son sommeil</li>
+    <li><strong>Prononcer un Mot Interdit</strong> = punition automatique des Veilleurs si détecté (et ils détectent presque toujours)</li>
+  </ul>
+</div>
+
+<footer>
+  Mots Primordiaux — Codex étendu · 24 mots · Système Bilal · Armonia 2026
+</footer>
+
+</div>
+</body>
+</html>

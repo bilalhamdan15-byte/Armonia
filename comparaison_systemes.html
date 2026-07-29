@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notre système face aux autres · Armonia</title>
+<style>
+ :root{--bg:#1a1a2e;--paper:#2a2a3e;--primary:#c9a85a;--accent:#d97c47;--text:#f4e8d0;--muted:#9a8a7a;--border:#3a3a4e;--crystal:#7ec8e8;--danger:#c44040;--success:#5aa850;--mystere:#b088c8}
+ *{box-sizing:border-box} body{font-family:Georgia,serif;background:var(--bg);color:var(--text);margin:0;padding:24px;line-height:1.55}
+ .wrap{max-width:1040px;margin:0 auto}
+ a.back{color:var(--muted);text-decoration:none;font-size:14px} a.back:hover{color:var(--primary)}
+ header.hero{background:linear-gradient(135deg,#232338,#2a2a3e);border:2px solid var(--primary);border-radius:12px;padding:24px 28px;margin:14px 0 22px;position:relative;overflow:hidden}
+ header.hero::after{content:"⚖️";position:absolute;right:22px;top:12px;font-size:60px;opacity:.12}
+ h1{font-size:28px;color:var(--primary);margin:0 0 4px} .sub{color:var(--crystal);font-style:italic;margin:0}
+ h2{color:var(--accent);font-size:20px;border-bottom:1px solid var(--border);padding-bottom:6px;margin-top:34px}
+ h3{color:var(--primary);font-size:16px;margin:18px 0 4px}
+ .card{background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin:14px 0}
+ table{width:100%;border-collapse:collapse;font-size:13px} th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--border);vertical-align:top}
+ th{color:var(--primary);font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+ tr.me{background:#2d2a1a} tr.me td{border-bottom:1px solid #5a4a20} tr.me td:first-child{color:var(--primary);font-weight:bold}
+ .tag{display:inline-block;background:#1f1f34;border:1px solid var(--border);border-radius:12px;padding:2px 9px;font-size:11px;color:var(--muted);margin:2px 3px 2px 0}
+ .ok{background:#1f3a24;border-left:4px solid var(--success);border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:14px}
+ .note{background:#2a1f2e;border-left:4px solid var(--mystere);border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:14px}
+ .note b{color:#c8a0d8}
+ ul{padding-left:20px} li{margin:5px 0}
+ .foot{text-align:center;color:var(--muted);font-size:12px;margin:28px 0 6px}
+ .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+ @media(max-width:720px){.grid2{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body><div class="wrap">
+<a class="back" href="index.html">← Retour au sommaire</a>
+<header class="hero"><h1>Notre système face aux autres</h1><p class="sub">Où se situe le système d'Armonia — et ce qu'il apporte vraiment</p></header>
+
+<div class="card">
+Ton système, en une phrase : un <b>châssis d20 familier</b> (terminologie Pathfinder, DD, caractéristiques) sur lequel tu greffes une <b>couche narrative</b> (Atouts, Points d'Écho), un <b>levier de risque</b> (Pousser) et un <b>jeu hors-session</b> (expéditions). Autrement dit, tu n'as pas inventé une mécanique isolée : tu as <b>assemblé</b> les meilleures idées de plusieurs écoles. Voyons lesquelles.
+</div>
+
+<h2>1 · Panorama comparatif</h2>
+<div class="card">
+<table>
+<tr><th>Système</th><th>Dé de base</th><th>Courbe</th><th>Degrés de réussite</th><th>Méta-ressource</th><th>Niveaux</th><th>Signature</th></tr>
+<tr class="me"><td>Armonia (le tien)</td><td>1d20 + carac(0-3) + comp(0-6)</td><td>Plate</td><td><b>6 paliers</b> (bourde → coup d'éclat)</td><td>Points d'Écho + Atouts</td><td>Non (XP libre)</td><td>Magie script/sens · Pousser · hors-session</td></tr>
+<tr><td>D&D 5e / 2024</td><td>1d20 + mods</td><td>Plate</td><td>Binaire (+ nat 1/20 en attaque)</td><td>Inspiration (léger)</td><td>Oui (1-20, classes)</td><td>Avantage / désavantage</td></tr>
+<tr><td>Pathfinder 2e</td><td>1d20 + mods (+ niveau)</td><td>Plate</td><td><b>4 degrés</b> (règle ±10)</td><td>Hero Points</td><td>Oui, maths serrées</td><td>3 actions · crit par marge de 10</td></tr>
+<tr><td>PbtA (Apocalypse)</td><td>2d6 + carac</td><td>Cloche</td><td>3 (6− / 7-9 / 10+)</td><td>—</td><td>Non</td><td>Échouer « en avant », le MJ réagit</td></tr>
+<tr><td>Blades in the Dark</td><td>Pool de d6 (garde le meilleur)</td><td>Pool</td><td>3 (1-3 / 4-5 / 6 / 6-6)</td><td>Stress</td><td>Non</td><td>Position & Effet · flashbacks · <b>downtime</b></td></tr>
+<tr><td>Fate</td><td>4dF (−/0/+)</td><td>Cloche</td><td>Échelle (marges)</td><td>Fate Points + Aspects</td><td>Non</td><td>Aspects invocables · compels</td></tr>
+<tr><td>Year Zero (Free League)</td><td>Pool de d6 (compte les 6)</td><td>Pool</td><td>Réussites multiples</td><td>—</td><td>Non</td><td><b>Push</b> (relancer en aggravant)</td></tr>
+<tr><td>Savage Worlds</td><td>Dé de trait + dé joker (explose)</td><td>Explosive</td><td>Marges (raises)</td><td>Bennies</td><td>Semi</td><td>Dés explosifs · rythme rapide</td></tr>
+</table>
+</div>
+
+<h2>2 · Ce que la comparaison révèle</h2>
+<div class="card">
+<div class="ok"><b>Bonne nouvelle : tes choix « maison » sont des convergences, pas des accidents.</b> Plusieurs de tes mécaniques réinventent — indépendamment — des idées éprouvées par les meilleurs systèmes. C'est le signe d'un design solide.</div>
+
+<h3>vs D&D 5e</h3>
+Même dé plat, mais tu <b>retires les niveaux et les classes</b> → plus souple, moins de « power creep », un vrai « de 0 à héros » par XP libre. Et tu <b>ajoutes des degrés de réussite</b> que la 5e n'a pas nativement (ses compétences sont binaires). Tu es donc « une 5e plus narrative et plus légère ».
+
+<h3>vs Pathfinder 2e</h3>
+Convergence frappante : ton palier <b>« +10 = coup d'éclat »</b> est exactement la règle ±10 de PF2e (battre le DD de 10 = réussite critique). Tu as retrouvé leur meilleure idée — <b>sans</b> leur lourdeur (maths au niveau, +niveau partout). Tu gardes la lisibilité, tu jettes la comptabilité.
+
+<h3>vs PbtA & Blades</h3>
+Ton <b>« réussite à l'arraché »</b> (DD à DD+1, avec coût) = le <b>7-9</b> de PbtA et le <b>4-5</b> de Blades : « tu réussis, mais… ». Tu as déjà le cœur du jeu narratif moderne. Surtout : ton <b>gameplay hors-session</b> (expéditions vers des lieux, timers, récompenses) est un <b>downtime</b> à la Blades in the Dark — mais <b>spatialisé sur ta carte vivante</b>, ce que Blades ne fait pas.
+
+<h3>vs Fate</h3>
+Tes <b>Atouts + Points d'Écho</b> ≈ les <b>Aspects + Fate Points</b> : invoquer un trait pour un bonus. Différence en ta faveur : tes Atouts sont <b>gradués (I/II/III = +1/+2/+3)</b> là où Fate est binaire (+2), et tu gardes une vraie granularité tactique (combat, dégâts, blessures) que Fate abstrait complètement.
+
+<h3>vs Year Zero</h3>
+Ton <b>Pousser</b> (+5, conséquence aggravée) est le <b>Push</b> signature de Free League (Alien, Forbidden Lands). Même philosophie risque/récompense — encore une convergence avec un système primé.
+
+<div class="note"><b>Conclusion d'identité :</b> Armonia = <b>« un d20 accessible, habillé d'une couche narrative façon Fate/PbtA, d'un push façon Year Zero, et d'un downtime façon Blades — le tout relié à une carte vivante »</b>. Ce n'est pas un clone : c'est un <b>hybride cohérent</b> avec une porte d'entrée familière (D&D) et une profondeur narrative rare à ce niveau de simplicité.</div>
+</div>
+
+<h2>3 · Ce que TON système apporte de vraiment original</h2>
+<div class="card">
+<ul>
+<li><b>La magie compositionnelle (script + sens, Mots Primordiaux).</b> C'est ta signature la plus distinctive : « coder » des sorts par assemblage de symboles/mots. Presque personne ne le systématise ainsi (Ars Magica ou Mage l'effleurent, jamais aussi « langage/programmation »). <b>Garde-la comme cœur d'identité.</b></li>
+<li><b>Points d'Écho thématisés</b> (héritage, transmission, Promesses formelles). Là où Fate a des « points » neutres, les tiens portent de la fiction — gagner/perdre de l'Écho <i>raconte</i> quelque chose. Méta-ressource plus incarnée.</li>
+<li><b>Le hors-session cartographié.</b> Un downtime lié à une carte interactive vivante (corruption qui s'étend, expéditions) : c'est <b>moderne et rare</b>, à la croisée du JDR de table et du jeu de gestion.</li>
+<li><b>La corruption comme moteur d'univers unique</b> (le Script des Anciens comme origine de <i>toute</i> corruption). Ce n'est pas une mécanique de dé, mais un liant narratif fort — beaucoup de systèmes manquent de ce « cœur thématique ».</li>
+</ul>
+</div>
+
+<h2>4 · Ce qu'on peut apporter (emprunts utiles, sans trahir ton système)</h2>
+<div class="card">
+<div class="grid2">
+<div>
+<h3>De PbtA / Blades</h3>
+<b>Transforme l'échec sec en « échec + complication ».</b> Tu as déjà l'arraché ; étends la règle pour que même un vrai échec <b>fasse avancer la fiction</b> (une porte se ferme, une autre s'ouvre) plutôt que « il ne se passe rien ». Anti-cul-de-sac.
+</div>
+<div>
+<h3>De Blades (Position & Effet)</h3>
+Une petite grille <b>« enjeu / risque »</b> à poser <i>avant</i> le jet aide le MJ à fixer le DD <b>et</b> la conséquence d'un coup. Colle parfaitement à ta reco « calibrer le DD sur le perso ».
+</div>
+<div>
+<h3>De Fate (Compel)</h3>
+Le MJ propose une <b>complication liée à un Atout ou à une Promesse</b> → le joueur l'accepte et <b>regagne de l'Écho</b>. Ça rend ton économie d'Écho vivante et boucle le thème « transmission ».
+</div>
+<div>
+<h3>De ta propre analyse d20</h3>
+Le d20 est « swingy ». Ta réponse maison : la règle <b>« on ne lance pas »</b> (auto-réussite si bonus ≥ DD−1 ; pas de jet si un 19 ne suffit pas) + <b>DD calibré sur le perso</b>. C'est ta parade élégante au reproche « courbe plate », sans changer le dé.
+</div>
+</div>
+</div>
+
+<div class="note"><b>En une phrase :</b> ton système n'a pas à rougir — il retrouve, par ses propres choix, les idées des systèmes narratifs modernes, tout en gardant une signature unique (magie-langage, hors-session cartographié, corruption-monde). Les seuls vrais chantiers sont <b>de calibrage</b> (DD, échec fertile, boucle d'Écho), pas de refonte.</div>
+
+<p class="foot">Analyse comparative · Système Bilal · Armonia 2026 — comparé à D&D 5e/2024, Pathfinder 2e, PbtA, Blades in the Dark, Fate, Year Zero, Savage Worlds.</p>
+</div></body></html>

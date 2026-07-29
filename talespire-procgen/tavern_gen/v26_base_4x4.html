@@ -1,0 +1,20 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>Base 4x4</title>
+<style>body{font-family:system-ui,sans-serif;background:#1a1611;color:#e8dfc9;padding:24px;max-width:900px;margin:0 auto}
+h1{color:#d4a13a;border-bottom:2px solid #5c3a1a;padding-bottom:8px}
+.card{background:#2a2418;border:1px solid #4a3820;border-radius:8px;padding:20px;margin:20px 0}
+textarea.code{width:100%;height:100px;background:#0f0d08;color:#a8c060;border:1px solid #5c3a1a;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;white-space:nowrap;overflow:auto}
+button{background:#5c3a1a;color:#e8dfc9;border:none;padding:12px 24px;border-radius:4px;cursor:pointer;margin-top:8px;font-size:15px;font-weight:600}button:hover{background:#7c4a2a}
+.info{background:#1a2a1a;border-left:4px solid #a8c060;padding:14px;margin:16px 0;border-radius:4px;font-size:14px}
+ul{margin:8px 0;padding-left:20px}</style></head><body>
+<h1>Base 4x4 — coquille minimale (coins seuls, sans murs)</h1>
+<div class="info">On repart de zero, en isolant chaque variable. Ce test = fondation + plancher + <b>seulement les 4 coins</b> (aucun mur, aucune fenetre, aucune porte). 4x4, 1 etage, toit plat.<br><br>
+A verifier en jeu :
+<ul>
+<li>Les 4 coins se referment-ils sans trou entre eux (vu que 4x4 est juste assez grand pour 2 coins par cote) ?</li>
+<li>Sinon, quelle taille de trou reste entre 2 coins adjacents (mesure en tuiles si possible) ?</li>
+</ul>
+Si c'est propre : on ajoute les murs/fenetres a l'etape suivante. Si ca laisse un trou : ca isole le probleme sur les coins eux-memes (rotation ou position), independamment des murs.</div>
+<h2>4×4×1 — coins seuls</h2>
+<div class="card"><textarea class="code" id="c0" readonly onclick="this.select()">H4sIAAAAAAAC/03NvQ7BUBjG8VNHWJr4WGzSydTFZmQxWiViIE7C5BKksVpcgKsgMTCweaYKFyG1sYlJX+8j0aFPcn7t+cfv+JIx1hgzG1bj+qPU3HZ2tWC+LmTTs/1ocJ72863NfeX3Tt1JMT1rj8PbOT60F8Gr0nheg8DIs/TkHXqyUVb2WJZrZaOv/Z5mTjfyddPvjKM5uqM7Ouiggw56yIKsuKy4rPj/DdoH+2Af7IN9sA/2wb/BPtgH+2Af7IN9sJ9Y7SdW+4nVfmK1r+7oju7ooIMOOuihpy6rfXVZ8Q+UEzO+5gEAAA==</textarea><button onclick="cp('c0',this)">📋 Copier</button></div>
+<script>function cp(id,b){const t=document.getElementById(id);t.select();t.setSelectionRange(0,999999);try{const o=document.execCommand('copy');b.textContent=o?'✓ Copié !':'❌ Ctrl+A+C';setTimeout(()=>b.textContent='📋 Copier',3000)}catch(e){b.textContent='❌ Ctrl+A+C'}}</script>
+</body></html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analyse du système de dés · Armonia</title>
+<style>
+ :root{--bg:#1a1a2e;--paper:#2a2a3e;--primary:#c9a85a;--accent:#d97c47;--text:#f4e8d0;--muted:#9a8a7a;--border:#3a3a4e;--crystal:#7ec8e8;--danger:#c44040;--success:#5aa850}
+ *{box-sizing:border-box} body{font-family:Georgia,serif;background:var(--bg);color:var(--text);margin:0;padding:24px;line-height:1.55}
+ .wrap{max-width:1000px;margin:0 auto}
+ a.back{color:var(--muted);text-decoration:none;font-size:14px} a.back:hover{color:var(--primary)}
+ header.hero{background:linear-gradient(135deg,#232338,#2a2a3e);border:2px solid var(--primary);border-radius:12px;padding:24px 28px;margin:14px 0 22px;position:relative;overflow:hidden}
+ header.hero::after{content:"🎲";position:absolute;right:22px;top:12px;font-size:60px;opacity:.12}
+ h1{font-size:28px;color:var(--primary);margin:0 0 4px} .sub{color:var(--crystal);font-style:italic;margin:0}
+ h2{color:var(--accent);font-size:20px;border-bottom:1px solid var(--border);padding-bottom:6px;margin-top:34px}
+ .card{background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin:14px 0}
+ table{width:100%;border-collapse:collapse;font-size:13.5px}
+ th,td{text-align:left;padding:6px 9px;border-bottom:1px solid var(--border)} th{color:var(--primary);font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+ td.c,th.c{text-align:center}
+ .stack{display:flex;height:16px;border-radius:4px;overflow:hidden;border:1px solid #0006} .stack div{height:100%}
+ .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;margin:8px 0 0;color:var(--muted)}
+ .legend span{display:inline-flex;align-items:center;gap:5px} .sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+ .kpi{display:flex;flex-wrap:wrap;gap:12px} .box{flex:1;min-width:150px;background:#1f1f34;border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}
+ .box .v{font-size:24px;font-weight:bold;color:var(--crystal)} .box .l{font-size:11px;color:var(--muted);margin-top:3px}
+ .bar2{height:22px;background:#1f1f34;border-radius:5px;overflow:hidden;margin:4px 0} .bar2 span{display:block;height:100%;background:var(--primary);color:#1a1a2e;font-size:12px;font-weight:bold;text-align:right;padding-right:6px;line-height:22px}
+ .flag{background:#3a1f1f;border-left:4px solid var(--danger);border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:14px}
+ .ok{background:#1f3a24;border-left:4px solid var(--success);border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:14px}
+ .foot{text-align:center;color:var(--muted);font-size:12px;margin:28px 0 6px}
+ ul{padding-left:20px} li{margin:5px 0}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body><div class="wrap">
+<a class="back" href="index.html">← Retour au sommaire</a>
+<header class="hero"><h1>Analyse du système de dés</h1><p class="sub">Équité, probabilités exactes & simulation — cas type : Dame Ysandre Ur Vairenne</p></header>
+
+<div class="card">
+<b>Rappel du système</b> — 1d20 + Caractéristique (0→+3) + Compétence (cap +3) + Spécialité (+1) vs DD. Les « bonus » ci-dessous = bonus total du jet ; l’analyse d’équité (zones mortes, +5 %/+1) reste valable telle quelle.
+Paliers : <b>1 naturel</b> = bourde · <b>&lt; DD</b> = échec · <b>DD à DD+1</b> = à l’arraché · <b>+2 à +5</b> = pleine réussite · <b>+6 à +9</b> = éclatante · <b>+10 ou 20 nat</b> = coup d’éclat.
+<div class="ok">✔ Échelle DD canonique (tes deux outils MJ concordent) : Très facile <b>5</b> · Facile <b>10</b> · Standard <b>15</b> · Difficile <b>20</b> · Très difficile <b>25</b> · Héroïque <b>30</b>.</div>
+<div class="flag">⚠ Incohérence trouvée : quelques pages emploient d’autres valeurs (ex. « Facile » à 15 au lieu de 10, DD « Moyen » à 20). À uniformiser sur l’échelle ci-dessus — c’est déjà un premier gain d’équité.</div>
+</div>
+
+<h2>1 · Équité brute du d20</h2>
+<div class="card">
+<p>Le d20 est <b>plat</b> : chaque +1 de bonus vaut exactement <b>+5 %</b> de réussite, quel que soit le contexte. Le tableau donne la % de réussite selon le bonus total (colonnes) et le DD (lignes).</p>
+<table><tr><th class="c">Réuss.%</th><th class="c">+0</th><th class="c">+1</th><th class="c">+2</th><th class="c">+3</th><th class="c">+4</th><th class="c">+5</th><th class="c">+6</th><th class="c">+7</th><th class="c">+8</th><th class="c">+9</th><th class="c">+10</th></tr><tr><td class="c"><b>DD 10</b></td><td class="c" style="background:#3a5a2a">55</td><td class="c" style="background:#3a5a2a">60</td><td class="c" style="background:#3a5a2a">65</td><td class="c" style="background:#3a5a2a">70</td><td class="c" style="background:#2a5a3a">75</td><td class="c" style="background:#2a5a3a">80</td><td class="c" style="background:#2a5a3a">85</td><td class="c" style="background:#2a5a3a">90</td><td class="c" style="background:#2a5a3a">95</td><td class="c" style="background:#2a5a3a">95</td><td class="c" style="background:#2a5a3a">95</td></tr><tr><td class="c"><b>DD 15</b></td><td class="c" style="background:#6a3a1a">30</td><td class="c" style="background:#6a5a1a">35</td><td class="c" style="background:#6a5a1a">40</td><td class="c" style="background:#6a5a1a">45</td><td class="c" style="background:#6a5a1a">50</td><td class="c" style="background:#3a5a2a">55</td><td class="c" style="background:#3a5a2a">60</td><td class="c" style="background:#3a5a2a">65</td><td class="c" style="background:#3a5a2a">70</td><td class="c" style="background:#2a5a3a">75</td><td class="c" style="background:#2a5a3a">80</td></tr><tr><td class="c"><b>DD 20</b></td><td class="c" style="background:#5a1a1a">5</td><td class="c" style="background:#6a3a1a">10</td><td class="c" style="background:#6a3a1a">15</td><td class="c" style="background:#6a3a1a">20</td><td class="c" style="background:#6a3a1a">25</td><td class="c" style="background:#6a3a1a">30</td><td class="c" style="background:#6a5a1a">35</td><td class="c" style="background:#6a5a1a">40</td><td class="c" style="background:#6a5a1a">45</td><td class="c" style="background:#6a5a1a">50</td><td class="c" style="background:#3a5a2a">55</td></tr><tr><td class="c"><b>DD 25</b></td><td class="c" style="background:#5a1a1a">5</td><td class="c" style="background:#5a1a1a">5</td><td class="c" style="background:#5a1a1a">5</td><td class="c" style="background:#5a1a1a">5</td><td class="c" style="background:#5a1a1a">5</td><td class="c" style="background:#5a1a1a">5</td><td class="c" style="background:#6a3a1a">10</td><td class="c" style="background:#6a3a1a">15</td><td class="c" style="background:#6a3a1a">20</td><td class="c" style="background:#6a3a1a">25</td><td class="c" style="background:#6a3a1a">30</td></tr></table>
+<p style="font-size:13px;color:var(--muted);margin-top:10px">
+<b>Deux « zones mortes » à connaître :</b> en haut à gauche (DD 20-25 avec bonus faible) le résultat reste bloqué à <b>5 %</b> — seul un 20 naturel passe, et ajouter +1…+5 ne change <b>rien</b>. En bas à droite, on plafonne à 95 % (le 1 naturel rate toujours). Conséquence : un DD élevé lancé à un personnage non spécialiste n’est pas « difficile », il est <b>quasi impossible ET non discriminant</b>.</p>
+</div>
+
+<h2>2 · Les 10 situations d’Ysandre</h2>
+<div class="card">
+<table><tr><th>Situation (raccord gameplay)</th><th class="c">Jet</th><th class="c">DD</th><th class="c">Réussite</th><th>Répartition des paliers</th></tr><tr>
+      <td>🤝 Diplomatie — négocier un contrat</td>
+      <td class="c">+5</td><td class="c">15</td>
+      <td class="c"><b style="color:#7ec8e8">55%</b></td>
+      <td style="min-width:200px"><div class="stack"><div title="Bourde (1 nat) 5%" style="width:5.00%;background:#7a2020"></div><div title="Échec 40%" style="width:40.00%;background:#4a4a52"></div><div title="À l’arraché 10%" style="width:10.00%;background:#8a6a2a"></div><div title="Pleine 20%" style="width:20.00%;background:#c9a85a"></div><div title="Éclatante 20%" style="width:20.00%;background:#5aa850"></div><div title="Coup d’éclat 5%" style="width:5.00%;background:#7ec8e8"></div></div></td>
+    </tr><tr>
+      <td>🤝 Cour hostile — désamorcer un noble</td>
+      <td class="c">+5</td><td class="c">20</td>
+      <td class="c"><b style="color:#7ec8e8">30%</b></td>
+      <td style="min-width:200px"><div class="stack"><div title="Bourde (1 nat) 5%" style="width:5.00%;background:#7a2020"></div><div title="Échec 65%" style="width:65.00%;background:#4a4a52"></div><div title="À l’arraché 10%" style="width:10.00%;background:#8a6a2a"></div><div title="Pleine 15%" style="width:15.00%;background:#c9a85a"></div><div title="Coup d’éclat 5%" style="width:5.00%;background:#7ec8e8"></div></div></td>
+    </tr><tr>
+      <td>🗺️ Exploration — repérer un passage/indice</td>
+      <td class="c">+3</td><td class="c">12</td>
+      <td class="c"><b style="color:#7ec8e8">60%</b></td>
+      <td style="min-width:200px"><div class="stack"><div title="Bourde (1 nat) 5%" style="width:5.00%;background:#7a2020"></div><div title="Échec 35%" style="width:35.00%;background:#4a4a52"></div><div title="À l’arraché 10%" style="width:10.00%;background:#8a6a2a"></div><div title="Pleine 20%" style="width:20.00%;background:#c9a85a"></div><div title="Éclatante 20%" style="width:20.00%;background:#5aa850"></div><div title="Coup d’éclat 10%" style="width:10.00%;background:#7ec8e8"></div></div></td>
+    </tr><tr>
+      <td>🗺️ Déchiffrer un script ancien</td>
+      <td class="c">+4</td><td class="c">18</td>
+      <td class="c"><b style="color:#7ec8e8">35%</b></td>
+      <td style="min-width:200px"><div class="stack"><div title="Bourde (1 nat) 5%" style="width:5.00%;background:#7a2020"></div><div title="Échec 60%" style="width:60.00%;background:#4a4a52"></div><div title="À l’arraché 10%" style="width:10.00%;background:#8a6a2a"></div><div title="Pleine 20%" style="width:20.00%;background:#c9a85a"></div><div title="Coup d’éclat 5%" style="width:5.00%;background:#7ec8e8"></div></div></td>
+    </tr><tr>
+      <td>🌾 Récolte — extraire une ressource rare</td>
+      <td class="c">+4</td><td class="c">10</td>
+      <td class="c"><b style="color:#7ec8e8">75%</b></td>
+      <td style="min-width:200px"><div class="stack"><div title="Bourde (1 nat) 5%" style="width:5.00%;background:#7a2020"></div><div title="Échec 20%" style="width:20.00%;background:#4a4a52"></div><div title="À l’arraché 10%" style="width:10.00%;background:#8a6a2a"></div><div title="Pleine 20%" style="width:20.00%;background:#c9a85a"></div><div title="Éclatante 20%" style="width:20.00%;background:#5aa850"></div><div title="Coup d’éclat 25%" style="width:25.00%;background:#7ec8e8"></div></div></td>
+    </tr><tr>
+      <td>🔎 Détecter un mensonge (Œil du cristal)</td>
+      <td class="c">+4</td><td class="c">15</td>
+      <td class="c"><b style="color:#7ec8e8">50%</b></td>
+      <td style="min-width:200px"><div class="stack"><div title="Bourde (1 nat) 5%" style="width:5.00%;background:#7a2020"></div><div title="Échec 45%" style="width:45.00%;background:#4a4a52"></div><div title="À l’arraché 10%" style="width:10.00%;background:#8a6a2a"></div><div title="Pleine 20%" style="width:20.00%;background:#c9a85a"></div><div title="Éclatante 15%" style="width:15.00%;background:#5aa850"></div><div title="Coup d’éclat 5%" style="width:5.00%;background:#7ec8e8"></div></div></td>
+    </tr><tr>
+      <td>🧗 Obstacle physique — escalade/fuite</td>
+      <td class="c">+0</td><td class="c">12</td>
+      <td class="c"><b style="color:#7ec8e8">45%</b></td>
+      <td style="min-width:200px"><div class="stack"><div title="Bourde (1 nat) 5%" style="width:5.00%;background:#7a2020"></div><div title="Échec 50%" style="width:50.00%;background:#4a4a52"></div><div title="À l’arraché 10%" style="width:10.00%;background:#8a6a2a"></div><div title="Pleine 20%" style="width:20.00%;background:#c9a85a"></div><div title="Éclatante 10%" style="width:10.00%;background:#5aa850"></div><div title="Coup d’éclat 5%" style="width:5.00%;background:#7ec8e8"></div></div></td>
+    </tr><tr>
+      <td>💎 Sort — lame/barrière de cristal (vs Défense)</td>
+      <td class="c">+4</td><td class="c">12</td>
+      <td class="c"><b style="color:#7ec8e8">65%</b></td>
+      <td style="min-width:200px"><div class="stack"><div title="Bourde (1 nat) 5%" style="width:5.00%;background:#7a2020"></div><div title="Échec 30%" style="width:30.00%;background:#4a4a52"></div><div title="À l’arraché 10%" style="width:10.00%;background:#8a6a2a"></div><div title="Pleine 20%" style="width:20.00%;background:#c9a85a"></div><div title="Éclatante 20%" style="width:20.00%;background:#5aa850"></div><div title="Coup d’éclat 15%" style="width:15.00%;background:#7ec8e8"></div></div></td>
+    </tr><tr>
+      <td>⚔️ Attaque à la dague (mêlée, vs Défense)</td>
+      <td class="c">+0</td><td class="c">12</td>
+      <td class="c"><b style="color:#7ec8e8">45%</b></td>
+      <td style="min-width:200px"><div class="stack"><div title="Bourde (1 nat) 5%" style="width:5.00%;background:#7a2020"></div><div title="Échec 50%" style="width:50.00%;background:#4a4a52"></div><div title="À l’arraché 10%" style="width:10.00%;background:#8a6a2a"></div><div title="Pleine 20%" style="width:20.00%;background:#c9a85a"></div><div title="Éclatante 10%" style="width:10.00%;background:#5aa850"></div><div title="Coup d’éclat 5%" style="width:5.00%;background:#7ec8e8"></div></div></td>
+    </tr></table>
+<div class="legend"><span><span class="sw" style="background:#7a2020"></span>Bourde (1 nat)</span><span><span class="sw" style="background:#4a4a52"></span>Échec</span><span><span class="sw" style="background:#8a6a2a"></span>À l’arraché</span><span><span class="sw" style="background:#c9a85a"></span>Pleine</span><span><span class="sw" style="background:#5aa850"></span>Éclatante</span><span><span class="sw" style="background:#7ec8e8"></span>Coup d’éclat</span></div>
+<p style="font-size:13px;color:var(--muted);margin-top:10px">Lecture : sa <b>spécialité</b> (diplomatie, récolte, magie de cristal) tourne à 55-75 % — sain. Ses <b>faiblesses</b> (escalade, dague à +0) tombent à 45 %, et un DD Difficile (cour hostile, script ancien) la met sous 35 %. Noter que la bourde (1 nat, 5 %) et le coup d’éclat existent <b>toujours</b>, même sur ses points forts.</p>
+</div>
+
+<h2>3 · Combat & survie (Monte-Carlo, 200 000 tirages)</h2>
+<div class="card">
+<div class="kpi">
+ <div class="box"><div class="v">3.7</div><div class="l">tours pour vaincre un ennemi (Vit 13) avec son <b>sort de cristal</b> (+4)</div></div>
+ <div class="box"><div class="v">10.4</div><div class="l">tours avec sa <b>dague</b> (+0) — martialement inutile</div></div>
+ <div class="box"><div class="v" style="color:#c44040">33%</div><div class="l">probabilité qu’elle <b>tombe en 3 tours</b> face à un mercenaire (+3, 1d6+1)</div></div>
+ <div class="box"><div class="v" style="color:#c44040">3.2</div><div class="l">dégâts moyens <b>reçus par tour</b> (sur ses 13 PV)</div></div>
+</div>
+<p style="font-size:13px;color:var(--muted);margin-top:10px">Cohérent avec un profil de diplomate : elle est <b>efficace par la magie</b>, <b>fragile</b> au corps-à-corps. Le système traduit bien la spécialisation — ce n’est pas un défaut d’équité, c’est le design.</p>
+</div>
+
+<h2>4 · Poids des leviers (Pousser / Éther / Écho)</h2>
+<div class="card">
+<p>Sur un jet Difficile (Cour, DD 20, bonus +5) :</p>
+<div class="bar2"><span style="width:30%">Base : 30%</span></div>
+<div class="bar2"><span style="width:55%">+5 (un levier) : 55%</span></div>
+<div class="bar2"><span style="width:80%">+10 (deux leviers) : 80%</span></div>
+<p style="font-size:13px;color:var(--muted)">Chaque levier vaut <b>+25 %</b> — énorme. Ils transforment un jet, ce qui est voulu ; d’où l’importance d’appliquer <b>fermement</b> la conséquence du Pousser et le coût en Éther/Écho, sinon l’équilibre saute.</p>
+</div>
+
+<h2>5 · Diagnostic & adaptations (sans toucher au système)</h2>
+<div class="card">
+<b>Ce qui est sain</b>
+<ul>
+<li>La spécialité rend ~55-70 % au DD Standard : bonne tension.</li>
+<li>Bourde 5 % / coup d’éclat 5 % fixes : garde du drame à chaque jet.</li>
+<li>Le combat reflète fidèlement les forces/faiblesses d’un personnage.</li>
+</ul>
+<b>Ce qui crée le sentiment d’« inégalité »</b>
+<ul>
+<li><b>Le d20 est très « swingy »</b> : la Compétence (jusqu’à +6 = ±30 %) pèse plus que le dé pour un spécialiste, et un non-spécialiste subit surtout le hasard.</li>
+<li><b>Zones mortes</b> : un DD trop haut pour le bonus = 5 % figé (le +1…+5 ne sert à rien). C’est là que « ça semble injuste ».</li>
+<li><b>Échelles de DD incohérentes</b> entre pages.</li>
+</ul>
+<div class="ok"><b>Adaptations recommandées (on n’change rien à la mécanique, on calibre l’usage) :</b>
+<ul>
+<li><b>Uniformiser</b> l’échelle DD partout : 5 / 10 / 15 / 20 / 25 / 30.</li>
+<li><b>Calibrer le DD sur le personnage</b>, pas dans l’absolu. Pour un défi « tendu mais juste » (≈60 %) : <b>DD = 11 + bonus attendu</b>. Facile = −5, corsé = +5. Ainsi le +1…+5 compte <b>toujours</b> (fin des zones mortes).</li>
+<li><b>Règle « on ne lance pas »</b> : si le bonus ≥ DD−1 → réussite auto (pas de bourde qui humilie un maître) ; si même un 19 n’atteint pas le DD → pas de jet (c’est impossible, ou ça coûte un Éther/Écho). Cela supprime nette­ment les deux zones mortes.</li>
+<li><b>Réserver les DD 25-30</b> aux vrais spécialistes (bonus ≥ +6) ou aux jets « leviers autorisés ».</li>
+<li><i>Optionnel, seulement si tu voulais un jour moins de hasard</i> : passer à 2d10/3d6 (courbe en cloche) — mais ça <b>changerait</b> le dé, donc écarté ici.</li>
+</ul>
+</div>
+</div>
+
+<p class="foot">Analyse générée pour le système Bilal · Armonia 2026 — probabilités exactes (d20) + Monte-Carlo 200k (combat). Aucune règle modifiée.</p>
+</div></body></html>

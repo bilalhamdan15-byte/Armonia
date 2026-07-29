@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>Etape 3 - Murs 6x6</title>
+<style>body{font-family:system-ui,sans-serif;background:#1a1611;color:#e8dfc9;padding:24px;max-width:900px;margin:0 auto}
+h1{color:#d4a13a;border-bottom:2px solid #5c3a1a;padding-bottom:8px}
+.card{background:#2a2418;border:1px solid #4a3820;border-radius:8px;padding:20px;margin:20px 0}
+textarea.code{width:100%;height:100px;background:#0f0d08;color:#a8c060;border:1px solid #5c3a1a;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;white-space:nowrap;overflow:auto}
+button{background:#5c3a1a;color:#e8dfc9;border:none;padding:12px 24px;border-radius:4px;cursor:pointer;margin-top:8px;font-size:15px;font-weight:600}button:hover{background:#7c4a2a}
+.info{background:#1a2a1a;border-left:4px solid #a8c060;padding:14px;margin:16px 0;border-radius:4px;font-size:14px}</style></head><body>
+<h1>Étape 3 — sol + coins + 1 vrai mur par côté (6×6)</h1>
+<div class="info"><b>Bug trouvé grâce à ton test 4×4 :</b> le coin fait 2×2 tuiles, pas 1×1 comme je le supposais. C'est corrigé dans le générateur (coins ancrés à 0 et largeur-2, pas largeur-1). Le 4×4 n'avait de la place que pour les coins (confirmé par ton export) ; le 6×6 est la plus petite taille qui ajoute un vrai segment de mur entre 2 coins par côté.<br><br>
+À vérifier en jeu : le mur se raccorde-t-il proprement aux 2 coins, sans trou ni chevauchement, sur les 4 côtés ?</div>
+<h2>Sol + coins + 1 mur/côté (6×6)</h2>
+<div class="card"><textarea class="code" id="c0" readonly onclick="this.select()">H4sIAAAAAAAC/0XPPw/BQBgG8Fc1RNLEn62LioiJwTcom8WGRAwVN5gMFps0NttNJr4EiYFEbG6q+BhiMdyCRd/2SdwNz+V9fsndBZ/gblCSiOa5VnfWq7fXmdX5+35uzXC2GBWDxivvHjrHamm5y/LsNPZu02G6uX9srMG1P6mEMxVuQnrl+ORbvlk1okwQepng9M0obb6Wk/v/clNx+laclwIKG71DJDAS8AJewAt4Aa/gFbyCV/AKXsHX8CJO9pzsOdlHvY3e4X8R/hd7CS/hJbyE1/AaXsNreA2v4X9iYunfpgEAAA==</textarea><button onclick="cp('c0',this)">📋 Copier</button></div>
+<script>function cp(id,b){const t=document.getElementById(id);t.select();t.setSelectionRange(0,999999);try{const o=document.execCommand('copy');b.textContent=o?'✓ Copié !':'❌ Ctrl+A+C';setTimeout(()=>b.textContent='📋 Copier',3000)}catch(e){b.textContent='❌ Ctrl+A+C'}}</script>
+</body></html>

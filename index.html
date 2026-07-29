@@ -127,7 +127,7 @@ footer {
   font-style: italic;
 }
 </style>
-</head>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
 <body>
 <div class="container">
 
@@ -159,9 +159,23 @@ footer {
     <div class="badge">Interactive</div>
   </a>
 
+  <a href="guide_creation.html" class="card essential">
+    <div class="icon">🎯</div>
+    <h2>Guide de création</h2>
+    <div class="description">Tutoriel pas-à-pas en 6 étapes pour créer ton premier personnage, même sans connaître le JDR.</div>
+    <div class="badge">Débutant</div>
+  </a>
+
+  <a href="bibliotheque_competences.html" class="card reference">
+    <div class="icon">📚</div>
+    <h2>Compétences &amp; Spécialités</h2>
+    <div class="description">Les 26 compétences par caractéristique + un catalogue de spécialités à piocher (jeu de hasard, affinités, régions, races, Célestes) et de contreparties.</div>
+    <div class="badge">Système</div>
+  </a>
+
 </div>
 
-<h2 class="section-title">📚 Bibliothèques de référence</h2>
+<h2 class="section-title">📚 Bibliothèques joueurs (règles & équipement)</h2>
 <div class="cards">
 
   <a href="bibliotheque_races.html" class="card reference">
@@ -185,93 +199,140 @@ footer {
     <div class="badge">Référence</div>
   </a>
 
-  <a href="bibliotheque_lieux.html" class="card reference">
-    <div class="icon">🗺️</div>
-    <h2>Lieux d'Armonia</h2>
-    <div class="description">38 lieux canoniques : cités, sanctuaires, ruines, Nœuds du Monde.</div>
-    <div class="badge">Référence</div>
-  </a>
-
-  <a href="bibliotheque_noeuds.html" class="card reference">
-    <div class="icon">💠</div>
-    <h2>Les 12 Nœuds du Monde</h2>
-    <div class="description">Les 12 points de pouvoir magique de la planète. Statut, gardien, magie associée, secrets.</div>
-    <div class="badge">Référence</div>
-  </a>
-
-  <a href="bibliotheque_celestes.html" class="card reference">
-    <div class="icon">🜂</div>
-    <h2>Sol'Ambaïre & les 5 Célestes</h2>
-    <div class="description">Les Deïn ilt, les 5 royaumes, le Cercle d'Anh, Aïruk le 6e esprit, géopolitique du continent.</div>
-    <div class="badge">Lore</div>
-  </a>
-
-  <a href="bibliotheque_veilleurs.html" class="card reference">
-    <div class="icon">👁</div>
-    <h2>L'Ordre des Veilleurs</h2>
-    <div class="description">Hiérarchie type Confrérie (Mentor Jack → Maîtres → Apprentis), QG caché à Me'yn Prus, secret Alm-Merthas.</div>
-    <div class="badge">Lore</div>
-  </a>
-
-  <a href="bibliotheque_armonia.html" class="card reference">
-    <div class="icon">👑</div>
-    <h2>La Cité d'Armonia</h2>
-    <div class="description">6 grandes familles, Conseil des Six, Roses d'Armonia (Indra), Tour du Renouveau et son artefact secret.</div>
-    <div class="badge">Lore</div>
-  </a>
-
   <a href="bibliotheque_magie.html" class="card reference">
     <div class="icon">✨</div>
     <h2>La Magie d'Armonia</h2>
-    <div class="description">3 couches (Sens, Script, Mots), Éther, 15 symboles avec recettes prêtes, 8 mots primordiaux canon, dangers.</div>
+    <div class="description">3 couches (Sens, Script, Mots), Éther, 15 symboles avec recettes prêtes, 8 mots primordiaux canon.</div>
     <div class="badge">Système</div>
   </a>
 
-  <a href="bibliotheque_lumini.html" class="card reference">
-    <div class="icon">🌿</div>
-    <h2>Lumini</h2>
-    <div class="description">Continent du commerce et des forêts. 8 lieux (Me'yn Prus, Etelin, Forêt Julia, Villa Virtue…), gouvernance, tensions.</div>
-    <div class="badge">Lore</div>
+  <a href="bibliotheque_mots_primordiaux.html" class="card reference">
+    <div class="icon">🗣️</div>
+    <h2>Mots Primordiaux (étendu)</h2>
+    <div class="description">24 mots à découvrir : 10 mineurs, 12 majeurs, 6 suprêmes, 2 interdits.</div>
+    <div class="badge">Référence</div>
   </a>
 
-  <a href="bibliotheque_pantheons.html" class="card reference">
-    <div class="icon">⛧</div>
-    <h2>Panthéons d'Armonia</h2>
-    <div class="description">5 divinités majeures (Ruth'a, Féiy, Handu'zo, Kéiy'ka, Jei'nia) + 5 mineures + 8 nordiques + cultes (Spriius Luminatis, Tribu).</div>
-    <div class="badge">Lore</div>
-  </a>
-
-  <a href="bibliotheque_langue.html" class="card reference">
-    <div class="icon">𓂀</div>
-    <h2>La Langue Ancienne</h2>
-    <div class="description">Lexique, pronoms, conjugaisons (mokae, memtei), exemples de phrases, lien avec les Mots Primordiaux.</div>
-    <div class="badge">Lore</div>
-  </a>
-
-  <a href="bibliotheque_factions.html" class="card reference">
-    <div class="icon">⚔</div>
-    <h2>Factions & Organisations</h2>
-    <div class="description">Protectoria Antares (6 fondateurs, Ross Von Listaire), Guildes (Marchands, Aventuriers), Tribu de la Forêt.</div>
-    <div class="badge">Lore</div>
+  <a href="bibliotheque_artefacts.html" class="card reference">
+    <div class="icon">⚜️</div>
+    <h2>Artefacts Légendaires</h2>
+    <div class="description">18 objets nommés avec histoire : Vent-de-Braise, Krul-Sonn, Codex Fulgura…</div>
+    <div class="badge">Trésors</div>
   </a>
 
 </div>
 
-<h2 class="section-title">🌍 Le monde</h2>
+<h2 class="section-title">🌍 Le monde d'Armonia</h2>
 <div class="cards">
 
   <a href="carte_armonia.html" class="card world">
     <div class="icon">🗺️</div>
     <h2>Carte d'Armonia</h2>
-    <div class="description">Carte preview interactive du monde. Continents, capitales, Nœuds du Monde — cliquables pour découvrir le lore.</div>
+    <div class="description">Carte preview interactive du monde. Continents, capitales, Nœuds — cliquables pour le lore.</div>
     <div class="badge">Interactive</div>
   </a>
 
   <a href="timeline_armonia.html" class="card world">
     <div class="icon">📜</div>
     <h2>Histoire & Timeline</h2>
-    <div class="description">Chronologie complète : des Anciens à la Rupture, Ère Humaine, Retour de la magie, présent. Calendrier en AR.</div>
+    <div class="description">Chronologie complète : Anciens, Rupture, Ère Humaine, Retour de la magie, présent.</div>
     <div class="badge">Lore</div>
+  </a>
+
+  <a href="bibliotheque_lieux.html" class="card world">
+    <div class="icon">📍</div>
+    <h2>Lieux d'Armonia</h2>
+    <div class="description">38 lieux canoniques : cités, sanctuaires, ruines, Nœuds du Monde.</div>
+    <div class="badge">Référence</div>
+  </a>
+
+  <a href="bibliotheque_noeuds.html" class="card world">
+    <div class="icon">💠</div>
+    <h2>Les 12 Nœuds du Monde</h2>
+    <div class="description">Les 12 points de pouvoir magique. Statut, gardien, magie associée, secrets.</div>
+    <div class="badge">Lore</div>
+  </a>
+
+  <a href="bibliotheque_lumini.html" class="card world">
+    <div class="icon">🌿</div>
+    <h2>Lumini</h2>
+    <div class="description">Continent des PJ. Me'yn Prus, Etelin, Forêt Julia, Villa Virtue, 4 lieux inventés.</div>
+    <div class="badge">Continent</div>
+  </a>
+
+  <a href="bibliotheque_celestes.html" class="card world">
+    <div class="icon">🜂</div>
+    <h2>Sol'Ambaïre & 5 Célestes</h2>
+    <div class="description">Les Deïn ilt, 5 royaumes, Cercle d'Anh, Aïruk le 6e esprit.</div>
+    <div class="badge">Continent</div>
+  </a>
+
+  <a href="bibliotheque_royaumes.html" class="card world">
+    <div class="icon">🗺️</div>
+    <h2>Royaumes Humains & Heledera</h2>
+    <div class="description">Virtus Al Alle, Seaher it Nam, Urf inor, Heledera. Politiques, tensions, hooks.</div>
+    <div class="badge">Continent</div>
+  </a>
+
+  <a href="bibliotheque_armonia.html" class="card world">
+    <div class="icon">👑</div>
+    <h2>La Cité d'Armonia</h2>
+    <div class="description">6 grandes familles, Conseil des Six, Roses (Indra), Tour du Renouveau.</div>
+    <div class="badge">Capitale</div>
+  </a>
+
+</div>
+
+<h2 class="section-title">🕯️ Cultures & institutions</h2>
+<div class="cards">
+
+  <a href="bibliotheque_veilleurs.html" class="card reference">
+    <div class="icon">👁</div>
+    <h2>L'Ordre des Veilleurs</h2>
+    <div class="description">Mentor Jack, Hautes Autorités, QG à Me'yn Prus, secret Alm-Merthas.</div>
+    <div class="badge">Ordre secret</div>
+  </a>
+
+  <a href="bibliotheque_factions.html" class="card reference">
+    <div class="icon">⚔</div>
+    <h2>Factions & Organisations</h2>
+    <div class="description">Protectoria Antares (6 fondateurs), Guildes, Tribu de la Forêt.</div>
+    <div class="badge">Groupes</div>
+  </a>
+
+  <a href="bibliotheque_pantheons.html" class="card reference">
+    <div class="icon">⛧</div>
+    <h2>Panthéons d'Armonia</h2>
+    <div class="description">5 majeures + 5 mineures + panthéon nordique + cultes (Spriius, Tribu).</div>
+    <div class="badge">Religion</div>
+  </a>
+
+  <a href="bibliotheque_langue.html" class="card reference">
+    <div class="icon">𓂀</div>
+    <h2>La Langue Ancienne</h2>
+    <div class="description">Lexique, pronoms, conjugaisons, phrases, lien avec les Mots Primordiaux.</div>
+    <div class="badge">Culture</div>
+  </a>
+
+  <a href="bibliotheque_calendrier.html" class="card reference">
+    <div class="icon">📅</div>
+    <h2>Calendrier & Festivals</h2>
+    <div class="description">12 mois + 5 Veillées, 4 saisons, semaine de 6 jours, festivals, dates clés.</div>
+    <div class="badge">Culture</div>
+  </a>
+
+  <a href="bibliotheque_economie.html" class="card reference">
+    <div class="icon">💰</div>
+    <h2>Économie & Commerce</h2>
+    <div class="description">Aur'na (monnaie or), cristaux d'Éther cultivables, échelle des prix, 4 catégories de trafic, banques.</div>
+    <div class="badge">Culture</div>
+  </a>
+
+  <a href="bibliotheque_voyage.html" class="card reference">
+    <div class="icon">🐎</div>
+    <h2>Voyage & Téléportation</h2>
+    <div class="description">Vitesses, 8 distances-clés, routes par danger, saisonnalité, arches de téléportation (HUB Veilleurs + 7 externes).</div>
+    <div class="badge">Culture</div>
   </a>
 
 </div>
@@ -296,7 +357,7 @@ footer {
 </div>
 
 <footer>
-  Système créé par Bilal · Univers d'Armonia · 2026
+  Système créé par Bilal · Univers d'Armonia · 2026 · 18 bibliothèques
 </footer>
 
 </div>

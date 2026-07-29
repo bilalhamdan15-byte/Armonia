@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>V20</title>
+<style>
+body{font-family:system-ui,sans-serif;background:#1a1611;color:#e8dfc9;padding:24px;max-width:1000px;margin:0 auto}
+h1{color:#d4a13a;border-bottom:2px solid #5c3a1a;padding-bottom:8px}
+h2{color:#c07a2a;margin-top:24px}
+.card{background:#2a2418;border:1px solid #4a3820;border-radius:8px;padding:20px;margin:20px 0}
+textarea.code{width:100%;height:120px;background:#0f0d08;color:#a8c060;border:1px solid #5c3a1a;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;white-space:nowrap;overflow:auto}
+button.copy{background:#5c3a1a;color:#e8dfc9;border:none;padding:12px 24px;border-radius:4px;cursor:pointer;margin-top:8px;font-size:15px;font-weight:600}
+button.copy:hover{background:#7c4a2a}
+.info{background:#1a2a1a;border-left:4px solid #a8c060;padding:14px;margin:16px 0;border-radius:4px;font-size:14px}
+</style></head><body>
+<h1>V20 · Façades pleines + corners aux bonnes rotations</h1>
+<div class="info">
+Corrections suite aux mesures :
+<ul>
+<li><b>"Tavern Wall - Small 01" banni des façades</b> — c'est un MUR BAS (demi-hauteur), c'est lui qui "ouvrait" la façade. Remplacé par Tavern Wall 01 (plein) partout.</li>
+<li><b>Corners : rotations mesurées dans la référence</b> — NW=0, SW=6, SE=12, NE=18 (les miennes étaient décalées de 90°).</li>
+</ul>
+</div>
+<h2>Taverne 8×6×2</h2>
+<div class="card">
+<textarea class="code" id="c0" readonly onclick="this.select()">H4sIAOKoX2oC/03VTWyURRwG8HnfXbqlaULVQLJYKB74kCwECCGYGG0L5aNADQewKpCCc0CJUAjKQSObcuErMBBKIAjBj5goBDaVL8tIOKBMCJRVgwEVOUBCG43FdC7gxfnP82ykh/4z8/zet9N5umnfk74fU1WnlJpXHhr2xYnBltKM90+tOPzl0iTs9c+cUDXm+Iamz1qe73r4edXETNi7u+292tPJ5ebvsgd2vHDmyO007L3zcM3IJRe3zul5tHln/cDfJ+TZcft3jf7925ULj1TtWbV7Yv1z1WHvj2ltU1cuWPzap3X7+2a1Tt4wKez1/jT06oddnc092+/deblz+o1s2NtS17xs0/IpCw8O33Hp38d/HpVn2/bWrF307oGmS782rbt/5eT8aWHvrburPnoye/Tir186fHZTzb6Ncr7B3i07B1a/0dq9r/NW6Yd/fpGzLBl/4drxmjONp1urD37fkZknZ/549di+6Y+eaTzX1jthXFfPCPkZF9/uuLl+Ra7pm4FPat+8+vrajrA3Kv3r5wfd1+eWPtg81J0dtV7ed373nt9eefFWy1fHJt8fvF1fLXtaOdVYpZRJnLr8rMrYVGYxa5JSNqxDWspK7hNM8cVa2T9UXZniCgnWMmVtuDZce6491yo8pxSmvFfxfUo9leeZN8jPhdf0ml7Ta3pN7+gdvWPumMs5JZcpeVznuW7AuSU3zA1zw9wz98w9c8+8PUUuU3KZcl6Zct6Y55kHb+ktvaW39JbeppX7cArPoz8desIaU/pUqhi+h7yhmFWxt2Ii/YYZ+0Ueeo15KYs8zrAu59BPOYd+yjn0U86hn5DnmcfzwGt6Ta/pNb2md/SO3tE7ekfv6AsJvEz0BS8Tf3/wMY/9wRt6Q2/oDb2h9/Se3tN7ek/v6dtTeJnoF14m+oWPeewX3tJbektv6W1auZ9Kf+hJ+pKeNHt0/BwWEkwVPWZwsefwnvh5Ds/HfpHH98Sekcf3M8MX+lZ8r1LoWyn0rRT6xpem1/SaXtNr+v9PB+/oHb2jd/SFBF4m+lb8feFjnmce+4Y39Ibe0Bt6Q+/pPb2n9/Se3tO3p/Ay0Te8TPSt+HmEt/SW3tJbektv6cN/rQye6M/g/vszuP/+DO4/5Hnm8f7hNb2m1/SaXtM7ekfv6B29o3f0hQReJu4fXibuHz7m8f7hDb2hN/SG3tB7ek/v6T29p/f07Sm8TNw/vEzcP3zM4/3DW3pLb+ktvU0r78f/PflchZn8B8fKIWZiCAAA</textarea>
+<button class="copy" onclick="doCopy('c0',this)">📋 Copier</button>
+</div><h2>Taverne 12×8×2</h2>
+<div class="card">
+<textarea class="code" id="c1" readonly onclick="this.select()">H4sIAOKoX2oC/0XWXYiUVRzH8TPzTLObCFqRMGY908Wj5GyREVEQtWtpaaPRRbWVita5sCLdxPKiqMWeizSxR1FRrLAXgjRyMXvTJ9mLXg5R21YY9mJdGHiWIg3PTXbT8z//rzg3P+b85jOze875z+7Y2bHv6maqMWb++JkL3tp3at7IdU+9t2TX2/fUqjV//czm5XtWD7wx77L1J99szkqqteMvPDF5f2107qeNbRuuPLj7WL1ae/Tkw5cuOvz8bQdOr904Y+LvfWLbW1+a/usnSxfsbm5etmnWjEva1dpv1y6+Zumd3btfn7p17IaFs1f3V2uHvj9z6zPrh+YeePH3n24emvNNo1pbN3XuvWvuu3rBjgs3HPnv3z9fnVKtLX550sq7Hts2cOTngcdPfPbuHcurtYeOL3v27I3Tu3tv2vXBmklbnuyt1k4dWrdxYsUDC7dvGTo68sU/P8rPsij7+Ks9kw7271/Yu+Pz5cl8+ZmfW3HF2JzTF/V/uPjQzPb6A1PEHn5k+berlvQMvD/xyuQHv7x/5Wi1Nq3+1w9/bP/69pGn157Z3pi2St7vo02bf7nlqqPz3nlt9olTx2b0ypo1zvQ3jRmsOzN6sUnyxBnTGq4N1kcapmWqdqQhfZ5oyuuHJ8v6zt5zWbmY+vqdvf2pMX017SWll5ReUvqCvqAv6Av6QB/oA32gH6xrLym9pPSS0pf0JX1JX9K3E+0lpZeUXlL6nD6nz+lzeiO/r9GUfTHsh2E/DPthzPnXD2f0HdlH9RZv8RZv8RZv8Rbv8A7v6B193G/Dfjc5j4zz6LDfhv1uch4Z59Fhvw373eQ8Ms6jw34b9rvJeWScR4f9Nux3k/PIOI8O+23Y7ybnkXEeHfbbsN9NziPjPKre03t6z3l5zstzXp7z8niP7zbUS4qXFC8pPvYt+pQ+o+8wB/H9dH5sNSf6XLOoVXNkhmvtRNNVrx/tDDdMnJ/hWrcRMz6XeZPnVTaKWjV30WnK/ImTeVRfvX/0MeNz9TGr5+M9ei/He/RejvfovRzv0XtZ9S36lD6jj7+Xeou3eIu3eIu3eIt3eId3eId3eId3eIfvq6mX1HurXlK/R9THPqXP6OO9Vl/gC3yBL/AFvsAX+IAP+IAP+IAP+IAP+MG6ekmdC/WS+j2lPvYpfUYf50Z9iS/xJb7El/gSX+LbiXpJnSv1kvo9pz72KX1GH+dOfY7P8Tk+x+f4HJ/jPd7jPd7jPd7jPd7juw31kjqX6iV1LtXHPqXP6OP903mTv2eSMocyNzKHkjJP2mvKvGmvaZlHx9+5vppmnFOjWb0uzmv1eUmcW8Mcxkd8nziP2sfPodOHzqXhfY3RuaweLfqUPqOPc6kPi7d4i7d4i7d4iz//06t3eId3eId3eIfvq6mX1Lk07I/62LfoU/qMPs6l+gJf4At8gS/wBb7AB3zAB3zAB3zAB3zAD9bVS+pcqpfUuVQf+5Q+o49zqb7El/gSX+JLfIkv8e1EvaTOpXpJnUv1sU/pM/o4l+pzfI7P8Tk+x+f4HO/xHu/xHu/xHu/xHt/lBkvqXKqX1LlUH/uUPqPvnPtkTb3/PtH77xO9/1Xfok/pM/p4/9VbvMVbvMVbvMVbvMM7vMM7vMM7vMM7fF9NvaTef/WSev/Vxz6lz+jj/Vdf4At8gS/wBb7AF/iAD/iAD/iAD/iAD/jBunpJvf/qJfX+q499Sp/Rx/uvvsSX+BJf4kt8iS/x7US9pN5/9ZJ6/9XHPqXP6OP9V5/jc3yOz/E5PsfneI/3eI/3eI/3eI/3+G5DvaTef/WSev/Vxz6lz+g7+n+i/n/nZD6S/wFTtEmQwg4AAA==</textarea>
+<button class="copy" onclick="doCopy('c1',this)">📋 Copier</button>
+</div>
+<script>
+function doCopy(id,btn){
+  const ta=document.getElementById(id);ta.select();ta.setSelectionRange(0,999999);
+  try{const ok=document.execCommand('copy');btn.textContent=ok?'✓ Copié !':'❌ Ctrl+A+C';setTimeout(()=>btn.textContent='📋 Copier',3000)}
+  catch(e){btn.textContent='❌ Ctrl+A+C'}
+}
+</script></body></html>

@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendrier & Festivals d'Armonia</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+
+  --printemps: #6a9a4a;
+  --ete: #d4a040;
+  --automne: #c4682a;
+  --hiver: #6a8caf;
+  --veillee: #7a4a8a;
+
+  --danger: #a02020;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 24px;
+  background: linear-gradient(135deg, #fffaf0 0%, #e8e0d0 50%, #fffaf0 100%);
+  border: 3px double var(--primary);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 32px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--accent);
+  margin-top: 8px;
+  font-size: 16px;
+}
+header.title-bar .quote {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 12px;
+  font-style: italic;
+}
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.intro-box strong { color: var(--primary); }
+.section-title {
+  font-size: 24px;
+  color: var(--primary);
+  margin: 32px 0 14px 0;
+  padding-bottom: 8px;
+  border-bottom: 3px double var(--accent);
+  letter-spacing: 2px;
+}
+.subsection-title {
+  font-size: 18px;
+  color: var(--accent);
+  margin: 18px 0 10px 0;
+  letter-spacing: 1px;
+}
+
+/* STRUCTURE GLOBALE */
+.structure-box {
+  background: linear-gradient(135deg, #fffaf0 0%, #f0e6cf 100%);
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 14px 0;
+}
+.structure-box h2 {
+  margin: 0 0 10px 0;
+  color: var(--accent);
+  font-size: 20px;
+}
+.structure-formula {
+  background: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--primary);
+  text-align: center;
+  margin: 10px 0;
+  letter-spacing: 1px;
+}
+.structure-box p { font-size: 14px; line-height: 1.6; margin: 6px 0; }
+.structure-box ul { font-size: 14px; line-height: 1.7; margin: 6px 0 6px 18px; padding: 0; }
+
+/* SAISONS */
+.saisons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin: 14px 0;
+}
+.saison-card {
+  background: var(--paper);
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+}
+.saison-card.printemps { border-color: var(--printemps); }
+.saison-card.ete { border-color: var(--ete); }
+.saison-card.automne { border-color: var(--automne); }
+.saison-card.hiver { border-color: var(--hiver); }
+.saison-card .icon { font-size: 42px; margin-bottom: 8px; }
+.saison-card h3 {
+  margin: 4px 0;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+.saison-card.printemps h3 { color: var(--printemps); }
+.saison-card.ete h3 { color: var(--ete); }
+.saison-card.automne h3 { color: var(--automne); }
+.saison-card.hiver h3 { color: var(--hiver); }
+.saison-card .vent {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 4px;
+}
+.saison-card .duree {
+  font-size: 11px;
+  color: var(--text);
+  margin-top: 6px;
+  background: rgba(168, 120, 48, 0.08);
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* MOIS */
+.mois-table {
+  width: 100%;
+  background: var(--paper);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 12px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.mois-table th, .mois-table td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.mois-table th {
+  background: var(--primary);
+  color: white;
+  letter-spacing: 1px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.mois-table .num {
+  font-family: 'Courier New', monospace;
+  color: var(--muted);
+  font-weight: bold;
+  text-align: center;
+  width: 40px;
+}
+.mois-table .mois-nom {
+  font-weight: bold;
+  color: var(--accent);
+  font-size: 15px;
+}
+.mois-table tr:hover { background: rgba(168, 120, 48, 0.05); }
+.mois-table tr:last-child td { border-bottom: none; }
+.mois-table .saison-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.saison-tag.printemps { background: #d8e8c8; color: var(--printemps); }
+.saison-tag.ete { background: #f5e8b8; color: #8a6810; }
+.saison-tag.automne { background: #f0d8b8; color: var(--automne); }
+.saison-tag.hiver { background: #d0dee8; color: var(--hiver); }
+
+/* VEILLÉES */
+.veillees-box {
+  background: linear-gradient(135deg, #f8f0fa 0%, #efdef0 100%);
+  border: 3px double var(--veillee);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 18px 0;
+}
+.veillees-box h2 {
+  margin: 0 0 10px 0;
+  color: var(--veillee);
+  font-size: 22px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+.veillees-box > p { font-size: 14px; line-height: 1.6; margin: 8px 0; }
+.veillees-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+.veillee-card {
+  background: white;
+  border-left: 4px solid var(--veillee);
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+.veillee-card h4 {
+  margin: 0 0 4px 0;
+  color: var(--veillee);
+  font-size: 14px;
+}
+.veillee-card p { font-size: 12px; margin: 4px 0 0 0; line-height: 1.4; }
+
+/* SEMAINE */
+.semaine-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+  margin: 12px 0;
+}
+.jour-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px;
+  text-align: center;
+}
+.jour-card .nom {
+  font-weight: bold;
+  color: var(--primary);
+  font-size: 15px;
+}
+.jour-card .signe {
+  font-size: 28px;
+  margin: 4px 0;
+}
+.jour-card .desc {
+  font-size: 11px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* HEURES */
+.veilles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin: 12px 0;
+}
+.veille-card {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  border-radius: 4px;
+  padding: 10px 12px;
+}
+.veille-card .nom {
+  font-weight: bold;
+  color: var(--primary);
+  font-size: 14px;
+}
+.veille-card .heures {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--accent);
+  margin: 4px 0;
+}
+.veille-card .desc {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* FESTIVALS */
+.festivals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 14px;
+  margin: 14px 0;
+}
+.festival-card {
+  background: var(--paper);
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+}
+.festival-card.printemps { border-color: var(--printemps); }
+.festival-card.ete { border-color: var(--ete); }
+.festival-card.automne { border-color: var(--automne); }
+.festival-card.hiver { border-color: var(--hiver); }
+.festival-card.special { border-color: var(--danger); }
+.festival-card.regional { border-color: var(--accent); }
+.festival-card h3 {
+  margin: 0 0 6px 0;
+  font-size: 17px;
+}
+.festival-card.printemps h3 { color: var(--printemps); }
+.festival-card.ete h3 { color: var(--ete); }
+.festival-card.automne h3 { color: var(--automne); }
+.festival-card.hiver h3 { color: var(--hiver); }
+.festival-card.special h3 { color: var(--danger); }
+.festival-card.regional h3 { color: var(--accent); }
+.festival-card .date {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 8px;
+}
+.festival-card p { font-size: 13px; line-height: 1.5; margin: 6px 0; }
+.festival-card strong { color: var(--text); }
+
+/* DATES CLÉS */
+.dates-cles-box {
+  background: linear-gradient(135deg, #fff5f5 0%, #fde0e0 100%);
+  border: 2px solid var(--danger);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 16px 0;
+}
+.dates-cles-box h2 {
+  margin: 0 0 10px 0;
+  color: var(--danger);
+  font-size: 20px;
+}
+.dates-cles-box .date-event {
+  background: white;
+  border-left: 4px solid var(--danger);
+  padding: 10px 14px;
+  margin: 10px 0;
+  border-radius: 4px;
+}
+.dates-cles-box .date-event h3 {
+  margin: 0 0 4px 0;
+  color: var(--danger);
+  font-size: 15px;
+}
+.dates-cles-box .date-event p { font-size: 13px; margin: 4px 0; line-height: 1.5; }
+.dates-cles-box .date-event .quand {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* HOOKS */
+.hooks-box {
+  background: var(--paper);
+  border-left: 4px solid var(--accent);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin: 16px 0;
+}
+.hooks-box p {
+  margin: 8px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.nav-back {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 13px;
+}
+.nav-back:hover { text-decoration: underline; }
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body>
+<div class="container">
+
+<a href="index.html" class="nav-back">← Retour au sommaire</a>
+
+<header class="title-bar">
+  <h1>📅 CALENDRIER D'ARMONIA</h1>
+  <div class="subtitle">Saisons, mois, festivals · An 1040 AR</div>
+  <div class="quote">« Le temps a recommencé à compter le jour où la magie a disparu. Et nous, nous comptons toujours. »</div>
+</header>
+
+<div class="intro-box">
+  <p>Le calendrier d'Armonia compte les années en <strong>AR (Après Rupture)</strong>. L'an 0 fut la Rupture. L'an 1000 fut le Retour de la magie. Nous sommes en <strong>1040 AR</strong>.</p>
+  <p>L'année s'articule autour de <strong>4 saisons</strong>, chacune dédiée à un Vent / Céleste. Chaque saison comporte <strong>3 mois</strong>. Aux jonctions de l'année — entre l'hiver et le printemps — se tiennent <strong>les Veillées</strong>, cinq jours sacrés qui honorent les cinq divinités majeures.</p>
+</div>
+
+<h2 class="section-title">🗓️ Structure de l'année</h2>
+
+<div class="structure-box">
+  <h2>L'année d'Armonia</h2>
+  <div class="structure-formula">12 mois × 30 jours + 5 Veillées = 365 jours</div>
+  <p>L'année est divisée en <strong>4 saisons</strong> de 90 jours chacune, chaque saison étant le règne d'un Céleste / Vent. Le <strong>Vent du Zénith</strong> (Ay-Senna) ne règne sur aucune saison — il préside les <strong>5 Veillées</strong>, jours liminaires hors-mois.</p>
+  <ul>
+    <li><strong>Saison</strong> = 3 mois (90 jours)</li>
+    <li><strong>Mois</strong> = 5 semaines + 5 jours, soit 30 jours</li>
+    <li><strong>Semaine</strong> = 6 jours</li>
+    <li><strong>Jour</strong> = 24 heures, divisées en 6 Veilles de 4 heures</li>
+    <li><strong>Veillées</strong> = 5 jours intercalaires à la fin de l'année (entre fin d'hiver et début de printemps)</li>
+  </ul>
+  <p><strong>Origine du système</strong> : les Io séeim comptaient le temps en cycles de Vent. Les Veilleurs ont préservé cette structure après la Rupture. C'est elle qui donne son nom à l'Ordre — eux veillent <em>aux jonctions du temps</em>.</p>
+</div>
+
+<h2 class="section-title">🌗 Les 4 saisons</h2>
+
+<div class="saisons-grid">
+  <div class="saison-card printemps">
+    <div class="icon">🌱</div>
+    <h3>Printemps</h3>
+    <div class="vent">Vent d'Aurore · Sîr-Vhel</div>
+    <div class="duree">90 jours · début d'année</div>
+  </div>
+  <div class="saison-card ete">
+    <div class="icon">☀️</div>
+    <h3>Été</h3>
+    <div class="vent">Vent du Brasier · Kor-Drun</div>
+    <div class="duree">90 jours · apogée du jour</div>
+  </div>
+  <div class="saison-card automne">
+    <div class="icon">🍂</div>
+    <h3>Automne</h3>
+    <div class="vent">Vent des Sèves · Mae-Lor</div>
+    <div class="duree">90 jours · récoltes</div>
+  </div>
+  <div class="saison-card hiver">
+    <div class="icon">❄️</div>
+    <h3>Hiver</h3>
+    <div class="vent">Vent du Givre · Hyal-Roon</div>
+    <div class="duree">90 jours · apogée de la nuit</div>
+  </div>
+</div>
+
+<h2 class="section-title">📆 Les 12 mois</h2>
+
+<table class="mois-table">
+  <thead>
+    <tr><th>#</th><th>Mois</th><th>Saison</th><th>Divinité honorée</th><th>Caractère</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="num">1</td>
+      <td class="mois-nom">Mois de Mémoire</td>
+      <td><span class="saison-tag printemps">Printemps</span></td>
+      <td>Handu'zo (Sagesse)</td>
+      <td>Reprise des activités. Réouverture des écoles et bibliothèques.</td>
+    </tr>
+    <tr>
+      <td class="num">2</td>
+      <td class="mois-nom">Mois d'Aurore</td>
+      <td><span class="saison-tag printemps">Printemps</span></td>
+      <td>Sîr-Vhel (Vent d'Aurore)</td>
+      <td>Mois de transition, vents doux, premières floraisons.</td>
+    </tr>
+    <tr>
+      <td class="num">3</td>
+      <td class="mois-nom">Mois de Renaissance</td>
+      <td><span class="saison-tag printemps">Printemps</span></td>
+      <td>Féiy (Renouveau)</td>
+      <td>Naissances, semis, mariages. Mois le plus joyeux de l'année.</td>
+    </tr>
+    <tr>
+      <td class="num">4</td>
+      <td class="mois-nom">Mois du Soleil Naissant</td>
+      <td><span class="saison-tag ete">Été</span></td>
+      <td>Jei'nia (Soleil)</td>
+      <td>Premières grosses chaleurs. Marchés extérieurs.</td>
+    </tr>
+    <tr>
+      <td class="num">5</td>
+      <td class="mois-nom">Mois du Brasier</td>
+      <td><span class="saison-tag ete">Été</span></td>
+      <td>Kor-Drun (Vent du Brasier)</td>
+      <td>Apogée de chaleur. Solstice. Activités guerrières et duels rituels.</td>
+    </tr>
+    <tr>
+      <td class="num">6</td>
+      <td class="mois-nom">Mois de Soleil Brûlé</td>
+      <td><span class="saison-tag ete">Été</span></td>
+      <td>Ruth'a (Guerre, Force)</td>
+      <td>Chaleurs accablantes. Tournois, vendetta, conflits ouverts.</td>
+    </tr>
+    <tr>
+      <td class="num">7</td>
+      <td class="mois-nom">Mois d'Abondance</td>
+      <td><span class="saison-tag automne">Automne</span></td>
+      <td>Mae-Lor (Vent des Sèves)</td>
+      <td>Premières récoltes. Foires Karambol. Échanges intenses.</td>
+    </tr>
+    <tr>
+      <td class="num">8</td>
+      <td class="mois-nom">Mois de Sève</td>
+      <td><span class="saison-tag automne">Automne</span></td>
+      <td>Tam'oth (Commerce)</td>
+      <td>Pointe commerciale de l'année. Réseaux Daluvio à plein régime.</td>
+    </tr>
+    <tr>
+      <td class="num">9</td>
+      <td class="mois-nom">Mois de Vendange</td>
+      <td><span class="saison-tag automne">Automne</span></td>
+      <td>Vey'lon (Voyageurs)</td>
+      <td>Dernières récoltes. Voyageurs cherchent un toit pour l'hiver.</td>
+    </tr>
+    <tr>
+      <td class="num">10</td>
+      <td class="mois-nom">Mois de Cendre</td>
+      <td><span class="saison-tag hiver">Hiver</span></td>
+      <td>Drei'val (Morts)</td>
+      <td>Mois de la Rupture. Jour 1 = Anniversaire sacré. Jeûne, mémoire.</td>
+    </tr>
+    <tr>
+      <td class="num">11</td>
+      <td class="mois-nom">Mois de Givre</td>
+      <td><span class="saison-tag hiver">Hiver</span></td>
+      <td>Hyal-Roon (Vent du Givre)</td>
+      <td>Apogée du froid. Thing du Givre des Jarls de No'Ord.</td>
+    </tr>
+    <tr>
+      <td class="num">12</td>
+      <td class="mois-nom">Mois de Nuit Longue</td>
+      <td><span class="saison-tag hiver">Hiver</span></td>
+      <td>Kéiy'ka (Nuit)</td>
+      <td>Nuits les plus longues. Mois des Veilleurs. Solstice d'hiver.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 class="section-title">🕯️ Les 5 Veillées (jours liminaires)</h2>
+
+<div class="veillees-box">
+  <h2>Les Veillées</h2>
+  <p>Entre la fin du Mois de Nuit Longue (hiver) et le début du Mois de Mémoire (printemps), s'intercalent <strong>5 jours sacrés</strong>. Ces jours n'appartiennent à aucun mois, aucune saison. Ils sont placés sous l'égide d'<strong>Ay-Senna, le Vent du Zénith</strong>, et chacun honore l'une des cinq divinités majeures.</p>
+  <p>Pendant les Veillées, le travail est suspendu. Les boutiques ferment. Les matins sont consacrés à la prière. Les soirs aux banquets familiaux. C'est aussi la période où les <strong>Veilleurs</strong> tiennent leurs rituels les plus importants — en secret.</p>
+
+  <div class="veillees-grid">
+    <div class="veillee-card">
+      <h4>⚔️ Veillée de Ruth'a</h4>
+      <p>Jour 1. Honneur aux morts au combat. Duels rituels apaisés. On rend les armes empruntées.</p>
+    </div>
+    <div class="veillee-card">
+      <h4>🌱 Veillée de Féiy</h4>
+      <p>Jour 2. Bénédiction des semences. Les bébés nés ce jour sont dits « bénis du renouveau ».</p>
+    </div>
+    <div class="veillee-card">
+      <h4>📚 Veillée de Handu'zo</h4>
+      <p>Jour 3. Jour de silence pour les érudits. On relit ce qu'on a appris dans l'année.</p>
+    </div>
+    <div class="veillee-card">
+      <h4>🌙 Veillée de Kéiy'ka</h4>
+      <p>Jour 4. La plus longue nuit symbolique. On marche pieds nus. On confie un secret à l'obscurité.</p>
+    </div>
+    <div class="veillee-card">
+      <h4>☀️ Veillée de Jei'nia</h4>
+      <p>Jour 5. Lever du jour célébré au sommet d'une colline. Promesses de l'année à venir.</p>
+    </div>
+  </div>
+</div>
+
+<h2 class="section-title">📍 La semaine de 6 jours</h2>
+
+<div class="semaine-grid">
+  <div class="jour-card">
+    <div class="signe">☀️</div>
+    <div class="nom">Solis</div>
+    <div class="desc">Jour du Soleil · début</div>
+  </div>
+  <div class="jour-card">
+    <div class="signe">🌙</div>
+    <div class="nom">Lunis</div>
+    <div class="desc">Jour de la Lune · introspection</div>
+  </div>
+  <div class="jour-card">
+    <div class="signe">⚔️</div>
+    <div class="nom">Ferri</div>
+    <div class="desc">Jour du Fer · travail dur</div>
+  </div>
+  <div class="jour-card">
+    <div class="signe">🌱</div>
+    <div class="nom">Vita</div>
+    <div class="desc">Jour de la Vie · marché</div>
+  </div>
+  <div class="jour-card">
+    <div class="signe">🗣️</div>
+    <div class="nom">Voca</div>
+    <div class="desc">Jour du Verbe · audiences</div>
+  </div>
+  <div class="jour-card">
+    <div class="signe">🕊️</div>
+    <div class="nom">Rest</div>
+    <div class="desc">Jour de Repos · prière, famille</div>
+  </div>
+</div>
+
+<h2 class="section-title">⏰ Les 6 Veilles du jour</h2>
+
+<p style="font-size:14px; line-height:1.6;">Chaque jour est divisé en <strong>6 Veilles de 4 heures</strong> chacune. C'est de cette division que vient le nom des <strong>Veilleurs</strong> : à l'origine, ils étaient ceux qui se relayaient pour <em>veiller</em> aux jonctions entre Veilles, ces moments où la magie ancienne se manifestait le plus.</p>
+
+<div class="veilles-grid">
+  <div class="veille-card">
+    <div class="nom">Veille de Matines</div>
+    <div class="heures">04 h → 08 h</div>
+    <div class="desc">Avant et après l'aube</div>
+  </div>
+  <div class="veille-card">
+    <div class="nom">Veille de Tierce</div>
+    <div class="heures">08 h → 12 h</div>
+    <div class="desc">Matinée de travail</div>
+  </div>
+  <div class="veille-card">
+    <div class="nom">Veille du Zénith</div>
+    <div class="heures">12 h → 16 h</div>
+    <div class="desc">Midi solaire</div>
+  </div>
+  <div class="veille-card">
+    <div class="nom">Veille de None</div>
+    <div class="heures">16 h → 20 h</div>
+    <div class="desc">Après-midi tardif</div>
+  </div>
+  <div class="veille-card">
+    <div class="nom">Veille de Vêpres</div>
+    <div class="heures">20 h → 00 h</div>
+    <div class="desc">Soir et tombée</div>
+  </div>
+  <div class="veille-card">
+    <div class="nom">Veille de Minuit</div>
+    <div class="heures">00 h → 04 h</div>
+    <div class="desc">Cœur de la nuit — l'heure des Veilleurs</div>
+  </div>
+</div>
+
+<h2 class="section-title">🎉 Festivals majeurs (mondiaux)</h2>
+
+<div class="festivals-grid">
+
+  <div class="festival-card printemps">
+    <h3>🌸 La Floraison</h3>
+    <div class="date">Mois de Renaissance · Jour 1</div>
+    <p><strong>Début du Mois de Renaissance.</strong> Procession de fleurs dans toutes les villes. On marque les fronts des nouveau-nés d'un peu de pollen. Les Tribus de la Forêt mènent les célébrations à Lumini.</p>
+    <p><em>Dédiée à Féiy.</em></p>
+  </div>
+
+  <div class="festival-card ete">
+    <h3>☀️ Le Solstice de Brasier</h3>
+    <div class="date">Mois du Brasier · Jour 15</div>
+    <p><strong>Plus longue journée de l'année.</strong> Feux gigantesques allumés au sommet des collines. Jeûne diurne puis grand banquet nocturne. Duels rituels — sans danger réel mais qui honorent Kor-Drun.</p>
+    <p><em>Dédié à Jei'nia. Honoré officiellement par les Spriius Luminatis.</em></p>
+  </div>
+
+  <div class="festival-card automne">
+    <h3>🌾 La Grande Récolte</h3>
+    <div class="date">Mois d'Abondance · Jours 25 à 30</div>
+    <p><strong>Six jours de fête.</strong> Banquets paysans, foires marchandes, échanges de marchandises rares. La Foire de Me'yn Prus est le rendez-vous mondial — on y croise des Tengu, des Nordiques, des Sadiens, des Jindos.</p>
+    <p><em>Dédiée à Mae-Lor. Patronnée discrètement par Tam'oth (commerce) et Vey'lon (voyageurs).</em></p>
+  </div>
+
+  <div class="festival-card hiver">
+    <h3>🌙 La Nuit des Veilleurs</h3>
+    <div class="date">Mois de Nuit Longue · Jour 15</div>
+    <p><strong>Plus longue nuit de l'année.</strong> Honneur aux morts. Les familles allument une bougie par défunt. Les Veilleurs accomplissent leurs rituels les plus importants — accompagner les âmes qui se sont perdues durant l'année. La plupart des gens ignorent ce que les Veilleurs font réellement.</p>
+    <p><em>Dédiée à Kéiy'ka. Honorée discrètement par les prêtres de Drei'val.</em></p>
+  </div>
+
+  <div class="festival-card hiver">
+    <h3>📜 Anniversaire de la Rupture</h3>
+    <div class="date">Mois de Cendre · Jour 1</div>
+    <p><strong>Jour de jeûne universel et de silence.</strong> Personne ne travaille. Les cloches sonnent à midi. On ne parle pas avant le coucher du soleil. Les Veilleurs entrent en méditation profonde — ce jour-là, ils sentent parfois les anciennes voix.</p>
+    <p><em>Mois de Cendre, jour 1 = An x AR commence ici (calendrier liturgique).</em></p>
+  </div>
+
+  <div class="festival-card special">
+    <h3>✨ Anniversaire du Retour</h3>
+    <div class="date">Mois d'Aurore · Jour 12</div>
+    <p><strong>Fête controversée.</strong> Certains célèbrent (la magie est revenue, les races réveillées peuvent vivre à nouveau). D'autres jeûnent (la stabilité a été brisée, la Dévastation approche). Les Veilleurs marquent en silence, sans démonstration.</p>
+    <p><em>Date exacte : c'est le jour où Jack Argenti a libéré la magie dans le récit du Veilleur de Nuit (an 1000 AR).</em></p>
+  </div>
+
+</div>
+
+<h2 class="section-title">🌍 Festivals régionaux</h2>
+
+<div class="festivals-grid">
+
+  <div class="festival-card regional">
+    <h3>🪓 Le Thing du Givre</h3>
+    <div class="date">Mois de Givre · Jour 15 · No'Ord</div>
+    <p>Assemblée annuelle des <strong>7 Jarls</strong> de No'Ord. Conseils stratégiques, alliances scellées, conflits jugés. Tenu sous la lumière des aurores boréales. Tyr'ka manchot est invoqué pour garantir l'intégrité des serments.</p>
+  </div>
+
+  <div class="festival-card regional">
+    <h3>🌹 La Procession des Roses</h3>
+    <div class="date">Mois de Mémoire · Jour 7 · Tous les 10 ans · Armonia</div>
+    <p>Tous les dix ans, les Roses d'Armonia organisent une <strong>procession publique</strong>. Rose-Indra y dévoile l'identité des nouvelles apprenties acceptées ce cycle. Les familles candidates n'attendent que ce jour.</p>
+    <p><em>Prochaine : 1043 AR.</em></p>
+  </div>
+
+  <div class="festival-card regional">
+    <h3>🌳 Le Jour des Héros (Julia)</h3>
+    <div class="date">Mois de Renaissance · Jour 20 · Lumini</div>
+    <p><strong>Anniversaire de la mort de Julia.</strong> Spécifique à Lumini, surtout à Etelin, dans la Forêt Julia, et à Me'yn Prus. Commémoration de l'unité elfes-humains. Procession silencieuse au pied du Nœud de la Forêt Mère. Les jeunes apprennent l'histoire de Julia.</p>
+  </div>
+
+  <div class="festival-card regional">
+    <h3>🌬️ L'Assemblée des Vents</h3>
+    <div class="date">Convocation occasionnelle · Sol'Ambaïre · Cercle d'Anh</div>
+    <p>Pas une date fixe. Convoquée par les royaumes de Sol'Ambaïre quand un conflit majeur l'exige. Les représentants des 5 royaumes + un greffier Tengu s'y rencontrent. Les jugements sont gravés sur stèles d'obsidienne.</p>
+  </div>
+
+  <div class="festival-card regional">
+    <h3>💎 La Foire des Mille Lampes</h3>
+    <div class="date">Mois de Sève · Jour 28 · Me'yn Prus</div>
+    <p>Une nuit par an, Me'yn Prus s'illumine de milliers de lampes magiques. Les <strong>nouveaux ingénieurs</strong> présentent leurs créations script. La Guilde des Marchands y signe ses plus gros contrats sous la lumière.</p>
+  </div>
+
+  <div class="festival-card regional">
+    <h3>🍇 Les Vendanges d'Or</h3>
+    <div class="date">Mois de Vendange · Jours 10 à 20 · Côte d'Or, Lumini</div>
+    <p>Dix jours de vendanges aristocratiques. Les nobles d'Armonia descendent à la Côte d'Or. Banquets dans les villas. Plus de mariages politiques se conclus pendant ces dix jours que durant tout le reste de l'année.</p>
+  </div>
+
+</div>
+
+<h2 class="section-title">⚠️ Dates clés à mémoriser</h2>
+
+<div class="dates-cles-box">
+  <h2>Le calendrier des grandes blessures</h2>
+
+  <div class="date-event">
+    <h3>📜 An 0 · La Rupture</h3>
+    <p class="quand">Mois de Cendre, jour 1</p>
+    <p>Le sort des Anciens frappe Fulgura. Toutes les divinités sont affaiblies. Les Géants du Givre s'endorment. La magie quitte le monde. Tous les calendriers se réinitialisent à cette date.</p>
+  </div>
+
+  <div class="date-event">
+    <h3>✨ An 1000 AR · Le Retour</h3>
+    <p class="quand">Mois d'Aurore, jour 12</p>
+    <p>Jack Argenti libère la magie. Silver/Fulgura meurt. La magie revient en torrent. Les races endormies se réveillent.</p>
+  </div>
+
+  <div class="date-event">
+    <h3>🌹 An ~1020 AR · Mort de Julia</h3>
+    <p class="quand">Mois de Renaissance, jour 20 (date traditionnelle)</p>
+    <p>Julia meurt en sauvant la forêt elfe. Symbole d'unité elfes-humains. La forêt est rebaptisée à son nom.</p>
+  </div>
+
+  <div class="date-event">
+    <h3>🏚️ An 1040 AR · L'attaque de l'orphelinat</h3>
+    <p class="quand">Mois de Cendre, jour 1 (présumé — sombre symbolisme)</p>
+    <p>Premiers goblins intelligents. Début du livre 2 et de la campagne des PJ. Le « calme avant la dévastation ».</p>
+  </div>
+</div>
+
+<h2 class="section-title">🎲 Hooks de campagne calendaires</h2>
+
+<div class="hooks-box">
+  <p>• Pendant les <strong>Veillées</strong>, un mort revient brièvement à la vie — quel message porte-t-il ?</p>
+  <p>• Le <strong>Solstice de Brasier</strong> approche. Un duel rituel tourne mal, un PJ doit en répondre.</p>
+  <p>• Lors de la <strong>Foire de Me'yn Prus</strong>, un PJ reconnaît un visage qui ne devrait pas être là.</p>
+  <p>• La <strong>Nuit des Veilleurs</strong> tombe — les Veilleurs convoquent les PJ pour les aider sur un rite particulièrement délicat.</p>
+  <p>• L'<strong>Anniversaire de la Rupture</strong> arrive. Quelqu'un brise le silence à midi par défi public. Conséquences ?</p>
+  <p>• La prochaine <strong>Procession des Roses</strong> (1043) est dans 3 ans — un PJ jeune fille est repérée comme candidate possible.</p>
+  <p>• Pendant le <strong>Jour des Héros</strong>, Julia apparaît à un PJ — première manifestation depuis sa mort.</p>
+  <p>• Aux <strong>Vendanges d'Or</strong>, le Baron Von Guinity organise un banquet. Pourquoi les PJ sont-ils invités ?</p>
+  <p>• Le calendrier liturgique se <strong>désynchronise</strong> mystérieusement de quelques heures — quelque chose perturbe le temps.</p>
+</div>
+
+<footer>
+  Calendrier d'Armonia · 12 mois + 5 Veillées · Codex temporel · Système Bilal · 2026
+</footer>
+
+</div>
+</body>
+</html>

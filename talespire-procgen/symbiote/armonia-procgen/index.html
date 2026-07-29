@@ -2,472 +2,1553 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Armonia ProcGen</title>
+<title>Armonia ProcGen v3</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: var(--ts-background-primary, #111827);
-  color: var(--ts-color-primary, #e5e7eb);
-  height: 100vh; display: flex; flex-direction: column; overflow: hidden; font-size: 13px;
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f0f18;
+  --panel:#1a1a2e;
+  --panel2:#12121e;
+  --border:#2a2a4e;
+  --border2:#3a3a5e;
+  --text:#e0e0e8;
+  --muted:#8090a8;
+  --accent:#e94560;
+  --accent-blue:#4a90e0;
+  --accent-green:#4ad080;
+  --accent-yellow:#f0c040;
+  --danger:#e04040;
 }
-.header { padding: 10px 14px; background: var(--ts-background-secondary, #1f2937); border-bottom: 1px solid #374151; }
-.header-title { font-weight: 700; font-size: 14px; color: var(--ts-accent-primary, #f59e0b); }
-.header-sub { font-size: 10px; color: #9ca3af; }
-.tabs { display: flex; background: #1f2937; border-bottom: 1px solid #374151; }
-.tab { flex: 1; padding: 8px 4px; text-align: center; cursor: pointer; font-size: 12px; font-weight: 500; border: none; background: none; color: #9ca3af; border-bottom: 2px solid transparent; }
-.tab.active { color: #e5e7eb; border-bottom-color: #f59e0b; }
-.content { flex: 1; overflow-y: auto; padding: 12px; }
-.panel { display: none; }
-.panel.active { display: block; }
-.field { margin-bottom: 10px; }
-.field label { display: block; font-size: 10px; font-weight: 600; text-transform: uppercase; color: #9ca3af; margin-bottom: 4px; }
-select, input, textarea { width: 100%; padding: 7px 10px; background: #1f2937; border: 1px solid #374151; color: #e5e7eb; border-radius: 6px; font-size: 13px; outline: none; }
-textarea { height: 72px; resize: none; font-family: monospace; font-size: 10px; }
-.row { display: flex; gap: 8px; }
-.row .field { flex: 1; }
-.btn { padding: 6px 12px; border: none; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600; background: #374151; color: #e5e7eb; }
-.btn:hover { background: #4b5563; }
-.btn-primary { background: #f59e0b; color: #111; width: 100%; padding: 10px; font-size: 14px; margin-top: 10px; border-radius: 8px; }
-.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
-.btn-danger { background: #dc2626; color: #fff; padding: 3px 8px; font-size: 11px; }
-.btn-sm { padding: 4px 10px; font-size: 12px; font-weight: 700; min-width: 28px; }
-.building-item { display: flex; align-items: center; padding: 7px 10px; background: #1f2937; border: 1px solid #374151; border-radius: 6px; margin-bottom: 5px; }
-.building-emoji { font-size: 16px; margin-right: 8px; }
-.building-info { flex: 1; min-width: 0; }
-.building-name { font-weight: 600; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.building-size { font-size: 10px; color: #9ca3af; }
-.counter { display: flex; align-items: center; gap: 6px; margin-left: 8px; }
-.counter-val { min-width: 22px; text-align: center; font-weight: 700; font-size: 14px; }
-.lib-item { padding: 9px 10px; background: #1f2937; border: 1px solid #374151; border-radius: 6px; margin-bottom: 6px; }
-.lib-header { display: flex; justify-content: space-between; align-items: center; }
-.lib-name { font-weight: 600; }
-.lib-meta { font-size: 10px; color: #9ca3af; margin-top: 2px; }
-.status { padding: 9px 12px; border-radius: 6px; font-size: 12px; margin-top: 8px; background: #1f2937; border-left: 3px solid #374151; display: none; line-height: 1.6; white-space: pre-wrap; }
-.status.info    { border-left-color: #f59e0b; }
-.status.success { border-left-color: #10b981; }
-.status.error   { border-left-color: #dc2626; }
-hr { border: none; border-top: 1px solid #374151; margin: 12px 0; }
-.section-label { font-size: 10px; font-weight: 600; text-transform: uppercase; color: #9ca3af; margin-bottom: 8px; }
-.empty { text-align: center; color: #9ca3af; font-size: 12px; padding: 20px 0; }
-.hint { font-size: 10px; color: #9ca3af; margin-top: 4px; font-style: italic; }
-.step-btn { width: 100%; margin-top: 6px; }
-.step { background: #1f2937; border: 1px solid #374151; border-radius: 6px; padding: 8px 10px; margin-bottom: 6px; font-size: 12px; }
-.step-title { font-weight: 600; margin-bottom: 4px; }
-.step-sub { color: #9ca3af; font-size: 10px; }
+body{
+  font-family:'Segoe UI','Trebuchet MS',sans-serif;
+  background:var(--bg); color:var(--text);
+  font-size:13px; height:100vh; overflow:hidden;
+  display:flex; flex-direction:column;
+}
+#header{
+  background:var(--panel); border-bottom:2px solid var(--accent);
+  padding:6px 12px; display:flex; align-items:center; gap:12px; flex-shrink:0;
+}
+#header h1{font-size:15px; color:var(--accent); letter-spacing:2px; font-weight:bold}
+#header .version{color:var(--muted); font-size:11px}
+#tabs{display:flex; background:var(--panel2); border-bottom:1px solid var(--border); flex-shrink:0}
+.tab-btn{
+  padding:8px 16px; cursor:pointer; border:none; background:none; color:var(--muted);
+  font-size:12px; border-bottom:2px solid transparent; transition:all 0.15s;
+  font-family:inherit; letter-spacing:0.5px;
+}
+.tab-btn:hover{color:var(--text); background:var(--panel)}
+.tab-btn.active{color:var(--accent); border-bottom-color:var(--accent); background:var(--panel)}
+#main{flex:1; display:flex; min-height:0; overflow:hidden}
+.tab-panel{display:none; flex:1; overflow:hidden; padding:8px; gap:8px}
+.tab-panel.active{display:flex}
+#status-bar{
+  background:var(--panel); padding:4px 10px; font-size:11px; color:var(--accent-blue);
+  border-top:1px solid var(--border); flex-shrink:0; min-height:22px; display:flex; gap:12px; align-items:center;
+}
+#status-bar .stat{color:var(--muted)}
+#status-bar .stat b{color:var(--text)}
+.section{
+  background:var(--panel); border:1px solid var(--border); border-radius:5px; padding:10px;
+  display:flex; flex-direction:column; gap:8px;
+}
+.section-title{
+  color:var(--accent-blue); font-size:11px; font-weight:bold; text-transform:uppercase;
+  letter-spacing:1px; padding-bottom:4px; border-bottom:1px solid var(--border);
+  display:flex; justify-content:space-between; align-items:center;
+}
+.section-title span:last-child{color:var(--muted); font-size:10px; font-weight:normal}
+.row{display:flex; gap:6px; align-items:center; flex-wrap:wrap}
+.row label{color:var(--muted); white-space:nowrap; font-size:12px; min-width:70px}
+input[type=text],input[type=number],select,textarea{
+  background:var(--panel2); color:var(--text); border:1px solid var(--border2);
+  padding:5px 8px; border-radius:3px; font-family:inherit; font-size:12px;
+}
+input[type=text],select{flex:1}
+input[type=number]{width:60px}
+textarea{width:100%; font-family:'Consolas',monospace; font-size:10px; resize:vertical; min-height:60px}
+button{
+  padding:5px 10px; border:1px solid var(--border2); border-radius:3px; cursor:pointer;
+  font-size:12px; font-weight:bold; background:var(--panel2); color:var(--text);
+  font-family:inherit; transition:all 0.1s;
+}
+button:hover{background:var(--border2); border-color:var(--accent-blue)}
+button.primary{background:var(--accent); color:#fff; border-color:var(--accent)}
+button.primary:hover{background:#ff5470; border-color:#ff5470}
+button.success{background:var(--accent-green); color:#fff; border-color:var(--accent-green)}
+button.warn{background:var(--accent-yellow); color:#000; border-color:var(--accent-yellow)}
+button.danger{background:var(--danger); color:#fff; border-color:var(--danger)}
+#interior-toolbar{
+  background:var(--panel); border:1px solid var(--border); border-radius:5px; padding:8px;
+  display:flex; flex-direction:column; gap:8px; min-width:220px; max-width:260px; overflow-y:auto;
+}
+#canvas-container{
+  flex:1; display:flex; align-items:center; justify-content:center;
+  background:var(--panel2); border:1px solid var(--border); border-radius:5px;
+  overflow:hidden; position:relative;
+}
+#canvas-wrap{overflow:auto; width:100%; height:100%; display:flex; align-items:center; justify-content:center}
+canvas{display:block; cursor:crosshair; image-rendering:pixelated; box-shadow:0 0 40px rgba(0,0,0,0.5)}
+#interior-right{min-width:280px; max-width:340px; display:flex; flex-direction:column; gap:8px; overflow-y:auto}
+.tool-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:5px}
+.tool-btn{
+  padding:8px 6px; background:var(--panel2); border:1px solid var(--border2); border-radius:4px;
+  color:var(--text); cursor:pointer; font-size:11px; text-align:center; transition:all 0.1s;
+  display:flex; flex-direction:column; align-items:center; gap:3px;
+}
+.tool-btn:hover{border-color:var(--accent-blue); background:var(--border2)}
+.tool-btn.active{border-color:var(--accent); background:rgba(233,69,96,0.15); color:var(--accent)}
+.tool-btn .icon{font-size:16px}
+.brush-row{display:flex; gap:4px}
+.brush-btn{
+  flex:1; padding:6px 4px; background:var(--panel2); border:1px solid var(--border2);
+  border-radius:3px; cursor:pointer; font-size:11px; color:var(--text); text-align:center;
+}
+.brush-btn.active{background:var(--accent); border-color:var(--accent); color:#fff}
+.wallset-select{
+  padding:6px; background:var(--panel2); border:1px solid var(--border2); border-radius:3px;
+  color:var(--text); width:100%; font-size:12px; font-family:inherit;
+}
+#library-panel{flex:1; display:flex; gap:8px; min-height:0; overflow:hidden}
+.lib-left{flex:1; display:flex; flex-direction:column; gap:8px; overflow:hidden}
+.lib-right{min-width:350px; max-width:500px; display:flex; flex-direction:column; gap:8px}
+.wallsets-list{
+  flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:4px; padding:4px;
+  background:var(--panel2); border:1px solid var(--border); border-radius:4px;
+}
+.wallset-item{
+  padding:8px 10px; background:var(--panel); border:1px solid var(--border); border-radius:4px;
+  cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:6px;
+}
+.wallset-item:hover{border-color:var(--accent-blue)}
+.wallset-item.selected{border-color:var(--accent); background:rgba(233,69,96,0.08)}
+.wallset-info h4{font-size:13px; margin-bottom:2px}
+.wallset-info .stats{font-size:10px; color:var(--muted)}
+.wallset-actions{display:flex; gap:4px}
+.variant-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:4px; margin-top:6px}
+.variant-slot{
+  aspect-ratio:1; border:2px solid var(--border2); border-radius:4px; background:var(--panel2);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; cursor:pointer;
+  padding:4px; font-size:9px; color:var(--muted); text-align:center; position:relative; overflow:hidden;
+}
+.variant-slot:hover{border-color:var(--accent-blue)}
+.variant-slot.filled{border-color:var(--accent-green); color:var(--text); background:rgba(74,208,128,0.08)}
+.variant-slot.selected{border-color:var(--accent); background:rgba(233,69,96,0.15)}
+.variant-slot .icon{font-size:20px; margin-bottom:2px}
+.variant-name{font-weight:bold; font-size:9px; line-height:1.1}
+.code-out{
+  background:var(--panel2); border:1px solid var(--border); border-radius:3px; padding:8px;
+  font-size:10px; font-family:'Consolas',monospace; color:var(--accent-blue);
+  word-break:break-all; max-height:120px; overflow-y:auto; line-height:1.4;
+}
+.placeholder{
+  display:flex; align-items:center; justify-content:center; height:100%;
+  color:var(--muted); font-style:italic; font-size:14px; text-align:center; padding:20px;
+}
+.msg{padding:6px 10px; border-radius:3px; font-size:11px; margin:4px 0}
+.msg.ok{background:rgba(74,208,128,0.15); color:var(--accent-green); border-left:3px solid var(--accent-green)}
+.msg.warn{background:rgba(240,192,64,0.15); color:var(--accent-yellow); border-left:3px solid var(--accent-yellow)}
+.msg.err{background:rgba(224,64,64,0.15); color:var(--danger); border-left:3px solid var(--danger)}
+::-webkit-scrollbar{width:8px; height:8px}
+::-webkit-scrollbar-track{background:var(--panel2)}
+::-webkit-scrollbar-thumb{background:var(--border2); border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:var(--muted)}
+.help-block{
+  background:rgba(74,144,224,0.08); border:1px solid var(--border2); border-radius:4px;
+  padding:8px 10px; font-size:11px; color:var(--muted); line-height:1.5;
+}
+.help-block b{color:var(--text)}
+.help-block kbd{
+  background:var(--panel2); border:1px solid var(--border2); border-radius:2px;
+  padding:1px 4px; font-family:monospace; font-size:10px; color:var(--accent-yellow);
+}
+.badge-count{
+  display:inline-block; padding:1px 6px; background:var(--accent); color:#fff;
+  border-radius:10px; font-size:10px; font-weight:bold; margin-left:4px;
+}
+.import-hint{
+  padding:8px 12px; background:rgba(74,144,224,0.1); border-left:3px solid var(--accent-blue);
+  border-radius:3px; color:var(--accent-blue); font-size:12px; line-height:1.5;
+}
 </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="header-title">⚔️ Armonia ProcGen</div>
-  <div class="header-sub">Générateur de maps procédurales</div>
+<div id="header">
+  <h1>⚔ ARMONIA PROCGEN</h1>
+  <span class="version">v3 — TaleSpire Symbiote</span>
 </div>
 
-<div class="tabs">
-  <button class="tab active" id="tab-gen" onclick="switchTab('gen')">🗺️ Générer</button>
-  <button class="tab" id="tab-lib" onclick="switchTab('lib')">📚 Bibliothèque</button>
+<div id="tabs">
+  <button class="tab-btn active" data-tab="interior">🏠 Intérieur</button>
+  <button class="tab-btn" data-tab="library">📚 Bibliothèque des murs</button>
+  <button class="tab-btn" data-tab="import">📥 Importer un slab</button>
+  <button class="tab-btn" data-tab="village">🏘️ Village <small>(bientôt)</small></button>
+  <button class="tab-btn" data-tab="city">🏛️ Ville <small>(bientôt)</small></button>
 </div>
 
-<div class="content">
+<div id="main">
 
-  <!-- ═══ GÉNÉRER ═══ -->
-  <div class="panel active" id="panel-gen">
-    <div class="field">
-      <label>Taille de la map</label>
-      <select id="map-size">
-        <option value="20x20">Petite — 20×20</option>
-        <option value="32x32" selected>Moyenne — 32×32</option>
-        <option value="48x48">Grande — 48×48</option>
-        <option value="64x64">XL — 64×64</option>
-      </select>
+<div class="tab-panel active" id="tab-interior">
+  <div id="interior-toolbar">
+    <div class="section">
+      <div class="section-title"><span>Outils de dessin</span></div>
+      <div class="tool-grid">
+        <div class="tool-btn active" data-tool="polyline"><div class="icon">📐</div>Polyline</div>
+        <div class="tool-btn" data-tool="drag"><div class="icon">✏️</div>Pinceau</div>
+        <div class="tool-btn" data-tool="segment"><div class="icon">📏</div>Segment</div>
+        <div class="tool-btn" data-tool="rectangle"><div class="icon">▭</div>Rectangle</div>
+        <div class="tool-btn" data-tool="erase"><div class="icon">🧽</div>Gomme</div>
+        <div class="tool-btn" data-tool="door"><div class="icon">🚪</div>Porte</div>
+        <div class="tool-btn" data-tool="window"><div class="icon">🪟</div>Fenêtre</div>
+      </div>
     </div>
-    <div class="field">
-      <label>Sol</label>
-      <select id="map-ground">
-        <option value="herbe">🌿 Herbe (Moorgoth Floor)</option>
-        <option value="pierre">🪨 Pierre médiévale</option>
-        <option value="caverne">🕳️ Roche de caverne</option>
-        <option value="bois">🪵 Planches de taverne</option>
-      </select>
-    </div>
-    <div class="field">
-      <label>Graine aléatoire (optionnel)</label>
-      <input type="number" id="map-seed" placeholder="Vide = aléatoire">
-    </div>
-    <hr>
-    <div class="section-label">Bâtiments à placer</div>
-    <div id="building-pickers"><div class="empty">Ajoute des slabs dans 📚 Bibliothèque.</div></div>
-    <button class="btn btn-primary" id="btn-gen" onclick="startGenerate()">⚡ Générer la map</button>
-    <div class="status" id="gen-status"></div>
 
-    <!-- Étapes de collage si buildings séparés -->
-    <div id="paste-steps" style="display:none; margin-top:12px;">
-      <div class="section-label">📋 Étapes de collage</div>
-      <div id="steps-list"></div>
+    <div class="section">
+      <div class="section-title"><span>Brosse</span></div>
+      <div class="brush-row">
+        <div class="brush-btn active" data-brush="wall">🧱 Mur</div>
+        <div class="brush-btn" data-brush="floor">▨ Sol</div>
+      </div>
+      <label style="font-size:11px;color:var(--muted)">
+        <input type="checkbox" id="auto-floor" checked>
+        Auto-remplir le sol en zone fermée
+      </label>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span>Set de murs actif</span></div>
+      <select class="wallset-select" id="active-wallset"></select>
+      <button onclick="gotoTab('library')" style="font-size:11px">📚 Gérer les sets</button>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span>Type de sol</span></div>
+      <select class="wallset-select" id="floor-override">
+        <option value="">(Sol du set actif)</option>
+      </select>
+      <div style="font-size:10px;color:var(--muted);line-height:1.4">
+        Surcharge le sol du wall set. Utile pour mélanger différents sols (tavern + cave, etc.).
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span>Orientation des murs</span></div>
+      <div class="row">
+        <label style="min-width:auto"><input type="checkbox" id="flip-walls"> Inverser</label>
+      </div>
+      <div style="font-size:10px;color:var(--muted);line-height:1.4">
+        Si tes murs sont à l'envers dans TaleSpire, coche cette case et regénère.
+      </div>
+      <div class="row">
+        <label>Rotation supplémentaire (0-23)</label>
+        <input type="number" id="wall-rot-extra" value="0" min="0" max="23" style="width:70px">
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span>Échelle des tiles</span></div>
+      <div class="row">
+        <label>1 cellule =</label>
+        <input type="number" id="cell-scale" value="2" min="1" max="4" style="width:70px">
+        <label style="min-width:auto">tiles TS</label>
+      </div>
+      <div style="font-size:10px;color:var(--muted);line-height:1.4">
+        La plupart des assets murs/coins/sols TaleSpire sont <b>2×2 tiles</b>. Garde 2 pour éviter les chevauchements. Utilise 1 seulement si tes assets sont 1×1.
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span>Grille</span></div>
+      <div class="row"><label>Largeur</label><input type="number" id="grid-w" value="40" min="4" max="200"></div>
+      <div class="row"><label>Profondeur</label><input type="number" id="grid-d" value="40" min="4" max="200"></div>
+      <div class="row">
+        <label>Zoom</label>
+        <input type="range" id="zoom" min="8" max="40" value="20" style="flex:1">
+        <span id="zoom-val" style="font-size:11px;color:var(--muted);min-width:24px">20</span>
+      </div>
+      <button class="warn" onclick="clearGrid()">🗑️ Vider la grille</button>
+    </div>
+
+    <div class="help-block">
+      <b>Raccourcis</b><br>
+      <kbd>1-7</kbd> Outils · <kbd>W/F</kbd> Brosse<br>
+      <kbd>Ctrl+Z</kbd> Annuler · <kbd>Ctrl+Y</kbd> Refaire<br>
+      <kbd>Esc</kbd> Annuler action en cours<br>
+      <kbd>Double-clic</kbd> Fin polyline
     </div>
   </div>
 
-  <!-- ═══ BIBLIOTHÈQUE ═══ -->
-  <div class="panel" id="panel-lib">
-    <div class="section-label">Slabs enregistrés</div>
-    <div id="lib-list"><div class="empty">Aucun slab.</div></div>
-    <hr>
-    <div class="section-label">Ajouter un slab</div>
-    <div class="field"><label>Nom</label><input type="text" id="add-name" placeholder="Ex: Cat and Mutton"></div>
-    <div class="field">
-      <label>Type</label>
-      <select id="add-type">
-        <option value="maison">🏠 Maison</option>
-        <option value="taverne">🍺 Taverne / Auberge</option>
-        <option value="forge">⚒️ Forge</option>
-        <option value="marche">🛒 Marché</option>
-        <option value="tour">🗼 Tour / Fort</option>
-        <option value="donjon">⚔️ Donjon</option>
-        <option value="autre">📦 Autre</option>
-      </select>
-    </div>
-    <div class="row">
-      <div class="field"><label>Largeur (tiles)</label><input type="number" id="add-w" value="8" min="1" max="100"></div>
-      <div class="field"><label>Profondeur (tiles)</label><input type="number" id="add-d" value="8" min="1" max="100"></div>
-    </div>
-    <p class="hint">Compte les cases dans TaleSpire.</p>
-    <div class="field" style="margin-top:8px">
-      <label>Code slab (Ctrl+C dans TaleSpire en mode construction)</label>
-      <textarea id="add-code" placeholder="H4sIAAAAAAAA…"></textarea>
-    </div>
-    <button class="btn" style="width:100%;margin-top:4px" onclick="addSlab()">➕ Ajouter</button>
-    <div class="status" id="lib-status"></div>
+  <div id="canvas-container">
+    <div id="canvas-wrap"><canvas id="canvas" width="800" height="800"></canvas></div>
   </div>
 
+  <div id="interior-right">
+    <div class="section">
+      <div class="section-title"><span>Export vers TaleSpire</span></div>
+      <button class="primary" onclick="exportSlab()">⚡ Générer le slab</button>
+      <div style="font-size:11px;color:var(--muted)" id="export-stats">Aucun slab généré.</div>
+      <textarea id="export-code" readonly placeholder="Le code slab base64 apparaîtra ici. Copie-le et colle-le dans TaleSpire (Ctrl+V)."></textarea>
+      <button class="success" onclick="copyExport()">📋 Copier</button>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span>Analyse</span></div>
+      <div id="analysis" style="font-size:11px;color:var(--muted);line-height:1.6">
+        <b>Murs :</b> <span id="stat-walls">0</span><br>
+        <b>Sol :</b> <span id="stat-floor">0</span><br>
+        <b>Portes :</b> <span id="stat-doors">0</span><br>
+        <b>Fenêtres :</b> <span id="stat-windows">0</span><br>
+        <b>Assets manquants :</b> <span id="stat-missing" style="color:var(--danger)">0</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tab-panel" id="tab-library">
+  <div id="library-panel">
+    <div class="lib-left">
+      <div class="section">
+        <div class="section-title"><span>Wall Sets disponibles</span> <span id="lib-count">0 sets</span></div>
+        <div class="row">
+          <input type="text" id="new-wallset-name" placeholder="Nom du nouveau set (ex. Stone Medieval)">
+          <button class="success" onclick="createWallSet()">+ Créer</button>
+        </div>
+      </div>
+      <div class="wallsets-list" id="wallsets-list"></div>
+    </div>
+
+    <div class="lib-right">
+      <div class="section">
+        <div class="section-title"><span>Variants du set sélectionné</span></div>
+        <div id="selected-set-name" style="font-size:13px;color:var(--accent);font-weight:bold">Aucun set sélectionné</div>
+        <div class="variant-grid" id="variant-grid"></div>
+      </div>
+
+      <div class="section" id="variant-editor" style="display:none">
+        <div class="section-title"><span>Assigner un slab</span></div>
+        <div id="variant-editor-name" style="font-size:12px;color:var(--accent-blue);font-weight:bold">-</div>
+        <div class="help-block">
+          Colle le code base64 d'un slab depuis <b>talestavern.com</b> ou tes propres slabs.
+          Il sera décodé et assigné à ce variant. Prends un exemplaire précis (ex. un mur droit orienté est-ouest).
+        </div>
+        <textarea id="variant-slab-input" placeholder="H4sIAAAAAAAAA..."></textarea>
+        <div class="row">
+          <button class="primary" onclick="assignVariantSlab()">✓ Assigner</button>
+          <button onclick="clearVariantSlab()">Vider</button>
+          <button class="danger" onclick="closeVariantEditor()">Fermer</button>
+        </div>
+        <div id="variant-msg"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tab-panel" id="tab-import">
+  <div style="flex:1;display:flex;flex-direction:column;gap:10px;max-width:900px;overflow-y:auto">
+    <div class="section">
+      <div class="section-title"><span>⚡ Auto-Import — Créer un Wall Set depuis un slab complet</span></div>
+      <div class="import-hint">
+        <b>Le workflow ultime :</b> tu fais une pièce rectangulaire parfaite dans TaleSpire (avec murs, coins et sol),
+        tu copies le slab, tu le colles ici, et je crée automatiquement le wall set complet.
+        <br><br>
+        <b>Instructions :</b> ta pièce doit contenir <b>exactement</b> :
+        <ul style="margin:6px 0 0 20px">
+          <li>4 côtés de murs droits (avec des rotations différentes selon le côté)</li>
+          <li>4 coins d'angle (aux 4 angles, avec 4 rotations différentes)</li>
+          <li>Le sol à l'intérieur</li>
+        </ul>
+      </div>
+      <div class="row">
+        <input type="text" id="autoimport-name" placeholder="Nom du wall set (ex. Donjon Sombre)" style="flex:1">
+      </div>
+      <textarea id="autoimport-input" placeholder="Colle ici le slab complet de ta pièce (H4sI...)" style="min-height:100px"></textarea>
+      <div class="row">
+        <button class="primary" onclick="autoImportWallSet()">⚡ Créer le Wall Set automatiquement</button>
+        <button onclick="document.getElementById('autoimport-input').value='';document.getElementById('autoimport-name').value=''">Vider</button>
+      </div>
+      <div id="autoimport-msg"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span>🔍 Importer et inspecter un slab (mode manuel)</span></div>
+      <div class="import-hint">
+        Colle un slab pour l'analyser en détail (utile pour comprendre ce qu'il contient).
+      </div>
+      <textarea id="inspect-input" placeholder="Colle un code slab ici (H4sI...)..." style="min-height:80px"></textarea>
+      <div class="row">
+        <button class="primary" onclick="inspectSlab()">🔍 Analyser</button>
+        <button onclick="document.getElementById('inspect-input').value=''">Vider</button>
+      </div>
+    </div>
+    <div class="section" id="inspect-result" style="display:none">
+      <div class="section-title"><span>Résultat de l'analyse</span></div>
+      <div id="inspect-body"></div>
+    </div>
+  </div>
+</div>
+
+<div class="tab-panel" id="tab-village">
+  <div class="placeholder">🏘️ Mode Village — en préparation. Vient après la finalisation du mode Intérieur.</div>
+</div>
+<div class="tab-panel" id="tab-city">
+  <div class="placeholder">🏛️ Mode Ville — en préparation. Vient après le mode Village.</div>
+</div>
+
+</div>
+
+<div id="status-bar">
+  <span class="stat">Sets : <b id="sb-sets">0</b></span>
+  <span class="stat">Set actif : <b id="sb-active">-</b></span>
+  <span class="stat">Grille : <b id="sb-grid">40×40</b></span>
+  <span class="stat">Outil : <b id="sb-tool">polyline</b></span>
+  <span style="flex:1"></span>
+  <span id="sb-msg" style="color:var(--accent-green)">Prêt.</span>
 </div>
 
 <script>
-'use strict';
+/* ═══════════════════════════════════════════════════════════════════════
+   SLAB v2 — ENCODEUR / DÉCODEUR (port JS du procgen.py)
+   ═══════════════════════════════════════════════════════════════════════ */
+const SLAB_MAGIC     = 0xD1CEFACE;
+const SLAB_VERSION   = 2;
+const MAX_SLAB_BYTES = 30720;
 
-const GROUND = {
-  herbe:   { guid:'ee0d3511-24a3-4f6b-995d-3e54de38de3b', pathGuid:'5e38122e-f09c-47aa-8cb0-d9e122a894e9' },
-  pierre:  { guid:'6f3d2d32-f1bb-429b-b50b-2dc8d235f2d8', pathGuid:'5e38122e-f09c-47aa-8cb0-d9e122a894e9' },
-  caverne: { guid:'b83392b1-8833-43c9-a97f-2ac3df659e66', pathGuid:'ce6a2235-664f-43e8-a744-d5743623701d' },
-  bois:    { guid:'cf6063bb-5c6e-4107-b3e9-9c0c5ac75768', pathGuid:null },
-};
-const EMOJI = { maison:'🏠', taverne:'🍺', forge:'⚒️', marche:'🛒', tour:'🗼', donjon:'⚔️', autre:'📦' };
-
-let library = [], counts = {};
-let pendingSlabs = []; // bâtiments à envoyer séparément
-
-function switchTab(n) {
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('tab-'+n).classList.add('active');
-  document.getElementById('panel-'+n).classList.add('active');
+function uuidToBytesLE(s){
+  s = s.replace(/-/g,'');
+  if(s.length !== 32) throw new Error('UUID invalide: '+s);
+  const be = new Uint8Array(16);
+  for(let i=0;i<16;i++) be[i] = parseInt(s.substr(i*2,2),16);
+  const le = new Uint8Array(16);
+  le[0]=be[3]; le[1]=be[2]; le[2]=be[1]; le[3]=be[0];
+  le[4]=be[5]; le[5]=be[4];
+  le[6]=be[7]; le[7]=be[6];
+  for(let i=8;i<16;i++) le[i]=be[i];
+  return le;
 }
-function setStatus(id,msg,type='info'){
-  const el=document.getElementById(id);
-  el.style.display='block'; el.textContent=msg; el.className='status '+type;
+function bytesToUuidLE(b, offset=0){
+  const be = new Uint8Array(16);
+  be[0]=b[offset+3]; be[1]=b[offset+2]; be[2]=b[offset+1]; be[3]=b[offset];
+  be[4]=b[offset+5]; be[5]=b[offset+4];
+  be[6]=b[offset+7]; be[7]=b[offset+6];
+  for(let i=8;i<16;i++) be[i]=b[offset+i];
+  const h = Array.from(be, x=>x.toString(16).padStart(2,'0')).join('');
+  return `${h.substr(0,8)}-${h.substr(8,4)}-${h.substr(12,4)}-${h.substr(16,4)}-${h.substr(20,12)}`;
 }
-
-// UUID → bytes_le
-function guidToBytes(g) {
-  const h=g.replace(/-/g,''), b=new Uint8Array(16);
-  b[0]=parseInt(h.slice(6,8),16); b[1]=parseInt(h.slice(4,6),16);
-  b[2]=parseInt(h.slice(2,4),16); b[3]=parseInt(h.slice(0,2),16);
-  b[4]=parseInt(h.slice(10,12),16); b[5]=parseInt(h.slice(8,10),16);
-  b[6]=parseInt(h.slice(14,16),16); b[7]=parseInt(h.slice(12,14),16);
-  for(let i=0;i<8;i++) b[8+i]=parseInt(h.slice(16+i*2,18+i*2),16);
-  return b;
-}
-function bytesToGuid(b) {
-  const x=v=>v.toString(16).padStart(2,'0');
-  return [b[3],b[2],b[1],b[0]].map(x).join('')+'-'+[b[5],b[4]].map(x).join('')+'-'+
-         [b[7],b[6]].map(x).join('')+'-'+[b[8],b[9]].map(x).join('')+'-'+
-         Array.from(b.slice(10)).map(x).join('');
-}
-
-// Build slab binary
-function buildBinary(placements) {
-  const map=new Map();
-  for(const p of placements){ if(!map.has(p.guid))map.set(p.guid,[]); map.get(p.guid).push(p); }
-  const entries=[...map.entries()];
-  const buf=new ArrayBuffer(10+entries.length*20+placements.length*8);
-  const v=new DataView(buf);
-  v.setUint32(0,0xD1CEFACE,true); v.setUint16(4,2,true);
-  v.setUint16(6,entries.length,true); v.setUint16(8,0,true);
-  let lo=10;
-  for(const[guid,inst]of entries){
-    const ub=guidToBytes(guid); for(let i=0;i<16;i++)v.setUint8(lo+i,ub[i]);
-    v.setUint16(lo+16,inst.length,true); v.setUint16(lo+18,0,true); lo+=20;
+function encodeSlab(placements){
+  if(!placements.length) throw new Error('Aucun asset à encoder');
+  const byGuid = new Map();
+  for(const p of placements){
+    if(!byGuid.has(p.guid)) byGuid.set(p.guid, []);
+    byGuid.get(p.guid).push(p);
   }
-  let ao=10+entries.length*20;
-  for(const[,inst]of entries){
-    for(const p of inst){
-      const sx=BigInt(Math.max(0,Math.round(p.x*100))&0x3FFFF);
-      const sy=BigInt(Math.max(0,Math.round(p.y*100))&0x3FFFF);
-      const sz=BigInt(Math.max(0,Math.round(p.z*100))&0x3FFFF);
-      const rot=BigInt((p.rot||0)&0x1F);
-      const val=(rot<<54n)|(sz<<36n)|(sy<<18n)|sx;
-      v.setUint32(ao,Number(val&0xFFFFFFFFn),true);
-      v.setUint32(ao+4,Number((val>>32n)&0xFFFFFFFFn),true); ao+=8;
-    }
-  }
-  return buf;
-}
-
-// Gzip + base64 (sans TS.slabs.pack)
-async function packSlab(arrayBuffer) {
-  const stream=new CompressionStream('gzip');
-  const writer=stream.writable.getWriter();
-  writer.write(new Uint8Array(arrayBuffer)); writer.close();
-  const chunks=[], reader=stream.readable.getReader();
-  while(true){const{done,value}=await reader.read(); if(done)break; chunks.push(value);}
-  const total=chunks.reduce((s,c)=>s+c.length,0);
-  const out=new Uint8Array(total); let off=0;
-  for(const c of chunks){out.set(c,off); off+=c.length;}
-  let bin=''; for(const b of out) bin+=String.fromCharCode(b);
-  return btoa(bin);
-}
-
-// Decode slab — décompression native (DecompressionStream), sans TS.slabs.unpack
-async function decodeSlab(code) {
-  code = code.replace(/[^A-Za-z0-9+/=]/g, '');
-  if (code.length < 20) throw new Error('Code trop court');
-
-  // 1. Base64 → Uint8Array
-  const binStr = atob(code);
-  const compressed = Uint8Array.from(binStr, c => c.charCodeAt(0));
-
-  // 2. Décompresser avec DecompressionStream (gzip)
-  const ds = new DecompressionStream('gzip');
-  const writer = ds.writable.getWriter();
-  writer.write(compressed);
-  writer.close();
-  const chunks = [], reader = ds.readable.getReader();
-  while (true) { const {done,value} = await reader.read(); if(done)break; chunks.push(value); }
-  const total = chunks.reduce((s,c)=>s+c.length,0);
-  const raw = new Uint8Array(total); let off=0;
-  for (const c of chunks) { raw.set(c,off); off+=c.length; }
-
-  // 3. Parser le binaire slab V2
-  const buf = raw.buffer;
+  const layoutCount = byGuid.size;
+  let totalPlacements = 0;
+  for(const arr of byGuid.values()) totalPlacements += arr.length;
+  const size = 10 + layoutCount*20 + totalPlacements*8;
+  const buf = new ArrayBuffer(size);
   const view = new DataView(buf);
-  const magic = view.getUint32(0,true);
-  if (magic !== 0xD1CEFACE) throw new Error('Magic invalide : 0x'+magic.toString(16));
-  const nL = view.getUint16(6,true);
-  let offset = 10;
+  const u8 = new Uint8Array(buf);
+  view.setUint32(0, SLAB_MAGIC, true);
+  view.setUint16(4, SLAB_VERSION, true);
+  view.setUint16(6, layoutCount, true);
+  view.setUint16(8, 0, true);
+  let off = 10;
+  for(const [guid, arr] of byGuid){
+    const le = uuidToBytesLE(guid);
+    u8.set(le, off); off += 16;
+    view.setUint16(off, arr.length, true); off += 2;
+    view.setUint16(off, 0, true); off += 2;
+  }
+  for(const [guid, arr] of byGuid){
+    for(const p of arr){
+      const sx = Math.max(0, Math.round(p.x*100)) & 0x3FFFF;
+      const sy = Math.max(0, Math.round(p.y*100)) & 0x3FFFF;
+      const sz = Math.max(0, Math.round(p.z*100)) & 0x3FFFF;
+      // Rot must be 0-23 for TaleSpire, NOT & 0x1F (which allows 0-31)
+      const rot = ((p.rot||0) % 24 + 24) % 24;
+      const val = BigInt(sx) | (BigInt(sy)<<18n) | (BigInt(sz)<<36n) | (BigInt(rot)<<54n);
+      view.setBigUint64(off, val, true); off += 8;
+    }
+  }
+  const compressed = pako.gzip(u8, {level:9});
+  if(compressed.length > MAX_SLAB_BYTES) throw new Error(`Slab trop grand: ${compressed.length} B > ${MAX_SLAB_BYTES} B`);
+  let s = '';
+  for(let i=0;i<compressed.length;i++) s += String.fromCharCode(compressed[i]);
+  return btoa(s);
+}
+function decodeSlab(code){
+  code = code.trim().replace(/^`|`$/g,'');
+  const bin = atob(code);
+  const u8 = new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++) u8[i] = bin.charCodeAt(i);
+  const data = pako.ungzip(u8);
+  const view = new DataView(data.buffer, data.byteOffset, data.byteLength);
+  const magic = view.getUint32(0, true);
+  if(magic !== SLAB_MAGIC) throw new Error(`Magic invalide: 0x${magic.toString(16)}`);
+  const layoutCount = view.getUint16(6, true);
+  let off = 10;
   const layouts = [];
-  for (let i=0;i<nL;i++) {
-    layouts.push({guid:bytesToGuid(new Uint8Array(buf,offset,16)), count:view.getUint16(offset+16,true)});
-    offset += 20;
+  for(let i=0;i<layoutCount;i++){
+    const guid = bytesToUuidLE(data, off); off += 16;
+    const count = view.getUint16(off, true); off += 4;
+    layouts.push({guid, count});
   }
-  const ps = [];
-  for (const {guid,count} of layouts) {
-    for (let i=0;i<count;i++) {
-      const lo=BigInt(view.getUint32(offset,true)), hi=BigInt(view.getUint32(offset+4,true));
-      offset += 8;
-      const val = lo|(hi<<32n);
-      ps.push({guid, x:Number(val&0x3FFFFn)/100, y:Number((val>>18n)&0x3FFFFn)/100, z:Number((val>>36n)&0x3FFFFn)/100, rot:Number((val>>54n)&0x1Fn)});
+  const placements = [];
+  for(const l of layouts){
+    for(let i=0;i<l.count;i++){
+      const val = view.getBigUint64(off, true); off += 8;
+      const sx = Number(val & 0x3FFFFn);
+      const sy = Number((val >> 18n) & 0x3FFFFn);
+      const sz = Number((val >> 36n) & 0x3FFFFn);
+      const rot = Number((val >> 54n) & 0x1Fn);
+      placements.push({guid:l.guid, x:sx/100, y:sy/100, z:sz/100, rot});
     }
   }
-  return ps;
+  return placements;
 }
-
-function bbox(ps){let x0=Infinity,z0=Infinity,x1=-Infinity,z1=-Infinity;for(const p of ps){if(p.x<x0)x0=p.x;if(p.x>x1)x1=p.x;if(p.z<z0)z0=p.z;if(p.z>z1)z1=p.z;}return{x0,z0,x1,z1};}
-
-// A*
-function astar(blocked,sx,sz,ex,ez,W,H){
-  const K=(x,z)=>x*H+z,h=(x,z)=>Math.abs(x-ex)+Math.abs(z-ez);
-  const open=[[h(sx,sz),0,sx,sz]],g=new Map([[K(sx,sz),0]]),prev=new Map([[K(sx,sz),null]]);
-  while(open.length){
-    open.sort((a,b)=>a[0]-b[0]);
-    const[,gc,cx,cz]=open.shift();
-    if(cx===ex&&cz===ez){const path=[];let k=K(cx,cz);while(k!==null){path.push([Math.floor(k/H),k%H]);k=prev.get(k);}return path.reverse();}
-    for(const[dx,dz]of[[0,1],[0,-1],[1,0],[-1,0]]){
-      const nx=cx+dx,nz=cz+dz;if(nx<0||nx>=W||nz<0||nz>=H)continue;
-      const ng=gc+1+(blocked.has(K(nx,nz))?60:0),nk=K(nx,nz);
-      if(ng<(g.get(nk)??Infinity)){g.set(nk,ng);prev.set(nk,K(cx,cz));open.push([ng+h(nx,nz),ng,nx,nz]);}
-    }
+function boundingBox(placements){
+  if(!placements.length) return null;
+  let mnx=Infinity,mny=Infinity,mnz=Infinity,mxx=-Infinity,mxy=-Infinity,mxz=-Infinity;
+  for(const p of placements){
+    if(p.x<mnx) mnx=p.x; if(p.x>mxx) mxx=p.x;
+    if(p.y<mny) mny=p.y; if(p.y>mxy) mxy=p.y;
+    if(p.z<mnz) mnz=p.z; if(p.z>mxz) mxz=p.z;
   }
-  return[];
+  return {minX:mnx,minY:mny,minZ:mnz,maxX:mxx,maxY:mxy,maxZ:mxz};
+}
+function offsetPlacements(placements, dx, dy, dz){
+  return placements.map(p => ({guid:p.guid, x:p.x+dx, y:p.y+dy, z:p.z+dz, rot:p.rot}));
 }
 
-function mkRng(seed){let s=(seed||Math.random()*0xFFFFFFFF)>>>0;return()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296;};}
+/* ═══════════════════════════════════════════════════════════════════════
+   WALL SETS
+   ═══════════════════════════════════════════════════════════════════════ */
+const VARIANT_NAMES = [
+  {key:'straight_ns',  label:'Mur N-S',   icon:'│'},
+  {key:'straight_ew',  label:'Mur E-O',   icon:'─'},
+  {key:'corner_ne',    label:'Coin NE',   icon:'└'},
+  {key:'corner_nw',    label:'Coin NO',   icon:'┘'},
+  {key:'corner_se',    label:'Coin SE',   icon:'┌'},
+  {key:'corner_sw',    label:'Coin SO',   icon:'┐'},
+  {key:'t_north',      label:'T Nord',    icon:'┴'},
+  {key:'t_south',      label:'T Sud',     icon:'┬'},
+  {key:'t_east',       label:'T Est',     icon:'├'},
+  {key:'t_west',       label:'T Ouest',   icon:'┤'},
+  {key:'cross',        label:'Croix',     icon:'┼'},
+  {key:'end',          label:'Bout',      icon:'●'},
+  {key:'door_ns',      label:'Porte N-S', icon:'▮'},
+  {key:'door_ew',      label:'Porte E-O', icon:'▬'},
+  {key:'window_ns',    label:'Fen. N-S',  icon:'▤'},
+  {key:'window_ew',    label:'Fen. E-O',  icon:'▤'},
+  {key:'floor',        label:'Sol',       icon:'▨'},
+];
 
-// Map generator — retourne {placements, separateSlabs}
-async function generateMap(W,H,groundKey,buildings,seed){
-  const rng=mkRng(seed),ri=(a,b)=>a+Math.floor(rng()*(b-a+1));
-  const ground=GROUND[groundKey]||GROUND.herbe;
-  const ps=[],occ=new Set(),K=(x,z)=>x*H+z;
-  const separateSlabs=[];
+let wallSets = [];
+let activeSetIdx = -1;
+let selectedSetIdx = -1;
+let selectedVariant = null;
 
-  for(let x=0;x<W;x++) for(let z=0;z<H;z++) ps.push({guid:ground.guid,x,y:0,z,rot:0});
+function loadWallSets(){
+  const raw = localStorage.getItem('armonia_wallsets');
+  if(raw){ try { wallSets = JSON.parse(raw); } catch(e){ wallSets = []; } }
+  activeSetIdx = parseInt(localStorage.getItem('armonia_active_set') || '-1');
+  if(activeSetIdx >= wallSets.length) activeSetIdx = -1;
+}
+function saveWallSets(){
+  localStorage.setItem('armonia_wallsets', JSON.stringify(wallSets));
+  localStorage.setItem('armonia_active_set', String(activeSetIdx));
+}
+function createWallSet(){
+  const nameInput = document.getElementById('new-wallset-name');
+  const name = nameInput.value.trim();
+  if(!name) { showStatus('Donne un nom au wall set.', 'err'); return; }
+  if(wallSets.some(s=>s.name.toLowerCase()===name.toLowerCase())){
+    showStatus('Ce nom existe déjà.', 'err'); return;
+  }
+  wallSets.push({name, variants:{}});
+  saveWallSets();
+  nameInput.value = '';
+  renderWallSetsList();
+  updateActiveWallSetSelect();
+  selectSet(wallSets.length-1);
+  showStatus(`Wall set "${name}" créé.`, 'ok');
+}
+function deleteWallSet(idx){
+  if(!confirm(`Supprimer le wall set "${wallSets[idx].name}" ?`)) return;
+  wallSets.splice(idx,1);
+  if(activeSetIdx===idx) activeSetIdx=-1;
+  else if(activeSetIdx>idx) activeSetIdx--;
+  if(selectedSetIdx===idx) selectedSetIdx=-1;
+  else if(selectedSetIdx>idx) selectedSetIdx--;
+  saveWallSets();
+  renderWallSetsList();
+  renderVariantGrid();
+  updateActiveWallSetSelect();
+  updateStatusBar();
+}
+function selectSet(idx){
+  selectedSetIdx = idx;
+  selectedVariant = null;
+  renderWallSetsList();
+  renderVariantGrid();
+  document.getElementById('variant-editor').style.display='none';
+}
+function setActiveSet(idx){
+  activeSetIdx = idx;
+  saveWallSets();
+  updateStatusBar();
+  updateActiveWallSetSelect();
+  renderWallSetsList();
+  updateStats();
+  showStatus(`Set actif : ${wallSets[idx].name}`, 'ok');
+}
+function renderWallSetsList(){
+  const el = document.getElementById('wallsets-list');
+  document.getElementById('lib-count').textContent = `${wallSets.length} set${wallSets.length>1?'s':''}`;
+  if(wallSets.length === 0){
+    el.innerHTML = '<div class="placeholder">Aucun wall set encore. Crée-en un à gauche.</div>';
+    return;
+  }
+  el.innerHTML = '';
+  wallSets.forEach((set, i) => {
+    const filledCount = Object.keys(set.variants).length;
+    const div = document.createElement('div');
+    div.className = 'wallset-item' + (i===selectedSetIdx ? ' selected' : '');
+    div.innerHTML = `
+      <div class="wallset-info">
+        <h4>${escapeHtml(set.name)} ${i===activeSetIdx ? '<span class="badge-count">actif</span>' : ''}</h4>
+        <div class="stats">${filledCount}/${VARIANT_NAMES.length} variants</div>
+      </div>
+      <div class="wallset-actions">
+        <button class="success" title="Activer" onclick="event.stopPropagation();setActiveSet(${i})">✓</button>
+        <button class="danger" title="Supprimer" onclick="event.stopPropagation();deleteWallSet(${i})">✕</button>
+      </div>
+    `;
+    div.onclick = () => selectSet(i);
+    el.appendChild(div);
+  });
+}
+function renderVariantGrid(){
+  const el = document.getElementById('variant-grid');
+  document.getElementById('selected-set-name').textContent =
+    selectedSetIdx >= 0 ? wallSets[selectedSetIdx].name : 'Aucun set sélectionné';
+  if(selectedSetIdx < 0){
+    el.innerHTML = '<div style="grid-column:1/-1;color:var(--muted);font-size:11px;text-align:center;padding:20px">Sélectionne un wall set à gauche pour voir ses variants.</div>';
+    return;
+  }
+  const set = wallSets[selectedSetIdx];
+  el.innerHTML = '';
+  VARIANT_NAMES.forEach(v => {
+    const has = set.variants[v.key];
+    const div = document.createElement('div');
+    div.className = 'variant-slot' + (has ? ' filled' : '') + (selectedVariant===v.key ? ' selected' : '');
+    div.innerHTML = `<div class="icon">${v.icon}</div><div class="variant-name">${v.label}</div>`;
+    div.onclick = () => openVariantEditor(v.key);
+    el.appendChild(div);
+  });
+}
+function openVariantEditor(key){
+  selectedVariant = key;
+  renderVariantGrid();
+  const v = VARIANT_NAMES.find(x=>x.key===key);
+  document.getElementById('variant-editor').style.display = 'flex';
+  document.getElementById('variant-editor-name').textContent = `${v.icon} ${v.label} (${v.key})`;
+  const has = wallSets[selectedSetIdx].variants[key];
+  document.getElementById('variant-slab-input').value = has ? has.originalCode : '';
+  document.getElementById('variant-msg').innerHTML = '';
+}
+function closeVariantEditor(){
+  selectedVariant = null;
+  document.getElementById('variant-editor').style.display = 'none';
+  renderVariantGrid();
+}
+function assignVariantSlab(){
+  const code = document.getElementById('variant-slab-input').value.trim();
+  if(!code) { showVariantMsg('Colle un code slab.', 'err'); return; }
+  try {
+    const placements = decodeSlab(code);
+    const bb = boundingBox(placements);
+    const centered = offsetPlacements(placements, -bb.minX, -bb.minY, -bb.minZ);
+    wallSets[selectedSetIdx].variants[selectedVariant] = {
+      placements: centered,
+      originalCode: code,
+      assetCount: placements.length
+    };
+    saveWallSets();
+    renderVariantGrid();
+    renderWallSetsList();
+    updateActiveWallSetSelect();
+    updateStats();
+    showVariantMsg(`✓ Assigné : ${placements.length} asset${placements.length>1?'s':''} décodés.`, 'ok');
+  } catch(e){
+    showVariantMsg(`Erreur : ${e.message}`, 'err');
+  }
+}
+function clearVariantSlab(){
+  if(!confirm('Effacer ce variant ?')) return;
+  delete wallSets[selectedSetIdx].variants[selectedVariant];
+  saveWallSets();
+  document.getElementById('variant-slab-input').value = '';
+  renderVariantGrid();
+  renderWallSetsList();
+  updateActiveWallSetSelect();
+  updateStats();
+  showVariantMsg('Variant vidé.', 'ok');
+}
+function showVariantMsg(txt, cls){
+  document.getElementById('variant-msg').innerHTML = `<div class="msg ${cls}">${escapeHtml(txt)}</div>`;
+}
+function updateActiveWallSetSelect(){
+  const sel = document.getElementById('active-wallset');
+  sel.innerHTML = '<option value="-1">-- Choisir un wall set --</option>';
+  wallSets.forEach((s,i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    const cnt = Object.keys(s.variants).length;
+    opt.textContent = `${s.name} (${cnt} variants)`;
+    if(i===activeSetIdx) opt.selected = true;
+    sel.appendChild(opt);
+  });
+  updateFloorOverrideSelect();
+}
 
-  const doors=[];
-  for(const{entry,count}of buildings){
-    for(let n=0;n<count;n++){
-      const bw=entry.width||8,bh=entry.depth||8,mg=2;
-      let slot=null;
-      for(let t=0;t<400;t++){
-        const tx=ri(mg,W-bw-mg),tz=ri(mg,H-bh-mg);
-        let ok=true;
-        for(let dx=-1;dx<bw+1&&ok;dx++) for(let dz=-1;dz<bh+1&&ok;dz++) if(occ.has(K(tx+dx,tz+dz)))ok=false;
-        if(ok){slot=[tx,tz];break;}
+function updateFloorOverrideSelect(){
+  const sel = document.getElementById('floor-override');
+  if(!sel) return;
+  const currentVal = sel.value;
+  sel.innerHTML = '<option value="">(Sol du set actif)</option>';
+  wallSets.forEach((s,i) => {
+    // Add every floor-like variant (floor, or any key starting with "floor")
+    Object.keys(s.variants).forEach(vKey => {
+      if(vKey === 'floor' || vKey.startsWith('floor_')){
+        const opt = document.createElement('option');
+        opt.value = `${i}:${vKey}`;
+        opt.textContent = `${s.name} → ${vKey}`;
+        sel.appendChild(opt);
       }
-      if(!slot) continue;
-      const[bx,bz]=slot;
-      for(let dx=0;dx<bw;dx++) for(let dz=0;dz<bh;dz++) occ.add(K(bx+dx,bz+dz));
+    });
+  });
+  // Restore previous selection if still valid
+  sel.value = currentVal;
+}
 
-      let decoded=false;
-      try{
-        const slabPs=await decodeSlab(entry.slab_code);
-        if(slabPs.length){
-          const bb=bbox(slabPs);
-          for(const p of slabPs) ps.push({guid:p.guid,x:p.x-bb.x0+bx,y:p.y,z:p.z-bb.z0+bz,rot:p.rot});
-          decoded=true;
+/* ═══════════════════════════════════════════════════════════════════════
+   INTERIOR MODE
+   ═══════════════════════════════════════════════════════════════════════ */
+const CELL_EMPTY=0, CELL_WALL=1, CELL_FLOOR=2, CELL_DOOR=3, CELL_WINDOW=4;
+
+let gridW=40, gridD=40, cellSize=20;
+let grid=null;
+let currentTool='polyline', currentBrush='wall';
+let history=[], historyIdx=-1;
+let clickPoints=[], isDragging=false, lastCell=null;
+let rectStart=null, rectEnd=null, hoverCell=null;
+
+function initGrid(){ grid = Array.from({length:gridD}, () => new Uint8Array(gridW)); }
+function pushHistory(){
+  history = history.slice(0, historyIdx+1);
+  history.push(grid.map(r => new Uint8Array(r)));
+  if(history.length > 50) history.shift();
+  historyIdx = history.length - 1;
+}
+function undo(){
+  if(historyIdx > 0){
+    historyIdx--;
+    grid = history[historyIdx].map(r => new Uint8Array(r));
+    render(); updateStats();
+  }
+}
+function redo(){
+  if(historyIdx < history.length - 1){
+    historyIdx++;
+    grid = history[historyIdx].map(r => new Uint8Array(r));
+    render(); updateStats();
+  }
+}
+function resizeCanvas(){
+  const c = document.getElementById('canvas');
+  c.width = gridW * cellSize;
+  c.height = gridD * cellSize;
+  render();
+}
+function clearGrid(){
+  if(!confirm('Vider toute la grille ?')) return;
+  pushHistory(); initGrid(); pushHistory();
+  render(); updateStats();
+}
+function setCell(x, y, val){
+  if(x<0||x>=gridW||y<0||y>=gridD) return false;
+  if(grid[y][x] === val) return false;
+  grid[y][x] = val;
+  return true;
+}
+function drawLine(x0, y0, x1, y1, val){
+  const dx = Math.abs(x1 - x0);
+  const dy = Math.abs(y1 - y0);
+  const sx = x0 < x1 ? 1 : -1;
+  const sy = y0 < y1 ? 1 : -1;
+  let err = dx - dy;
+  let x = x0, y = y0;
+  while(true){
+    setCell(x, y, val);
+    if(x===x1 && y===y1) break;
+    const e2 = 2*err;
+    if(e2 > -dy){ err -= dy; x += sx; }
+    if(e2 < dx){ err += dx; y += sy; }
+  }
+}
+function drawRectangle(x0, y0, x1, y1, val){
+  const mnx = Math.min(x0,x1), mxx = Math.max(x0,x1);
+  const mny = Math.min(y0,y1), mxy = Math.max(y0,y1);
+  for(let x=mnx; x<=mxx; x++){ setCell(x, mny, val); setCell(x, mxy, val); }
+  for(let y=mny; y<=mxy; y++){ setCell(mnx, y, val); setCell(mxx, y, val); }
+}
+function fillFloor(){
+  const outside = Array.from({length:gridD}, () => new Uint8Array(gridW));
+  const stack = [];
+  for(let x=0;x<gridW;x++){
+    if(grid[0][x] !== CELL_WALL){ stack.push([x,0]); outside[0][x]=1; }
+    if(grid[gridD-1][x] !== CELL_WALL){ stack.push([x,gridD-1]); outside[gridD-1][x]=1; }
+  }
+  for(let y=0;y<gridD;y++){
+    if(grid[y][0] !== CELL_WALL){ stack.push([0,y]); outside[y][0]=1; }
+    if(grid[y][gridW-1] !== CELL_WALL){ stack.push([gridW-1,y]); outside[y][gridW-1]=1; }
+  }
+  while(stack.length){
+    const [x,y] = stack.pop();
+    for(const [dx,dy] of [[1,0],[-1,0],[0,1],[0,-1]]){
+      const nx=x+dx, ny=y+dy;
+      if(nx<0||nx>=gridW||ny<0||ny>=gridD) continue;
+      if(outside[ny][nx]) continue;
+      if(grid[ny][nx] === CELL_WALL) continue;
+      outside[ny][nx] = 1;
+      stack.push([nx,ny]);
+    }
+  }
+  for(let y=0;y<gridD;y++){
+    for(let x=0;x<gridW;x++){
+      if(grid[y][x] === CELL_EMPTY && !outside[y][x]) grid[y][x] = CELL_FLOOR;
+      else if(grid[y][x] === CELL_FLOOR && outside[y][x]) grid[y][x] = CELL_EMPTY;
+    }
+  }
+}
+function render(){
+  const c = document.getElementById('canvas');
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#12121e';
+  ctx.fillRect(0,0,c.width,c.height);
+  ctx.strokeStyle = 'rgba(80,80,120,0.3)';
+  ctx.lineWidth = 1;
+  for(let x=0;x<=gridW;x++){
+    ctx.beginPath();
+    ctx.moveTo(x*cellSize+0.5, 0);
+    ctx.lineTo(x*cellSize+0.5, gridD*cellSize);
+    ctx.stroke();
+  }
+  for(let y=0;y<=gridD;y++){
+    ctx.beginPath();
+    ctx.moveTo(0, y*cellSize+0.5);
+    ctx.lineTo(gridW*cellSize, y*cellSize+0.5);
+    ctx.stroke();
+  }
+  for(let y=0;y<gridD;y++){
+    for(let x=0;x<gridW;x++){
+      const v = grid[y][x];
+      if(v===CELL_EMPTY) continue;
+      let color = '#888';
+      if(v===CELL_WALL) color = '#a06840';
+      else if(v===CELL_FLOOR) color = 'rgba(216,184,120,0.4)';
+      else if(v===CELL_DOOR) color = '#8a4a20';
+      else if(v===CELL_WINDOW) color = '#4a90e0';
+      ctx.fillStyle = color;
+      ctx.fillRect(x*cellSize+1, y*cellSize+1, cellSize-1, cellSize-1);
+      if(v===CELL_WALL && cellSize>=14){
+        ctx.fillStyle = '#f0d0b0';
+        ctx.font = `${cellSize*0.55}px monospace`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        const variant = detectWallVariant(x,y);
+        const iconMap = {
+          straight_ns:'│', straight_ew:'─',
+          corner_ne:'└', corner_nw:'┘', corner_se:'┌', corner_sw:'┐',
+          t_north:'┴', t_south:'┬', t_east:'├', t_west:'┤',
+          cross:'┼', end:'●'
+        };
+        ctx.fillText(iconMap[variant]||'?', x*cellSize+cellSize/2, y*cellSize+cellSize/2);
+        // Warn if variant missing
+        if(activeSetIdx>=0 && !wallSets[activeSetIdx].variants[variant]){
+          ctx.strokeStyle = '#e04040';
+          ctx.lineWidth = 2;
+          ctx.strokeRect(x*cellSize+1, y*cellSize+1, cellSize-2, cellSize-2);
         }
-      }catch(e){}
-
-      if(!decoded){
-        // Envoyer séparément — noter la position pour guider le joueur
-        separateSlabs.push({name:entry.name, code:entry.slab_code, x:bx, z:bz});
       }
-      doors.push({x:bx+Math.floor(bw/2),z:bz});
     }
   }
-
-  if(ground.pathGuid&&doors.length>=2){
-    const cells=new Set();
-    for(let i=0;i<doors.length-1;i++) for(const[px,pz]of astar(occ,doors[i].x,doors[i].z,doors[i+1].x,doors[i+1].z,W,H)) cells.add(K(px,pz));
-    if(doors.length>=3) for(const[px,pz]of astar(occ,doors.at(-1).x,doors.at(-1).z,doors[0].x,doors[0].z,W,H)) cells.add(K(px,pz));
-    for(const k of cells){const px=Math.floor(k/H),pz=k%H;if(px>=0&&px<W&&pz>=0&&pz<H)ps.push({guid:ground.pathGuid,x:px,y:0.02,z:pz,rot:0});}
+  if(clickPoints.length){
+    ctx.strokeStyle = 'rgba(233,69,96,0.6)';
+    ctx.fillStyle = 'rgba(233,69,96,0.9)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    for(let i=0;i<clickPoints.length;i++){
+      const [x,y] = clickPoints[i];
+      const cx = x*cellSize + cellSize/2;
+      const cy = y*cellSize + cellSize/2;
+      if(i===0) ctx.moveTo(cx, cy); else ctx.lineTo(cx, cy);
+    }
+    if(hoverCell){
+      const cx = hoverCell[0]*cellSize + cellSize/2;
+      const cy = hoverCell[1]*cellSize + cellSize/2;
+      ctx.lineTo(cx, cy);
+    }
+    ctx.stroke();
+    for(const [x,y] of clickPoints){
+      ctx.beginPath();
+      ctx.arc(x*cellSize+cellSize/2, y*cellSize+cellSize/2, 4, 0, Math.PI*2);
+      ctx.fill();
+    }
   }
-
-  return{placements:ps, separateSlabs};
+  if(rectStart && rectEnd){
+    ctx.strokeStyle = 'rgba(74,208,128,0.9)';
+    ctx.lineWidth = 2;
+    const x0 = Math.min(rectStart[0],rectEnd[0])*cellSize;
+    const y0 = Math.min(rectStart[1],rectEnd[1])*cellSize;
+    const w = (Math.abs(rectEnd[0]-rectStart[0])+1)*cellSize;
+    const h = (Math.abs(rectEnd[1]-rectStart[1])+1)*cellSize;
+    ctx.strokeRect(x0+1, y0+1, w-2, h-2);
+  }
+  if(hoverCell){
+    ctx.strokeStyle = 'rgba(233,69,96,0.8)';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(hoverCell[0]*cellSize+1, hoverCell[1]*cellSize+1, cellSize-2, cellSize-2);
+  }
 }
-
-// Library
-async function loadLibrary(){if(typeof TS==='undefined')return;try{const r=await TS.localStorage.global.getBlob();if(!r.error&&r.result)library=JSON.parse(r.result);}catch(e){}}
-async function saveLibrary(){if(typeof TS==='undefined')return;try{await TS.localStorage.global.setBlob(JSON.stringify(library));}catch(e){}}
-
-async function addSlab(){
-  const name=document.getElementById('add-name').value.trim();
-  const type=document.getElementById('add-type').value;
-  const w=parseInt(document.getElementById('add-w').value)||8;
-  const d=parseInt(document.getElementById('add-d').value)||8;
-  const code=document.getElementById('add-code').value.replace(/[^A-Za-z0-9+/=]/g,'');
-  if(!name) return setStatus('lib-status','❌ Donne un nom.','error');
-  if(code.length<20) return setStatus('lib-status','❌ Code slab invalide.','error');
-  if(library.find(e=>e.name===name)) return setStatus('lib-status','❌ Ce nom existe déjà.','error');
-  library.push({name,type,slab_code:code,width:w,depth:d});
-  await saveLibrary();
-  document.getElementById('add-name').value='';
-  document.getElementById('add-code').value='';
-  renderLib(); renderPickers();
-  setStatus('lib-status',`✅ « ${name} » ajouté (${w}×${d} tiles).`,'success');
+function detectWallVariant(x, y){
+  const isWallLike = (xx,yy) => xx>=0&&xx<gridW&&yy>=0&&yy<gridD &&
+    (grid[yy][xx]===CELL_WALL || grid[yy][xx]===CELL_DOOR || grid[yy][xx]===CELL_WINDOW);
+  const n = isWallLike(x, y-1);
+  const s = isWallLike(x, y+1);
+  const e = isWallLike(x+1, y);
+  const w = isWallLike(x-1, y);
+  const count = (n?1:0)+(s?1:0)+(e?1:0)+(w?1:0);
+  if(count===0) return 'end';
+  if(count===1){
+    if(n||s) return 'straight_ns';
+    return 'straight_ew';
+  }
+  if(count===2){
+    if(n && s) return 'straight_ns';
+    if(e && w) return 'straight_ew';
+    if(n && e) return 'corner_ne';
+    if(n && w) return 'corner_nw';
+    if(s && e) return 'corner_se';
+    if(s && w) return 'corner_sw';
+  }
+  if(count===3){
+    if(!n) return 't_south';
+    if(!s) return 't_north';
+    if(!e) return 't_west';
+    if(!w) return 't_east';
+  }
+  return 'cross';
 }
-
-async function removeSlab(i){
-  if(!confirm(`Supprimer « ${library[i].name} » ?`))return;
-  delete counts[library[i].name]; library.splice(i,1);
-  await saveLibrary(); renderLib(); renderPickers();
+function cellFromEvent(e){
+  const c = document.getElementById('canvas');
+  const r = c.getBoundingClientRect();
+  const x = Math.floor((e.clientX - r.left) / cellSize);
+  const y = Math.floor((e.clientY - r.top) / cellSize);
+  if(x<0||x>=gridW||y<0||y>=gridD) return null;
+  return [x, y];
 }
-
-function renderLib(){
-  const el=document.getElementById('lib-list');
-  if(!library.length){el.innerHTML='<div class="empty">Aucun slab.</div>';return;}
-  el.innerHTML=library.map((e,i)=>`<div class="lib-item">
-    <div class="lib-header"><span class="lib-name">${EMOJI[e.type]||'📦'} ${e.name}</span>
-    <button class="btn btn-danger" onclick="removeSlab(${i})">🗑️</button></div>
-    <div class="lib-meta">${e.type} · ${e.width}×${e.depth} tiles</div></div>`).join('');
+function paintCell(x, y){
+  let val;
+  if(currentTool === 'erase') val = CELL_EMPTY;
+  else if(currentTool === 'door') val = CELL_DOOR;
+  else if(currentTool === 'window') val = CELL_WINDOW;
+  else if(currentBrush === 'floor') val = CELL_FLOOR;
+  else val = CELL_WALL;
+  return setCell(x, y, val);
 }
-function renderPickers(){
-  const el=document.getElementById('building-pickers');
-  if(!library.length){el.innerHTML='<div class="empty">Ajoute des slabs dans 📚 Bibliothèque.</div>';return;}
-  for(const e of library) if(!(e.name in counts)) counts[e.name]=0;
-  el.innerHTML=library.map((e,i)=>`<div class="building-item">
-    <span class="building-emoji">${EMOJI[e.type]||'📦'}</span>
-    <div class="building-info"><div class="building-name">${e.name}</div>
-    <div class="building-size">${e.type} · ${e.width}×${e.depth}</div></div>
-    <div class="counter">
-      <button class="btn btn-sm" onclick="adj(${i},-1)">−</button>
-      <span class="counter-val" id="cv-${i}">${counts[e.name]||0}</span>
-      <button class="btn btn-sm" onclick="adj(${i},+1)">+</button>
-    </div></div>`).join('');
-}
-function adj(i,d){const n=library[i].name;counts[n]=Math.max(0,(counts[n]||0)+d);document.getElementById('cv-'+i).textContent=counts[n];}
-
-// Generate — étape 1 : sol
-async function startGenerate(){
-  const[W,H]=document.getElementById('map-size').value.split('x').map(Number);
-  const groundKey=document.getElementById('map-ground').value;
-  const seedRaw=document.getElementById('map-seed').value.trim();
-  const seed=seedRaw?parseInt(seedRaw):null;
-  const selected=library.map(e=>({entry:e,count:counts[e.name]||0})).filter(x=>x.count>0);
-
-  pendingSlabs=[];
-  document.getElementById('paste-steps').style.display='none';
-  document.getElementById('steps-list').innerHTML='';
-
-  const btn=document.getElementById('btn-gen'); btn.disabled=true;
-  setStatus('gen-status','⏳ Génération en cours…','info');
-  try{
-    const{placements,separateSlabs}=await generateMap(W,H,groundKey,selected,seed);
-    setStatus('gen-status',`🔧 Encodage de ${placements.toLocaleString()} assets…`,'info');
-    const binary=buildBinary(placements);
-    const slabCode=await packSlab(binary);
-
-    if(typeof TS!=='undefined'){
-      // Étape 1 : envoyer le sol
-      const sent=await TS.slabs.sendSlabToHand(slabCode);
-      if(sent&&sent.error) throw new Error('sendSlabToHand: '+sent.error);
-
-      if(separateSlabs.length===0){
-        setStatus('gen-status',`✅ ${placements.toLocaleString()} assets !\nSlab dans ta main — clique sur le board pour poser.`,'success');
-      } else {
-        // Des bâtiments doivent être collés séparément
-        pendingSlabs=separateSlabs;
-        setStatus('gen-status',`✅ Sol généré (${placements.toLocaleString()} assets) — pose-le d'abord.\nEnsuite colle chaque bâtiment ci-dessous.`,'success');
-        renderSteps(separateSlabs, W, H);
-      }
+function onCanvasClick(e){
+  const cell = cellFromEvent(e); if(!cell) return;
+  if(currentTool === 'polyline'){
+    clickPoints.push(cell);
+  } else if(currentTool === 'segment'){
+    if(clickPoints.length === 0){
+      clickPoints.push(cell);
     } else {
-      setStatus('gen-status','✅ Généré (hors TaleSpire).','success');
+      pushHistory();
+      const val = currentBrush==='floor' ? CELL_FLOOR : CELL_WALL;
+      drawLine(clickPoints[0][0], clickPoints[0][1], cell[0], cell[1], val);
+      clickPoints = [];
+      if(document.getElementById('auto-floor').checked) fillFloor();
+      pushHistory(); updateStats();
     }
-  }catch(e){ setStatus('gen-status','❌ '+e.message,'error'); }
-  finally{ btn.disabled=false; }
+  } else if(currentTool === 'door' || currentTool === 'window' || currentTool === 'erase'){
+    pushHistory();
+    paintCell(cell[0], cell[1]);
+    if(document.getElementById('auto-floor').checked) fillFloor();
+    pushHistory(); updateStats();
+  }
+  render();
+}
+function onCanvasDoubleClick(e){
+  if(currentTool === 'polyline' && clickPoints.length >= 2){
+    pushHistory();
+    const val = currentBrush==='floor' ? CELL_FLOOR : CELL_WALL;
+    for(let i=0;i<clickPoints.length-1;i++){
+      drawLine(clickPoints[i][0], clickPoints[i][1], clickPoints[i+1][0], clickPoints[i+1][1], val);
+    }
+    clickPoints = [];
+    if(document.getElementById('auto-floor').checked) fillFloor();
+    pushHistory(); updateStats();
+    render();
+  }
+}
+function onCanvasMouseDown(e){
+  const cell = cellFromEvent(e); if(!cell) return;
+  if(currentTool === 'drag'){
+    isDragging = true;
+    pushHistory();
+    paintCell(cell[0], cell[1]);
+    lastCell = cell;
+    render();
+  } else if(currentTool === 'rectangle'){
+    rectStart = cell;
+    rectEnd = cell;
+    render();
+  }
+}
+function onCanvasMouseMove(e){
+  const cell = cellFromEvent(e);
+  hoverCell = cell;
+  if(currentTool === 'drag' && isDragging && cell){
+    if(!lastCell || cell[0]!==lastCell[0] || cell[1]!==lastCell[1]){
+      if(lastCell) drawLine(lastCell[0], lastCell[1], cell[0], cell[1],
+        currentBrush==='floor'?CELL_FLOOR:CELL_WALL);
+      lastCell = cell;
+    }
+  } else if(currentTool === 'rectangle' && rectStart){
+    rectEnd = cell || rectEnd;
+  }
+  render();
+}
+function onCanvasMouseUp(e){
+  if(currentTool === 'drag' && isDragging){
+    isDragging = false;
+    lastCell = null;
+    if(document.getElementById('auto-floor').checked) fillFloor();
+    pushHistory(); updateStats();
+    render();
+  } else if(currentTool === 'rectangle' && rectStart && rectEnd){
+    pushHistory();
+    const val = currentBrush==='floor' ? CELL_FLOOR : CELL_WALL;
+    drawRectangle(rectStart[0], rectStart[1], rectEnd[0], rectEnd[1], val);
+    rectStart = rectEnd = null;
+    if(document.getElementById('auto-floor').checked) fillFloor();
+    pushHistory(); updateStats();
+    render();
+  }
+}
+function onCanvasLeave(){ hoverCell = null; render(); }
+function selectTool(name){
+  currentTool = name;
+  document.querySelectorAll('.tool-btn').forEach(b => b.classList.toggle('active', b.dataset.tool===name));
+  document.getElementById('sb-tool').textContent = name;
+  clickPoints = [];
+  rectStart = rectEnd = null;
+  render();
+}
+function selectBrush(name){
+  currentBrush = name;
+  document.querySelectorAll('.brush-btn').forEach(b => b.classList.toggle('active', b.dataset.brush===name));
+}
+function updateStats(){
+  let walls=0, floors=0, doors=0, windows=0, missing=0;
+  const set = activeSetIdx >= 0 ? wallSets[activeSetIdx] : null;
+  for(let y=0;y<gridD;y++){
+    for(let x=0;x<gridW;x++){
+      const v = grid[y][x];
+      if(v===CELL_WALL){
+        walls++;
+        if(set && !set.variants[detectWallVariant(x,y)]) missing++;
+      } else if(v===CELL_FLOOR){
+        floors++;
+        if(set && !set.variants['floor']) missing++;
+      } else if(v===CELL_DOOR){
+        doors++;
+        const isNS = (y>0 && grid[y-1][x]===CELL_WALL) || (y<gridD-1 && grid[y+1][x]===CELL_WALL);
+        if(set && !set.variants[isNS?'door_ns':'door_ew']) missing++;
+      } else if(v===CELL_WINDOW){
+        windows++;
+        const isNS = (y>0 && grid[y-1][x]===CELL_WALL) || (y<gridD-1 && grid[y+1][x]===CELL_WALL);
+        if(set && !set.variants[isNS?'window_ns':'window_ew']) missing++;
+      }
+    }
+  }
+  document.getElementById('stat-walls').textContent = walls;
+  document.getElementById('stat-floor').textContent = floors;
+  document.getElementById('stat-doors').textContent = doors;
+  document.getElementById('stat-windows').textContent = windows;
+  document.getElementById('stat-missing').textContent = missing;
+  document.getElementById('stat-missing').style.color = missing>0 ? 'var(--danger)' : 'var(--accent-green)';
+}
+function updateStatusBar(){
+  document.getElementById('sb-sets').textContent = wallSets.length;
+  document.getElementById('sb-active').textContent = activeSetIdx >= 0 ? wallSets[activeSetIdx].name : '-';
+  document.getElementById('sb-grid').textContent = `${gridW}×${gridD}`;
+}
+// Compute rotation modifier to face wall toward interior
+// Returns rot delta in TaleSpire units (0-23, each = 15°)
+function wallRotationForInterior(x, y, variantKey){
+  const isFloor = (xx,yy) => xx>=0&&xx<gridW&&yy>=0&&yy<gridD && grid[yy][xx]===CELL_FLOOR;
+  const flip = document.getElementById('flip-walls').checked ? 12 : 0;
+  const extra = parseInt(document.getElementById('wall-rot-extra').value) || 0;
+
+  // Utiliser les rotations détectées du wall set actif si disponibles,
+  // sinon fallback sur les valeurs par défaut
+  const activeSet = activeSetIdx >= 0 ? wallSets[activeSetIdx] : null;
+  const rotBySide = (activeSet && activeSet.rotBySide) || { south:0, west:6, north:12, east:18 };
+  const corners = (activeSet && activeSet.cornerRotByCorner) || { sw:0, nw:6, ne:12, se:18 };
+
+  if(variantKey === 'straight_ew' || variantKey === 'door_ew' || variantKey === 'window_ew'){
+    // Wall runs east-west (grid row wall)
+    // Interior au sud (grid y+1 floor = TS Z+cell_scale) = wall on south side (Z=0 in TS)
+    if(isFloor(x, y+1)) return (rotBySide.south + flip + extra) % 24;
+    return (rotBySide.north + flip + extra) % 24;
+  }
+  if(variantKey === 'straight_ns' || variantKey === 'door_ns' || variantKey === 'window_ns'){
+    // Wall runs north-south (grid column wall)
+    if(isFloor(x+1, y)) return (rotBySide.west + flip + extra) % 24;
+    return (rotBySide.east + flip + extra) % 24;
+  }
+  // Corner variants :
+  //   corner_se (└→right + ↓down, canvas top-left) = TS SW corner
+  //   corner_sw (┐→left + ↓down, canvas top-right) = TS SE corner
+  //   corner_nw (┘→left + ↑up, canvas bottom-right) = TS NE corner
+  //   corner_ne (└→right + ↑up, canvas bottom-left) = TS NW corner
+  if(variantKey === 'corner_se') return (corners.sw + flip + extra) % 24;
+  if(variantKey === 'corner_sw') return (corners.se + flip + extra) % 24;
+  if(variantKey === 'corner_nw') return (corners.ne + flip + extra) % 24;
+  if(variantKey === 'corner_ne') return (corners.nw + flip + extra) % 24;
+  return (flip + extra) % 24;
 }
 
-// Étapes de collage des bâtiments séparés
-function renderSteps(slabs, W, H){
-  const container=document.getElementById('paste-steps');
-  const list=document.getElementById('steps-list');
-  container.style.display='block';
-  list.innerHTML=slabs.map((s,i)=>`
-    <div class="step">
-      <div class="step-title">${EMOJI[library.find(e=>e.name===s.name)?.type]||'📦'} ${s.name}</div>
-      <div class="step-sub">Position approximative : colonne ${s.x}, rangée ${s.z} depuis le coin</div>
-      <button class="btn step-btn" onclick="sendBuilding(${i})">📋 Envoyer ce slab à la main</button>
-    </div>
-  `).join('');
+function exportSlab(){
+  if(activeSetIdx < 0){
+    showStatus('Aucun wall set actif. Va dans la Bibliothèque pour en activer un.', 'err');
+    return;
+  }
+  const set = wallSets[activeSetIdx];
+  const floorOverride = document.getElementById('floor-override').value;
+  // floorOverride is "setIdx:variantKey" or empty
+  let floorVariant = null;
+  if(floorOverride){
+    const [sIdx, vKey] = floorOverride.split(':');
+    if(wallSets[sIdx] && wallSets[sIdx].variants[vKey]) floorVariant = wallSets[sIdx].variants[vKey];
+  }
+  const allPlacements = [];
+  let missing = 0;
+  for(let y=0;y<gridD;y++){
+    for(let x=0;x<gridW;x++){
+      const v = grid[y][x];
+      if(v === CELL_EMPTY) continue;
+      let variantKey = null;
+      if(v === CELL_WALL) variantKey = detectWallVariant(x, y);
+      else if(v === CELL_FLOOR) variantKey = 'floor';
+      else if(v === CELL_DOOR){
+        const isNS = (y>0 && grid[y-1][x]===CELL_WALL) || (y<gridD-1 && grid[y+1][x]===CELL_WALL);
+        variantKey = isNS ? 'door_ns' : 'door_ew';
+      } else if(v === CELL_WINDOW){
+        const isNS = (y>0 && grid[y-1][x]===CELL_WALL) || (y<gridD-1 && grid[y+1][x]===CELL_WALL);
+        variantKey = isNS ? 'window_ns' : 'window_ew';
+      }
+      if(!variantKey) continue;
+
+      // Choose the variant to use (floor override if applicable)
+      let variant;
+      if(variantKey === 'floor' && floorVariant){
+        variant = floorVariant;
+      } else {
+        variant = set.variants[variantKey];
+      }
+      if(!variant){ missing++; continue; }
+
+      // Compute rotation for wall orientation to interior
+      const targetRot = wallRotationForInterior(x, y, variantKey);
+      // For walls/corners/doors/windows/floor variants, USE the computed rotation as ABSOLUTE (overrides base)
+      const isDirectional = variantKey.startsWith('straight_') || variantKey.startsWith('corner_')
+        || variantKey.startsWith('door_') || variantKey.startsWith('window_') || variantKey.startsWith('t_')
+        || variantKey === 'cross' || variantKey === 'end';
+
+      // Facteur d'échelle : lu depuis le wall set actif (auto-détecté à l'import)
+      // ou depuis le champ manuel comme fallback
+      const CELL_SCALE = (set.cellScale && set.cellScale > 0)
+        ? set.cellScale
+        : (parseInt(document.getElementById('cell-scale')?.value) || 2);
+
+      const shifted = variant.placements.map(p => ({
+        guid: p.guid,
+        x: p.x + x * CELL_SCALE,
+        y: p.y,
+        z: p.z + y * CELL_SCALE,
+        rot: isDirectional ? targetRot : (((p.rot || 0) + targetRot) % 24)
+      }));
+      allPlacements.push(...shifted);
+    }
+  }
+  if(allPlacements.length === 0){
+    showStatus('Rien à exporter (grille vide ou tous les variants manquants).', 'warn');
+    return;
+  }
+  try {
+    const code = encodeSlab(allPlacements);
+    document.getElementById('export-code').value = code;
+    document.getElementById('export-stats').innerHTML =
+      `<b style="color:var(--accent-green)">${allPlacements.length} assets placés</b>` +
+      (missing > 0 ? ` · <span style="color:var(--danger)">${missing} tiles manquants (variant absent)</span>` : '');
+    showStatus(`Slab généré : ${allPlacements.length} assets.`, 'ok');
+  } catch(e){
+    showStatus(`Erreur : ${e.message}`, 'err');
+  }
+}
+function copyExport(){
+  const t = document.getElementById('export-code');
+  if(!t.value){ showStatus('Rien à copier.', 'warn'); return; }
+  t.select();
+  document.execCommand('copy');
+  showStatus('Copié dans le presse-papier !', 'ok');
+}
+/* ═══════════════════════════════════════════════════════════════════════
+   AUTO-IMPORT WALL SET — Détecte automatiquement les variants
+   depuis un slab complet (pièce rectangulaire)
+   ═══════════════════════════════════════════════════════════════════════ */
+function autoImportWallSet(){
+  const msgEl = document.getElementById('autoimport-msg');
+  const showMsg = (txt, cls) => { msgEl.innerHTML = `<div class="msg ${cls}">${escapeHtml(txt)}</div>`; };
+  const name = document.getElementById('autoimport-name').value.trim();
+  const code = document.getElementById('autoimport-input').value.trim();
+  if(!name){ showMsg('Donne un nom au wall set.', 'err'); return; }
+  if(!code){ showMsg('Colle un code slab.', 'err'); return; }
+  if(wallSets.some(s=>s.name.toLowerCase()===name.toLowerCase())){
+    showMsg('Ce nom existe déjà. Choisis-en un autre.', 'err'); return;
+  }
+
+  let placements;
+  try {
+    placements = decodeSlab(code);
+  } catch(e){
+    showMsg('Erreur de décodage : '+e.message, 'err'); return;
+  }
+  if(placements.length < 8){
+    showMsg('Slab trop petit : besoin d\'au moins 4 murs + 4 coins + du sol.', 'err'); return;
+  }
+
+  // Grouper par GUID
+  const byGuid = new Map();
+  for(const p of placements){
+    if(!byGuid.has(p.guid)) byGuid.set(p.guid, []);
+    byGuid.get(p.guid).push(p);
+  }
+
+  // Bounding box global de la pièce
+  const bb = boundingBox(placements);
+
+  // Détection heuristique :
+  //   - Floor : GUID avec le plus grand nombre d'instances, toutes rotation 0, positions à l'intérieur
+  //   - Corners : GUID avec exactement 4 instances aux 4 coins de la bounding box, 4 rotations différentes
+  //   - Walls : GUID avec beaucoup d'instances, sur le périmètre, avec 4 rotations différentes (0, 6, 12, 18)
+
+  // Trouver le corner : exactement 4 instances, aux 4 coins de la bbox
+  let cornerGuid = null;
+  let cornerAssets = null;
+  for(const [guid, pls] of byGuid){
+    if(pls.length !== 4) continue;
+    // Vérifier que les 4 sont aux 4 coins de la bbox
+    const positions = pls.map(p => [p.x, p.z]);
+    const nearMinMin = positions.find(([x,z]) => Math.abs(x-bb.minX)<1 && Math.abs(z-bb.minZ)<1);
+    const nearMinMax = positions.find(([x,z]) => Math.abs(x-bb.minX)<1 && Math.abs(z-bb.maxZ)<1);
+    const nearMaxMin = positions.find(([x,z]) => Math.abs(x-bb.maxX)<1 && Math.abs(z-bb.minZ)<1);
+    const nearMaxMax = positions.find(([x,z]) => Math.abs(x-bb.maxX)<1 && Math.abs(z-bb.maxZ)<1);
+    if(nearMinMin && nearMinMax && nearMaxMin && nearMaxMax){
+      cornerGuid = guid;
+      cornerAssets = pls;
+      break;
+    }
+  }
+  if(!cornerGuid){
+    showMsg('Impossible de détecter les 4 coins. Ta pièce doit avoir exactement 4 coins aux 4 angles.', 'err');
+    return;
+  }
+
+  // Trouver le wall : GUID avec plusieurs rotations différentes, sur le périmètre
+  let wallGuid = null;
+  let wallAssets = null;
+  for(const [guid, pls] of byGuid){
+    if(guid === cornerGuid) continue;
+    if(pls.length < 4) continue;
+    // Compter les rotations distinctes
+    const rots = new Set(pls.map(p => p.rot));
+    if(rots.size < 2) continue;
+    // Vérifier qu'ils sont sur le périmètre (au moins un touche X=minX, X=maxX, Z=minZ ou Z=maxZ)
+    const onPerimeter = pls.every(p =>
+      Math.abs(p.x-bb.minX)<1 || Math.abs(p.x-bb.maxX)<1 ||
+      Math.abs(p.z-bb.minZ)<1 || Math.abs(p.z-bb.maxZ)<1
+    );
+    if(onPerimeter){
+      wallGuid = guid;
+      wallAssets = pls;
+      break;
+    }
+  }
+  if(!wallGuid){
+    showMsg('Impossible de détecter les murs droits. Assure-toi d\'avoir au moins 4 murs droits avec rotations différentes.', 'err');
+    return;
+  }
+
+  // Trouver le floor : le GUID restant avec le plus d'instances, à l'intérieur
+  let floorGuid = null;
+  let floorAssets = null;
+  let maxCount = 0;
+  for(const [guid, pls] of byGuid){
+    if(guid === cornerGuid || guid === wallGuid) continue;
+    if(pls.length > maxCount){
+      maxCount = pls.length;
+      floorGuid = guid;
+      floorAssets = pls;
+    }
+  }
+  if(!floorGuid){
+    showMsg('Impossible de détecter le sol. Ajoute des tuiles de sol à l\'intérieur.', 'err');
+    return;
+  }
+
+  // Détecter le CELL_SCALE (step entre murs consécutifs)
+  // Regarder les murs sur un côté (ex: south wall où Z est constant à minZ)
+  const southWalls = wallAssets.filter(p => Math.abs(p.z - bb.minZ) < 1).sort((a,b) => a.x - b.x);
+  let cellScale = 1;
+  if(southWalls.length >= 2){
+    const steps = [];
+    for(let i=1; i<southWalls.length; i++){
+      const step = southWalls[i].x - southWalls[i-1].x;
+      if(step > 0.5) steps.push(step);
+    }
+    if(steps.length){
+      // Prendre le step le plus fréquent
+      const stepCount = new Map();
+      steps.forEach(s => stepCount.set(s, (stepCount.get(s) || 0) + 1));
+      cellScale = [...stepCount.entries()].sort((a,b) => b[1]-a[1])[0][0];
+    }
+  }
+  cellScale = Math.max(1, Math.round(cellScale));
+
+  // Détecter les rotations par côté depuis les murs empiriques
+  // Un mur est sur le côté sud si son Z est proche de minZ, etc.
+  const rotBySide = { south: 0, west: 6, north: 12, east: 18 };  // défaut fallback
+  const detectSideRot = (side) => {
+    let candidates = [];
+    if(side === 'south') candidates = wallAssets.filter(p => Math.abs(p.z - bb.minZ) < 1);
+    else if(side === 'north') candidates = wallAssets.filter(p => Math.abs(p.z - bb.maxZ) < 1);
+    else if(side === 'west') candidates = wallAssets.filter(p => Math.abs(p.x - bb.minX) < 1);
+    else if(side === 'east') candidates = wallAssets.filter(p => Math.abs(p.x - bb.maxX) < 1);
+    if(!candidates.length) return null;
+    const rots = candidates.map(p => p.rot);
+    const rotCounts = new Map();
+    rots.forEach(r => rotCounts.set(r, (rotCounts.get(r)||0)+1));
+    return [...rotCounts.entries()].sort((a,b) => b[1]-a[1])[0][0];
+  };
+  const detectedSouth = detectSideRot('south');
+  const detectedWest  = detectSideRot('west');
+  const detectedNorth = detectSideRot('north');
+  const detectedEast  = detectSideRot('east');
+  if(detectedSouth !== null) rotBySide.south = detectedSouth;
+  if(detectedWest  !== null) rotBySide.west  = detectedWest;
+  if(detectedNorth !== null) rotBySide.north = detectedNorth;
+  if(detectedEast  !== null) rotBySide.east  = detectedEast;
+
+  // Détecter les rotations des 4 coins
+  const cornerRotByCorner = { sw: 0, nw: 6, ne: 12, se: 18 };
+  const detectCornerRot = (cornerX, cornerZ) => {
+    const c = cornerAssets.find(p => Math.abs(p.x-cornerX)<1 && Math.abs(p.z-cornerZ)<1);
+    return c ? c.rot : null;
+  };
+  const rotSW = detectCornerRot(bb.minX, bb.minZ);
+  const rotNW = detectCornerRot(bb.minX, bb.maxZ);
+  const rotNE = detectCornerRot(bb.maxX, bb.maxZ);
+  const rotSE = detectCornerRot(bb.maxX, bb.minZ);
+  if(rotSW !== null) cornerRotByCorner.sw = rotSW;
+  if(rotNW !== null) cornerRotByCorner.nw = rotNW;
+  if(rotNE !== null) cornerRotByCorner.ne = rotNE;
+  if(rotSE !== null) cornerRotByCorner.se = rotSE;
+
+  // Construire le wall set
+  const makeUnitSlab = (guid) => {
+    return [{guid, x:0, y:0, z:0, rot:0}];
+  };
+  const makeUnitCode = (guid) => encodeSlab([{guid, x:0, y:0, z:0, rot:0}]);
+
+  const wallSet = {
+    name,
+    variants: {},
+    cellScale,       // Détecté automatiquement (1 ou 2)
+    rotBySide,       // Rotations par côté détectées
+    cornerRotByCorner  // Rotations de coins détectées
+  };
+
+  // Wall (utilisé pour straight_ew, straight_ns)
+  const wallCode = makeUnitCode(wallGuid);
+  wallSet.variants.straight_ew = { placements: makeUnitSlab(wallGuid), originalCode: wallCode, assetCount: 1 };
+  wallSet.variants.straight_ns = { placements: makeUnitSlab(wallGuid), originalCode: wallCode, assetCount: 1 };
+
+  // Corner (utilisé pour les 4 coins)
+  const cornerCode = makeUnitCode(cornerGuid);
+  wallSet.variants.corner_ne = { placements: makeUnitSlab(cornerGuid), originalCode: cornerCode, assetCount: 1 };
+  wallSet.variants.corner_nw = { placements: makeUnitSlab(cornerGuid), originalCode: cornerCode, assetCount: 1 };
+  wallSet.variants.corner_se = { placements: makeUnitSlab(cornerGuid), originalCode: cornerCode, assetCount: 1 };
+  wallSet.variants.corner_sw = { placements: makeUnitSlab(cornerGuid), originalCode: cornerCode, assetCount: 1 };
+
+  // Floor
+  const floorCode = makeUnitCode(floorGuid);
+  wallSet.variants.floor = { placements: makeUnitSlab(floorGuid), originalCode: floorCode, assetCount: 1 };
+
+  // Ajouter au store
+  wallSets.push(wallSet);
+  const newIdx = wallSets.length - 1;
+  activeSetIdx = newIdx;
+  saveWallSets();
+  renderWallSetsList();
+  updateActiveWallSetSelect();
+  updateStatusBar();
+
+  showMsg(`✅ Wall set « ${name} » créé et activé ! 7 variants générés (2 murs + 4 coins + 1 sol). Retourne à l'onglet Intérieur pour dessiner.`, 'ok');
+
+  // Résumé technique
+  const summary = document.createElement('div');
+  summary.className = 'msg ok';
+  summary.style.marginTop = '8px';
+  summary.style.fontFamily = 'monospace';
+  summary.style.fontSize = '11px';
+  summary.innerHTML = `
+    <b>Détection assets :</b><br>
+    • Mur : ${wallGuid} (${wallAssets.length}×)<br>
+    • Coin : ${cornerGuid} (${cornerAssets.length}×)<br>
+    • Sol : ${floorGuid} (${floorAssets.length}×)<br>
+    <b>Cell scale :</b> ${cellScale} tile(s) par cellule<br>
+    <b>Rotations par côté :</b> Sud=${rotBySide.south} · Ouest=${rotBySide.west} · Nord=${rotBySide.north} · Est=${rotBySide.east}<br>
+    <b>Rotations coins :</b> SW=${cornerRotByCorner.sw} · NW=${cornerRotByCorner.nw} · NE=${cornerRotByCorner.ne} · SE=${cornerRotByCorner.se}<br>
+    <b>Bounding box :</b> ${(bb.maxX-bb.minX).toFixed(0)}×${(bb.maxZ-bb.minZ).toFixed(0)} tiles
+  `;
+  msgEl.appendChild(summary);
 }
 
-async function sendBuilding(i){
-  if(typeof TS==='undefined') return;
-  const s=pendingSlabs[i];
-  try{
-    const res=await TS.slabs.sendSlabToHand(s.code);
-    if(res&&res.error) throw new Error(res.error);
-    // Griser le bouton
-    const btn=document.getElementById('steps-list').querySelectorAll('.step-btn')[i];
-    btn.textContent='✅ Posé !'; btn.disabled=true;
-  }catch(e){ alert('Erreur : '+e.message); }
+function inspectSlab(){
+  const code = document.getElementById('inspect-input').value.trim();
+  if(!code){ return; }
+  try {
+    const placements = decodeSlab(code);
+    const bb = boundingBox(placements);
+    const byGuid = new Map();
+    for(const p of placements) byGuid.set(p.guid, (byGuid.get(p.guid)||0) + 1);
+    let html = `
+      <div><b>Nombre d'assets total :</b> ${placements.length}</div>
+      <div><b>Assets uniques (GUIDs) :</b> ${byGuid.size}</div>
+      <div><b>Bounding box :</b> X ${bb.minX.toFixed(2)} → ${bb.maxX.toFixed(2)} ·
+        Y ${bb.minY.toFixed(2)} → ${bb.maxY.toFixed(2)} ·
+        Z ${bb.minZ.toFixed(2)} → ${bb.maxZ.toFixed(2)}</div>
+      <div><b>Dimensions :</b> ${(bb.maxX-bb.minX+1).toFixed(0)} × ${(bb.maxZ-bb.minZ+1).toFixed(0)} tiles</div>
+      <br><b>Composition par GUID :</b>
+      <table style="width:100%;margin-top:6px;font-family:monospace;font-size:11px">
+        <tr><th align="left">GUID</th><th align="right">Instances</th></tr>
+    `;
+    const sorted = [...byGuid.entries()].sort((a,b)=>b[1]-a[1]);
+    for(const [guid, count] of sorted){
+      html += `<tr><td style="padding:2px 0">${guid}</td><td align="right">${count}</td></tr>`;
+    }
+    html += '</table>';
+    document.getElementById('inspect-body').innerHTML = html;
+    document.getElementById('inspect-result').style.display = 'flex';
+  } catch(e){
+    document.getElementById('inspect-body').innerHTML = `<div class="msg err">Erreur : ${escapeHtml(e.message)}</div>`;
+    document.getElementById('inspect-result').style.display = 'flex';
+  }
+}
+function escapeHtml(s){ return String(s).replace(/[<>&"']/g, c => ({
+  '<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&#39;'
+})[c]); }
+function showStatus(txt, cls){
+  const el = document.getElementById('sb-msg');
+  el.textContent = txt;
+  el.style.color = cls==='ok' ? 'var(--accent-green)' :
+                    cls==='warn' ? 'var(--accent-yellow)' :
+                    cls==='err' ? 'var(--danger)' : 'var(--accent-blue)';
+}
+function gotoTab(name){
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab===name));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id==='tab-'+name));
 }
 
-// Init
-async function handleSymbioteStateChange(evt){
-  if(evt.kind==='hasInitialized'){await loadLibrary();renderLib();renderPickers();}
-}
-if(typeof TS==='undefined'){
-  window.addEventListener('DOMContentLoaded',()=>{renderLib();renderPickers();});
-}
+document.addEventListener('DOMContentLoaded', () => {
+  loadWallSets();
+  document.querySelectorAll('.tab-btn').forEach(btn => { btn.onclick = () => gotoTab(btn.dataset.tab); });
+  document.querySelectorAll('.tool-btn').forEach(b => { b.onclick = () => selectTool(b.dataset.tool); });
+  document.querySelectorAll('.brush-btn').forEach(b => { b.onclick = () => selectBrush(b.dataset.brush); });
+  document.getElementById('active-wallset').addEventListener('change', e => {
+    const v = parseInt(e.target.value);
+    activeSetIdx = v >= 0 ? v : -1;
+    saveWallSets();
+    updateStatusBar();
+    renderWallSetsList();
+    updateStats();
+    render();
+  });
+  document.getElementById('grid-w').oninput = e => {
+    gridW = Math.max(4, Math.min(200, parseInt(e.target.value) || 40));
+    initGrid();
+    resizeCanvas();
+    updateStatusBar();
+    updateStats();
+  };
+  document.getElementById('grid-d').oninput = e => {
+    gridD = Math.max(4, Math.min(200, parseInt(e.target.value) || 40));
+    initGrid();
+    resizeCanvas();
+    updateStatusBar();
+    updateStats();
+  };
+  document.getElementById('zoom').oninput = e => {
+    cellSize = parseInt(e.target.value);
+    document.getElementById('zoom-val').textContent = cellSize;
+    resizeCanvas();
+  };
+  const c = document.getElementById('canvas');
+  c.addEventListener('click', onCanvasClick);
+  c.addEventListener('dblclick', onCanvasDoubleClick);
+  c.addEventListener('mousedown', onCanvasMouseDown);
+  c.addEventListener('mousemove', onCanvasMouseMove);
+  c.addEventListener('mouseup', onCanvasMouseUp);
+  c.addEventListener('mouseleave', onCanvasLeave);
+  document.addEventListener('keydown', e => {
+    if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA') return;
+    const map = {'1':'polyline','2':'drag','3':'segment','4':'rectangle','5':'erase','6':'door','7':'window'};
+    if(map[e.key]) selectTool(map[e.key]);
+    if(e.key==='w'||e.key==='W') selectBrush('wall');
+    if(e.key==='f'||e.key==='F') selectBrush('floor');
+    if(e.key==='Escape'){ clickPoints=[]; rectStart=rectEnd=null; render(); }
+    if((e.ctrlKey||e.metaKey) && e.key==='z'){ e.preventDefault(); undo(); }
+    if((e.ctrlKey||e.metaKey) && (e.key==='y' || (e.shiftKey && e.key==='Z'))){ e.preventDefault(); redo(); }
+  });
+  initGrid();
+  pushHistory();
+  resizeCanvas();
+  updateActiveWallSetSelect();
+  renderWallSetsList();
+  renderVariantGrid();
+  updateStatusBar();
+  updateStats();
+  render();
+  showStatus('Prêt. Commence par créer un Wall Set dans la Bibliothèque.', 'ok');
+});
 </script>
 </body>
 </html>

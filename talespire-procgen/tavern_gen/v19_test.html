@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>V19 · Espacements exacts</title>
+<style>
+body{font-family:system-ui,sans-serif;background:#1a1611;color:#e8dfc9;padding:24px;max-width:1000px;margin:0 auto}
+h1{color:#d4a13a;border-bottom:2px solid #5c3a1a;padding-bottom:8px}
+h2{color:#c07a2a;margin-top:24px}
+.card{background:#2a2418;border:1px solid #4a3820;border-radius:8px;padding:20px;margin:20px 0}
+textarea.code{width:100%;height:120px;background:#0f0d08;color:#a8c060;border:1px solid #5c3a1a;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;white-space:nowrap;overflow:auto}
+button.copy{background:#5c3a1a;color:#e8dfc9;border:none;padding:12px 24px;border-radius:4px;cursor:pointer;margin-top:8px;font-size:15px;font-weight:600}
+button.copy:hover{background:#7c4a2a}
+.info{background:#1a2a1a;border-left:4px solid #a8c060;padding:14px;margin:16px 0;border-radius:4px;font-size:14px}
+table{border-collapse:collapse;margin:10px 0}
+td,th{border:1px solid #4a3820;padding:6px 10px;font-size:13px}
+th{background:#3a2a18;color:#d4a13a}
+</style></head><body>
+<h1>V19 · Espacements mesurés dans la référence</h1>
+<div class="info">
+Bilal a repéré les problèmes d'espacement. Mesures effectuées sur la Large Tavern décodée :
+<table>
+<tr><th>Asset</th><th>Pas mesuré</th><th>Correction</th></tr>
+<tr><td>Tavern Wall 01 / Small / Window</td><td>2.0 tiles</td><td>Placement au pas de 2 (avant : 1 → chevauchement 50%)</td></tr>
+<tr><td>Murs : hauteur Y</td><td>0.54</td><td>Murs posés à Y+0.5 au-dessus du sol (avant : Y+0)</td></tr>
+<tr><td>Tavern Floor 01</td><td>1.0</td><td>Inchangé (1×1)</td></tr>
+<tr><td>Mobilier</td><td>Y=0.5</td><td>Posé à +0.5 (sur le sol, pas dedans)</td></tr>
+</table>
+Largeur/profondeur forcées PAIRES pour aligner les murs 2-wide.
+</div>
+<h2>Taverne 8×6×2</h2>
+<div class="card">
+<textarea class="code" id="c0" readonly onclick="this.select()">H4sIAKenX2oC/1XVTWyURRgH8HnfXbulaSJIJNlaaD0ASlYtxBBMjP3QVqm0xgO6fKaFMQGNUAnKQaNNuQASHAglEtCgGBPFwKaiQhkJB9CJ0bJAMHyIHjChjYZiOgeFi/PM/7+J7uXJzP/3zs4+M2925PbIuVRNUUp1lCfu+uTQeHtp3uuHl+/99PkkzI0+Oqtq+oH1rR+33zdw42DV7EyYu7b51dojyam2b7O7t95/dN+lNMytvbHq3q4T7zw5dGvjtvqxm4fk2cZd79b9cnzFwn1VO1Zun10/tTrM/drU/fCKZxY999HkXSPzO+esfyDMDZ+faH5zoK9taMtvlx/vm/tTNsxtmty2eMMLDy3cM2nryTv//PGBzHW/V7Pm2Zd3t5680vrK9dNfPN0U5pZdW/nW7QV1iz5/bO9XG2p2vib7u9xcGrhT19xx8O9Hmhq7XuqVZ8eHN20b613SObiz72Lpu79+lv11zTz2w4Gaoy1HOqv3nOnJdMjveLt3xsjcW1Navu4entU4MHS37PnE6p6z65bnWr8c21+79PsX1/SEuWnpnxd+H/zxqdIbGycGs9PWyXrfbN9x9YkHL7Z/9uGc6+OX6qtlTiunWqqUMolTp+5RmWIqtT9rklI2jENaykruE1Tx/bUy/351pYorJBhLlbHh2HDsOfYcq/CcUqiyruJ6Sv0nzzNvkO+F1/SaXtNrek3v6B29Y+6Yyz4llyp5HOc5bsC+JTfMDXPD3DP3zD1zz7yYIpcquVTZr1TZb8zzzIO39Jbe0lt6S2/TSj+cwvM4Px3OCWNUFc+pP7FprOGKlbIYxxrG5Rz6X86h/+Uc+l/Oof8hzzOP3wev6TW9ptf0mt7RO3pH7+gdvaMvJPBScR7wUnG/4GMezwfe0Bt6Q2/oDb2n9/Se3tN7ek9fTOGl4vzgpeL84GMezw/e0lt6S2/pbVrpTzg/1Z/I+yVV3reWBnnvKvPhXBvwHlacjDXP1fE9LCSoiuvJeYdPRqp4FdeRKawj548c66m4rvrfB/dBcV2lcB+Uwn1QCvcBH02v6TW9ptf0jt7RO3pH7+gdfSGBl4r7oPh74WOeZx7vA7yhN/SG3tAbek/v6T29p/f0nr6YwkvFfYCXivug+D7CW3pLb+ktvaW39OGfLIMnRjPo/2gG/R/NoP8hzzOP/YfX9Jpe02t6Te/oHb2jd/SO3tEXEnip6D+8VPQfPuax//CG3tAbekNv6D29p/f0nt7Te/piCi8V/YeXiv7Dxzz2H97SW3pLb+ltWlkf/3vyXoWa/AtBoIhIdggAAA==</textarea>
+<button class="copy" onclick="doCopy('c0',this)">📋 Copier</button>
+</div><h2>Taverne 12×8×2</h2>
+<div class="card">
+<textarea class="code" id="c1" readonly onclick="this.select()">H4sIAKenX2oC/1XWXYhVVRjG8XU+OjOJkBYJx6x9uthKnqk0IgoiZywt7Wh0UU2lorUCK1ITy4uihmlfpIltRUWxwjKEMvJg9qU78aKPRdQ0FYZW1oWBS4o0XBelN+13vX+J5uZh1rN/23Gt9c6ZkbMj31bNeGPM7NEzF7y5+9Ss7nVPvbtg2667K+Wav35y4/IdywfemHXZ8ImdjSm1cu3YC0+M3VM5NPOT+qY1V+7bfqRarj164qFL5x14/ta9p1etnXTyz91iWxtfmvjzxwvnbG+sX7RuyqRLWuXaL9PmX7Pwjs5dr4/bOHLD3KnL+8u1/d+dmfHM8IqZe1/89ejNK6Z/XS/XVo+bec/Ke6+es+XCNQfP/fP7q73l2vyXxyy987FNAwd/HHj8+Kfv3L64XHvw2KJnz944sfP2TdveXzlmw5Py3NEZ3eFzE2fM3vn3tdNa8x5Z0lOundq/eu3JJffP3bxhxeHu53/9ID/fvPSjL3eM2de/Z27vls8W12bL/+O5JVeMTD89vv+D+fsnt4b3XiTvO/Dw4m+WLegZeO/kK2Mf+OK+pYfKtQnVP77/bfNXt3WfXnVmc33CMnnfh+vW/3TLVYdnvfXa1OOnjkzqlTVrnOlvGDNYdebQxabWqjljmkOVwWq3bpqmbLt16bOapjw/NFbWt/aez9LF1Oe39vYnxvRVtJeUXlJ6Selz+pw+p8/pA32gD/SBfrCqvaT0ktJLSl/QF/QFfUHfqmkvKb2k9JLSZ/QZfUaf0Rv5/xpN2RfDfhj2w7Afxvz3/FBK35Z9VG/xFm/xFm/xFm/xDu/wjt7Rx/027HeD80g5jzb7bdjvBueRch5t9tuw3w3OI+U82uy3Yb8bnEfKebTZb8N+NziPlPNos9+G/W5wHinn0Wa/Dfvd4DxSzqPsPb2n95yX57w85+U5L4/3+E5dvaR4SfGS4mPfpE/oU/o2cxDfp/NjyznR7zVNnJOhiqTMU6cev69Llt+Xv0LK52IvcyZ9/L4uqf1oj96v0R69X6M9er9Ge/R+lX2TPqFP6ePPp97iLd7iLd7iLd7iHd7hHd7hHd7hHd7h+yrqJfX+qZfU3wfqY5/Qp/TxfqrP8Tk+x+f4HJ/jc3zAB3zAB3zAB3zAB/xgVb2k3m/1kvr7Rn3sE/qUPt5/9QW+wBf4Al/gC3yBb9XUS+p8qJfU31fqY5/Qp/RxftRn+Ayf4TN8hs/wGd7jPd7jPd7jPd7jPb5TVy+p86VeUudLfewT+pQ+3r9yTox8DmnmlfLzqT1Ul88nSflc0l4zr3Tr2mvK87IeP8/KlPfpuj4vz+m6Pi/vkbTMq+Nzrq+iafh54vwaU5OU5018ryzp++L8xl7fZ+L7zf++dJ4N7zVG57n8atIn9Cl9nGf9sniLt3iLt3iLt3iHd3iHd3iHd3iHd/i+inpJnWfD/qiPfZM+oU/p4zyrz/E5Psfn+Byf43N8wAd8wAd8wAd8wAf8YFW9pM6zekmdZ/WxT+hT+jjP6gt8gS/wBb7AF/gC36qpl9R5Vi+p86w+9gl9Sh/nWX2Gz/AZPsNn+Ayf4T3e4z3e4z3e4z3e4zt19ZI6z+oldZ7Vxz6hT+nb5/9lTb3/vqb339f0/pd9kz6hT+nj/Vdv8RZv8RZv8RZv8Q7v8A7v8A7v8A7v8H0V9ZJ6/9VL6v1XH/uEPqWP9199js/xOT7H5/gcn+MDPuADPuADPuADPuAHq+ol9f6rl9T7rz72CX1KH++/+gJf4At8gS/wBb7At2rqJfX+q5fU+68+9gl9Sh/vv/oMn+EzfIbP8Bk+w3u8x3u8x3u8x3u8x3fq6iX1/quX1PuvPvYJfUrf1r8T5e86+Vwq+9q/BkkXMtYOAAA=</textarea>
+<button class="copy" onclick="doCopy('c1',this)">📋 Copier</button>
+</div>
+<script>
+function doCopy(id,btn){
+  const ta=document.getElementById(id);ta.select();ta.setSelectionRange(0,999999);
+  try{const ok=document.execCommand('copy');btn.textContent=ok?'✓ Copié !':'❌ Ctrl+A+C';setTimeout(()=>btn.textContent='📋 Copier',3000)}
+  catch(e){btn.textContent='❌ Ctrl+A+C'}
+}
+</script></body></html>

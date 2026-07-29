@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>V16 · Assets nommés</title>
+<style>
+body{font-family:system-ui,sans-serif;background:#1a1611;color:#e8dfc9;padding:24px;max-width:1000px;margin:0 auto}
+h1{color:#d4a13a;border-bottom:2px solid #5c3a1a;padding-bottom:8px}
+h2{color:#c07a2a;margin-top:24px}
+.card{background:#2a2418;border:1px solid #4a3820;border-radius:8px;padding:20px;margin:20px 0}
+textarea.code{width:100%;height:120px;background:#0f0d08;color:#a8c060;border:1px solid #5c3a1a;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;white-space:nowrap;overflow:auto}
+button.copy{background:#5c3a1a;color:#e8dfc9;border:none;padding:12px 24px;border-radius:4px;cursor:pointer;margin-top:8px;font-size:15px;font-weight:600}
+button.copy:hover{background:#7c4a2a}
+.info{background:#1a2a1a;border-left:4px solid #a8c060;padding:14px;margin:16px 0;border-radius:4px;font-size:14px}
+</style></head><body>
+<h1>V16 · Avec assets nommés (Bar + toit tuilé + torches)</h1>
+<div class="info">
+<b>Nouveautés</b> :
+<ul>
+<li><b>🎯 Bar Counter</b> (cab8254d) garanti dans chaque taverne — comptoir en 2 tiles contre le mur nord</li>
+<li><b>🎯 Village Roof Side End 02</b> (baaf3839) — vraies tuiles décoratives sur le bord du toit</li>
+<li><b>🎯 Floor Torch</b> (3ff3d2ba) — 4 torches aux coins intérieurs pour l'éclairage</li>
+<li><b>🎯 Wall Only With Window</b> (7c5edd5b) — alterné avec le mur plein pour varier la façade</li>
+</ul>
+</div>
+<h2>🍺 Taverne (avec bar) · 10×8×2</h2>
+<div class="card">
+<textarea class="code" id="c0" readonly onclick="this.select()">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</textarea>
+<button class="copy" onclick="doCopy('c0',this)">📋 Copier</button>
+</div><h2>🏠 Maison · 8×6×2</h2>
+<div class="card">
+<textarea class="code" id="c1" readonly onclick="this.select()">H4sIAJBVXmoC/1WUf2iVVRjHz/vei7vOS3dtCF77sdEvQ661QMqhsl+1qbtzzNQuLmLVW9y0lolg1IiXxcA1o3docg2F5g+06Sq6Kswdxi0aHUZtc4W0QgwnpU2h8kDp+nWe83wvq/vPh+d5Pufc857znDN6c/SsK+YLIXL3Hin47XS2bqjBGWzvKXrfMblPp+dErz5//rH+Jb/q68fumaZcOtkQq59YXr9/uHelCH9f5prcuv7u2P03mtccvth1d/Gf84cot/2XK7eNjHU2ftg59XLbtY77aOyZieuVr3dsrflk54XJFVsf+ipsciXdj6566+vdazItK5OPL1rQRd6OopoN2zYuWb13btfQzI3pA0Umt/adwnTD5j3VQ99Vb5n6/ER9uckNl4+0VbzU0tSfrWt2RtOFNLbl/FPtN5ctTPZV7Du1rbDnlUKTm6z8uGNmYWXdoT8eLC9rfO5p+t5Ff4WyA8cONvQNbz89c6T1Eq25frTz1CbvXNI/u7l7eeKDAsrtePHVgcV7bq16r6I0U/btpQOUq1j20Zna6MGanvXv/u5l470LTO72fTtze1MTtT29t9yVXj3vMK1l6p+Bz368urvp5NrjdQ+MlFyksYPPto61PVlQnb2yP7rpiyfSrSYnd419s/RQe/LNF9ofWf9z8x00drDxznOTtT81vR378uhE3zNbKKcdLcZjVaGomcgvEqGjzuWQHxPigmA+7PhuEPHDfzth0Vrih9eZQbk5QnhmbJVhymVSLOIcE+fRfNEqypq670jr+XQ8Js+xoY1zxRwb2ljEOTY08eUQj7e0MY+3tDGPt7Qxj7c08XiBndOQ1kn0o8xcMZPWa+ul9B3se/A9+B58D74HX8FX8BV8BV/BV/ATDvtE8onkE8m39Tjqxg/gB/AD+AH8AH4AX8PX8DV8DV/D1/BTLvtEPk/2ieTbehx140v4Er6EL+FL+BL+G85/+kP4TuAw7fkaKuqPUj+sHaZH52c9pj1H65nztx5TiNnxxATm1WAK8wuRn5eZwP/YvjWUoBCz/8PzMTWYwjoE1uGBCawnAMnjeZmrbF8LMUArKaFzor6lfmAmnED8EKF7tUv4kZxZRybC35aJcL9mItyvmQj3q6nHUbf9yr6HWCFWiBMOx0TuJ44DxBqxRpxyOSbyeXNM5PPm9RD5vHk90s3PL8w7IcRr5nvEXCGWuiuc8Zj434+/i+4/k7+L3w0+r3y/zL4zHnwPfv698eAr+Aq+gq/gK/gKPvcLk+8h+0S+h+xzv/B38b6xH8AP4AfwA/gavoav4Wv4Gr6Gz/06+56mXPZT6J/8u8p9S/vNvoQv4Uv4Er6Ez/3N5P3n/uP3E/U46nb/2ffge/A9+B58D76Cr+Dn+1vBV/AVfL5fTN7//H1g39bjqJfyveH9Zz9/jwL4AfwAvoav4Wv4Gr6Gr+Hz/Wby/rOfctm39Tjqdv/Zl/AlfAlfwpdufn/suYSugf8Czbk8PiYJAAA=</textarea>
+<button class="copy" onclick="doCopy('c1',this)">📋 Copier</button>
+</div><h2>🛒 Boutique · 7×6×1</h2>
+<div class="card">
+<textarea class="code" id="c2" readonly onclick="this.select()">H4sIAJBVXmoC/1WTXUhUURDHz93dPrStRMlcFbaS6ION6qWUAlPxq82gyFosZK0rmEGYRD5YeJMCzcgrlCKYqVmYGS2KURq6D0b3oaykhwzCsB6siKwulJrZmTv/jdqXP/+Z37lndmbO8PTwC5uIEELsvVOzdO3Unp3t49UJkb+WDSgyltcmYjTf6vSG4lsTXz5GJ9hkbOW1V9uenM1MqWxtzW1vGUqjWN/I9+TyypLU7qqx0e0lm586ZKwsIjW3dP+G7Pqw6oGZqU9XF8rYxdrxwkvNs1m3B6vGel8m5tPZ3bXhRd7iyykDr1OOvRvqylwvYwff5J+eTozd1ZnU2FsaXneCvjeaHKiciU3OuP5z46YVOYUFYTLWfz6+ZXFcXMZN79EzFcUVY1Tzmll7z4OONm/no5P3Zm7439MdMXMFffcnWryDn7uqy38fniMuKfFuX5qzLbVu35Ufao+rNVrG4hurgvW+kbS61iWrirIXtRPXf8T/7PihBSk9H5qceY8PFFF9W0+VTfu/rcs5l9XQfKGmu5m4LYpD+KM0h0d5KFriNFuTDE4uD9rTlUnxNlYTHdKXRGnzVMnumC+EqbCSFy72pMLKa4rPZin9daE52Uu1fDCSvVTLCxd7qY5S+Z2AU9g9CvGUnLDzVyfsdB9pKB6MRN6FvJvqYV4Fr4JXwavgVfAGeAO8Ad4Ab4A3wHsU5kmJJyWelHgr70Je8jp4HbwOXgevg9fBm+BN8CZ4E7wJ3gTvszFPSjwp8aTEW3kX8m7MS2iKrrAaNC+35rDm6cY8ECf1gDOh1pykCpxToTrOW3OXWo19IJLq+EoHooSgZXtOyyoCuCvg4LkGHDzXgIPnKvMu5K26mVfhDXgD3qOwJ+W+s9fhTXgT3mdjT8p94/tJuW98v5W37hPyfYj/flx3aE/5fwrxzzv422/W0HvhfWQ+9H5U8AZ4A7wB3gBvgDfA83xYeR+Z96DvHszBylt9YV4Hr4PXwevgdfAm+NB7N8Gb4EPv3gTP+8HKfWWe3zvyLuStekyF4n8AH4LDm8oFAAA=</textarea>
+<button class="copy" onclick="doCopy('c2',this)">📋 Copier</button>
+</div>
+<script>
+function doCopy(id,btn){
+  const ta=document.getElementById(id);ta.select();ta.setSelectionRange(0,999999);
+  try{const ok=document.execCommand('copy');btn.textContent=ok?'✓ Copié !':'❌ Ctrl+A+C';setTimeout(()=>btn.textContent='📋 Copier',3000)}
+  catch(e){btn.textContent='❌ Ctrl+A+C'}
+}
+</script></body></html>

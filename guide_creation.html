@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide de création de personnage — Armonia</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+
+  --step1: #4a7a9a;
+  --step2: #6a8a4a;
+  --step3: #b8a050;
+  --step4: #c47030;
+  --step5: #a04a5a;
+  --step6: #7a4a8a;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 900px; margin: 0 auto; }
+
+header.title-bar {
+  text-align: center;
+  padding: 22px;
+  background: linear-gradient(135deg, #fffaf0 0%, #f0e6cf 50%, #fffaf0 100%);
+  border: 3px double var(--primary);
+  border-radius: 8px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 30px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  color: var(--accent);
+  font-style: italic;
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin: 16px 0;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.intro-box strong { color: var(--primary); }
+
+.step-card {
+  background: var(--paper);
+  border: 3px solid;
+  border-radius: 12px;
+  padding: 22px;
+  margin: 20px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+.step-card.step1 { border-color: var(--step1); }
+.step-card.step2 { border-color: var(--step2); }
+.step-card.step3 { border-color: var(--step3); }
+.step-card.step4 { border-color: var(--step4); }
+.step-card.step5 { border-color: var(--step5); }
+.step-card.step6 { border-color: var(--step6); }
+
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid;
+}
+.step-card.step1 .step-header { border-bottom-color: var(--step1); }
+.step-card.step2 .step-header { border-bottom-color: var(--step2); }
+.step-card.step3 .step-header { border-bottom-color: var(--step3); }
+.step-card.step4 .step-header { border-bottom-color: var(--step4); }
+.step-card.step5 .step-header { border-bottom-color: var(--step5); }
+.step-card.step6 .step-header { border-bottom-color: var(--step6); }
+
+.step-num {
+  font-size: 44px;
+  font-weight: bold;
+  min-width: 60px;
+  text-align: center;
+}
+.step-card.step1 .step-num { color: var(--step1); }
+.step-card.step2 .step-num { color: var(--step2); }
+.step-card.step3 .step-num { color: var(--step3); }
+.step-card.step4 .step-num { color: var(--step4); }
+.step-card.step5 .step-num { color: var(--step5); }
+.step-card.step6 .step-num { color: var(--step6); }
+
+.step-title h2 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+.step-card.step1 h2 { color: var(--step1); }
+.step-card.step2 h2 { color: var(--step2); }
+.step-card.step3 h2 { color: var(--step3); }
+.step-card.step4 h2 { color: var(--step4); }
+.step-card.step5 h2 { color: var(--step5); }
+.step-card.step6 h2 { color: var(--step6); }
+
+.step-title .duree {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.step-content { font-size: 14px; line-height: 1.6; }
+.step-content h3 {
+  margin: 14px 0 6px 0;
+  color: var(--accent);
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.step-content p { margin: 8px 0; }
+.step-content ul { margin: 8px 0 8px 20px; padding: 0; }
+.step-content li { margin: 4px 0; }
+.step-content strong { color: var(--text); font-weight: bold; }
+
+.astuce-box {
+  background: linear-gradient(135deg, #fffaf0 0%, #f5ebd6 100%);
+  border: 2px dashed var(--accent);
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin: 12px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.astuce-box strong { color: var(--accent); }
+.astuce-box::before {
+  content: '💡 Astuce : ';
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.exemple-box {
+  background: rgba(46, 91, 124, 0.08);
+  border-left: 4px solid var(--primary);
+  padding: 12px 16px;
+  border-radius: 4px;
+  margin: 12px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.exemple-box strong { color: var(--primary); }
+.exemple-box::before {
+  content: '📖 Exemple : ';
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+  margin: 12px 0;
+}
+.choice-card {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 13px;
+}
+.choice-card strong { color: var(--primary); }
+
+.links-box {
+  background: var(--paper);
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 20px 0;
+  text-align: center;
+}
+.links-box a {
+  display: inline-block;
+  margin: 6px 10px;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 14px;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+.links-box a:hover { background: var(--accent); color: white; }
+
+.nav-back {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body>
+<div class="container">
+
+<a href="index.html" class="nav-back">← Retour au sommaire</a>
+
+<header class="title-bar">
+  <h1>📝 GUIDE DE CRÉATION DE PERSONNAGE</h1>
+  <div class="subtitle">6 étapes pour créer ton personnage · même sans connaître le JDR</div>
+</header>
+
+<div class="intro-box">
+  <p>Bienvenue à Armonia ! Ce guide t'accompagne <strong>pas à pas</strong> pour créer ton premier personnage. Aucune connaissance préalable requise. Compte environ <strong>30 à 45 minutes</strong> pour la première fois.</p>
+  <p>Ouvre la <a href="fiche_personnage.html" style="color:var(--accent); font-weight:bold;">fiche de personnage interactive</a> dans un autre onglet — tu la rempliras au fur et à mesure.</p>
+</div>
+
+<!-- STEP 1 -->
+<div class="step-card step1">
+  <div class="step-header">
+    <div class="step-num">1</div>
+    <div class="step-title">
+      <h2>Le concept</h2>
+      <div class="duree">~5 minutes · L'idée qui va guider tout le reste</div>
+    </div>
+  </div>
+  <div class="step-content">
+    <p>Avant de toucher aux chiffres, imagine <strong>qui est ton personnage</strong>. Une phrase suffit.</p>
+    <div class="astuce-box">Une bonne idée = un mot qui décrit + un métier ou origine + un défaut ou secret. <strong>Exemple : « ex-caravanière rusée qui a fui une dette de sang. »</strong></div>
+    <h3>Quelques concepts pour t'inspirer</h3>
+    <div class="choice-grid">
+      <div class="choice-card"><strong>Le fugitif</strong> qui cherche une nouvelle vie</div>
+      <div class="choice-card"><strong>L'érudit</strong> obsédé par un savoir perdu</div>
+      <div class="choice-card"><strong>Le protecteur</strong> avec un secret honteux</div>
+      <div class="choice-card"><strong>L'artisan</strong> qui a fabriqué un objet impossible</div>
+      <div class="choice-card"><strong>L'orphelin</strong> qui cherche ses origines</div>
+      <div class="choice-card"><strong>Le voyageur</strong> chassé de partout</div>
+      <div class="choice-card"><strong>Le mystique</strong> touché par un rêve étrange</div>
+      <div class="choice-card"><strong>Le guerrier</strong> lassé de la guerre</div>
+    </div>
+    <div class="exemple-box"><strong>Lyra Vesken, 25 ans</strong>, ex-marchande roublarde, chassée d'Heledera pour avoir trahi un contrat. Cherche à se refaire une réputation à Etelin.</div>
+  </div>
+</div>
+
+<!-- STEP 2 -->
+<div class="step-card step2">
+  <div class="step-header">
+    <div class="step-num">2</div>
+    <div class="step-title">
+      <h2>La race / lignée</h2>
+      <div class="duree">~5 minutes · Choisir parmi 41 races</div>
+    </div>
+  </div>
+  <div class="step-content">
+    <p>Ouvre la <a href="bibliotheque_races.html" style="color:var(--accent);">Bibliothèque des Races</a>. 41 races et lignées sont disponibles.</p>
+    <h3>Familles principales</h3>
+    <ul>
+      <li><strong>Humains</strong> (5 origines) : les plus versatiles</li>
+      <li><strong>Elfes</strong> (4) : hauts, sylvestres, noirs, Yle</li>
+      <li><strong>Nains</strong> (3) : montagnards, forgefeux, barbes d'acier</li>
+      <li><strong>Hommes-bêtes</strong> (6) : mi-félin, mi-loup, mi-ours, etc.</li>
+      <li><strong>Tengu</strong> (3 castes) : messagers, guerriers, hybrides</li>
+      <li><strong>Lignées spéciales</strong> (10) : réceptacle d'âme, aasimar, dragonné, etc.</li>
+    </ul>
+    <div class="astuce-box">Débutant ? Choisis un <strong>Humain</strong> ou un <strong>Demi-elfe</strong> — plus simple mécaniquement, très adaptable.</div>
+    <div class="exemple-box">Lyra est <strong>Humaine des villes</strong> — pas de bonus magique particulier, mais adaptable et sociable.</div>
+  </div>
+</div>
+
+<!-- STEP 3 -->
+<div class="step-card step3">
+  <div class="step-header">
+    <div class="step-num">3</div>
+    <div class="step-title">
+      <h2>Les 6 caractéristiques</h2>
+      <div class="duree">~8 minutes · Répartir tes points</div>
+    </div>
+  </div>
+  <div class="step-content">
+    <p>Ton personnage a <strong>6 caractéristiques</strong>. Chacune commence à <strong>0</strong>. Tu as <strong>2 points bonus</strong> à répartir à la création (un +1 sur deux caracs différentes, ou un +2 sur une seule).</p>
+    <ul>
+      <li><strong>FOR</strong> (Force) : force brute, combat au corps-à-corps</li>
+      <li><strong>DEX</strong> (Dextérité) : agilité, esquive, tir à distance</li>
+      <li><strong>CON</strong> (Constitution) : endurance, Éther, PV</li>
+      <li><strong>INT</strong> (Intelligence) : savoir, magie, réflexion</li>
+      <li><strong>SAG</strong> (Sagesse) : intuition, perception, volonté</li>
+      <li><strong>CHA</strong> (Charisme) : présence, social, séduction</li>
+    </ul>
+    <div class="astuce-box">Aligne tes caracs sur ton concept ! Un guerrier prend <strong>FOR + CON</strong>. Un mage <strong>INT + CON</strong>. Un voleur <strong>DEX + CHA</strong>.</div>
+    <div class="exemple-box">Lyra la roublarde met <strong>+1 en DEX</strong> et <strong>+1 en CHA</strong>. Elle est agile et charmante.</div>
+  </div>
+</div>
+
+<!-- STEP 4 -->
+<div class="step-card step4">
+  <div class="step-header">
+    <div class="step-num">4</div>
+    <div class="step-title">
+      <h2>Compétences & Affinités magiques</h2>
+      <div class="duree">~10 minutes · Ce que tu sais faire</div>
+    </div>
+  </div>
+  <div class="step-content">
+    <h3>Compétences (18 au total)</h3>
+    <p>Tu as <strong>6 points de Compétence</strong> à répartir. Chaque point met une compétence à +1. Tu peux monter jusqu'à +3 sur une compétence.</p>
+    <p>Compétences classiques : <em>Athlétisme, Discrétion, Perception, Persuasion, Intimidation, Arcanes, Savoir, Nature, Larcin, Survie, Combat rapproché, Combat à distance, Artisanat, Médecine, Etc.</em></p>
+    <h3>Affinités élémentaires (magie)</h3>
+    <p>Tu as <strong>6 points d'Affinité</strong> à répartir entre 5 éléments : <strong>Feu, Eau, Vent, Terre, Chaos</strong>. Max +3 par élément. Tu peux descendre à −2 (antipathie).</p>
+    <div class="astuce-box">Si tu veux jouer un <strong>non-mage</strong>, mets 0 partout et garde les points ailleurs — c'est possible. Le Chaos est utile pour les soins et les mots primordiaux.</div>
+    <div class="exemple-box">Lyra prend : <strong>Larcin +2</strong>, <strong>Persuasion +2</strong>, <strong>Perception +1</strong>, <strong>Discrétion +1</strong>. Affinités : Vent +2, Chaos +1, Feu 0, Eau 0, Terre 0. Elle est vive et fine, sans être une mage.</div>
+  </div>
+</div>
+
+<!-- STEP 5 -->
+<div class="step-card step5">
+  <div class="step-header">
+    <div class="step-num">5</div>
+    <div class="step-title">
+      <h2>Atouts narratifs & Équipement</h2>
+      <div class="duree">~7 minutes · Ce qui te distingue</div>
+    </div>
+  </div>
+  <div class="step-content">
+    <h3>2 Atouts narratifs (Niveau I)</h3>
+    <p>Les Atouts sont des <strong>traits distinctifs</strong> qui donnent un bonus dans certaines situations (Niveau I = +1). Choisis 2 parmi 8 catégories :</p>
+    <ul>
+      <li><strong>Sociale</strong> : « Charme naturel », « Négociateur né »</li>
+      <li><strong>Physique</strong> : « Athlétique », « Rapide comme l'éclair »</li>
+      <li><strong>Mentale</strong> : « Mémoire d'éléphant », « Sang-froid »</li>
+      <li><strong>Magique</strong> : « Sensible à l'Éther », « Rêves prophétiques »</li>
+      <li><strong>Combat</strong> : « Duelliste », « Frappe précise »</li>
+      <li><strong>Métier</strong> : « Ex-marchand », « Ex-soldat »</li>
+      <li><strong>Origine</strong> : « De la Forêt Julia », « Élevé à Etelin »</li>
+      <li><strong>Contact</strong> : « Ami d'un noble », « Contact chez les corsaires »</li>
+    </ul>
+    <h3>Équipement de départ</h3>
+    <p>Choisis parmi : 1 arme principale + 1 secondaire + armure légère + kit de métier + 3d20 pièces d'argent. Voir <a href="bibliotheque_armes.html" style="color:var(--accent);">Armes & Armures</a>.</p>
+    <div class="exemple-box">Lyra prend Atouts « <strong>Ex-marchande</strong> » (bonus commerce) et « <strong>Rapide comme l'éclair</strong> » (bonus initiative). Équipement : dague, arc court, cuir léger, kit de voleuse, 40 pièces.</div>
+  </div>
+</div>
+
+<!-- STEP 6 -->
+<div class="step-card step6">
+  <div class="step-header">
+    <div class="step-num">6</div>
+    <div class="step-title">
+      <h2>Détails finaux & lien avec le monde</h2>
+      <div class="duree">~5 minutes · Rendre ton PJ vivant</div>
+    </div>
+  </div>
+  <div class="step-content">
+    <h3>Statistiques calculées</h3>
+    <ul>
+      <li><strong>Vitalité (PV)</strong> = 10 + CON × 3</li>
+      <li><strong>Éther</strong> = 3 + INT + CON</li>
+      <li><strong>Défense</strong> = 10 + DEX + armure</li>
+      <li><strong>Initiative</strong> = 1d20 + DEX (en combat)</li>
+    </ul>
+    <h3>Nom, apparence, personnalité</h3>
+    <p>Ton personnage a besoin d'un <strong>nom</strong>, d'une <strong>apparence</strong>, et de <strong>2-3 traits de personnalité</strong>. Voir le <a href="generateur_noms.html" style="color:var(--accent);">Générateur de noms</a> si tu manques d'inspiration.</p>
+    <h3>Lien avec le monde</h3>
+    <p>Réfléchis à <strong>2 questions</strong> :</p>
+    <ul>
+      <li>Comment ton PJ s'est retrouvé à Etelin (ou où la campagne commence) ?</li>
+      <li>Un PNJ ou lieu du lore avec qui ton PJ a un <strong>lien</strong> ? (Ami d'enfance de Damaïr, orphelin de Jack et Lyssana, ex-employé d'un marchand de Me'yn Prus…)</li>
+    </ul>
+    <div class="astuce-box">Discute avec le MJ ! Il peut créer des liens sur mesure entre ton PJ et l'univers.</div>
+    <div class="exemple-box">Lyra est arrivée à Etelin il y a 3 mois pour fuir. Golrik le tavernier l'a hébergée sans rien demander — elle lui doit un service. <strong>Personnalité</strong> : rusée, sarcastique, secrètement loyale.</div>
+  </div>
+</div>
+
+<h2>🎲 Comment se fait un jet de dés</h2>
+
+<div class="intro-box">
+  <p style="margin:0 0 8px"><strong>La règle d'or :</strong> <span style="font-size:16px;color:var(--primary)"><strong>1d20 + Caractéristique + Compétence</strong></span> (+ <strong>Spécialité</strong> si le contexte s'y prête) comparé au <strong>DD</strong>.</p>
+  <p style="margin:0 0 8px;font-size:13px;color:var(--muted)">La <strong>caractéristique</strong> (0→+3) porte ton talent brut ; la <strong>compétence</strong> (plafonnée à +3 : Novice/Confirmé/Expert) ton entraînement ; une <strong>Spécialité</strong> ajoute +1 dans un contexte précis. Sans compétence : 1d20 + Caractéristique seule. En magie : <strong>1d20 + INT + Affinité</strong> (sens) ou <strong>+ Arcanes</strong> (script).</p>
+  <p style="margin:0"><strong>Échelle des DD :</strong> Très facile <strong>5</strong> · Facile <strong>10</strong> · Standard <strong>15</strong> · Difficile <strong>20</strong> · Très difficile <strong>25</strong> · Héroïque <strong>30</strong>.</p>
+</div>
+
+<div class="intro-box" style="border-left-color:var(--accent);">
+  <p style="margin:0 0 8px"><strong>Lecture du résultat</strong> — le <strong>1</strong> et le <strong>20</strong> naturels priment toujours, quel que soit le bonus ou le DD (façon <em>Aventures</em>) :</p>
+  <table style="width:100%;border-collapse:collapse;font-size:14px">
+    <tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);width:120px;font-weight:bold;color:var(--danger)">1 naturel</td><td style="padding:5px 8px;border-bottom:1px solid var(--border)"><strong>Échec critique</strong> — tu rates ET une complication grave tombe.</td></tr>
+    <tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);font-weight:bold">&lt; DD</td><td style="padding:5px 8px;border-bottom:1px solid var(--border)">Échec — effet raté, conséquence.</td></tr>
+    <tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);font-weight:bold">DD à DD+1</td><td style="padding:5px 8px;border-bottom:1px solid var(--border)">Réussite à l'arraché — ça passe, mais avec un prix.</td></tr>
+    <tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);font-weight:bold">+2 à +5</td><td style="padding:5px 8px;border-bottom:1px solid var(--border)">Pleine réussite — propre.</td></tr>
+    <tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);font-weight:bold">+6 à +9</td><td style="padding:5px 8px;border-bottom:1px solid var(--border)">Réussite éclatante — bonus, effet en plus.</td></tr>
+    <tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);font-weight:bold">+10 et plus</td><td style="padding:5px 8px;border-bottom:1px solid var(--border)">Coup d'éclat — héroïque (par la marge).</td></tr>
+    <tr><td style="padding:5px 8px;font-weight:bold;color:var(--success)">20 naturel</td><td style="padding:5px 8px"><strong>Réussite critique</strong> — tu réussis avec panache ET un bonus.</td></tr>
+  </table>
+</div>
+
+<div class="intro-box">
+  <p style="margin:0 0 6px"><strong>Leviers (optionnels, à déclarer avant de résoudre) :</strong></p>
+  <ul style="margin:0">
+    <li><strong>Atout narratif</strong> : +1 / +2 / +3 selon son niveau, si la fiction le justifie.</li>
+    <li><strong>Pousser le jet</strong> : +5, mais conséquence aggravée en cas d'échec (1×/scène).</li>
+    <li><strong>Éther</strong> ou <strong>Point d'Écho</strong> : +5 chacun. <em>(Atout et Pousser ne se cumulent pas entre eux.)</em></li>
+  </ul>
+  <p style="margin:8px 0 0"><strong>On ne lance pas</strong> si c'est joué d'avance : réussite automatique quand ton bonus garantit le DD (bonus ≥ DD−1), et pas de jet si même un 19 n'atteint pas le DD (impossible sans levier).</p>
+</div>
+
+<h2 style="color:var(--primary); text-align:center; margin-top:30px;">✅ Ton personnage est prêt !</h2>
+
+<div class="intro-box" style="border-left-color:var(--accent);">
+  <p><strong>Étapes finales</strong> :</p>
+  <ol>
+    <li>Sauvegarde ta fiche en JSON (bouton 💾)</li>
+    <li>Imprime-la si tu joues en présentiel</li>
+    <li>Envoie-la au MJ pour validation</li>
+    <li>Prépare une <strong>histoire courte de 3-4 phrases</strong> à raconter à la table lors de la première session</li>
+  </ol>
+</div>
+
+<div class="links-box">
+  <p><strong>Ressources utiles</strong></p>
+  <a href="fiche_personnage.html">📝 Fiche interactive</a>
+  <a href="bibliotheque_races.html">🧝 Races</a>
+  <a href="bibliotheque_armes.html">⚔️ Armes</a>
+  <a href="bibliotheque_magie.html">✨ Magie</a>
+  <a href="Armonia_Livret_de_regles_V1.pdf">📖 Livret complet</a>
+</div>
+
+<footer>
+  Guide de création de personnage · Système Bilal · Armonia 2026
+</footer>
+
+</div>
+</body>
+</html>

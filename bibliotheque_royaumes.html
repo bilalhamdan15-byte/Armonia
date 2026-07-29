@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royaumes Humains & Heledera</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+
+  --virtus: #6a3a3a;
+  --seaher: #2a6080;
+  --urf: #8a6a30;
+  --heledera: #c4682a;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 24px;
+  background: linear-gradient(135deg, #fffaf0 0%, #e8d8c0 50%, #fffaf0 100%);
+  border: 3px double var(--primary);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 30px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--accent);
+  margin-top: 8px;
+  font-size: 16px;
+}
+header.title-bar .quote {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 12px;
+  font-style: italic;
+}
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.intro-box strong { color: var(--primary); }
+.section-title {
+  font-size: 22px;
+  color: var(--primary);
+  margin: 28px 0 14px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+  letter-spacing: 1px;
+}
+
+.royaume-card {
+  background: var(--paper);
+  border: 3px solid;
+  border-radius: 12px;
+  padding: 22px;
+  margin: 18px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.royaume-card.virtus { border-color: var(--virtus); }
+.royaume-card.seaher { border-color: var(--seaher); }
+.royaume-card.urf { border-color: var(--urf); }
+.royaume-card.heledera { border-color: var(--heledera); }
+
+.royaume-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid;
+}
+.royaume-card.virtus .royaume-header { border-bottom-color: var(--virtus); }
+.royaume-card.seaher .royaume-header { border-bottom-color: var(--seaher); }
+.royaume-card.urf .royaume-header { border-bottom-color: var(--urf); }
+.royaume-card.heledera .royaume-header { border-bottom-color: var(--heledera); }
+
+.royaume-icon {
+  font-size: 52px;
+  width: 70px;
+  text-align: center;
+}
+.royaume-name { flex: 1; }
+.royaume-name h2 {
+  margin: 0;
+  font-size: 26px;
+  letter-spacing: 1px;
+}
+.royaume-card.virtus h2 { color: var(--virtus); }
+.royaume-card.seaher h2 { color: var(--seaher); }
+.royaume-card.urf h2 { color: var(--urf); }
+.royaume-card.heledera h2 { color: var(--heledera); }
+
+.royaume-name .surnom {
+  font-style: italic;
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.royaume-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 14px 0;
+}
+.royaume-block {
+  background: rgba(168, 120, 48, 0.06);
+  padding: 12px 14px;
+  border-radius: 6px;
+  border-left: 4px solid var(--accent);
+}
+.royaume-block h3 {
+  margin: 0 0 6px 0;
+  color: var(--accent);
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.royaume-block p { margin: 6px 0 0 0; font-size: 13px; line-height: 1.5; }
+.royaume-block strong { color: var(--text); }
+
+.royaume-description {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 8px 0;
+}
+.royaume-particularite {
+  background: linear-gradient(90deg, #fff8e8 0%, #fffaf0 100%);
+  border: 1px dashed var(--accent);
+  padding: 12px 14px;
+  border-radius: 6px;
+  margin: 10px 0;
+  font-size: 13px;
+  line-height: 1.5;
+  font-style: italic;
+}
+.royaume-particularite strong { color: var(--accent); font-style: normal; }
+
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--accent);
+  color: white;
+  border-radius: 10px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-right: 4px;
+  margin-top: 4px;
+}
+
+.tensions-table {
+  width: 100%;
+  background: var(--paper);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 12px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.tensions-table th, .tensions-table td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.tensions-table th {
+  background: var(--accent);
+  color: white;
+  letter-spacing: 1px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.tensions-table tbody tr:hover { background: rgba(168, 120, 48, 0.05); }
+.tensions-table tbody tr:last-child td { border-bottom: none; }
+
+.hooks-box {
+  background: var(--paper);
+  border-left: 4px solid var(--accent);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin: 16px 0;
+}
+.hooks-box p {
+  margin: 8px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.nav-back {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 13px;
+}
+.nav-back:hover { text-decoration: underline; }
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+
+@media (max-width: 720px) {
+  .royaume-grid { grid-template-columns: 1fr; }
+}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body>
+<div class="container">
+
+<a href="index.html" class="nav-back">← Retour au sommaire</a>
+
+<header class="title-bar">
+  <h1>🗺️ ROYAUMES HUMAINS & HELEDERA</h1>
+  <div class="subtitle">Les 4 nations qui partagent le monde avec Armonia</div>
+  <div class="quote">« Quatre couronnes, quatre destins. Quatre versions de ce qu'est un homme. »</div>
+</header>
+
+<div class="intro-box">
+  <p>Si la <strong>cité d'Armonia</strong> est le cœur judiciaire du monde, <strong>Sol'Ambaïre</strong> son cœur spirituel, et <strong>No'Ord</strong> son flanc gelé, ces <strong>3 royaumes humains</strong> et <strong>l'archipel d'Heledera</strong> sont la véritable trame politique du quotidien.</p>
+  <p>Chacun incarne une <em>conception différente</em> de ce qu'est un humain : guerrier-noble (Virtus), marin-conquérant (Seaher), paysan-roi (Urf), réfugié-libre (Heledera). Aucun ne domine. Aucun ne disparaît.</p>
+</div>
+
+<!-- VIRTUS AL ALLE -->
+<div class="royaume-card virtus">
+  <div class="royaume-header">
+    <div class="royaume-icon">⚔️</div>
+    <div class="royaume-name">
+      <h2>Virtus Al Alle</h2>
+      <div class="surnom">L'Empire de l'Est · « La Vertu en Arme »</div>
+    </div>
+  </div>
+
+  <p class="royaume-description">L'<strong>empire militaire dominant à l'est du monde connu</strong>. Tradition martiale-noble inattaquable. Les Virtussois croient que <em>la vertu n'a de sens que démontrée par l'épreuve</em> — d'où la place centrale de l'épée, du devoir, et du serment.</p>
+
+  <div class="royaume-grid">
+    <div class="royaume-block">
+      <h3>Capitale</h3>
+      <p><strong>Almalleis</strong> — ville fortifiée à double enceinte, palais impérial au centre. La cité ne dort jamais : les gardes changent toutes les quatre heures, au son d'une cloche que tout le peuple connaît.</p>
+    </div>
+    <div class="royaume-block">
+      <h3>Politique</h3>
+      <p>Monarchie héréditaire. Empereur actuel : <strong>Aldéric V</strong>, ~50 ans, austère. Soutenu par les <strong>12 Maisons-Lances</strong>, vieilles familles guerrières qui votent à la guerre comme au conseil.</p>
+    </div>
+    <div class="royaume-block">
+      <h3>Société</h3>
+      <p>Hiérarchie martiale stricte. Tout citoyen sert deux ans dans la Garde. Les nobles forment leurs enfants à l'épée dès 5 ans. Les paysans suivent les Maisons-Lances comme leurs seigneurs naturels.</p>
+    </div>
+    <div class="royaume-block">
+      <h3>Économie</h3>
+      <p>Armée la mieux entretenue du monde. <strong>Forges runiques</strong> en partenariat secret avec quelques Nains de Fer In Gal. Tribut versé par les royaumes voisins en cas de paix négociée.</p>
+    </div>
+    <div class="royaume-block">
+      <h3>Atouts</h3>
+      <p>Armée régulière disciplinée. Logistique impeccable. Lien avec les Nains pour le métal. <strong>Siège du Protéctoriat Antares</strong> (Ross Von Listaire y est juge).</p>
+    </div>
+    <div class="royaume-block">
+      <h3>Faiblesses</h3>
+      <p>Noblesse divisée par des intrigues constantes pour la succession. Plusieurs Maisons-Lances mécontentes d'Aldéric V. Aucun héritier mâle confirmé — fissure potentielle.</p>
+    </div>
+  </div>
+
+  <div class="royaume-particularite"><strong>Particularité</strong> — Chaque chevalier de Virtus porte une <strong>épée de famille</strong> qui ne quitte jamais sa lignée. La perdre est plus déshonorant que mourir. Les Virtussois retournent en arrière sur un champ de bataille pour récupérer une lame familiale tombée.</div>
+
+  <p><strong>Tensions</strong> : conflit frontalier chronique avec <strong>Roon-Vyr</strong> (Sol'Ambaïre Nord, Hyal-Roon). Méfiance contre <strong>Urf inor</strong> qu'ils trouvent « rustique ». Indifférence affichée envers Heledera.</p>
+
+  <p><span class="tag">Empire</span><span class="tag">Militaire</span><span class="tag">Noblesse</span><span class="tag">Forges runiques</span><span class="tag">Protectoria</span></p>
+</div>
+
+<!-- SEAHER IT NAM -->
+<div class="royaume-card seaher">
+  <div class="royaume-header">
+    <div class="royaume-icon">⚓</div>
+    <div class="royaume-name">
+      <h2>Seaher it Nam</h2>
+      <div class="surnom">La Couronne des Mers · « Sept Voiles, Une Loi »</div>
+    </div>
+  </div>
+
+  <p class="royaume-description">Le <strong>royaume maritime</strong> par excellence — sa noblesse ne se définit pas par la terre mais par la mer. Concurrent maritime de Drun-Kar et des Daluvio, leur tradition impose qu'aucun noble ne soit reconnu avant <strong>sept ans de service en mer</strong>.</p>
+
+  <div class="royaume-grid">
+    <div class="royaume-block">
+      <h3>Capitale</h3>
+      <p><strong>Halysa</strong> — port-cité sur un cap rocheux, treize bassins protégés, phares-tours visibles à des lieues. La capitale est à la fois ville et arsenal.</p>
+    </div>
+    <div class="royaume-block">
+      <h3>Politique</h3>
+      <p>Aristocratie navale. <strong>Conseil des Sept Amiraux</strong> — un par grand bassin du royaume. Décisions à 5 voix sur 7. Pas de roi unique ; le Premier Amiral préside, élu chaque trois ans.</p>
+    </div>
+    <div class="royaume-block">
+      <h3>Société</h3>
+      <p>Tout noble doit commander un vaisseau pendant <strong>7 ans</strong> avant d'hériter. Les bourgeois marins peuvent atteindre la noblesse par exploit naval. Les paysans côtiers suivent les contrats maritimes.</p>
+    </div>
+    <div class="royaume-block">
+      <h3>Économie</h3>
+      <p>Pêche industrielle, conquêtes coloniales anciennes, contrôle d'une bonne portion des <strong>routes maritimes Lumini-No'Ord</strong>. Marchandise de luxe : épices d'îles lointaines.</p>
+    </div>
+    <div class="royaume-block">
+      <h3>Atouts</h3>
+      <p>Flotte de guerre la plus redoutée du monde. <strong>Espionnage maritime parfait</strong> — chaque grand vaisseau a son espion. Cartographes incomparables.</p>
+    </div>
+    <div class="royaume-block">
+      <h3>Faiblesses</h3>
+      <p>Vulnérable sur terre. Aristocratie souvent absente (à la mer). Conflit interne entre Amiraux jaloux. Concurrence intense avec les Daluvio et Heledera.</p>
+    </div>
+  </div>
+
+  <div class="royaume-particularite"><strong>Particularité</strong> — Tous les nobles seahertz portent une <strong>fine chaîne d'or à la cheville</strong>, symbole de leur serment naval. La briser publiquement = déshonneur définitif et exil. Certains la cachent sous leurs bottes, d'autres l'exposent fièrement.</div>
+
+  <p><strong>Tensions</strong> : <strong>concurrence dure avec les Daluvio</strong> (Armonia) sur les routes commerciales. <strong>Hostilité ouverte avec Heledera</strong> (corsaires tolérés par Heledera attaquent les vaisseaux seahertz). Méfiance avec Velhar (Sol'Ambaïre Est) sur la cartographie.</p>
+
+  <p><span class="tag">Maritime</span><span class="tag">Aristocratie navale</span><span class="tag">Flotte de guerre</span><span class="tag">Espionnage</span></p>
+</div>
+
+<!-- URF INOR -->
+<div class="royaume-card urf">
+  <div class="royaume-header">
+    <div class="royaume-icon">🌾</div>
+    <div class="royaume-name">
+      <h2>Urf inor</h2>
+      <div class="surnom">Le Royaume des Terres Profondes · « La Terre Choisit »</div>
+    </div>
+  </div>
+
+  <p class="royaume-description">Le <strong>royaume intérieur</strong> par excellence — vaste, agraire, conservateur. La noblesse y est presque absente : ce qui compte, c'est la <em>fierté de la terre</em> et la <em>parole tenue</em>. Le plus grand fournisseur de blé du monde.</p>
+
+  <div class="royaume-grid">
+    <div class="royaume-block">
+      <h3>Capitale</h3>
+      <p><strong>Voldhal</strong> — ville-grenier au cœur des plaines centrales. Pas de palais ni de murs imposants — la cité ressemble plus à une grande place de marché qu'à une capitale. C'est volontaire.</p>
+    </div>
+    <div class="royaume-block">
+      <h3>Politique</h3>
+      <p><strong>Monarchie élective.</strong> Le <strong>Conseil des Terres</strong> (un délégué par grande province) élit le roi pour <strong>12 ans, non-renouvelable</strong>. Le souverain actuel : la reine <strong>Vala l'Élue</strong>, ancienne paysanne devenue conseillère.</p>
+    </div>
+    <div class="royaume-block">
+      <h3>Société</h3>
+      <p>Paysans-guerriers. Pas de servage. Pas de privilèges de naissance — les fonctions s'attribuent par mérite et par tradition orale. Mariages mixtes courants entre humains et hommes-bêtes.</p>
+    </div>
+    <div class="royaume-block">
+      <h3>Économie</h3>
+      <p>Céréales (premier producteur mondial), élevage massif, métaux courants. <strong>Ravitaille plusieurs royaumes voisins</strong> en cas de disette — ce qui leur donne un pouvoir politique souvent sous-estimé.</p>
+    </div>
+    <div class="royaume-block">
+      <h3>Atouts</h3>
+      <p>Population nombreuse. <strong>Infanterie lourde paysanne</strong> sous-estimée mais redoutable en défense. Autosuffisance alimentaire absolue. Réseau oral immense.</p>
+    </div>
+    <div class="royaume-block">
+      <h3>Faiblesses</h3>
+      <p>Très méfiants envers les marchands (Guilde de Lumini les manipulerait). Cavalerie faible. Pas d'allié naturel : se débrouillent seuls.</p>
+    </div>
+  </div>
+
+  <div class="royaume-particularite"><strong>Particularité</strong> — Le roi élu d'Urf inor est appelé <strong>« Premier des Sillons »</strong>. Chaque printemps, il doit <strong>labourer un champ rituel</strong> à mains nues — symbole qu'il sert la terre avant que la terre le serve. Si son corps faiblit, il abdique.</div>
+
+  <p><strong>Tensions</strong> : <strong>méfiance envers la Guilde des Marchands</strong> de Lumini (jugée « manipulatrice »). Bonnes relations latentes avec No'Ord (cultures rurales se respectent). Indifférence amusée envers Virtus (« trop d'épées, pas assez de pain »).</p>
+
+  <p><span class="tag">Royaume agraire</span><span class="tag">Monarchie élective</span><span class="tag">Paysans-guerriers</span><span class="tag">Autosuffisance</span></p>
+</div>
+
+<!-- HELEDERA -->
+<div class="royaume-card heledera">
+  <div class="royaume-header">
+    <div class="royaume-icon">🏝️</div>
+    <div class="royaume-name">
+      <h2>Heledera</h2>
+      <div class="surnom">L'Archipel des Refuges · « Cinq Îles, Cinq Vies »</div>
+    </div>
+  </div>
+
+  <p class="royaume-description">L'<strong>archipel des marginaux</strong> — cinq îles principales en mer commerciale, peuplées de tous ceux qui ne trouvent pas leur place sur le continent. Vorpal, Halfelins, Gnomes, Elfes Yle y cohabitent avec des humains qui ont quelque chose à fuir.</p>
+
+  <div class="royaume-grid">
+    <div class="royaume-block">
+      <h3>Capitale</h3>
+      <p><strong>Cordéheim</strong> — port construit sur trois niveaux superposés (maritime, marchand, noble). La ville s'illumine la nuit de lanternes colorées, chacune attribuée à un Conseil ou à une faction.</p>
+    </div>
+    <div class="royaume-block">
+      <h3>Politique</h3>
+      <p><strong>Conseil des Cinq Îles</strong> — un représentant par île majeure, élu localement. Décisions à 3 voix sur 5. Le Conseil siège alternativement sur chaque île — une rotation tous les deux ans.</p>
+    </div>
+    <div class="royaume-block">
+      <h3>Société</h3>
+      <p>Hétéroclite à l'extrême : Vorpal pragmatiques, Halfelins gestionnaires, Gnomes artisans-ingénieurs, Elfes Yle (Bannis) émergents, humains exilés. Tolérance forte mais hiérarchies tacites.</p>
+    </div>
+    <div class="royaume-block">
+      <h3>Économie</h3>
+      <p>La <strong>Banque d'Heledera</strong> — alternative à la Guilde des Marchands de Me'yn Prus. Prête à ceux que la Guilde refuse. Tolère et taxe les <strong>pirates et corsaires</strong> (qui paient leur dîme). Marchés noirs nombreux.</p>
+    </div>
+    <div class="royaume-block">
+      <h3>Atouts</h3>
+      <p>Réseau commercial parallèle. Refuge pour tous les marginaux. Ingénierie gnome unique. <strong>Renseignement maritime étendu</strong> grâce aux corsaires.</p>
+    </div>
+    <div class="royaume-block">
+      <h3>Faiblesses</h3>
+      <p>Politique instable (factions, trahisons régulières). Pas d'armée centralisée. Réputation sulfureuse rend les contrats officiels difficiles. <strong>Île-Sang corrompue par le Nœud d'Ombre</strong> — danger interne.</p>
+    </div>
+  </div>
+
+  <div class="royaume-particularite"><strong>Particularité</strong> — Sur l'<strong>Île-Sang</strong> (la 5ᵉ, en partie maudite) se trouve le <strong>Nœud d'Ombre corrompu</strong>. Les Hélédériens parlent rarement de cette île. Personne n'y vit officiellement. Pourtant, des navires y sont vus aborder la nuit — qui s'y rend, et pour quoi faire ?</div>
+
+  <p><strong>Tensions</strong> : <strong>concurrence farouche avec Lumini</strong> (Daluvio + Guilde des Marchands). <strong>Hostilité ouverte avec Seaher it Nam</strong> (les corsaires d'Heledera attaquent les vaisseaux seahertz). Méfiance des Roses d'Armonia. Relations utilitaires avec No'Ord.</p>
+
+  <p><span class="tag">Archipel</span><span class="tag">Marginaux</span><span class="tag">Banque alternative</span><span class="tag">Pirates tolérés</span><span class="tag">Île-Sang</span></p>
+</div>
+
+<h2 class="section-title">⚔️ Tensions et alliances inter-royaumes</h2>
+
+<table class="tensions-table">
+  <thead>
+    <tr><th>Couple</th><th>État</th><th>Cause principale</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Virtus Al Alle ↔ Roon-Vyr (Sol'Ambaïre)</td><td>Conflit frontalier chronique</td><td>Disputes sur des vallées contestées au pied des Échos</td></tr>
+    <tr><td>Virtus Al Alle ↔ Urf inor</td><td>Méfiance distante</td><td>Différence de valeurs ; Virtus trouve Urf « rustique »</td></tr>
+    <tr><td>Seaher it Nam ↔ Daluvio (Armonia)</td><td>Concurrence commerciale aiguë</td><td>Routes maritimes Lumini-No'Ord</td></tr>
+    <tr><td>Seaher it Nam ↔ Heledera</td><td>Hostilité ouverte</td><td>Corsaires hélédériens contre vaisseaux seahertz</td></tr>
+    <tr><td>Urf inor ↔ Guilde des Marchands</td><td>Méfiance idéologique</td><td>Urf juge la Guilde manipulatrice et envahissante</td></tr>
+    <tr><td>Urf inor ↔ No'Ord</td><td>Respect rural mutuel</td><td>Cultures paysannes et clans se reconnaissent</td></tr>
+    <tr><td>Heledera ↔ Lumini (Daluvio)</td><td>Concurrence directe</td><td>Banque d'Heledera vs Guilde des Marchands</td></tr>
+    <tr><td>Heledera ↔ Roses d'Armonia</td><td>Méfiance institutionnelle</td><td>Pirates tolérés = ennemi de la justice</td></tr>
+    <tr><td>Tous les 4 ↔ Cité d'Armonia</td><td>Respect arbitral</td><td>Tous reconnaissent Armonia comme juge des conflits insolubles</td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-title">🎲 Hooks de campagne</h2>
+
+<div class="hooks-box">
+  <p>• Un PJ Virtussois <strong>perd l'épée de famille</strong> dans une rivière de Lumini. Combien d'années il mettra à la récupérer ?</p>
+  <p>• L'<strong>Empereur Aldéric V</strong> tombe gravement malade. Les Maisons-Lances commencent à se positionner — les PJ sont contactés par plusieurs camps.</p>
+  <p>• Un <strong>Amiral seahertz</strong> demande aux PJ d'enquêter sur la disparition d'un de ses vaisseaux — Heledera ou autre chose ?</p>
+  <p>• La <strong>reine Vala d'Urf inor</strong> abdique soudainement. Conseil des Terres convoqué pour élire son successeur. Un PJ pourrait y être candidat ?</p>
+  <p>• Un navire heledérien aborde l'<strong>Île-Sang</strong> à minuit. Les PJ embarqués découvrent ce qu'il y a vraiment dans l'île corrompue.</p>
+  <p>• Un <strong>marchand d'Heledera</strong> propose à un PJ un prêt « sans garantie » — mais le tarif est dans le sang, par la maison Garance.</p>
+  <p>• <strong>Conflit ouvert</strong> entre Virtus et Roon-Vyr — les PJ sont engagés par l'un ou l'autre. La cité d'Armonia tente d'imposer un arbitrage.</p>
+  <p>• Un <strong>convoi Urf inor</strong> attaqué — les paysans-guerriers se révèlent bien plus dangereux que prévu. Les PJ doivent vite changer de camp.</p>
+  <p>• Un Heledérien gnome propose aux PJ une <strong>machine impossible</strong> — fonctionne-t-elle vraiment ou est-ce un piège élaboré ?</p>
+</div>
+
+<footer>
+  Royaumes Humains & Heledera · 4 nations qui partagent le monde · Codex Géopolitique · Système Bilal · 2026
+</footer>
+
+</div>
+</body>
+</html>

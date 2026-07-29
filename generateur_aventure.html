@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Générateur d'Aventure — Armonia 🤫</title>
+<style>
+:root {
+  --bg: #1a1a2e;
+  --paper: #2a2a3e;
+  --primary: #c9a85a;
+  --accent: #d97c47;
+  --text: #f4e8d0;
+  --muted: #9a8a7a;
+  --border: #3a3a4e;
+  --danger: #c44040;
+  --info: #5a8ec9;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+
+header.title-bar {
+  text-align: center;
+  padding: 18px;
+  background: var(--paper);
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 26px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 6px;
+}
+
+.warning-banner {
+  background: var(--danger);
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-weight: bold;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+  font-size: 13px;
+}
+
+.info-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 14px 18px;
+  border-radius: 4px;
+  margin: 14px 0;
+  line-height: 1.6;
+  font-size: 13px;
+}
+.info-box strong { color: var(--primary); }
+.info-box em { color: var(--accent); }
+
+.section-title {
+  font-size: 22px;
+  color: var(--primary);
+  margin: 28px 0 12px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+  letter-spacing: 1px;
+}
+
+.formule-box {
+  background: linear-gradient(135deg, var(--paper) 0%, #3a2a3e 100%);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 14px 0;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  text-align: center;
+  color: var(--accent);
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.table-scroll {
+  background: var(--paper);
+  border-radius: 6px;
+  padding: 6px;
+  margin: 10px 0;
+  border: 1px solid var(--border);
+}
+.rand-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.rand-table th, .rand-table td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.rand-table th {
+  background: rgba(201, 168, 90, 0.1);
+  color: var(--primary);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.rand-table td.roll {
+  font-family: 'Courier New', monospace;
+  color: var(--accent);
+  font-weight: bold;
+  text-align: center;
+  width: 70px;
+}
+.rand-table tr:hover { background: rgba(201, 168, 90, 0.05); }
+.rand-table tr:last-child td { border-bottom: none; }
+
+.tables-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.exemple-box {
+  background: linear-gradient(135deg, var(--paper) 0%, #2a3a3e 100%);
+  border: 2px dashed var(--info);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+.exemple-box h3 {
+  margin: 0 0 8px 0;
+  color: var(--info);
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+.exemple-box p { font-size: 13px; line-height: 1.6; margin: 6px 0; }
+.exemple-box strong { color: var(--primary); }
+.exemple-box em { color: var(--accent); }
+
+.nav-back {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 12px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+
+@media (max-width: 720px) {
+  .tables-grid-2 { grid-template-columns: 1fr; }
+}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body>
+<div class="container">
+
+<a href="index.html" class="nav-back">← Retour au sommaire</a>
+
+<div class="warning-banner">🤫 OUTIL MJ — Improvise en 30 secondes</div>
+
+<header class="title-bar">
+  <h1>🎲 GÉNÉRATEUR D'AVENTURE</h1>
+  <div class="subtitle">Une intrigue en 5 dés — pour improviser une session sans préparation</div>
+</header>
+
+<div class="info-box">
+  <p><strong>Méthode</strong> : lance <em>1d100 + 4 dés à 20 faces</em>, un par catégorie. En 30 secondes, tu as une intrigue nette avec accroche, PNJ, lieu, enjeu et twist.</p>
+  <p><strong>Astuce</strong> : si le résultat te paraît trop générique, relance UN dé seulement. La combinaison est la clef.</p>
+</div>
+
+<div class="formule-box">1d100 (Accroche) + 1d20 (PNJ) + 1d20 (Lieu) + 1d20 (Enjeu) + 1d20 (Twist)</div>
+
+<h2 class="section-title">🎯 1. Accroche (d100) — l'événement de départ</h2>
+
+<div class="table-scroll">
+<table class="rand-table">
+  <tbody>
+    <tr><td class="roll">1-5</td><td>Un PNJ ami est retrouvé mort dans des circonstances étranges</td></tr>
+    <tr><td class="roll">6-10</td><td>Une caravane disparaît sur une route habituellement sûre</td></tr>
+    <tr><td class="roll">11-15</td><td>Un artefact ancien réapparaît sur un marché — qui l'a apporté ?</td></tr>
+    <tr><td class="roll">16-20</td><td>Un enfant s'est enfui vers un lieu interdit — il faut le retrouver</td></tr>
+    <tr><td class="roll">21-25</td><td>Un noble demande discrètement l'aide des PJ pour une affaire délicate</td></tr>
+    <tr><td class="roll">26-30</td><td>Une lettre anonyme parvient aux PJ avec des noms et un lieu</td></tr>
+    <tr><td class="roll">31-35</td><td>Une rumeur de mot primordial découvert circule en ville</td></tr>
+    <tr><td class="roll">36-40</td><td>Un pigeon voyageur s'écrase à leurs pieds, message crypté</td></tr>
+    <tr><td class="roll">41-45</td><td>Un vieil ennemi supposé mort réapparaît publiquement</td></tr>
+    <tr><td class="roll">46-50</td><td>Un incendie d'origine magique dévaste un bâtiment</td></tr>
+    <tr><td class="roll">51-55</td><td>Une famille noble propose un contrat lucratif mais moralement ambigu</td></tr>
+    <tr><td class="roll">56-60</td><td>Un enfant présente des signes de magie inexpliquée — parents inquiets</td></tr>
+    <tr><td class="roll">61-65</td><td>Une prophétie est prononcée dans une taverne par un fou — ou un oracle ?</td></tr>
+    <tr><td class="roll">66-70</td><td>Un convoi de reliques religieuses est attaqué</td></tr>
+    <tr><td class="roll">71-75</td><td>Un Veilleur discret aborde les PJ avec une mission urgente</td></tr>
+    <tr><td class="roll">76-80</td><td>Une créature mythique est aperçue là où elle ne devrait pas être</td></tr>
+    <tr><td class="roll">81-85</td><td>Un pacte ancien vient à échéance — quelqu'un doit payer</td></tr>
+    <tr><td class="roll">86-90</td><td>Un jugement des Roses est contesté — révision demandée</td></tr>
+    <tr><td class="roll">91-95</td><td>Un rêve partagé par plusieurs PJ ou PNJ pointe vers un lieu précis</td></tr>
+    <tr><td class="roll">96-100</td><td>Un Nœud du Monde émet une vibration inattendue — les magiciens le sentent</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 class="section-title">🎭 2. PNJ central (d20)</h2>
+
+<div class="table-scroll">
+<table class="rand-table">
+  <tbody>
+    <tr><td class="roll">1</td><td>Vieux Veilleur discret qui n'aurait pas dû être là</td></tr>
+    <tr><td class="roll">2</td><td>Noble Von Guinity manipulateur</td></tr>
+    <tr><td class="roll">3</td><td>Rose d'Armonia en mission secrète</td></tr>
+    <tr><td class="roll">4</td><td>Marchand de la Guilde qui cache quelque chose</td></tr>
+    <tr><td class="roll">5</td><td>Prêtresse Spriius Luminatis fanatique</td></tr>
+    <tr><td class="roll">6</td><td>Mercenaire Protectoria Antares ambigu</td></tr>
+    <tr><td class="roll">7</td><td>Elfe Sylvestre de la Tribu de la Forêt</td></tr>
+    <tr><td class="roll">8</td><td>Tengu messager (Hane-Tengu)</td></tr>
+    <tr><td class="roll">9</td><td>Enfant orphelin qui sait plus qu'il ne le dit</td></tr>
+    <tr><td class="roll">10</td><td>Nain forgeron de Fer In Gal en voyage</td></tr>
+    <tr><td class="roll">11</td><td>Corsaire heledérien louche</td></tr>
+    <tr><td class="roll">12</td><td>Erudit isolé de Handu'zo</td></tr>
+    <tr><td class="roll">13</td><td>Ingénieur inventeur avec une nouvelle création dangereuse</td></tr>
+    <tr><td class="roll">14</td><td>Ancien aventurier retiré qui redoute son passé</td></tr>
+    <tr><td class="roll">15</td><td>Caravanier Karambol amical</td></tr>
+    <tr><td class="roll">16</td><td>Mi-loup exilé de sa meute</td></tr>
+    <tr><td class="roll">17</td><td>La Femme au Voile Bleu (envoyée mystérieuse)</td></tr>
+    <tr><td class="roll">18</td><td>Un Céleste rêvé (apparition indirecte)</td></tr>
+    <tr><td class="roll">19</td><td>Un Gobelin intelligent (menace du livre 2)</td></tr>
+    <tr><td class="roll">20</td><td>Un fantôme d'un héros mort récemment (comme Julia)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 class="section-title">🗺️ 3. Lieu (d20)</h2>
+
+<div class="tables-grid-2">
+<div class="table-scroll">
+<table class="rand-table">
+  <thead><tr><th>d20</th><th>Lieu</th></tr></thead>
+  <tbody>
+    <tr><td class="roll">1</td><td>Etelin (village-orphelinat)</td></tr>
+    <tr><td class="roll">2</td><td>Me'yn Prus (cité marchande)</td></tr>
+    <tr><td class="roll">3</td><td>Forêt Julia (bois sacré)</td></tr>
+    <tr><td class="roll">4</td><td>Villa Virtue (cité volante)</td></tr>
+    <tr><td class="roll">5</td><td>Cité d'Armonia (capitale)</td></tr>
+    <tr><td class="roll">6</td><td>Sylvarn (port hybride)</td></tr>
+    <tr><td class="roll">7</td><td>Vallée d'Aether (plaines)</td></tr>
+    <tr><td class="roll">8</td><td>Côte d'Or (villégiature)</td></tr>
+    <tr><td class="roll">9</td><td>Massif des Échos (montagnes dangereuses)</td></tr>
+    <tr><td class="roll">10</td><td>Un col reculé (route)</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="table-scroll">
+<table class="rand-table">
+  <thead><tr><th>d20</th><th>Lieu</th></tr></thead>
+  <tbody>
+    <tr><td class="roll">11</td><td>Ællskarn (montagnes nordiques)</td></tr>
+    <tr><td class="roll">12</td><td>Brumelune (fjords)</td></tr>
+    <tr><td class="roll">13</td><td>Tsu-Raji (Falaises Chantantes, Tengu)</td></tr>
+    <tr><td class="roll">14</td><td>Cercle d'Anh (centre Sol'Ambaïre)</td></tr>
+    <tr><td class="roll">15</td><td>Drun-Kar (désert)</td></tr>
+    <tr><td class="roll">16</td><td>Ruines pré-Rupture (au hasard)</td></tr>
+    <tr><td class="roll">17</td><td>Nœud du Monde (à choisir)</td></tr>
+    <tr><td class="roll">18</td><td>Cordéheim (Heledera)</td></tr>
+    <tr><td class="roll">19</td><td>Île-Sang (Nœud d'Ombre corrompu)</td></tr>
+    <tr><td class="roll">20</td><td>Un vaisseau en pleine mer</td></tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+<h2 class="section-title">💎 4. Enjeu (d20)</h2>
+
+<div class="table-scroll">
+<table class="rand-table">
+  <tbody>
+    <tr><td class="roll">1</td><td>Une vie (à sauver ou à venger)</td></tr>
+    <tr><td class="roll">2</td><td>Un artefact ancien (à récupérer, protéger ou détruire)</td></tr>
+    <tr><td class="roll">3</td><td>Un mot primordial inconnu (à apprendre en jeu)</td></tr>
+    <tr><td class="roll">4</td><td>Une somme d'argent considérable</td></tr>
+    <tr><td class="roll">5</td><td>Une alliance politique fragile</td></tr>
+    <tr><td class="roll">6</td><td>Un secret honteux d'une Grande Famille</td></tr>
+    <tr><td class="roll">7</td><td>La stabilité d'un village entier</td></tr>
+    <tr><td class="roll">8</td><td>L'équilibre d'un Nœud du Monde</td></tr>
+    <tr><td class="roll">9</td><td>La réputation d'un PJ</td></tr>
+    <tr><td class="roll">10</td><td>Une vérité sur le passé d'un PJ</td></tr>
+    <tr><td class="roll">11</td><td>Un savoir perdu depuis la Rupture</td></tr>
+    <tr><td class="roll">12</td><td>Un contrat signé qui doit être annulé</td></tr>
+    <tr><td class="roll">13</td><td>L'honneur d'une famille noble</td></tr>
+    <tr><td class="roll">14</td><td>Une route commerciale sous menace</td></tr>
+    <tr><td class="roll">15</td><td>Un pacte magique qui doit être scellé ou brisé</td></tr>
+    <tr><td class="roll">16</td><td>Une âme égarée (que les Veilleurs cherchent)</td></tr>
+    <tr><td class="roll">17</td><td>L'identité du noble mystérieux (Protectoria)</td></tr>
+    <tr><td class="roll">18</td><td>La stabilité d'un Céleste (rêve prophétique)</td></tr>
+    <tr><td class="roll">19</td><td>Le retour d'une race endormie</td></tr>
+    <tr><td class="roll">20</td><td>Une révélation sur l'Ombre</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 class="section-title">🔀 5. Twist (d20) — la révélation qui change tout</h2>
+
+<div class="table-scroll">
+<table class="rand-table">
+  <tbody>
+    <tr><td class="roll">1</td><td>Le PNJ central ment sur ses vraies motivations</td></tr>
+    <tr><td class="roll">2</td><td>L'antagoniste est manipulé par une force supérieure</td></tr>
+    <tr><td class="roll">3</td><td>Un PJ est une cible désignée (ils l'apprennent au milieu)</td></tr>
+    <tr><td class="roll">4</td><td>L'objectif apparent cache un enjeu bien plus grand</td></tr>
+    <tr><td class="roll">5</td><td>Un allié se révèle traître à mi-parcours</td></tr>
+    <tr><td class="roll">6</td><td>Une des victimes n'est pas ce qu'elle paraît</td></tr>
+    <tr><td class="roll">7</td><td>Le lieu n'est pas où on croit — c'est une illusion / faux plan</td></tr>
+    <tr><td class="roll">8</td><td>La récompense promise n'existe pas</td></tr>
+    <tr><td class="roll">9</td><td>L'Ombre a orchestré l'aventure pour tester les PJ</td></tr>
+    <tr><td class="roll">10</td><td>Un mort revient à la vie (bienveillant ou hostile)</td></tr>
+    <tr><td class="roll">11</td><td>Un mot primordial est prononcé accidentellement, effet imprévu</td></tr>
+    <tr><td class="roll">12</td><td>Le vrai coupable est un enfant / adolescent</td></tr>
+    <tr><td class="roll">13</td><td>L'aventure était un piège pour rassembler les PJ à un lieu</td></tr>
+    <tr><td class="roll">14</td><td>Une Grande Famille intervient en dernière minute (aide ou obstacle)</td></tr>
+    <tr><td class="roll">15</td><td>Le prix à payer est plus élevé que prévu (Éther, corps, réputation)</td></tr>
+    <tr><td class="roll">16</td><td>Le lieu est habité par une entité qui n'aurait pas dû être là</td></tr>
+    <tr><td class="roll">17</td><td>Aqua ou Vesper intervient en Deus ex machina — pour un prix</td></tr>
+    <tr><td class="roll">18</td><td>L'aventure révèle un secret sur Silver / la Rupture</td></tr>
+    <tr><td class="roll">19</td><td>Merthas (via Alm) tire discrètement les ficelles</td></tr>
+    <tr><td class="roll">20</td><td>Le twist est laissé au choix des PJ eux-mêmes — MJ improvise</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 class="section-title">💡 Exemples d'aventures générées</h2>
+
+<div class="exemple-box">
+  <h3>Exemple 1 — 42 + 3 + 11 + 8 + 5</h3>
+  <p><strong>Accroche</strong> (42) : Un vieil ennemi supposé mort réapparaît publiquement</p>
+  <p><strong>PNJ</strong> (3) : Rose d'Armonia en mission secrète</p>
+  <p><strong>Lieu</strong> (11) : Ællskarn (montagnes nordiques)</p>
+  <p><strong>Enjeu</strong> (8) : L'équilibre d'un Nœud du Monde</p>
+  <p><strong>Twist</strong> (5) : Un allié se révèle traître à mi-parcours</p>
+  <p><em>Intrigue</em> : Un vieil ennemi des PJ (qu'ils croyaient mort) est aperçu à Ællskarn. Une Rose d'Armonia les contacte discrètement — l'ennemi tente de corrompre le Nœud du Givre. Au milieu de leur expédition, un compagnon qu'ils croyaient sûr révèle qu'il travaille pour l'ennemi.</p>
+</div>
+
+<div class="exemple-box">
+  <h3>Exemple 2 — 78 + 17 + 3 + 15 + 11</h3>
+  <p><strong>Accroche</strong> (78) : Un Veilleur discret aborde les PJ avec une mission urgente</p>
+  <p><strong>PNJ</strong> (17) : La Femme au Voile Bleu</p>
+  <p><strong>Lieu</strong> (3) : Forêt Julia</p>
+  <p><strong>Enjeu</strong> (15) : Un pacte magique qui doit être scellé ou brisé</p>
+  <p><strong>Twist</strong> (11) : Un mot primordial est prononcé accidentellement, effet imprévu</p>
+  <p><em>Intrigue</em> : Un Veilleur les envoie dans la Forêt Julia pour empêcher un pacte magique — la Femme au Voile Bleu tente de sceller un accord avec un esprit sylvestre. Pendant la scène clé, un PJ prononce sans le vouloir un mot primordial qu'il connaissait à moitié — le pacte prend une forme inattendue.</p>
+</div>
+
+<h2 class="section-title">🎨 Extensions utiles</h2>
+
+<div class="info-box">
+  <p><strong>Tables bonus courtes à improviser</strong> :</p>
+  <p>• <strong>Météo (d6)</strong> : 1 tempête, 2 pluie, 3 nuageux, 4 clair, 5 vents forts, 6 anomalie magique (brouillard fluorescent, aurore de jour, etc.)</p>
+  <p>• <strong>Heure (d6 des Veilles)</strong> : Matines, Tierce, Zénith, None, Vêpres, Minuit</p>
+  <p>• <strong>Événement de fond (d10)</strong> : 1-2 festival, 3-4 marché, 5 procession, 6 duel, 7 arrestation, 8 arrivée d'un noble, 9 fugue, 10 miracle mineur</p>
+  <p>• <strong>Objet trouvé (d10)</strong> : 1 carte incomplète, 2 poignard gravé, 3 flacon inconnu, 4 pièce ancienne, 5 lettre chiffrée, 6 rune fragmentée, 7 mèche de cheveux, 8 boucle d'oreille, 9 clé sans serrure, 10 os étranger</p>
+</div>
+
+<footer>
+  Générateur d'Aventure · d100 + 4d20 · Système Bilal · Armonia 2026
+</footer>
+
+</div>
+</body>
+</html>

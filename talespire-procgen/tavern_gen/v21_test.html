@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>V21 · Wall set étalon</title>
+<style>
+body{font-family:system-ui,sans-serif;background:#1a1611;color:#e8dfc9;padding:24px;max-width:1000px;margin:0 auto}
+h1{color:#d4a13a;border-bottom:2px solid #5c3a1a;padding-bottom:8px}
+h2{color:#c07a2a;margin-top:24px}
+.card{background:#2a2418;border:1px solid #4a3820;border-radius:8px;padding:20px;margin:20px 0}
+textarea.code{width:100%;height:120px;background:#0f0d08;color:#a8c060;border:1px solid #5c3a1a;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;white-space:nowrap;overflow:auto}
+button.copy{background:#5c3a1a;color:#e8dfc9;border:none;padding:12px 24px;border-radius:4px;cursor:pointer;margin-top:8px;font-size:15px;font-weight:600}
+button.copy:hover{background:#7c4a2a}
+.info{background:#1a2a1a;border-left:4px solid #a8c060;padding:14px;margin:16px 0;border-radius:4px;font-size:14px}
+</style></head><body>
+<h1>V21 · Conventions exactes de l'étalon Small Tavern</h1>
+<div class="info">
+Règles extraites du Small Tavern (mod.io) tile par tile :
+<ul>
+<li><b>Offsets de pose</b> : mur face sud → Z+0.5 ; face est → X+0.5 ; nord/ouest → positions entières</li>
+<li><b>Rotations PAR ASSET</b> : Tavern Wall 01 (N=0, S=0, O=18, E=6) ≠ Wall Window (N=18, S=18, O=0, E=0)</li>
+<li><b>Corners</b> : NW=0, NE=18, SE=12, SW=6</li>
+<li><b>Verticalité</b> : fondation Y=0, sol Y=0.5, murs Y=1.0, étage +2.5, toit à num_étages×2.5</li>
+<li><b>Sol en 2 couches</b> (Floor 01 + Floor 03 avec rotations variées comme l'étalon)</li>
+<li><b>Toit weaving</b> avec rotations variées (anti-répétition)</li>
+</ul>
+</div>
+<h2>Taverne 8×6×2</h2>
+<div class="card">
+<textarea class="code" id="c0" readonly onclick="this.select()">H4sIAG67X2oC/02VX4hVVRTG9/lzR7OhUsg4Rc0kZAQjZAQpBF2HGsixoIepKU1m6EBBaJNEDhVxmXnJItpCI0gFkm+9eDH7w7Sr8cHaRI6mFPkgUUTdqcjEDaW9dL71fUL35bt7fb+zzjprn7XP4qXFb3J3lXOud+favhsPPLPp3ftumPn1YN+tWRM7O7uj/1C2MPxp+eaem4+89X3exFaeubhxx+k7RmevnPxp+ugbd93exOZPXbjnxZmp4cOv/HDm7qn1x4smtvua4bFdD6+7f98Vez779+Lv77Sa2Fh79unbjl275eCPv/297oVzo7jH1rPbX7q04fot723c/8GuFXuf7Wti5+Z3v7o0+ejmub1T33a/OP8duMHe1o+2zT0++no4PrZ/qfsQYg/c8vFXB1YcaR/avHzfsYliBPW9PHnT4vq/VrY/fHB+7eDM4auXN7FPnpg4sXPbsk3vL73d/9iXjzw10cRW53+c/nnu63u7zz93Ya5cvRP5Rp4c+uXE4ucjrw3+c92G86cGwQ1lPuv0OxfddKvdFJcyqnMnlznXyaDtvk4J7fRTF1a5wvxK/kCnrI13RS2+Np7rhVXyG74mn0XyLpK3dZPftOHpV9T2AOq0ekooeCjyQ1GP+RU55PfivfGu8OJ9xvxevCdfJvGJ+U3xvIk8/Qr9IT+ek4eiX1DUD23qsTXqN7/hA/ksiA856wniza+oeN66qQzr8dxnzD/dwjoibj/sW6fEvnE13ZpYg3/TLcRxPa7zGXhwPptY0yn/zLnf4BnHdYjjOt4Xz4HrUFd05C+/J073DznzQpt6C8TRd6d6Qs78UPrQjmrnj+9ZQ/VTcT/7VfKtD/zV4mvxtfhafC0+io/io/goPoqP4odUERQ8lM9L3vxK/oD7X/fJe/FevBfvxSfxSXwSn8Qn8Un8eE4eyn0nD+V7Rd78AfSZfBAfxAfxQXwQ35yEBa/oFex/r2D/ewX73/iVfOs/+Vp8Lb4WX4uvxUfxUXwUH8VH8VH8UEYeyv6Th7L/5M23/pP34r14L96L9+KT+CQ+iU/ik/gkfjwnD2X/yUPZf/LmW//JB/FBfBAfxIf8cn7MFebA3sQCivMMyvM1ag6i5iBqDsjXxnONOa3F1+LNH8Bc25tvyn0gH8WbX8m3fYiaA9YD5T6Ax7kbNQeWvzkNouaAvCdfePHmV4xzH1h/Ep+UP5G3dZOfvvUpag6i5oD1Q5Hf/IqK8yXkfN5gPJXnqz0v/QrnL+t3rlvy+9YtOQfdEjwU+c2vuOb3DTz6T74mb8rvG3jsB3hXROWPxqPP4Knsv+U3BT+UMT8U3ysoeCj7T958mwPyPmN+n7EenzG/J0/fvm/kk/hE3tacA6vf4qhnPGf9UPaf9UA5B3xe863/5IPxVPAhZ/2BvCnq/w+d7JmamgkAAA==</textarea>
+<button class="copy" onclick="doCopy('c0',this)">📋 Copier</button>
+</div><h2>Taverne 12×8×2</h2>
+<div class="card">
+<textarea class="code" id="c1" readonly onclick="this.select()">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</textarea>
+<button class="copy" onclick="doCopy('c1',this)">📋 Copier</button>
+</div>
+<script>
+function doCopy(id,btn){
+  const ta=document.getElementById(id);ta.select();ta.setSelectionRange(0,999999);
+  try{const ok=document.execCommand('copy');btn.textContent=ok?'✓ Copié !':'❌ Ctrl+A+C';setTimeout(()=>btn.textContent='📋 Copier',3000)}
+  catch(e){btn.textContent='❌ Ctrl+A+C'}
+}
+</script></body></html>

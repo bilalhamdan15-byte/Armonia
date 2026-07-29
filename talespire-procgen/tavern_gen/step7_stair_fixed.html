@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>Etape 7 - escalier corrige</title>
+<style>body{font-family:system-ui,sans-serif;background:#1a1611;color:#e8dfc9;padding:24px;max-width:900px;margin:0 auto}
+h1{color:#d4a13a;border-bottom:2px solid #5c3a1a;padding-bottom:8px}
+.card{background:#2a2418;border:1px solid #4a3820;border-radius:8px;padding:20px;margin:20px 0}
+textarea.code{width:100%;height:100px;background:#0f0d08;color:#a8c060;border:1px solid #5c3a1a;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;white-space:nowrap;overflow:auto}
+button{background:#5c3a1a;color:#e8dfc9;border:none;padding:12px 24px;border-radius:4px;cursor:pointer;margin-top:8px;font-size:15px;font-weight:600}button:hover{background:#7c4a2a}
+.info{background:#1a2a1a;border-left:4px solid #a8c060;padding:14px;margin:16px 0;border-radius:4px;font-size:14px}</style></head><body>
+<h1>Étape 7 — escalier corrigé (générateur mis à jour)</h1>
+<div class="info">D'après ton slab corrigé : les 2 marches ont la même rotation (0), la 2e est décalée de -1 en X et +1.0 en Y par rapport à la 1ère (pas +1 en Z / +1.25 en Y comme je l'avais supposé). Le trou dans le plancher de l'étage 2 correspond exactement aux 2 tuiles occupées par les marches. Intégré dans <code>shell_gen.py</code> (fonction <code>build_shell_v2</code>) — généré ici pour re-vérifier que tout s'assemble bien avec le reste de la coquille (murs/fenêtres déjà validés).</div>
+<h2>8×8 × 2 étages, escalier corrigé</h2>
+<div class="card"><textarea class="code" id="c0" readonly onclick="this.select()">H4sIAAAAAAAC/0XTvWsUQRzG8dmX+BrwpVsL12ZtEg+uU2wSrYRgpx4qojiFWAimsZGw2NmNjSDEKl2qQ9FCB7HzV534B4gpTwWxmMaI4P7m9xWvee7m2c8cycPNdmefSrfgnHtw+Nyl9cunLjzd//jd71/fn+8bzq59vvFw9/Sxte0zz16tH3hyX882bh2fjX8eWXl98c3JE49eHNKzt7dvfrx3fe/qy6+bi1c/XLmzoc99G/9ZOLi9tvXl/Obo7N1xOZyFQpwjd0b6bvjc9PWPMmcRimlt/bS2fvic+5yDUt/XmjujvlbfLzqnXlP0+dyr135aW2+Zv294TUq7R7PvXJXv6foif1/u7R5N6zW1//9a2WNp9zr3/ihFQ9/Sd/RLznke8XiP93iP93iP93jBC17wghe84AUv+GX+Ak31muo11ee+oW/pO/ol3cWxn/mAD/iAD/iAD/iET/iET/iET/iET/hJ6djPvKZ6TfW5b+hb+o5+8BEf8REf8REf8REf8c7NK7thXtn+88r2n1e2/9A39C19R5/3N+/xHu/xHu/xHu/xghe84AUveMELbrkwp2m7m9O03c3lvuU8720u4AIu4AIu4HLf0ee9zSd8wid8wid8wif8pDSvaXub17S9zee+pe/o897mIz7iIz7iIz7iY/nv/yb8fial5l95dR/CLgUAAA==</textarea><button onclick="cp('c0',this)">📋 Copier</button></div>
+<script>function cp(id,b){const t=document.getElementById(id);t.select();t.setSelectionRange(0,999999);try{const o=document.execCommand('copy');b.textContent=o?'✓ Copié !':'❌ Ctrl+A+C';setTimeout(()=>b.textContent='📋 Copier',3000)}catch(e){b.textContent='❌ Ctrl+A+C'}}</script>
+</body></html>

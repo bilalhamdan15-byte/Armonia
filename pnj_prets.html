@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PNJ prêts à jouer — Armonia 🤫</title>
+<style>
+:root {
+  --bg: #1a1a2e;
+  --paper: #2a2a3e;
+  --primary: #c9a85a;
+  --accent: #d97c47;
+  --text: #f4e8d0;
+  --muted: #9a8a7a;
+  --border: #3a3a4e;
+  --danger: #c44040;
+  --success: #5aa850;
+  --info: #5a8ec9;
+  --neutre: #a0a0a0;
+  --allie: #5aa850;
+  --hostile: #c44040;
+  --mystere: #b088c8;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1200px; margin: 0 auto; }
+
+header.title-bar {
+  text-align: center;
+  padding: 18px;
+  background: var(--paper);
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 26px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  color: var(--muted);
+  font-style: italic;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.warning-banner {
+  background: var(--danger);
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-weight: bold;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+  font-size: 13px;
+}
+
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 14px 18px;
+  border-radius: 4px;
+  margin-bottom: 18px;
+  line-height: 1.6;
+  font-size: 13px;
+}
+.intro-box strong { color: var(--primary); }
+
+.pnj-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 14px;
+}
+.pnj-card {
+  background: var(--paper);
+  border: 2px solid var(--border);
+  border-left: 5px solid;
+  border-radius: 8px;
+  padding: 14px 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+.pnj-card.allie { border-left-color: var(--allie); }
+.pnj-card.neutre { border-left-color: var(--neutre); }
+.pnj-card.hostile { border-left-color: var(--hostile); }
+.pnj-card.mystere { border-left-color: var(--mystere); }
+
+.pnj-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--border);
+}
+.pnj-icon {
+  font-size: 36px;
+  width: 50px;
+  text-align: center;
+}
+.pnj-title { flex: 1; }
+.pnj-title h2 {
+  margin: 0;
+  color: var(--primary);
+  font-size: 18px;
+}
+.pnj-title .role {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 2px;
+}
+
+.pnj-attitude {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.pnj-attitude.allie { background: var(--allie); color: white; }
+.pnj-attitude.neutre { background: var(--neutre); color: var(--bg); }
+.pnj-attitude.hostile { background: var(--hostile); color: white; }
+.pnj-attitude.mystere { background: var(--mystere); color: white; }
+
+.pnj-stats {
+  background: #1a1a2e;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin: 10px 0;
+  font-size: 12px;
+  font-family: 'Courier New', monospace;
+  border: 1px solid var(--border);
+}
+.pnj-stats span { color: var(--accent); }
+.pnj-stats strong { color: var(--primary); }
+
+.pnj-section {
+  margin: 8px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.pnj-section h3 {
+  margin: 8px 0 4px 0;
+  color: var(--accent);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.pnj-section p { margin: 4px 0; }
+.pnj-section strong { color: var(--text); }
+
+.pnj-flavor {
+  font-style: italic;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border);
+}
+
+.nav-back {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 12px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body>
+<div class="container">
+
+<a href="index.html" class="nav-back">← Retour au sommaire</a>
+
+<div class="warning-banner">🤫 OUTIL MJ — Ne pas partager aux joueurs</div>
+
+<header class="title-bar">
+  <h1>👥 PNJ PRÊTS À JOUER</h1>
+  <div class="subtitle">15 fiches immédiatement utilisables · toutes situations</div>
+</header>
+
+<div class="intro-box">
+  <p><strong>Utilisation</strong> : quand un PJ demande à parler à un marchand, une garde, un mage, sors la fiche correspondante. Les stats sont approximatives — ajuste selon le tier de tes PJ.</p>
+  <p><strong>Code couleur</strong> : <span class="pnj-attitude allie">Allié</span> potentiel · <span class="pnj-attitude neutre">Neutre</span> · <span class="pnj-attitude hostile">Hostile</span> · <span class="pnj-attitude mystere">Mystérieux</span></p>
+</div>
+
+<div class="pnj-grid">
+
+  <!-- 1 -->
+  <div class="pnj-card allie">
+    <div class="pnj-header">
+      <div class="pnj-icon">🍺</div>
+      <div class="pnj-title">
+        <h2>Meredon "Merle"</h2>
+        <div class="role">Tavernier bienveillant</div>
+      </div>
+    </div>
+    <span class="pnj-attitude allie">Allié</span>
+    <div class="pnj-stats"><strong>FOR</strong> +1 · <strong>DEX</strong> 0 · <strong>CON</strong> +2 · <strong>INT</strong> +1 · <strong>SAG</strong> +2 · <strong>CHA</strong> +2<br><strong>PV</strong> 16 · <strong>Def</strong> 10 · <span>Arme</span> : gourdin sous le comptoir</div>
+    <div class="pnj-section">
+      <h3>Rôle</h3>
+      <p>Tenancier de la taverne du coin. Ancien voyageur, aime écouter les nouvelles. Sait tout ce qui se dit — vend l'information au prix d'une pinte.</p>
+      <h3>Tics</h3>
+      <p>Frotte toujours un verre. Cligne d'un œil quand il ment. Appelle tout le monde « petit ».</p>
+    </div>
+    <div class="pnj-flavor">« La rumeur du soir dit que… mais qui suis-je pour juger ? »</div>
+  </div>
+
+  <!-- 2 -->
+  <div class="pnj-card neutre">
+    <div class="pnj-header">
+      <div class="pnj-icon">💰</div>
+      <div class="pnj-title">
+        <h2>Elyra Vesken</h2>
+        <div class="role">Marchande roublarde</div>
+      </div>
+    </div>
+    <span class="pnj-attitude neutre">Neutre</span>
+    <div class="pnj-stats"><strong>FOR</strong> 0 · <strong>DEX</strong> +2 · <strong>CON</strong> +1 · <strong>INT</strong> +2 · <strong>SAG</strong> +1 · <strong>CHA</strong> +3<br><strong>PV</strong> 12 · <strong>Def</strong> 12 · <span>Arme</span> : dague de ceinture · <em>Marchandise magique douteuse</em></div>
+    <div class="pnj-section">
+      <h3>Rôle</h3>
+      <p>Marchande itinérante spécialisée dans les « objets curieux ». Certains fonctionnent, d'autres pas. Elle-même ne sait pas toujours. Prix élevés, marchandage possible.</p>
+      <h3>Tics</h3>
+      <p>Touche ses bagues nerveusement quand elle ment. Sourit toujours — même quand elle vole.</p>
+    </div>
+    <div class="pnj-flavor">« Cette pierre a appartenu à un Céleste, je le jure sur ma mère. »</div>
+  </div>
+
+  <!-- 3 -->
+  <div class="pnj-card neutre">
+    <div class="pnj-header">
+      <div class="pnj-icon">🛡️</div>
+      <div class="pnj-title">
+        <h2>Sergent Halka</h2>
+        <div class="role">Garde du palais</div>
+      </div>
+    </div>
+    <span class="pnj-attitude neutre">Neutre</span>
+    <div class="pnj-stats"><strong>FOR</strong> +3 · <strong>DEX</strong> +1 · <strong>CON</strong> +3 · <strong>INT</strong> 0 · <strong>SAG</strong> +1 · <strong>CHA</strong> +1<br><strong>PV</strong> 22 · <strong>Def</strong> 14 (mailles + bouclier) · <span>Arme</span> : lance longue (1d10) · <em>Corne d'alarme</em></div>
+    <div class="pnj-section">
+      <h3>Rôle</h3>
+      <p>Garde vétérane. Fait respecter le protocole. Pas foncièrement dure, mais application stricte des règles. Corruptible seulement contre un vrai service.</p>
+      <h3>Tics</h3>
+      <p>Tape du pied. Dit toujours « c'est le règlement ». Salue même les paysans.</p>
+    </div>
+    <div class="pnj-flavor">« Sans laissez-passer, personne ne passe. Même vous. »</div>
+  </div>
+
+  <!-- 4 -->
+  <div class="pnj-card mystere">
+    <div class="pnj-header">
+      <div class="pnj-icon">🧙</div>
+      <div class="pnj-title">
+        <h2>Odren l'Érudit</h2>
+        <div class="role">Mage rival isolé</div>
+      </div>
+    </div>
+    <span class="pnj-attitude mystere">Mystérieux</span>
+    <div class="pnj-stats"><strong>FOR</strong> 0 · <strong>DEX</strong> +1 · <strong>CON</strong> +2 · <strong>INT</strong> +4 · <strong>SAG</strong> +2 · <strong>CHA</strong> 0<br><strong>PV</strong> 15 · <strong>Def</strong> 11 · <strong>Éther</strong> 9 · <span>Affinités</span> : Feu +2, Chaos +2 · <em>3 mots primordiaux dont un rare</em></div>
+    <div class="pnj-section">
+      <h3>Rôle</h3>
+      <p>Mage-érudit vivant en reclus. Sait beaucoup de choses. Ne partage pas facilement. Peut aider les PJ pour un service — souvent obscur.</p>
+      <h3>Tics</h3>
+      <p>Ne finit jamais ses phrases importantes. Interrompt sans cesse. Boit un thé étrange qui fume tout seul.</p>
+    </div>
+    <div class="pnj-flavor">« Vous cherchez un mot. Peut-être. Mais est-ce le bon mot… ? »</div>
+  </div>
+
+  <!-- 5 -->
+  <div class="pnj-card allie">
+    <div class="pnj-header">
+      <div class="pnj-icon">🎵</div>
+      <div class="pnj-title">
+        <h2>Perenn le Barde</h2>
+        <div class="role">Musicien-espion</div>
+      </div>
+    </div>
+    <span class="pnj-attitude allie">Allié</span>
+    <div class="pnj-stats"><strong>FOR</strong> 0 · <strong>DEX</strong> +2 · <strong>CON</strong> +1 · <strong>INT</strong> +2 · <strong>SAG</strong> +2 · <strong>CHA</strong> +3<br><strong>PV</strong> 14 · <strong>Def</strong> 12 · <span>Arme</span> : rapière fine (1d8) · <em>Luth qui contient un couteau</em></div>
+    <div class="pnj-section">
+      <h3>Rôle</h3>
+      <p>Voyage de taverne en taverne. Chante, écoute, recompte. Un des <strong>informateurs officieux des Veilleurs</strong>. Aide contre une chanson bien reçue.</p>
+      <h3>Tics</h3>
+      <p>Compose des versets sur les gens en direct. Cligne d'un œil aux femmes. Refuse toujours de payer la première pinte — « je paye avec la musique ».</p>
+    </div>
+    <div class="pnj-flavor">« J'ai entendu une belle chose l'autre soir. Une histoire de Nœud qui pulse. »</div>
+  </div>
+
+  <!-- 6 -->
+  <div class="pnj-card hostile">
+    <div class="pnj-header">
+      <div class="pnj-icon">🗡️</div>
+      <div class="pnj-title">
+        <h2>Kavor le Sanglant</h2>
+        <div class="role">Voleur violent</div>
+      </div>
+    </div>
+    <span class="pnj-attitude hostile">Hostile</span>
+    <div class="pnj-stats"><strong>FOR</strong> +2 · <strong>DEX</strong> +3 · <strong>CON</strong> +1 · <strong>INT</strong> 0 · <strong>SAG</strong> +1 · <strong>CHA</strong> −1<br><strong>PV</strong> 18 · <strong>Def</strong> 13 · <span>Armes</span> : 2 dagues (1d6 chacune) · <em>Poison paralysant, 1 dose</em></div>
+    <div class="pnj-section">
+      <h3>Rôle</h3>
+      <p>Voleur avec un couteau facile. Réputation d'avoir tué un noble. Peut être engagé pour un mauvais coup — ou attaquera les PJ si opportunité.</p>
+      <h3>Tics</h3>
+      <p>Fait tourner une dague entre ses doigts. Rit trop fort à des blagues qu'on n'entend pas. Sent le sang séché malgré lui.</p>
+    </div>
+    <div class="pnj-flavor">« T'as l'air riche. C'est pas mon problème — c'est le tien. »</div>
+  </div>
+
+  <!-- 7 -->
+  <div class="pnj-card mystere">
+    <div class="pnj-header">
+      <div class="pnj-icon">✝️</div>
+      <div class="pnj-title">
+        <h2>Sœur Alveine</h2>
+        <div class="role">Prêtresse fanatique de Jei'nia</div>
+      </div>
+    </div>
+    <span class="pnj-attitude mystere">Mystérieux</span>
+    <div class="pnj-stats"><strong>FOR</strong> +1 · <strong>DEX</strong> +1 · <strong>CON</strong> +2 · <strong>INT</strong> +2 · <strong>SAG</strong> +3 · <strong>CHA</strong> +2<br><strong>PV</strong> 18 · <strong>Def</strong> 12 · <strong>Éther</strong> 8 · <span>Affinités</span> : Chaos +3 (soins) · <em>Bâton avec Yiel curare gravé</em></div>
+    <div class="pnj-section">
+      <h3>Rôle</h3>
+      <p>Prêtresse des Spriius Luminatis. Défend les opprimés — parfois violemment. Peut soigner gratuitement, mais attend en échange que les PJ « répandent la Lumière ».</p>
+      <h3>Tics</h3>
+      <p>Sourit sans arrêt. Ne cligne jamais des yeux quand elle prêche. Le cheveu ceint d'un fil d'or.</p>
+    </div>
+    <div class="pnj-flavor">« Les ténèbres reculeront. C'est écrit. Aidez-nous à écrire la suite. »</div>
+  </div>
+
+  <!-- 8 -->
+  <div class="pnj-card hostile">
+    <div class="pnj-header">
+      <div class="pnj-icon">🏴</div>
+      <div class="pnj-title">
+        <h2>Capitaine Nolm</h2>
+        <div class="role">Corsaire heledérien</div>
+      </div>
+    </div>
+    <span class="pnj-attitude hostile">Hostile</span>
+    <div class="pnj-stats"><strong>FOR</strong> +2 · <strong>DEX</strong> +2 · <strong>CON</strong> +2 · <strong>INT</strong> +1 · <strong>SAG</strong> +1 · <strong>CHA</strong> +2<br><strong>PV</strong> 24 · <strong>Def</strong> 13 · <span>Armes</span> : sabre (1d8) + pistolet à air script (1d10) · <em>Équipage 8-12 marins</em></div>
+    <div class="pnj-section">
+      <h3>Rôle</h3>
+      <p>Corsaire toléré par la Banque d'Heledera. Ennemi de Seaher it Nam. Négociable — préfère l'or à la bataille. Mais négocie dur.</p>
+      <h3>Tics</h3>
+      <p>Une balafre sur la joue. Marmonne des jurons quand il calcule. Bandana rouge.</p>
+    </div>
+    <div class="pnj-flavor">« Trois cents pièces. Ou votre vaisseau. Vous choisissez, mais vite. »</div>
+  </div>
+
+  <!-- 9 -->
+  <div class="pnj-card neutre">
+    <div class="pnj-header">
+      <div class="pnj-icon">🐎</div>
+      <div class="pnj-title">
+        <h2>Vieux Jorik</h2>
+        <div class="role">Caravanier Karambol</div>
+      </div>
+    </div>
+    <span class="pnj-attitude neutre">Neutre</span>
+    <div class="pnj-stats"><strong>FOR</strong> +1 · <strong>DEX</strong> +1 · <strong>CON</strong> +3 · <strong>INT</strong> +1 · <strong>SAG</strong> +3 · <strong>CHA</strong> +1<br><strong>PV</strong> 20 · <strong>Def</strong> 11 · <span>Arme</span> : fouet de meneur · <em>Convoi 3-5 chariots</em></div>
+    <div class="pnj-section">
+      <h3>Rôle</h3>
+      <p>Caravanier expérimenté. Connaît toutes les routes. Peut engager les PJ comme escorte, ou aider s'ils ont l'air honnêtes. Boire lui délie la langue.</p>
+      <h3>Tics</h3>
+      <p>Mâche du tabac séché. Barbe grise mal taillée. Chapeau qui a survécu à 40 routes.</p>
+    </div>
+    <div class="pnj-flavor">« Sur la route de Sylvarn ? J'ai vu des choses là-bas. Des choses. »</div>
+  </div>
+
+  <!-- 10 -->
+  <div class="pnj-card allie">
+    <div class="pnj-header">
+      <div class="pnj-icon">📖</div>
+      <div class="pnj-title">
+        <h2>Cassiane la Scribe</h2>
+        <div class="role">Érudite luministe</div>
+      </div>
+    </div>
+    <span class="pnj-attitude allie">Allié</span>
+    <div class="pnj-stats"><strong>FOR</strong> −1 · <strong>DEX</strong> 0 · <strong>CON</strong> 0 · <strong>INT</strong> +4 · <strong>SAG</strong> +3 · <strong>CHA</strong> +1<br><strong>PV</strong> 10 · <strong>Def</strong> 10 · <span>Arme</span> : couteau à plume (inefficace) · <em>Bibliothèque personnelle vaste</em></div>
+    <div class="pnj-section">
+      <h3>Rôle</h3>
+      <p>Scribe indépendante à Me'yn Prus. Peut déchiffrer presque tout. Prêtresse mineure d'Handu'zo. Aide gratuitement si un livre y est associé.</p>
+      <h3>Tics</h3>
+      <p>Toujours de l'encre sur les doigts. Corrige la grammaire des gens à voix haute. Vaste chignon plein de plumes.</p>
+    </div>
+    <div class="pnj-flavor">« Cette rune ? Fascinante. Trois millénaires. Je peux la lire — mais pas ici. »</div>
+  </div>
+
+  <!-- 11 -->
+  <div class="pnj-card hostile">
+    <div class="pnj-header">
+      <div class="pnj-icon">👹</div>
+      <div class="pnj-title">
+        <h2>Brakh le Gobelin</h2>
+        <div class="role">Gobelin intelligent (livre 2)</div>
+      </div>
+    </div>
+    <span class="pnj-attitude hostile">Hostile</span>
+    <div class="pnj-stats"><strong>FOR</strong> +1 · <strong>DEX</strong> +3 · <strong>CON</strong> +1 · <strong>INT</strong> +2 · <strong>SAG</strong> +2 · <strong>CHA</strong> +1<br><strong>PV</strong> 16 · <strong>Def</strong> 13 · <span>Armes</span> : arc court (1d6) + poignard (1d4) · <em>Parle, planifie, ment</em></div>
+    <div class="pnj-section">
+      <h3>Rôle</h3>
+      <p>Gobelin muté par une force inconnue. Intelligent, sournois, chef d'une horde. Symbole de la <strong>dévastation qui approche</strong>. Peut être négocié — pas de confiance.</p>
+      <h3>Tics</h3>
+      <p>Sourit avec trop de dents. Parle en riant. Cligne d'un œil pour intimider.</p>
+    </div>
+    <div class="pnj-flavor">« Vous croyez être en haut de la chaîne ? Nous aussi, on grimpe. »</div>
+  </div>
+
+  <!-- 12 -->
+  <div class="pnj-card mystere">
+    <div class="pnj-header">
+      <div class="pnj-icon">👁</div>
+      <div class="pnj-title">
+        <h2>Le Veilleur Anonyme</h2>
+        <div class="role">Contact secret</div>
+      </div>
+    </div>
+    <span class="pnj-attitude mystere">Mystérieux</span>
+    <div class="pnj-stats"><strong>FOR</strong> +2 · <strong>DEX</strong> +3 · <strong>CON</strong> +2 · <strong>INT</strong> +3 · <strong>SAG</strong> +3 · <strong>CHA</strong> +2<br><strong>PV</strong> 26 · <strong>Def</strong> 15 · <strong>Éther</strong> 8 · <span>Arme</span> : selon Veilleur (rapière/arc/lance) · <em>Sait toujours plus qu'il ne dit</em></div>
+    <div class="pnj-section">
+      <h3>Rôle</h3>
+      <p>Un Veilleur qui aborde discrètement les PJ. Ne dit jamais son vrai nom. Sait des choses très précises sur eux. Contact utile — mais toujours avec un prix.</p>
+      <h3>Tics</h3>
+      <p>Regarde par-dessus l'épaule des PJ pendant qu'il parle. Ne s'assoit jamais. Boit peu.</p>
+    </div>
+    <div class="pnj-flavor">« Vous étiez à Etelin le matin du 12. J'ai un message pour vous. Suivez-moi. »</div>
+  </div>
+
+  <!-- 13 -->
+  <div class="pnj-card allie">
+    <div class="pnj-header">
+      <div class="pnj-icon">🐺</div>
+      <div class="pnj-title">
+        <h2>Nyre du Bois</h2>
+        <div class="role">Guide Mi-loup / Tribu de la Forêt</div>
+      </div>
+    </div>
+    <span class="pnj-attitude allie">Allié</span>
+    <div class="pnj-stats"><strong>FOR</strong> +3 · <strong>DEX</strong> +2 · <strong>CON</strong> +3 · <strong>INT</strong> +1 · <strong>SAG</strong> +3 · <strong>CHA</strong> +1<br><strong>PV</strong> 22 · <strong>Def</strong> 13 · <span>Armes</span> : arc long (1d8) + griffes de forme (1d6+2) · <em>Peut sentir mensonges/peurs</em></div>
+    <div class="pnj-section">
+      <h3>Rôle</h3>
+      <p>Éclaireuse Mi-loup, membre de la Tribu de la Forêt. Guide les PJ dans la Forêt Julia si ils sont respectueux. Coup de patte redoutable en cas d'irrespect.</p>
+      <h3>Tics</h3>
+      <p>Reniflent l'air en discutant. Se frotte contre les arbres. Grognement doux au lieu de rire.</p>
+    </div>
+    <div class="pnj-flavor">« La forêt vous laisse entrer. C'est déjà un cadeau. Ne le gâchez pas. »</div>
+  </div>
+
+  <!-- 14 -->
+  <div class="pnj-card hostile">
+    <div class="pnj-header">
+      <div class="pnj-icon">👑</div>
+      <div class="pnj-title">
+        <h2>Damon Von Guinity</h2>
+        <div class="role">Neveu du Baron — hostile poli</div>
+      </div>
+    </div>
+    <span class="pnj-attitude hostile">Hostile</span>
+    <div class="pnj-stats"><strong>FOR</strong> +2 · <strong>DEX</strong> +3 · <strong>CON</strong> +2 · <strong>INT</strong> +3 · <strong>SAG</strong> +1 · <strong>CHA</strong> +3<br><strong>PV</strong> 24 · <strong>Def</strong> 15 · <span>Arme</span> : rapière ouvrée (1d8+2) · <em>2 gardes personnels</em></div>
+    <div class="pnj-section">
+      <h3>Rôle</h3>
+      <p>Neveu du Baron Von Guinity. Charmant, dangereux, snob. Sert les intérêts de la Maison des Dragons dans les hautes sphères. Insulte élégamment.</p>
+      <h3>Tics</h3>
+      <p>Sourit toujours. Se refait la manche du gant pendant les échanges. Ne se met jamais en colère visiblement.</p>
+    </div>
+    <div class="pnj-flavor">« Un tel plaisir de rencontrer un… aventurier. Vraiment. Racontez-moi tout. »</div>
+  </div>
+
+  <!-- 15 -->
+  <div class="pnj-card mystere">
+    <div class="pnj-header">
+      <div class="pnj-icon">🌫️</div>
+      <div class="pnj-title">
+        <h2>La Femme au Voile Bleu</h2>
+        <div class="role">Envoyée du noble mystérieux</div>
+      </div>
+    </div>
+    <span class="pnj-attitude mystere">Mystérieux</span>
+    <div class="pnj-stats"><strong>FOR</strong> 0 · <strong>DEX</strong> +2 · <strong>CON</strong> +1 · <strong>INT</strong> +3 · <strong>SAG</strong> +3 · <strong>CHA</strong> +3<br><strong>PV</strong> 16 · <strong>Def</strong> 12 · <span>Arme</span> : dague d'ivoire (1d6) · <em>Bourse pleine d'or heledérien</em></div>
+    <div class="pnj-section">
+      <h3>Rôle</h3>
+      <p>Envoyée d'un noble anonyme de Me'yn Prus. Propose des contrats aux PJ — bien payés, moralement gris. Refuse de dire pour qui elle travaille.</p>
+      <h3>Tics</h3>
+      <p>Voile bleu qui cache la moitié de son visage. Voix douce, presque murmurée. Paie toujours d'avance.</p>
+    </div>
+    <div class="pnj-flavor">« Mon employeur admire votre travail. Il souhaite… une petite collaboration. »</div>
+  </div>
+
+</div>
+
+<footer>
+  PNJ prêts à jouer · 15 fiches · Système Bilal · Armonia 2026
+</footer>
+
+</div>
+</body>
+</html>

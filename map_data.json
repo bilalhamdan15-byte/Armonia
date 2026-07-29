@@ -1,0 +1,6790 @@
+{
+ "width": 3440,
+ "height": 1400,
+ "states": [
+  {
+   "i": 0,
+   "name": "Neutrals",
+   "color": null,
+   "capital": null
+  },
+  {
+   "i": 1,
+   "name": "Lumini",
+   "color": "#66c2a5",
+   "capital": 1
+  },
+  {
+   "i": 2,
+   "name": "Sol'Ambaïre",
+   "color": "#fc8d62",
+   "capital": 2
+  },
+  {
+   "i": 3,
+   "name": "No'Ord",
+   "color": "#8da0cb",
+   "capital": 3
+  },
+  {
+   "i": 4,
+   "name": "Virtus",
+   "color": "#e78ac3",
+   "capital": 4
+  },
+  {
+   "i": 5,
+   "name": "Armonia",
+   "color": "#a6d854",
+   "capital": 5
+  },
+  {
+   "i": 6,
+   "name": "Heledera",
+   "color": "#ffd92f",
+   "capital": 6
+  }
+ ],
+ "burgs": [
+  {
+   "name": "Me'yn Prus",
+   "x": 1621.7,
+   "y": 419.0,
+   "state": 1,
+   "capital": true,
+   "port": false,
+   "pop": 41.6,
+   "i": 1
+  },
+  {
+   "name": "Solenwa",
+   "x": 762.5,
+   "y": 940.2,
+   "state": 2,
+   "capital": true,
+   "port": true,
+   "pop": 8.3,
+   "i": 2
+  },
+  {
+   "name": "Brumelune",
+   "x": 595.3,
+   "y": 558.0,
+   "state": 3,
+   "capital": true,
+   "port": true,
+   "pop": 19.8,
+   "i": 3
+  },
+  {
+   "name": "Virtus",
+   "x": 2092.4,
+   "y": 799.3,
+   "state": 4,
+   "capital": true,
+   "port": true,
+   "pop": 15.2,
+   "i": 4
+  },
+  {
+   "name": "Armonia",
+   "x": 1003.2,
+   "y": 485.4,
+   "state": 5,
+   "capital": true,
+   "port": true,
+   "pop": 18.4,
+   "i": 5
+  },
+  {
+   "name": "Cordéheim",
+   "x": 1422.9,
+   "y": 956.4,
+   "state": 6,
+   "capital": true,
+   "port": true,
+   "pop": 25.3,
+   "i": 6
+  },
+  {
+   "name": "Karuwa",
+   "x": 376.9,
+   "y": 372.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 27.6,
+   "i": 7
+  },
+  {
+   "name": "Vyenah",
+   "x": 67.5,
+   "y": 436.6,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 18.2,
+   "i": 8
+  },
+  {
+   "name": "Cantiatabis",
+   "x": 1477.4,
+   "y": 416.6,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.6,
+   "i": 9
+  },
+  {
+   "name": "Hira-To",
+   "x": 746.8,
+   "y": 976.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 10.4,
+   "i": 10
+  },
+  {
+   "name": "Trois-Roses",
+   "x": 1177.0,
+   "y": 344.2,
+   "state": 5,
+   "capital": false,
+   "port": true,
+   "pop": 8.1,
+   "i": 11
+  },
+  {
+   "name": "Cordemer",
+   "x": 1427.1,
+   "y": 996.2,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 7.5,
+   "i": 12
+  },
+  {
+   "name": "Beaufort-sur-Lac",
+   "x": 1792.6,
+   "y": 664.7,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 16.1,
+   "i": 13
+  },
+  {
+   "name": "Agronanove",
+   "x": 1003.6,
+   "y": 359.4,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 2.5,
+   "i": 14
+  },
+  {
+   "name": "Begi",
+   "x": 720.3,
+   "y": 995.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.3,
+   "i": 15
+  },
+  {
+   "name": "Detoria",
+   "x": 2077.0,
+   "y": 502.0,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 4.6,
+   "i": 16
+  },
+  {
+   "name": "Fer-Brûlant",
+   "x": 2128.0,
+   "y": 635.1,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 14.3,
+   "i": 17
+  },
+  {
+   "name": "Sineriari",
+   "x": 1200.2,
+   "y": 352.7,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 4.7,
+   "i": 18
+  },
+  {
+   "name": "Presaler",
+   "x": 602.2,
+   "y": 478.4,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 3.8,
+   "i": 19
+  },
+  {
+   "name": "Lingiscia",
+   "x": 1996.3,
+   "y": 1007.6,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 20
+  },
+  {
+   "name": "Lugrum",
+   "x": 1816.9,
+   "y": 394.2,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 4.8,
+   "i": 21
+  },
+  {
+   "name": "Armorport",
+   "x": 2120.5,
+   "y": 557.2,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 9.6,
+   "i": 22
+  },
+  {
+   "name": "Ocobristel",
+   "x": 599.8,
+   "y": 467.7,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 5.8,
+   "i": 23
+  },
+  {
+   "name": "Cornum",
+   "x": 2126.2,
+   "y": 910.6,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 24
+  },
+  {
+   "name": "Tenshi-Jo",
+   "x": 827.6,
+   "y": 1127.3,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 9.7,
+   "i": 25
+  },
+  {
+   "name": "Dimiricaqui",
+   "x": 1700,
+   "y": 471.8,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.3,
+   "i": 26
+  },
+  {
+   "name": "Eridalium",
+   "x": 1608.7,
+   "y": 371.8,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 2.1,
+   "i": 27
+  },
+  {
+   "name": "Gaia",
+   "x": 345.8,
+   "y": 1022.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 6.8,
+   "i": 28
+  },
+  {
+   "name": "Bursoriel",
+   "x": 37.2,
+   "y": 483.5,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 1.5,
+   "i": 29
+  },
+  {
+   "name": "Lampelune",
+   "x": 1584.0,
+   "y": 387.4,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 9.9,
+   "i": 30
+  },
+  {
+   "name": "Ylesmer",
+   "x": 1655.5,
+   "y": 1070.3,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 9.2,
+   "i": 31
+  },
+  {
+   "name": "Lintiocenno",
+   "x": 1698.5,
+   "y": 380.1,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 32
+  },
+  {
+   "name": "Lamium",
+   "x": 1795.6,
+   "y": 602.6,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.2,
+   "i": 33
+  },
+  {
+   "name": "Dovisionata",
+   "x": 1684.0,
+   "y": 443.9,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 1.6,
+   "i": 34
+  },
+  {
+   "name": "Dopolinon",
+   "x": 394.1,
+   "y": 431.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.2,
+   "i": 35
+  },
+  {
+   "name": "Hauteforge",
+   "x": 1672.9,
+   "y": 889.2,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 9.1,
+   "i": 36
+  },
+  {
+   "name": "Mebiega",
+   "x": 897.0,
+   "y": 952.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 37
+  },
+  {
+   "name": "Monana",
+   "x": 1302.2,
+   "y": 472.4,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 3.1,
+   "i": 38
+  },
+  {
+   "name": "Tarviodurum",
+   "x": 1604.5,
+   "y": 959.2,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 39
+  },
+  {
+   "name": "Menelia",
+   "x": 2085.4,
+   "y": 418.1,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 5.1,
+   "i": 40
+  },
+  {
+   "name": "Zambra",
+   "x": 593.9,
+   "y": 868.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 3.9,
+   "i": 41
+  },
+  {
+   "name": "Nodunium",
+   "x": 1974.6,
+   "y": 589.9,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 4.3,
+   "i": 42
+  },
+  {
+   "name": "Banium",
+   "x": 1846.8,
+   "y": 441.7,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 5.6,
+   "i": 43
+  },
+  {
+   "name": "Refuge-Vert",
+   "x": 1609.2,
+   "y": 986.9,
+   "state": 6,
+   "capital": false,
+   "port": true,
+   "pop": 18.5,
+   "i": 44
+  },
+  {
+   "name": "Hoshi-Kara",
+   "x": 588.1,
+   "y": 1077.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 7.7,
+   "i": 45
+  },
+  {
+   "name": "Plentzarai",
+   "x": 736.3,
+   "y": 961.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 2.4,
+   "i": 46
+  },
+  {
+   "name": "Condilesapu",
+   "x": 1463.4,
+   "y": 347.6,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 1.5,
+   "i": 47
+  },
+  {
+   "name": "Castrum",
+   "x": 1997.7,
+   "y": 413.3,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 0.9,
+   "i": 48
+  },
+  {
+   "name": "Vin-Roi",
+   "x": 1957.5,
+   "y": 468.5,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 7.4,
+   "i": 49
+  },
+  {
+   "name": "Marnorum",
+   "x": 1225.4,
+   "y": 505.0,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 50
+  },
+  {
+   "name": "Modrialivo",
+   "x": 577.4,
+   "y": 439.3,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 4.4,
+   "i": 51
+  },
+  {
+   "name": "Peileamon",
+   "x": 158,
+   "y": 631.6,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 2.2,
+   "i": 52
+  },
+  {
+   "name": "Heimport",
+   "x": 2023.9,
+   "y": 447.7,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 21.7,
+   "i": 53
+  },
+  {
+   "name": "Bacentonia",
+   "x": 1726.1,
+   "y": 359.9,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 2.6,
+   "i": 54
+  },
+  {
+   "name": "Borea",
+   "x": 524.9,
+   "y": 472.9,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 2.1,
+   "i": 55
+  },
+  {
+   "name": "Olcis",
+   "x": 379.8,
+   "y": 389.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.4,
+   "i": 56
+  },
+  {
+   "name": "Didugus",
+   "x": 598.3,
+   "y": 434.2,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 6.4,
+   "i": 57
+  },
+  {
+   "name": "Castelbium",
+   "x": 1326.4,
+   "y": 468.0,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 2.2,
+   "i": 58
+  },
+  {
+   "name": "Parnanorum",
+   "x": 1040.2,
+   "y": 376.1,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 59
+  },
+  {
+   "name": "Hartfort",
+   "x": 2189.6,
+   "y": 501.5,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 7.5,
+   "i": 60
+  },
+  {
+   "name": "Sornoria",
+   "x": 609.9,
+   "y": 454.4,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 3.0,
+   "i": 61
+  },
+  {
+   "name": "Legorlizkoi",
+   "x": 912.9,
+   "y": 936.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 2.8,
+   "i": 62
+  },
+  {
+   "name": "Ferrabourg",
+   "x": 1968.2,
+   "y": 625.1,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 7.6,
+   "i": 63
+  },
+  {
+   "name": "Modnictodu",
+   "x": 1914.8,
+   "y": 419.6,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 1.6,
+   "i": 64
+  },
+  {
+   "name": "Icacomula",
+   "x": 1330.9,
+   "y": 424.7,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 3.8,
+   "i": 65
+  },
+  {
+   "name": "Artzieta",
+   "x": 835.5,
+   "y": 927.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 4.2,
+   "i": 66
+  },
+  {
+   "name": "Florinval",
+   "x": 1645,
+   "y": 444.9,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 11.0,
+   "i": 67
+  },
+  {
+   "name": "Masustobun",
+   "x": 1952.3,
+   "y": 751.3,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 0.9,
+   "i": 68
+  },
+  {
+   "name": "Troressos",
+   "x": 100.9,
+   "y": 480.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 3.7,
+   "i": 69
+  },
+  {
+   "name": "Villum",
+   "x": 2139.5,
+   "y": 401.1,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 4.9,
+   "i": 70
+  },
+  {
+   "name": "Contia",
+   "x": 53.1,
+   "y": 500.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 6.7,
+   "i": 71
+  },
+  {
+   "name": "Orratzi",
+   "x": 662.0,
+   "y": 958.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 6.7,
+   "i": 72
+  },
+  {
+   "name": "Contonio",
+   "x": 1421.8,
+   "y": 905.3,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 0.9,
+   "i": 73
+  },
+  {
+   "name": "Lance-Sud",
+   "x": 1934.5,
+   "y": 793.4,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 7.2,
+   "i": 74
+  },
+  {
+   "name": "Bogonculo",
+   "x": 1325.1,
+   "y": 949.3,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 0.8,
+   "i": 75
+  },
+  {
+   "name": "Bioa",
+   "x": 337.0,
+   "y": 1042.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 5.8,
+   "i": 76
+  },
+  {
+   "name": "Zugao",
+   "x": 442.8,
+   "y": 1059.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 6.8,
+   "i": 77
+  },
+  {
+   "name": "Muskuerran",
+   "x": 547.2,
+   "y": 953.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.3,
+   "i": 78
+  },
+  {
+   "name": "Pas-d'Argent",
+   "x": 1312.4,
+   "y": 455.7,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 12.0,
+   "i": 79
+  },
+  {
+   "name": "Sora-Vann",
+   "x": 128.3,
+   "y": 537.6,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 8.4,
+   "i": 80
+  },
+  {
+   "name": "Rodura",
+   "x": 1545.8,
+   "y": 399.7,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.5,
+   "i": 81
+  },
+  {
+   "name": "Castel-Bourg",
+   "x": 2163.2,
+   "y": 432.2,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 8.8,
+   "i": 82
+  },
+  {
+   "name": "Cœur-Royal",
+   "x": 1039.2,
+   "y": 484.7,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 7.9,
+   "i": 83
+  },
+  {
+   "name": "Nievelius",
+   "x": 1063.0,
+   "y": 756.4,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 5.2,
+   "i": 84
+  },
+  {
+   "name": "Beirurue",
+   "x": 704.4,
+   "y": 995.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 85
+  },
+  {
+   "name": "Ilamai",
+   "x": 307.5,
+   "y": 726.4,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 11.7,
+   "i": 86
+  },
+  {
+   "name": "Akatsuki",
+   "x": 935.4,
+   "y": 997.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 9.7,
+   "i": 87
+  },
+  {
+   "name": "Tour-de-Loup",
+   "x": 1844.2,
+   "y": 941,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 7.2,
+   "i": 88
+  },
+  {
+   "name": "Aigle-de-Fer",
+   "x": 2002.3,
+   "y": 501.7,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 17.1,
+   "i": 89
+  },
+  {
+   "name": "Tregiora",
+   "x": 1399.0,
+   "y": 745.8,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 5.6,
+   "i": 90
+  },
+  {
+   "name": "Izia",
+   "x": 648.1,
+   "y": 905.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 2.9,
+   "i": 91
+  },
+  {
+   "name": "Iagaselos",
+   "x": 170.7,
+   "y": 814.8,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.7,
+   "i": 92
+  },
+  {
+   "name": "Alpianum",
+   "x": 2094.5,
+   "y": 407.5,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.3,
+   "i": 93
+  },
+  {
+   "name": "Boncandum",
+   "x": 1821.6,
+   "y": 403,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.5,
+   "i": 94
+  },
+  {
+   "name": "Gorgos",
+   "x": 232.6,
+   "y": 776.5,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 5.9,
+   "i": 95
+  },
+  {
+   "name": "Yle-Refuge",
+   "x": 1417.9,
+   "y": 1011.4,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 13.7,
+   "i": 96
+  },
+  {
+   "name": "Beliaventa",
+   "x": 1448.2,
+   "y": 921.8,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 3.6,
+   "i": 97
+  },
+  {
+   "name": "Cordum",
+   "x": 1829.2,
+   "y": 1073.2,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.9,
+   "i": 98
+  },
+  {
+   "name": "Kuartueldo",
+   "x": 840.2,
+   "y": 1120.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.7,
+   "i": 99
+  },
+  {
+   "name": "Ascendris",
+   "x": 865.5,
+   "y": 1080.8,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 9.5,
+   "i": 100
+  },
+  {
+   "name": "Viganapie",
+   "x": 1946.2,
+   "y": 479.6,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 3.6,
+   "i": 101
+  },
+  {
+   "name": "Leintzun",
+   "x": 304.6,
+   "y": 1131.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.9,
+   "i": 102
+  },
+  {
+   "name": "Diagus",
+   "x": 1321.9,
+   "y": 464.3,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 0.8,
+   "i": 103
+  },
+  {
+   "name": "Roseau-le-Beau",
+   "x": 1814.5,
+   "y": 454.5,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 7.3,
+   "i": 104
+  },
+  {
+   "name": "Nyraies",
+   "x": 459.7,
+   "y": 637.3,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 4.8,
+   "i": 105
+  },
+  {
+   "name": "Esteiztur",
+   "x": 389.6,
+   "y": 983.3,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 2.8,
+   "i": 106
+  },
+  {
+   "name": "Vincelune",
+   "x": 1921.6,
+   "y": 496.7,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 7.7,
+   "i": 107
+  },
+  {
+   "name": "Cour-Suprême",
+   "x": 1042.1,
+   "y": 490.3,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 7.9,
+   "i": 108
+  },
+  {
+   "name": "Vindorialas",
+   "x": 1353.9,
+   "y": 430.2,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 4.2,
+   "i": 109
+  },
+  {
+   "name": "Couronne-Bleue",
+   "x": 1105.6,
+   "y": 469.0,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 10.6,
+   "i": 110
+  },
+  {
+   "name": "Pulletana",
+   "x": 1146.5,
+   "y": 481.0,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 6.2,
+   "i": 111
+  },
+  {
+   "name": "Arnonimbris",
+   "x": 1425.0,
+   "y": 746.8,
+   "state": 6,
+   "capital": false,
+   "port": true,
+   "pop": 6.9,
+   "i": 112
+  },
+  {
+   "name": "Clarville",
+   "x": 1305.5,
+   "y": 456.2,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 9.6,
+   "i": 113
+  },
+  {
+   "name": "Premina",
+   "x": 1672.7,
+   "y": 497.1,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 1.5,
+   "i": 114
+  },
+  {
+   "name": "Magister",
+   "x": 1105.4,
+   "y": 369.4,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 7.4,
+   "i": 115
+  },
+  {
+   "name": "Thuri",
+   "x": 84.5,
+   "y": 764.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.6,
+   "i": 116
+  },
+  {
+   "name": "Pontleau",
+   "x": 1791.9,
+   "y": 458.6,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 8.2,
+   "i": 117
+  },
+  {
+   "name": "Corium",
+   "x": 2116.3,
+   "y": 916.9,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 5.7,
+   "i": 118
+  },
+  {
+   "name": "Pétale-d'Or",
+   "x": 1203.7,
+   "y": 354.6,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 7.1,
+   "i": 119
+  },
+  {
+   "name": "Nolilureva",
+   "x": 1623.3,
+   "y": 984.6,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 4.6,
+   "i": 120
+  },
+  {
+   "name": "Aeigubanis",
+   "x": 2098.0,
+   "y": 537.5,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 121
+  },
+  {
+   "name": "Hondaindain",
+   "x": 381.6,
+   "y": 1042.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 122
+  },
+  {
+   "name": "Croix-d'Aigle",
+   "x": 2066.4,
+   "y": 439.0,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 12.9,
+   "i": 123
+  },
+  {
+   "name": "Pierreceleste",
+   "x": 883.4,
+   "y": 1030,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 10.8,
+   "i": 124
+  },
+  {
+   "name": "Lazo-ri",
+   "x": 180,
+   "y": 818.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 8.2,
+   "i": 125
+  },
+  {
+   "name": "Hrímfall",
+   "x": 467.6,
+   "y": 692.4,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 7.3,
+   "i": 126
+  },
+  {
+   "name": "Belleflute",
+   "x": 1304.3,
+   "y": 421.3,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 9.9,
+   "i": 127
+  },
+  {
+   "name": "Nonaqurina",
+   "x": 1843.6,
+   "y": 538.6,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 128
+  },
+  {
+   "name": "Coniovitovi",
+   "x": 1411.2,
+   "y": 759.0,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 0.9,
+   "i": 129
+  },
+  {
+   "name": "Forêtport",
+   "x": 1474.9,
+   "y": 712.3,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 15.2,
+   "i": 130
+  },
+  {
+   "name": "Claucus",
+   "x": 2100.1,
+   "y": 857.9,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 0.8,
+   "i": 131
+  },
+  {
+   "name": "Ertedo",
+   "x": 905.8,
+   "y": 912.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 6.5,
+   "i": 132
+  },
+  {
+   "name": "Duroniarita",
+   "x": 1312.6,
+   "y": 954.8,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 6.6,
+   "i": 133
+  },
+  {
+   "name": "Carré-Vert",
+   "x": 1583.5,
+   "y": 811.1,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 8.8,
+   "i": 134
+  },
+  {
+   "name": "Lactum",
+   "x": 2003.6,
+   "y": 511.5,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 4.3,
+   "i": 135
+  },
+  {
+   "name": "Matiagen",
+   "x": 2241.8,
+   "y": 508.5,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 2.3,
+   "i": 136
+  },
+  {
+   "name": "Corentiaiec",
+   "x": 1812.0,
+   "y": 540.0,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 6.4,
+   "i": 137
+  },
+  {
+   "name": "Etza",
+   "x": 435.7,
+   "y": 1095.4,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 138
+  },
+  {
+   "name": "Flacum",
+   "x": 2135.5,
+   "y": 903.0,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.4,
+   "i": 139
+  },
+  {
+   "name": "Drusentium",
+   "x": 1604.0,
+   "y": 370,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.3,
+   "i": 140
+  },
+  {
+   "name": "Sormium",
+   "x": 1701.7,
+   "y": 955.4,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 3.0,
+   "i": 141
+  },
+  {
+   "name": "Verunum",
+   "x": 1720.7,
+   "y": 796,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 5.8,
+   "i": 142
+  },
+  {
+   "name": "Asctorum",
+   "x": 1401.0,
+   "y": 1000.2,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 3.2,
+   "i": 143
+  },
+  {
+   "name": "Leza",
+   "x": 592.7,
+   "y": 1078.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 4.4,
+   "i": 144
+  },
+  {
+   "name": "Tragus",
+   "x": 2069.7,
+   "y": 694.4,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 5.0,
+   "i": 145
+  },
+  {
+   "name": "Lileme",
+   "x": 945.5,
+   "y": 725.0,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 5.7,
+   "i": 146
+  },
+  {
+   "name": "Requm",
+   "x": 2135.7,
+   "y": 822.3,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 6.7,
+   "i": 147
+  },
+  {
+   "name": "Athenos",
+   "x": 384.8,
+   "y": 355.3,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.6,
+   "i": 148
+  },
+  {
+   "name": "Bragus",
+   "x": 959.3,
+   "y": 399.5,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 149
+  },
+  {
+   "name": "Ledia",
+   "x": 868.5,
+   "y": 1036.8,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 150
+  },
+  {
+   "name": "Couronne-de-Lune",
+   "x": 1183,
+   "y": 455.7,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 10.6,
+   "i": 151
+  },
+  {
+   "name": "Pulbium",
+   "x": 50.2,
+   "y": 462.6,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 3.0,
+   "i": 152
+  },
+  {
+   "name": "Suruaiama",
+   "x": 339.3,
+   "y": 1100.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 153
+  },
+  {
+   "name": "Bois-Marchand",
+   "x": 1317.4,
+   "y": 376.0,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 7.1,
+   "i": 154
+  },
+  {
+   "name": "Cornum",
+   "x": 1480.3,
+   "y": 453.6,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.3,
+   "i": 155
+  },
+  {
+   "name": "Mirenwa",
+   "x": 386.5,
+   "y": 734.3,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 10.6,
+   "i": 156
+  },
+  {
+   "name": "Lauvaroria",
+   "x": 2062.0,
+   "y": 471,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.3,
+   "i": 157
+  },
+  {
+   "name": "Pacentia",
+   "x": 1315.0,
+   "y": 447.6,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.5,
+   "i": 158
+  },
+  {
+   "name": "Asontenamur",
+   "x": 964.1,
+   "y": 997.4,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 4.4,
+   "i": 159
+  },
+  {
+   "name": "Vepixus",
+   "x": 1069.7,
+   "y": 435.9,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 3.3,
+   "i": 160
+  },
+  {
+   "name": "Forge-Imperiale",
+   "x": 2080.7,
+   "y": 648.0,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 9.9,
+   "i": 161
+  },
+  {
+   "name": "Lucarexum",
+   "x": 1742.4,
+   "y": 1037.3,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.3,
+   "i": 162
+  },
+  {
+   "name": "Plumage-Bleu",
+   "x": 1232.3,
+   "y": 380.3,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 10.8,
+   "i": 163
+  },
+  {
+   "name": "Aigleserre",
+   "x": 1845.8,
+   "y": 771.6,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 11.8,
+   "i": 164
+  },
+  {
+   "name": "Libar",
+   "x": 460.0,
+   "y": 1082.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 165
+  },
+  {
+   "name": "Sceau-d'Or",
+   "x": 1125.7,
+   "y": 393.2,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 8.8,
+   "i": 166
+  },
+  {
+   "name": "Dutuegdu",
+   "x": 1796.6,
+   "y": 558.3,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 167
+  },
+  {
+   "name": "Gertuel",
+   "x": 856.1,
+   "y": 1079.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 6.2,
+   "i": 168
+  },
+  {
+   "name": "Chaume-Doré",
+   "x": 1349.4,
+   "y": 429.7,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 12.3,
+   "i": 169
+  },
+  {
+   "name": "Mei-Tenshi",
+   "x": 576.1,
+   "y": 1087.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 7.6,
+   "i": 170
+  },
+  {
+   "name": "Iuripontia",
+   "x": 1840.4,
+   "y": 478.2,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 2.9,
+   "i": 171
+  },
+  {
+   "name": "Getelorenta",
+   "x": 1087.4,
+   "y": 470.4,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 1.4,
+   "i": 172
+  },
+  {
+   "name": "Lerandebani",
+   "x": 1836.9,
+   "y": 418.3,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 4.2,
+   "i": 173
+  },
+  {
+   "name": "Presa",
+   "x": 1136.7,
+   "y": 358.7,
+   "state": 5,
+   "capital": false,
+   "port": true,
+   "pop": 1.9,
+   "i": 174
+  },
+  {
+   "name": "Tregonia",
+   "x": 743.8,
+   "y": 414.8,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 5.2,
+   "i": 175
+  },
+  {
+   "name": "Taunum",
+   "x": 2218.5,
+   "y": 456.6,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 5.4,
+   "i": 176
+  },
+  {
+   "name": "Zambra",
+   "x": 965.6,
+   "y": 983.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 2.9,
+   "i": 177
+  },
+  {
+   "name": "Glaceforge",
+   "x": 612.0,
+   "y": 440.5,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 7.3,
+   "i": 178
+  },
+  {
+   "name": "Gexa",
+   "x": 427.0,
+   "y": 1043.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 6.6,
+   "i": 179
+  },
+  {
+   "name": "Cité-Soleil",
+   "x": 747.8,
+   "y": 489.8,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 8.7,
+   "i": 180
+  },
+  {
+   "name": "Ryou-Astir",
+   "x": 505.6,
+   "y": 1099.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 7.3,
+   "i": 181
+  },
+  {
+   "name": "Vintum",
+   "x": 731.4,
+   "y": 522.8,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 3.3,
+   "i": 182
+  },
+  {
+   "name": "Cordum",
+   "x": 1634.6,
+   "y": 456.9,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.4,
+   "i": 183
+  },
+  {
+   "name": "Claurum",
+   "x": 1590.7,
+   "y": 374.5,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.4,
+   "i": 184
+  },
+  {
+   "name": "Soie-Lumi",
+   "x": 1764.1,
+   "y": 376.3,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 7.2,
+   "i": 185
+  },
+  {
+   "name": "Aconale",
+   "x": 2196.4,
+   "y": 525.7,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 4.5,
+   "i": 186
+  },
+  {
+   "name": "Zaria",
+   "x": 370.3,
+   "y": 997.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 187
+  },
+  {
+   "name": "Castia",
+   "x": 1157.1,
+   "y": 467.6,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 4.6,
+   "i": 188
+  },
+  {
+   "name": "Brilalarie",
+   "x": 1603.0,
+   "y": 748.0,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 189
+  },
+  {
+   "name": "Brisipovia",
+   "x": 499.4,
+   "y": 653.0,
+   "state": 3,
+   "capital": false,
+   "port": true,
+   "pop": 3.1,
+   "i": 190
+  },
+  {
+   "name": "Snovold",
+   "x": 615.3,
+   "y": 498.9,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 7.3,
+   "i": 191
+  },
+  {
+   "name": "Lampe-Souveraine",
+   "x": 962.6,
+   "y": 446.9,
+   "state": 5,
+   "capital": false,
+   "port": true,
+   "pop": 7.1,
+   "i": 192
+  },
+  {
+   "name": "Akiro-sora",
+   "x": 526.8,
+   "y": 1043.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 7.4,
+   "i": 193
+  },
+  {
+   "name": "Kaliagidyma",
+   "x": 275.9,
+   "y": 733.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.9,
+   "i": 194
+  },
+  {
+   "name": "Iurorum",
+   "x": 2024.2,
+   "y": 891.5,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 5.9,
+   "i": 195
+  },
+  {
+   "name": "Lencum",
+   "x": 1939.3,
+   "y": 1148.5,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 2.8,
+   "i": 196
+  },
+  {
+   "name": "Ryouga",
+   "x": 110.0,
+   "y": 421.8,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 10.6,
+   "i": 197
+  },
+  {
+   "name": "Aquica",
+   "x": 1872.2,
+   "y": 415.1,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 2.2,
+   "i": 198
+  },
+  {
+   "name": "Inagubi",
+   "x": 504.5,
+   "y": 1060.6,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 4.5,
+   "i": 199
+  },
+  {
+   "name": "Pavillon-Royal",
+   "x": 990.4,
+   "y": 396.6,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 9.9,
+   "i": 200
+  },
+  {
+   "name": "Dodurorum",
+   "x": 662.2,
+   "y": 522.6,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 3.7,
+   "i": 201
+  },
+  {
+   "name": "Jotunfell",
+   "x": 578.9,
+   "y": 498.8,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 12.6,
+   "i": 202
+  },
+  {
+   "name": "Victianis",
+   "x": 1451.1,
+   "y": 468,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.3,
+   "i": 203
+  },
+  {
+   "name": "Ziortzeta",
+   "x": 653.1,
+   "y": 907.6,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 4.7,
+   "i": 204
+  },
+  {
+   "name": "Forêt-bourg",
+   "x": 1257.3,
+   "y": 493.2,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 7.0,
+   "i": 205
+  },
+  {
+   "name": "Tour-de-Cuivre",
+   "x": 1821.0,
+   "y": 589.9,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 9.9,
+   "i": 206
+  },
+  {
+   "name": "Aïrukan",
+   "x": 349.4,
+   "y": 986.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 8.7,
+   "i": 207
+  },
+  {
+   "name": "Otina",
+   "x": 114.2,
+   "y": 531.8,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 208
+  },
+  {
+   "name": "Prexum",
+   "x": 594.5,
+   "y": 435.4,
+   "state": 3,
+   "capital": false,
+   "port": true,
+   "pop": 1.5,
+   "i": 209
+  },
+  {
+   "name": "Adrianea",
+   "x": 2127.2,
+   "y": 880.3,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 210
+  },
+  {
+   "name": "Baronabis",
+   "x": 951.7,
+   "y": 412.2,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 5.6,
+   "i": 211
+  },
+  {
+   "name": "Throlis",
+   "x": 117,
+   "y": 459.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.8,
+   "i": 212
+  },
+  {
+   "name": "Modria",
+   "x": 2186.3,
+   "y": 963.2,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 213
+  },
+  {
+   "name": "Izinon",
+   "x": 72.9,
+   "y": 511.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 4.2,
+   "i": 214
+  },
+  {
+   "name": "Beakaoiondo",
+   "x": 583.7,
+   "y": 1015.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 5.3,
+   "i": 215
+  },
+  {
+   "name": "Lerangiaro",
+   "x": 874.9,
+   "y": 1032.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 216
+  },
+  {
+   "name": "Cinq-Vents",
+   "x": 843.9,
+   "y": 1105.5,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 11.4,
+   "i": 217
+  },
+  {
+   "name": "Phais",
+   "x": 495.8,
+   "y": 547.7,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 5.3,
+   "i": 218
+  },
+  {
+   "name": "Yujenah",
+   "x": 308.7,
+   "y": 454.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 8.9,
+   "i": 219
+  },
+  {
+   "name": "Piscia",
+   "x": 1081,
+   "y": 433.6,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 4.5,
+   "i": 220
+  },
+  {
+   "name": "Myolis",
+   "x": 522.0,
+   "y": 566.9,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 3.7,
+   "i": 221
+  },
+  {
+   "name": "Sirgensium",
+   "x": 1995.1,
+   "y": 1026.5,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 5.9,
+   "i": 222
+  },
+  {
+   "name": "Lumiport",
+   "x": 1686.8,
+   "y": 349.7,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 8.2,
+   "i": 223
+  },
+  {
+   "name": "Tsu-Raji",
+   "x": 946.0,
+   "y": 979.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 9.4,
+   "i": 224
+  },
+  {
+   "name": "Cap-Doux",
+   "x": 1803.6,
+   "y": 489,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 8.9,
+   "i": 225
+  },
+  {
+   "name": "Masacovi",
+   "x": 1309.8,
+   "y": 415.4,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 6.1,
+   "i": 226
+  },
+  {
+   "name": "Lampe-d'Or",
+   "x": 1162.7,
+   "y": 461.8,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 8.9,
+   "i": 227
+  },
+  {
+   "name": "Velimi",
+   "x": 2026.6,
+   "y": 680.6,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.9,
+   "i": 228
+  },
+  {
+   "name": "Iskari",
+   "x": 588.1,
+   "y": 512.2,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 9.9,
+   "i": 229
+  },
+  {
+   "name": "Polletonaro",
+   "x": 1371.6,
+   "y": 924.1,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 1.6,
+   "i": 230
+  },
+  {
+   "name": "Tovaria",
+   "x": 2196.3,
+   "y": 546.0,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 10.4,
+   "i": 231
+  },
+  {
+   "name": "Skarnholm",
+   "x": 579.5,
+   "y": 421.6,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 16.8,
+   "i": 232
+  },
+  {
+   "name": "Solbourg",
+   "x": 1461.9,
+   "y": 408.9,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 12.9,
+   "i": 233
+  },
+  {
+   "name": "Covalbatala",
+   "x": 738.6,
+   "y": 469.4,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 3.7,
+   "i": 234
+  },
+  {
+   "name": "Iurida",
+   "x": 1884.5,
+   "y": 812.3,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 1.3,
+   "i": 235
+  },
+  {
+   "name": "Laurilelo",
+   "x": 1798.9,
+   "y": 538.9,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 236
+  },
+  {
+   "name": "Eriokon",
+   "x": 555.9,
+   "y": 1041.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 4.8,
+   "i": 237
+  },
+  {
+   "name": "Ahardibar",
+   "x": 410.8,
+   "y": 1004.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 238
+  },
+  {
+   "name": "Abaldataun",
+   "x": 706,
+   "y": 935.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 6.7,
+   "i": 239
+  },
+  {
+   "name": "Tyromeron",
+   "x": 315.9,
+   "y": 718.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 6.2,
+   "i": 240
+  },
+  {
+   "name": "Cytho",
+   "x": 183.8,
+   "y": 803.4,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 3.2,
+   "i": 241
+  },
+  {
+   "name": "Prelius",
+   "x": 1079.0,
+   "y": 476.9,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 6.7,
+   "i": 242
+  },
+  {
+   "name": "Buskona",
+   "x": 706.4,
+   "y": 836.1,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 1.7,
+   "i": 243
+  },
+  {
+   "name": "Faquintara",
+   "x": 1446.7,
+   "y": 465.5,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.4,
+   "i": 244
+  },
+  {
+   "name": "Durcurorum",
+   "x": 1464.4,
+   "y": 429.2,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 6.6,
+   "i": 245
+  },
+  {
+   "name": "Astibia",
+   "x": 327.5,
+   "y": 1075.3,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 246
+  },
+  {
+   "name": "Mei-ai",
+   "x": 660.0,
+   "y": 1011.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 7.3,
+   "i": 247
+  },
+  {
+   "name": "Hadria",
+   "x": 1509.9,
+   "y": 404.5,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 2.3,
+   "i": 248
+  },
+  {
+   "name": "Canovium",
+   "x": 1366.4,
+   "y": 438.8,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 6.2,
+   "i": 249
+  },
+  {
+   "name": "Linsium",
+   "x": 988.7,
+   "y": 423.1,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 6.5,
+   "i": 250
+  },
+  {
+   "name": "Sentinelle",
+   "x": 2143.9,
+   "y": 897.8,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 7.2,
+   "i": 251
+  },
+  {
+   "name": "Croporirige",
+   "x": 458.8,
+   "y": 618.3,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 3.1,
+   "i": 252
+  },
+  {
+   "name": "Hercusile",
+   "x": 1378.2,
+   "y": 1010.4,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 0.9,
+   "i": 253
+  },
+  {
+   "name": "Aubeville",
+   "x": 1652.4,
+   "y": 397.1,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 9.4,
+   "i": 254
+  },
+  {
+   "name": "Xerasteiz",
+   "x": 273.0,
+   "y": 1058.3,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.2,
+   "i": 255
+  },
+  {
+   "name": "Diadème",
+   "x": 1180.8,
+   "y": 348.6,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 8.0,
+   "i": 256
+  },
+  {
+   "name": "Arran",
+   "x": 632.9,
+   "y": 965.6,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 257
+  },
+  {
+   "name": "Luegripi",
+   "x": 1843.5,
+   "y": 404.8,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 4.7,
+   "i": 258
+  },
+  {
+   "name": "Lieve",
+   "x": 2113.8,
+   "y": 659.0,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 6.6,
+   "i": 259
+  },
+  {
+   "name": "Preria",
+   "x": 1039.4,
+   "y": 381.8,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 260
+  },
+  {
+   "name": "Léth-Soufla",
+   "x": 220.1,
+   "y": 473.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 8.2,
+   "i": 261
+  },
+  {
+   "name": "Phais",
+   "x": 376.6,
+   "y": 463.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 0.9,
+   "i": 262
+  },
+  {
+   "name": "Opolicanea",
+   "x": 2052.8,
+   "y": 494.0,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 2.9,
+   "i": 263
+  },
+  {
+   "name": "Kegamaies",
+   "x": 386.2,
+   "y": 656.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 0.7,
+   "i": 264
+  },
+  {
+   "name": "Akat-ri",
+   "x": 608.3,
+   "y": 1029.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 7.3,
+   "i": 265
+  },
+  {
+   "name": "Fapurtius",
+   "x": 973.4,
+   "y": 739.4,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 0.9,
+   "i": 266
+  },
+  {
+   "name": "Hadnicrinis",
+   "x": 2236.7,
+   "y": 498.2,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 2.7,
+   "i": 267
+  },
+  {
+   "name": "Lintiala",
+   "x": 1496.2,
+   "y": 1133.7,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 3.1,
+   "i": 268
+  },
+  {
+   "name": "Vicriemie",
+   "x": 2072.8,
+   "y": 463.0,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.8,
+   "i": 269
+  },
+  {
+   "name": "Traguscia",
+   "x": 562.6,
+   "y": 518.0,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 1.6,
+   "i": 270
+  },
+  {
+   "name": "Ratetiatua",
+   "x": 700.1,
+   "y": 531.2,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 1.2,
+   "i": 271
+  },
+  {
+   "name": "Téhin",
+   "x": 712.9,
+   "y": 1015.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 10.9,
+   "i": 272
+  },
+  {
+   "name": "Parmium",
+   "x": 2106.5,
+   "y": 491.2,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 2.8,
+   "i": 273
+  },
+  {
+   "name": "Ullennale",
+   "x": 2115.3,
+   "y": 816.9,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 274
+  },
+  {
+   "name": "Aegullum",
+   "x": 1019.2,
+   "y": 487.4,
+   "state": 5,
+   "capital": false,
+   "port": true,
+   "pop": 1.8,
+   "i": 275
+  },
+  {
+   "name": "Letocengis",
+   "x": 1921.0,
+   "y": 793.4,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 6.2,
+   "i": 276
+  },
+  {
+   "name": "Cocobrieto",
+   "x": 1944.6,
+   "y": 1145.2,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 3.4,
+   "i": 277
+  },
+  {
+   "name": "Akat-ku",
+   "x": 508.4,
+   "y": 1084.6,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 7.5,
+   "i": 278
+  },
+  {
+   "name": "Cepidita",
+   "x": 1574.0,
+   "y": 1106.3,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 2.1,
+   "i": 279
+  },
+  {
+   "name": "Movioliga",
+   "x": 1565.9,
+   "y": 508.8,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 3.3,
+   "i": 280
+  },
+  {
+   "name": "Cannscata",
+   "x": 951.8,
+   "y": 420.1,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 4.8,
+   "i": 281
+  },
+  {
+   "name": "Vyena-ji",
+   "x": 696.2,
+   "y": 975.4,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 7.7,
+   "i": 282
+  },
+  {
+   "name": "Plaine-Coeur",
+   "x": 1950.8,
+   "y": 472.3,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 7.4,
+   "i": 283
+  },
+  {
+   "name": "Mustoa",
+   "x": 880.6,
+   "y": 938.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 3.3,
+   "i": 284
+  },
+  {
+   "name": "Treruntia",
+   "x": 981.0,
+   "y": 445.4,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 285
+  },
+  {
+   "name": "Brirocornum",
+   "x": 2075.8,
+   "y": 438.1,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 5.6,
+   "i": 286
+  },
+  {
+   "name": "Agriporilo",
+   "x": 1629.1,
+   "y": 464.0,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 2.8,
+   "i": 287
+  },
+  {
+   "name": "Lediona",
+   "x": 557.4,
+   "y": 426.3,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 6.8,
+   "i": 288
+  },
+  {
+   "name": "Auroduri",
+   "x": 1512.4,
+   "y": 477.4,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 3.6,
+   "i": 289
+  },
+  {
+   "name": "Corgoniorum",
+   "x": 2018.4,
+   "y": 443.1,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 3.5,
+   "i": 290
+  },
+  {
+   "name": "Sangamar",
+   "x": 1738.3,
+   "y": 780.0,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 8.5,
+   "i": 291
+  },
+  {
+   "name": "Lerolinonia",
+   "x": 2031.0,
+   "y": 901.6,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 292
+  },
+  {
+   "name": "Oriellarie",
+   "x": 1663.2,
+   "y": 941.2,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 1.9,
+   "i": 293
+  },
+  {
+   "name": "Sexandnamis",
+   "x": 95.8,
+   "y": 484.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 5.3,
+   "i": 294
+  },
+  {
+   "name": "Agdugustu",
+   "x": 36.4,
+   "y": 507.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 295
+  },
+  {
+   "name": "Nealai",
+   "x": 374.7,
+   "y": 667.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 3.6,
+   "i": 296
+  },
+  {
+   "name": "Muribarrio",
+   "x": 540.8,
+   "y": 987.6,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 6.1,
+   "i": 297
+  },
+  {
+   "name": "Esontestaco",
+   "x": 627.1,
+   "y": 455.9,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 5.0,
+   "i": 298
+  },
+  {
+   "name": "Agusus",
+   "x": 1580.3,
+   "y": 1115.0,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 299
+  },
+  {
+   "name": "Gaubea",
+   "x": 552.0,
+   "y": 813.8,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 300
+  },
+  {
+   "name": "Nigripie",
+   "x": 1651.1,
+   "y": 449.8,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 3.3,
+   "i": 301
+  },
+  {
+   "name": "Zabilardi",
+   "x": 508.2,
+   "y": 988.1,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 1.5,
+   "i": 302
+  },
+  {
+   "name": "Bonnilatua",
+   "x": 2256.7,
+   "y": 470.4,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 0.9,
+   "i": 303
+  },
+  {
+   "name": "Sareala",
+   "x": 2211.7,
+   "y": 560.4,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 5.7,
+   "i": 304
+  },
+  {
+   "name": "Xetabalbao",
+   "x": 337.4,
+   "y": 1086.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 305
+  },
+  {
+   "name": "Solaris",
+   "x": 2128.1,
+   "y": 435.2,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 10.4,
+   "i": 306
+  },
+  {
+   "name": "Acier-Nord",
+   "x": 1924.3,
+   "y": 790.2,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 11.8,
+   "i": 307
+  },
+  {
+   "name": "Trois-Ponts",
+   "x": 1669.4,
+   "y": 479.8,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 7.5,
+   "i": 308
+  },
+  {
+   "name": "Or-Liquide",
+   "x": 1408.3,
+   "y": 976.4,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 7.2,
+   "i": 309
+  },
+  {
+   "name": "Berne",
+   "x": 687.7,
+   "y": 974.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 2.7,
+   "i": 310
+  },
+  {
+   "name": "Bermaiz",
+   "x": 639.9,
+   "y": 954.8,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.6,
+   "i": 311
+  },
+  {
+   "name": "Onimbri",
+   "x": 1639.3,
+   "y": 378.7,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 6.6,
+   "i": 312
+  },
+  {
+   "name": "Lontiaven",
+   "x": 1042.9,
+   "y": 390.8,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 3.9,
+   "i": 313
+  },
+  {
+   "name": "Covinacum",
+   "x": 724.0,
+   "y": 509.5,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 0.8,
+   "i": 314
+  },
+  {
+   "name": "Castia",
+   "x": 2065.0,
+   "y": 924.5,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 0.9,
+   "i": 315
+  },
+  {
+   "name": "Beata",
+   "x": 377.1,
+   "y": 1144.6,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 3.7,
+   "i": 316
+  },
+  {
+   "name": "Portiustel",
+   "x": 1338.0,
+   "y": 458.3,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 1.5,
+   "i": 317
+  },
+  {
+   "name": "Soufflevent",
+   "x": 580.2,
+   "y": 993.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 9.6,
+   "i": 318
+  },
+  {
+   "name": "Lazaria",
+   "x": 321.1,
+   "y": 1005.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 16.0,
+   "i": 319
+  },
+  {
+   "name": "Bontorum",
+   "x": 64.8,
+   "y": 438.3,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1,
+   "i": 320
+  },
+  {
+   "name": "Vitaler",
+   "x": 1396.2,
+   "y": 398.8,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 2.5,
+   "i": 321
+  },
+  {
+   "name": "Karbildizia",
+   "x": 315.6,
+   "y": 1006.8,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 3.5,
+   "i": 322
+  },
+  {
+   "name": "Vigurovia",
+   "x": 2133.3,
+   "y": 850.6,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 0.9,
+   "i": 323
+  },
+  {
+   "name": "Rose-Souveraine",
+   "x": 684.2,
+   "y": 474.6,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 12.1,
+   "i": 324
+  },
+  {
+   "name": "Cixustellum",
+   "x": 1043.2,
+   "y": 456.9,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 2.9,
+   "i": 325
+  },
+  {
+   "name": "Matrum",
+   "x": 1597.1,
+   "y": 908.1,
+   "state": 6,
+   "capital": false,
+   "port": true,
+   "pop": 4.2,
+   "i": 326
+  },
+  {
+   "name": "Povium",
+   "x": 982.0,
+   "y": 433.7,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 5.6,
+   "i": 327
+  },
+  {
+   "name": "Lys-Pétale",
+   "x": 988.7,
+   "y": 435.7,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 7.1,
+   "i": 328
+  },
+  {
+   "name": "Île-aux-Lapins",
+   "x": 1367.7,
+   "y": 941.9,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 9.7,
+   "i": 329
+  },
+  {
+   "name": "Bel-Échange",
+   "x": 1609.7,
+   "y": 544.1,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 7.6,
+   "i": 330
+  },
+  {
+   "name": "Loup-Vent",
+   "x": 594.9,
+   "y": 483.1,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 7.3,
+   "i": 331
+  },
+  {
+   "name": "Treria",
+   "x": 1848.3,
+   "y": 415.7,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 4.6,
+   "i": 332
+  },
+  {
+   "name": "Lesaria",
+   "x": 530.1,
+   "y": 493.1,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 333
+  },
+  {
+   "name": "Contium",
+   "x": 546.3,
+   "y": 529.0,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 4.1,
+   "i": 334
+  },
+  {
+   "name": "Tardum",
+   "x": 1999.3,
+   "y": 422.3,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 6.9,
+   "i": 335
+  },
+  {
+   "name": "Hadnicrine",
+   "x": 980.9,
+   "y": 367.3,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 336
+  },
+  {
+   "name": "Getxegorte",
+   "x": 939.7,
+   "y": 1036.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 6.6,
+   "i": 337
+  },
+  {
+   "name": "Hauteveille",
+   "x": 2118.4,
+   "y": 931.7,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 7.9,
+   "i": 338
+  },
+  {
+   "name": "Astir-Lazo",
+   "x": 552.6,
+   "y": 801.7,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 7.2,
+   "i": 339
+  },
+  {
+   "name": "Ryou-Kara",
+   "x": 79.7,
+   "y": 507.4,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 7.9,
+   "i": 340
+  },
+  {
+   "name": "Duma",
+   "x": 847.0,
+   "y": 1116.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 4.6,
+   "i": 341
+  },
+  {
+   "name": "Modnictocor",
+   "x": 1652.2,
+   "y": 954.9,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 1.3,
+   "i": 342
+  },
+  {
+   "name": "Akat-mi",
+   "x": 502.4,
+   "y": 1091.6,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 8.5,
+   "i": 343
+  },
+  {
+   "name": "Villa Virtue",
+   "x": 1615.9,
+   "y": 481.5,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 14.3,
+   "i": 344
+  },
+  {
+   "name": "Iuvoviaco",
+   "x": 1595.6,
+   "y": 359.0,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 3.4,
+   "i": 345
+  },
+  {
+   "name": "Gegonioduri",
+   "x": 2089.7,
+   "y": 409.1,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 1.5,
+   "i": 346
+  },
+  {
+   "name": "Lavitarixus",
+   "x": 2176.0,
+   "y": 498.3,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 3.9,
+   "i": 347
+  },
+  {
+   "name": "Herra",
+   "x": 496.5,
+   "y": 1040.4,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 348
+  },
+  {
+   "name": "Dapurviorum",
+   "x": 1689.5,
+   "y": 363.2,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 5.4,
+   "i": 349
+  },
+  {
+   "name": "Cegium",
+   "x": 1692.5,
+   "y": 812.3,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 6.5,
+   "i": 350
+  },
+  {
+   "name": "Cannstat",
+   "x": 1511.7,
+   "y": 945.1,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 4.3,
+   "i": 351
+  },
+  {
+   "name": "Aïrukai",
+   "x": 958.0,
+   "y": 949.2,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 10.7,
+   "i": 352
+  },
+  {
+   "name": "Alabia",
+   "x": 363.4,
+   "y": 1052.3,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 3.3,
+   "i": 353
+  },
+  {
+   "name": "Dusinateve",
+   "x": 1137.6,
+   "y": 390.0,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 354
+  },
+  {
+   "name": "Fellholm",
+   "x": 499.5,
+   "y": 578.2,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 9.3,
+   "i": 355
+  },
+  {
+   "name": "Zierrieta",
+   "x": 885.3,
+   "y": 1070.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 5.7,
+   "i": 356
+  },
+  {
+   "name": "Vue-d'Argent",
+   "x": 1469.6,
+   "y": 350.2,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 15.1,
+   "i": 357
+  },
+  {
+   "name": "Plarospon",
+   "x": 343.7,
+   "y": 715.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 6.3,
+   "i": 358
+  },
+  {
+   "name": "Ylefuge",
+   "x": 1309.4,
+   "y": 956.3,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 9.4,
+   "i": 359
+  },
+  {
+   "name": "Zeba",
+   "x": 412.4,
+   "y": 988.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 2.8,
+   "i": 360
+  },
+  {
+   "name": "Ortea",
+   "x": 323.7,
+   "y": 982.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 361
+  },
+  {
+   "name": "Lemoiz",
+   "x": 681.7,
+   "y": 905.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 362
+  },
+  {
+   "name": "Hisame",
+   "x": 458.3,
+   "y": 1001.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 11.5,
+   "i": 363
+  },
+  {
+   "name": "Ripondaurum",
+   "x": 1608.9,
+   "y": 505.5,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 3.7,
+   "i": 364
+  },
+  {
+   "name": "Aquroporum",
+   "x": 1074.4,
+   "y": 423.8,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 6.5,
+   "i": 365
+  },
+  {
+   "name": "Vinsis",
+   "x": 1641.2,
+   "y": 956.5,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 3.4,
+   "i": 366
+  },
+  {
+   "name": "Pavillon-Argent",
+   "x": 941.9,
+   "y": 394.3,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 8.3,
+   "i": 367
+  },
+  {
+   "name": "Arnogontia",
+   "x": 2153.3,
+   "y": 537.3,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.2,
+   "i": 368
+  },
+  {
+   "name": "Saint-Lumin",
+   "x": 1479.9,
+   "y": 494,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 11.9,
+   "i": 369
+  },
+  {
+   "name": "Lunarith",
+   "x": 483.5,
+   "y": 1042.8,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 9.9,
+   "i": 370
+  },
+  {
+   "name": "Iolasos",
+   "x": 518.4,
+   "y": 452.3,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 3.2,
+   "i": 371
+  },
+  {
+   "name": "Adfluenna",
+   "x": 1340.1,
+   "y": 427.8,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.8,
+   "i": 372
+  },
+  {
+   "name": "Coniaquina",
+   "x": 1583.3,
+   "y": 436.3,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 373
+  },
+  {
+   "name": "Abinium",
+   "x": 1724.2,
+   "y": 465.7,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 5.7,
+   "i": 374
+  },
+  {
+   "name": "Vitaturoria",
+   "x": 590.3,
+   "y": 478,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 6.8,
+   "i": 375
+  },
+  {
+   "name": "Dureta",
+   "x": 1164.7,
+   "y": 364.4,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 3.2,
+   "i": 376
+  },
+  {
+   "name": "Hoshi-Kawa",
+   "x": 702.5,
+   "y": 949.3,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 13.5,
+   "i": 377
+  },
+  {
+   "name": "Etobundabi",
+   "x": 720.7,
+   "y": 468.3,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 3.4,
+   "i": 378
+  },
+  {
+   "name": "Akihiro",
+   "x": 570.9,
+   "y": 1032.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 9.1,
+   "i": 379
+  },
+  {
+   "name": "Aulona",
+   "x": 2055.6,
+   "y": 556.8,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.9,
+   "i": 380
+  },
+  {
+   "name": "Legieza",
+   "x": 821.6,
+   "y": 948.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 2.3,
+   "i": 381
+  },
+  {
+   "name": "Masusiba",
+   "x": 2205.5,
+   "y": 412.6,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.6,
+   "i": 382
+  },
+  {
+   "name": "Cieldoré",
+   "x": 1475.0,
+   "y": 934.6,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 7.6,
+   "i": 383
+  },
+  {
+   "name": "Turtzigoi",
+   "x": 779.0,
+   "y": 946.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 4.0,
+   "i": 384
+  },
+  {
+   "name": "Gaudio",
+   "x": 910.1,
+   "y": 937.3,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 5.3,
+   "i": 385
+  },
+  {
+   "name": "Getriria",
+   "x": 575.4,
+   "y": 963.4,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 386
+  },
+  {
+   "name": "Aiecri",
+   "x": 1903.6,
+   "y": 1144.2,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 4.2,
+   "i": 387
+  },
+  {
+   "name": "Trelilamium",
+   "x": 1306.3,
+   "y": 438.7,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 388
+  },
+  {
+   "name": "Tornar",
+   "x": 2218.0,
+   "y": 438.7,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 9.9,
+   "i": 389
+  },
+  {
+   "name": "Myrnas",
+   "x": 460.2,
+   "y": 656.2,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 3.3,
+   "i": 390
+  },
+  {
+   "name": "Bandera",
+   "x": 2032.4,
+   "y": 923.9,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 7.7,
+   "i": 391
+  },
+  {
+   "name": "Susengis",
+   "x": 1827.7,
+   "y": 476.7,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 3.2,
+   "i": 392
+  },
+  {
+   "name": "Chamfort",
+   "x": 1817.7,
+   "y": 458.1,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 10.2,
+   "i": 393
+  },
+  {
+   "name": "Aluma",
+   "x": 678.5,
+   "y": 986.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 4.6,
+   "i": 394
+  },
+  {
+   "name": "Nigdutum",
+   "x": 1043.1,
+   "y": 407.1,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 6.4,
+   "i": 395
+  },
+  {
+   "name": "Castratum",
+   "x": 574.2,
+   "y": 413.9,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 396
+  },
+  {
+   "name": "Murtius",
+   "x": 1382.0,
+   "y": 762.1,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 2.9,
+   "i": 397
+  },
+  {
+   "name": "Yumeyama",
+   "x": 625.5,
+   "y": 1033.6,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 11.2,
+   "i": 398
+  },
+  {
+   "name": "Bocortuscum",
+   "x": 1889.6,
+   "y": 409.3,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 1.6,
+   "i": 399
+  },
+  {
+   "name": "Calpia",
+   "x": 633.0,
+   "y": 560.9,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 1.8,
+   "i": 400
+  },
+  {
+   "name": "Victobo",
+   "x": 1942.7,
+   "y": 1148.5,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 5.4,
+   "i": 401
+  },
+  {
+   "name": "Gardenord",
+   "x": 2068.9,
+   "y": 651.8,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 7.8,
+   "i": 402
+  },
+  {
+   "name": "Duralium",
+   "x": 1308.0,
+   "y": 928.4,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 403
+  },
+  {
+   "name": "Atzata",
+   "x": 836.5,
+   "y": 1111.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.4,
+   "i": 404
+  },
+  {
+   "name": "Dorion",
+   "x": 97.8,
+   "y": 501.3,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 405
+  },
+  {
+   "name": "Lautetemeru",
+   "x": 1827.3,
+   "y": 756.3,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 406
+  },
+  {
+   "name": "Kaldfjord",
+   "x": 648.6,
+   "y": 528.1,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 11.0,
+   "i": 407
+  },
+  {
+   "name": "Lourobuntia",
+   "x": 733.4,
+   "y": 435.0,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 2.5,
+   "i": 408
+  },
+  {
+   "name": "Tsu-Pére",
+   "x": 908.1,
+   "y": 1029.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 7.9,
+   "i": 409
+  },
+  {
+   "name": "Leroligovia",
+   "x": 2167.4,
+   "y": 478.1,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 0.9,
+   "i": 410
+  },
+  {
+   "name": "Yose-Ryou",
+   "x": 361.7,
+   "y": 1088.8,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 7.3,
+   "i": 411
+  },
+  {
+   "name": "Murail",
+   "x": 1887.4,
+   "y": 1134.2,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 7.3,
+   "i": 412
+  },
+  {
+   "name": "Toison-d'Or",
+   "x": 1164.1,
+   "y": 588.4,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 10.7,
+   "i": 413
+  },
+  {
+   "name": "Lavenna",
+   "x": 2160.7,
+   "y": 422.8,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 414
+  },
+  {
+   "name": "Velium",
+   "x": 2157.9,
+   "y": 446.5,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 7.9,
+   "i": 415
+  },
+  {
+   "name": "Preivis",
+   "x": 1895.1,
+   "y": 809.8,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 4.1,
+   "i": 416
+  },
+  {
+   "name": "Itrigoiloa",
+   "x": 635.6,
+   "y": 1056.4,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 6.2,
+   "i": 417
+  },
+  {
+   "name": "Augaotemoa",
+   "x": 537.9,
+   "y": 1093.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.2,
+   "i": 418
+  },
+  {
+   "name": "Castrix",
+   "x": 1093.7,
+   "y": 469.7,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 1.2,
+   "i": 419
+  },
+  {
+   "name": "Latamesa",
+   "x": 1678.3,
+   "y": 447.3,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.2,
+   "i": 420
+  },
+  {
+   "name": "Arene",
+   "x": 1212.9,
+   "y": 358.8,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 421
+  },
+  {
+   "name": "Zuruaia",
+   "x": 790.0,
+   "y": 980.8,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.8,
+   "i": 422
+  },
+  {
+   "name": "Iusennodula",
+   "x": 959.8,
+   "y": 373.6,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 5.1,
+   "i": 423
+  },
+  {
+   "name": "Albaciba",
+   "x": 1538.4,
+   "y": 432.7,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.4,
+   "i": 424
+  },
+  {
+   "name": "Conseil-Île",
+   "x": 1286.5,
+   "y": 954.9,
+   "state": 6,
+   "capital": false,
+   "port": true,
+   "pop": 9.8,
+   "i": 425
+  },
+  {
+   "name": "Lantza",
+   "x": 793.6,
+   "y": 964.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 2.5,
+   "i": 426
+  },
+  {
+   "name": "Vigentiumpe",
+   "x": 2247.0,
+   "y": 587.1,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 0.8,
+   "i": 427
+  },
+  {
+   "name": "Astirium",
+   "x": 125.5,
+   "y": 733.2,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 8.6,
+   "i": 428
+  },
+  {
+   "name": "Armadis",
+   "x": 2100.4,
+   "y": 441.4,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 7.8,
+   "i": 429
+  },
+  {
+   "name": "Couronne",
+   "x": 1168.0,
+   "y": 460.1,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 7.8,
+   "i": 430
+  },
+  {
+   "name": "Einietakio",
+   "x": 640.3,
+   "y": 900.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 3.1,
+   "i": 431
+  },
+  {
+   "name": "Diontidea",
+   "x": 272.5,
+   "y": 381.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 3.5,
+   "i": 432
+  },
+  {
+   "name": "Litamia",
+   "x": 232.0,
+   "y": 739.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 433
+  },
+  {
+   "name": "Parovallum",
+   "x": 1922.9,
+   "y": 783.2,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 3.2,
+   "i": 434
+  },
+  {
+   "name": "Corsogon",
+   "x": 2116.8,
+   "y": 796.3,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 2.3,
+   "i": 435
+  },
+  {
+   "name": "Nymphinia",
+   "x": 404.6,
+   "y": 676.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.2,
+   "i": 436
+  },
+  {
+   "name": "Martusagen",
+   "x": 1100.1,
+   "y": 465.4,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 4.6,
+   "i": 437
+  },
+  {
+   "name": "Bustoa",
+   "x": 647.1,
+   "y": 973.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 5.7,
+   "i": 438
+  },
+  {
+   "name": "Tardum",
+   "x": 1867.5,
+   "y": 985.3,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 5.8,
+   "i": 439
+  },
+  {
+   "name": "Mirabai",
+   "x": 35.9,
+   "y": 500.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 13.8,
+   "i": 440
+  },
+  {
+   "name": "Flagennover",
+   "x": 1281.9,
+   "y": 938.2,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 6.4,
+   "i": 441
+  },
+  {
+   "name": "Urri",
+   "x": 362.8,
+   "y": 1115.4,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 6.5,
+   "i": 442
+  },
+  {
+   "name": "Vivocolica",
+   "x": 2070.1,
+   "y": 657.6,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 3.1,
+   "i": 443
+  },
+  {
+   "name": "Yusena",
+   "x": 654.5,
+   "y": 917.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 11.1,
+   "i": 444
+  },
+  {
+   "name": "Cordum",
+   "x": 1247.0,
+   "y": 680.9,
+   "state": 5,
+   "capital": false,
+   "port": true,
+   "pop": 6.6,
+   "i": 445
+  },
+  {
+   "name": "Kura-ya",
+   "x": 428.6,
+   "y": 1075.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 7.8,
+   "i": 446
+  },
+  {
+   "name": "Bonsium",
+   "x": 1600.6,
+   "y": 395.4,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 3.1,
+   "i": 447
+  },
+  {
+   "name": "Barriagara",
+   "x": 438.8,
+   "y": 1007.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.3,
+   "i": 448
+  },
+  {
+   "name": "Lensium",
+   "x": 1995.6,
+   "y": 608.7,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 6.6,
+   "i": 449
+  },
+  {
+   "name": "Aesosctum",
+   "x": 1374.6,
+   "y": 762.6,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 3.9,
+   "i": 450
+  },
+  {
+   "name": "Naiscianea",
+   "x": 1707.9,
+   "y": 933.6,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 4.0,
+   "i": 451
+  },
+  {
+   "name": "Peidaupak",
+   "x": 194.5,
+   "y": 674.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 3.9,
+   "i": 452
+  },
+  {
+   "name": "Cris-Lumineux",
+   "x": 1543.1,
+   "y": 424.6,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 10.0,
+   "i": 453
+  },
+  {
+   "name": "Letaiata",
+   "x": 417.9,
+   "y": 1124.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 5.6,
+   "i": 454
+  },
+  {
+   "name": "Kritia",
+   "x": 622.0,
+   "y": 972.8,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.7,
+   "i": 455
+  },
+  {
+   "name": "Asciavigalo",
+   "x": 1364.6,
+   "y": 412.9,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 456
+  },
+  {
+   "name": "Argaroth",
+   "x": 2085.5,
+   "y": 540.6,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 7.2,
+   "i": 457
+  },
+  {
+   "name": "Bartezorio",
+   "x": 507.8,
+   "y": 1028.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 3.7,
+   "i": 458
+  },
+  {
+   "name": "Veille-Royale",
+   "x": 1037.8,
+   "y": 421.9,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 13.2,
+   "i": 459
+  },
+  {
+   "name": "Matrix",
+   "x": 1188.2,
+   "y": 451.6,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 2.5,
+   "i": 460
+  },
+  {
+   "name": "Léthora",
+   "x": 123.1,
+   "y": 384.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 8.7,
+   "i": 461
+  },
+  {
+   "name": "Aurorefort",
+   "x": 2067.7,
+   "y": 497.6,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 11.1,
+   "i": 462
+  },
+  {
+   "name": "Auresagusta",
+   "x": 1940.3,
+   "y": 795.2,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 3.3,
+   "i": 463
+  },
+  {
+   "name": "Maia",
+   "x": 647.7,
+   "y": 856.8,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 464
+  },
+  {
+   "name": "Sanpegigar",
+   "x": 532.5,
+   "y": 1028.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 3.9,
+   "i": 465
+  },
+  {
+   "name": "Murgendigu",
+   "x": 1319.4,
+   "y": 369.1,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 4.2,
+   "i": 466
+  },
+  {
+   "name": "Matrix",
+   "x": 657.5,
+   "y": 515.8,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 0.8,
+   "i": 467
+  },
+  {
+   "name": "Preti",
+   "x": 567.2,
+   "y": 494.6,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 1.8,
+   "i": 468
+  },
+  {
+   "name": "Betodula",
+   "x": 722.5,
+   "y": 485.0,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 2.5,
+   "i": 469
+  },
+  {
+   "name": "Izartza",
+   "x": 585.8,
+   "y": 958.4,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 6.0,
+   "i": 470
+  },
+  {
+   "name": "Lezo",
+   "x": 870.4,
+   "y": 980.4,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 471
+  },
+  {
+   "name": "Akiro-Akiro",
+   "x": 452.7,
+   "y": 1064.8,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 7.7,
+   "i": 472
+  },
+  {
+   "name": "Sisteltau",
+   "x": 1062.0,
+   "y": 357.3,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 6.6,
+   "i": 473
+  },
+  {
+   "name": "Amunum",
+   "x": 591.1,
+   "y": 434.5,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 1.4,
+   "i": 474
+  },
+  {
+   "name": "Roseport",
+   "x": 1282.1,
+   "y": 500.5,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 8.8,
+   "i": 475
+  },
+  {
+   "name": "Sceau-Royal",
+   "x": 1098.5,
+   "y": 358.6,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 7.2,
+   "i": 476
+  },
+  {
+   "name": "Lediocobris",
+   "x": 530.3,
+   "y": 452.4,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 2.8,
+   "i": 477
+  },
+  {
+   "name": "Esko",
+   "x": 787.1,
+   "y": 977.4,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 3.5,
+   "i": 478
+  },
+  {
+   "name": "Polpiagenda",
+   "x": 2159.1,
+   "y": 468.2,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 3.1,
+   "i": 479
+  },
+  {
+   "name": "Vilapuro",
+   "x": 2095.1,
+   "y": 833.5,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 4.1,
+   "i": 480
+  },
+  {
+   "name": "Luliobriba",
+   "x": 1674.6,
+   "y": 941.9,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 3.8,
+   "i": 481
+  },
+  {
+   "name": "Tenshi-do",
+   "x": 47.5,
+   "y": 489.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 7.9,
+   "i": 482
+  },
+  {
+   "name": "Sicaiecto",
+   "x": 1966.5,
+   "y": 760.7,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 5.9,
+   "i": 483
+  },
+  {
+   "name": "Solyntrea",
+   "x": 491.6,
+   "y": 507.5,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 484
+  },
+  {
+   "name": "Yusen-Aïru",
+   "x": 935.1,
+   "y": 982.4,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 7.9,
+   "i": 485
+  },
+  {
+   "name": "Mira-sora",
+   "x": 454.5,
+   "y": 1030.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 7.6,
+   "i": 486
+  },
+  {
+   "name": "Marbetaia",
+   "x": 378.4,
+   "y": 1098.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 3.3,
+   "i": 487
+  },
+  {
+   "name": "Dulaquila",
+   "x": 2084.5,
+   "y": 847.3,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 3.2,
+   "i": 488
+  },
+  {
+   "name": "Pierreforêt",
+   "x": 1932.5,
+   "y": 429.2,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 11.6,
+   "i": 489
+  },
+  {
+   "name": "Vélibourg",
+   "x": 1693.5,
+   "y": 811.8,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 9.9,
+   "i": 490
+  },
+  {
+   "name": "Vaqurorum",
+   "x": 1165.0,
+   "y": 360.2,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 1.6,
+   "i": 491
+  },
+  {
+   "name": "Pocemevexum",
+   "x": 1160.6,
+   "y": 427.7,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 6.1,
+   "i": 492
+  },
+  {
+   "name": "Zambra",
+   "x": 625.8,
+   "y": 1042.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 3.1,
+   "i": 493
+  },
+  {
+   "name": "Etelin",
+   "x": 1701.5,
+   "y": 453.7,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 8.6,
+   "i": 494
+  },
+  {
+   "name": "Dialori",
+   "x": 2129.8,
+   "y": 474.2,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 495
+  },
+  {
+   "name": "Barre",
+   "x": 811.3,
+   "y": 927.6,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 5.2,
+   "i": 496
+  },
+  {
+   "name": "Solhar",
+   "x": 327.7,
+   "y": 1083.4,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 8.7,
+   "i": 497
+  },
+  {
+   "name": "Saphir-Couronne",
+   "x": 749.7,
+   "y": 483.1,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 11.4,
+   "i": 498
+  },
+  {
+   "name": "Braquinna",
+   "x": 1580.0,
+   "y": 678.4,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 499
+  },
+  {
+   "name": "Ullacalonio",
+   "x": 1087.4,
+   "y": 374.7,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 6.3,
+   "i": 500
+  },
+  {
+   "name": "Sareacium",
+   "x": 2096.9,
+   "y": 403.5,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 3.3,
+   "i": 501
+  },
+  {
+   "name": "Faubourg-Marchand",
+   "x": 1668.0,
+   "y": 347.2,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 7.5,
+   "i": 502
+  },
+  {
+   "name": "Itzumarran",
+   "x": 652,
+   "y": 876.6,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 503
+  },
+  {
+   "name": "Aterdum",
+   "x": 1282.4,
+   "y": 453.3,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 0.6,
+   "i": 504
+  },
+  {
+   "name": "Clair-ville",
+   "x": 1831.3,
+   "y": 458.6,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 7.2,
+   "i": 505
+  },
+  {
+   "name": "Vevagusina",
+   "x": 1782.8,
+   "y": 658.4,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 4.4,
+   "i": 506
+  },
+  {
+   "name": "Aulacenda",
+   "x": 118.2,
+   "y": 375.5,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 3.0,
+   "i": 507
+  },
+  {
+   "name": "Royaume-Cœur",
+   "x": 942.3,
+   "y": 398.8,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 9.1,
+   "i": 508
+  },
+  {
+   "name": "Tungrum",
+   "x": 130.4,
+   "y": 388.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 509
+  },
+  {
+   "name": "Faloporium",
+   "x": 1937.6,
+   "y": 493.3,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 5.3,
+   "i": 510
+  },
+  {
+   "name": "Barria",
+   "x": 615.0,
+   "y": 783.7,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 2.3,
+   "i": 511
+  },
+  {
+   "name": "Egikaitz",
+   "x": 737.4,
+   "y": 928.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 0.9,
+   "i": 512
+  },
+  {
+   "name": "Taususta",
+   "x": 1834.6,
+   "y": 1084.9,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 513
+  },
+  {
+   "name": "Jul-Ina",
+   "x": 1917.3,
+   "y": 491.7,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 11.3,
+   "i": 514
+  },
+  {
+   "name": "Dolyntholis",
+   "x": 64.8,
+   "y": 508.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.3,
+   "i": 515
+  },
+  {
+   "name": "Salbourg",
+   "x": 1709.0,
+   "y": 1033.7,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 10.7,
+   "i": 516
+  },
+  {
+   "name": "Aïru-ri",
+   "x": 49.0,
+   "y": 507.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 7.7,
+   "i": 517
+  },
+  {
+   "name": "Coviatatu",
+   "x": 1985.9,
+   "y": 1010.5,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 2.8,
+   "i": 518
+  },
+  {
+   "name": "Mont-Veille",
+   "x": 1739.6,
+   "y": 376.4,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 7.8,
+   "i": 519
+  },
+  {
+   "name": "Ausina",
+   "x": 578.2,
+   "y": 431.3,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 520
+  },
+  {
+   "name": "Claurita",
+   "x": 2029.0,
+   "y": 635.4,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 5.5,
+   "i": 521
+  },
+  {
+   "name": "Codurum",
+   "x": 1836.1,
+   "y": 519.5,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 522
+  },
+  {
+   "name": "Drakvorn",
+   "x": 641.0,
+   "y": 538.8,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 8.7,
+   "i": 523
+  },
+  {
+   "name": "Sorcula",
+   "x": 1786.9,
+   "y": 733.9,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 6.6,
+   "i": 524
+  },
+  {
+   "name": "Hadria",
+   "x": 730.7,
+   "y": 412.2,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 5.3,
+   "i": 525
+  },
+  {
+   "name": "Thyros",
+   "x": 381.2,
+   "y": 654.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 4.9,
+   "i": 526
+  },
+  {
+   "name": "Aubépine",
+   "x": 724.7,
+   "y": 493.9,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 8.5,
+   "i": 527
+  },
+  {
+   "name": "Vindevavar",
+   "x": 2083.2,
+   "y": 448.3,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 528
+  },
+  {
+   "name": "Bedelum",
+   "x": 528.4,
+   "y": 488.1,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 529
+  },
+  {
+   "name": "Bornum",
+   "x": 1766.2,
+   "y": 368.6,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 5.3,
+   "i": 530
+  },
+  {
+   "name": "Aurorum",
+   "x": 2114.2,
+   "y": 427.0,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 2.1,
+   "i": 531
+  },
+  {
+   "name": "Lys-Justice",
+   "x": 943.1,
+   "y": 410.4,
+   "state": 5,
+   "capital": false,
+   "port": true,
+   "pop": 10.3,
+   "i": 532
+  },
+  {
+   "name": "Ibartuelki",
+   "x": 483.6,
+   "y": 1064.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 5.9,
+   "i": 533
+  },
+  {
+   "name": "Prerimisio",
+   "x": 1530.8,
+   "y": 657.6,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 0.5,
+   "i": 534
+  },
+  {
+   "name": "Chêne-Mère",
+   "x": 1918.7,
+   "y": 464.3,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 21,
+   "i": 535
+  },
+  {
+   "name": "Zedoruamolo",
+   "x": 858.1,
+   "y": 1073.8,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 4.8,
+   "i": 536
+  },
+  {
+   "name": "Thediovia",
+   "x": 1287.5,
+   "y": 930.9,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 3.1,
+   "i": 537
+  },
+  {
+   "name": "Hara-Téhin",
+   "x": 940.1,
+   "y": 954.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 10.7,
+   "i": 538
+  },
+  {
+   "name": "Porviodupi",
+   "x": 2121.0,
+   "y": 511.7,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 5.8,
+   "i": 539
+  },
+  {
+   "name": "Tragagale",
+   "x": 388.3,
+   "y": 1000.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.2,
+   "i": 540
+  },
+  {
+   "name": "Mont-Royal",
+   "x": 1933.8,
+   "y": 1017.4,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 9.1,
+   "i": 541
+  },
+  {
+   "name": "Mustiapa",
+   "x": 857.6,
+   "y": 1136.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 4.9,
+   "i": 542
+  },
+  {
+   "name": "Usurnarana",
+   "x": 716.2,
+   "y": 961.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 5.7,
+   "i": 543
+  },
+  {
+   "name": "Luturovium",
+   "x": 2156.1,
+   "y": 1015.1,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 0.9,
+   "i": 544
+  },
+  {
+   "name": "Iurisipie",
+   "x": 554.8,
+   "y": 485.6,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 5.5,
+   "i": 545
+  },
+  {
+   "name": "Halle-Centrale",
+   "x": 1434.0,
+   "y": 563.0,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 8.8,
+   "i": 546
+  },
+  {
+   "name": "Lis-Pourpre",
+   "x": 1169.5,
+   "y": 362.9,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 8.5,
+   "i": 547
+  },
+  {
+   "name": "Bodutupigen",
+   "x": 1477.5,
+   "y": 941.9,
+   "state": 6,
+   "capital": false,
+   "port": true,
+   "pop": 6.3,
+   "i": 548
+  },
+  {
+   "name": "Skol-Ward",
+   "x": 604.7,
+   "y": 519.3,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 8.9,
+   "i": 549
+  },
+  {
+   "name": "Sève-Claire",
+   "x": 1437.1,
+   "y": 401.9,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 13.7,
+   "i": 550
+  },
+  {
+   "name": "Telos",
+   "x": 343.4,
+   "y": 648.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 4.7,
+   "i": 551
+  },
+  {
+   "name": "Diaria",
+   "x": 1971.5,
+   "y": 733.8,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 5.1,
+   "i": 552
+  },
+  {
+   "name": "Kodomexand",
+   "x": 230.2,
+   "y": 745.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 0.9,
+   "i": 553
+  },
+  {
+   "name": "Contetonis",
+   "x": 2176.1,
+   "y": 991.2,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 6.3,
+   "i": 554
+  },
+  {
+   "name": "Bourgneuf",
+   "x": 1587.2,
+   "y": 368.9,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 8.1,
+   "i": 555
+  },
+  {
+   "name": "Gletum",
+   "x": 1974.6,
+   "y": 476.8,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.2,
+   "i": 556
+  },
+  {
+   "name": "Forge-Sang",
+   "x": 2243.7,
+   "y": 483.2,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 8.5,
+   "i": 557
+  },
+  {
+   "name": "Egira",
+   "x": 534.0,
+   "y": 507.9,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 4.4,
+   "i": 558
+  },
+  {
+   "name": "Dicea",
+   "x": 120.0,
+   "y": 735.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.6,
+   "i": 559
+  },
+  {
+   "name": "Hadnicrem",
+   "x": 47.5,
+   "y": 465.1,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 6.4,
+   "i": 560
+  },
+  {
+   "name": "Muri",
+   "x": 708.6,
+   "y": 976.3,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 6.1,
+   "i": 561
+  },
+  {
+   "name": "Jasmin-Royal",
+   "x": 1163.7,
+   "y": 581.0,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 8.7,
+   "i": 562
+  },
+  {
+   "name": "Romamuvavo",
+   "x": 1583.3,
+   "y": 357.7,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 5.2,
+   "i": 563
+  },
+  {
+   "name": "Marcheville",
+   "x": 1847.7,
+   "y": 505.1,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 7.5,
+   "i": 564
+  },
+  {
+   "name": "Pierre-Forte",
+   "x": 2091.7,
+   "y": 539.3,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 9.7,
+   "i": 565
+  },
+  {
+   "name": "Orra",
+   "x": 637.9,
+   "y": 961.6,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.4,
+   "i": 566
+  },
+  {
+   "name": "Vraibourg",
+   "x": 1859.7,
+   "y": 981.7,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 9.6,
+   "i": 567
+  },
+  {
+   "name": "Pic-Soleil",
+   "x": 536.0,
+   "y": 437.6,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 7.1,
+   "i": 568
+  },
+  {
+   "name": "Justhar",
+   "x": 1062.8,
+   "y": 445.5,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 15.6,
+   "i": 569
+  },
+  {
+   "name": "Akat-mizu",
+   "x": 927.0,
+   "y": 977.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 7.5,
+   "i": 570
+  },
+  {
+   "name": "Hara-ri",
+   "x": 753.3,
+   "y": 991.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 7.4,
+   "i": 571
+  },
+  {
+   "name": "Ebarriaza",
+   "x": 542.7,
+   "y": 912.4,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 1.0,
+   "i": 572
+  },
+  {
+   "name": "Louteminopo",
+   "x": 989.9,
+   "y": 747.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.2,
+   "i": 573
+  },
+  {
+   "name": "Coronar-Sud",
+   "x": 1711.4,
+   "y": 809.4,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 7.4,
+   "i": 574
+  },
+  {
+   "name": "Herdum",
+   "x": 1630.4,
+   "y": 981.3,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 575
+  },
+  {
+   "name": "Veverigenta",
+   "x": 43.0,
+   "y": 502.6,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 3.5,
+   "i": 576
+  },
+  {
+   "name": "Sacovium",
+   "x": 937.6,
+   "y": 384.2,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 577
+  },
+  {
+   "name": "Hernoconapu",
+   "x": 1394.5,
+   "y": 966.7,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 3.7,
+   "i": 578
+  },
+  {
+   "name": "Ezpikaitz",
+   "x": 724.7,
+   "y": 983.4,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.5,
+   "i": 579
+  },
+  {
+   "name": "Virodulum",
+   "x": 1962.2,
+   "y": 955.7,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 6.2,
+   "i": 580
+  },
+  {
+   "name": "Gara",
+   "x": 654.5,
+   "y": 976.3,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 3.7,
+   "i": 581
+  },
+  {
+   "name": "Cematum",
+   "x": 1722.4,
+   "y": 363.0,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.5,
+   "i": 582
+  },
+  {
+   "name": "Vennorum",
+   "x": 1060.2,
+   "y": 407.1,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 583
+  },
+  {
+   "name": "Nomata",
+   "x": 1602.8,
+   "y": 512.1,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 3.1,
+   "i": 584
+  },
+  {
+   "name": "Soleimar",
+   "x": 796.3,
+   "y": 975.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 10.7,
+   "i": 585
+  },
+  {
+   "name": "Yoshino",
+   "x": 422.0,
+   "y": 1040.8,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 13.5,
+   "i": 586
+  },
+  {
+   "name": "Quai-d'Or",
+   "x": 1595.6,
+   "y": 401.0,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 14.1,
+   "i": 587
+  },
+  {
+   "name": "Banistat",
+   "x": 560.4,
+   "y": 577.7,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 5.1,
+   "i": 588
+  },
+  {
+   "name": "Agripi",
+   "x": 1222.4,
+   "y": 641.2,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 2.9,
+   "i": 589
+  },
+  {
+   "name": "Lederurigo",
+   "x": 1954.0,
+   "y": 631.2,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 4.5,
+   "i": 590
+  },
+  {
+   "name": "Roche-Sacrée",
+   "x": 911.8,
+   "y": 1038.8,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 8.8,
+   "i": 591
+  },
+  {
+   "name": "Itzaia",
+   "x": 292.4,
+   "y": 1060.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 0.9,
+   "i": 592
+  },
+  {
+   "name": "Nori-ka",
+   "x": 293.1,
+   "y": 1082.0,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 7.0,
+   "i": 593
+  },
+  {
+   "name": "Lekros",
+   "x": 275.3,
+   "y": 446.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 594
+  },
+  {
+   "name": "Galge",
+   "x": 696.3,
+   "y": 993.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 2.2,
+   "i": 595
+  },
+  {
+   "name": "Kazanwa",
+   "x": 385.3,
+   "y": 677.8,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 9.1,
+   "i": 596
+  },
+  {
+   "name": "Aventianati",
+   "x": 1662.7,
+   "y": 372.1,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 2.1,
+   "i": 597
+  },
+  {
+   "name": "Roseheim",
+   "x": 750.5,
+   "y": 416.6,
+   "state": 5,
+   "capital": false,
+   "port": true,
+   "pop": 15.3,
+   "i": 598
+  },
+  {
+   "name": "Florum",
+   "x": 2213.4,
+   "y": 423.4,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 5.1,
+   "i": 599
+  },
+  {
+   "name": "Leko",
+   "x": 698.2,
+   "y": 963.3,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 0.9,
+   "i": 600
+  },
+  {
+   "name": "Laususcum",
+   "x": 1125.7,
+   "y": 438.2,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 4.9,
+   "i": 601
+  },
+  {
+   "name": "Epizinoi",
+   "x": 388.4,
+   "y": 679.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 602
+  },
+  {
+   "name": "Rebula",
+   "x": 1128.5,
+   "y": 483.2,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 1.4,
+   "i": 603
+  },
+  {
+   "name": "Iuroria",
+   "x": 637.5,
+   "y": 526.0,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 2.7,
+   "i": 604
+  },
+  {
+   "name": "Lance-Tigre",
+   "x": 2094.5,
+   "y": 636.8,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 8.7,
+   "i": 605
+  },
+  {
+   "name": "Olive-en-Val",
+   "x": 1932.5,
+   "y": 433.1,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 7.1,
+   "i": 606
+  },
+  {
+   "name": "Premoduro",
+   "x": 2237.0,
+   "y": 466.6,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 6.9,
+   "i": 607
+  },
+  {
+   "name": "Castiacum",
+   "x": 1531.0,
+   "y": 412.1,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 5.0,
+   "i": 608
+  },
+  {
+   "name": "Agranna",
+   "x": 1482.1,
+   "y": 417.8,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.6,
+   "i": 609
+  },
+  {
+   "name": "Pomme-Belle",
+   "x": 1668.2,
+   "y": 368.9,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 7.0,
+   "i": 610
+  },
+  {
+   "name": "Aguso",
+   "x": 1790.1,
+   "y": 603.9,
+   "state": 1,
+   "capital": false,
+   "port": true,
+   "pop": 1.4,
+   "i": 611
+  },
+  {
+   "name": "Myrgyra",
+   "x": 302.6,
+   "y": 660.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.2,
+   "i": 612
+  },
+  {
+   "name": "Ziortzioz",
+   "x": 897.8,
+   "y": 904.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 0.7,
+   "i": 613
+  },
+  {
+   "name": "Lexasainde",
+   "x": 926.1,
+   "y": 969.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.6,
+   "i": 614
+  },
+  {
+   "name": "Thassos",
+   "x": 408.7,
+   "y": 453.7,
+   "state": 3,
+   "capital": false,
+   "port": false,
+   "pop": 4.8,
+   "i": 615
+  },
+  {
+   "name": "Coridutum",
+   "x": 2210.9,
+   "y": 492.0,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 616
+  },
+  {
+   "name": "Cordé-Lune",
+   "x": 1382.2,
+   "y": 903.2,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 8.2,
+   "i": 617
+  },
+  {
+   "name": "Andarna",
+   "x": 903.9,
+   "y": 931.4,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 4.8,
+   "i": 618
+  },
+  {
+   "name": "Lintianum",
+   "x": 1594.7,
+   "y": 958.3,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 2.9,
+   "i": 619
+  },
+  {
+   "name": "Iolcis",
+   "x": 237.8,
+   "y": 740.6,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 0.7,
+   "i": 620
+  },
+  {
+   "name": "Detaharmaiz",
+   "x": 716.7,
+   "y": 848.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.6,
+   "i": 621
+  },
+  {
+   "name": "Lavendidara",
+   "x": 601.7,
+   "y": 439.4,
+   "state": 3,
+   "capital": false,
+   "port": true,
+   "pop": 5.7,
+   "i": 622
+  },
+  {
+   "name": "Conium",
+   "x": 1958.8,
+   "y": 953.0,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 623
+  },
+  {
+   "name": "Atrarelum",
+   "x": 1641.0,
+   "y": 362.3,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 4.7,
+   "i": 624
+  },
+  {
+   "name": "Tregionagus",
+   "x": 1500.5,
+   "y": 394.9,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 6.5,
+   "i": 625
+  },
+  {
+   "name": "Loutum",
+   "x": 2039.2,
+   "y": 484.5,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 626
+  },
+  {
+   "name": "Racium",
+   "x": 1345.7,
+   "y": 911.3,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 2.9,
+   "i": 627
+  },
+  {
+   "name": "Racentium",
+   "x": 1217.5,
+   "y": 507.8,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 628
+  },
+  {
+   "name": "Ceria",
+   "x": 1818.0,
+   "y": 424.0,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 2.8,
+   "i": 629
+  },
+  {
+   "name": "Duranocen",
+   "x": 1368.1,
+   "y": 903.1,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 2.4,
+   "i": 630
+  },
+  {
+   "name": "Alernum",
+   "x": 2177.8,
+   "y": 419.3,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 2.6,
+   "i": 631
+  },
+  {
+   "name": "Flaqusie",
+   "x": 1836.1,
+   "y": 490.1,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 4.9,
+   "i": 632
+  },
+  {
+   "name": "Olataunda",
+   "x": 620.5,
+   "y": 998.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 2.4,
+   "i": 633
+  },
+  {
+   "name": "Princesse-Aurore",
+   "x": 1135.4,
+   "y": 474.6,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 8.4,
+   "i": 634
+  },
+  {
+   "name": "Deralames",
+   "x": 1633.7,
+   "y": 961.6,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 635
+  },
+  {
+   "name": "Tovarius",
+   "x": 2136.5,
+   "y": 617.9,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 7.5,
+   "i": 636
+  },
+  {
+   "name": "Luriegicum",
+   "x": 2246.4,
+   "y": 444.5,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 6.4,
+   "i": 637
+  },
+  {
+   "name": "Mille-Pignons",
+   "x": 1513.9,
+   "y": 411.6,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 9.7,
+   "i": 638
+  },
+  {
+   "name": "Hard-Cap",
+   "x": 1871.2,
+   "y": 1139.6,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 9.6,
+   "i": 639
+  },
+  {
+   "name": "Sarerunum",
+   "x": 2135.7,
+   "y": 553.7,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 6.6,
+   "i": 640
+  },
+  {
+   "name": "Eroria",
+   "x": 1996.8,
+   "y": 1021.5,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 2.5,
+   "i": 641
+  },
+  {
+   "name": "Igarkazuru",
+   "x": 861.8,
+   "y": 1066.6,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 3.8,
+   "i": 642
+  },
+  {
+   "name": "Vitanum",
+   "x": 948.0,
+   "y": 365.2,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 643
+  },
+  {
+   "name": "Mez",
+   "x": 688.5,
+   "y": 811.1,
+   "state": 2,
+   "capital": false,
+   "port": true,
+   "pop": 2.4,
+   "i": 644
+  },
+  {
+   "name": "Téhin-Yo",
+   "x": 912.9,
+   "y": 976.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 10.9,
+   "i": 645
+  },
+  {
+   "name": "Téhin-Ouest",
+   "x": 528.9,
+   "y": 1058.3,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 9.0,
+   "i": 646
+  },
+  {
+   "name": "Rurica",
+   "x": 995.0,
+   "y": 425.9,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 1.0,
+   "i": 647
+  },
+  {
+   "name": "Zusurnena",
+   "x": 813.7,
+   "y": 991.9,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 4.7,
+   "i": 648
+  },
+  {
+   "name": "Ocentiorum",
+   "x": 1608.7,
+   "y": 348.0,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 3.7,
+   "i": 649
+  },
+  {
+   "name": "Conium",
+   "x": 728.8,
+   "y": 399.6,
+   "state": 5,
+   "capital": false,
+   "port": true,
+   "pop": 5.2,
+   "i": 650
+  },
+  {
+   "name": "Modnicri",
+   "x": 1222.6,
+   "y": 488.3,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 1.3,
+   "i": 651
+  },
+  {
+   "name": "Geliagula",
+   "x": 1782.5,
+   "y": 464.6,
+   "state": 1,
+   "capital": false,
+   "port": false,
+   "pop": 3.5,
+   "i": 652
+  },
+  {
+   "name": "Noniagus",
+   "x": 1378.8,
+   "y": 983.7,
+   "state": 6,
+   "capital": false,
+   "port": false,
+   "pop": 1.4,
+   "i": 653
+  },
+  {
+   "name": "Adnictum",
+   "x": 1965.3,
+   "y": 1043.0,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 2.8,
+   "i": 654
+  },
+  {
+   "name": "Aurineme",
+   "x": 1952.5,
+   "y": 796.1,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 3.1,
+   "i": 655
+  },
+  {
+   "name": "Vintamir",
+   "x": 1843.8,
+   "y": 1091.5,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 8.8,
+   "i": 656
+  },
+  {
+   "name": "Digannagu",
+   "x": 947.8,
+   "y": 670.8,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 3.1,
+   "i": 657
+  },
+  {
+   "name": "Nigrovium",
+   "x": 1930.7,
+   "y": 680.7,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 3.1,
+   "i": 658
+  },
+  {
+   "name": "Tatsu-Kura",
+   "x": 362.7,
+   "y": 1094.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 15.7,
+   "i": 659
+  },
+  {
+   "name": "Fatusentia",
+   "x": 728.3,
+   "y": 395.4,
+   "state": 5,
+   "capital": false,
+   "port": true,
+   "pop": 1.6,
+   "i": 660
+  },
+  {
+   "name": "Loriellum",
+   "x": 43.1,
+   "y": 495.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 5.2,
+   "i": 661
+  },
+  {
+   "name": "Luroporiaco",
+   "x": 2074.7,
+   "y": 492.9,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 5.3,
+   "i": 662
+  },
+  {
+   "name": "Aganatasain",
+   "x": 518.6,
+   "y": 1058.3,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 2.0,
+   "i": 663
+  },
+  {
+   "name": "Sestizartza",
+   "x": 314.7,
+   "y": 1119.8,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 4.9,
+   "i": 664
+  },
+  {
+   "name": "Tosiaginope",
+   "x": 115.1,
+   "y": 525.7,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 1.1,
+   "i": 665
+  },
+  {
+   "name": "Vigencuropo",
+   "x": 2122.2,
+   "y": 938.5,
+   "state": 4,
+   "capital": false,
+   "port": true,
+   "pop": 6.4,
+   "i": 666
+  },
+  {
+   "name": "Kazaru-Tah",
+   "x": 724.9,
+   "y": 936.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 8.9,
+   "i": 667
+  },
+  {
+   "name": "Pollum",
+   "x": 697.2,
+   "y": 501.1,
+   "state": 5,
+   "capital": false,
+   "port": false,
+   "pop": 0.9,
+   "i": 668
+  },
+  {
+   "name": "Ravita",
+   "x": 2202.8,
+   "y": 523.5,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 4.3,
+   "i": 669
+  },
+  {
+   "name": "Ferinegal",
+   "x": 2108.1,
+   "y": 643.0,
+   "state": 4,
+   "capital": false,
+   "port": false,
+   "pop": 8.2,
+   "i": 670
+  },
+  {
+   "name": "Berteguraiz",
+   "x": 599.6,
+   "y": 792.1,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 4.3,
+   "i": 671
+  },
+  {
+   "name": "Suzaku",
+   "x": 516.4,
+   "y": 1005.2,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 10.4,
+   "i": 672
+  },
+  {
+   "name": "Cité-Aurore",
+   "x": 593.8,
+   "y": 892.5,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 11.6,
+   "i": 673
+  },
+  {
+   "name": "Isalaca",
+   "x": 373.6,
+   "y": 462.4,
+   "state": 2,
+   "capital": false,
+   "port": false,
+   "pop": 3.8,
+   "i": 674
+  }
+ ]
+}

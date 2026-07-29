@@ -1,0 +1,14 @@
+{
+  "source": "townhouse (Lemurian style)",
+  "floor_h": 2.5,
+  "main_wall": "5024e5b1-f26f-47ee-8807-451ac541819a",
+  "rotations": {
+    "north": 0,
+    "south": 12,
+    "east": 18,
+    "west": 6
+  },
+  "floor_ground": "ce61ee2e-4133-4dc9-91ad-42ad771e1900",
+  "floor_upper": "5024e5b1-f26f-47ee-8807-451ac541819a",
+  "roof_tile": "10727582-c251-4dc6-acbb-ec058d2bd80b"
+}

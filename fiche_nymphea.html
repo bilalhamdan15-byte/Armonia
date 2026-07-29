@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nymphéa Thaloriel — Fiche de personnage · Armonia</title>
+<style>
+  :root{
+    --bg:#1a1a2e; --paper:#2a2a3e; --primary:#c9a85a; --accent:#d97c47;
+    --text:#f4e8d0; --muted:#9a8a7a; --border:#3a3a4e;
+    --danger:#c44040; --success:#5aa850; --info:#5a8ec9; --nature:#6fae5a;
+  }
+  *{box-sizing:border-box}
+  body{font-family:'Georgia',serif;background:var(--bg);color:var(--text);margin:0;padding:24px;line-height:1.55}
+  .wrap{max-width:920px;margin:0 auto}
+  a.back{color:var(--muted);text-decoration:none;font-size:14px}
+  a.back:hover{color:var(--primary)}
+  header.hero{background:linear-gradient(135deg,#232338,#2a2a3e);border:2px solid var(--primary);border-radius:12px;padding:26px 30px;margin:14px 0 24px;position:relative;overflow:hidden}
+  header.hero::after{content:"🌿";position:absolute;right:22px;top:14px;font-size:64px;opacity:.12}
+  h1{font-size:30px;color:var(--primary);margin:0 0 4px}
+  .sub{color:var(--nature);font-style:italic;font-size:16px;margin:0}
+  .tags{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+  .tag{background:#1f1f34;border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;color:var(--muted)}
+  h2{color:var(--accent);font-size:20px;border-bottom:1px solid var(--border);padding-bottom:6px;margin-top:34px}
+  .card{background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin:14px 0}
+  .grid{display:grid;gap:12px}
+  .g6{grid-template-columns:repeat(6,1fr)}
+  .g5{grid-template-columns:repeat(5,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .stat{background:#1f1f34;border:1px solid var(--border);border-radius:8px;padding:12px 8px;text-align:center}
+  .stat .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  .stat .val{font-size:26px;color:var(--primary);font-weight:bold;margin-top:3px}
+  .stat .note{font-size:10px;color:var(--muted);margin-top:2px}
+  .derived{display:flex;flex-wrap:wrap;gap:10px}
+  .pill{background:#1f1f34;border:1px solid var(--border);border-radius:8px;padding:10px 16px;flex:1;min-width:120px;text-align:center}
+  .pill .lbl{font-size:11px;color:var(--muted);text-transform:uppercase}
+  .pill .val{font-size:22px;color:var(--text);font-weight:bold}
+  .pill.hp .val{color:var(--danger)} .pill.eth .val{color:var(--info)} .pill.def .val{color:var(--success)}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--border)}
+  th{color:var(--primary);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+  .bonus{color:var(--nature);font-weight:bold}
+  .neg{color:var(--danger)}
+  .aff{display:flex;align-items:center;gap:8px}
+  .bar{flex:1;height:8px;background:#1f1f34;border-radius:4px;overflow:hidden}
+  .bar span{display:block;height:100%;background:var(--nature)}
+  .atout{border-left:3px solid var(--accent);padding:8px 14px;margin:10px 0;background:#1f1f34;border-radius:0 8px 8px 0}
+  .atout b{color:var(--primary)}
+  .lvl{font-size:11px;background:var(--accent);color:#1a1a2e;border-radius:10px;padding:1px 8px;font-weight:bold;margin-left:6px}
+  .echo{display:flex;gap:6px;margin-top:6px}
+  .orb{width:18px;height:18px;border-radius:50%;border:2px solid var(--primary)}
+  .orb.full{background:var(--primary)}
+  .mj{background:#2a1f2e;border:1px solid var(--mystere,#b088c8);border-left:4px solid #b088c8;border-radius:8px;padding:14px 18px;margin:14px 0}
+  .mj b{color:#c8a0d8}
+  .flavor{font-style:italic;color:var(--muted);border-left:3px solid var(--nature);padding:6px 14px;margin:10px 0}
+  ul{padding-left:20px} li{margin:4px 0}
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin:30px 0 6px}
+  @media(max-width:640px){.g6,.g5{grid-template-columns:repeat(3,1fr)}.g3,.g2{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">← Retour au sommaire</a>
+
+<header class="hero">
+  <h1>Nymphéa Thaloriel</h1>
+  <p class="sub">Elfe Sylvestre · Gardienne des Sentiers Oubliés · Archère-diplomate de la Forêt Julia</p>
+  <div class="tags">
+    <span class="tag">🌲 Forêt Julia (Lumini)</span>
+    <span class="tag">🏹 Arc d'if millénaire</span>
+    <span class="tag">🌿 Affinité Terre & Eau</span>
+    <span class="tag">⚖️ Gardienne de l'équilibre</span>
+  </div>
+</header>
+
+<p class="flavor">« Née sous la floraison du Grand Frêne d'Argent. Les animaux ne la craignent pas, les arbres répondent à sa présence, les rivières retrouvent leur limpidité sur son passage. »</p>
+
+<h2>Caractéristiques</h2>
+<div class="card">
+  <div class="grid g6">
+    <div class="stat"><div class="lbl">FOR</div><div class="val">0</div><div class="note">Force</div></div>
+    <div class="stat"><div class="lbl">DEX</div><div class="val" style="color:var(--nature)">+2</div><div class="note">Dextérité</div></div>
+    <div class="stat"><div class="lbl">CON</div><div class="val">+1</div><div class="note">Constitution</div></div>
+    <div class="stat"><div class="lbl">INT</div><div class="val">0</div><div class="note">Intelligence</div></div>
+    <div class="stat"><div class="lbl">SAG</div><div class="val" style="color:var(--nature)">+2</div><div class="note">Sagesse</div></div>
+    <div class="stat"><div class="lbl">CHA</div><div class="val">+1</div><div class="note">Charisme</div></div>
+  </div>
+  <p style="font-size:12px;color:var(--muted);margin:12px 0 0">
+    Répartition : lignée Elfe Sylvestre (+1 DEX, +1 SAG) + points de création (+1 DEX, +1 CHA) + expérience de Gardienne (+1 CON, +1 SAG).
+    <b>À valider avec le MJ</b> — build « personnage aguerri », un cran au-dessus d'une création fraîche.
+  </p>
+</div>
+
+<h2>Statistiques calculées</h2>
+<div class="card">
+  <div class="derived">
+    <div class="pill hp"><div class="lbl">Vitalité (PV)</div><div class="val">13</div><div style="font-size:10px;color:var(--muted)">10 + CON×3</div></div>
+    <div class="pill eth"><div class="lbl">Éther</div><div class="val">4</div><div style="font-size:10px;color:var(--muted)">3 + INT + CON</div></div>
+    <div class="pill def"><div class="lbl">Défense</div><div class="val">14</div><div style="font-size:10px;color:var(--muted)">10 + DEX + cuir(2)</div></div>
+    <div class="pill"><div class="lbl">Initiative</div><div class="val">1d20+2</div><div style="font-size:10px;color:var(--muted)">1d20 + DEX</div></div>
+    <div class="pill"><div class="lbl">Vitesse</div><div class="val">13</div><div style="font-size:10px;color:var(--muted)">10 + CON×3</div></div>
+  </div>
+</div>
+
+<h2>Compétences</h2>
+<div class="card">
+  <table>
+    <tr><th>Compétence</th><th style="text-align:center">Niveau</th><th>Justification</th></tr>
+    <tr><td>Combat à distance</td><td style="text-align:center" class="bonus">+3</td><td>« Sa précision devenait légendaire »</td></tr>
+    <tr><td>Nature</td><td style="text-align:center" class="bonus">+3</td><td>Lien rare avec la forêt, lecture des esprits sylvestres</td></tr>
+    <tr><td>Perception</td><td style="text-align:center" class="bonus">+2</td><td>Gardienne des Sentiers, rien ne lui échappe en forêt</td></tr>
+    <tr><td>Persuasion</td><td style="text-align:center" class="bonus">+2</td><td>« Préférait toujours la diplomatie au combat »</td></tr>
+    <tr><td>Discrétion</td><td style="text-align:center" class="bonus">+2</td><td>Emprunte les passages cachés</td></tr>
+    <tr><td>Survie</td><td style="text-align:center" class="bonus">+1</td><td>Voyage à travers royaumes, montagnes, ruines</td></tr>
+  </table>
+  <p style="font-size:12px;color:var(--muted);margin:10px 0 0">Total 13 pts (personnage aguerri). Pour une création stricte (6 pts), garder les 4 premières à +2/+2/+1/+1.</p>
+</div>
+
+<h2>Affinités élémentaires</h2>
+<div class="card">
+  <div class="grid" style="grid-template-columns:1fr;gap:10px">
+    <div class="aff"><span style="width:90px">🌍 Terre</span><div class="bar"><span style="width:100%"></span></div><b class="bonus">+3</b></div>
+    <div class="aff"><span style="width:90px">💧 Eau</span><div class="bar"><span style="width:66%"></span></div><b class="bonus">+2</b></div>
+    <div class="aff"><span style="width:90px">🌀 Chaos</span><div class="bar"><span style="width:33%"></span></div><b class="bonus">+1</b></div>
+    <div class="aff"><span style="width:90px">🌬️ Vent</span><div class="bar"><span style="width:33%"></span></div><b class="bonus">+1</b></div>
+    <div class="aff"><span style="width:90px">🔥 Feu</span><div class="bar"><span style="width:0"></span></div><b class="neg">−2</b></div>
+  </div>
+  <p style="font-size:13px;color:var(--muted);margin:12px 0 0">
+    <b>Terre & Eau</b> incarnent son lien à la forêt (arbres qui répondent, rivières purifiées). <b>Chaos</b> pour les soins discrets et les mots primordiaux de croissance.
+    <b>Feu −2 (antipathie)</b> : le feu noircit les feuilles — c'est la marque de la corruption qu'elle combat. Elle refuse instinctivement de le manier.
+  </p>
+</div>
+
+<h2>Atouts narratifs</h2>
+<div class="card">
+  <div class="atout"><b>De la Forêt Julia</b> <span class="lvl">Niv. II · +2</span><br>
+    <span style="font-size:13px;color:var(--muted)">En forêt ou en lien avec la nature de Lumini : orientation, communication animale, lecture des sentiers. Bonus majeur sur son terrain.</span></div>
+  <div class="atout"><b>Frappe précise</b> <span class="lvl">Niv. II · +2</span><br>
+    <span style="font-size:13px;color:var(--muted)">Tir de l'arc d'if millénaire : viser un point faible, désarmer, tir à couvert. Sa précision « légendaire » quand son peuple est menacé.</span></div>
+  <div class="atout"><b>Sensible à l'Éther</b> <span class="lvl">Niv. I · +1</span><br>
+    <span style="font-size:13px;color:var(--muted)">Perçoit les flux et les perturbations magiques — utile pour traquer la corruption et sentir la proximité d'un Nœud du Monde.</span></div>
+  <p style="font-size:12px;color:var(--muted);margin:8px 0 0">Création stricte = 2 Atouts Niveau I. Ici : profil aguerri (2×Niv.II + 1×Niv.I). Rappel : 1 Atout / scène, réactivable en dépensant 1 Point d'Écho.</p>
+</div>
+
+<h2>Points d'Écho</h2>
+<div class="card">
+  <p style="margin:0 0 6px">Stock de départ : <b class="bonus">3</b> · Plafond : 5</p>
+  <div class="echo"><div class="orb full"></div><div class="orb full"></div><div class="orb full"></div><div class="orb"></div><div class="orb"></div></div>
+  <p style="font-size:13px;color:var(--muted);margin:10px 0 0">
+    <b>Promesse formelle</b> : « Préserver l'équilibre entre les peuples et la nature, et empêcher le réveil des forces oubliées. »
+    Tenir cette Promesse dans une scène clé → gain d'Écho. La trahir → perte.
+  </p>
+</div>
+
+<h2>Équipement</h2>
+<div class="card">
+  <ul>
+    <li><b>Arc de l'If Millénaire</b> — arme principale, façonnée dans un if sacré. Traité comme arme de qualité (potentiel artefact mineur ; voir MJ pour propriétés liées à la Forêt Julia).</li>
+    <li>Carquois de flèches à empenne de feuille d'argent (+ 3 flèches marquées de mots primordiaux, à discrétion du MJ)</li>
+    <li>Dague elfique de cérémonie (arme secondaire)</li>
+    <li>Armure de cuir sylvestre + cape de camouflage (Défense +2, bonus Discrétion en forêt)</li>
+    <li>Kit de Gardienne : herbes, cordes, marques de sentier, petit nécessaire de soin</li>
+    <li>Bourse : 3d20 pièces d'argent</li>
+  </ul>
+</div>
+
+<h2>Personnalité & liens avec le monde</h2>
+<div class="card">
+  <p style="margin:0 0 8px"><b>Traits :</b> réservée mais chaleureuse · diplomate avant d'être guerrière · loyale jusqu'au sacrifice · troublée d'avoir dû quitter sa forêt pour la première fois.</p>
+  <ul>
+    <li><b>Origine :</b> Forêt Julia (Lumini) — foyer des PJ. Elle en connaît chaque sentier.</li>
+    <li><b>Fonction sacrée :</b> Gardienne des Sentiers Oubliés — passages cachés reliant le monde des mortels aux sanctuaires sylvestres.</li>
+    <li><b>Quête personnelle :</b> traquer l'origine de la corruption qui noircit la forêt — un fragment d'une puissance disparue depuis des siècles.</li>
+  </ul>
+</div>
+
+<div class="mj">
+  <b>🔮 Notes MJ (à ne pas montrer au joueur)</b>
+  <ul style="margin:8px 0 0">
+    <li><b>La corruption &amp; la relique</b> se relient idéalement à un <b>Nœud du Monde</b> affaibli ou à un écho de la <b>Rupture</b>. Le « fragment d'une puissance disparue » peut être un de tes <a href="bibliotheque_artefacts.html" style="color:#c8a0d8">artefacts légendaires</a>.</li>
+    <li><b>« Les esprits cessent de répondre aux druides »</b> : hameçon parfait pour effleurer le secret des <a href="bibliotheque_veilleurs.html" style="color:#c8a0d8">Veilleurs</a> (leur mission de <i>maintenir</i> l'absence de magie). À doser — bombe narrative.</li>
+    <li><b>Arbitrage magie :</b> son « druidisme » est ici réinterprété en affinités Terre/Eau + Chaos (soins) pour rester dans ton système Éther. Si tu veux canoniser une vraie tradition druidique de Lumini, c'est le bon personnage pour l'introduire.</li>
+    <li><b>Ajustement puissance :</b> profil « aguerri » proposé. Pour une création équilibrée de départ, réduire compétences à 6 pts et Atouts à 2×Niv.I.</li>
+  </ul>
+</div>
+
+<p class="foot">Fiche de personnage · Système Bilal · Armonia 2026 — Lore original par le joueur, statué pour le système maison.</p>
+</div>
+</body>
+</html>

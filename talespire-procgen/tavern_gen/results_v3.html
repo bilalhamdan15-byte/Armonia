@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Générateur Tavernes V3</title>
+<style>
+body { font-family:system-ui,sans-serif; background:#1a1611; color:#e8dfc9; padding:24px; }
+h1 { color:#d4a13a; border-bottom:2px solid #5c3a1a; padding-bottom:8px; }
+h2 { color:#c07a2a; }
+.card { background:#2a2418; border:1px solid #4a3820; border-radius:8px; padding:20px; margin:20px 0; }
+.stats { display:flex; gap:16px; margin:12px 0; font-size:14px; }
+.stat { background:#1a1611; padding:6px 12px; border-radius:4px; border-left:3px solid #d4a13a; }
+.code-box { background:#0f0d08; padding:12px; border-radius:4px; font-family:'Courier New',monospace; font-size:11px; word-break:break-all; max-height:140px; overflow-y:auto; }
+button.copy { background:#5c3a1a; color:#e8dfc9; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-top:8px; }
+button.copy:hover { background:#7c4a2a; }
+.fixes { background:#2a3a1a; border-left:4px solid #a8c060; padding:12px; border-radius:4px; }
+.fixes ul { margin:8px 0; padding-left:20px; }
+</style></head><body>
+<h1>Générateur Tavernes — V3</h1>
+<div class="fixes">
+<strong>✅ Corrections V3 vs V1</strong>
+<ul>
+<li>Coins fermés (extension des murs nord/sud sur toute la largeur)</li>
+<li>Plus de trou dans le mur (périmètre complet, pas de gaps)</li>
+<li>Toit aligné exactement sur le bâtiment (pas de dépassement)</li>
+<li>Escaliers ajoutés entre chaque paire d'étages</li>
+</ul>
+</div>
+<h2>Taverne #1 — Petite 8×8 · 2 étages</h2>
+<div class="card">
+<div class="stats">
+<div class="stat">199 placements</div>
+<div class="stat">Code: 956 chars</div>
+<div class="stat">2 étages</div>
+</div>
+<div class="code-box" id="c0">H4sIAEcKXWoC/0WVPWhTURiGT9JLbaWKuGiLeF0ySCooDg4KplHaiiA4WEvxp+AdqoIUF5UihE5WBM8gTlYcHBWCbvVSoig9FKwoWqiLg5M6KHpA/APv931PSSC8kPd57s35zrnJ0u+l12XX5Zx7cmb81YUTawYef7rTM7ZwfGK4+Cwr3rVOy0aPZWujpeulT+krzgX4AB/gA3yAD/D9JeMlhZcUXlJ47VP6gvfwHt7De3gP7+EjfISP8BE+wkf40bLxksJLCi8pvPYpfUXW3UxsPs3E5tNMbD7NxOZT9Cm9zsf4AB/gA3yAD/D9JeMlbT7GS9p8jNde52O8h/fwHt7De/gIH+EjfISP8BF+tGy8pM3HeEmbj/HaF/zi2T3L69/dGJz5+7M++HRiZZtrvzIykLrnjr107JFj9sUrL7fdVtV1ZGQg9ewU6clI6h4WmZNOZu3YI8fsHTN1zMoxA8fa9P6W4tv9LQOpe6P3t4ykzkjvb3lpQ/3YxZEdh253z8z/+fVldjNrqnU2dMWNHsvWRkvXa1lL6SuNUq7ntJHkek4tC16z4DUL3vpKI3F67sSXfbO068u+Wdr1Zd/k+sonue6zpV1feU27vvLJkZtrJw6fuzUw/37g/MfnD4Zq+sXHux0pZ0ZSzoyknBnte+lT+gp9VfbH/Aw/w8/wM/wMP8PP8AN+wA/4AT/gB/yAH/D7S+ZL2jNovqQ9g+Zrn9JX6Ktyjsz3+B7f43t8j+/xPX7Ej/gRP+JH/Igf8SP+aNl8SXtmzZe0Z9Z87VP6Cn1Vzrv5OX6On+Pn+Dl+jp/jz735sX9qerL+6NqHlX2Tu1526CwCv9NdZVvzcIc4kw9PTS/fvVqf3Tm3zh38t73k2r/NI1PP7l25vnfo/ue+1umjC9/Lrv0/sfp/Mnby8qbFA1trc7u3vPj6re/tql9839J/g7v2X+IGAAA=</div>
+<button class="copy" onclick="navigator.clipboard.writeText(document.getElementById('c0').innerText); this.textContent='✓ Copié'">Copier</button>
+</div><h2>Taverne #2 — Moyenne 12×10 · 2 étages</h2>
+<div class="card">
+<div class="stats">
+<div class="stat">368 placements</div>
+<div class="stat">Code: 1480 chars</div>
+<div class="stat">2 étages</div>
+</div>
+<div class="code-box" id="c1">H4sIAEcKXWoC/0WWTWhdRRiG5+Zeow3xrxtJEU9cHEFOxHpdmIVgkkpVWtypsWhp8SwSRQluLIhwiUMxIDhq6UYrLsSFKF7UVRxLBItjwIqi1QriQsQRFwoOiH/g+b7vqbkQXsjL88w5534z95z96+znE27KOff+Q0c+e+yBixff/fnl6UMf37fyave/tvtbmLQcTVtu7bZ0M/QVfU3f0A+dS/AJPsEn+ASf4BN8gp/rGS8pvKTwksJrX9HX9A19xwf4AB/gA3yAD/ABPsAX+AJf4At8gS/wBb7AL08YLym8pPCSwmtf0df0DX3HR/gIH+EjfISP8BE+ws/2jZcUXlJ4SeG1r+hr+oa+4z28h/fwHt7De3gP7+EzfIbP8Bk+w2f4DJ/hWzce2PyNBzZ/44HN33hg89f1FX1N39Dr/Bmf4BN8gk/wCT7BJ/i5nvGSNn/GS9r8Ga99Td/Q6/wZH+ADfIAP8AE+wAf4Al/gC3yBL/AFvsAX+OUJ4yVt/oyXtPkzXvuavqHX+TM+wkf4CB/hI3yEj/CzfeMlbf6Ml7T5M177mr6h1/kz3sN7eA/v4T28h/fwGT7DZ/gMn+EzfIbP8Nurt5y77Ktn92/888fS/g9Xzu91O5+WTKSeOY6zw3EGOPayY0869pZjjzhmvfscHOy4F+ZdvyUTqWddl4EspJ4hXUZS93SXnsyk+CWdzLZjjzhm3TGzjtlzzJBjFhzfqeO7cTxjx7PS6x9zB90z1eu3TKTuFb1+y0LqDOr1W+pM6PVbZlL8kk9csXTP4/fecNfJXRun//7zl1OzF57Z5Eif+Gjacmu3pZuxXKjoa/qGfjjq6bOZHA0kO16z4zU7XrPjra/pG/rhaKD3rOvLnFna+jJnlra+zBl9Q6/rKz+QtPWV17T1lbe+pm/ou/Xvfm5q5cDDJxZPf7v4yA8fvXnHMb2xI7scKXtAUvaApOwB7WfoK/qavqEf0s/LvJivxdfia/G1+Fp8Lb4WX4uvxZfwJXwJX8KX8CV8CV/Cl/AlfHM980namW0+STuzzad9RV/TN/RD+nnZB+YL+AK+gC/gC/gCvoAv4Av4Cr6Cr+Ar+Aq+gq/gK/gKvoJvecJ8knbGm0/SznjzaV/R1/QN/ZB+Xva3+SK+iC/ii/givogv4ov4Ir7Zvvkk7TfAfJL2G2A+7Sv6mr6hH9LPy3ljPo/P4/P4PD6Pz+Pz+Dw+jy/jy/gyvowv48v4Mr6ML+PL+A4OzCcpPknxSYpP+xn6ir6mb+iH9J1v84vfb3tyfW3pnWe+P3/r2k2f9vW7TrwvXjJh3+WdfWG331i9aOry4/teW/3xkxcOX3djz+28C6+9dXj93CtPLZ3au3mpu/3f63tu5z3yu6cfnX67t7X0weDExrXvvfRNz/3/Dtff8/r682d+uvLA8Rf9yfvHXx/tuZ335UMPHrtqe981C5s3X33m19/2fHmBk/v7D4PjW6JSDAAA</div>
+<button class="copy" onclick="navigator.clipboard.writeText(document.getElementById('c1').innerText); this.textContent='✓ Copié'">Copier</button>
+</div><h2>Taverne #3 — Grande 16×14 · 3 étages</h2>
+<div class="card">
+<div class="stats">
+<div class="stat">911 placements</div>
+<div class="stat">Code: 3052 chars</div>
+<div class="stat">3 étages</div>
+</div>
+<div class="code-box" id="c2">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</div>
+<button class="copy" onclick="navigator.clipboard.writeText(document.getElementById('c2').innerText); this.textContent='✓ Copié'">Copier</button>
+</div></body></html>

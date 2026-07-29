@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>Etape 1 - Base 4x4</title>
+<style>body{font-family:system-ui,sans-serif;background:#1a1611;color:#e8dfc9;padding:24px;max-width:900px;margin:0 auto}
+h1{color:#d4a13a;border-bottom:2px solid #5c3a1a;padding-bottom:8px}
+.card{background:#2a2418;border:1px solid #4a3820;border-radius:8px;padding:20px;margin:20px 0}
+textarea.code{width:100%;height:100px;background:#0f0d08;color:#a8c060;border:1px solid #5c3a1a;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;white-space:nowrap;overflow:auto}
+button{background:#5c3a1a;color:#e8dfc9;border:none;padding:12px 24px;border-radius:4px;cursor:pointer;margin-top:8px;font-size:15px;font-weight:600}button:hover{background:#7c4a2a}
+.info{background:#1a2a1a;border-left:4px solid #a8c060;padding:14px;margin:16px 0;border-radius:4px;font-size:14px}</style></head><body>
+<h1>Étape 1 — juste la base (fondation 4×4)</h1>
+<div class="info">Rien d'autre : 16 tuiles de fondation (Tavern Floor 01), une seule couche, à Y=0. Pas de plancher, pas de murs, pas de toit, pas de coins.<br><br>
+À vérifier en jeu : la dalle 4×4 est-elle complète et propre (16 tuiles bien alignées, sans trou, sans chevauchement) ?</div>
+<h2>Fondation 4×4</h2>
+<div class="card"><textarea class="code" id="c0" readonly onclick="this.select()">H4sIAAAAAAAC/zv369xFJgZGBgaG3ckJ5/Ni2B03v5zDE3U8PEOAARU4sEHoBh4IfUCIgSEFKpcClU+ByqdA5U9A5U9A5U9A5U9A5XUYIfIgGiQPokHyIBokDwDzvtSungAAAA==</textarea><button onclick="cp('c0',this)">📋 Copier</button></div>
+<script>function cp(id,b){const t=document.getElementById(id);t.select();t.setSelectionRange(0,999999);try{const o=document.execCommand('copy');b.textContent=o?'✓ Copié !':'❌ Ctrl+A+C';setTimeout(()=>b.textContent='📋 Copier',3000)}catch(e){b.textContent='❌ Ctrl+A+C'}}</script>
+</body></html>

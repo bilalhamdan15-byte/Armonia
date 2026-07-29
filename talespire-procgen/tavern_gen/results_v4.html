@@ -1,0 +1,26 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>V4 minimal safe</title>
+<style>
+body { font-family:system-ui,sans-serif; background:#1a1611; color:#e8dfc9; padding:24px; }
+h1 { color:#d4a13a; border-bottom:2px solid #5c3a1a; padding-bottom:8px; }
+.card { background:#2a2418; border:1px solid #4a3820; border-radius:8px; padding:20px; margin:16px 0; }
+.code-box { background:#0f0d08; padding:12px; font-family:monospace; font-size:11px; word-break:break-all; max-height:100px; overflow-y:auto; }
+button { background:#5c3a1a; color:#e8dfc9; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; margin-top:8px; }
+button:hover { background:#7c4a2a; }
+.warn { background:#3a2818; border-left:4px solid #d4a13a; padding:12px; margin:16px 0; border-radius:4px; }
+</style></head><body>
+<h1>V4 — Test structure minimale</h1>
+<div class="warn"><strong>Test crash de V3</strong> — On revient à l'essentiel pour identifier ce qui a fait planter TS. V4 utilise UNIQUEMENT les 4 GUIDs qui fonctionnaient en V1 (Tavern Wall - Small 01, Tavern Wall 01, Tavern Floor 01, Tavern Floor 02). <strong>Aucun escalier</strong>, <strong>aucun prop</strong>. Juste sol + murs + toit avec coins fermés.
+<br><br>Teste d'abord la <strong>#1 (6×6, 1 étage)</strong>. Si ça marche, tente la #2. Si ça marche aussi, on sait que l'escalier ou les props cassaient tout, et on itère à partir de là.</div>
+
+<h2>Test #1 — 6×6, 1 étage seulement</h2>
+<div class="card">
+<div class="code-box" id="c1">H4sIABALXWoC/zWRr0sEQRTHZ2U5fzDhuLaWNRhP9D+4XYMiou0UxKA4wqFgsFgHm8kXxKTJajgwCscFwZdOjFpNYp2gXnHevK8Lux/Yz2ffLDOj39HrhMmNMY8Hey8nu5P1w+eN3Xne7jXjOxfvqqH0VjlsKU1hDMMzPMMzfDtTLxQvFC8UT/AET/AE/9bpn49nOyt334tLcxuH+9b8Xz5zIINpZiSBAZRnVfrcgQymf4skMIBnzeXu6dbC2vX0xWD883U7hRWrhs7yVjlsKU2ha0WfZkSfGH1i9Pnm5Uxv/eiqHrzXxx9P96vz6cN+bkDZA6G3StmD5Av4UvZce4feoXfoHXqHntEzekbP6Bk9o29n2gv1zLQX6plpn3wpZ6Q9oSf0hJ7QE/qAPqAP6AP6gD6g/wNYXHDhmgIAAA==</div>
+<button onclick="navigator.clipboard.writeText(document.getElementById('c1').innerText); this.textContent='✓ Copié'">Copier</button>
+</div>
+
+<h2>Test #2 — 8×8, 2 étages</h2>
+<div class="card">
+<div class="code-box" id="c2">H4sIABALXWoC/zWTvWsUURRH3y5DJLKFbGVsJs1Uu6L/QXYt/EC0UxexiDhCULCwsV3srHyFWGlla7Fg6RBSCL4qYqmtldjeQk3ju/d3DCQHcs+Z2Xdn5/jv8ddxalJKHx/sf3ly79Tyw883k7uf7xxcrf/r6+9iS1xPxKOpmHaYt8y7lAp+wS/4Bb/gF/z5SL7Tfaf7Tvdj3jKvfsbP+Bk/42f8jG/4hm/4hm/4hr8ay3e673Tf6X7MW+adn3vTaD+bRvvZNNrPptF+6rxlHvuRX/ALfsEv+AV/PpLv1H7kO7Uf+TGP/cjP+Bk/42f8jG/4hm/4hm/4hr8ay3dqP/Kd2o/8mFf/297m+cm5vcvvfl+4uHvj4f3d9P9nPephgfHMKzM0GLuvHKD/PZqtmx4WGN+dygwNxjOsHGDyXcf9xQJjp3F/0WCcLe4veq/7iwXGs4n7iwZjR3F/8dmZS7ee3j5/7fX2i8OTP7/enmUjiy2dbT3hjFMx7YiLlnmnXVQ/zlR9nW0qVj9Yfc07nVnX9+fGGaairu/PjXmns+r64euzT0VdP3zN6/Vvvjx9cP3Rq+Xh9+XjH5/eX1nEB9/fTtC/M07/zjj9OxPzHeYt8475zN8Z9T19T9/T9/Q9fU/f0xf6Ql/oC32hL/SFvtDPR+qdegfVO/UOqo95y7xjPvN3TH2mz/SZPtNn+kyf6Y3e6I3e6I3e6I3e6Fdj9U69s+qdemfVx7xl3jGv/UA/0A/0A/1AP9AP9AP9P4Fio2xaBgAA</div>
+<button onclick="navigator.clipboard.writeText(document.getElementById('c2').innerText); this.textContent='✓ Copié'">Copier</button>
+</div>
+</body></html>

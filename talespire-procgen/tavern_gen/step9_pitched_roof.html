@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>Etape 9 - toit en pente</title>
+<style>body{font-family:system-ui,sans-serif;background:#1a1611;color:#e8dfc9;padding:24px;max-width:900px;margin:0 auto}
+h1{color:#d4a13a;border-bottom:2px solid #5c3a1a;padding-bottom:8px}
+.card{background:#2a2418;border:1px solid #4a3820;border-radius:8px;padding:20px;margin:20px 0}
+textarea.code{width:100%;height:100px;background:#0f0d08;color:#a8c060;border:1px solid #5c3a1a;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;white-space:nowrap;overflow:auto}
+button{background:#5c3a1a;color:#e8dfc9;border:none;padding:12px 24px;border-radius:4px;cursor:pointer;margin-top:8px;font-size:15px;font-weight:600}button:hover{background:#7c4a2a}
+.info{background:#1a2a1a;border-left:4px solid #a8c060;padding:14px;margin:16px 0;border-radius:4px;font-size:14px}</style></head><body>
+<h1>Étape 9 — toit 2 pans (à partir de ton exemple de maison)</h1>
+<div class="info"><b>Découverte dans ton slab :</b> les tuiles de toit (Tavern Roof flat 01) sont TOUTES à la même hauteur — la pente vient de la rotation de l'asset, pas d'un décalage vertical par tuile. 2 pans (moitié gauche rotation 12, moitié droite rotation 0), effet miroir. Les tuiles rouges éparses (10727582) ne sont que de la déco de rive, pas repris ici pour l'instant — testons d'abord si le pan de base donne bien une pente visible.<br><br>
+À vérifier en jeu : les 2 pans forment-ils une pente cohérente (pas plat, pas de trous), et le raccord au faîtage (au milieu) est-il propre ?</div>
+<h2>8×8 × 2 étages + toit 2 pans</h2>
+<div class="card"><textarea class="code" id="c0" readonly onclick="this.select()">H4sIAAAAAAAC/0XUv49MURjG8TN3hvVjE0t3Fa7mKuya2EaIZtEgm1Vh4leIU4iC2EYjm4lOdygkklWIbqsNoeBEdN5q8Adgy0EiitNYkTjveb/iFvPMnOd+7s2Z986M1kcfK7fROfd5/0L/4vH5U0+mHowOnNx7cy6v3Z46enrxzL4TDzffe/P71/fHm/La+U+X7qwf3Dm/cujRi8Ut92/p2tKVXaPZn9vnXi682rP77rNtuvb66uX3Ny5MHHn+dXny3Luz15b0vG+zfzZsXZl/+uXYcv/w9dnK6fFhIr90Nec2Wg4nLd/usHQ1fUPf0k+7rsd7vMd7vMd7vMd7vOAFL3jBC17wghf8TMe8pnpN9ZrqS1/TN/QtffbBvAvmS2ZfMvuS2Vvf0Lf0084lfMInfMInfMInfMIPKvOa6jXVa6ovfU3f0Lf02Ud8xEd8xEd8xEd8xIeOONu/uLW+vsuf62HvR1WyEzqrPetXe9bnz6UvmZX6YU9zrT/sqdf7q9cUPb/06rVf7VlvWe5X9m/X0bTnS3PYKfcrvV1H03pN7f8fun897LrO6f7LUdM39C193r/nFI/3eI/3eI/3eI8XvOAFL3jBC17wgp9hB5rqNdVrqi99Td/Qt/Rlfo75mQ/4gA/4gA/4gE/4hE/4hE/4hE/4hB/Yn0hJe37Na9rza770DX1LX55f8xEf8REf8REf8RHv3LhrVxh3bf7jrs1/3LX5576mb+hb+jJ/8x7v8R7v8R7v8R4veMELXvCCF7zgZjrmNG3u5jRt7uZK37Be5m0u4AIu4AIu4Erf0pd5m0/4hE/4hE/4hE/4QWVe0+ZtXtPmbb70DX1LX+ZtPuIjPuIjPuIjPlb/vjfh9zOoNP8CpN3p1UIHAAA=</textarea><button onclick="cp('c0',this)">📋 Copier</button></div>
+<script>function cp(id,b){const t=document.getElementById(id);t.select();t.setSelectionRange(0,999999);try{const o=document.execCommand('copy');b.textContent=o?'✓ Copié !':'❌ Ctrl+A+C';setTimeout(()=>b.textContent='📋 Copier',3000)}catch(e){b.textContent='❌ Ctrl+A+C'}}</script>
+</body></html>

@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Armonia ProcGen v2</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',sans-serif;background:#12121e;color:#ddd;font-size:13px;height:100vh;display:flex;flex-direction:column}
+#tabs{display:flex;background:#1a1a2e;border-bottom:2px solid #0f3460;flex-shrink:0;flex-wrap:wrap}
+.tab-btn{padding:7px 12px;cursor:pointer;border:none;background:none;color:#777;font-size:12px}
+.tab-btn.active{color:#e94560;border-bottom:2px solid #e94560}
+.tab-btn:hover:not(.active){color:#bbb}
+.tab-panel{display:none;padding:8px;overflow-y:auto;flex:1;flex-direction:column;gap:6px}
+.tab-panel.active{display:flex}
+.row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.row label{color:#999;white-space:nowrap;font-size:12px}
+input[type=number]{width:54px;background:#0f3460;color:#ddd;border:1px solid #2a4070;padding:3px 5px;border-radius:3px}
+input[type=range]{width:80px}
+select{background:#0f3460;color:#ddd;border:1px solid #2a4070;padding:3px 5px;border-radius:3px;font-size:12px}
+button{padding:5px 9px;border:none;border-radius:3px;cursor:pointer;font-size:12px;font-weight:bold}
+.btn-red{background:#e94560;color:#fff}
+.btn-green{background:#2d7a3f;color:#fff}
+.btn-blue{background:#0f3460;color:#ddd}
+#status{background:#0f3460;padding:4px 8px;font-size:11px;color:#7eb8f7;flex-shrink:0;min-height:22px}
+.code-out{background:#0a0a18;border:1px solid #1e3a5f;border-radius:3px;padding:4px;font-size:10px;font-family:monospace;color:#4a90d9;word-break:break-all;max-height:48px;overflow-y:auto}
+canvas{border:1px solid #2a4070;cursor:crosshair;image-rendering:pixelated;max-width:100%}
+.legend{display:flex;flex-wrap:wrap;gap:4px;font-size:11px}
+.leg{display:flex;align-items:center;gap:3px}
+.swatch{width:11px;height:11px;border-radius:2px;border:1px solid #444;flex-shrink:0}
+.brush-btn{width:26px;height:26px;border-radius:4px;border:2px solid transparent;cursor:pointer;padding:0;font-size:13px}
+.brush-btn.active{border-color:#e94560}
+.section{background:#1a1a2e;border-radius:4px;padding:6px;display:flex;flex-direction:column;gap:5px}
+.section-title{color:#7eb8f7;font-size:11px;font-weight:bold;text-transform:uppercase;letter-spacing:1px}
+.lib-item{background:#1a1a2e;border:1px solid #2a4070;border-radius:4px;padding:5px 8px;display:flex;justify-content:space-between;align-items:center;font-size:11px;gap:6px}
+.tag{background:#0f3460;border-radius:3px;padding:1px 5px;font-size:10px;color:#7eb8f7}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body>
+<div id="tabs">
+  <button class="tab-btn active" onclick="showTab('auto',this)">Auto</button>
+  <button class="tab-btn" onclick="showTab('draw',this)">Dessin</button>
+  <button class="tab-btn" onclick="showTab('struct',this)">Structures</button>
+  <button class="tab-btn" onclick="showTab('cave',this)">Caverne</button>
+  <button class="tab-btn" onclick="showTab('city',this)">Ville</button>
+  <button class="tab-btn" onclick="showTab('biblio',this)">Biblio</button>
+</div>
+
+<!-- AUTO -->
+<div id="tab-auto" class="tab-panel active">
+  <div class="row">
+    <label>Taille:</label>
+    <select id="auto-size"><option value="16">16x16</option><option value="24" selected>24x24</option><option value="32">32x32</option><option value="48">48x48</option></select>
+    <label>Seed:</label><input type="number" id="auto-seed" value="1" min="0" max="9999">
+    <button class="btn-blue" onclick="randomSeed('auto-seed')">Rnd</button>
+  </div>
+  <div class="section">
+    <div class="section-title">Hauteur -> Biome</div>
+    <div class="row"><label style="width:110px">Tres bas (0-12%)</label><select id="h0"><option value="caverne" selected>Caverne</option><option value="pierre">Pierre</option><option value="herbe">Herbe</option><option value="chemin">Chemin</option><option value="bois">Bois</option></select></div>
+    <div class="row"><label style="width:110px">Bas (12-28%)</label><select id="h1"><option value="pierre" selected>Pierre</option><option value="caverne">Caverne</option><option value="herbe">Herbe</option><option value="chemin">Chemin</option><option value="bois">Bois</option></select></div>
+    <div class="row"><label style="width:110px">Moyen (28-55%)</label><select id="h2"><option value="herbe" selected>Herbe</option><option value="pierre">Pierre</option><option value="caverne">Caverne</option><option value="chemin">Chemin</option><option value="bois">Bois</option></select></div>
+    <div class="row"><label style="width:110px">Haut (55-72%)</label><select id="h3"><option value="chemin" selected>Chemin</option><option value="herbe">Herbe</option><option value="pierre">Pierre</option><option value="bois">Bois</option><option value="caverne">Caverne</option></select></div>
+    <div class="row"><label style="width:110px">Tres haut (72%+)</label><select id="h4"><option value="bois" selected>Bois</option><option value="pierre">Pierre</option><option value="herbe">Herbe</option><option value="chemin">Chemin</option><option value="caverne">Caverne</option></select></div>
+  </div>
+  <div class="row"><input type="checkbox" id="relief-3d" checked><label for="relief-3d">Relief 3D (Y variable)</label></div>
+  <div class="row">
+    <button class="btn-blue" onclick="genAuto()">Apercu</button>
+    <button class="btn-red" onclick="applyAuto()">Copier Slab</button>
+  </div>
+  <div class="row"><input type="file" id="houdini-png" accept="image/png" onchange="loadHoudiniPNG(event)" style="font-size:11px;color:#aaa;flex:1"><label style="color:#666;font-size:10px">PNG Houdini</label></div>
+  <canvas id="terrain-canvas" width="240" height="240"></canvas>
+  <div id="out-auto" class="code-out">slab ici</div>
+</div>
+
+<!-- DESSIN -->
+<div id="tab-draw" class="tab-panel">
+  <div class="row">
+    <label>Taille:</label>
+    <select id="draw-size" onchange="resizeDraw()"><option value="16">16x16</option><option value="24" selected>24x24</option><option value="32">32x32</option></select>
+    <button class="brush-btn active" onclick="setBrush('herbe',this)" style="background:#2d5a3f">H</button>
+    <button class="brush-btn" onclick="setBrush('pierre',this)" style="background:#555">P</button>
+    <button class="brush-btn" onclick="setBrush('bois',this)" style="background:#6b3c14">B</button>
+    <button class="brush-btn" onclick="setBrush('caverne',this)" style="background:#222">C</button>
+    <button class="brush-btn" onclick="setBrush('chemin',this)" style="background:#a08060">R</button>
+    <button class="brush-btn" onclick="setBrush(null,this)" style="background:#3a0010">X</button>
+  </div>
+  <div class="row">
+    <button class="btn-blue" onclick="clearDraw()">Effacer</button>
+    <button class="btn-red" onclick="exportDraw()">Copier Slab</button>
+  </div>
+  <canvas id="draw-canvas" width="240" height="240"
+    onmousedown="startDraw(event)" onmousemove="moveDraw(event)" onmouseup="stopDraw()" onmouseleave="stopDraw()"></canvas>
+  <div id="out-draw" class="code-out">slab ici</div>
+</div>
+
+<!-- STRUCTURES -->
+<div id="tab-struct" class="tab-panel">
+  <div class="row">
+    <label>Type:</label>
+    <select id="struct-type">
+      <option value="chateau">Chateau</option>
+      <option value="camp">Camp militaire</option>
+      <option value="donjon">Donjon</option>
+      <option value="ruine">Ruine</option>
+      <option value="tour">Tour de guet</option>
+    </select>
+  </div>
+  <div class="row">
+    <label>Taille:</label>
+    <select id="struct-size"><option value="small">Petit (12)</option><option value="medium" selected>Moyen (20)</option><option value="large">Grand (30)</option></select>
+    <label>Mur:</label><input type="number" id="struct-wall" value="2" min="1" max="4">
+    <label>Seed:</label><input type="number" id="struct-seed" value="1" min="0" max="9999">
+    <button class="btn-blue" onclick="randomSeed('struct-seed')">Rnd</button>
+  </div>
+  <div class="row">
+    <label>Tuiles:</label>
+    <select id="struct-tileset">
+      <option value="castle">Castle Wall</option>
+      <option value="megadungeon" selected>MegaDungeon</option>
+      <option value="castle-ruins">Castle Ruins</option>
+    </select>
+    <label>Etages:</label>
+    <select id="struct-floors"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option></select>
+  </div>
+  <div class="row">
+    <button class="btn-blue" onclick="genStruct()">Generer</button>
+    <button class="btn-red" onclick="exportStruct()">Copier Slab</button>
+    <button class="btn-blue" onclick="sendToDrawTab()">-> Dessin</button>
+    <select id="chateau-n" style="width:120px"><option value="1">46×46 (N=1)</option><option value="2">70×70 (N=2)</option><option value="3">94×94 (N=3)</option><option value="4">118×118 (N=4)</option><option value="5">142×142 (N=5)</option></select><button class="btn-red" onclick="exportChateauScalable(+document.getElementById('chateau-n').value)" title="Château scalable depuis mur Castle Ruins">🏰 Château</button>
+  </div>
+  <div class="legend">
+    <div class="leg"><div class="swatch" style="background:#7a7a7a"></div>Mur</div>
+    <div class="leg"><div class="swatch" style="background:#e94560"></div>Tour</div>
+    <div class="leg"><div class="swatch" style="background:#f5a623"></div>Porte</div>
+    <div class="leg"><div class="swatch" style="background:#2d5a3f"></div>Interieur</div>
+    <div class="leg"><div class="swatch" style="background:#9b59b6"></div>Donjon</div>
+  </div>
+  <canvas id="struct-grid" width="280" height="280"></canvas>
+  <div id="out-struct" class="code-out">slab ici</div>
+</div>
+
+<!-- CAVERNE -->
+<div id="tab-cave" class="tab-panel">
+  <div class="section">
+    <div class="section-title">Parametres</div>
+    <div class="row">
+      <label>Taille:</label>
+      <select id="cave-size"><option value="24">24x24</option><option value="32" selected>32x32</option><option value="48">48x48</option><option value="64">64x64</option></select>
+      <label>Seed:</label><input type="number" id="cave-seed" value="42" min="0" max="9999">
+      <button class="btn-blue" onclick="randomSeed('cave-seed')">Rnd</button>
+    </div>
+    <div class="row">
+      <label>Densite:</label>
+      <input type="range" id="cave-density" min="30" max="65" value="47" oninput="document.getElementById('cave-dv').textContent=this.value+'%'">
+      <span id="cave-dv" style="color:#aaa;font-size:11px">47%</span>
+    </div>
+    <div class="row">
+      <label>Lissage:</label>
+      <input type="range" id="cave-smooth" min="2" max="8" value="5" oninput="document.getElementById('cave-sv').textContent=this.value">
+      <span id="cave-sv" style="color:#aaa;font-size:11px">5</span>
+    </div>
+    <div class="row">
+      <label>Sol:</label>
+      <select id="cave-floor-tile">
+        <option value="rock01">Cave Floor Rock 01</option>
+        <option value="rock02">Cave Floor Rock 02</option>
+        <option value="rock03">Cave Floor Rock 03</option>
+        <option value="rock04">Cave Floor Rock 04</option>
+      </select>
+    </div>
+    <div class="row"><input type="checkbox" id="cave-walls" checked><label for="cave-walls">Murs de caverne</label></div>
+  </div>
+  <div class="row">
+    <button class="btn-blue" onclick="genCave()">Generer</button>
+    <button class="btn-red" onclick="exportCave()">Copier Slab</button>
+  </div>
+  <div class="legend">
+    <div class="leg"><div class="swatch" style="background:#1c2020"></div>Sol</div>
+    <div class="leg"><div class="swatch" style="background:#3a2a1a"></div>Mur roche</div>
+    <div class="leg"><div class="swatch" style="background:#12121e"></div>Vide</div>
+  </div>
+  <canvas id="cave-canvas" width="280" height="280"></canvas>
+  <div id="out-cave" class="code-out">slab ici</div>
+</div>
+
+<!-- VILLE -->
+<div id="tab-city" class="tab-panel">
+  <div class="section">
+    <div class="section-title">Configuration</div>
+    <div class="row">
+      <label>Type:</label>
+      <select id="city-type">
+        <option value="village">Village</option>
+        <option value="cite" selected>Cite fortifiee</option>
+        <option value="port">Port</option>
+        <option value="camp">Camp</option>
+      </select>
+      <label>Taille:</label>
+      <select id="city-size"><option value="small">Petite (30)</option><option value="medium" selected>Moyenne (48)</option><option value="large">Grande (64)</option></select>
+    </div>
+    <div class="row">
+      <label>Seed:</label><input type="number" id="city-seed" value="7" min="0" max="9999">
+      <button class="btn-blue" onclick="randomSeed('city-seed')">Rnd</button>
+      <input type="checkbox" id="city-walls" checked><label for="city-walls">Remparts</label>
+      <input type="checkbox" id="city-roads" checked><label for="city-roads">Routes</label>
+    </div>
+  </div>
+  <div class="row">
+    <button class="btn-blue" onclick="genCity()">Generer</button>
+    <button class="btn-red" onclick="exportCity('all')">Slab tout</button>
+  </div>
+  <div class="row">
+    <button class="btn-blue" style="font-size:11px" onclick="exportCity('walls')">Remparts</button>
+    <button class="btn-blue" style="font-size:11px" onclick="exportCity('ground')">Sol</button>
+    <button class="btn-blue" style="font-size:11px" onclick="exportCity('north')">Nord</button>
+    <button class="btn-blue" style="font-size:11px" onclick="exportCity('south')">Sud</button>
+  </div>
+  <div class="legend">
+    <div class="leg"><div class="swatch" style="background:#a08060"></div>Route</div>
+    <div class="leg"><div class="swatch" style="background:#555"></div>Rempart</div>
+    <div class="leg"><div class="swatch" style="background:#6b3c14"></div>Maison</div>
+    <div class="leg"><div class="swatch" style="background:#9b59b6"></div>Temple</div>
+    <div class="leg"><div class="swatch" style="background:#e07820"></div>Taverne</div>
+    <div class="leg"><div class="swatch" style="background:#f5a623"></div>Marche</div>
+    <div class="leg"><div class="swatch" style="background:#2d5a3f"></div>Jardin</div>
+    <div class="leg"><div class="swatch" style="background:#5a5a2a"></div>Garnison</div>
+  </div>
+  <canvas id="city-canvas" width="280" height="280"></canvas>
+  <div id="out-city" class="code-out">slab ici</div>
+</div>
+
+<!-- BIBLIO -->
+<div id="tab-biblio" class="tab-panel">
+  <div class="section">
+    <div class="section-title">Ajouter un slab</div>
+    <input type="text" id="lib-name" placeholder="Nom (ex: Taverne du Dragon)" style="flex:1;background:#0f3460;color:#ddd;border:1px solid #2a4070;padding:4px 6px;border-radius:3px;width:100%">
+    <div class="row" style="margin-top:4px">
+      <select id="lib-type">
+        <option value="maison">Maison</option><option value="taverne">Taverne</option><option value="temple">Temple</option>
+        <option value="chateau">Chateau</option><option value="donjon">Donjon</option><option value="marche">Marche</option>
+        <option value="forge">Forge</option><option value="garnison">Garnison</option><option value="autre">Autre</option>
+      </select>
+      <select id="lib-zone">
+        <option value="lumini">Lumini</option><option value="solambaire">Sol\'Ambaire</option>
+        <option value="noord">No\'Ord</option><option value="armonia">Cite Armonia</option><option value="generique">Generique</option>
+      </select>
+    </div>
+    <textarea id="lib-slab" placeholder="Code slab Base64..." style="width:100%;height:40px;background:#0a0a18;color:#4a90d9;border:1px solid #1e3a5f;border-radius:3px;padding:4px;font-size:10px;font-family:monospace;resize:none"></textarea>
+    <button class="btn-green" onclick="addToLibrary()" style="align-self:flex-start">+ Ajouter</button>
+  </div>
+  <div id="lib-list" style="display:flex;flex-direction:column;gap:4px;overflow-y:auto;flex:1">
+    <div style="color:#555;font-size:11px;padding:8px">Aucun slab sauvegarde.</div>
+  </div>
+</div>
+
+<div id="status">Pret - Armonia ProcGen v2</div>
+
+<script>
+// ===== TUILES =====
+const GROUND={herbe:{guid:'ad6c985c-8d8b-44f2-abd5-edc9de568d30',color:'#2d5a3f'},pierre:{guid:'6d146ada-02d4-4fab-ad2a-4fbe1a672328',color:'#666'},caverne:{guid:'b83392b1-8833-43c9-a97f-2ac3df659e66',color:'#1c1c1c'},bois:{guid:'db9902bc-cc36-4172-ae60-df9d5eaee4e7',color:'#6b3c14'},chemin:{guid:'3bc61730-aa14-4df3-b5a9-8f8e99efab86',color:'#a08060'}};
+const CAVE_FLOORS={rock01:{guid:'b83392b1-8833-43c9-a97f-2ac3df659e66'},rock02:{guid:'ce6a2235-664f-43e8-a744-d5743623701d'},rock03:{guid:'ea5589dc-507a-4e0d-bf48-b097c8318a38'},rock04:{guid:'0207e67f-6bba-4eb3-a343-54bf2d4d35d3'}};
+const CAVE_WALL_STR='c06fdfb8-bf24-4234-99c7-3a72a5aacb02';
+const CAVE_WALL_CORNER='283fe136-1ac3-4025-b9bf-90612c464c52';
+const WALL_TILES={straight:'d24c154a-093f-430a-8604-cee13b20f611',corner:'be0509d0-c87c-491a-b510-743cda6af8bd'};
+const MD={wall:'eea7b9e2-b30c-43f3-95fb-0db4a6720d45',crenel:'a96410ce-21e3-4855-a0a0-66f1ee182e03',corner:'bb8e7378-44da-4556-bac5-92420f766815'};
+const WALL_SLAB='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';
+const CR={wall:'a30334dd-40ab-4bb7-8030-43fa3b5b33cf',corner:'6f03159b-1c19-4aa1-8762-67418dc0f4b0',wallbase1:'310a6c14-cab8-429d-bfb2-6a9aeed27f35',wallbase2:'b303b449-3d35-4b4c-8739-44f9a1e7d110',floor1:'ecbac309-1ed3-4aa9-884d-cebb1ec19030',floor2:'181ecfa9-bfc4-43bd-aae2-bca84d7233e1',crenel_lg:'0c919dc2-7dff-477b-8957-cdc6abc283ab',crenel_sm:'d5949877-7a48-4420-b211-7fcf95ac4d89',arch1:'7c2c34db-5b69-4017-bd52-c7de5a9bd802',arch2:'2ac73dee-7990-44aa-9738-8078ddd4d3ec',stair:'eb32a5e7-d3ed-414b-91a4-1095edac7a20',corner_sm:'3fb39e0a-bb63-41e7-ab1e-7be7a06b5d8c',window:'a96af746-8ccf-457b-9d51-85241c11138e',rock:'26457fc1-ce6a-4a40-b4e4-2e2b86184b86'};
+const STRUCT_SIZES={small:12,medium:20,large:30};
+const CITY_SIZES={small:30,medium:48,large:64};
+const SCELL_COLOR={wall:'#7a7a7a',tower:'#e94560',keep:'#9b59b6',gate:'#f5a623',interior:'#2d5a3f',wood:'#6b3c14',empty:'#12121e',tent:'#e07820',fire:'#ff6600'};
+const SCELL_TERRAIN={wall:'pierre',tower:'pierre',keep:'pierre',gate:'chemin',interior:'herbe',wood:'bois',empty:null,tent:'bois',fire:'herbe'};
+const CITY_COLOR={vide:'#12121e',route:'#a08060',allee:'#887050',mur:'#555',place:'#888',maison:'#6b3c14',temple:'#9b59b6',taverne:'#e07820',marche:'#f5a623',jardin:'#2d5a3f',garnison:'#5a5a2a',entrepot:'#4a3020',pierre:'#666'};
+const CITY_TILE={vide:null,route:'chemin',allee:'chemin',mur:'pierre',place:'pierre',maison:'bois',temple:'pierre',taverne:'bois',marche:'chemin',jardin:'herbe',garnison:'pierre',entrepot:'bois',pierre:'pierre'};
+const CITY_BUILDINGS={village:['maison','maison','maison','jardin','maison'],cite:['maison','maison','garnison','maison','maison'],port:['maison','entrepot','taverne','maison','maison'],camp:['garnison','garnison','maison','garnison','garnison']};
+const QUAD_SPEC=['temple','taverne','jardin','garnison'];
+
+// ===== ENCODEUR SLAB =====
+function guidToBytes(g){const h=g.replace(/-/g,'');const b=i=>parseInt(h.slice(i,i+2),16);return[b(6),b(4),b(2),b(0),b(10),b(8),b(14),b(12),b(16),b(18),b(20),b(22),b(24),b(26),b(28),b(30)];}
+function encodeSlab(tiles){
+  if(!tiles.length)throw new Error('Aucune tuile');
+  const byG=new Map();
+  for(const t of tiles){if(!byG.has(t.guid))byG.set(t.guid,[]);byG.get(t.guid).push(t);}
+  const guids=[...byG.keys()];
+  const buf=new ArrayBuffer(10+guids.length*20+tiles.length*8);
+  const v=new DataView(buf);let off=0;
+  v.setUint32(off,0xD1CEFACE,true);off+=4;
+  v.setUint16(off,2,true);off+=2;
+  v.setUint16(off,guids.length,true);off+=2;
+  v.setUint16(off,0,true);off+=2;
+  for(const g of guids){guidToBytes(g).forEach(b=>v.setUint8(off++,b));v.setUint16(off,byG.get(g).length,true);off+=2;v.setUint16(off,0,true);off+=2;}
+  for(const g of guids)for(const t of byG.get(g)){
+    const xi=Math.round((t.x||0)*100),yi=Math.round((t.y||0)*100),zi=Math.round((t.z||0)*100),rot=(t.rot||0)&0x1f;
+    const val=BigInt(xi)|(BigInt(yi)<<18n)|(BigInt(zi)<<36n)|(BigInt(rot)<<54n);
+    v.setUint32(off,Number(val&0xFFFFFFFFn),true);off+=4;
+    v.setUint32(off,Number((val>>32n)&0xFFFFFFFFn),true);off+=4;
+  }
+  const c=pako.gzip(new Uint8Array(buf));let b='';c.forEach(x=>b+=String.fromCharCode(x));return btoa(b);
+}
+async function copyCode(code,outId){
+  document.getElementById(outId).textContent=code;
+  if(window.TS&&TS.slabs&&typeof TS.slabs.pasteSlab==='function'){TS.slabs.pasteSlab(code);setStatus('Slab envoye a TaleSpire!');return;}
+  try{await navigator.clipboard.writeText(code);setStatus('Copie - Ctrl+V dans TaleSpire');}
+  catch{const ta=document.createElement('textarea');ta.value=code;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);setStatus('Copie (fallback)');}
+}
+function setStatus(m){document.getElementById('status').textContent=m;}
+function randomSeed(id){document.getElementById(id).value=Math.floor(Math.random()*9999);}
+function showTab(name,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');btn.classList.add('active');
+  if(name==='draw')renderDraw();
+}
+
+// ===== PERLIN NOISE =====
+function makePermutation(seed){const p=Array.from({length:256},(_,i)=>i);let s=(seed^0xdeadbeef)>>>0;for(let i=255;i>0;i--){s=(Math.imul(s,1664525)+1013904223)>>>0;const j=s%(i+1);[p[i],p[j]]=[p[j],p[i]];}return[...p,...p];}
+function fade(t){return t*t*t*(t*(t*6-15)+10);}
+function lerp(a,b,t){return a+t*(b-a);}
+function grad(h,x,y){const u=h<4?x:y,vv=h<4?y:x;return((h&1)?-u:u)+((h&2)?-vv:vv);}
+function perlin2(px,py,perm){const xi=Math.floor(px)&255,yi=Math.floor(py)&255,xf=px-Math.floor(px),yf=py-Math.floor(py);const u=fade(xf),vv=fade(yf);const aa=perm[perm[xi]+yi],ab=perm[perm[xi]+yi+1],ba=perm[perm[xi+1]+yi],bb=perm[perm[xi+1]+yi+1];return lerp(lerp(grad(aa&7,xf,yf),grad(ba&7,xf-1,yf),u),lerp(grad(ab&7,xf,yf-1),grad(bb&7,xf-1,yf-1),u),vv);}
+function fbm(x,y,perm,oct=6){let v=0,a=0.5,f=1,m=0;for(let o=0;o<oct;o++){v+=perlin2(x*f,y*f,perm)*a;m+=a;a*=0.5;f*=2;}return v/m;}
+function seededRand(seed){let s=(seed^0xdeadbeef)>>>0;return()=>{s=(Math.imul(s,1664525)+1013904223)>>>0;return s/0x100000000;};}
+
+// ===== AUTO TERRAIN =====
+let lastAutoTiles=[];
+function getHeightSteps(){return[[0.12,document.getElementById('h0').value],[0.28,document.getElementById('h1').value],[0.55,document.getElementById('h2').value],[0.72,document.getElementById('h3').value],[1.0,document.getElementById('h4').value]];}
+function genAuto(){
+  const size=parseInt(document.getElementById('auto-size').value),seed=parseInt(document.getElementById('auto-seed').value)||1;
+  const use3d=document.getElementById('relief-3d').checked,steps=getHeightSteps(),perm=makePermutation(seed),scale=3.5/size;
+  const canvas=document.getElementById('terrain-canvas');canvas.width=canvas.height=size*10;
+  const ctx=canvas.getContext('2d');lastAutoTiles=[];
+  for(let i=0;i<size;i++)for(let j=0;j<size;j++){
+    const n=(fbm(i*scale,j*scale,perm)+1)/2,st=steps.find(s=>n<=s[0])||steps[steps.length-1];
+    const g=GROUND[st[1]];if(!g)continue;
+    ctx.fillStyle=g.color;ctx.fillRect(j*10,i*10,10,10);
+    lastAutoTiles.push({guid:g.guid,x:j+0.5,y:use3d?steps.indexOf(st):0,z:i,rot:0});
+  }
+  setStatus('Terrain '+size+'x'+size+' - '+lastAutoTiles.length+' tuiles');
+}
+async function applyAuto(){if(!lastAutoTiles.length)genAuto();try{await copyCode(encodeSlab(lastAutoTiles),'out-auto');}catch(e){setStatus('Erreur: '+e.message);}}
+function loadHoudiniPNG(event){
+  const file=event.target.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{const img=new Image();img.onload=()=>{
+    const size=parseInt(document.getElementById('auto-size').value),steps=getHeightSteps();
+    const oc=document.createElement('canvas');oc.width=oc.height=size;
+    const ctx2=oc.getContext('2d');ctx2.drawImage(img,0,0,size,size);
+    const data=ctx2.getImageData(0,0,size,size).data;
+    const canvas=document.getElementById('terrain-canvas');canvas.width=canvas.height=size*10;
+    const ctx=canvas.getContext('2d');lastAutoTiles=[];
+    for(let i=0;i<size;i++)for(let j=0;j<size;j++){
+      const idx=(i*size+j)*4,gray=(data[idx]+data[idx+1]+data[idx+2])/3,n=gray/255;
+      const st=steps.find(s=>n<=s[0])||steps[steps.length-1],g=GROUND[st[1]];if(!g)continue;
+      ctx.fillStyle=g.color;ctx.fillRect(j*10,i*10,10,10);
+      lastAutoTiles.push({guid:g.guid,x:j+0.5,y:steps.indexOf(st),z:i,rot:0});
+    }
+    setStatus('PNG importe - '+lastAutoTiles.length+' tuiles');
+  };img.src=e.target.result;};reader.readAsDataURL(file);
+}
+
+// ===== DESSIN =====
+let drawW=24,drawH=24,brush='herbe',drawing=false,drawGrid=[];
+function initDraw(){drawGrid=Array.from({length:drawH},()=>Array(drawW).fill(null));}
+initDraw();
+function resizeDraw(){drawW=drawH=parseInt(document.getElementById('draw-size').value);initDraw();renderDraw();}
+function renderDraw(){
+  const canvas=document.getElementById('draw-canvas'),cs=Math.floor(240/Math.max(drawW,drawH));
+  canvas.width=drawW*cs;canvas.height=drawH*cs;
+  const ctx=canvas.getContext('2d');ctx.fillStyle='#12121e';ctx.fillRect(0,0,canvas.width,canvas.height);
+  for(let i=0;i<drawH;i++)for(let j=0;j<drawW;j++){const t=drawGrid[i][j];if(t&&GROUND[t]){ctx.fillStyle=GROUND[t].color;ctx.fillRect(j*cs,i*cs,cs,cs);}}
+  ctx.strokeStyle='rgba(255,255,255,0.05)';ctx.lineWidth=0.5;
+  for(let j=0;j<=drawW;j++){ctx.beginPath();ctx.moveTo(j*cs,0);ctx.lineTo(j*cs,canvas.height);ctx.stroke();}
+  for(let i=0;i<=drawH;i++){ctx.beginPath();ctx.moveTo(0,i*cs);ctx.lineTo(canvas.width,i*cs);ctx.stroke();}
+}
+function paintCell(e){const canvas=document.getElementById('draw-canvas'),rect=canvas.getBoundingClientRect();const cs=canvas.width/drawW,j=Math.floor((e.clientX-rect.left)/cs),i=Math.floor((e.clientY-rect.top)/cs);if(i<0||i>=drawH||j<0||j>=drawW)return;drawGrid[i][j]=brush;renderDraw();}
+function setBrush(type,btn){brush=type;document.querySelectorAll('.brush-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+function startDraw(e){drawing=true;paintCell(e);}
+function moveDraw(e){if(drawing)paintCell(e);}
+function stopDraw(){drawing=false;}
+function clearDraw(){initDraw();renderDraw();}
+async function exportDraw(){
+  const tiles=[];
+  for(let i=0;i<drawH;i++)for(let j=0;j<drawW;j++){const t=drawGrid[i][j];if(t&&GROUND[t])tiles.push({guid:GROUND[t].guid,x:j+0.5,y:0,z:i,rot:0});}
+  if(!tiles.length){setStatus('Aucune tuile dessinee');return;}
+  try{await copyCode(encodeSlab(tiles),'out-draw');setStatus('Slab dessin - '+tiles.length+' tuiles');}
+  catch(e){setStatus('Erreur: '+e.message);}
+}
+
+// ===== STRUCTURES =====
+let structGrid=[],structW=0,structH=0;
+function getWallTile(i,j,size,tileset){
+  const oN=i===0,oS=i===size-1,oW=j===0,oE=j===size-1;
+  if(!oN&&!oS&&!oW&&!oE)return null;
+  const isCorn=(oN&&oW)||(oN&&oE)||(oS&&oE)||(oS&&oW);
+  if(tileset==='megadungeon'){if(isCorn)return{guid:MD.corner,rot:oN&&oW?0:oN&&oE?8:oS&&oE?16:24};return{guid:MD.wall,rot:oN?0:oE?8:oS?16:24};}
+  if(tileset==='castle-ruins'){if(isCorn)return{guid:CR.corner,rot:oN&&oW?0:oN&&oE?8:oS&&oE?16:24};return{guid:CR.wall,rot:oN?0:oE?8:oS?16:24};}
+  if(isCorn)return{guid:WALL_TILES.corner,rot:oN&&oW?0:oN&&oE?8:oS&&oE?16:24};
+  return{guid:WALL_TILES.straight,rot:oN?0:oE?8:oS?16:24};
+}
+function genStruct(){
+  const type=document.getElementById('struct-type').value;
+  const size=STRUCT_SIZES[document.getElementById('struct-size').value];
+  const wall=parseInt(document.getElementById('struct-wall').value)||2;
+  const seed=parseInt(document.getElementById('struct-seed').value)||1;
+  const rand=seededRand(seed);
+  structW=structH=size;
+  structGrid=Array.from({length:size},()=>Array(size).fill('empty'));
+  if(type==='chateau')genChateau(size,wall,rand);
+  else if(type==='camp')genCamp(size,wall,rand);
+  else if(type==='donjon')genDonjon(size,rand);
+  else if(type==='ruine')genRuine(size,wall,rand);
+  else genTour(size,rand);
+  renderStructGrid();setStatus('Structure '+type+' '+size+'x'+size);
+}
+function genChateau(size,wall,rand){
+  const tw=Math.max(2,wall);
+  for(let i=0;i<size;i++)for(let j=0;j<size;j++){const isW=i<wall||i>=size-wall||j<wall||j>=size-wall;const isT=(i<tw||i>=size-tw)&&(j<tw||j>=size-tw);structGrid[i][j]=isT?'tower':isW?'wall':'interior';}
+  const mid=Math.floor(size/2);
+  for(let k=0;k<wall;k++){structGrid[k][mid]='gate';structGrid[size-1-k][mid]='gate';}
+  const ks=Math.max(3,Math.floor(size/5)),ko=Math.floor((size-ks)/2);
+  for(let i=ko;i<ko+ks;i++)for(let j=ko;j<ko+ks;j++)structGrid[i][j]='keep';
+  structGrid[Math.floor(size/2)][Math.floor(size/2)]='fire';
+}
+function genCamp(size,wall,rand){
+  for(let i=0;i<size;i++)for(let j=0;j<size;j++)structGrid[i][j]=i<wall||i>=size-wall||j<wall||j>=size-wall?'wood':'interior';
+  const mid=Math.floor(size/2);
+  for(let k=0;k<wall;k++){structGrid[size-1-k][mid-1]='gate';structGrid[size-1-k][mid]='gate';}
+  const nT=Math.floor(size*size*0.06);
+  for(let t=0;t<nT;t++){const ti=wall+1+Math.floor(rand()*(size-wall*2-2)),tj=wall+1+Math.floor(rand()*(size-wall*2-2));if(structGrid[ti][tj]==='interior')structGrid[ti][tj]='tent';}
+  structGrid[Math.floor(size/2)][Math.floor(size/2)]='fire';
+}
+function genDonjon(size,rand){
+  const inner=Math.max(2,Math.floor(size/4));
+  for(let i=0;i<size;i++)for(let j=0;j<size;j++){const iIn=i>=inner&&i<size-inner,jIn=j>=inner&&j<size-inner;structGrid[i][j]=iIn&&jIn?'interior':(i<inner||i>=size-inner)&&(j<inner||j>=size-inner)?'tower':'wall';}
+  structGrid[Math.floor(size/2)][Math.floor(size/2)]='keep';
+}
+function genRuine(size,wall,rand){
+  genChateau(size,wall,rand);
+  for(let i=0;i<size;i++)for(let j=0;j<size;j++){if(structGrid[i][j]==='wall'&&rand()<0.38)structGrid[i][j]='empty';if(structGrid[i][j]==='tower'&&rand()<0.22)structGrid[i][j]='wall';if(structGrid[i][j]==='keep'&&rand()<0.5)structGrid[i][j]='interior';}
+}
+function genTour(size,rand){
+  for(let i=0;i<size;i++)for(let j=0;j<size;j++){const d=Math.max(Math.abs(i-size/2+0.5),Math.abs(j-size/2+0.5));structGrid[i][j]=d>=size/2?'tower':d>=size/2-2?'wall':'interior';}
+  structGrid[Math.floor(size/2)][Math.floor(size/2)]='keep';
+}
+function renderStructGrid(){
+  const canvas=document.getElementById('struct-grid'),cs=Math.floor(280/Math.max(structW,structH));
+  canvas.width=structW*cs;canvas.height=structH*cs;
+  const ctx=canvas.getContext('2d');
+  for(let i=0;i<structH;i++)for(let j=0;j<structW;j++){ctx.fillStyle=SCELL_COLOR[structGrid[i][j]]||'#12121e';ctx.fillRect(j*cs,i*cs,cs,cs);}
+}
+async function exportStruct(){
+  if(!structGrid.length){setStatus('Genere une structure');return;}
+  const size=structW,tileset=document.getElementById('struct-tileset').value,floors=parseInt(document.getElementById('struct-floors').value)||2;
+  const tiles=[];
+  for(let i=0;i<structH;i++)for(let j=0;j<structW;j++){
+    const cell=structGrid[i][j],terrain=SCELL_TERRAIN[cell];
+    if(terrain&&GROUND[terrain]){
+      const isCR=tileset==='castle-ruins';
+      const floorGuid=isCR&&(cell==='wall'||cell==='tower'||cell==='keep')?CR.floor1:isCR&&cell==='interior'?CR.floor2:GROUND[terrain].guid;
+      tiles.push({guid:floorGuid,x:j+0.5,y:0,z:i,rot:0});
+    }
+    if(cell==='wall'||cell==='tower'){const wt=getWallTile(i,j,size,tileset);if(wt){for(let fl=0;fl<floors;fl++)tiles.push({guid:wt.guid,x:j+0.5,y:fl,z:i,rot:wt.rot});if(tileset==='megadungeon')tiles.push({guid:MD.crenel,x:j+0.5,y:floors,z:i,rot:wt.rot});if(tileset==='castle-ruins')tiles.push({guid:CR.crenel_lg,x:j+0.5,y:floors,z:i,rot:wt.rot});}}
+  }
+  if(!tiles.length){setStatus('Aucune tuile');return;}
+  try{await copyCode(encodeSlab(tiles),'out-struct');setStatus('Slab structure - '+tiles.length+' tuiles');}
+  catch(e){setStatus('Erreur: '+e.message);}
+}
+function sendToDrawTab(){
+  if(!structGrid.length)return;
+  drawW=structW;drawH=structH;
+  drawGrid=structGrid.map(row=>row.map(cell=>{const t=SCELL_TERRAIN[cell];return(t&&GROUND[t])?t:null;}));
+  document.querySelectorAll('.tab-btn')[1].click();
+}
+
+// ===== CAVERNE =====
+let caveGrid=[],caveW=0,caveH=0;
+function genCave(){
+  const size=parseInt(document.getElementById('cave-size').value);
+  const seed=parseInt(document.getElementById('cave-seed').value)||42;
+  const density=parseInt(document.getElementById('cave-density').value)/100;
+  const smooth=parseInt(document.getElementById('cave-smooth').value)||5;
+  const perm=makePermutation(seed),scale=2.8/size;
+  caveW=caveH=size;
+  let grid=Array.from({length:size},(_,i)=>Array.from({length:size},(_,j)=>{
+    if(i<2||i>=size-2||j<2||j>=size-2)return 1;
+    return(fbm(i*scale,j*scale,perm)+1)/2<density?0:1;
+  }));
+  for(let pass=0;pass<smooth;pass++){
+    const ng=Array.from({length:size},()=>Array(size).fill(1));
+    for(let i=1;i<size-1;i++)for(let j=1;j<size-1;j++){let w=0;for(let di=-1;di<=1;di++)for(let dj=-1;dj<=1;dj++)w+=grid[i+di][j+dj];ng[i][j]=w>=5?1:0;}
+    grid=ng;
+  }
+  for(let k=0;k<size;k++)grid[0][k]=grid[size-1][k]=grid[k][0]=grid[k][size-1]=1;
+  caveGrid=grid;
+  renderCave();
+  let open=0;grid.forEach(r=>r.forEach(c=>c===0&&open++));
+  setStatus('Caverne '+size+'x'+size+' - '+open+' cases ouvertes');
+}
+function renderCave(){
+  const canvas=document.getElementById('cave-canvas'),cs=Math.floor(280/caveW);
+  canvas.width=caveW*cs;canvas.height=caveH*cs;
+  const ctx=canvas.getContext('2d');
+  ctx.fillStyle='#12121e';ctx.fillRect(0,0,canvas.width,canvas.height);
+  for(let i=0;i<caveH;i++)for(let j=0;j<caveW;j++){
+    if(caveGrid[i][j]===0){ctx.fillStyle='#1c2020';ctx.fillRect(j*cs,i*cs,cs,cs);}
+    else{
+      let adj=false;
+      for(let di=-1;di<=1&&!adj;di++)for(let dj=-1;dj<=1&&!adj;dj++){const ni=i+di,nj=j+dj;if(ni>=0&&ni<caveH&&nj>=0&&nj<caveW&&caveGrid[ni][nj]===0)adj=true;}
+      if(adj){ctx.fillStyle='#3a2a1a';ctx.fillRect(j*cs,i*cs,cs,cs);}
+    }
+  }
+}
+async function exportCave(){
+  if(!caveGrid.length){setStatus('Genere une caverne');return;}
+  const floorGuid=CAVE_FLOORS[document.getElementById('cave-floor-tile').value].guid;
+  const useWalls=document.getElementById('cave-walls').checked;
+  const tiles=[];
+  for(let i=0;i<caveH;i++)for(let j=0;j<caveW;j++){
+    if(caveGrid[i][j]===0){tiles.push({guid:floorGuid,x:j+0.5,y:0,z:i,rot:0});}
+    else if(useWalls){
+      let hasOpen=false;
+      for(let di=-1;di<=1&&!hasOpen;di++)for(let dj=-1;dj<=1&&!hasOpen;dj++){const ni=i+di,nj=j+dj;if(ni>=0&&ni<caveH&&nj>=0&&nj<caveW&&caveGrid[ni][nj]===0)hasOpen=true;}
+      if(hasOpen){
+        const N=i>0&&caveGrid[i-1][j]===0,S=i<caveH-1&&caveGrid[i+1][j]===0;
+        const E=j<caveW-1&&caveGrid[i][j+1]===0,W=j>0&&caveGrid[i][j-1]===0;
+        const isCorn=(N||S)&&(E||W);
+        let rot=0;if(!isCorn){if(N)rot=16;else if(E)rot=24;else if(W)rot=8;}
+        tiles.push({guid:isCorn?CAVE_WALL_CORNER:CAVE_WALL_STR,x:j+0.5,y:0,z:i,rot});
+      }
+    }
+  }
+  if(!tiles.length){setStatus('Caverne vide');return;}
+  try{await copyCode(encodeSlab(tiles),'out-cave');setStatus('Slab caverne - '+tiles.length+' tuiles');}
+  catch(e){setStatus('Erreur: '+e.message);}
+}
+
+// ===== VILLE =====
+let cityGrid=[],cityW=0,cityH=0;
+function fill2D(g,r1,c1,r2,c2,type,N){for(let r=Math.max(0,r1);r<=Math.min(N-1,r2);r++)for(let c=Math.max(0,c1);c<=Math.min(N-1,c2);c++)g[r][c]=type;}
+function genCity(){
+  const N=CITY_SIZES[document.getElementById('city-size').value]||48;
+  const type=document.getElementById('city-type').value;
+  const seed=parseInt(document.getElementById('city-seed').value)||7;
+  const withWalls=document.getElementById('city-walls').checked;
+  const withRoads=document.getElementById('city-roads').checked;
+  const rand=seededRand(seed);
+  cityW=cityH=N;
+  cityGrid=Array.from({length:N},()=>Array(N).fill('place'));
+  const rw=2,cx=Math.floor(N/2),cy=Math.floor(N/2);
+  if(withWalls){fill2D(cityGrid,0,0,1,N-1,'mur',N);fill2D(cityGrid,N-2,0,N-1,N-1,'mur',N);fill2D(cityGrid,0,0,N-1,1,'mur',N);fill2D(cityGrid,0,N-2,N-1,N-1,'mur',N);}
+  if(withRoads){fill2D(cityGrid,2,cx-rw,N-3,cx+rw,'route',N);fill2D(cityGrid,cy-rw,2,cy+rw,N-3,'route',N);}
+  if(withWalls&&withRoads){fill2D(cityGrid,0,cx-rw,1,cx+rw,'route',N);fill2D(cityGrid,N-2,cx-rw,N-1,cx+rw,'route',N);fill2D(cityGrid,cy-rw,0,cy+rw,1,'route',N);fill2D(cityGrid,cy-rw,N-2,cy+rw,N-1,'route',N);}
+  const pr=Math.floor(N/12)+2;
+  fill2D(cityGrid,cy-pr,cx-pr,cy+pr,cx+pr,'marche',N);
+  if(withRoads){fill2D(cityGrid,cy-rw,cx-pr,cy+rw,cx+pr,'route',N);fill2D(cityGrid,cy-pr,cx-rw,cy+pr,cx+rw,'route',N);}
+  const wo=withWalls?3:1;
+  const quads=[{r1:wo,c1:wo,r2:cy-rw-2,c2:cx-rw-2},{r1:wo,c1:cx+rw+2,r2:cy-rw-2,c2:N-1-wo},{r1:cy+rw+2,c1:wo,r2:N-1-wo,c2:cx-rw-2},{r1:cy+rw+2,c1:cx+rw+2,r2:N-1-wo,c2:N-1-wo}];
+  const btypes=CITY_BUILDINGS[type]||CITY_BUILDINGS.cite;
+  quads.forEach((q,qi)=>{
+    const qW=q.c2-q.c1,qH=q.r2-q.r1;if(qW<8||qH<8)return;
+    const scx=Math.floor((q.c1+q.c2)/2),scy=Math.floor((q.r1+q.r2)/2);
+    if(withRoads){fill2D(cityGrid,q.r1,scx,q.r2,scx+1,'allee',N);fill2D(cityGrid,scy,q.c1,scy+1,q.c2,'allee',N);}
+    [{r1:q.r1+1,c1:q.c1+1,r2:scy-2,c2:scx-2},{r1:q.r1+1,c1:scx+3,r2:scy-2,c2:q.c2-1},{r1:scy+3,c1:q.c1+1,r2:q.r2-1,c2:scx-2},{r1:scy+3,c1:scx+3,r2:q.r2-1,c2:q.c2-1}].forEach((b,bi)=>{
+      if(b.c2-b.c1<3||b.r2-b.r1<3)return;
+      const bt=bi===0?QUAD_SPEC[qi]:btypes[Math.floor(rand()*btypes.length)];
+      fill2D(cityGrid,b.r1,b.c1,b.r2,b.c2,'pierre',N);
+      fill2D(cityGrid,b.r1+1,b.c1+1,b.r2-1,b.c2-1,bt,N);
+    });
+  });
+  renderCity();setStatus('Ville '+type+' '+N+'x'+N);
+}
+function renderCity(){
+  const canvas=document.getElementById('city-canvas'),cs=Math.floor(280/Math.max(cityW,cityH));
+  canvas.width=cityW*cs;canvas.height=cityH*cs;
+  const ctx=canvas.getContext('2d');
+  for(let i=0;i<cityH;i++)for(let j=0;j<cityW;j++){ctx.fillStyle=CITY_COLOR[cityGrid[i][j]]||'#12121e';ctx.fillRect(j*cs,i*cs,cs,cs);}
+}
+async function exportCity(mode){
+  if(!cityGrid.length){setStatus('Genere une ville');return;}
+  const tiles=[],half=Math.floor(cityH/2);
+  for(let i=0;i<cityH;i++)for(let j=0;j<cityW;j++){
+    const cell=cityGrid[i][j];
+    if(mode==='walls'&&cell!=='mur')continue;
+    if(mode==='ground'&&cell==='mur')continue;
+    if(mode==='north'&&(i>=half||cell==='mur'))continue;
+    if(mode==='south'&&(i<half||cell==='mur'))continue;
+    const terrain=CITY_TILE[cell];if(!terrain||!GROUND[terrain])continue;
+    tiles.push({guid:GROUND[terrain].guid,x:j+0.5,y:0,z:i,rot:0});
+    if(cell==='mur'){const wt=getCityWallTile(i,j);if(wt){for(let fl=0;fl<2;fl++)tiles.push({guid:wt.guid,x:j+0.5,y:fl,z:i,rot:wt.rot});}}
+  }
+  if(!tiles.length){setStatus('Aucune tuile');return;}
+  try{await copyCode(encodeSlab(tiles),'out-city');setStatus('Slab ville - '+tiles.length+' tuiles');}
+  catch(e){setStatus('Erreur: '+e.message);}
+}
+function getCityWallTile(i,j){
+  const oN=i<=1,oS=i>=cityH-2,oW=j<=1,oE=j>=cityW-2;
+  if(oN&&oW)return{guid:WALL_TILES.corner,rot:0};if(oN&&oE)return{guid:WALL_TILES.corner,rot:8};
+  if(oS&&oE)return{guid:WALL_TILES.corner,rot:16};if(oS&&oW)return{guid:WALL_TILES.corner,rot:24};
+  if(oN)return{guid:WALL_TILES.straight,rot:0};if(oS)return{guid:WALL_TILES.straight,rot:16};
+  if(oE)return{guid:WALL_TILES.straight,rot:8};if(oW)return{guid:WALL_TILES.straight,rot:24};
+  return null;
+}
+
+// ===== BIBLIO =====
+let library=[];
+function loadLibrary(){try{library=JSON.parse(localStorage.getItem('armonia_lib')||'[]');}catch{library=[];}renderLibrary();}
+function saveLibrary(){try{localStorage.setItem('armonia_lib',JSON.stringify(library));}catch{}}
+function addToLibrary(){
+  const name=document.getElementById('lib-name').value.trim(),type=document.getElementById('lib-type').value;
+  const zone=document.getElementById('lib-zone').value,slab=document.getElementById('lib-slab').value.trim();
+  if(!name||!slab){setStatus('Nom et slab requis');return;}
+  library.push({id:Date.now(),name,type,zone,slab});saveLibrary();renderLibrary();
+  document.getElementById('lib-name').value='';document.getElementById('lib-slab').value='';
+  setStatus('"'+name+'" ajoute');
+}
+function removeFromLibrary(id){library=library.filter(l=>l.id!==id);saveLibrary();renderLibrary();}
+async function pasteLibSlab(slab){try{await copyCode(slab,'out-auto');}catch(e){setStatus('Erreur: '+e.message);}}
+function renderLibrary(){
+  const el=document.getElementById('lib-list');
+  if(!library.length){el.innerHTML='<div style="color:#555;font-size:11px;padding:8px">Aucun slab sauvegarde.</div>';return;}
+  el.innerHTML=library.map(l=>`<div class="lib-item"><div style="flex:1;min-width:0"><b style="color:#ddd">${l.name}</b><br><span class="tag">${l.type}</span> <span class="tag">${l.zone}</span></div><div style="display:flex;gap:4px;flex-shrink:0"><button class="btn-blue" style="font-size:11px" onclick="pasteLibSlab('${l.slab}')">Copier</button><button style="background:#3a0010;color:#e94560;font-size:11px;padding:3px 7px;border:none;border-radius:3px;cursor:pointer" onclick="removeFromLibrary(${l.id})">X</button></div></div>`).join('');
+}
+
+// ===== CHÂTEAU DEPUIS SLAB =====
+function decodeSlabTiles(b64){
+  const bin=atob(b64),bytes=new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
+  const data=pako.inflateRaw(bytes.slice(10));
+  const view=new DataView(data.buffer);
+  let off=0;off+=4;
+  const nL=view.getUint16(off+2,true);off+=6;
+  const guids=[],counts=[];
+  for(let i=0;i<nL;i++){
+    const b=data.slice(off,off+16);
+    const g=[b[3],b[2],b[1],b[0]].map(x=>x.toString(16).padStart(2,'0')).join('')+'-'+
+            [b[5],b[4]].map(x=>x.toString(16).padStart(2,'0')).join('')+'-'+
+            [b[7],b[6]].map(x=>x.toString(16).padStart(2,'0')).join('')+'-'+
+            [b[8],b[9]].map(x=>x.toString(16).padStart(2,'0')).join('')+'-'+
+            [b[10],b[11],b[12],b[13],b[14],b[15]].map(x=>x.toString(16).padStart(2,'0')).join('');
+    guids.push(g);counts.push(view.getUint16(off+16,true));off+=20;
+  }
+  const tiles=[];
+  for(let gi=0;gi<nL;gi++){
+    for(let k=0;k<counts[gi];k++){
+      const lo=view.getUint32(off,true),hi=view.getUint32(off+4,true);off+=8;
+      const val=BigInt(lo)|(BigInt(hi)<<32n);
+      tiles.push({guid:guids[gi],x:Number(val&0x3FFFFn)/100,y:Number((val>>18n)&0x3FFFFn)/100,z:Number((val>>36n)&0x3FFFFn)/100,rot:Number((val>>54n)&0x1Fn)});
+    }
+  }
+  return tiles;
+}
+function rotateWallSide(tiles,side,oX,oZ){
+  const WL=23,WT=10;
+  return tiles.map(t=>{
+    let nx,nz,nr;const x=t.x,z=t.z,r=t.rot;
+    if(side===0){nx=x;nz=z;nr=r;}
+    else if(side===1){nx=z;nz=WT-x;nr=(r+8)%32;}
+    else if(side===2){nx=WT-x;nz=WL-z;nr=(r+16)%32;}
+    else{nx=WL-z;nz=x;nr=(r+24)%32;}
+    return{guid:t.guid,x:nx+oX,y:t.y,z:nz+oZ,rot:nr};
+  });
+}
+function placeCorner(corner,facing,oX,oZ){
+  const CT=10;
+  return corner.map(t=>{
+    let nx,nz,nr;const x=t.x,z=t.z,r=t.rot;
+    if(facing===0){nx=x;nz=z;nr=r;}
+    else if(facing===1){nx=z;nz=CT-x;nr=(r+8)%32;}
+    else if(facing===2){nx=CT-x;nz=CT-z;nr=(r+16)%32;}
+    else{nx=CT-z;nz=x;nr=(r+24)%32;}
+    return{guid:t.guid,x:nx+oX,y:t.y,z:nz+oZ,rot:nr};
+  });
+}
+async function exportChateauScalable(N){
+  try{
+    setStatus('Decodage du mur...');
+    const wall=decodeSlabTiles(WALL_SLAB);
+    const corner=wall.filter(t=>t.z<=10);
+    const CS=11,WLS=24;
+    const maxCoord=CS+N*WLS;
+    const all=[
+      ...placeCorner(corner,0,0,0),
+      ...placeCorner(corner,1,maxCoord,0),
+      ...placeCorner(corner,2,maxCoord,maxCoord),
+      ...placeCorner(corner,3,0,maxCoord),
+    ];
+    for(let i=0;i<N;i++){
+      const w=CS+i*WLS;
+      all.push(...rotateWallSide(wall,0,0,w));
+      all.push(...rotateWallSide(wall,1,w,0));
+      all.push(...rotateWallSide(wall,2,maxCoord,w));
+      all.push(...rotateWallSide(wall,3,w,maxCoord));
+    }
+    const total=maxCoord+CS;
+    await copyCode(encodeSlab(all),'out-struct');
+    setStatus('Château '+total+'×'+total+' (N='+N+', '+all.length+' tuiles)');
+  }catch(e){setStatus('Erreur: '+e.message);}
+}
+
+// ===== INIT =====
+genAuto();
+renderDraw();
+loadLibrary();
+</script>
+</body>
+</html>

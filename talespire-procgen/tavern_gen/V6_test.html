@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>V6 · FLOOR_H=2</title>
+<style>
+body{font-family:system-ui,sans-serif;background:#1a1611;color:#e8dfc9;padding:24px;max-width:1000px;margin:0 auto}
+h1{color:#d4a13a;border-bottom:2px solid #5c3a1a;padding-bottom:8px}
+h2{color:#c07a2a;margin-top:32px}
+.card{background:#2a2418;border:1px solid #4a3820;border-radius:8px;padding:20px;margin:20px 0}
+textarea.code{width:100%;height:90px;background:#0f0d08;color:#a8c060;border:1px solid #5c3a1a;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;white-space:nowrap;overflow:auto}
+button.copy{background:#5c3a1a;color:#e8dfc9;border:none;padding:12px 24px;border-radius:4px;cursor:pointer;margin-top:8px;font-size:15px;font-weight:600}
+button.copy:hover{background:#7c4a2a}
+.info{background:#1a2a1a;border-left:4px solid #a8c060;padding:14px;margin:16px 0;border-radius:4px;font-size:14px}
+</style></head><body>
+<h1>V6 · Toit collé + planchers</h1>
+<div class="info">
+Changements : FLOOR_H = <strong>2 tiles</strong> exactement (murs 2 tiles de haut).<br>
+Le sol est placé sur <strong>TOUTES les cases</strong> pour faire à la fois sol du RDC ET plancher au-dessus.
+</div>
+
+<h2>V6 · 6×6, 1 étage</h2>
+<div class="card">
+<textarea class="code" id="c6" readonly onclick="this.select()">H4sIALYmXWoC/03Rr0sEQRjG8VnvOH+wQa6t5S4YT/Q/uDuDIqJNBTEojnAoGCzWxWZygpg0WQ2CUTguCE46MWo1ifUN6hVn5v0Gpzw8837YXd4d/g5fx0zVGHM6vbhxsjm3cjV53h/9fN1MhLv1i6ne6uFlt//ePfp4ulueDXdv7fuz0Ux76fZ7fqG5drCXh7vH/d2X453x7sPndb79vNWLLp5OrcwkSxlfYcpce8jUB3XtIVM3hfaQoTcr+pRmpVPTLHPNQV3TFMwbxli8xVu8xVu8xXu8x3u8x3u8x7cy9TGjjxl9zOjTvGAevMM7vMM7vMM7vOAFL3jBC17wesos7blRVi3d0j3d01uZ9pixO7qjC13o5t/R/cf/pqn7j/+Jedq/Hou3eIu3eIv3eI/3eI/3eI/X79fU/atvZerTvGCe9q/e4R3e4R3e4QUveMELXvCC/wM6lFDVOgMAAA==</textarea>
+<button class="copy" onclick="doCopy('c6',this)">📋 Copier</button>
+</div>
+
+<h2>V6 · 8×8, 2 étages</h2>
+<div class="card">
+<textarea class="code" id="c8" readonly onclick="this.select()">H4sIALYmXWoC/03UsWsUQRTH8b0zRJQr5CrXZtJslRP9D3KxUES0U4NYKI4QFCxsbA87K6cQK61sLQTLDCGF4Ksiltpaie0r1DTuvN834DZvf/vjs8Mxs3f49/DrtFvruu7ZmUs3n946f/X1qRf7R39+vT07Prvx8vTutUevtve/bz/+8en9leX47NvWh+dH57Yuv/t94eLG9Yf3N8Znew/ufXly9+T2x59vZnc+395ddbqW66tJncZsS3SrmfI4Ix/MlccZueuVxxl5mfAJP+CHljdO6P0xI+v9MSPr/TEj6/0x5RM+4Qd8vH+5fvwrdDeuMtM8mGt2PX2iH+g3uy7jMz7jMz7jMz7jM97whje84Q1veMMbfjGRb7Pdtdl8m81H39Mn+oF+9AVf8AVf8AVf8AVf8I53vOMd73jHO97xO1P5Nttdm8232Xz0PX2iH+hHX/EVX/EVX/EVX/EVr2s1iXO6uVrL5Ew2spEXE+U2Wy7kQnayk3emym22XMmVHOc11h/Pb6yvnMlGNvJiotym1lcuZCc7eWeq3KbWV67k7r/r+EvQ+W/fK0VPn+gH+jj/ujI+4zM+4zM+4zPe8IY3vOENb3jDG177oanzLx/7M6fv6RP9QB/nX77gC77gC77gC77gHe94xzve8Y53vON1PjR1/uXjvMzpe/pEP9DH+Zev+Iqv+Iqv+IqveJ0/Te1/+1/V1P63/1H6RD/Qx/7LZ3zGZ3zGZ3zGZ7zhDW94wxve8IY3vL4HTe2/fHwfc/qePtEP9LH/8gVf8AVf8AVf8AXveMc73vGOd7zjHa/vU1P7Lx/f65y+p0/0A33sv3zFV3zFV3zFV3zF/wNEaZ68GggAAA==</textarea>
+<button class="copy" onclick="doCopy('c8',this)">📋 Copier</button>
+</div>
+
+<script>
+function doCopy(id,btn){
+  const ta=document.getElementById(id);
+  ta.select();ta.setSelectionRange(0,999999);
+  try{const ok=document.execCommand('copy');btn.textContent=ok?'✓ Copié !':'❌ Ctrl+A + Ctrl+C';setTimeout(()=>btn.textContent='📋 Copier',3000);}
+  catch(e){btn.textContent='❌ Ctrl+A + Ctrl+C';}
+}
+</script></body></html>

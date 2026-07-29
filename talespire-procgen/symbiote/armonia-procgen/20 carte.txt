@@ -1,0 +1,9 @@
+20 carte
+
+qualité : malchance, commune, rare, ultra rare
+
+- sort		4 - 
+- arme   	4 -
+- malédiction   4 -
+- support       4 -
+- supoport deck 4 -

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Économie & Commerce d'Armonia</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+  --danger: #a02020;
+
+  --or: #d4a040;
+  --argent: #a0a0a8;
+  --bronze: #b06a3a;
+  --ether: #7a6a90;
+
+  --metaux: #8a6a30;
+  --creatures: #a04040;
+  --luxes: #7a4a8a;
+  --nordic: #4a7090;
+  --banque: #4a8a4a;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  padding: 24px;
+  background: linear-gradient(135deg, #fffaf0 0%, #f0e0c0 50%, #fffaf0 100%);
+  border: 3px double var(--or);
+  border-radius: 8px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 30px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  color: var(--accent);
+  font-style: italic;
+  font-size: 15px;
+  margin-top: 8px;
+}
+header.title-bar .quote {
+  color: var(--muted);
+  font-style: italic;
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin: 16px 0;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.intro-box strong { color: var(--primary); }
+
+.section-title {
+  font-size: 22px;
+  color: var(--primary);
+  margin: 28px 0 12px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+  letter-spacing: 1px;
+}
+.subsection-title {
+  font-size: 17px;
+  color: var(--accent);
+  margin: 16px 0 10px 0;
+  letter-spacing: 1px;
+}
+
+/* MONNAIE */
+.monnaie-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 14px 0;
+}
+.piece-card {
+  background: var(--paper);
+  border: 3px solid;
+  border-radius: 10px;
+  padding: 16px 14px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+.piece-card.or { border-color: var(--or); background: linear-gradient(135deg, #fffaf0 0%, #fff5d0 100%); }
+.piece-card.argent { border-color: var(--argent); background: linear-gradient(135deg, #fffaf0 0%, #f0f0f4 100%); }
+.piece-card.bronze { border-color: var(--bronze); background: linear-gradient(135deg, #fffaf0 0%, #f0e0d0 100%); }
+
+.piece-card .symbole {
+  font-size: 50px;
+  margin-bottom: 6px;
+}
+.piece-card h3 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+.piece-card.or h3 { color: var(--or); }
+.piece-card.argent h3 { color: var(--argent); }
+.piece-card.bronze h3 { color: var(--bronze); }
+.piece-card .valeur {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.piece-card .description {
+  font-size: 12px;
+  margin-top: 8px;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.conversion-box {
+  background: linear-gradient(135deg, #fffaf0 0%, #fff5d0 100%);
+  border: 2px solid var(--or);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 14px 0;
+  text-align: center;
+}
+.conversion-box .formule {
+  font-family: 'Courier New', monospace;
+  font-size: 18px;
+  color: var(--or);
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+.conversion-box p { font-size: 13px; margin: 6px 0; color: var(--muted); font-style: italic; }
+
+/* CRISTAUX ÉTHER */
+.ether-table {
+  width: 100%;
+  background: var(--paper);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  margin: 12px 0;
+}
+.ether-table th, .ether-table td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.ether-table th {
+  background: var(--ether);
+  color: white;
+  letter-spacing: 1px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.ether-table .qualite {
+  font-weight: bold;
+  color: var(--ether);
+}
+.ether-table tbody tr:hover { background: rgba(122, 106, 144, 0.05); }
+.ether-table tbody tr:last-child td { border-bottom: none; }
+
+/* PRIX */
+.prix-table {
+  width: 100%;
+  background: var(--paper);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  margin: 12px 0;
+}
+.prix-table th, .prix-table td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.prix-table th {
+  background: var(--accent);
+  color: white;
+  letter-spacing: 1px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.prix-table td.price {
+  font-family: 'Courier New', monospace;
+  color: var(--or);
+  font-weight: bold;
+  text-align: right;
+  white-space: nowrap;
+  width: 130px;
+}
+.prix-table tbody tr:hover { background: rgba(168, 120, 48, 0.05); }
+.prix-table tbody tr:last-child td { border-bottom: none; }
+
+/* SALAIRES */
+.salaires-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 12px 0;
+}
+.salaire-card {
+  background: var(--paper);
+  border-left: 4px solid var(--or);
+  border-radius: 4px;
+  padding: 12px 14px;
+}
+.salaire-card h4 {
+  margin: 0 0 4px 0;
+  color: var(--primary);
+  font-size: 15px;
+}
+.salaire-card .pay {
+  font-family: 'Courier New', monospace;
+  color: var(--or);
+  font-weight: bold;
+  font-size: 14px;
+}
+.salaire-card p { font-size: 12px; margin: 4px 0 0 0; color: var(--muted); line-height: 1.4; }
+
+/* CATÉGORIES */
+.categorie-card {
+  background: var(--paper);
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 14px 0;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+}
+.categorie-card.metaux { border-color: var(--metaux); }
+.categorie-card.creatures { border-color: var(--creatures); }
+.categorie-card.luxes { border-color: var(--luxes); }
+.categorie-card.nordic { border-color: var(--nordic); }
+.categorie-card h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+.categorie-card.metaux h3 { color: var(--metaux); }
+.categorie-card.creatures h3 { color: var(--creatures); }
+.categorie-card.luxes h3 { color: var(--luxes); }
+.categorie-card.nordic h3 { color: var(--nordic); }
+.categorie-card p { font-size: 13px; line-height: 1.55; margin: 6px 0; }
+.categorie-card ul { font-size: 13px; line-height: 1.6; margin: 6px 0 6px 20px; padding: 0; }
+.categorie-card ul li { margin: 3px 0; }
+.categorie-card strong { color: var(--text); }
+
+/* BANQUES */
+.banque-box {
+  background: linear-gradient(135deg, #fffaf0 0%, #e8f0e0 100%);
+  border: 2px solid var(--banque);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 16px 0;
+}
+.banque-box h3 {
+  margin: 0 0 10px 0;
+  color: var(--banque);
+  font-size: 18px;
+}
+.banque-box h4 {
+  margin: 12px 0 6px 0;
+  color: var(--accent);
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+.banque-box p { font-size: 13px; line-height: 1.6; margin: 6px 0; }
+.banque-box ul { font-size: 13px; line-height: 1.7; margin: 6px 0 6px 20px; padding: 0; }
+.banque-box strong { color: var(--text); }
+
+/* HOOKS */
+.hooks-box {
+  background: var(--paper);
+  border-left: 4px solid var(--accent);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin: 16px 0;
+}
+.hooks-box p { margin: 8px 0; font-size: 13px; line-height: 1.5; }
+
+.nav-back {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+
+@media (max-width: 720px) {
+  .monnaie-grid { grid-template-columns: 1fr; }
+}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body>
+<div class="container">
+
+<a href="index.html" class="nav-back">← Retour au sommaire</a>
+
+<header class="title-bar">
+  <h1>💰 ÉCONOMIE & COMMERCE</h1>
+  <div class="subtitle">Monnaie · Cristaux d'Éther · Prix · Trafic · Banques</div>
+  <div class="quote">« Ce qui a un prix a un poids. Ce qui n'en a pas, en a un plus grand encore. »</div>
+</header>
+
+<div class="intro-box">
+  <p>L'économie d'Armonia repose sur une <strong>monnaie unique en or — l'Aur'na</strong>, frappée par la Guilde des Marchands et acceptée partout. Sous elle, un système fractionné (argent et bronze) pour la vie quotidienne. Au-dessus, les <strong>cristaux d'Éther</strong> cultivés forment un second étalon parallèle. Et à côté, le troc — vieux comme le monde — reste utilisé pour les échanges directs, entre voisins ou en marge des grandes routes.</p>
+</div>
+
+<h2 class="section-title">🪙 La monnaie — l'Aur'na</h2>
+
+<div class="monnaie-grid">
+  <div class="piece-card or">
+    <div class="symbole">🟡</div>
+    <h3>Aur'na</h3>
+    <div class="valeur">Or · abrégé « Aur »</div>
+    <div class="description">Frappée à Me'yn Prus. Reconnue partout. Un côté = balance de Tam'oth, l'autre = symbole du royaume émetteur.</div>
+  </div>
+  <div class="piece-card argent">
+    <div class="symbole">⚪</div>
+    <h3>Argent</h3>
+    <div class="valeur">1/10 Aur'na</div>
+    <div class="description">Pièce de la vie courante. Frappée localement dans chaque grande cité, mais toutes équivalentes.</div>
+  </div>
+  <div class="piece-card bronze">
+    <div class="symbole">🟤</div>
+    <h3>Bronze</h3>
+    <div class="valeur">1/100 Aur'na · 1/10 argent</div>
+    <div class="description">La pièce des paysans, du pain, de la bière. Frappée en masse. Un ouvrier vit une journée avec 5-10 bronzes.</div>
+  </div>
+</div>
+
+<div class="conversion-box">
+  <div class="formule">1 Aur = 10 argents = 100 bronzes</div>
+  <p>Système en base 10 · Facile à calculer à la table · Frappe à Me'yn Prus contrôlée par la Guilde des Marchands</p>
+</div>
+
+<div class="intro-box">
+  <p><strong>Le troc reste accepté</strong> partout — un aventurier peut payer sa nuit d'auberge avec une peau d'ours, un forgeron peut échanger une épée contre du grain. Le troc évite les taxes de frappe (2 % à chaque conversion officielle) et reste privilégié pour les petites transactions ou les zones reculées.</p>
+</div>
+
+<h2 class="section-title">💎 Cristaux d'Éther — le second étalon</h2>
+
+<div class="intro-box">
+  <p>Depuis le Retour de la magie, les <strong>cristaux d'Éther</strong> se cultivent sous terre. La règle est simple : <strong>plus c'est profond, plus c'est pur</strong>. Un cristal se forme naturellement autour d'une graine minérale, absorbe l'Éther diffus des profondeurs, et se solidifie sur des mois. Un artisan patient peut en cultiver dans sa cave — mais la qualité sera au plus bas.</p>
+  <p>Les cristaux servent à <strong>recharger l'Éther personnel</strong> (écrasés dans la main), à <strong>alimenter des scripts</strong>, ou à <strong>payer</strong> quand la monnaie manque. Ils sont une seconde monnaie, plus lourde à transporter mais universellement acceptée.</p>
+</div>
+
+<table class="ether-table">
+  <thead>
+    <tr>
+      <th>Qualité</th>
+      <th>Profondeur</th>
+      <th>Prix moyen</th>
+      <th>Notes / usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="qualite">Boueux</td>
+      <td>Surface / cave</td>
+      <td>5 argents (0,5 Aur)</td>
+      <td>Instable — 50 % de chance de foirer à l'usage. Formation en quelques semaines.</td>
+    </tr>
+    <tr>
+      <td class="qualite">Commun</td>
+      <td>20-50 m</td>
+      <td>1 Aur</td>
+      <td>Qualité artisan de village. Fiable à 90 %. Alimente scripts basiques.</td>
+    </tr>
+    <tr>
+      <td class="qualite">Moyen</td>
+      <td>100-300 m</td>
+      <td><strong>2 Aur</strong></td>
+      <td>Standard commercial. Ce qu'on trouve en cristallerie honnête. Fiable, +2 Éther à l'usage.</td>
+    </tr>
+    <tr>
+      <td class="qualite">Pur</td>
+      <td>500 m et plus</td>
+      <td>8-12 Aur</td>
+      <td>Réservé nobles, Ingénieurs, Veilleurs. +4 Éther à l'usage. Alimente artefacts moyens.</td>
+    </tr>
+    <tr>
+      <td class="qualite">Cristallin</td>
+      <td>1 km et plus (Nains)</td>
+      <td>30 Aur et plus</td>
+      <td>Exceptionnel. Cœur d'artefact majeur. Les Nains de Fer In Gal en gardent quelques exemplaires par génération.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 class="section-title">💵 Échelle des prix courants</h2>
+
+<h3 class="subsection-title">🍺 Nourriture & auberge</h3>
+<table class="prix-table">
+  <tbody>
+    <tr><td>Repas de rue (pain-fromage-oignon)</td><td class="price">2 bronzes</td></tr>
+    <tr><td>Repas d'auberge simple</td><td class="price">5 bronzes</td></tr>
+    <tr><td>Repas d'auberge riche</td><td class="price">2 argents</td></tr>
+    <tr><td>Bière / vin bon marché (chope)</td><td class="price">1 bronze</td></tr>
+    <tr><td>Vin de qualité (bouteille)</td><td class="price">3-5 argents</td></tr>
+    <tr><td>Nuit auberge miteuse (paillasse)</td><td class="price">3 bronzes</td></tr>
+    <tr><td><strong>Nuit hôtel bon marché</strong></td><td class="price"><strong>1 argent</strong></td></tr>
+    <tr><td>Nuit auberge confort</td><td class="price">3 argents</td></tr>
+    <tr><td>Nuit auberge luxe (Côte d'Or)</td><td class="price">1-2 Aur</td></tr>
+    <tr><td>Bain public</td><td class="price">2 bronzes</td></tr>
+  </tbody>
+</table>
+
+<h3 class="subsection-title">👕 Vêtements & équipement personnel</h3>
+<table class="prix-table">
+  <tbody>
+    <tr><td>Vêtements paysans (rechange)</td><td class="price">3 argents</td></tr>
+    <tr><td>Vêtements bourgeois</td><td class="price">1-2 Aur</td></tr>
+    <tr><td>Cape / manteau chaud</td><td class="price">5 argents</td></tr>
+    <tr><td>Bottes de cuir</td><td class="price">3 argents</td></tr>
+    <tr><td>Sac à dos qualité</td><td class="price">2 argents</td></tr>
+    <tr><td>Corde 15 m (chanvre)</td><td class="price">1 argent</td></tr>
+    <tr><td>Torche / bougie</td><td class="price">1 bronze</td></tr>
+    <tr><td>Lanterne à huile</td><td class="price">4 argents</td></tr>
+  </tbody>
+</table>
+
+<h3 class="subsection-title">⚔️ Armes & armures</h3>
+<table class="prix-table">
+  <tbody>
+    <tr><td>Dague simple</td><td class="price">2 argents</td></tr>
+    <tr><td>Épée standard</td><td class="price">10 Aur</td></tr>
+    <tr><td>Arc court + 20 flèches</td><td class="price">6 Aur</td></tr>
+    <tr><td>Armure de cuir</td><td class="price">15 Aur</td></tr>
+    <tr><td>Cotte de mailles</td><td class="price">50 Aur</td></tr>
+    <tr><td>Bouclier bois</td><td class="price">2 Aur</td></tr>
+    <tr><td>Bouclier métal</td><td class="price">8 Aur</td></tr>
+    <tr><td>Arme runique (basique)</td><td class="price">100+ Aur</td></tr>
+  </tbody>
+</table>
+
+<h3 class="subsection-title">🐎 Transport & voyage</h3>
+<table class="prix-table">
+  <tbody>
+    <tr><td>Cheval de ferme</td><td class="price">20-30 Aur</td></tr>
+    <tr><td>Cheval de guerre</td><td class="price">100+ Aur</td></tr>
+    <tr><td>Mule / âne</td><td class="price">10 Aur</td></tr>
+    <tr><td>Selle & harnais</td><td class="price">3-5 Aur</td></tr>
+    <tr><td>Chariot</td><td class="price">15 Aur</td></tr>
+    <tr><td>Passage caravane (500 km, Karambol)</td><td class="price">5-10 Aur</td></tr>
+    <tr><td>Traversée bateau court</td><td class="price">3-5 Aur</td></tr>
+    <tr><td>Traversée maritime longue</td><td class="price">20-40 Aur</td></tr>
+    <tr><td>Nacelle de vent (Villa Virtue)</td><td class="price">50+ Aur / mille</td></tr>
+  </tbody>
+</table>
+
+<h3 class="subsection-title">✨ Objets magiques & rares</h3>
+<table class="prix-table">
+  <tbody>
+    <tr><td>Cristal Éther boueux</td><td class="price">5 argents</td></tr>
+    <tr><td>Cristal Éther commun</td><td class="price">1 Aur</td></tr>
+    <tr><td>Cristal Éther moyen</td><td class="price">2 Aur</td></tr>
+    <tr><td>Cristal Éther pur</td><td class="price">8-12 Aur</td></tr>
+    <tr><td>Cristal Éther cristallin</td><td class="price">30+ Aur</td></tr>
+    <tr><td>Parchemin script mineur (1 symbole)</td><td class="price">3 Aur</td></tr>
+    <tr><td>Parchemin script (3 symboles)</td><td class="price">15 Aur</td></tr>
+    <tr><td>Cristaux OMI (paire, non-Silver)</td><td class="price">200+ Aur</td></tr>
+    <tr><td>Manuscrit contenant 1 Mot Primordial</td><td class="price">1 000+ Aur</td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-title">💼 Salaires & rémunérations typiques</h2>
+
+<div class="salaires-grid">
+  <div class="salaire-card">
+    <h4>Paysan</h4>
+    <div class="pay">5-10 bronzes / jour</div>
+    <p>Nourri et logé sur la ferme, salaire mince mais stable</p>
+  </div>
+  <div class="salaire-card">
+    <h4>Ouvrier de ville</h4>
+    <div class="pay">1-2 argents / jour</div>
+    <p>Charpentier, portier, coursier</p>
+  </div>
+  <div class="salaire-card">
+    <h4>Artisan qualifié</h4>
+    <div class="pay">5 argents - 1 Aur / jour</div>
+    <p>Forgeron, tailleur, tisserand</p>
+  </div>
+  <div class="salaire-card">
+    <h4>Soldat régulier</h4>
+    <div class="pay">3 argents / jour + solde</div>
+    <p>Armée de Virtus, gardes locales</p>
+  </div>
+  <div class="salaire-card">
+    <h4>Aventurier — petite mission</h4>
+    <div class="pay">1-3 Aur</div>
+    <p>Livraison, escorte courte, chasse à la bête</p>
+  </div>
+  <div class="salaire-card">
+    <h4><strong>Aventurier — mission moyenne</strong></h4>
+    <div class="pay"><strong>5-8 Aur</strong></div>
+    <p><strong>Ancrage canon</strong> : équivaut à une semaine rationnée en hôtel bas</p>
+  </div>
+  <div class="salaire-card">
+    <h4>Aventurier — grande mission</h4>
+    <div class="pay">30-80 Aur</div>
+    <p>Escorte diplomatique, expédition longue</p>
+  </div>
+  <div class="salaire-card">
+    <h4>Aventurier — mission épique</h4>
+    <div class="pay">300+ Aur</div>
+    <p>Récupération d'artefact, sabotage majeur</p>
+  </div>
+  <div class="salaire-card">
+    <h4>Mercenaire Protectoria</h4>
+    <div class="pay">50-500 Aur / contrat</div>
+    <p>Selon la moralité de la mission — les contrats gris payent le plus</p>
+  </div>
+</div>
+
+<h2 class="section-title">📦 Les 4 grandes catégories de trafic</h2>
+
+<div class="categorie-card metaux">
+  <h3>⛏️ 1. Métaux & minerais</h3>
+  <p>La base de toute économie médiévale-magique. La Guilde des Marchands en contrôle 60 % du flux mondial.</p>
+  <ul>
+    <li><strong>Or, argent, bronze</strong> — pour la frappe monétaire</li>
+    <li><strong>Métal runique</strong> — extraction Nains de Fer In Gal, forge principalement à No'Ord (100-500 Aur / kilo selon pureté)</li>
+    <li><strong>Acier commun, fer, cuivre</strong> — commerce quotidien</li>
+    <li><strong>Cristaux d'Éther</strong> (toutes qualités) — commerce en pleine expansion depuis le Retour</li>
+    <li><strong>Pierres précieuses</strong> — obsidienne du Cercle d'Anh, saphirs de Brumelune, rubis de Drun-Kar</li>
+  </ul>
+</div>
+
+<div class="categorie-card creatures">
+  <h3>🦴 2. Parties de créatures magiques</h3>
+  <p>Chaque monstre chassé génère de la valeur. Un aventurier qui sait dépecer peut doubler ses gains sur une mission.</p>
+  <ul>
+    <li><strong>Corne de Corne-Bruine</strong> (Forêt Julia) — 15-30 Aur, propriétés anti-brouillard</li>
+    <li><strong>Écailles de Wyvern / Dragonneau</strong> — 20-100 Aur pièce selon taille</li>
+    <li><strong>Plumes de Gryphon du Givre</strong> — 40 Aur pièce, prisées par la noblesse</li>
+    <li><strong>Cœur de Salamandre géante</strong> — 60 Aur, utilisé en potions et alchimie de feu</li>
+    <li><strong>Fourrure d'Ours Runique</strong> — 200 Aur (la fourrure garde les runes anciennes)</li>
+    <li><strong>Dents de Loup Albâtre</strong> — 5 Aur par dent, colliers rituels</li>
+    <li><strong>Poison de Cobra des dunes</strong> — 25 Aur la fiole (illégal en Cité d'Armonia)</li>
+    <li><strong>Essence d'Élémentaire</strong> (bouteillable, très rare) — 100-500 Aur selon élément</li>
+    <li><strong>Sang de Sanglier magique</strong> — 3 Aur la fiole (alchimie mineure)</li>
+    <li><strong>Cristal de mémoire d'Ombre</strong> (extraction Vœnir) — 80 Aur</li>
+  </ul>
+</div>
+
+<div class="categorie-card luxes">
+  <h3>🍷 3. Denrées de luxe</h3>
+  <p>Les nobles payent pour ce qui distingue. Les Marchands Karambol et Daluvio se battent pour les meilleurs contrats.</p>
+  <ul>
+    <li><strong>Épices sadiennes</strong> (Drun-Kar) — safran, poivres, poudre de feu comestible : 5-20 Aur la mesure</li>
+    <li><strong>Thé Tengu</strong> (Tsu-Raji) — 15 Aur la boîte : passe le trajet en aigle</li>
+    <li><strong>Soies d'araignée Tisseuse</strong> — étoffes indéchirables : 100 Aur le mètre</li>
+    <li><strong>Alcools nordiques forts</strong> (« Feu-des-Fjords ») — 8 Aur la bouteille</li>
+    <li><strong>Parfums de la Forêt Julia</strong> — 10-30 Aur, produits par la Tribu</li>
+    <li><strong>Cuirs de Sylvarn</strong> — 5 Aur le mètre (cuirs hybrides tannés)</li>
+    <li><strong>Fromages affinés de la Vallée d'Aether</strong> — 3 Aur le kilo</li>
+    <li><strong>Corail heledérien</strong> — 20 Aur la branche (bijoux et décoration)</li>
+    <li><strong>Vins de Maelyr</strong> — 5-50 Aur la bouteille selon millésime</li>
+  </ul>
+</div>
+
+<div class="categorie-card nordic">
+  <h3>🪓 4. Trophées d'ennemis nordiques</h3>
+  <p>Marché spécialisé à Sylvarn et Brumelune. Chaque raid génère des dépouilles précieuses. Prix soutenus par la <em>fierté guerrière nordique</em> — porter une dent d'ennemi est un honneur.</p>
+  <ul>
+    <li><strong>Dents/cornes d'Orques du Froid ennemis</strong> — 3-8 Aur pièce</li>
+    <li><strong>Cuir de guerriers Vaal'Skyria</strong> (rival maritime canon) — 30 Aur pièce, rare</li>
+    <li><strong>Runes gravées récupérées sur cadavres</strong> — 20-80 Aur selon symbole (marché gris)</li>
+    <li><strong>Cristaux de shamans adverses</strong> — 50 Aur, prisés par les Ingénieurs et Veilleurs</li>
+    <li><strong>Écailles de Serpents de Givre</strong> (bêtes chassées) — 5 Aur pièce</li>
+    <li><strong>Armes brisées d'Ennemi vaincu</strong> — vendues au poids en refonte : 2-10 Aur</li>
+  </ul>
+</div>
+
+<h2 class="section-title">🏦 Le système bancaire — Guilde vs Heledera</h2>
+
+<div class="banque-box">
+  <h3>🌐 Un système complet : dépôts + prêts + informations</h3>
+
+  <p>Les deux grandes institutions financières d'Armonia — la <strong>Guilde des Marchands</strong> (Me'yn Prus) et la <strong>Banque d'Heledera</strong> (Cordéheim) — proposent l'ensemble des services financiers modernes. Elles se différencient par leur clientèle et leur éthique.</p>
+
+  <h4>💼 Dépôts et lettres de change</h4>
+  <p>Un aventurier dépose 100 Aur à Me'yn Prus, obtient une <strong>lettre de change</strong> scellée, et peut la faire honorer à Cordéheim, Etelin, Sylvarn, ou n'importe quelle succursale. Frais : 2 % (Guilde) ou 5 % (Heledera).</p>
+  <p><strong>Sécurité</strong> : impossible à falsifier (script magique intégré + sceau familial). Perdre une lettre est catastrophique — récupération possible mais avec enquête.</p>
+
+  <h4>📈 Prêts à intérêts</h4>
+  <ul>
+    <li><strong>Guilde des Marchands</strong> : 5 % / an. Vérification stricte de la solvabilité. Refuse la moitié des demandes. Prête aux nobles, marchands établis, artisans reconnus.</li>
+    <li><strong>Banque d'Heledera</strong> : 10 % / an. Accepte les cas louches. Prête aux mercenaires, corsaires, exilés. Utilise les garanties « alternatives » (contrats de service, dettes de sang, otages consentants).</li>
+  </ul>
+
+  <h4>🕵️ Réseau d'informateurs</h4>
+  <p>Les deux banques <strong>savent</strong>. Un dépôt les informe. Une lettre de change tracée les informe. Un prêt refusé les informe. Elles <strong>revendent</strong> discrètement des informations aux plus offrants : nobles, Roses d'Armonia, familles marchandes, parfois Veilleurs.</p>
+  <p>Un PJ qui utilise abondamment ces banques laisse une trace. Un PJ discret paie en troc et évite les registres.</p>
+
+  <h4>💰 Autres services notables</h4>
+  <ul>
+    <li><strong>Coffres-forts loués</strong> — 1-5 Aur / mois selon volume</li>
+    <li><strong>Change entre monnaies locales</strong> — les 2 taxes par transaction</li>
+    <li><strong>Escrow / séquestre</strong> — pour transactions importantes</li>
+    <li><strong>Assurance caravane</strong> (Guilde uniquement) — 3 % du chargement</li>
+    <li><strong>Rachat de dettes de tiers</strong> (Heledera uniquement) — crée des chaînes de servitude</li>
+  </ul>
+</div>
+
+<h2 class="section-title">🎲 Hooks économiques</h2>
+
+<div class="hooks-box">
+  <p>• Un PJ hérite d'une <strong>lettre de change de 500 Aur</strong> — mais le porteur original est mort et un noble hostile réclame le dépôt.</p>
+  <p>• Un <strong>ingénieur veut acheter un cristal cristallin</strong> — introuvable sauf chez les Nains. Les PJ sont engagés pour la négociation à Fer In Gal.</p>
+  <p>• La <strong>Banque d'Heledera</strong> rachète la dette d'un ami PJ — le tenir en laisse. Comment se libérer ?</p>
+  <p>• Une <strong>caravane Karambol disparaît</strong> avec un chargement d'épices sadiennes valant 800 Aur. Enquête.</p>
+  <p>• Un PJ est accusé de <strong>fausse monnaie</strong> — quelqu'un lui a glissé de faux Aur.</p>
+  <p>• Un marchand propose aux PJ de dépecer un <strong>Wyvern</strong> — mais il exige 70 % du prix des écailles. Négociation ?</p>
+  <p>• Un noble de Virtus veut acheter des <strong>runes récupérées sur Vaal'Skyria</strong> — mais elles sont peut-être piégées.</p>
+  <p>• Les prix du <strong>cristal d'Éther boueux</strong> chutent brusquement à Etelin. Pourquoi ? Sur-production, sabotage, ou signal ?</p>
+  <p>• La <strong>Guilde des Marchands</strong> refuse un prêt à un PJ. La Banque d'Heledera l'accepte — mais qu'a-t-elle en tête ?</p>
+</div>
+
+<footer>
+  Économie & Commerce d'Armonia · Aur'na, cristaux, banques · Système Bilal · 2026
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>V8 · Générateur Lemurian</title>
+<style>
+body{font-family:system-ui,sans-serif;background:#1a1611;color:#e8dfc9;padding:24px;max-width:1000px;margin:0 auto}
+h1{color:#d4a13a;border-bottom:2px solid #5c3a1a;padding-bottom:8px}
+h2{color:#c07a2a;margin-top:24px}
+.card{background:#2a2418;border:1px solid #4a3820;border-radius:8px;padding:20px;margin:20px 0}
+textarea.code{width:100%;height:100px;background:#0f0d08;color:#a8c060;border:1px solid #5c3a1a;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;white-space:nowrap;overflow:auto}
+button.copy{background:#5c3a1a;color:#e8dfc9;border:none;padding:12px 24px;border-radius:4px;cursor:pointer;margin-top:8px;font-size:15px;font-weight:600}
+button.copy:hover{background:#7c4a2a}
+.info{background:#1a2a1a;border-left:4px solid #a8c060;padding:14px;margin:16px 0;border-radius:4px;font-size:14px}
+.spec{background:#0f0d08;padding:12px;border-radius:4px;font-family:monospace;font-size:12px;margin-top:8px}
+</style></head><body>
+
+<h1>V8 · Générateur Lemurian — Coques neuves</h1>
+
+<div class="info">
+<strong>Ce qui est nouveau</strong> : ces 3 maisons sont <strong>générées à partir de zéro</strong> en utilisant le vocabulaire extrait du townhouse Lemurian. Elles ne sont PAS des copies/transformations de l'original — ce sont des maisons totalement nouvelles avec des dimensions différentes.
+<br><br>
+Wall set utilisé (extrait automatiquement) :
+<div class="spec">
+Mur principal : 5024e5b1<br>
+Rotations : N=0, S=12, E=18, W=6<br>
+Sol RDC : ce61ee2e<br>
+Sol étage : 5024e5b1<br>
+Toit : 10727582<br>
+Floor height : 2.5 tiles
+</div>
+</div>
+<h2>Petite 5×5 · 1 étage</h2>
+<div class="card">
+<div class="spec">Dimensions : 5×5×1 étages · 66 placements · 372 chars</div>
+<textarea class="code" id="c0" readonly onclick="this.select()">H4sIABlgXWoC/03QsUoDQRDG8VkvxsIUIV0srOxcbPICiSBWAX0EYXpBENvTykYY2zyDKaxtgqCMzYGdLxBIISksrZzZ+Ty95g+zv1t2t/lu3jeoIqKby4v+6fPr9OHpc/Nu/2N7aLPH5d7J+df6+HbraOdlcj3r2+xgfdaMJm/T+/nh/Gp3SO6IVhWh42607kUXA6wbZDiGYziGYziFUziFUziFyymc153XndddWTcncAIncAIncL8fo4rmFJX0Z8xXjCpanFVQH4+7dfmr7kUXgzr5us07XpuX2rzzb3eKd/T1aLxj2bc9H8MxHMPhXO35FU7hFA7nbu+XU7icwuUUDvdq7y9wAidwuDf9AHfjwHJWAgAA</textarea>
+<button class="copy" onclick="doCopy('c0',this)">📋 Copier</button>
+</div><h2>Moyenne 8×6 · 2 étages</h2>
+<div class="card">
+<div class="spec">Dimensions : 8×6×2 étages · 192 placements · 732 chars</div>
+<textarea class="code" id="c1" readonly onclick="this.select()">H4sIABlgXWoC/03UMWsUQRjG8bmdc1OYQtKthdek8xDBL2AEsQpod2WE6YWA2K5WNsLY+hlMYe0UQVDG5tDOLyBcISlkKivnnee/e7nmgXt/u5nde95s/21/ds475968PL/17Mu304+f/9x4d/fXzfv1u0+/j5+++Hv15O3B49tfT15/OKvf3bt6vn1w8v30/cWji1d3BmfOuR8HjnzYK8dD5eUR84H5yrmAD/iAD/iAD/iMz/iMz/iMz/j1Qt7SvKV5S/NtPjCvPuIjPuIjPuIjvuALvuALvuALftPJW5q3NG9pvs0H5tUnfMInfMInfMJPn0Bmcr1QRrKQm06Zuv219T4+kJm06y0jWUi73jKR7fp+bHcfD5WXR0o3jIvm+nFpWect67xlnS+d23mdYufVn51Xf3Ze/anzgXnrj3zAB3zAB3zAZ3zGZ3zGZ3zGrxfyluqPvKX6I9/mrT/yER/xER/xEV/wBV/wBV/wBb/p5C3VH3lL9Ue+zVt/5BM+4RM+4RPeXXuf03uann96rum80zmm+8+/W+uPkvfoeT+e5/Y8j+ecnr/v9btbX+ycSvXHzmn9afOlnkOp/rT50l37qD/WM6X6Yz2bez7vScAHfMAHPPsw71PGZ3zGZzx7M+9d259eqf7It/nAfLXfz4iP+IiPePZw3uOCL/iCL3j2dd73tre9Uv2Rb/OB+Wr/fyHhEz7hE579d/8BduJPkkYGAAA=</textarea>
+<button class="copy" onclick="doCopy('c1',this)">📋 Copier</button>
+</div><h2>Grande 10×8 · 3 étages</h2>
+<div class="card">
+<div class="spec">Dimensions : 10×8×3 étages · 416 placements · 1332 chars</div>
+<textarea class="code" id="c2" readonly onclick="this.select()">H4sIABpgXWoC/03WMYscNxjGce1q4y3swmw3KTJbWNUeafwFzoGQyuB01wbUGwzG7dqoSBNQWn8Gu0gXiAoTSFCa49LlCxiuCC6MKleeV89fu77mgXvmtzvSzMvq+tP1v2vnnXOvnj+7/+Offz9+88f/X/1y+O/uk+V/v71/8OTpxw8//Lz9/uu/Hr187VbOffvhp+uHj/55/Ovb796++GZydp1zv9915OUd5fGe8t2OfqKf6QP9wbmIj/iIj/iIj/iIj/iKr/iKr/iKr/iKr/iLlbyleUvzluZ7P9HP9IF+8Rmf8Rmf8Rmf8Rmf8Q3f8A3f8A3f8A3f8FdreUvzluYtzfd+op/pA/3iC77gC77gC77gC77g917e0ryleUvzvZ/oZ/pAv/iET/iET/iET/iET/jxF8lKXqyUmWzk1VpZyL1XJn/+rOVzfSQraZ9nmclG2udZFtI+zzKR9nmXd47924/3lO92SjcpL2f6cFyZW67fWC7X91yu77lc33O5Xn04bpy75c5vvebv1mv+br3mb+kn+pk+0Pf5k4/4iI/4iI/4iI/4iq/4iq/4iq/4iq/4i5W8peZP3lLzJ9/7mT7Q9/mTz/iMz/iMz/iMz/iGb/iGb/iGb/iGb/irtbyl5k/eUvMn3/uZPtD3+ZMv+IIv+IIv+IIv+L2Xt9T8yVtq/uR7P9MH+j5/8gmf8Amf8Amf8Anvvnh/xnswnud4LmN/xz6N9Y77Ht8/3mPNn5L3xPO8Pc/Ns/+effTsh2ddnvvzmgubL1uXUvNn61Jq/mxdNn/9+o32Qan569dvtA/0ff5utrrvm63m72ar+bvZav6WfqKf6QN9nz/5iI/4iI/4iI/4iK/4iq/4iq/4iq/4ir9YyVtq/uQtNX/yvZ/pA32fP/mMz/iMz/iMz/iMb/iGb/iGb/iGb/iGv1rLW2r+5C01f/K9n+kDfZ8/+YIv+IIv+IIv+ILfe3lLzZ+8peZPvvczfaDv8yef8Amf8Amf8Amf8O6L92e8B+N5jucy9nfs01jvuO/x/eM91vwpeU88z9vz3Dz779lHz3541uW5P6+5sPmydSk1f7YupebP1mXz16/faB+Umr9+/Ub7QN/n7/yn+bPfTX7HdxQT/UwfTr/zp3NDxEd8xEd8xEc854PTeaPiK77iK77iK55zxemcYqn5k+/njR39RD/TB/rD+XyT8Rmf8Rmf8RnPOeZ0Lmr4hm/4hm/4huf8czpPWWr+5Pu5aEc/0c/0gf5wPocVfMEXfMEXfMFz3jqd3/Zefu/l+zlsRz/Rz/SB/nA+9yV8wid8wid8wnO+c58BCInt30YNAAA=</textarea>
+<button class="copy" onclick="doCopy('c2',this)">📋 Copier</button>
+</div>
+<div class="info">
+<strong>Teste dans l'ordre : petite → moyenne → grande</strong><br><br>
+Ce qu'on va voir :
+<ul>
+<li>La petite (5×5) devrait ressembler à une cabane Lemurian modeste</li>
+<li>La moyenne (8×6) à une maison de commerçant</li>
+<li>La grande (10×8) à une auberge ou grande maison</li>
+</ul>
+Si les murs sont bien orientés, sols placés et toit fermé → <strong>on a le générateur qui marche</strong> et on peut passer au mobilier intérieur.
+</div>
+
+<script>
+function doCopy(id,btn){
+  const ta=document.getElementById(id);ta.select();ta.setSelectionRange(0,999999);
+  try{const ok=document.execCommand('copy');btn.textContent=ok?'✓ Copié !':'❌ Ctrl+A+C';setTimeout(()=>btn.textContent='📋 Copier',3000)}
+  catch(e){btn.textContent='❌ Ctrl+A+C'}
+}
+</script></body></html>

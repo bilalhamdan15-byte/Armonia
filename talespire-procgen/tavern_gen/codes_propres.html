@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Codes propres</title>
+<style>
+body { font-family:system-ui,sans-serif; background:#1a1611; color:#e8dfc9; padding:24px; }
+h1 { color:#d4a13a; border-bottom:2px solid #5c3a1a; padding-bottom:8px; }
+h2 { color:#c07a2a; }
+.card { background:#2a2418; border:1px solid #4a3820; border-radius:8px; padding:20px; margin:20px 0; }
+.hidden-code { display:none; }
+button.copy { background:#5c3a1a; color:#e8dfc9; border:none; padding:12px 24px; border-radius:4px; cursor:pointer; margin-top:8px; font-size:15px; font-weight:600; }
+button.copy:hover { background:#7c4a2a; }
+.success { background:#1a2a1a; border-left:4px solid #a8c060; padding:12px; margin:16px 0; border-radius:4px; }
+.info { background:#2a2a1a; border-left:4px solid #d4a13a; padding:12px; margin:16px 0; border-radius:4px; }
+.preview { background:#0f0d08; padding:8px; border-radius:4px; font-family:monospace; font-size:10px; color:#6a5a3a; margin-top:8px; word-break:break-all; max-height:60px; overflow-y:auto; }
+</style></head><body>
+
+<h1>🔧 Codes propres — sans corruption</h1>
+
+<div class="success">
+<strong>✅ Bug identifié</strong> — Mon HTML précédent copiait le texte via <code>innerText</code>, qui insère des retours à la ligne selon le wrap CSS. TS recevait un base64 corrompu → assets inconnus → croix bleues.<br><br>
+Cette page utilise un <strong>data-attribute</strong> pour stocker le code brut, sans aucun wrap. Le presse-papier reçoit exactement le même texte que si tu copiais depuis talestavern.com.
+</div>
+
+<h2>Test 1 · Slab minimal V4 (6×6, 1 étage, 4 GUIDs safe)</h2>
+<div class="card">
+<span class="hidden-code" data-code="H4sIABALXWoC/zWRr0sEQRTHZ2U5fzDhuLaWNRhP9D+4XYMiou0UxKA4wqFgsFgHm8kXxKTJajgwCscFwZdOjFpNYp2gXnHevK8Lux/Yz2ffLDOj39HrhMmNMY8Hey8nu5P1w+eN3Xne7jXjOxfvqqH0VjlsKU1hDMMzPMMzfDtTLxQvFC8UT/AET/AE/9bpn49nOyt334tLcxuH+9b8Xz5zIINpZiSBAZRnVfrcgQymf4skMIBnzeXu6dbC2vX0xWD883U7hRWrhs7yVjlsKU2ha0WfZkSfGH1i9Pnm5Uxv/eiqHrzXxx9P96vz6cN+bkDZA6G3StmD5Av4UvZce4feoXfoHXqHntEzekbP6Bk9o29n2gv1zLQX6plpn3wpZ6Q9oSf0hJ7QE/qAPqAP6AP6gD6g/wNYXHDhmgIAAA=="></span>
+<button class="copy" onclick="copyCode(this)">📋 Copier — colle avec Ctrl+V dans TS</button>
+<div class="preview">Aperçu (30 premiers chars): H4sIABALXWoC/zWRr0sEQRTHZ2U5fz...</div>
+</div>
+
+<h2>Test 2 · Slab généré V3 (8×8, 2 étages, avec escalier)</h2>
+<div class="card">
+<span class="hidden-code" data-code="H4sIAEcKXWoC/0WVPWhTURiGT9JLbaWKuGiLeF0ySCooDg4KplHaiiA4WEvxp+AdqoIUF5UihE5WBM8gTlYcHBWCbvVSoig9FKwoWqiLg5M6KHpA/APv931PSSC8kPd57s35zrnJ0u+l12XX5Zx7cmb81YUTawYef7rTM7ZwfGK4+Cwr3rVOy0aPZWujpeulT+krzgX4AB/gA3yAD/D9JeMlhZcUXlJ47VP6gvfwHt7De3gP7+EjfISP8BE+wkf40bLxksJLCi8pvPYpfUXW3UxsPs3E5tNMbD7NxOZT9Cm9zsf4AB/gA3yAD/D9JeMlbT7GS9p8jNde52O8h/fwHt7De/gIH+EjfISP8BF+tGy8pM3HeEmbj/HaF/zi2T3L69/dGJz5+7M++HRiZZtrvzIykLrnjr107JFj9sUrL7fdVtV1ZGQg9ewU6clI6h4WmZNOZu3YI8fsHTN1zMoxA8fa9P6W4tv9LQOpe6P3t4ykzkjvb3lpQ/3YxZEdh253z8z/+fVldjNrqnU2dMWNHsvWRkvXa1lL6SuNUq7ntJHkek4tC16z4DUL3vpKI3F67sSXfbO068u+Wdr1Zd/k+sonue6zpV1feU27vvLJkZtrJw6fuzUw/37g/MfnD4Zq+sXHux0pZ0ZSzoyknBnte+lT+gp9VfbH/Aw/w8/wM/wMP8PP8AN+wA/4AT/gB/yAH/D7S+ZL2jNovqQ9g+Zrn9JX6Ktyjsz3+B7f43t8j+/xPX7Ej/gRP+JH/Igf8SP+aNl8SXtmzZe0Z9Z87VP6Cn1Vzrv5OX6On+Pn+Dl+jp/jz735sX9qerL+6NqHlX2Tu1526CwCv9NdZVvzcIc4kw9PTS/fvVqf3Tm3zh38t73k2r/NI1PP7l25vnfo/ue+1umjC9/Lrv0/sfp/Mnby8qbFA1trc7u3vPj6re/tql9839J/g7v2X+IGAAA="></span>
+<button class="copy" onclick="copyCode(this)">📋 Copier — colle avec Ctrl+V dans TS</button>
+<div class="preview">Aperçu (30 premiers chars): H4sIAEcKXWoC/0WVPWhTURiGT9JLba...</div>
+</div>
+
+<div class="info">
+<strong>Teste dans cet ordre :</strong>
+<ol>
+<li>Test 1 (minimal) — si ça pose une petite maison, mon encodage marche</li>
+<li>Test 2 (V3 avec escalier) — si ça pose un bâtiment 8×8 avec 2 étages, tout marche</li>
+</ol>
+Réponds juste "Test 1 : ok/ko", "Test 2 : ok/ko" et je saurai comment avancer.
+</div>
+
+<script>
+function copyCode(btn) {
+    const code = btn.parentElement.querySelector('.hidden-code').dataset.code;
+    navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = '✓ Copié ! Va coller dans TS';
+        setTimeout(() => btn.textContent = '📋 Copier — colle avec Ctrl+V dans TS', 3000);
+    });
+}
+</script>
+</body></html>

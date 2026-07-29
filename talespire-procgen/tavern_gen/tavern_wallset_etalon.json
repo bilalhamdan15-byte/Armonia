@@ -1,0 +1,52 @@
+{
+  "wall": "55421077-5672-492d-9609-89befbf9eb9d",
+  "window": "7c5edd5b-38fa-4c1a-aa39-99b5720a9171",
+  "corner": "ce1e617e-f031-4011-b64e-ba262082b20f",
+  "rot": {
+    "north": {
+      "wall": 0,
+      "window": 18
+    },
+    "south": {
+      "wall": 0,
+      "window": 18
+    },
+    "west": {
+      "wall": 18,
+      "window": 0
+    },
+    "east": {
+      "wall": 6,
+      "window": 0
+    }
+  },
+  "offset": {
+    "north": [
+      0.0,
+      0.0
+    ],
+    "south": [
+      0.0,
+      0.5
+    ],
+    "west": [
+      0.0,
+      0.0
+    ],
+    "east": [
+      0.5,
+      0.0
+    ]
+  },
+  "corner_rot": {
+    "nw": 0,
+    "ne": 18,
+    "se": 12,
+    "sw": 6
+  },
+  "wall_step": 2,
+  "wall_y": 1.0,
+  "floor_y": 0.5,
+  "foundation_y": 0.0,
+  "floor_h": 2.5
+}

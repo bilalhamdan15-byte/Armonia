@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>« Corbeau » — Support de jeu · Armonia</title>
+<style>
+  :root{
+    --bg:#1a1a2e; --paper:#2a2a3e; --primary:#c9a85a; --accent:#d97c47;
+    --text:#f4e8d0; --muted:#9a8a7a; --border:#3a3a4e;
+    --danger:#c44040; --success:#5aa850; --info:#5a8ec9; --nature:#6fae5a; --mystere:#b088c8;
+  }
+  *{box-sizing:border-box}
+  body{font-family:'Georgia',serif;background:var(--bg);color:var(--text);margin:0;padding:20px;line-height:1.5}
+  .wrap{max-width:960px;margin:0 auto}
+  a.back{color:var(--muted);text-decoration:none;font-size:14px} a.back:hover{color:var(--primary)}
+  header.hero{background:linear-gradient(135deg,#20281f,#2a2a3e);border:2px solid var(--nature);border-radius:12px;padding:18px 24px;margin:12px 0 16px;position:relative;overflow:hidden}
+  header.hero::after{content:"🦅";position:absolute;right:20px;top:12px;font-size:56px;opacity:.12}
+  h1{font-size:26px;color:var(--nature);margin:0 0 2px}
+  .sub{color:var(--muted);font-style:italic;font-size:14px;margin:0}
+  .tags{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+  .tag{background:#1f1f34;border:1px solid var(--border);border-radius:20px;padding:3px 11px;font-size:11px;color:var(--muted)}
+  .rule{background:#20281f;border:1px solid var(--nature);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:14px}
+  .rule b{color:var(--nature)}
+  h2{color:var(--accent);font-size:17px;border-bottom:1px solid var(--border);padding-bottom:5px;margin:22px 0 10px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:720px){.cols{grid-template-columns:1fr}}
+  .card{background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin:0 0 14px}
+  .derived{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{background:#1f1f34;border:1px solid var(--border);border-radius:8px;padding:8px 12px;flex:1;min-width:88px;text-align:center}
+  .pill .lbl{font-size:10px;color:var(--muted);text-transform:uppercase} .pill .val{font-size:20px;font-weight:bold}
+  .pill.hp .val{color:var(--danger)} .pill.eth .val{color:var(--info)} .pill.def .val{color:var(--success)} .pill.ini .val{color:var(--primary)} .pill.vit .val{color:var(--text)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--border)}
+  th{color:var(--primary);font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+  .roll{text-align:center;font-weight:bold;color:var(--nature);white-space:nowrap}
+  .spec{background:#22301e}
+  .aff{display:flex;align-items:center;gap:8px;margin:5px 0}
+  .aff span.n{width:76px;font-size:13px}
+  .bar{flex:1;height:8px;background:#1f1f34;border-radius:4px;overflow:hidden}
+  .bar span{display:block;height:100%;background:var(--nature)}
+  .b{color:var(--nature);font-weight:bold} .neg{color:var(--danger);font-weight:bold}
+  .atout{border-left:3px solid var(--accent);padding:7px 12px;margin:8px 0;background:#1f1f34;border-radius:0 8px 8px 0;font-size:13px}
+  .atout b{color:var(--primary)} .lvl{font-size:10px;background:var(--accent);color:#1a1a2e;border-radius:10px;padding:1px 7px;font-weight:bold;margin-left:5px}
+  .warn{color:var(--danger);font-size:12px}
+  .echo{display:flex;gap:6px;margin-top:4px} .orb{width:18px;height:18px;border-radius:50%;border:2px solid var(--primary)} .orb.full{background:var(--primary)}
+  ul{padding-left:18px;margin:6px 0} li{margin:3px 0;font-size:13.5px}
+  .note{font-size:12px;color:var(--muted)}
+  .foot{text-align:center;color:var(--muted);font-size:11px;margin:22px 0 4px}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">← Retour au sommaire</a>
+
+<header class="hero">
+  <h1>« Corbeau »</h1>
+  <p class="sub">Mi-humain / Mi-Leshen · Joueur : Corbeau · 23 ans · <em>nom véritable à définir</em></p>
+  <div class="tags">
+    <span class="tag">🌲 Élevé en forêt</span>
+    <span class="tag">🃏 Jeu de runes en bois de leshen</span>
+    <span class="tag">🐦‍⬛ Compagnon corbeau</span>
+    <span class="tag">💀 Crâne de rapace · yeux jaunes sans pupille</span>
+  </div>
+</header>
+
+<div class="rule">🎲 <b>Comment je lance :</b> <b>1d20 + Compétence</b> vs DD. En magie : <b>1d20 + Affinité</b>. Sans compétence : 1d20 + Caractéristique. Le <b>1</b> = échec critique, le <b>20</b> = réussite critique.</div>
+
+<div class="card">
+  <div class="derived">
+    <div class="pill hp"><div class="lbl">Vitalité</div><div class="val">10</div><div class="note">10 + CON×3</div></div>
+    <div class="pill eth"><div class="lbl">Éther</div><div class="val">3</div><div class="note">3 + INT + CON</div></div>
+    <div class="pill def"><div class="lbl">Défense</div><div class="val">12</div><div class="note">10 + DEX + armure</div></div>
+    <div class="pill ini"><div class="lbl">Initiative</div><div class="val">1d20+1</div><div class="note">1d20 + DEX</div></div>
+    <div class="pill vit"><div class="lbl">Vitesse</div><div class="val">10</div><div class="note">10 + CON×3</div></div>
+  </div>
+  <p class="note" style="margin:10px 0 0">Caractéristiques : FOR 0 · DEX +1 · CON 0 · INT 0 · SAG 0 · CHA +1. <em>(Servent au repli sans compétence et aux stats dérivées — jamais ajoutées à un jet de compétence.)</em></p>
+</div>
+
+<div class="cols">
+  <div>
+    <h2>⚔️ Attaques & actions</h2>
+    <div class="card">
+      <table>
+        <tr><th>Action</th><th class="roll">Jet</th><th>Effet</th></tr>
+        <tr><td>Dague (contact)</td><td class="roll">1d20 + 1</td><td>1d4 dégâts · vs Défense cible</td></tr>
+        <tr><td>Carte lancée (distance)</td><td class="roll">1d20 + 1</td><td>1d4 · Armes à distance</td></tr>
+        <tr class="spec"><td><b>Rune du Deck</b> (magie)</td><td class="roll">1d20 + 3</td><td>Script/rune · <b>Arcanes</b>, coûte de l'Éther</td></tr>
+        <tr class="spec"><td>Sort de sens (Eau/Terre)</td><td class="roll">1d20 + 3</td><td><b>Affinité</b> · dégâts/effet selon DD</td></tr>
+        <tr><td>Esquive active <span class="note">(option)</span></td><td class="roll">1d20 + 1</td><td>si tu défends activement (Défense)</td></tr>
+      </table>
+      <p class="note" style="margin:8px 0 0">Deck en bois de leshen = ton focus magique <b>et</b> tes projectiles. Dague en secours.</p>
+    </div>
+
+    <h2>✨ Affinités magiques</h2>
+    <div class="card">
+      <div class="aff"><span class="n">💧 Eau</span><div class="bar"><span style="width:100%"></span></div><b class="b">+3</b></div>
+      <div class="aff"><span class="n">🌍 Terre</span><div class="bar"><span style="width:100%"></span></div><b class="b">+3</b></div>
+      <div class="aff"><span class="n">🌀 Chaos</span><div class="bar"><span style="width:33%"></span></div><b class="b">+1</b></div>
+      <div class="aff"><span class="n">🌬️ Vent</span><div class="bar"><span style="width:0"></span></div><b>0</b></div>
+      <div class="aff"><span class="n">🔥 Feu</span><div class="bar"><span style="width:0"></span></div><span class="neg">−1</span></div>
+      <p class="note" style="margin:8px 0 0">Nature du Leshen : Eau & Terre dominent (bois, sève, pierre). Feu = antipathie.</p>
+    </div>
+  </div>
+
+  <div>
+    <h2>🎯 Compétences <span class="note">(= bonus de jet)</span></h2>
+    <div class="card">
+      <table>
+        <tr class="spec"><td><b>Arcanes</b></td><td class="roll">1d20 + 3</td></tr>
+        <tr class="spec"><td><b>Nature &amp; Survie</b></td><td class="roll">1d20 + 2</td></tr>
+        <tr><td>Armes au contact</td><td class="roll">1d20 + 1</td></tr>
+        <tr><td>Armes à distance</td><td class="roll">1d20 + 1</td></tr>
+        <tr><td>Défense</td><td class="roll">1d20 + 1</td></tr>
+        <tr><td>Athlétisme · Acrobaties</td><td class="roll">1d20 + 1</td></tr>
+        <tr><td>Discrétion</td><td class="roll">1d20 + 1</td></tr>
+        <tr><td>Vigilance · Intuition</td><td class="roll">1d20 + 1</td></tr>
+        <tr><td>Persuasion · Médecine</td><td class="roll">1d20 + 1</td></tr>
+        <tr><td>Autres (Tromperie, Intimidation, Histoire, Larcins, Artisanat, Représentation)</td><td class="roll">1d20 + 0</td></tr>
+      </table>
+      <p class="note" style="margin:8px 0 0">🌲 <b>Discrétion :</b> avantage narratif en forêt/nature, mais gêné en ville (tenue de branchages, crâne de rapace).</p>
+    </div>
+
+    <h2>🃏 Atouts &amp; Écho</h2>
+    <div class="card">
+      <div class="atout"><b>Jeux de hasard</b> <span class="lvl">Niv. II · +2</span><br>
+        <span class="note">Paris, cartes, dés, bluff au jeu, lecture d'une table de joueurs — +2 quand la chance ou le jeu entre en scène.</span></div>
+      <div class="atout"><b>Addict aux jeux</b> <span class="lvl">Niv. II · contrepartie</span><br>
+        <span class="note">Il ne résiste pas à un pari. Le MJ peut l'<b>appâter</b> avec un jeu/défi : si tu mords, <span class="warn">complication</span> — mais tu <b>regagnes 1 Écho</b> (compel). Double tranchant assumé.</span></div>
+      <p style="margin:10px 0 4px"><b>Points d'Écho : 3 / 5</b></p>
+      <div class="echo"><div class="orb full"></div><div class="orb full"></div><div class="orb full"></div><div class="orb"></div><div class="orb"></div></div>
+      <p class="note" style="margin:8px 0 0">Rappel leviers : Atout +2 · Pousser +5 (conséquence) · Éther +5 · Écho +5. <em>(Atout et Pousser ne se cumulent pas.)</em></p>
+    </div>
+  </div>
+</div>
+
+<h2>🎒 Équipement & compagnon</h2>
+<div class="card">
+  <div class="cols">
+    <ul>
+      <li><b>Deck en bois de leshen</b> — arme principale + focus de runes (cartes sculptées dans son propre bois, liées à lui)</li>
+      <li><b>Dague</b> (secondaire, 1d4)</li>
+      <li><b>Tunique de cuir des falaises</b> (+1 Défense)</li>
+      <li>Étui de cartes · Bourse ×2 · Dé & pièce pile ou face</li>
+      <li>💰 <b>100 pièces d'or</b></li>
+    </ul>
+    <ul>
+      <li>🐦‍⬛ <b>Compagnon corbeau</b> — perché sur sa cape. Éclaireur : peut repérer, distraire, rapporter (à l'appréciation du MJ ; idéal pour un jet de Vigilance déporté).</li>
+      <li>👁️ <b>Yeux jaunes sans pupille</b> — trahissent sa nature de leshen ; marquants, difficiles à cacher.</li>
+      <li>🌿 Écorce sur les bras, « cape » de feuilles et branchages — camouflage naturel.</li>
+    </ul>
+  </div>
+</div>
+
+<p class="foot">Support de jeu · « Corbeau » · Système Bilal (1d20 + Compétence) · Armonia 2026</p>
+</div>
+</body>
+</html>

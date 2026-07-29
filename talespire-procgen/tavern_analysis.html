@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Analyse Large Tavern &amp; Inn — Armonia Procgen</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #1a1611; color: #e8dfc9; margin: 0; padding: 24px; }
+  h1 { color: #d4a13a; border-bottom: 2px solid #5c3a1a; padding-bottom: 8px; }
+  h2 { color: #c07a2a; margin-top: 32px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; }
+  .stat { background: #2a2418; padding: 12px; border-left: 3px solid #d4a13a; border-radius: 4px; }
+  .stat .num { font-size: 28px; font-weight: bold; color: #f0d290; }
+  .stat .lbl { font-size: 12px; color: #a89974; text-transform: uppercase; }
+  .floors { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 20px 0; }
+  .floor { background: #2a2418; padding: 16px; border-radius: 6px; border: 1px solid #4a3820; }
+  .floor h3 { margin-top: 0; color: #d4a13a; }
+  .map { font-family: 'Courier New', monospace; font-size: 14px; line-height: 1.1; white-space: pre; background: #0f0d08; padding: 12px; border-radius: 4px; color: #a8c060; overflow-x: auto; }
+  .map .floor-tile { color: #8a9a4a; }
+  .map .wall { color: #d4a13a; }
+  .map .empty { color: #3a3020; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; background: #2a2418; border-radius: 6px; overflow: hidden; }
+  th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #3a3020; }
+  th { background: #3a2a18; color: #d4a13a; font-weight: 600; }
+  tr:hover { background: #35291a; }
+  .role-FLOOR { color: #a8c060; }
+  .role-GROUND { color: #8ca070; }
+  .role-WALL_OR_TILE { color: #d4a13a; }
+  .role-ROOF { color: #b07a3a; }
+  .role-PROP { color: #b090c0; }
+  code { background: #1a1611; padding: 2px 6px; border-radius: 3px; color: #a8c060; font-size: 12px; }
+  .legend { display: flex; gap: 20px; margin: 12px 0; font-size: 13px; }
+  .legend span { padding: 3px 10px; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<h1>Analyse — Large Tavern &amp; Inn</h1>
+<p>Source: <a href="https://talestavern.com/slab/large-tavern-and-inn/" style="color:#d4a13a">talestavern.com/slab/large-tavern-and-inn</a> · Auteur: UUB-No-Na-Me · 2023</p>
+
+<div class="stats">
+  <div class="stat"><div class="num">1336</div><div class="lbl">Placements décodés</div></div>
+  <div class="stat"><div class="num">102</div><div class="lbl">Assets uniques</div></div>
+  <div class="stat"><div class="num">4</div><div class="lbl">Niveaux (RDC+2+grenier)</div></div>
+  <div class="stat"><div class="num">18×15</div><div class="lbl">Emprise principale</div></div>
+</div>
+
+<h2>Cartes des étages (auto-générées)</h2>
+<div class="legend">
+  <span style="background:#0f0d08;color:#a8c060">. sol de taverne</span>
+  <span style="background:#0f0d08;color:#d4a13a"># mur / autre tile</span>
+  <span style="background:#0f0d08;color:#3a3020">· vide</span>
+</div>
+
+<div class="floors">
+
+<div class="floor">
+<h3>🍺 Rez-de-chaussée — Taverne (Y 0-3)</h3>
+<p>824 assets · La grande salle avec scène et bar</p>
+<div class="map">    012345678901234567
+ 0:              # # #
+ 1: ##################
+ 2: ..................
+ 3: ..................
+ 4: ................#.
+ 5: ..................
+ 6: ..................
+ 7: ..................
+ 8: ..................
+ 9: ..................
+10: ..................
+11: ..................
+12: ##.....####.....##
+13: ################.#
+14: ##################</div>
+</div>
+
+<div class="floor">
+<h3>🛏️ Étage 1 — Chambres d'auberge (Y 3-6)</h3>
+<p>245 assets · Chambres avec coursive centrale</p>
+<div class="map">    012345678901234567
+ 2: #.......##.......
+ 3: # #####.   #####.
+ 4:   #####.# ###.##.
+ 5: # #####.   #####.
+ 6:   #####.   #####.
+ 7: #######.  ######.
+ 8:  ######.  ######.
+ 9: #######.# ######.
+10:  ######...######.
+11:  ####### #######
+12:   ## ##    ## ##  </div>
+</div>
+
+<div class="floor">
+<h3>🌤️ Étage 2 — Balcon (Y 6-9)</h3>
+<p>106 assets · Espace ouvert avec balcon extérieur</p>
+<div class="map">    012345678901234567
+ 1:     # # # # #
+ 2:    ...    ....
+ 3:   #.  # # # # .
+ 4:    .  # # #   .
+ 5:   #.##      ##.
+ 6:    .          .
+ 7:   #.##      ##.
+ 8:    .          .
+ 9:   #.### # # ##.
+10:    .          .
+11:     #        #
+12:     #        #
+13:     #        #    </div>
+</div>
+
+<div class="floor">
+<h3>🕵️ Grenier secret de Ted (Y 9+)</h3>
+<p>6 assets · L'espace caché du squatteur</p>
+<div class="map">    012345678901234567
+ 5:       # # #
+ 6:
+ 7:       # # #       </div>
+</div>
+
+</div>
+
+<h2>Classification automatique du vocabulaire</h2>
+<p>Chaque asset a été catégorisé par son <strong>pattern de placement</strong> (grille vs libre) et sa <strong>fréquence</strong>.</p>
+
+<table>
+<tr><th>Rôle</th><th>Assets uniques</th><th>Total placements</th><th>Description</th></tr>
+<tr><td class="role-FLOOR">FLOOR</td><td>3</td><td>695</td><td>Sols réguliers — dominant Tavern Floor 01 (531×)</td></tr>
+<tr><td class="role-GROUND">GROUND</td><td>1</td><td>20</td><td>Sol extérieur (Grass, Desert Ground)</td></tr>
+<tr><td class="role-WALL_OR_TILE">WALL_OR_TILE</td><td>6</td><td>46</td><td>Murs et tiles secondaires (à raffiner)</td></tr>
+<tr><td class="role-ROOF">ROOF/WALL_TOP</td><td>6</td><td>58</td><td>Éléments hauts — toits, sommets de murs</td></tr>
+<tr><td class="role-PROP">PROP</td><td>72</td><td>362</td><td>Mobilier, éclairage, décoration — placement libre</td></tr>
+</table>
+
+<h2>Ce qu'on peut faire avec ça</h2>
+<ol>
+<li><strong>Reproduire la taverne</strong> : on a les 102 GUIDs et leurs positions exactes. On peut la ré-injecter dans TaleSpire à l'identique.</li>
+<li><strong>Extraire les briques</strong> : le "vocabulaire" est identifié — 1 sol dominant, quelques murs, un toit spécifique.</li>
+<li><strong>Détecter les clusters de mobilier</strong> : prochain step — regrouper les props par proximité (bar+tabourets, table+chaises, chambre complète).</li>
+<li><strong>Générer des variations</strong> : appliquer le vocabulaire à une nouvelle forme (rectangle, L, T) avec tampons de mobilier.</li>
+</ol>
+
+<h2>Fichier de données</h2>
+<p>L'analyse complète est sauvegardée dans <code>tavern_analysis.json</code> — 1181 placements, tous les GUIDs, rôles et coordonnées. Prêt à être utilisé par le générateur.</p>
+
+</body>
+</html>

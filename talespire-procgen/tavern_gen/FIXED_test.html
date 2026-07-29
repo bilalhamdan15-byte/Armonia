@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Slabs FIXÉS — vrai bug trouvé</title>
+<style>
+body { font-family:system-ui,sans-serif; background:#1a1611; color:#e8dfc9; padding:24px; max-width:1000px; margin:0 auto; }
+h1 { color:#d4a13a; border-bottom:2px solid #5c3a1a; padding-bottom:8px; }
+h2 { color:#c07a2a; margin-top:32px; }
+.card { background:#2a2418; border:1px solid #4a3820; border-radius:8px; padding:20px; margin:20px 0; }
+textarea.code { width:100%; height:90px; background:#0f0d08; color:#a8c060; border:1px solid #5c3a1a; border-radius:4px; padding:8px; font-family:monospace; font-size:11px; white-space:nowrap; overflow:auto; }
+button.copy { background:#5c3a1a; color:#e8dfc9; border:none; padding:12px 24px; border-radius:4px; cursor:pointer; margin-top:8px; font-size:15px; font-weight:600; }
+button.copy:hover { background:#7c4a2a; }
+.success { background:#1a2a1a; border-left:4px solid #a8c060; padding:14px; margin:16px 0; border-radius:4px; font-size:14px; }
+.step { background:#2a2418; padding:10px 14px; border-radius:4px; margin:8px 0; font-size:13px; }
+</style></head><body>
+
+<h1>🎯 Le VRAI bug trouvé — slabs corrigés</h1>
+
+<div class="success">
+<strong>✅ Cause identifiée</strong> — Mon encoder alternait <em>header layout 1 → placements 1 → header layout 2 → placements 2</em>. Le vrai format Talestavern écrit d'abord <em>TOUS les headers</em>, puis <em>tous les placements groupés</em>. Depuis le début, TS voyait mes slabs comme corrompus dès le 2e asset.<br><br>
+J'ai aussi ajouté le tri des GUIDs par ordre alphabétique (comme fait Talestavern).<br><br>
+<strong>Vérification :</strong> les 4 GUIDs de mon slab minimal sont maintenant reconnus valides et les counts sont corrects (16 sols + 12 murs EW + 8 murs NS + 36 toit = 72 placements ✓).
+</div>
+
+<h2>Test 1 — Minimal 6×6, 1 étage</h2>
+<div class="card">
+<textarea class="code" id="c1" readonly onclick="this.select()">H4sIANQbXWoC/02RrUtEQRRHZ+Tx/OCFZduzrMG4ov/B7jMoItpWQQyKIywKBot1sJm8QUyarIYHRmHZIHjTilGrSawT1C3OnfsLTjkw5zDM3Bn9jl4nTGaMOWss9063Ftaupy8G45+v26m4t3k5018/uqoG79Xxx9P96nzce+vU5+PZzsrd9+LS3MbhfhH3Hg/2Xk52J6uHz5ti53m73zC6urm3Ql8oh02lKb0NNvlMGH1i9InRxyvVmZ5SZ91c6QvlsKk0JXzLGIfeoXfoHXqH3qFn9Iye0TN6Rs/o21Z7ofRC6YXSJ1/Cx57QE3pCT+gJPaEP6AP6gD6gD+gDel3eOpDBtk7cEhjA9B8tnzmQQemFBAb7r0tzlP9R6hzlf2Qu6hme4Rk+nZsrdU7q0/3Su9UTPMET/B9qZ1/umgIAAA==</textarea>
+<button class="copy" onclick="doCopy('c1', this)">📋 Copier — Ctrl+V dans TS</button>
+</div>
+
+<h2>Test 2 — 8×8, 2 étages</h2>
+<div class="card">
+<textarea class="code" id="c2" readonly onclick="this.select()">H4sIANQbXWoC/zWUr4/UQBxH26Y5smQFqWIxe2bVLYH/4HYR/AgBBzQEsYSSXCBBYLANDsUIggKFRWyCZHI5QcKoI0iwKIIdAZxhvt/PY81L+n1vejed9vjv8demaquqenbm0q2nt89fez15cXjy59fbs+XazZenD64/erU+/L5+/OPT+yurcu3b/vb5ybn9y+9+X7i4e+Ph/d1y7eODzZcn906tP/x8M737+c7B1Uq/1c5YG8epeNSJ1UxczZkvxjo27rfG4juL7yy+s/iaL8byJ29brb9ttf621frbVuuX+Zy5r+9+a9T67ju1vvua+/qbif6LzWS1I45T8agTqxnzOfMF872qGugH+oF+oB/oB/qBfqBP9Ik+0Sf6RJ/oE32iX9bqjdYbrTda7/MZ8znzBfPSB/pAH+gDfaAP9IE+0Gf6TJ/pM32mz/SZPtP3jXqj9Ubrjdb7fMZ8znzBvPSRPtJH+kgf6SN9pI/0+o31ABNc6sTWAWbYN2KEft73xnaACVpvDDBD640R+jn2+4sJLmsxwAz7RozQ3we/v5ig9bq/mKH1uv//zt5HO4/2Poo6t/Y+ijq39j7auZOf8BN+wk/4Cd/2QedSvu9LJ+pcyve5nyv5AT/gB/yAH/AzfsbP+Bk/42f8vpHfN/L9eXSizpl8n/t7at8TUftj3xNR+2PfE+a+P/ITfsJP+Ak/4dtz0v7I9+fWidof+T73/ZEf8AN+wA/4AT/jZ/yMn/EzfsbvG/l9I9/PSydqf+T7vPj/AAIv3oJaBgAA</textarea>
+<button class="copy" onclick="doCopy('c2', this)">📋 Copier — Ctrl+V dans TS</button>
+</div>
+
+<div class="step">Si le bouton "Copier" ne marche pas → clique dans le textarea, Ctrl+A, Ctrl+C manuellement, puis Ctrl+V dans TS.</div>
+
+<div class="success">
+<strong>Ce que tu devrais voir maintenant :</strong>
+<ul>
+<li>Test 1 → une petite pièce carrée 6×6 avec murs + sol + toit (aucune boîte à croix)</li>
+<li>Test 2 → un bâtiment 8×8 sur 2 étages</li>
+</ul>
+Dis-moi juste "1 ok, 2 ok" et je peux enfin refaire les 3 tavernes avec le générateur qui marche.
+</div>
+
+<script>
+function doCopy(id, btn) {
+    const ta = document.getElementById(id);
+    ta.select();
+    ta.setSelectionRange(0, 999999);
+    try {
+        const ok = document.execCommand('copy');
+        btn.textContent = ok ? '✓ Copié !' : '❌ Fais Ctrl+A + Ctrl+C dans le textarea';
+        setTimeout(() => btn.textContent = '📋 Copier — Ctrl+V dans TS', 3000);
+    } catch(e) {
+        btn.textContent = '❌ Fais Ctrl+A + Ctrl+C manuellement';
+    }
+}
+</script>
+</body></html>

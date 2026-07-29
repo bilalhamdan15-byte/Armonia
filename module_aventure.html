@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module d'aventure — Les Cendres d'Etelin</title>
+<style>
+:root {
+  --bg: #1a1a2e;
+  --paper: #2a2a3e;
+  --primary: #c9a85a;
+  --accent: #d97c47;
+  --text: #f4e8d0;
+  --muted: #9a8a7a;
+  --border: #3a3a4e;
+  --danger: #c44040;
+  --success: #5aa850;
+  --info: #5a8ec9;
+  --act1: #6a8caf;
+  --act2: #c47030;
+  --act3: #a02040;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+
+header.title-bar {
+  text-align: center;
+  padding: 22px;
+  background: linear-gradient(135deg, var(--paper) 0%, #3a2a3e 100%);
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+  margin-bottom: 14px;
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 30px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  color: var(--accent);
+  font-style: italic;
+  font-size: 16px;
+  margin-top: 8px;
+}
+header.title-bar .quote {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 12px;
+  font-style: italic;
+}
+
+.warning-banner {
+  background: var(--danger);
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-weight: bold;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+  font-size: 13px;
+}
+
+.info-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 14px 18px;
+  border-radius: 4px;
+  margin: 14px 0;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.info-box strong { color: var(--primary); }
+.info-box em { color: var(--accent); }
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin: 12px 0;
+}
+.summary-card {
+  background: #1a1a2e;
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+.summary-card h3 {
+  margin: 0 0 4px 0;
+  color: var(--primary);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.summary-card p { margin: 0; font-size: 13px; }
+
+.section-title {
+  font-size: 26px;
+  color: var(--primary);
+  margin: 32px 0 14px 0;
+  padding-bottom: 8px;
+  border-bottom: 3px double var(--accent);
+  letter-spacing: 2px;
+}
+
+.acte {
+  background: var(--paper);
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 22px;
+  margin: 20px 0;
+}
+.acte.act1 { border-color: var(--act1); }
+.acte.act2 { border-color: var(--act2); }
+.acte.act3 { border-color: var(--act3); }
+
+.acte-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid;
+}
+.acte.act1 .acte-header { border-bottom-color: var(--act1); }
+.acte.act2 .acte-header { border-bottom-color: var(--act2); }
+.acte.act3 .acte-header { border-bottom-color: var(--act3); }
+
+.acte-num {
+  font-size: 42px;
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  min-width: 60px;
+  text-align: center;
+}
+.acte.act1 .acte-num { color: var(--act1); }
+.acte.act2 .acte-num { color: var(--act2); }
+.acte.act3 .acte-num { color: var(--act3); }
+
+.acte-title h2 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+.acte.act1 .acte-title h2 { color: var(--act1); }
+.acte.act2 .acte-title h2 { color: var(--act2); }
+.acte.act3 .acte-title h2 { color: var(--act3); }
+.acte-title .duree {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.scene {
+  background: #1a1a2e;
+  border-left: 4px solid var(--accent);
+  padding: 14px 18px;
+  border-radius: 6px;
+  margin: 14px 0;
+}
+.scene h3 {
+  margin: 0 0 6px 0;
+  color: var(--accent);
+  font-size: 17px;
+  letter-spacing: 1px;
+}
+.scene p { font-size: 13px; line-height: 1.6; margin: 6px 0; }
+.scene strong { color: var(--primary); }
+.scene em { color: var(--accent); }
+
+.mj-note {
+  background: rgba(217, 124, 71, 0.1);
+  border: 1px dashed var(--accent);
+  padding: 10px 14px;
+  border-radius: 4px;
+  margin: 8px 0;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.mj-note strong { color: var(--accent); }
+
+.combat-box {
+  background: rgba(196, 64, 64, 0.1);
+  border: 1px solid var(--danger);
+  padding: 10px 14px;
+  border-radius: 4px;
+  margin: 10px 0;
+  font-size: 13px;
+}
+.combat-box strong { color: var(--danger); }
+
+.pnj-mini {
+  background: rgba(90, 142, 201, 0.08);
+  border-left: 3px solid var(--info);
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin: 6px 0;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.pnj-mini strong { color: var(--info); }
+
+.denouement-box {
+  background: linear-gradient(135deg, #2a2a3e 0%, #3a2a1e 100%);
+  border: 2px solid var(--primary);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+}
+.denouement-box h2 {
+  margin: 0 0 12px 0;
+  color: var(--primary);
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+.denouement-box p { font-size: 14px; line-height: 1.6; margin: 8px 0; }
+
+.nav-back {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 12px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body>
+<div class="container">
+
+<a href="index.html" class="nav-back">← Retour au sommaire</a>
+
+<div class="warning-banner">🤫 OUTIL MJ — Ne pas partager aux joueurs</div>
+
+<header class="title-bar">
+  <h1>🔥 LES CENDRES D'ETELIN</h1>
+  <div class="subtitle">Module d'aventure · 2-3 sessions · Entrée idéale en campagne</div>
+  <div class="quote">« Le calme se fissure toujours par une flamme qu'on n'a pas vue. »</div>
+</header>
+
+<div class="info-box">
+  <p><strong>Ce module</strong> est un <em>one-shot ou début de campagne</em> qui plonge les PJ dans le contexte du livre 2. Il se déroule à Etelin et dans la Forêt Julia, avec une intrigue qui touche à la <em>dévastation à venir</em>.</p>
+  <p><strong>Approche</strong> : <em>enquête → révélation → confrontation</em>. Peu de combat pur — beaucoup de choix moraux, quelques scènes tendues.</p>
+</div>
+
+<div class="summary-grid">
+  <div class="summary-card">
+    <h3>Durée</h3>
+    <p>2 à 3 sessions</p>
+  </div>
+  <div class="summary-card">
+    <h3>PJ recommandés</h3>
+    <p>3 à 5 joueurs</p>
+  </div>
+  <div class="summary-card">
+    <h3>Niveau</h3>
+    <p>Débutants (première partie)</p>
+  </div>
+  <div class="summary-card">
+    <h3>Lieu principal</h3>
+    <p>Etelin & Forêt Julia (Lumini)</p>
+  </div>
+</div>
+
+<h2 class="section-title">📖 Résumé pour le MJ</h2>
+
+<div class="info-box">
+  <p>Un incendie ravage une grange de l'orphelinat d'Etelin. Ce n'est pas un accident : une <strong>rune ancienne</strong>, gravée sur une pierre trouvée par un enfant dans la Forêt Julia, s'est réactivée. Les PJ, résidents ou visiteurs, doivent enquêter.</p>
+  <p>L'enquête les mène dans la <strong>Forêt Julia</strong>, où ils découvrent un <strong>fragment d'un ancien sanctuaire</strong> qu'un jeune goblin intelligent (précurseur de la dévastation) tente d'exploiter. Le boss n'est pas un monstre puissant — c'est une <em>tragédie</em> : un enfant orphelin manipulé par une entité de l'Ombre.</p>
+  <p><strong>Dénouement</strong> : soit les PJ sauvent l'enfant (choix moral fort), soit ils échouent et la rune est corrompue. Dans les deux cas, ils sont remarqués par les <strong>Veilleurs</strong>. Ouverture directe sur une campagne.</p>
+</div>
+
+<h2 class="section-title">🎭 PNJ clés du module</h2>
+
+<div class="pnj-mini"><strong>Golrik</strong> · Tavernier d'Etelin, ancien aventurier, Veilleur discret. Contact-clé, calme, avisé.</div>
+<div class="pnj-mini"><strong>Ma'Ella</strong> · Cuisinière de l'orphelinat, protectrice des enfants. Sait quelque chose qu'elle cache.</div>
+<div class="pnj-mini"><strong>Kair</strong> · Orphelin de 10 ans qui a ramené la pierre runique de la forêt. Effrayé, honteux.</div>
+<div class="pnj-mini"><strong>Séléne</strong> · Elfe Sylvestre patrouilleuse, méfiante mais juste. Peut aider ou bloquer.</div>
+<div class="pnj-mini"><strong>Zaïk le Petit</strong> · Antagoniste. Jeune goblin intelligent manipulé par une Ombre. À la fois pitoyable et dangereux.</div>
+<div class="pnj-mini"><strong>L'Ombre-Marchand</strong> · L'entité qui manipule Zaïk. Ne se manifeste qu'en voix, mais présence évidente.</div>
+
+<h2 class="section-title">🎬 Structure — 3 actes</h2>
+
+<!-- ACTE 1 -->
+<div class="acte act1">
+  <div class="acte-header">
+    <div class="acte-num">I</div>
+    <div class="acte-title">
+      <h2>L'incendie</h2>
+      <div class="duree">Environ 1 session · Enquête à Etelin</div>
+    </div>
+  </div>
+
+  <div class="scene">
+    <h3>Scène 1 · L'accroche</h3>
+    <p>Il est <em>Mois de Vendange, jour 5</em>. Nuit tombante. Les PJ sont à Etelin — soit résidents de l'orphelinat, soit voyageurs de passage dormant à la taverne de Golrik. Un cri retentit : <strong>la grange brûle</strong>.</p>
+    <p><strong>Ce qu'on voit</strong> : flammes bleutées, anormales. Le feu résiste à l'eau. Les chevaux hurlent. Deux enfants sont pris à l'intérieur.</p>
+    <div class="mj-note"><strong>Note MJ</strong> : les flammes bleutées suggèrent la magie de feu — mais quelle source ? Une rune activée, un pyromage, autre chose ? Laisse les PJ hésiter.</div>
+    <div class="combat-box"><strong>Test</strong> : sauver les enfants nécessite un jet de <em>DEX ou FOR DD 13</em>. Éther possible pour +5. Sur échec, un PJ est légèrement brûlé (1d4 dégâts). Sur réussite éclatante, un PJ trouve la <strong>pierre runique brisée</strong> au sol de la grange.</div>
+  </div>
+
+  <div class="scene">
+    <h3>Scène 2 · Le lendemain matin</h3>
+    <p>Jack est absent (en mission). Lyssana est effondrée mais lucide — elle demande aux PJ de <strong>comprendre ce qui s'est passé</strong>. Golrik les rejoint à la taverne. Il a une hypothèse : « Ce n'est pas un feu normal. Ça sent la magie ancienne. »</p>
+    <p><strong>Golrik peut confier</strong> une piste : « Il y a un mois, on a vu des gens rôder près de la Forêt Julia. Pas de la Tribu. Pas des marchands. Autre chose. »</p>
+    <div class="mj-note"><strong>Note MJ</strong> : Golrik est un Veilleur mais ne le révèle pas. Il ne fait qu'orienter subtilement les PJ. S'ils l'interrogent finement, il pourrait laisser filer une allusion.</div>
+  </div>
+
+  <div class="scene">
+    <h3>Scène 3 · L'enquête à Etelin</h3>
+    <p>Les PJ peuvent interroger : <strong>Ma'Ella la cuisinière</strong>, les enfants sauvés, le forgeron du village. Diverses infos à croiser :</p>
+    <p>• Ma'Ella a vu le petit <strong>Kair</strong> revenir de la forêt avec « quelque chose de brillant » il y a trois jours.</p>
+    <p>• Un enfant sauvé se souvient que « quelqu'un chuchotait dans la nuit » dans les dortoirs.</p>
+    <p>• Le forgeron a été payé récemment en or « qui ne vient pas d'ici » — pièces gravées d'un motif inconnu.</p>
+    <div class="combat-box"><strong>Tests possibles</strong> : SAG (perception) DD 12 pour la Ma'Ella, CHA (persuasion) DD 15 pour le forgeron qui cache, INT (savoir) DD 15 pour identifier les pièces comme heledériennes.</div>
+  </div>
+
+  <div class="scene">
+    <h3>Scène 4 · Confrontation avec Kair</h3>
+    <p>Les PJ trouvent Kair caché dans la remise. Il pleure. Interrogé avec douceur, il avoue : il a trouvé une <strong>pierre gravée</strong> dans les bois. Une voix lui parlait, disait qu'elle allait le protéger. Il l'a apportée. Elle a chauffé, chauffé, jusqu'à exploser.</p>
+    <p>Il dit aussi : « La voix parlait à un autre. Il vit dans la forêt. Il s'appelle Zaïk. »</p>
+    <div class="mj-note"><strong>Note MJ</strong> : Kair est innocent. C'est l'Ombre qui l'a manipulé pour amener la pierre à Etelin — test d'un artefact plus grand qui suit. Les PJ doivent le comprendre.</div>
+    <div class="denouement-box" style="border-color:var(--act1); margin-top:14px;">
+      <h2 style="color:var(--act1); font-size:16px;">Fin de l'Acte I</h2>
+      <p>Les PJ savent qu'ils doivent aller dans la <strong>Forêt Julia</strong>. Golrik leur donne un guide potentiel — une amulette qui signale leur présence aux Sylvestres. Départ.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ACTE 2 -->
+<div class="acte act2">
+  <div class="acte-header">
+    <div class="acte-num">II</div>
+    <div class="acte-title">
+      <h2>La forêt écoute</h2>
+      <div class="duree">1 session · Voyage et infiltration</div>
+    </div>
+  </div>
+
+  <div class="scene">
+    <h3>Scène 1 · L'entrée dans la Forêt</h3>
+    <p>La Forêt Julia est <strong>sacrée</strong>. Les PJ doivent avancer respectueusement. Au bout d'une heure de marche, ils sont interpellés par <strong>Séléne</strong>, patrouilleuse Elfe Sylvestre.</p>
+    <p>Séléne est méfiante mais l'amulette de Golrik la calme. Elle offre : « Vous cherchez quelque chose. Dites-le. Je vous guide ou je vous jette. »</p>
+    <div class="mj-note"><strong>Note MJ</strong> : Séléne teste les PJ. Si ils sont honnêtes et respectueux, elle les guide au cœur de la forêt. Si ils sont brutaux ou mensongers, elle les rejette. Test de CHA (Diplomatie) DD 15.</div>
+  </div>
+
+  <div class="scene">
+    <h3>Scène 2 · Le sanctuaire perdu</h3>
+    <p>Séléne (ou les PJ seuls) les mène à une clairière peu connue. Au centre : les ruines d'un <strong>petit sanctuaire pré-Rupture</strong> à demi-enfoui. Des runes gravées sur les pierres.</p>
+    <p>L'endroit est perturbé : des restes de campement récent, cendres, marques de griffes petites.</p>
+    <p><strong>Cristal pulsant</strong> : au centre du sanctuaire, un petit cristal irradie faiblement d'énergie chaotique. C'est de là que provenait la pierre de Kair.</p>
+    <div class="combat-box"><strong>Rencontre</strong> : 3-4 goblins servants de Zaïk émergent des arbres. Combat mineur (rapports mineurs, 5 PV chacun). Mais un d'eux crie « Zaïk sait que vous êtes là ! » — piste.</div>
+  </div>
+
+  <div class="scene">
+    <h3>Scène 3 · La confrontation avec Zaïk</h3>
+    <p>Les PJ arrivent au cœur du campement de Zaïk — une grotte enfouie. À l'intérieur, un jeune goblin intelligent, seul, entouré de vieux parchemins.</p>
+    <p><strong>Zaïk parle</strong>. Il propose un marché : « Aidez-moi. La voix ne me laisse pas partir. Je ne voulais pas brûler l'orphelinat. C'est elle qui a exigé. »</p>
+    <p>Les PJ doivent choisir : <strong>croire ou non</strong>. Test de SAG (intuition) DD 15 pour sentir qu'il est sincère.</p>
+    <div class="mj-note"><strong>Note MJ</strong> : Zaïk est un antagoniste ambigu. Manipulé, il n'est pas totalement innocent (il a agi), mais il a été enlevé et corrompu. Selon le choix des PJ, l'issue changera.</div>
+  </div>
+
+  <div class="scene">
+    <h3>Scène 4 · L'Ombre-Marchand se manifeste</h3>
+    <p>Pendant la discussion avec Zaïk, une <strong>voix froide et étrange</strong> se manifeste dans la grotte. Aucune silhouette — juste une présence.</p>
+    <p><em>« Zaïk. Tu déçois. Tue-les tous. »</em></p>
+    <p>Zaïk hurle, tente de résister — puis un éclat de folie passe dans ses yeux. Il attaque.</p>
+    <div class="combat-box"><strong>Combat central</strong> : Zaïk sous contrôle (PV 22, DEX +3, armé d'un poignard runique 1d6+2 magique). Il est en même temps un ennemi et une victime — les PJ peuvent tenter de le calmer plutôt que le tuer.</div>
+    <div class="mj-note"><strong>Note MJ</strong> : test spécial — un PJ peut tenter d'invoquer <em>Yiel curare</em> (s'il connaît le mot) ou lui parler avec insistance (CHA DD 20) pour briser l'emprise de l'Ombre. Si réussi, Zaïk redevient conscient.</div>
+  </div>
+</div>
+
+<!-- ACTE 3 -->
+<div class="acte act3">
+  <div class="acte-header">
+    <div class="acte-num">III</div>
+    <div class="acte-title">
+      <h2>Le choix</h2>
+      <div class="duree">Fin de partie · 1 scène majeure + épilogue</div>
+    </div>
+  </div>
+
+  <div class="scene">
+    <h3>Scène 1 · Le dénouement selon les choix</h3>
+    <p><strong>Voie A — Sauvent Zaïk</strong> : les PJ brisent l'emprise de l'Ombre. Zaïk s'effondre, épuisé. Il révèle avoir été enlevé d'un village, dressé par la voix, forcé à activer le cristal. Il donne des indices sur l'Ombre — une entité liée à un noble de Me'yn Prus.</p>
+    <p><strong>Voie B — Tuent Zaïk</strong> : Zaïk meurt. La grotte s'illumine brièvement — l'Ombre rit avant de disparaître. Le cristal est corrompu et devient inutilisable. Les Veilleurs ne pourront rien en tirer.</p>
+    <p><strong>Voie C — Zaïk s'échappe</strong> : Zaïk fuit dans la nuit. Antagoniste récurrent pour toute la campagne — mais possiblement rachetable plus tard.</p>
+  </div>
+
+  <div class="scene">
+    <h3>Scène 2 · Le Veilleur apparaît</h3>
+    <p>Alors que les PJ quittent la forêt, une <strong>silhouette encapuchonnée</strong> les attend à la lisière. C'est un Veilleur envoyé par Jack. Il sait tout ce qui vient de se passer.</p>
+    <p><em>« Vous êtes remarqués. »</em></p>
+    <p>Il tend une petite feuille pliée : c'est une invitation à rencontrer Jack Argenti à son retour de mission. « L'Ordre a besoin de gens comme vous. »</p>
+    <div class="mj-note"><strong>Note MJ</strong> : Cette scène est le pont vers la campagne. Les PJ sont maintenant sur le radar des Veilleurs. Ils peuvent accepter, refuser, hésiter — mais la porte est ouverte.</div>
+  </div>
+
+  <div class="denouement-box">
+    <h2>🎯 Épilogue</h2>
+    <p><strong>Récompenses</strong> : 2 Points d'Écho chacun, 1 Atout Niveau I à choisir (« Marqué par le Veilleur », « Ami de la Forêt », « Sensible aux Ombres »), quelques pièces heledériennes trouvées dans la grotte.</p>
+    <p><strong>Répercussions selon la voie</strong> :</p>
+    <p>• Voie A → Zaïk devient un allié (méfiant). L'Ombre a un ennemi de moins. Les PJ commencent la campagne avec un contact et une piste vers Me'yn Prus.</p>
+    <p>• Voie B → L'Ombre note les PJ comme dangereux. La campagne commence sous surveillance. Difficulté +1 sur les premières intrigues.</p>
+    <p>• Voie C → Zaïk devient antagoniste latent. Il reviendra plus tard, différent, transformé.</p>
+    <p><strong>Fil rouge posé</strong> : <em>Qui est vraiment l'Ombre-Marchand ? Pourquoi cible-t-elle Etelin ? Qui est le noble de Me'yn Prus ?</em> — trois questions qui alimentent une campagne entière.</p>
+  </div>
+</div>
+
+<h2 class="section-title">🛠️ Boîte à outils MJ</h2>
+
+<div class="info-box">
+  <p><strong>Astuces d'ambiance</strong> :</p>
+  <p>• Utilise la <em>Nuit des Veilleurs</em> ou un jour proche pour renforcer l'atmosphère (Kéiy'ka honorée).</p>
+  <p>• Le feu bleu de l'incendie doit être <strong>décrit longuement</strong> — c'est ce qui fait comprendre aux PJ que ce n'est pas ordinaire.</p>
+  <p>• Séléne l'Elfe peut être une <strong>alliée récurrente</strong> si les PJ la traitent bien. Note son opinion d'eux.</p>
+  <p>• Le combat contre Zaïk doit être <em>déchirant</em>, pas héroïque. Fais-le parler pendant l'affrontement (« Aidez-moi… »).</p>
+  <p><strong>Adaptations rapides</strong> :</p>
+  <p>• Si les joueurs veulent plus de combat : ajoute une meute de loups-feuille pendant le voyage en forêt.</p>
+  <p>• Si les joueurs veulent plus de mystère : le cristal peut contenir un mot primordial inconnu qu'ils déchiffreront plus tard.</p>
+  <p>• Si tu veux ancrer la campagne : fais apparaître brièvement <strong>la Femme au Voile Bleu</strong> à Etelin dans une scène de taverne — elle observe.</p>
+</div>
+
+<footer>
+  Les Cendres d'Etelin · Module d'entrée · Système Bilal · Armonia 2026
+</footer>
+
+</div>
+</body>
+</html>

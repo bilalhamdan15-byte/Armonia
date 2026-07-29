@@ -1,0 +1,17 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>Etape 12 - Faitage corrige (abouts + planches)</title>
+<style>body{font-family:system-ui,sans-serif;background:#1a1611;color:#e8dfc9;padding:24px;max-width:900px;margin:0 auto}
+h1{color:#d4a13a;border-bottom:2px solid #5c3a1a;padding-bottom:8px}
+.card{background:#2a2418;border:1px solid #4a3820;border-radius:8px;padding:20px;margin:20px 0}
+textarea.code{width:100%;height:120px;background:#0f0d08;color:#a8c060;border:1px solid #5c3a1a;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;white-space:nowrap;overflow:auto}
+button{background:#5c3a1a;color:#e8dfc9;border:none;padding:12px 24px;border-radius:4px;cursor:pointer;margin-top:8px;font-size:15px;font-weight:600}button:hover{background:#7c4a2a}
+.info{background:#1a2a1a;border-left:4px solid #a8c060;padding:14px;margin:16px 0;border-radius:4px;font-size:14px}</style></head><body>
+<h1>Étape 12 — faîtage corrigé (abouts de pignon + planches)</h1>
+<div class="info">Reprend le 8×8 (2 étages, fenêtres, escalier, toit 2 pans) mais remplace l'ancien "trim" mal compris par la vraie structure que tu as confirmée :<br><br>
+- <b>10727582</b> (about de pignon, forme pyramide/triangle) : 1 à chaque extrémité du faîtage (z=0 et z=7), même rotation aux 2 bouts.<br>
+- <b>bd1e0ed2</b> (planche de faîtage) : comble entre les 2 abouts, tous les 2 z (z=1,3,5).<br><br>
+Pas encore testé en jeu sur notre générateur (seulement confirmé sur ton exemple isolé) — la position X du faîtage (x=4) et le Y (+0.25 au-dessus du toit) sont des hypothèses reprises de l'ancien design, à valider.<br><br>
+<b>À vérifier :</b> les 2 pignons sont-ils bien fermés (plus de triangle ouvert) ? Le faîtage est-il bien aligné, sans croix/chevauchement ?</div>
+<h2>Taverne 8×8×2 avec faîtage corrigé</h2>
+<div class="card"><textarea class="code" id="c0" readonly onclick="this.select()">H4sIAAAAAAAC/0XTPWgUQRjG8bm9i1ETNAZSnEXWZi28eBgUP7CJ2kSJEQv18AvFKcRCMSA2Eo50FsKoIAixELtgERQtzESChQ4IiVrZqCnPD8RiGhXBfef9i9s8uXnmt7e372Tx1+LbzKw0xkxdmeg7/OLlwYdz37puNN73ZOXaxy3jzVOjY4fu991a3H5g06WRcu1q394jE0c377+z6vrz3z+/3hN74sPpa792rh+b2XX3ycTqm5dl7d2awfmBrX50/vWOpYGl2+PVcm3y7ODi8I91I0/Hn23cMPVoreybO3dm6eLJ7j2PP0/3Hn917Pyk7Psy/KerZ2bswad9083dF4blWVxlW7m9XZNcaLRrxrzpLperkiMrNNu9mgv9mqZOn9MX9A1TtXiLt3iLt3iLt3iLD/iAD/iAD/iAD/iAH6qolxQvKV5SfOrr9Dl9QV96p9449SlLn7L0KUuvfU5f0DeMifiIj/iIj/iIj/iIb2XqJcVLipcUn/o6fU5f0Jfe4z3e4z3e4z3e4z3eVYLR3x/MclP+Kj/X27XvWcqKq8zWtJ+taV9+Tn3KUolv1ySXm3KegpHvFy8ZZH/qxUs/W9NeU86hzC2dx35NPWf6XK1M7y+p506yXUnPkXq9v6T2ktL/v+S9yCXfJ5e8l3TV6XP6gr58L5YtFm/xFm/xFm/xFh/wAR/wAR/wAR/wAT/EL5AULyleUnzq6/Q5fUGf5mqYq3qHd3iHd3iHd/iIj/iIj/iIj/iIj/hWZpifekk91+pTX6fP6Qv6dK7Ve7zHe7zHe7zHe7wxnareoVPV+XeqOv9OVedf9nX6nL6gT/NXb/EWb/EWb/EWb/EBH/ABH/ABH/ABN1RRJ6lzVyepc1eX+pz1NG91DudwDudwDpf6gj7NW33ER3zER3zER3zEtzL1kjpv9ZI6b/Wpz+kL+jRv9R7v8R7v8R7v8T77994C/z+tTPIvmBYyHJIHAAA=</textarea><button onclick="cp('c0',this)">📋 Copier</button></div>
+<script>function cp(id,b){const t=document.getElementById(id);t.select();t.setSelectionRange(0,999999);try{const o=document.execCommand('copy');b.textContent=o?'✓ Copié !':'❌ Ctrl+A+C';setTimeout(()=>b.textContent='📋 Copier',3000)}catch(e){b.textContent='❌ Ctrl+A+C'}}</script>
+</body></html>

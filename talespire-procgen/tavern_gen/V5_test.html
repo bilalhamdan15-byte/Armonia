@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>V5 · espacement étages fixé</title>
+<style>
+body{font-family:system-ui,sans-serif;background:#1a1611;color:#e8dfc9;padding:24px;max-width:1000px;margin:0 auto}
+h1{color:#d4a13a;border-bottom:2px solid #5c3a1a;padding-bottom:8px}
+h2{color:#c07a2a;margin-top:32px}
+.card{background:#2a2418;border:1px solid #4a3820;border-radius:8px;padding:20px;margin:20px 0}
+textarea.code{width:100%;height:90px;background:#0f0d08;color:#a8c060;border:1px solid #5c3a1a;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;white-space:nowrap;overflow:auto}
+button.copy{background:#5c3a1a;color:#e8dfc9;border:none;padding:12px 24px;border-radius:4px;cursor:pointer;margin-top:8px;font-size:15px;font-weight:600}
+button.copy:hover{background:#7c4a2a}
+.info{background:#1a2a1a;border-left:4px solid #a8c060;padding:14px;margin:16px 0;border-radius:4px;font-size:14px}
+</style></head><body>
+
+<h1>V5 · Fix espacement étages</h1>
+<div class="info">
+Changement : FLOOR_H passe de 3 à <strong>2.5 tiles</strong> (vraie hauteur des murs mesurée dans la référence). Plus de gap entre les étages.<br><br>
+Note : pas encore de plancher solide entre étages ni de corners spéciaux — c'est la prochaine étape.
+</div>
+
+<h2>V5 · 6×6, 1 étage</h2>
+<div class="card">
+<textarea class="code" id="c6" readonly onclick="this.select()">H4sIAEEdXWoC/0WRMUtDMRSFE1ueVd5Quj2XOjhW9B+0z0ER0U2F4qAYoSg4uLgGNyfvIE46uToIjkLpIHiniqOuLhXXDGoXc3MPmOXw5Xwk790Mf4evE6ZqjDmtL22ebM2vXk2d98c/Xze1uLdxMd1bO7ws++/l0cfT3cpc3Htr35+NZ9rLt98Li7PrB3t53Hvc33053pksHz6v8+7zdq9udHUyb4NNKVcYnyvHTDxoKMdMbArlmJFHFT1lVOlkmj7XHDQ0TYG+aYyD7+A7+A6+g+/gM3yGz/AZPsNn+C2rvqT4kuJLip/6An30CT7BJ/gEn+AT/AA/wA/wA/wAP8DX5W2ac9NXHdiBGczgllWWFCYwgQM42P/zdI7yXpo6R3kfmYv2jJ7RM/p0T6apc9I+fUf6b+0JPaEn9H+ZpjC0mgIAAA==</textarea>
+<button class="copy" onclick="doCopy('c6',this)">📋 Copier</button>
+</div>
+
+<h2>V5 · 8×8, 2 étages</h2>
+<div class="card">
+<textarea class="code" id="c8" readonly onclick="this.select()">H4sIAEEdXWoC/zWUr4/UUBRGO2WzE8gIUsVguqZqh8B/sDMIfoSAAxqCgFCSDSQIDHaCQ/EEQYHCIkiQvGxWkPDUskiwGAj2CmANvfc7jPny9Z7Tl3l97cHfgy91tVFV1ZOT568/vnHm8svjz/aO/vx6fWq8du35id0rD16s9r6tHn7/+Pbicrz2defd06PTOxfe/D57buvq/btb47UP9+58fnR7unr/89Xs1qebu5cq/Zab60muI32Jaj1THzP6fqM+ZvRqrj5m9GWL3+J3+J33H8d0/8joun9kdN0/MrruHym/xW/xO/y4/+FU/+JwutxUrmfK/UZZzZm3zDvm21U14A/4A/6AP+AP+AP+gF/wC37BL/gFv+AX/IK/mMj3dN/TfU/3Yz5n3jLvmI9+wk/4CT/hJ/yEn/ATvuEbvuEbvuEbvuEbfl/L93Tf031P92M+Z94y75iPfsbP+Bk/42f8jJ/xM75+60mc0+31xkAf6IVe6IuJuqf3RE90oxu9r9U9vWd6psd5jfXH8xvrqw/0Qi/0xUTdU+urJ7rRjd7X6p5aXz3X/9fz99bPo7+vSp1bfz+VOrf+Pvq5E1/gC3yBL/AF3vdJ51J87Fuj1LkUH/M4V+ITfIJP8Ak+wRu8wRu8wRu8wfe1+L4WH8+lUeqciY95vKf+3VFqf/w7o9T++HeFeeyP+AJf4At8gS/w/hy1P+LjuTZK7Y/4mMf+iE/wCT7BJ/gEb/AGb/AGb/AG39fi+1p8nJtGqf0RH/OR/wcwGNcdWgYAAA==</textarea>
+<button class="copy" onclick="doCopy('c8',this)">📋 Copier</button>
+</div>
+
+<h2>V5 · 12×10, 2 étages</h2>
+<div class="card">
+<textarea class="code" id="c12" readonly onclick="this.select()">H4sIAEEdXWoC/y2WMYhVRxiF79td7qJsIXY3zX3NrWYl8qrt3LVIEDd2MYtYJHgDYiBFmqR8hGlSOUVIFUGwtRAsMywWAacyWmprM8F2iiQ2uf9/vm0O5x2+7z52583bV/+9erPT7XVd9+Ol61/+cPvKjd8u/HL+8d8Pj9bLa7ceXrx/88GvJ+fvTr57/+fTz39aXnt77dnPHz+59tmTfz69uv7i22+uLq/9ce/rv76/u3/y/O/fD+68/Or+404/x/12dbrnaY/otgfqS3p/cVl9Se/doL6k9+MRfoSf4Cf4AB/gN/Ab63VXz/f0rud7etfzPb3r+Z7iR/gRfoKf4AN8gN/A+/Nf7+u38Hr/uFduD5QvLiu7gX1kn9gD+4b9qOtmfDO+Gd+Mb8Y345vxzfhmfDO+gq/gK/gKvoKv4Cv4Cr6Cr+A7XMlnaT5L81maz/eBfWSf2AP7hn3xJXwJX8KX8CV8CV/Cl/AlfAlfw9fwNXwNX8PX8DV8DV/D1/Cd7chnaT5L81maz/eBfWSf2AP7hn3xZXwZX8aX8WV8GV/Gl/FlfBnfelc+S/NZms/SfL4P7CP7xB7YN+yLL+KL+CK+iC/ii/givogv4ov4Kr6Kr+Kr+Cq+iq/iq/gqvorvdE8+S/NZms/SfL4P7CP7xB7YN+xHXGDdduX30NF2b6bP9EIv9MOVuqX1RE/0Rm/0sx11S+uZnunrXXVL65Ee6ZVe6ae6IXVfHnEf+ftf7i9//+ozvdAL/XClbqn3r57ojd7oZzvqlnr/6pm+3lW31PtXj/RKr3S/NzvuW37fuufs+0Kpe86+H5S65+z7gD2w+70kvsAX+AJf4At8gS/w/nfslbrHxPvfeWAf2Sf2wO73jvgEn+ATfIJP8Ak+wTf4Bt/gG3yDb/ANvsH7ueqVupfE+7kb2Ef2iT2w+z0iPsNn+Ayf4TN8hs/wfm57pe4d8X6uB/aRfWIP7H5PiI/wET7CR/gIH+EjfIWv8BW+wlf4Cl/hK7x/Tnqlzp/9n6DU+bP/C9gn9sDu5098gS/wBb7AF/gCX+D9c9grdf7E++d0YB/ZJ/bA7udPfIJP8Ak+wSf4BJ/gG3yDb/ANvsE3+Abf4P1e6JU6f+L93hjYR/aJPbD7+ROf4TN8hs/wGT7DZ3i/d3qlzp94v5cG9pF9Yg/sfv7ER/gIH+EjfISP8BG+wlf4Cl/hK3yFr/AV/n//HjABmgsAAA==</textarea>
+<button class="copy" onclick="doCopy('c12',this)">📋 Copier</button>
+</div>
+
+<script>
+function doCopy(id,btn){
+  const ta=document.getElementById(id);
+  ta.select();
+  ta.setSelectionRange(0,999999);
+  try{
+    const ok=document.execCommand('copy');
+    btn.textContent=ok?'✓ Copié !':'❌ Ctrl+A + Ctrl+C manuellement';
+    setTimeout(()=>btn.textContent='📋 Copier',3000);
+  }catch(e){btn.textContent='❌ Ctrl+A + Ctrl+C manuellement'}
+}
+</script>
+</body></html>

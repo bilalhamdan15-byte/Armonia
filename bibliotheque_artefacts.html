@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artefacts Légendaires — Armonia</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+  --danger: #a02020;
+
+  --arme: #a03030;
+  --armure: #6a6a3a;
+  --bijou: #b8a050;
+  --relique: #7a4a8a;
+  --outil: #4a7a9a;
+  --texte: #6a4a3a;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  padding: 24px;
+  background: linear-gradient(135deg, #fffaf0 0%, #f0e0c0 50%, #fffaf0 100%);
+  border: 3px double var(--accent);
+  border-radius: 8px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 30px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  color: var(--accent);
+  font-style: italic;
+  font-size: 15px;
+  margin-top: 8px;
+}
+header.title-bar .quote {
+  color: var(--muted);
+  font-style: italic;
+  font-size: 13px;
+  margin-top: 12px;
+}
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin: 16px 0;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.intro-box strong { color: var(--primary); }
+
+.section-title {
+  font-size: 22px;
+  color: var(--primary);
+  margin: 28px 0 12px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+  letter-spacing: 1px;
+}
+
+.artefacts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 14px;
+}
+.artefact-card {
+  background: var(--paper);
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+}
+.artefact-card.arme { border-color: var(--arme); }
+.artefact-card.armure { border-color: var(--armure); }
+.artefact-card.bijou { border-color: var(--bijou); }
+.artefact-card.relique { border-color: var(--relique); }
+.artefact-card.outil { border-color: var(--outil); }
+.artefact-card.texte { border-color: var(--texte); }
+
+.artefact-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--border);
+}
+.artefact-icon {
+  font-size: 42px;
+  width: 55px;
+  text-align: center;
+}
+.artefact-title { flex: 1; }
+.artefact-title h2 {
+  margin: 0;
+  font-size: 19px;
+  letter-spacing: 1px;
+}
+.artefact-card.arme h2 { color: var(--arme); }
+.artefact-card.armure h2 { color: var(--armure); }
+.artefact-card.bijou h2 { color: var(--bijou); }
+.artefact-card.relique h2 { color: var(--relique); }
+.artefact-card.outil h2 { color: var(--outil); }
+.artefact-card.texte h2 { color: var(--texte); }
+.artefact-title .type {
+  font-size: 11px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 2px;
+}
+.artefact-info {
+  font-size: 13px;
+  line-height: 1.55;
+}
+.artefact-info h3 {
+  margin: 10px 0 4px 0;
+  color: var(--accent);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.artefact-info p { margin: 6px 0; }
+.artefact-info strong { color: var(--text); }
+.artefact-info em { color: var(--accent); }
+.artefact-danger {
+  background: rgba(160, 32, 32, 0.06);
+  border-left: 3px solid var(--danger);
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin: 8px 0;
+  font-size: 12px;
+  color: var(--danger);
+  line-height: 1.4;
+}
+.artefact-danger strong { color: var(--danger); }
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--accent);
+  color: white;
+  border-radius: 10px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-right: 4px;
+  margin-top: 4px;
+}
+
+.nav-back {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body>
+<div class="container">
+
+<a href="index.html" class="nav-back">← Retour au sommaire</a>
+
+<header class="title-bar">
+  <h1>⚜️ ARTEFACTS LÉGENDAIRES</h1>
+  <div class="subtitle">18 objets uniques · histoire, pouvoirs, hooks de quête</div>
+  <div class="quote">« Un objet qui a un nom est un objet qui a une volonté. »</div>
+</header>
+
+<div class="intro-box">
+  <p><strong>Ces artefacts</strong> sont des objets nommés, uniques, avec une histoire propre. Ils ne s'achètent pas — ils se <strong>trouvent</strong>, se <strong>volent</strong>, se <strong>gagnent</strong> ou se <strong>reçoivent en héritage</strong>. Chaque artefact peut porter une quête entière.</p>
+  <p><strong>Note MJ</strong> : distribue-les avec parcimonie. Un artefact nommé est un événement narratif majeur. Note toujours <em>qui</em> le possédait avant, <em>pourquoi</em> il est perdu, et <em>qui</em> pourrait vouloir le récupérer.</p>
+</div>
+
+<h2 class="section-title">⚔️ Armes légendaires</h2>
+
+<div class="artefacts-grid">
+
+  <div class="artefact-card arme">
+    <div class="artefact-header">
+      <div class="artefact-icon">🗡️</div>
+      <div class="artefact-title">
+        <h2>Vent-de-Braise</h2>
+        <div class="type">Rapière ancienne · Fulgura épuisée</div>
+      </div>
+    </div>
+    <div class="artefact-info">
+      <p>Rapière ouvrée dont la lame porte des runes de foudre. Aurait appartenu à Fulgura avant qu'il ne prenne le nom de Silver.</p>
+      <h3>Pouvoir</h3>
+      <p>Sur coup critique, décharge de foudre jaune : <strong>+2d8 dégâts électriques</strong> à la cible principale + saut arc sur cible secondaire à 3m (1d8).</p>
+      <h3>Localisation actuelle</h3>
+      <p>Perdue depuis 200 ans. Rumeur : chez un noble d'Almalleis (Virtus Al Alle) qui l'aurait « héritée » d'un aïeul obscur.</p>
+      <p><span class="tag">Foudre</span><span class="tag">Lignée</span></p>
+    </div>
+  </div>
+
+  <div class="artefact-card arme">
+    <div class="artefact-header">
+      <div class="artefact-icon">🪓</div>
+      <div class="artefact-title">
+        <h2>Krul-Sonn</h2>
+        <div class="type">Hache runique nordique</div>
+      </div>
+    </div>
+    <div class="artefact-info">
+      <p>Hache de guerre gravée de runes de tempête. Forgée sous le Nœud du Givre par un forgeron nain-nordique disparu.</p>
+      <h3>Pouvoir</h3>
+      <p>Ne peut être portée que par un guerrier ayant tué un ennemi de sang-froid pour une juste cause. <strong>1d12 dégâts</strong> + le porteur ignore le froid mortel. Sur cri de guerre, +1d6 dégâts jusqu'à la fin du tour.</p>
+      <h3>Localisation actuelle</h3>
+      <p>Fichée dans un rocher au fond des Fjords de Brumelune — attend un porteur digne. Beaucoup ont essayé de la retirer.</p>
+      <p><span class="tag">Nordique</span><span class="tag">Runes</span></p>
+    </div>
+  </div>
+
+  <div class="artefact-card arme">
+    <div class="artefact-header">
+      <div class="artefact-icon">🏹</div>
+      <div class="artefact-title">
+        <h2>Chant-de-Feuille</h2>
+        <div class="type">Arc long sylvestre</div>
+      </div>
+    </div>
+    <div class="artefact-info">
+      <p>Arc taillé dans un arbre de la Forêt Julia qui aurait vécu 500 ans. Aurait appartenu à Julia elle-même avant sa mort.</p>
+      <h3>Pouvoir</h3>
+      <p>Le porteur ne rate jamais son premier tir de la journée sur une créature qui menace un innocent. Après cela : <strong>arc normal +1</strong> (1d8+1). Vibre doucement quand un ennemi de la forêt est proche.</p>
+      <h3>Localisation actuelle</h3>
+      <p>Gardé par les Elfes Sylvestres. Ne le prêteraient qu'à un PJ digne de porter l'héritage de Julia.</p>
+      <p><span class="tag">Sylvestre</span><span class="tag">Julia</span></p>
+    </div>
+  </div>
+
+  <div class="artefact-card arme">
+    <div class="artefact-header">
+      <div class="artefact-icon">🔪</div>
+      <div class="artefact-title">
+        <h2>La Dague de l'Infinie</h2>
+        <div class="type">Dague pré-Rupture</div>
+      </div>
+    </div>
+    <div class="artefact-info">
+      <p>Dague noire vue par Jack dans le livre 1, plantée dans un piédestal. Elle « choisit » son porteur.</p>
+      <h3>Pouvoir</h3>
+      <p>1d6+1 dégâts. Une fois par jour, le porteur peut faire le vœu que <strong>la lame ne tue pas la cible qu'il touche</strong> — la cible tombe seulement inconsciente, à 1 PV. Une seule fois par cible, quel qu'en soit le résultat.</p>
+      <div class="artefact-danger"><strong>Danger</strong> : le porteur rêve de la personne à qui la dague appartenait avant.</div>
+      <h3>Localisation actuelle</h3>
+      <p>Perdue lors du combat final du livre 1. Récupérable par les PJ dans les ruines de la Tour.</p>
+      <p><span class="tag">Pré-Rupture</span><span class="tag">Livre 1</span></p>
+    </div>
+  </div>
+
+</div>
+
+<h2 class="section-title">🛡️ Armures & protections</h2>
+
+<div class="artefacts-grid">
+
+  <div class="artefact-card armure">
+    <div class="artefact-header">
+      <div class="artefact-icon">🛡️</div>
+      <div class="artefact-title">
+        <h2>Cuir de la Rose</h2>
+        <div class="type">Armure légère vermillon</div>
+      </div>
+    </div>
+    <div class="artefact-info">
+      <p>Cuir souple teint au vermillon profond, offert par la Rose-Première Indra à un porteur digne (rare).</p>
+      <h3>Pouvoir</h3>
+      <p><strong>Défense +2</strong>. Les Roses reconnaissent le porteur comme allié à première vue. Le porteur peut, une fois par jour, invoquer le nom d'Indra pour qu'un noble d'Armonia écoute au moins 3 phrases.</p>
+      <h3>Localisation actuelle</h3>
+      <p>Doit être offert. Impossible à voler — le vermillon pâlit et devient inefficace en cas de vol.</p>
+      <p><span class="tag">Roses</span><span class="tag">Prestige</span></p>
+    </div>
+  </div>
+
+  <div class="artefact-card armure">
+    <div class="artefact-header">
+      <div class="artefact-icon">🪶</div>
+      <div class="artefact-title">
+        <h2>Brassard des Cinq Vents</h2>
+        <div class="type">Brassard Tengu script</div>
+      </div>
+    </div>
+    <div class="artefact-info">
+      <p>Brassard gravé de scripts de vent par les meilleurs artisans de Tsu-Raji, offert à un ami de la caste Karasu.</p>
+      <h3>Pouvoir</h3>
+      <p>Le porteur peut, deux fois par jour, activer un <strong>bouclier de vent</strong> (script Vent+Disque+Prolongation, 3 tours, dévie projectiles). Charge : 10 activations avant recharge.</p>
+      <h3>Localisation actuelle</h3>
+      <p>Rare — donné par un Tengu Karasu si le porteur a rendu un service majeur à Tsu-Raji.</p>
+      <p><span class="tag">Tengu</span><span class="tag">Script</span></p>
+    </div>
+  </div>
+
+</div>
+
+<h2 class="section-title">💍 Bijoux & talismans</h2>
+
+<div class="artefacts-grid">
+
+  <div class="artefact-card bijou">
+    <div class="artefact-header">
+      <div class="artefact-icon">💍</div>
+      <div class="artefact-title">
+        <h2>L'Anneau de Kejai</h2>
+        <div class="type">Bague de majordome Argenti</div>
+      </div>
+    </div>
+    <div class="artefact-info">
+      <p>Bague simple portée jadis par Kejai, majordome de la demeure de Silver. Père d'Aqua. Aurait été perdu à sa mort.</p>
+      <h3>Pouvoir</h3>
+      <p>Le porteur peut, une fois par jour, poser une question à un objet appartenu à un mort — l'objet répond par un souvenir bref (image, son, sensation). Utile pour enquête.</p>
+      <h3>Localisation actuelle</h3>
+      <p>Perdu à Cordéheim (Heledera) chez un antiquaire louche qui ignore ce qu'il possède.</p>
+      <p><span class="tag">Veilleur</span><span class="tag">Enquête</span></p>
+    </div>
+  </div>
+
+  <div class="artefact-card bijou">
+    <div class="artefact-header">
+      <div class="artefact-icon">🩸</div>
+      <div class="artefact-title">
+        <h2>Le Fil de Garance</h2>
+        <div class="type">Bracelet de sang lié</div>
+      </div>
+    </div>
+    <div class="artefact-info">
+      <p>Fin bracelet rouge tressé, offert par la Comtesse Garance à un allié utile. Toujours signe de dette.</p>
+      <h3>Pouvoir</h3>
+      <p>Le porteur peut, une fois par semaine, transmettre 1d6 PV à un allié à 100m par simple concentration. La Comtesse sait toujours où se trouve le porteur.</p>
+      <div class="artefact-danger"><strong>Danger</strong> : chaque usage donne à la Maison Garance une « faveur due » de la part du porteur.</div>
+      <p><span class="tag">Sang</span><span class="tag">Dette</span></p>
+    </div>
+  </div>
+
+  <div class="artefact-card bijou">
+    <div class="artefact-header">
+      <div class="artefact-icon">🌟</div>
+      <div class="artefact-title">
+        <h2>Étoile de Jei'nia</h2>
+        <div class="type">Médaillon des Spriius Luminatis</div>
+      </div>
+    </div>
+    <div class="artefact-info">
+      <p>Médaillon en or fin qui capte la lumière du soleil. Signe distinctif des prêtres majeurs des Spriius Luminatis.</p>
+      <h3>Pouvoir</h3>
+      <p>Le porteur peut, à l'aube ou au coucher, <strong>régénérer 1d6 Éther</strong> en priant sincèrement. Cible aussi les esprits malveillants — les ombres reculent à 3m.</p>
+      <h3>Localisation actuelle</h3>
+      <p>Distribué à des prêtres actifs. Un PJ peut être choisi pour en porter un s'il montre foi et courage.</p>
+      <p><span class="tag">Jei'nia</span><span class="tag">Lumière</span></p>
+    </div>
+  </div>
+
+</div>
+
+<h2 class="section-title">🏺 Reliques anciennes</h2>
+
+<div class="artefacts-grid">
+
+  <div class="artefact-card relique">
+    <div class="artefact-header">
+      <div class="artefact-icon">🗝️</div>
+      <div class="artefact-title">
+        <h2>La Clé de Fulgura</h2>
+        <div class="type">Clé sans serrure</div>
+      </div>
+    </div>
+    <div class="artefact-info">
+      <p>Petite clé d'argent gravée d'une rune inconnue. Aurait appartenu à Silver-Fulgura.</p>
+      <h3>Pouvoir</h3>
+      <p>Cette clé ouvre une seule serrure au monde — <strong>la porte de la chambre au sommet de la Tour du Renouveau</strong>. Personne n'a testé, personne ne sait. Une porte qui n'aurait pas dû exister.</p>
+      <div class="artefact-danger"><strong>Danger majeur</strong> : ouvrir cette porte pourrait libérer l'artefact qui calme Armonia. Fin possible du monde tel qu'on le connaît.</div>
+      <p><span class="tag">Silver</span><span class="tag">Endgame</span></p>
+    </div>
+  </div>
+
+  <div class="artefact-card relique">
+    <div class="artefact-header">
+      <div class="artefact-icon">🕯️</div>
+      <div class="artefact-title">
+        <h2>La Bougie de Kéiy'ka</h2>
+        <div class="type">Bougie noire cérémonielle</div>
+      </div>
+    </div>
+    <div class="artefact-info">
+      <p>Bougie taillée dans un cire noire épaisse, offerte par un prêtre de la Nuit à un porteur digne.</p>
+      <h3>Pouvoir</h3>
+      <p>Allumée, cette bougie éclaire les <strong>âmes égarées</strong> à proximité (100m). Utile aux Veilleurs pour repérer une âme à accompagner. Ne se consume qu'en présence d'un mort récent.</p>
+      <p><span class="tag">Kéiy'ka</span><span class="tag">Veilleur</span></p>
+    </div>
+  </div>
+
+  <div class="artefact-card relique">
+    <div class="artefact-header">
+      <div class="artefact-icon">🪞</div>
+      <div class="artefact-title">
+        <h2>Le Miroir d'Aurale</h2>
+        <div class="type">Miroir temporel</div>
+      </div>
+    </div>
+    <div class="artefact-info">
+      <p>Miroir ancien à cadre d'ivoire, prêté (rarement) par la Maison Aurale à un enquêteur digne.</p>
+      <h3>Pouvoir</h3>
+      <p>Regardé fixement pendant 1 minute, le miroir montre les 6 dernières secondes vécues dans la pièce où il se trouve. Fonctionne <strong>une fois par jour</strong>. Le porteur voit tout — y compris ce que les vivants voudraient cacher.</p>
+      <p><span class="tag">Temps</span><span class="tag">Aurale</span></p>
+    </div>
+  </div>
+
+</div>
+
+<h2 class="section-title">🛠️ Outils d'ingénierie</h2>
+
+<div class="artefacts-grid">
+
+  <div class="artefact-card outil">
+    <div class="artefact-header">
+      <div class="artefact-icon">📡</div>
+      <div class="artefact-title">
+        <h2>OMI de Silver</h2>
+        <div class="type">Cristaux jumeaux originaux</div>
+      </div>
+    </div>
+    <div class="artefact-info">
+      <p>Paire de cristaux OMI (Objet Magique d'Interlien) forgés par Oupac dans sa jeunesse pour Silver. Prototypes originaux.</p>
+      <h3>Pouvoir</h3>
+      <p>Communication vocale à distance illimitée (continent). <strong>Ne consomme pas d'Éther</strong> — anomalie unique. Impossible à répliquer par Oupac lui-même.</p>
+      <p><span class="tag">Ingénieur</span><span class="tag">Oupac</span></p>
+    </div>
+  </div>
+
+  <div class="artefact-card outil">
+    <div class="artefact-header">
+      <div class="artefact-icon">💎</div>
+      <div class="artefact-title">
+        <h2>Cristal-Cœur de Villa Virtue</h2>
+        <div class="type">Fragment du cristal principal</div>
+      </div>
+    </div>
+    <div class="artefact-info">
+      <p>Petit fragment détaché du cristal de mana géant qui porte Villa Virtue. Volé, égaré, dispersé — plusieurs fragments circulent.</p>
+      <h3>Pouvoir</h3>
+      <p>Restaure <strong>5 Éther</strong> instantanément quand écrasé dans la main. Usage unique — le fragment se dissout. Rare (une poignée dans le monde).</p>
+      <p><span class="tag">Éther</span><span class="tag">Villa Virtue</span></p>
+    </div>
+  </div>
+
+</div>
+
+<h2 class="section-title">📜 Textes & manuscrits</h2>
+
+<div class="artefacts-grid">
+
+  <div class="artefact-card texte">
+    <div class="artefact-header">
+      <div class="artefact-icon">📜</div>
+      <div class="artefact-title">
+        <h2>Le Carnet de Julia</h2>
+        <div class="type">Journal personnel</div>
+      </div>
+    </div>
+    <div class="artefact-info">
+      <p>Carnet à couverture de cuir vert, tenu par Julia dans les dernières années de sa vie. Notes de médiation, esquisses de la Forêt, prières à Féiy.</p>
+      <h3>Pouvoir</h3>
+      <p>Le porteur qui lit un passage à voix haute dans la Forêt Julia gagne temporairement +2 CHA face aux Elfes Sylvestres. Contient 3 pages arrachées — que dit-il ?</p>
+      <h3>Localisation actuelle</h3>
+      <p>Enseveli avec Julia. Un prêtre de la Tribu de la Forêt gardait cet emplacement secret.</p>
+      <p><span class="tag">Julia</span><span class="tag">Enquête</span></p>
+    </div>
+  </div>
+
+  <div class="artefact-card texte">
+    <div class="artefact-header">
+      <div class="artefact-icon">📖</div>
+      <div class="artefact-title">
+        <h2>Le Codex Fulgura</h2>
+        <div class="type">Grand livre magique</div>
+      </div>
+    </div>
+    <div class="artefact-info">
+      <p>Grimoire immense écrit par Silver-Fulgura sur les mille ans qu'il a vécus. Contient de la théorie sur les mots primordiaux, la Rupture, et l'Ombre.</p>
+      <h3>Pouvoir</h3>
+      <p>Contient <strong>3 mots primordiaux jamais révélés</strong>. Un érudit peut mettre 6 mois d'étude pour extraire un mot. Le livre <strong>pèse comme une pierre</strong> volontairement — Silver ne voulait pas qu'on le déplace facilement.</p>
+      <h3>Localisation actuelle</h3>
+      <p>Caché au sous-sol scellé du QG des Veilleurs à Me'yn Prus. Seuls Jack, Aqua et Vesper peuvent y accéder.</p>
+      <p><span class="tag">Mots</span><span class="tag">Endgame</span></p>
+    </div>
+  </div>
+
+  <div class="artefact-card texte">
+    <div class="artefact-header">
+      <div class="artefact-icon">🗺️</div>
+      <div class="artefact-title">
+        <h2>La Carte de Pebacci</h2>
+        <div class="type">Carte inachevée du monde</div>
+      </div>
+    </div>
+    <div class="artefact-info">
+      <p>Carte manuscrite de Pebacci (Veilleur cartographe), inachevée. Montre les 12 Nœuds du Monde — dont trois qu'aucun autre document ne mentionne.</p>
+      <h3>Pouvoir</h3>
+      <p>Sur la carte, un point rouge se déplace — c'est un objet magique majeur en circulation dans le monde. Chaque semaine, il bouge. Utile pour <strong>traquer des artefacts perdus</strong>.</p>
+      <p><span class="tag">Cartographie</span><span class="tag">Nœuds</span></p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Artefacts Légendaires · 18 objets uniques · Système Bilal · Armonia 2026
+</footer>
+
+</div>
+</body>
+</html>

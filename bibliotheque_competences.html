@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compétences & Spécialités · Armonia</title>
+<style>
+  :root{
+    --bg:#1a1a2e; --paper:#2a2a3e; --primary:#c9a85a; --accent:#d97c47;
+    --text:#f4e8d0; --muted:#9a8a7a; --border:#3a3a4e;
+    --danger:#c44040; --success:#5aa850; --info:#5a8ec9; --nature:#6fae5a; --mystere:#b088c8;
+  }
+  *{box-sizing:border-box}
+  body{font-family:'Georgia',serif;background:var(--bg);color:var(--text);margin:0;padding:22px;line-height:1.5}
+  .wrap{max-width:1040px;margin:0 auto}
+  a.back{color:var(--muted);text-decoration:none;font-size:14px} a.back:hover{color:var(--primary)}
+  header.hero{background:linear-gradient(135deg,#232338,#2a2a3e);border:2px solid var(--primary);border-radius:12px;padding:20px 26px;margin:12px 0 18px;position:relative;overflow:hidden}
+  header.hero::after{content:"📚";position:absolute;right:22px;top:12px;font-size:56px;opacity:.12}
+  h1{font-size:26px;color:var(--primary);margin:0 0 4px} .sub{color:var(--muted);font-style:italic;margin:0}
+  .rule{background:#20281f;border:1px solid var(--nature);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:14px}
+  .rule b{color:var(--nature)}
+  h2{color:var(--accent);font-size:19px;border-bottom:1px solid var(--border);padding-bottom:5px;margin:26px 0 10px}
+  h3{color:var(--primary);font-size:15px;margin:16px 0 6px}
+  .card{background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.cols{grid-template-columns:1fr}}
+  .carac{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--info);font-weight:bold}
+  ul{padding-left:18px;margin:4px 0} li{margin:4px 0;font-size:13.5px}
+  li b{color:var(--text)}
+  .spec li b{color:var(--primary)}
+  .contre li b{color:var(--danger)}
+  .tag{display:inline-block;background:#1f1f34;border:1px solid var(--border);border-radius:12px;padding:1px 9px;font-size:11px;color:var(--muted);margin-left:6px}
+  .note{font-size:12px;color:var(--muted)}
+  .foot{text-align:center;color:var(--muted);font-size:11px;margin:24px 0 4px}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">← Retour au sommaire</a>
+
+<header class="hero">
+  <h1>Compétences &amp; Spécialités</h1>
+  <p class="sub">Le socle de compétences + un catalogue de spécialités à piocher — adapté de ton grand classeur</p>
+</header>
+
+<div class="rule">
+🎲 <b>Modèle du jet :</b> <b>1d20 + Caractéristique (0→+3) + Compétence (cap +3) + Spécialité (+1 si le contexte s'y prête)</b> vs DD. Le <b>1</b> = échec critique, le <b>20</b> = réussite critique.<br>
+🧩 <b>À la création :</b> répartis tes <b>caractéristiques</b>, choisis tes <b>compétences</b> (rang Novice +1 / Confirmé +2 / Expert +3), puis <b>2 Spécialités</b>. Prendre une <b>Contrepartie</b> t'offre une <b>3ᵉ Spécialité</b> — et le MJ peut l'invoquer en jeu : si elle te complique la vie, tu <b>regagnes 1 Écho</b>.
+</div>
+
+<h2>1 · Compétences de base <span class="note">(le socle — 26, classées par caractéristique)</span></h2>
+<div class="card">
+  <div class="cols">
+    <div>
+      <p class="carac">💪 Force</p>
+      <ul>
+        <li><b>Corps-à-corps</b> — armes de mêlée, pugilat</li>
+        <li><b>Athlétisme</b> — grimper, sauter, nager, forcer, porter</li>
+      </ul>
+      <p class="carac">🎯 Dextérité</p>
+      <ul>
+        <li><b>Armes à distance</b> — arcs, arbalètes, lancer</li>
+        <li><b>Acrobaties</b> — équilibre, roulades, se dégager</li>
+        <li><b>Discrétion</b> — se cacher, filature, approche</li>
+        <li><b>Escamotage</b> — crochetage, vol à la tire, tours de main</li>
+        <li><b>Pièges &amp; mécanismes</b> — désamorcer, poser, forcer une serrure</li>
+      </ul>
+      <p class="carac">🛡️ Constitution</p>
+      <ul>
+        <li><b>Endurance</b> — fatigue, poison, froid, alcool, souffle</li>
+      </ul>
+    </div>
+    <div>
+      <p class="carac">📖 Intelligence</p>
+      <ul>
+        <li><b>Arcanes</b> — théorie magique, runes, script</li>
+        <li><b>Savoir &amp; Histoire</b> — lore, religion, politique, langues</li>
+        <li><b>Investigation</b> — fouiller, déduire, recouper</li>
+        <li><b>Médecine</b> — soigner, diagnostiquer, stabiliser</li>
+        <li><b>Ingénierie &amp; Artéfacts</b> — machines, runes-objets</li>
+      </ul>
+      <p class="carac">👁️ Sagesse</p>
+      <ul>
+        <li><b>Perception</b> — repérer, sens en alerte</li>
+        <li><b>Intuition</b> — lire les gens, sentir un mensonge</li>
+        <li><b>Survie &amp; Pistage</b> — traquer, s'orienter, chasser, camper</li>
+        <li><b>Nature</b> — faune, flore, créatures</li>
+        <li><b>Dressage &amp; Lien animal</b> — compagnons, montures</li>
+        <li><b>Volonté</b> — sang-froid, résister à la peur et à l'emprise</li>
+      </ul>
+      <p class="carac">💬 Charisme</p>
+      <ul>
+        <li><b>Persuasion</b> — convaincre honnêtement, négocier</li>
+        <li><b>Tromperie</b> — mentir, bluffer, déguiser</li>
+        <li><b>Intimidation</b> — menacer, contraindre</li>
+        <li><b>Commandement &amp; Prestance</b> — autorité, rallier</li>
+        <li><b>Étiquette &amp; Mondanités</b> — cours, protocole, réseaux</li>
+        <li><b>Représentation</b> — musique, comédie, spectacle, jeu</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note" style="margin-top:8px">La <b>magie</b> n'est pas une compétence : elle passe par les <b>5 affinités</b> (Feu/Eau/Vent/Terre/Chaos) + Arcanes pour le script.</p>
+</div>
+
+<h2>2 · Spécialités à piocher <span class="note">(narrow, +1 situationnel — adaptées de ton classeur)</span></h2>
+
+<div class="card spec">
+  <div class="cols">
+    <div>
+      <h3>🗣️ Sociales</h3>
+      <ul>
+        <li><b>Baratineur</b> — +1 Tromperie pour se sortir d'un mauvais pas</li>
+        <li><b>Charmant</b> — +1 Persuasion en première impression</li>
+        <li><b>Des amis partout</b> — +1 pour trouver un contact ou un refuge en ville</li>
+        <li><b>Marchand</b> — +1 pour négocier un prix, acheter ou revendre</li>
+        <li><b>Argot</b> — +1 pour comprendre et parler le milieu criminel</li>
+        <li><b>Méfiant</b> — +1 Intuition pour flairer une arnaque</li>
+        <li><b>Joli jeu de mots</b> — +1 pour désarçonner par la répartie</li>
+        <li><b>Ambassadeur</b> — +1 Étiquette &amp; Mondanités</li>
+        <li><b>Voix de velours</b> — +1 Représentation (chant, conte)</li>
+        <li><b>Bien informé</b> — +1 pour savoir qui compte dans une cité</li>
+        <li><b>Polyglotte</b> — +1 pour déchiffrer ou apprendre une langue</li>
+      </ul>
+
+      <h3>⚔️ Combat</h3>
+      <ul>
+        <li><b>Escrimeur</b> — +1 Corps-à-corps avec une lame légère</li>
+        <li><b>Expert en embuscade</b> — +1 à la première frappe depuis la surprise</li>
+        <li><b>Astuce du chasseur</b> — +1 si tu observes un tour avant de frapper</li>
+        <li><b>Anatomiste</b> — +1 pour viser un point faible (dégâts ciblés)</li>
+        <li><b>Sprinteur</b> — +1 en course (fuite, charge, poursuite)</li>
+        <li><b>Résilient</b> — +1 Endurance, encaisser la douleur</li>
+        <li><b>Porteur de bouclier</b> — +1 en défense active avec bouclier</li>
+        <li><b>Arme cachée</b> — dégainer/dissimuler une lame ; +1 attaque surprise</li>
+        <li><b>Assoiffé de sang</b> — +1 Intimidation en plein combat</li>
+      </ul>
+
+      <h3>🎲 Chance &amp; débrouille</h3>
+      <ul>
+        <li><b>Jeux de hasard</b> — +1 aux paris, cartes, dés, lire une table de joueurs <span class="tag">Corbeau</span></li>
+        <li><b>Favori de la chance</b> — 1×/scène, relancer un dé raté (coûte 1 Écho)</li>
+        <li><b>Magie de scène</b> — +1 tours de passe-passe, prestidigitation</li>
+        <li><b>Foie de fer</b> — +1 pour résister à l'alcool et aux poisons ingérés</li>
+        <li><b>Évasion discrète</b> — +1 pour se défaire de liens ou d'une cellule</li>
+        <li><b>Récolteur</b> — +1 pour extraire des ressources d'une bête ou d'un lieu</li>
+      </ul>
+    </div>
+    <div>
+      <h3>✨ Magie &amp; affinités</h3>
+      <ul>
+        <li><b>Touché par les tempêtes</b> — +1 aux sorts de foudre (Vent/Chaos)</li>
+        <li><b>Touché par l'eau</b> — +1 affinité Eau</li>
+        <li><b>Touché par la terre</b> — +1 affinité Terre</li>
+        <li><b>Touché par le vent</b> — +1 affinité Vent</li>
+        <li><b>Touché par les flammes</b> — +1 affinité Feu</li>
+        <li><b>Adepte doué</b> — +1 pour un type de sort de prédilection</li>
+        <li><b>Lanceur résilient</b> — +1 pour garder ta concentration / éviter la surcharge</li>
+        <li><b>Artisanat magique</b> — +1 pour inscrire un script ou une rune</li>
+        <li><b>Forgeron émérite</b> — +1 pour fabriquer un objet runique <span class="tag">Ingénieur</span></li>
+        <li><b>Sceptique</b> — +1 pour percer ou résister à une illusion</li>
+        <li><b>Enfant de la lune</b> — +1 à la magie exercée de nuit</li>
+      </ul>
+
+      <h3>🙏 Foi &amp; Volonté</h3>
+      <ul>
+        <li><b>Absence de peur</b> — +1 Volonté contre la peur</li>
+        <li><b>Foi inébranlable</b> — +1 pour résister à l'emprise mentale</li>
+        <li><b>Disciple concentré</b> — +1 pour garder les idées claires sous pression</li>
+        <li><b>Enfant du temple</b> — +1 Médecine (soins appris au sanctuaire)</li>
+        <li><b>Guide spirituel</b> — +1 face aux morts, aux esprits, aux rites</li>
+      </ul>
+
+      <h3>🌲 Nature &amp; bêtes</h3>
+      <ul>
+        <li><b>Ami des animaux</b> — +1 Dressage &amp; Lien animal <span class="tag">le corbeau</span></li>
+        <li><b>Chevaucheur de bêtes</b> — +1 pour dompter ou monter une créature</li>
+        <li><b>Philosophe naturaliste</b> — +1 Nature (créatures, plantes)</li>
+        <li><b>Pionnier</b> — +1 Survie en milieu hostile (jungle, glace, marais)</li>
+        <li><b>Observateur des étoiles</b> — +1 orientation et navigation</li>
+        <li><b>Connaître la terre</b> — +1 pour trouver eau, gibier, abri</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note" style="margin-top:6px">Une Spécialité = un <b>Atout Niveau I</b> (+1) au sens de ton système. Tu peux en promouvoir une en Niv. II (+2) / III (+3) via l'XP. Bonus <b>situationnel</b> : il ne s'applique que dans le contexte décrit.</p>
+</div>
+
+<h2>3 · Contreparties <span class="note">(défauts jouables — chacune débloque une Spécialité en plus)</span></h2>
+<div class="card contre">
+  <div class="cols">
+    <ul>
+      <li><b>Addict aux jeux</b> — tu ne résistes pas à un pari ou un défi <span class="tag">Corbeau</span></li>
+      <li><b>Cupidité</b> — l'or et le butin t'aveuglent</li>
+      <li><b>Orgueilleux</b> — tu ne tolères pas qu'on remette en cause ta dignité</li>
+      <li><b>Paranoïaque</b> — tu vois des menaces partout, tu fais peu confiance</li>
+      <li><b>Hédoniste</b> — tu cherches le confort et le plaisir avant le devoir</li>
+      <li><b>Amoureux transi</b> — un être t'obsède et brouille ton jugement</li>
+    </ul>
+    <ul>
+      <li><b>Obstiné</b> — tu corriges et contredis les autres malgré toi</li>
+      <li><b>Plein de doutes</b> — tu manques de confiance au pire moment</li>
+      <li><b>Soif de pouvoir</b> — tu convoites la domination</li>
+      <li><b>Provincial</b> — naïf et déboussolé hors de ton milieu d'origine</li>
+      <li><b>Nostalgique</b> — tes pensées dérivent vers le passé</li>
+      <li><b>Dépendant</b> — tu as besoin d'être accepté par le groupe</li>
+    </ul>
+  </div>
+  <p class="note" style="margin-top:4px">Mécanique (le <i>compel</i>) : quand le MJ invoque ta Contrepartie et que tu joues le défaut malgré le risque, tu <b>gagnes 1 Écho</b>. Refuser coûte 1 Écho. C'est le moteur qui fait vivre ton économie d'Écho.</p>
+</div>
+
+<h2>4 · Spécialités d'Armonia <span class="note">(régions, races, cultes — reskinnées de ton classeur)</span></h2>
+
+<div class="card spec">
+  <h3>🗺️ Régionales</h3>
+  <div class="cols">
+    <ul>
+      <li><b>Marchand de Me'yn Prus</b> — +1 pour négocier dans les guildes marchandes</li>
+      <li><b>Aventurier de Villa Virtue</b> — +1 pour décrocher un contrat ou jouer gros dans la cité volante</li>
+      <li><b>Enfant de la Forêt Julia</b> — +1 Survie &amp; Pistage sous la canopée</li>
+      <li><b>Élève de la Vallée d'Aether</b> — +1 à une affinité élémentaire au choix</li>
+      <li><b>Marin de la Côte d'Or</b> — +1 en mer et sur les fleuves</li>
+    </ul>
+    <ul>
+      <li><b>Passeur de Sylvarn</b> — +1 pour manier portails et téléportation</li>
+      <li><b>Écho du Massif</b> — +1 orientation et pour capter rumeurs &amp; échos anciens</li>
+      <li><b>Ombre de No'Ord</b> — +1 Discrétion de nuit et par grand froid</li>
+      <li><b>Sang de la Cité d'Armonia</b> — +1 Étiquette parmi les Grandes Familles</li>
+      <li><b>Glaneur de ruines</b> — +1 Investigation dans les vestiges des Anciens Hommes</li>
+    </ul>
+  </div>
+
+  <h3>🧬 Raciales</h3>
+  <div class="cols">
+    <ul>
+      <li><b>Script du Vent (Elfe Yle)</b> — +1 pour lire ou inscrire un script de vent</li>
+      <li><b>Sentier sylvestre (Elfe Sylvestre)</b> — +1 Discrétion &amp; Survie en forêt</li>
+      <li><b>Œil des Elfes Noirs</b> — +1 Perception dans le noir et sous terre</li>
+      <li><b>Mémoire des Hauts-Elfes</b> — +1 Savoir &amp; Histoire</li>
+      <li><b>Verbe des villes (Humain)</b> — +1 Persuasion ou Représentation en milieu urbain</li>
+    </ul>
+    <ul>
+      <li><b>Bec et plume (Tengu)</b> — +1 Escamotage ; apprend vite les langues</li>
+      <li><b>Instinct du Mi-loup</b> — +1 Pistage et Perception (odorat, ouïe)</li>
+      <li><b>Roche et forge (Nain)</b> — +1 Ingénierie &amp; Artéfacts, et Endurance</li>
+      <li><b>Bois vivant (Leshen)</b> — +1 Nature et Dressage, lien aux bêtes des bois</li>
+      <li><b>Cœur élémentaire (demi-élémentaire)</b> — +1 à l'affinité de ton élément… mais vulnérable à ce même élément <span class="tag">contrepartie</span></li>
+    </ul>
+  </div>
+
+  <h3>🕊️ De foi — les Cinq Célestes &amp; cultes</h3>
+  <div class="cols">
+    <ul>
+      <li><b>Serment de Hyal-Roon</b> <span class="tag">Nord · honneur</span> — +1 Volonté tant que tu tiens ta parole ; la rompre annule le bonus</li>
+      <li><b>Érudit de Sîr-Vhel</b> <span class="tag">Est · savoir</span> — +1 Savoir &amp; Histoire dans un temple-bibliothèque</li>
+      <li><b>Ferveur de Kor-Drun</b> <span class="tag">Sud · vendetta</span> — +1 Corps-à-corps quand tu défends un serment ou venges un proche</li>
+      <li><b>Faveur de Mae-Lor</b> <span class="tag">Ouest · négoce</span> — 1×/scène relancer un jet de négoce ou de hasard (coûte 1 Écho)</li>
+      <li><b>Regard d'Ay-Senna</b> <span class="tag">Centre · justice</span> — +1 Intuition pour juger le vrai du faux</li>
+    </ul>
+    <ul>
+      <li><b>Rites du passage</b> — +1 face aux morts, esprits et sépultures</li>
+      <li><b>Purificateur</b> — +1 contre la nécromancie (les Vœnir) et la corruption du Script</li>
+      <li><b>Résilience élémentaire</b> — +1 pour résister à un type d'élément au choix</li>
+      <li><b>Vœu de silence</b> — +1 concentration &amp; Volonté quand tu agis seul et discret</li>
+      <li><b>Béni des vents</b> — 1×/jour, un petit coup de chance narratif (à la main du MJ)</li>
+    </ul>
+  </div>
+  <p class="note" style="margin-top:6px">Les catégories Régional/Racial/Religieux de ton classeur (~340 traits) sont ici <b>condensées et reskinnées</b> aux lieux, races et Célestes d'Armonia. On peut en ajouter à la demande.</p>
+</div>
+
+<p class="foot">Compétences &amp; Spécialités · Système Bilal (1d20 + Carac + Compétence + Spécialité) · Armonia 2026 — spécialités adaptées du classeur de Bilal (traits Pathfinder VF) à l'univers d'Armonia.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tables de Rencontres — Armonia 🤫</title>
+<style>
+:root {
+  --bg: #1a1a2e;
+  --paper: #2a2a3e;
+  --primary: #c9a85a;
+  --accent: #d97c47;
+  --text: #f4e8d0;
+  --muted: #9a8a7a;
+  --border: #3a3a4e;
+  --danger: #c44040;
+  --success: #5aa850;
+  --info: #5a8ec9;
+  --commun: #4a8a4a;
+  --modere: #b8a050;
+  --dangereux: #c47030;
+  --boss: #c44040;
+
+  --no-ord: #5a8ec9;
+  --foret: #4a8a4a;
+  --plaine: #b8a050;
+  --cote: #2aa0a0;
+  --route: #a87830;
+  --montagne: #7a6840;
+  --desert: #c47030;
+  --falaise: #b89030;
+  --cite: #c9a85a;
+  --ruines: #7a4a8a;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1200px; margin: 0 auto; }
+
+header.title-bar {
+  text-align: center;
+  margin-bottom: 16px;
+  padding: 18px;
+  background: var(--paper);
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 28px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.warning-banner {
+  background: var(--danger);
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-weight: bold;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 14px 18px;
+  border-radius: 4px;
+  margin-bottom: 18px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.intro-box strong { color: var(--primary); }
+.intro-box em { color: var(--accent); }
+
+.section-title {
+  font-size: 22px;
+  color: var(--primary);
+  margin: 28px 0 14px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+  letter-spacing: 1px;
+}
+
+/* ADAPTATION TABLE */
+.adapt-table {
+  width: 100%;
+  background: var(--paper);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+.adapt-table th, .adapt-table td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.adapt-table th {
+  background: #3a3a4e;
+  color: var(--primary);
+  letter-spacing: 1px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.adapt-table .commun-nom {
+  font-weight: bold;
+  color: var(--accent);
+}
+.adapt-table tbody tr:hover { background: #3a3a4e; }
+.adapt-table tbody tr:last-child td { border-bottom: none; }
+
+/* REGION CARDS */
+.region-card {
+  background: var(--paper);
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 18px 0;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+.region-card.foret { border-color: var(--foret); }
+.region-card.plaine { border-color: var(--plaine); }
+.region-card.cote { border-color: var(--cote); }
+.region-card.route { border-color: var(--route); }
+.region-card.montagne { border-color: var(--montagne); }
+.region-card.toundra { border-color: var(--no-ord); }
+.region-card.desert { border-color: var(--desert); }
+.region-card.falaise { border-color: var(--falaise); }
+.region-card.cite { border-color: var(--cite); }
+.region-card.ruines { border-color: var(--ruines); }
+
+.region-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--border);
+}
+.region-icon {
+  font-size: 44px;
+  width: 60px;
+  text-align: center;
+}
+.region-name { flex: 1; }
+.region-name h2 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+.region-card.foret h2 { color: var(--foret); }
+.region-card.plaine h2 { color: var(--plaine); }
+.region-card.cote h2 { color: var(--cote); }
+.region-card.route h2 { color: var(--route); }
+.region-card.montagne h2 { color: var(--montagne); }
+.region-card.toundra h2 { color: var(--no-ord); }
+.region-card.desert h2 { color: var(--desert); }
+.region-card.falaise h2 { color: var(--falaise); }
+.region-card.cite h2 { color: var(--cite); }
+.region-card.ruines h2 { color: var(--ruines); }
+.region-name .lieu {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.region-climat {
+  background: #1a1a2e;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin: 10px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.region-climat strong { color: var(--primary); }
+
+.encounter-table {
+  width: 100%;
+  background: #1a1a2e;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 10px 0;
+  border: 1px solid var(--border);
+}
+.encounter-table th, .encounter-table td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.encounter-table th {
+  background: var(--paper);
+  color: var(--primary);
+  letter-spacing: 1px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.encounter-table .roll {
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  color: var(--primary);
+  text-align: center;
+  width: 80px;
+}
+.encounter-table .tier {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: bold;
+  margin-right: 6px;
+  text-transform: uppercase;
+}
+.tier.commun { background: var(--commun); color: white; }
+.tier.modere { background: var(--modere); color: var(--bg); }
+.tier.dangereux { background: var(--dangereux); color: white; }
+.tier.boss { background: var(--boss); color: white; }
+.encounter-table tbody tr:hover { background: #2a2a3e; }
+.encounter-table tbody tr:last-child td { border-bottom: none; }
+
+.anomalie-box {
+  background: linear-gradient(135deg, #2a1a3e 0%, #3a2a4e 100%);
+  border: 2px solid var(--ruines);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+.anomalie-box h2 {
+  margin: 0 0 10px 0;
+  color: var(--ruines);
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+.anomalie-box p { font-size: 13px; line-height: 1.5; margin: 6px 0; }
+
+.nav-back {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 13px;
+}
+.nav-back:hover { text-decoration: underline; }
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body>
+<div class="container">
+
+<a href="index.html" class="nav-back">← Retour au sommaire</a>
+
+<div class="warning-banner">🤫 OUTIL MJ — Ne pas partager aux joueurs</div>
+
+<header class="title-bar">
+  <h1>🎲 TABLES DE RENCONTRES</h1>
+  <div class="subtitle">Adaptations climatiques · 10 régions · d20 par table</div>
+</header>
+
+<div class="intro-box">
+  <p><strong>Mode d'emploi</strong> : choisis la région, lance <strong>1d20</strong>, applique le résultat. Les résultats sont organisés par <em>tier</em> de danger (1-8 commun, 9-15 modéré, 16-19 dangereux, 20 spectaculaire).</p>
+  <p>Si tu veux un encounter d'un certain niveau, lance dans la fourchette correspondante. Si tu veux du chaos pur, lance 1d20 et accepte le sort.</p>
+  <p>Voir aussi <a href="bestiaire_mj.html" style="color:var(--accent);">bestiaire_mj.html</a> pour les stats complètes des créatures listées.</p>
+</div>
+
+<h2 class="section-title">🌡️ Adaptations climatiques — la même créature, des formes différentes</h2>
+
+<div class="intro-box">
+  <p>Certaines créatures existent partout, mais leur <strong>apparence et mécaniques varient</strong> selon le climat. Utilise les noms régionaux pour ancrer tes scènes dans le décor.</p>
+</div>
+
+<table class="adapt-table">
+  <thead>
+    <tr>
+      <th>Créature de base</th>
+      <th>No'Ord (givre)</th>
+      <th>Lumini (tempéré)</th>
+      <th>Drun-Kar (aride)</th>
+      <th>Forêt Julia (magique)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="commun-nom">Loup</td>
+      <td>Loup Albâtre (rapide, silencieux)</td>
+      <td>Loup gris (meute classique)</td>
+      <td>Loup-sable (camouflage clair)</td>
+      <td>Loup-feuille (vert-doré, intelligent)</td>
+    </tr>
+    <tr>
+      <td class="commun-nom">Ours</td>
+      <td>Ours Runique (runes sur fourrure)</td>
+      <td>Ours brun</td>
+      <td>Ours-roc (plus petit, fouisseur)</td>
+      <td>Ours-arbre (gardien sylvestre)</td>
+    </tr>
+    <tr>
+      <td class="commun-nom">Sanglier</td>
+      <td>Sanglier de givre (défenses gelées)</td>
+      <td>Sanglier commun</td>
+      <td>Sanglier-épineux (poils-piques)</td>
+      <td>Sanglier de la Tribu (légèrement empathique)</td>
+    </tr>
+    <tr>
+      <td class="commun-nom">Serpent</td>
+      <td>Serpent de Givre (sous la neige)</td>
+      <td>Vipère commune</td>
+      <td>Cobra des dunes</td>
+      <td>Serpent-liane (mimétique végétal)</td>
+    </tr>
+    <tr>
+      <td class="commun-nom">Cerf / Élan</td>
+      <td>Renne magique (bois runiques)</td>
+      <td>Cerf commun</td>
+      <td>Antilope du désert (rare)</td>
+      <td>Corne-Bruine (manipule le brouillard)</td>
+    </tr>
+    <tr>
+      <td class="commun-nom">Oiseau de proie</td>
+      <td>Gerfaut blanc</td>
+      <td>Faucon pèlerin</td>
+      <td>Vautour des dunes</td>
+      <td>Hibou-mémoire (rare, parle)</td>
+    </tr>
+    <tr>
+      <td class="commun-nom">Bandit / Brigand</td>
+      <td>Pillard nordique (hache, peaux d'ours)</td>
+      <td>Bandit de grand chemin</td>
+      <td>Razzieur Drun-Kar (à cheval)</td>
+      <td>Braconnier forestier (arc court)</td>
+    </tr>
+    <tr>
+      <td class="commun-nom">Goblin</td>
+      <td>Goblin des cavernes (peau bleutée)</td>
+      <td>Goblin commun</td>
+      <td>Goblin des dunes (camouflage ocre)</td>
+      <td>Goblin Intelligent ⚠️ (mutant — RARE)</td>
+    </tr>
+    <tr>
+      <td class="commun-nom">Esprit local</td>
+      <td>Esprit du Givre (froid mordant)</td>
+      <td>Esprit du foyer (Mei'thra)</td>
+      <td>Djinn des sables (rare)</td>
+      <td>Dryade Sylvestre (gardienne)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 class="section-title">🎯 Les 10 tables de rencontres</h2>
+
+<!-- 1. FORÊTS DE LUMINI -->
+<div class="region-card foret">
+  <div class="region-header">
+    <div class="region-icon">🌲</div>
+    <div class="region-name">
+      <h2>1. Forêts de Lumini</h2>
+      <div class="lieu">Etelin, Forêt Julia, abords sylvestres</div>
+    </div>
+  </div>
+  <div class="region-climat"><strong>Climat</strong> : tempéré-humide, brouillard matinal, pluies douces. <strong>Note</strong> : la Forêt Julia est sacrée — les Sylvestres voient tout. Toute rencontre violente y est aussi politique.</div>
+
+  <table class="encounter-table">
+    <thead><tr><th>1d20</th><th>Rencontre</th></tr></thead>
+    <tbody>
+      <tr><td class="roll">1-2</td><td><span class="tier commun">Commun</span>Bûcheron luministe perdu (PNJ utile)</td></tr>
+      <tr><td class="roll">3-4</td><td><span class="tier commun">Commun</span>Sanglier de la Tribu (légèrement empathique)</td></tr>
+      <tr><td class="roll">5-6</td><td><span class="tier commun">Commun</span>Loup-feuille solitaire (curieux, fuyant)</td></tr>
+      <tr><td class="roll">7-8</td><td><span class="tier commun">Commun</span>Patrouille de la Tribu de la Forêt (méfiance)</td></tr>
+      <tr><td class="roll">9-10</td><td><span class="tier modere">Modéré</span>Meute de Loups-feuille (3-5)</td></tr>
+      <tr><td class="roll">11-12</td><td><span class="tier modere">Modéré</span>Ours-arbre territorial</td></tr>
+      <tr><td class="roll">13-14</td><td><span class="tier modere">Modéré</span>Braconniers (4-6, illégal mais armés)</td></tr>
+      <tr><td class="roll">15</td><td><span class="tier modere">Modéré</span>Dryade éveillée gardienne</td></tr>
+      <tr><td class="roll">16-17</td><td><span class="tier dangereux">Dangereux</span>Sylvanien (arbre marcheur) défendant son bosquet</td></tr>
+      <tr><td class="roll">18</td><td><span class="tier dangereux">Dangereux</span>Patrouille d'Elfes Sylvestres armés (impossible à tromper)</td></tr>
+      <tr><td class="roll">19</td><td><span class="tier dangereux">Dangereux</span>Hibou-mémoire qui pose une énigme — refuser = malédiction mineure</td></tr>
+      <tr><td class="roll">20</td><td><span class="tier boss">Boss</span>🌳 <strong>L'esprit de Julia</strong> apparaît au pied du Nœud — appel/mission à un PJ digne</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 2. PLAINES FERTILES -->
+<div class="region-card plaine">
+  <div class="region-header">
+    <div class="region-icon">🌾</div>
+    <div class="region-name">
+      <h2>2. Plaines fertiles</h2>
+      <div class="lieu">Vallée d'Aether, Maelyr, voies caravanières</div>
+    </div>
+  </div>
+  <div class="region-climat"><strong>Climat</strong> : doux toute l'année, vents tièdes, soleil franc. <strong>Note</strong> : terres habitées, paysans partout. Les rencontres ici sont souvent humaines.</div>
+
+  <table class="encounter-table">
+    <thead><tr><th>1d20</th><th>Rencontre</th></tr></thead>
+    <tbody>
+      <tr><td class="roll">1-2</td><td><span class="tier commun">Commun</span>Famille de paysans (informations locales)</td></tr>
+      <tr><td class="roll">3-4</td><td><span class="tier commun">Commun</span>Caravane Karambol (commerce, services)</td></tr>
+      <tr><td class="roll">5-6</td><td><span class="tier commun">Commun</span>Sanglier commun (chasse possible)</td></tr>
+      <tr><td class="roll">7-8</td><td><span class="tier commun">Commun</span>Cerf majestueux (prudent)</td></tr>
+      <tr><td class="roll">9-10</td><td><span class="tier modere">Modéré</span>Bandits de grand chemin (4-6)</td></tr>
+      <tr><td class="roll">11-12</td><td><span class="tier modere">Modéré</span>Pèlerin solitaire suspect — info ou piège ?</td></tr>
+      <tr><td class="roll">13-14</td><td><span class="tier modere">Modéré</span>Meute de loups gris pressée par la faim</td></tr>
+      <tr><td class="roll">15</td><td><span class="tier modere">Modéré</span>Détachement mercenaire avec sceau Protectoria Antares</td></tr>
+      <tr><td class="roll">16-17</td><td><span class="tier dangereux">Dangereux</span>Cavaliers de Drun-Kar en raid commercial illégal</td></tr>
+      <tr><td class="roll">18</td><td><span class="tier dangereux">Dangereux</span>Échos de la Rupture (passants fantomatiques) — mineure</td></tr>
+      <tr><td class="roll">19</td><td><span class="tier dangereux">Dangereux</span>Centaure isolé (sage ou furieux selon humeur)</td></tr>
+      <tr><td class="roll">20</td><td><span class="tier boss">Boss</span>👑 Une <strong>Rose d'Armonia</strong> traverse — sa mission dépasse les PJ. La croiser laisse une marque.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 3. CÔTES ET ÎLES -->
+<div class="region-card cote">
+  <div class="region-header">
+    <div class="region-icon">⚓</div>
+    <div class="region-name">
+      <h2>3. Côtes & îles</h2>
+      <div class="lieu">Côte d'Or, archipel d'Heledera, ports Daluvio</div>
+    </div>
+  </div>
+  <div class="region-climat"><strong>Climat</strong> : chaud, marin, ensoleillé. Sel dans l'air. <strong>Note</strong> : zone où Heledera concurrence Lumini — espionnage commercial fréquent.</div>
+
+  <table class="encounter-table">
+    <thead><tr><th>1d20</th><th>Rencontre</th></tr></thead>
+    <tbody>
+      <tr><td class="roll">1-2</td><td><span class="tier commun">Commun</span>Pêcheurs locaux (rumeurs maritimes)</td></tr>
+      <tr><td class="roll">3-4</td><td><span class="tier commun">Commun</span>Marchand Daluvio en route (escortable)</td></tr>
+      <tr><td class="roll">5-6</td><td><span class="tier commun">Commun</span>Banc de poissons-lumière (offrande à Kael'mar conseillée)</td></tr>
+      <tr><td class="roll">7-8</td><td><span class="tier commun">Commun</span>Sirène curieuse, pas hostile</td></tr>
+      <tr><td class="roll">9-10</td><td><span class="tier modere">Modéré</span>Contrebandiers heledériens (4-6, marchandise suspecte)</td></tr>
+      <tr><td class="roll">11-12</td><td><span class="tier modere">Modéré</span>Requin Givrant migrateur (loin de chez lui)</td></tr>
+      <tr><td class="roll">13-14</td><td><span class="tier modere">Modéré</span>Tortue insulaire — île vivante (rare, sacrée)</td></tr>
+      <tr><td class="roll">15</td><td><span class="tier modere">Modéré</span>Pirates corsaires sous tolérance d'Heledera</td></tr>
+      <tr><td class="roll">16-17</td><td><span class="tier dangereux">Dangereux</span>Hydre marine jeune (3 têtes)</td></tr>
+      <tr><td class="roll">18</td><td><span class="tier dangereux">Dangereux</span>Aboleth émergé qui se prétend gardien du Nœud des Profondeurs</td></tr>
+      <tr><td class="roll">19</td><td><span class="tier dangereux">Dangereux</span>Banque d'Heledera — agent en mission discrète</td></tr>
+      <tr><td class="roll">20</td><td><span class="tier boss">Boss</span>🐍 <strong>Vey'sshen le Serpent</strong> tourne dans son sommeil — vague colossale anormale</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 4. ROUTES & MASSIFS -->
+<div class="region-card route">
+  <div class="region-header">
+    <div class="region-icon">🛤️</div>
+    <div class="region-name">
+      <h2>4. Routes & Massif des Échos</h2>
+      <div class="lieu">Voies caravanières, cols, ruines de bord de route</div>
+    </div>
+  </div>
+  <div class="region-climat"><strong>Climat</strong> : variable selon altitude. Vent fréquent. <strong>Note</strong> : Massif des Échos = terre sans loi, ermites et brigands. Voies caravanières = sécurisées seulement quand Karambol y patrouille.</div>
+
+  <table class="encounter-table">
+    <thead><tr><th>1d20</th><th>Rencontre</th></tr></thead>
+    <tbody>
+      <tr><td class="roll">1-2</td><td><span class="tier commun">Commun</span>Voyageur isolé en quête de protection (offre payement)</td></tr>
+      <tr><td class="roll">3-4</td><td><span class="tier commun">Commun</span>Caravane Karambol en convoi (route protégée)</td></tr>
+      <tr><td class="roll">5-6</td><td><span class="tier commun">Commun</span>Ermite à la croisée d'un chemin (rumeurs étranges)</td></tr>
+      <tr><td class="roll">7-8</td><td><span class="tier commun">Commun</span>Patrouille de gardes d'un royaume (impôts ?)</td></tr>
+      <tr><td class="roll">9-10</td><td><span class="tier modere">Modéré</span>Bandits de grand chemin (6-8, embuscade)</td></tr>
+      <tr><td class="roll">11-12</td><td><span class="tier modere">Modéré</span>Gnoll en chasse (1-3)</td></tr>
+      <tr><td class="roll">13-14</td><td><span class="tier modere">Modéré</span>Mercenaire Protectoria en mission — neutre, observe</td></tr>
+      <tr><td class="roll">15</td><td><span class="tier modere">Modéré</span>Caravane attaquée — survivants à secourir</td></tr>
+      <tr><td class="roll">16-17</td><td><span class="tier dangereux">Dangereux</span>Vétéran exilé (ex-armée, devenu brigand)</td></tr>
+      <tr><td class="roll">18</td><td><span class="tier dangereux">Dangereux</span>Échos de la Rupture — voix anciennes qui parlent dans le vent</td></tr>
+      <tr><td class="roll">19</td><td><span class="tier dangereux">Dangereux</span>Wendigo (esprit de cannibale, frontière chaotique)</td></tr>
+      <tr><td class="roll">20</td><td><span class="tier boss">Boss</span>⚔️ <strong>Sara l'Archère d'élite</strong> traverse la route — engagez la conversation à vos risques</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 5. MONTAGNES NORDIQUES -->
+<div class="region-card montagne">
+  <div class="region-header">
+    <div class="region-icon">🏔️</div>
+    <div class="region-name">
+      <h2>5. Montagnes nordiques</h2>
+      <div class="lieu">Ællskarn, Fer In Gal, pics nordiques</div>
+    </div>
+  </div>
+  <div class="region-climat"><strong>Climat</strong> : froid mortel, tempêtes magiques. <strong>Note</strong> : la magie ancienne s'y manifeste plus fréquemment qu'ailleurs — Nœud du Givre proche.</div>
+
+  <table class="encounter-table">
+    <thead><tr><th>1d20</th><th>Rencontre</th></tr></thead>
+    <tbody>
+      <tr><td class="roll">1-2</td><td><span class="tier commun">Commun</span>Chèvre des glaces (camouflage, fuyant)</td></tr>
+      <tr><td class="roll">3-4</td><td><span class="tier commun">Commun</span>Nain Barbe d'Acier en chasse (utile mais réservé)</td></tr>
+      <tr><td class="roll">5-6</td><td><span class="tier commun">Commun</span>Loup Albâtre solitaire</td></tr>
+      <tr><td class="roll">7-8</td><td><span class="tier commun">Commun</span>Aurore intelligente — réagit aux émotions des PJ</td></tr>
+      <tr><td class="roll">9-10</td><td><span class="tier modere">Modéré</span>Meute de Loups Albâtres (4-6)</td></tr>
+      <tr><td class="roll">11-12</td><td><span class="tier modere">Modéré</span>Ours Runique (runes activables si dialogue)</td></tr>
+      <tr><td class="roll">13-14</td><td><span class="tier modere">Modéré</span>Tisseuse de Givre (araignée géante cristallisante)</td></tr>
+      <tr><td class="roll">15</td><td><span class="tier modere">Modéré</span>Berserker nordique en quête de gloire (duel ?)</td></tr>
+      <tr><td class="roll">16-17</td><td><span class="tier dangereux">Dangereux</span>Hrimdraugr (cadavre gelé animé par le Nœud)</td></tr>
+      <tr><td class="roll">18</td><td><span class="tier dangereux">Dangereux</span>Demi-Géant du Givre (descendant des colosses)</td></tr>
+      <tr><td class="roll">19</td><td><span class="tier dangereux">Dangereux</span>Gryphon du Givre (rare, noble)</td></tr>
+      <tr><td class="roll">20</td><td><span class="tier boss">Boss</span>❄️ <strong>Olh'mur frémit</strong> — tremblement de terre, fissure dans la glace, écho ancestral</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 6. TOUNDRA GLACÉE -->
+<div class="region-card toundra">
+  <div class="region-header">
+    <div class="region-icon">🌨️</div>
+    <div class="region-name">
+      <h2>6. Toundra & plaines gelées</h2>
+      <div class="lieu">Varhskold, Hrímfall, plaines du Nord</div>
+    </div>
+  </div>
+  <div class="region-climat"><strong>Climat</strong> : froid extrême, blizzards constants, nuits très longues. <strong>Note</strong> : isolement total, distances énormes, anomalies magiques fréquentes à Hrímfall.</div>
+
+  <table class="encounter-table">
+    <thead><tr><th>1d20</th><th>Rencontre</th></tr></thead>
+    <tbody>
+      <tr><td class="roll">1-2</td><td><span class="tier commun">Commun</span>Renne magique solitaire</td></tr>
+      <tr><td class="roll">3-4</td><td><span class="tier commun">Commun</span>Famille de chasseurs nomades</td></tr>
+      <tr><td class="roll">5-6</td><td><span class="tier commun">Commun</span>Yak Runaire transporteur (clan local)</td></tr>
+      <tr><td class="roll">7-8</td><td><span class="tier commun">Commun</span>Tempête à voix (vent qui murmure des prédictions)</td></tr>
+      <tr><td class="roll">9-10</td><td><span class="tier modere">Modéré</span>Traqueur Blanc invisible dans la tempête</td></tr>
+      <tr><td class="roll">11-12</td><td><span class="tier modere">Modéré</span>Enfants de la Brume (silhouettes sans visage)</td></tr>
+      <tr><td class="roll">13-14</td><td><span class="tier modere">Modéré</span>Orques du Froid en raid (4-6)</td></tr>
+      <tr><td class="roll">15</td><td><span class="tier modere">Modéré</span>Harpie Boréale solitaire (intelligente, négociable)</td></tr>
+      <tr><td class="roll">16-17</td><td><span class="tier dangereux">Dangereux</span>Roc de Givre (oiseau titan qui crée des tempêtes)</td></tr>
+      <tr><td class="roll">18</td><td><span class="tier dangereux">Dangereux</span>Spectres de Neige — illusions devenues vivantes</td></tr>
+      <tr><td class="roll">19</td><td><span class="tier dangereux">Dangereux</span>Marcheurs de Givre (humanoïdes transparents, invincibles sauf chaleur)</td></tr>
+      <tr><td class="roll">20</td><td><span class="tier boss">Boss</span>🐺 <strong>Ur'mhin le Loup-Roi</strong> — rumeur de mouvement dans son sommeil. Suivi par une meute fanatique.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 7. DÉSERT ET TERRES ARIDES -->
+<div class="region-card desert">
+  <div class="region-header">
+    <div class="region-icon">🏜️</div>
+    <div class="region-name">
+      <h2>7. Désert & terres arides</h2>
+      <div class="lieu">Drun-Kar (sud Sol'Ambaïre), oasis, savanes</div>
+    </div>
+  </div>
+  <div class="region-climat"><strong>Climat</strong> : chaleur diurne extrême, nuits glaciales, vents de sable. <strong>Note</strong> : terres tribales, vendettas codifiées sur 7 générations. Chaque rencontre humaine est politique.</div>
+
+  <table class="encounter-table">
+    <thead><tr><th>1d20</th><th>Rencontre</th></tr></thead>
+    <tbody>
+      <tr><td class="roll">1-2</td><td><span class="tier commun">Commun</span>Caravane sadienne avec offrandes pour Bren'kar</td></tr>
+      <tr><td class="roll">3-4</td><td><span class="tier commun">Commun</span>Antilope du désert (chasse possible mais sacrée chez certains)</td></tr>
+      <tr><td class="roll">5-6</td><td><span class="tier commun">Commun</span>Loup-sable solitaire (camouflage)</td></tr>
+      <tr><td class="roll">7-8</td><td><span class="tier commun">Commun</span>Vautour des dunes (suit les voyageurs affaiblis)</td></tr>
+      <tr><td class="roll">9-10</td><td><span class="tier modere">Modéré</span>Cavalier de Drun-Kar (lance, fierté)</td></tr>
+      <tr><td class="roll">11-12</td><td><span class="tier modere">Modéré</span>Cobra des dunes (camouflage, venin paralysant)</td></tr>
+      <tr><td class="roll">13-14</td><td><span class="tier modere">Modéré</span>Razzieurs (4-8, vendetta en cours)</td></tr>
+      <tr><td class="roll">15</td><td><span class="tier modere">Modéré</span>Salamandre géante (Nœud du Brasier proche)</td></tr>
+      <tr><td class="roll">16-17</td><td><span class="tier dangereux">Dangereux</span>Scorpion Runique colossal</td></tr>
+      <tr><td class="roll">18</td><td><span class="tier dangereux">Dangereux</span>Djinn des sables (rare, capricieux, accorde un vœu mais pas comme on l'attend)</td></tr>
+      <tr><td class="roll">19</td><td><span class="tier dangereux">Dangereux</span>Géant du Feu (rare, dévastateur)</td></tr>
+      <tr><td class="roll">20</td><td><span class="tier boss">Boss</span>🔥 <strong>Phénix ancien</strong> — œuf annoncé, début d'une quête épique</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 8. FALAISES ET HAUTS PLATEAUX -->
+<div class="region-card falaise">
+  <div class="region-header">
+    <div class="region-icon">🪨</div>
+    <div class="region-name">
+      <h2>8. Falaises & hauts plateaux</h2>
+      <div class="lieu">Tsu-Raji (Falaises Chantantes), monastères Tengu</div>
+    </div>
+  </div>
+  <div class="region-climat"><strong>Climat</strong> : vents constants qui chantent dans les falaises, températures variables, lumière éclatante. <strong>Note</strong> : terre sacrée des Tengu — toute action irrespectueuse est notée.</div>
+
+  <table class="encounter-table">
+    <thead><tr><th>1d20</th><th>Rencontre</th></tr></thead>
+    <tbody>
+      <tr><td class="roll">1-2</td><td><span class="tier commun">Commun</span>Pèlerin Tengu en route vers un sanctuaire</td></tr>
+      <tr><td class="roll">3-4</td><td><span class="tier commun">Commun</span>Chèvre des falaises (camouflage rocheux)</td></tr>
+      <tr><td class="roll">5-6</td><td><span class="tier commun">Commun</span>Hane-Tengu messager (porteur de nouvelles)</td></tr>
+      <tr><td class="roll">7-8</td><td><span class="tier commun">Commun</span>Marchand Tengu de cartes anciennes</td></tr>
+      <tr><td class="roll">9-10</td><td><span class="tier modere">Modéré</span>Garde Karasu en patrouille (vérifie identité)</td></tr>
+      <tr><td class="roll">11-12</td><td><span class="tier modere">Modéré</span>Aigle géant des montagnes (territorial)</td></tr>
+      <tr><td class="roll">13-14</td><td><span class="tier modere">Modéré</span>Moine reclus Tengu (mystérieux, sage ou fou ?)</td></tr>
+      <tr><td class="roll">15</td><td><span class="tier modere">Modéré</span>Disciple secret d'Aïruk (hérétique, propose alliance)</td></tr>
+      <tr><td class="roll">16-17</td><td><span class="tier dangereux">Dangereux</span>Garde Taka d'élite (combattant Tengu)</td></tr>
+      <tr><td class="roll">18</td><td><span class="tier dangereux">Dangereux</span>Wyvern des falaises (rare mais terrifiante)</td></tr>
+      <tr><td class="roll">19</td><td><span class="tier dangereux">Dangereux</span>Esprit du Vent — manifestation d'Ay-Senna éphémère</td></tr>
+      <tr><td class="roll">20</td><td><span class="tier boss">Boss</span>🜂 <strong>Aïruk en personne</strong> — sous forme d'oiseau ou de vagabond, propose une mission troublante</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 9. CITÉ D'ARMONIA & ALENTOURS -->
+<div class="region-card cite">
+  <div class="region-header">
+    <div class="region-icon">👑</div>
+    <div class="region-name">
+      <h2>9. Cité d'Armonia & alentours</h2>
+      <div class="lieu">Capitale, quartiers nobles, péninsule centrale</div>
+    </div>
+  </div>
+  <div class="region-climat"><strong>Climat</strong> : tempéré, présence de la Tour du Renouveau qui calme les passions. <strong>Note</strong> : les rencontres ici sont presque toujours politiques. Les Roses observent.</div>
+
+  <table class="encounter-table">
+    <thead><tr><th>1d20</th><th>Rencontre</th></tr></thead>
+    <tbody>
+      <tr><td class="roll">1-2</td><td><span class="tier commun">Commun</span>Apprentie Rose en service (cheveux pas encore vermillon)</td></tr>
+      <tr><td class="roll">3-4</td><td><span class="tier commun">Commun</span>Marchand de la Guilde (rumeurs)</td></tr>
+      <tr><td class="roll">5-6</td><td><span class="tier commun">Commun</span>Patrouille de la milice locale</td></tr>
+      <tr><td class="roll">7-8</td><td><span class="tier commun">Commun</span>Pèlerin venu prier à la Tour du Renouveau</td></tr>
+      <tr><td class="roll">9-10</td><td><span class="tier modere">Modéré</span>Domestique d'une Grande Famille porte un message suspect</td></tr>
+      <tr><td class="roll">11-12</td><td><span class="tier modere">Modéré</span>Espion (de quelle famille ?) qui les observe</td></tr>
+      <tr><td class="roll">13-14</td><td><span class="tier modere">Modéré</span>Rose en mission discrète (déjà au courant des PJ)</td></tr>
+      <tr><td class="roll">15</td><td><span class="tier modere">Modéré</span>Sbire de la Maison Vœnir en quête d'un mort récent</td></tr>
+      <tr><td class="roll">16-17</td><td><span class="tier dangereux">Dangereux</span>Garde personnelle d'une Grande Famille (Von Guinity ?)</td></tr>
+      <tr><td class="roll">18</td><td><span class="tier dangereux">Dangereux</span>Vampire urbain en chasse (rare mais réel)</td></tr>
+      <tr><td class="roll">19</td><td><span class="tier dangereux">Dangereux</span>Représentant d'une famille hostile aux PJ propose un « marché »</td></tr>
+      <tr><td class="roll">20</td><td><span class="tier boss">Boss</span>🌹 <strong>Rose-Indra elle-même</strong> les convoque — c'est jamais bon signe</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 10. RUINES PRÉ-RUPTURE -->
+<div class="region-card ruines">
+  <div class="region-header">
+    <div class="region-icon">🗿</div>
+    <div class="region-name">
+      <h2>10. Ruines pré-Rupture</h2>
+      <div class="lieu">Vestiges des Anciens, sanctuaires oubliés, sites partout dans le monde</div>
+    </div>
+  </div>
+  <div class="region-climat"><strong>Climat</strong> : variable selon la région, mais l'air y est toujours « épais », plein d'échos. <strong>Note</strong> : zone à anomalies magiques. Les Veilleurs y patrouillent en secret. Forte chance de rencontre surnaturelle.</div>
+
+  <table class="encounter-table">
+    <thead><tr><th>1d20</th><th>Rencontre</th></tr></thead>
+    <tbody>
+      <tr><td class="roll">1-2</td><td><span class="tier commun">Commun</span>Pillard solitaire (cherche artefacts à revendre)</td></tr>
+      <tr><td class="roll">3-4</td><td><span class="tier commun">Commun</span>Érudit luministe avec carnets de notes</td></tr>
+      <tr><td class="roll">5-6</td><td><span class="tier commun">Commun</span>Squelette animé erratique (faible mais inquiétant)</td></tr>
+      <tr><td class="roll">7-8</td><td><span class="tier commun">Commun</span>Cristaux étranges qui pulsent (Éther latent ?)</td></tr>
+      <tr><td class="roll">9-10</td><td><span class="tier modere">Modéré</span>Goule (charognarde des ruines)</td></tr>
+      <tr><td class="roll">11-12</td><td><span class="tier modere">Modéré</span>Veilleur en patrouille discrète — vérifie identité des PJ</td></tr>
+      <tr><td class="roll">13-14</td><td><span class="tier modere">Modéré</span>Spectre furieux (mort par traîtrise pré-Rupture)</td></tr>
+      <tr><td class="roll">15</td><td><span class="tier modere">Modéré</span>Rune ancienne réactivée par leur passage (DD 15 ou effet)</td></tr>
+      <tr><td class="roll">16-17</td><td><span class="tier dangereux">Dangereux</span>Garde de Pierre Runique (programmé pour défendre)</td></tr>
+      <tr><td class="roll">18</td><td><span class="tier dangereux">Dangereux</span>Cristal Vivant (entité éveillée)</td></tr>
+      <tr><td class="roll">19</td><td><span class="tier dangereux">Dangereux</span>Spectre des Anciens (porteur d'un Mot Primordial perdu)</td></tr>
+      <tr><td class="roll">20</td><td><span class="tier boss">Boss</span>👁 Une <strong>Tisseuse de Mots</strong> émerge — entité qui parle la Langue Ancienne et propose un pacte</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 class="section-title">⚡ Bonus — Table d'anomalie magique</h2>
+
+<div class="anomalie-box">
+  <h2>Quand un Nœud frémit (1d6)</h2>
+  <p>Utilise cette table en plus d'une rencontre normale, si tu veux ajouter une <strong>texture mystique</strong> à la scène. Particulièrement adapté près d'un Nœud du Monde, dans des ruines pré-Rupture, ou pendant les Veillées.</p>
+
+  <table class="encounter-table">
+    <thead><tr><th>1d6</th><th>Anomalie</th></tr></thead>
+    <tbody>
+      <tr><td class="roll">1</td><td><strong>Rune ancienne réactivée</strong> sous les pieds des PJ — effet selon Mot inscrit, DD pour identifier</td></tr>
+      <tr><td class="roll">2</td><td><strong>Artefact résurgent</strong> à proximité — l'Éther « pince » dans le crâne</td></tr>
+      <tr><td class="roll">3</td><td><strong>Monstre magique rare</strong> apparaît brièvement (écho pré-Rupture qui se dissipe)</td></tr>
+      <tr><td class="roll">4</td><td><strong>Esprit perdu</strong> demande à être accompagné vers l'au-delà (rôle de Veilleur)</td></tr>
+      <tr><td class="roll">5</td><td><strong>Faille temporelle locale</strong> — un PJ voit 6 secondes du futur (style Aurale)</td></tr>
+      <tr><td class="roll">6</td><td><strong>Présence indicible</strong> — l'Ombre rôde, Aïruk observe, ou pire</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<footer>
+  Tables de Rencontres MJ · 10 régions + adaptations climatiques · Codex MJ · Système Bilal · 2026
+</footer>
+
+</div>
+</body>
+</html>

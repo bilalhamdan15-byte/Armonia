@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>V9 · Vrais murs</title>
+<style>
+body{font-family:system-ui,sans-serif;background:#1a1611;color:#e8dfc9;padding:24px;max-width:1000px;margin:0 auto}
+h1{color:#d4a13a;border-bottom:2px solid #5c3a1a;padding-bottom:8px}
+h2{color:#c07a2a;margin-top:24px}
+.card{background:#2a2418;border:1px solid #4a3820;border-radius:8px;padding:20px;margin:20px 0}
+textarea.code{width:100%;height:100px;background:#0f0d08;color:#a8c060;border:1px solid #5c3a1a;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;white-space:nowrap;overflow:auto}
+button.copy{background:#5c3a1a;color:#e8dfc9;border:none;padding:12px 24px;border-radius:4px;cursor:pointer;margin-top:8px;font-size:15px;font-weight:600}
+button.copy:hover{background:#7c4a2a}
+.info{background:#1a2a1a;border-left:4px solid #a8c060;padding:14px;margin:16px 0;border-radius:4px;font-size:14px}
+.warn{background:#3a2818;border-left:4px solid #d4a13a;padding:12px;border-radius:4px;font-size:13px;margin:12px 0}
+</style></head><body>
+
+<h1>V9 · Vrais murs pleins (pas des balustrades)</h1>
+
+<div class="warn">
+V8 avait détecté un GUID de balustrade comme "mur principal" (41 instances > 33 pour le vrai mur). V9 force les GUIDs qui MARCHAIENT en V4-V6.
+</div>
+
+<div class="info">
+Assets utilisés (confirmés working) :
+<ul>
+<li><b>Mur EW</b> : Tavern Wall - Small 01 (avec fenêtres)</li>
+<li><b>Mur NS</b> : Tavern Wall 01 (avec fenêtres)</li>
+<li><b>Sol</b> : Tavern Floor 01 (bois)</li>
+<li><b>Toit</b> : Tavern Floor 02 (plancher plat)</li>
+<li><b>FLOOR_H</b> : 2.5 (vraie hauteur mesurée)</li>
+</ul>
+</div>
+<h2>Petite 5×5 · 1 étage</h2>
+<div class="card">
+<textarea class="code" id="c0" readonly onclick="this.select()">H4sIAAhjXWoC/03QsUoDQRDG8V1znCRcIenOygc40TdIzkIR0U4FsTA4QlCwsLFd7KycQqy0srUQLIWQQnCqiKW2NhFfQE3jzs5XuM0f5n4JuzP6Hb1Oucw5dzqztHmyNb961TwfTH6+bvI427ho9dcOL+vBe3308XS3UsbZW+f+bDLbWb79XlicWz/oteLscX/v5Xh3un74vC52nrf76vR08+C1obAO28GzT/NMG+epcR6vMG7Yr8aNbm4NhXXYtrr4xwRHcARHcAQncAIncAIncJU3p1WnVadVl75Hx3AMx3AMx3B2gidU0Mo2kd6vTeMyZIQKmlxpe9G6f8f2onuz2l7U6bvtEBzBERzBCZzACZzACZzd12p7MVd5c3ZPfbc5hmM4hmO4PwkaK11qAgAA</textarea>
+<button class="copy" onclick="doCopy('c0',this)">📋 Copier</button>
+</div><h2>Moyenne 8×6 · 2 étages</h2>
+<div class="card">
+<textarea class="code" id="c1" readonly onclick="this.select()">H4sIAAhjXWoC/03UMWsUURSG4ZnZJUHZIqQbm+QHrJh/kKyFIqKduohFxCsEBQsb28HOyluIlVa2FoKll5Ai4KliLLW1WbE9hZrGOfd7C6d5Yc9zmeXuYU/+nnztmmnTNM82Lt96evvitdfnXhye/fn1dmP87ObL8wfXH71aHH5fPP5x/P7qzvjZt90Pz88u7F559/vSzvaNh/e3x88+Pdj/8uTe+uLjzzezu5/vHOw3evbWhjY6zNSjTbXph7Z0dT6NjvPacV47zsevtJro/Gqi86uJzq8mOl/n06jO13mtzp+u61ucru+tqcNMPdpUm575VtMkfMInfMInfMIb3vCGN7zhDT9v5aPho+Gj4eu8Zz76jM/4jM/4jM94xzve8Y53vOOXnXw0fDR8NHyd98xHX/AFX/AFX/AFr2doEzU610a0mTpddmqhdX+2hmmiRuN8NFOncT5aaN2T+n7V6LxVM3W67NRC6/7V96tG47zerzqN83q/2vz3aP9iz1XtX+w587p/ehI+4RM+4RPe8IY3vOENb3jdu6r9k49q/+R1v7FX8hmf8Rmf8RnveMc73vGOd7x+b1X7J7/s5Ou8Z173T77gC77gC77g9furuv/4n1B1//E/wbzev3zCJ3zCJ3zCG97whje84Q2vvVN1//JR3b+89ivuVT7jMz7jMz7jHe94xzve8Y7Xvqu6f/llJ1/nPfN6//IFX/AFX/AF/w9jssdKWgYAAA==</textarea>
+<button class="copy" onclick="doCopy('c1',this)">📋 Copier</button>
+</div><h2>Grande 10×8 · 3 étages</h2>
+<div class="card">
+<textarea class="code" id="c2" readonly onclick="this.select()">H4sIAAhjXWoC/03Wv4slRRTF8X4/2EF3AumsTfoFdrQj+gcIO2OgiCgmroMYKJawKBiYmD6kEiMrECONTA0EkwWLZQPBG62zoaYmIyYGN1A3se8938BODrxTn0sxVFfPw38fPtoO+2EYPn3qxTc/ufPsK1898fn9x//8+c0z62+vf/Hk3Vc//PLi/m8XH/3+03cvv7H+9uvt7z97/PTtl779+7nnD6998N4L628/vv/uLx+/c3Lxwx9fn77981t3/xr0nN84biKPp8oHo3KYlOcz/XLc1F2u30eu6zPX9Znr+sx1vfrluG75eqf51zvNv95p/vVO89d+ps/5uX4fqfm5PlPzc736nH91ovlXJ5p/daL5Vyeav/Yzfc7P9ftIzc/1mZqf69Xn/Hs39Ve6d/P8hvJ4qnwwKoeJfqZf6G8NQ8EXfMEXfMEXfMEXvOENb3jDG97whjf82UY+Mnxk+Mjw2U/0M/1Cv/qGb/iGb/iGb/iGb3jHO97xjne84x3v+MutfGT4yPCR4bOf6Gf6hX71Hd/xHd/xHd/xHd/xh518ZPjI8JHhs5/oZ/qFfvUVX/EVX/EVX/EVX/F6jptCGnmmN3LTSCcvt8pOHnbKSub7feu4L6SRMS+ykU7GvMhOxrzISuZ7nPtTGnm2UTbSycutspOHnbKSeT/k/pRGxjztT+lkzNP+lDFP+1PmPZD7Uxp5tlE20snLrbKTh52yknm/5P6URsY87U/pZMzT/pQxT/tTDv97dL/EvarU/RL3Kv1Mv9Dn/aKn4Au+4Au+4Au+4A1veMMb3vCGN7zhdQ6Vul/k8zyN9BP9TL/Q5/0i3/AN3/AN3/AN3/COd7zjHe94xzve8XpflLpf5PPcj/QT/Uy/0Of9It/xHd/xHd/xHd/xej+Vul/k8z0b6Sf6mX6hz/tFvuIrvuIrvuIrvuL1/ip1/uK7q9T5i+8u/Uy/0Of5ky/4gi/4gi/4gi94wxve8IY3vOENb3jdM0qdP/m8L0b6iX6mX+jz/Mk3fMM3fMM3fMM3vOMd73jHO97xjne87kOlzp983msj/UQ/0y/0ef7kO77jO77jO77jO173r1LnTz7v0ZF+op/pF/o8f/IVX/EVX/EVX/EVr/tZqfMX/5cpdf7i/zL6mX6hz/MnX/AFX/AFX/AFX/CGN7zhDW94wxve8PqOKHX+5PN7MNJP9DP9Qp/nT77hG77hG77hG77hHe94xzve8Y53vOP1vVPq/Mnnd2ukn+hn+oU+z598x3d8x3d8x3d8x+v7qtT5k8/v5Eg/0c/0C32eP/mKr/iKr/iKr/iK/w9J67X4Wg0AAA==</textarea>
+<button class="copy" onclick="doCopy('c2',this)">📋 Copier</button>
+</div>
+<script>
+function doCopy(id,btn){
+  const ta=document.getElementById(id);ta.select();ta.setSelectionRange(0,999999);
+  try{const ok=document.execCommand('copy');btn.textContent=ok?'✓ Copié !':'❌ Ctrl+A+C';setTimeout(()=>btn.textContent='📋 Copier',3000)}
+  catch(e){btn.textContent='❌ Ctrl+A+C'}
+}
+</script></body></html>

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voyage & Téléportation — Armonia</title>
+<style>
+:root {
+  --bg: #f5ebd6;
+  --paper: #fffaf0;
+  --primary: #2E5B7C;
+  --accent: #a87830;
+  --text: #3a2818;
+  --muted: #8a7a5a;
+  --border: #c9b896;
+  --danger: #a02020;
+
+  --pied: #6a8c4a;
+  --cheval: #8a6a30;
+  --caravane: #b8a050;
+  --bateau: #2a6a8a;
+  --magique: #7a4a8a;
+
+  --route-sure: #4a8a4a;
+  --route-tendue: #b8a050;
+  --route-dangereuse: #c47030;
+  --route-mortelle: #a02020;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 16px;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+header.title-bar {
+  text-align: center;
+  padding: 24px;
+  background: linear-gradient(135deg, #fffaf0 0%, #e0e8f0 50%, #fffaf0 100%);
+  border: 3px double var(--primary);
+  border-radius: 8px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+header.title-bar h1 {
+  margin: 0;
+  font-size: 30px;
+  color: var(--primary);
+  letter-spacing: 3px;
+}
+header.title-bar .subtitle {
+  color: var(--accent);
+  font-style: italic;
+  font-size: 15px;
+  margin-top: 8px;
+}
+header.title-bar .quote {
+  color: var(--muted);
+  font-style: italic;
+  font-size: 13px;
+  margin-top: 12px;
+}
+.intro-box {
+  background: var(--paper);
+  border-left: 4px solid var(--primary);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin: 16px 0;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.intro-box strong { color: var(--primary); }
+
+.section-title {
+  font-size: 22px;
+  color: var(--primary);
+  margin: 28px 0 12px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+  letter-spacing: 1px;
+}
+.subsection-title {
+  font-size: 17px;
+  color: var(--accent);
+  margin: 16px 0 10px 0;
+  letter-spacing: 1px;
+}
+
+/* VITESSES */
+.vitesses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin: 12px 0;
+}
+.vitesse-card {
+  background: var(--paper);
+  border-top: 4px solid;
+  border-radius: 6px;
+  padding: 12px;
+  text-align: center;
+}
+.vitesse-card.pied { border-top-color: var(--pied); }
+.vitesse-card.cheval { border-top-color: var(--cheval); }
+.vitesse-card.caravane { border-top-color: var(--caravane); }
+.vitesse-card.bateau-cotier { border-top-color: var(--bateau); }
+.vitesse-card.bateau-mer { border-top-color: var(--bateau); }
+.vitesse-card.magique { border-top-color: var(--magique); }
+.vitesse-card .icon { font-size: 36px; margin-bottom: 6px; }
+.vitesse-card h4 { margin: 4px 0; font-size: 15px; color: var(--primary); }
+.vitesse-card .vitesse {
+  font-family: 'Courier New', monospace;
+  color: var(--accent);
+  font-weight: bold;
+  font-size: 14px;
+  margin: 6px 0;
+}
+.vitesse-card p { font-size: 11px; margin: 4px 0; color: var(--muted); line-height: 1.4; }
+
+/* DISTANCES */
+.distances-table {
+  width: 100%;
+  background: var(--paper);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  margin: 12px 0;
+}
+.distances-table th, .distances-table td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.distances-table th {
+  background: var(--primary);
+  color: white;
+  letter-spacing: 1px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.distances-table td.km {
+  font-family: 'Courier New', monospace;
+  color: var(--accent);
+  font-weight: bold;
+  text-align: right;
+  width: 90px;
+}
+.distances-table td.duree {
+  font-family: 'Courier New', monospace;
+  color: var(--pied);
+  font-weight: bold;
+  white-space: nowrap;
+}
+.distances-table tbody tr:hover { background: rgba(46, 91, 124, 0.05); }
+.distances-table tbody tr:last-child td { border-bottom: none; }
+
+/* ROUTES */
+.route-card {
+  background: var(--paper);
+  border-left: 6px solid;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin: 10px 0;
+}
+.route-card.sure { border-left-color: var(--route-sure); }
+.route-card.tendue { border-left-color: var(--route-tendue); }
+.route-card.dangereuse { border-left-color: var(--route-dangereuse); }
+.route-card.mortelle { border-left-color: var(--route-mortelle); }
+.route-card h4 {
+  margin: 0 0 6px 0;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.route-card.sure h4 { color: var(--route-sure); }
+.route-card.tendue h4 { color: #8a6a20; }
+.route-card.dangereuse h4 { color: var(--route-dangereuse); }
+.route-card.mortelle h4 { color: var(--route-mortelle); }
+.route-card p { font-size: 13px; line-height: 1.5; margin: 4px 0; }
+.route-card strong { color: var(--text); }
+.risk-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  letter-spacing: 1px;
+}
+.risk-tag.sure { background: var(--route-sure); }
+.risk-tag.tendue { background: var(--route-tendue); color: var(--bg); }
+.risk-tag.dangereuse { background: var(--route-dangereuse); }
+.risk-tag.mortelle { background: var(--route-mortelle); }
+
+/* SAISONS */
+.saisons-warning {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 10px;
+  margin: 12px 0;
+}
+.saison-warning-card {
+  background: var(--paper);
+  border-left: 4px solid var(--danger);
+  padding: 12px 14px;
+  border-radius: 6px;
+}
+.saison-warning-card h4 {
+  margin: 0 0 6px 0;
+  color: var(--danger);
+  font-size: 14px;
+}
+.saison-warning-card p { font-size: 12px; margin: 4px 0; line-height: 1.4; }
+
+/* TÉLÉPORTATION */
+.telep-box {
+  background: linear-gradient(135deg, #fffaf0 0%, #e8d0f0 100%);
+  border: 3px double var(--magique);
+  border-radius: 10px;
+  padding: 22px;
+  margin: 16px 0;
+}
+.telep-box h2 {
+  margin: 0 0 10px 0;
+  color: var(--magique);
+  font-size: 22px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+.telep-box .quote-mag {
+  text-align: center;
+  color: var(--muted);
+  font-style: italic;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+.telep-box h3 {
+  color: var(--magique);
+  font-size: 16px;
+  margin: 14px 0 6px 0;
+}
+.telep-box p { font-size: 14px; line-height: 1.6; margin: 6px 0; }
+.telep-box ul { font-size: 14px; line-height: 1.7; margin: 6px 0 6px 20px; padding: 0; }
+.telep-box strong { color: var(--text); }
+.telep-box em { color: var(--magique); }
+
+.hub-diagram {
+  background: white;
+  border: 2px solid var(--magique);
+  border-radius: 10px;
+  padding: 18px;
+  margin: 14px 0;
+  text-align: center;
+}
+.hub-central {
+  display: inline-block;
+  padding: 14px 22px;
+  background: var(--magique);
+  color: white;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 15px;
+  margin: 10px;
+  letter-spacing: 1px;
+}
+.hub-branches {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+.hub-branch {
+  background: #f0e0f0;
+  border: 1px solid var(--magique);
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--magique);
+}
+.hub-branch strong { display: block; margin-bottom: 4px; }
+.hub-branch.perdu {
+  background: #f0d0d0;
+  border-color: var(--danger);
+  color: var(--danger);
+}
+.hub-branch.perdu strong { color: var(--danger); }
+
+/* COÛTS */
+.cout-box {
+  background: linear-gradient(135deg, #fffaf0 0%, #fff5d0 100%);
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 14px 0;
+}
+.cout-box h3 {
+  margin: 0 0 8px 0;
+  color: var(--accent);
+  font-size: 16px;
+}
+.cout-box ul { font-size: 13px; line-height: 1.6; margin: 6px 0 6px 20px; padding: 0; }
+
+/* HOOKS */
+.hooks-box {
+  background: var(--paper);
+  border-left: 4px solid var(--accent);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin: 16px 0;
+}
+.hooks-box p { margin: 8px 0; font-size: 13px; line-height: 1.5; }
+
+.nav-back {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body>
+<div class="container">
+
+<a href="index.html" class="nav-back">← Retour au sommaire</a>
+
+<header class="title-bar">
+  <h1>🐎 VOYAGE & TÉLÉPORTATION</h1>
+  <div class="subtitle">Vitesses · Distances · Routes · Points de téléportation</div>
+  <div class="quote">« Un jour de marche vaut cent lieues d'imagination. »</div>
+</header>
+
+<div class="intro-box">
+  <p>Se déplacer dans Armonia est <strong>lent et souvent dangereux</strong>. Les distances entre continents se comptent en semaines. Les routes commerciales sont patrouillées mais coûteuses. Les cols de montagne se ferment en hiver. Et pour ceux qui ont la chance ou les moyens, il existe encore quelques <strong>arches de téléportation</strong> pré-Rupture — dont l'art de fabrication est perdu à jamais.</p>
+</div>
+
+<h2 class="section-title">🏃 Vitesses de base</h2>
+
+<div class="vitesses-grid">
+  <div class="vitesse-card pied">
+    <div class="icon">🚶</div>
+    <h4>À pied</h4>
+    <div class="vitesse">20-30 km / jour</div>
+    <p>Terrain plat, marche 8h. Terrain difficile : divise par 2.</p>
+  </div>
+  <div class="vitesse-card cheval">
+    <div class="icon">🐎</div>
+    <h4>À cheval</h4>
+    <div class="vitesse">40-60 km / jour</div>
+    <p>Trot soutenu, pauses. Cheval mort au bout de 3 jours de galop.</p>
+  </div>
+  <div class="vitesse-card caravane">
+    <div class="icon">🚐</div>
+    <h4>Caravane Karambol</h4>
+    <div class="vitesse">25-35 km / jour</div>
+    <p>Relais tous les 30 km. Sûre, prévisible, mais lente.</p>
+  </div>
+  <div class="vitesse-card bateau-cotier">
+    <div class="icon">⛵</div>
+    <h4>Bateau côtier</h4>
+    <div class="vitesse">100-150 km / jour</div>
+    <p>Cabotage, ports fréquents. Sécurité modérée.</p>
+  </div>
+  <div class="vitesse-card bateau-mer">
+    <div class="icon">🚢</div>
+    <h4>Bateau haute mer</h4>
+    <div class="vitesse">150-200 km / jour</div>
+    <p>Vent favorable. Sans vent : 50 km. Contre vent : 30 km max.</p>
+  </div>
+  <div class="vitesse-card magique">
+    <div class="icon">🌀</div>
+    <h4>Arche de téléportation</h4>
+    <div class="vitesse">Instantané</div>
+    <p>Rare et coûteux. Voir plus bas.</p>
+  </div>
+</div>
+
+<h2 class="section-title">📏 Distances-clés du monde</h2>
+
+<table class="distances-table">
+  <thead>
+    <tr>
+      <th>Trajet</th>
+      <th>Distance</th>
+      <th>À pied</th>
+      <th>Cheval</th>
+      <th>Bateau / caravane</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Etelin ↔ Me'yn Prus</strong> (nord ↔ sud de Lumini)</td>
+      <td class="km">500 km</td>
+      <td class="duree">20 j</td>
+      <td class="duree">10 j</td>
+      <td class="duree">15 j (caravane)</td>
+    </tr>
+    <tr>
+      <td><strong>Me'yn Prus ↔ Cité d'Armonia</strong> (bateau côtier)</td>
+      <td class="km">800 km</td>
+      <td class="duree">—</td>
+      <td class="duree">—</td>
+      <td class="duree">6-8 j (bateau)</td>
+    </tr>
+    <tr>
+      <td><strong>Etelin ↔ Cité d'Armonia</strong> (nord de Lumini vers capitale, terrestre)</td>
+      <td class="km">1 100 km</td>
+      <td class="duree">45 j</td>
+      <td class="duree">22 j</td>
+      <td class="duree">30 j</td>
+    </tr>
+    <tr>
+      <td><strong>Lumini ↔ Sol'Ambaïre</strong> (via Massif des Échos)</td>
+      <td class="km">1 200 km</td>
+      <td class="duree">50 j</td>
+      <td class="duree">25 j</td>
+      <td class="duree">35 j</td>
+    </tr>
+    <tr>
+      <td><strong>Me'yn Prus ↔ Cordéheim</strong> (Heledera, bateau)</td>
+      <td class="km">1 000 km</td>
+      <td class="duree">—</td>
+      <td class="duree">—</td>
+      <td class="duree">7-10 j (bateau)</td>
+    </tr>
+    <tr>
+      <td><strong>Lumini ↔ No'Ord</strong> (par bateau via Sylvarn)</td>
+      <td class="km">2 500 km</td>
+      <td class="duree">—</td>
+      <td class="duree">—</td>
+      <td class="duree">15-20 j (bateau)</td>
+    </tr>
+    <tr>
+      <td><strong>Sol'Ambaïre traversée</strong> (Roon-Vyr ↔ Drun-Kar)</td>
+      <td class="km">2 000 km</td>
+      <td class="duree">80 j</td>
+      <td class="duree">40 j</td>
+      <td class="duree">60 j</td>
+    </tr>
+    <tr>
+      <td><strong>Sylvarn ↔ Brumelune</strong> (côte No'Ord)</td>
+      <td class="km">700 km</td>
+      <td class="duree">30 j</td>
+      <td class="duree">15 j</td>
+      <td class="duree">5-7 j (bateau)</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="intro-box">
+  <p><strong>Astuce MJ</strong> : ces valeurs supposent un climat correct et pas d'incident. Ajoute automatiquement <strong>+20 à +50 %</strong> pour tempêtes, blizzards, tempêtes magiques, ou passages accidentés.</p>
+</div>
+
+<h2 class="section-title">🛣️ Routes principales — niveaux de danger</h2>
+
+<div class="route-card sure">
+  <h4><span class="risk-tag sure">Sûre</span> Route Karambol Lumini centrale (Etelin ↔ Me'yn Prus, hors forêt)</h4>
+  <p>Relais tous les 30 km, gardes locaux, patrouilles de milice. <strong>Bandits rares</strong> — la Guilde des Marchands finance la protection.</p>
+</div>
+
+<div class="route-card sure">
+  <h4><span class="risk-tag sure">Sûre</span> Route côtière Daluvio (Me'yn Prus ↔ Côte d'Or)</h4>
+  <p>Longée par des tours-relais. Surveillée. Vagabonds occasionnels, jamais violents.</p>
+</div>
+
+<div class="route-card tendue">
+  <h4><span class="risk-tag tendue">Tendue</span> Passages internes Sol'Ambaïre (entre royaumes)</h4>
+  <p>Sécurisées sur les axes principaux mais <strong>diplomatie sensible</strong> aux frontières. Un mauvais mot suffit à créer un incident.</p>
+</div>
+
+<div class="route-card tendue">
+  <h4><span class="risk-tag tendue">Tendue</span> Voies maritimes Lumini ↔ Heledera</h4>
+  <p>Corsaires tolérés par la Banque d'Heledera. <strong>Vaisseaux marchands doivent payer une « dîme »</strong> ou risquer l'abordage.</p>
+</div>
+
+<div class="route-card dangereuse">
+  <h4><span class="risk-tag dangereuse">Dangereuse</span> Massif des Échos (col principal)</h4>
+  <p>Un seul col praticable, contrôlé par Karambol (péage). <strong>Brigands, vétérans exilés, ruines animées</strong>. Recommandé : escorte ou grande caravane.</p>
+</div>
+
+<div class="route-card dangereuse">
+  <h4><span class="risk-tag dangereuse">Dangereuse</span> Routes forestières de Lumini nord (Forêt Julia)</h4>
+  <p>Sacrée mais imprévisible. <strong>Loups-feuille, Sylvestres méfiants, ours-arbre.</strong> Autorisation nécessaire de la Tribu.</p>
+</div>
+
+<div class="route-card mortelle">
+  <h4><span class="risk-tag mortelle">Mortelle</span> Toundra de Varhskold (No'Ord)</h4>
+  <p>Blizzards, Traqueurs Blancs, Enfants de la Brume. <strong>Seul un guide nordique expérimenté peut y survivre.</strong> Sans ça, 80 % de mort en 3 jours.</p>
+</div>
+
+<div class="route-card mortelle">
+  <h4><span class="risk-tag mortelle">Mortelle</span> Glaces Vivantes d'Hrímfall</h4>
+  <p>Anomalies magiques constantes. <strong>Interdit même aux nordiques.</strong> Aller-retour : suicide.</p>
+</div>
+
+<h2 class="section-title">❄️ Saisonnalité — routes fermées</h2>
+
+<div class="saisons-warning">
+  <div class="saison-warning-card">
+    <h4>❄️ Hiver (Cendre-Givre-Nuit Longue)</h4>
+    <p><strong>Massif des Échos bloqué</strong> par la neige — col fermé 3 mois. Contournement long et cher.</p>
+  </div>
+  <div class="saison-warning-card">
+    <h4>❄️ Hiver</h4>
+    <p><strong>Sylvarn isolé</strong> par les glaces côtières. Aucun bateau entrant/sortant pendant 2 mois. Ravitaillement par la terre uniquement.</p>
+  </div>
+  <div class="saison-warning-card">
+    <h4>☀️ Été (Brasier-Soleil Brûlé)</h4>
+    <p><strong>Tempêtes maritimes</strong> — voie Lumini-Heledera dangereuse. Assurance obligatoire.</p>
+  </div>
+  <div class="saison-warning-card">
+    <h4>☀️ Été</h4>
+    <p><strong>Traversée Drun-Kar déconseillée</strong> — chaleur mortelle en journée. Voyage nocturne uniquement, avec guide.</p>
+  </div>
+  <div class="saison-warning-card">
+    <h4>🌸 Printemps (Renaissance)</h4>
+    <p><strong>Fontes des glaces</strong> nordiques — routes très boueuses en Varhskold. Divise vitesse par 2.</p>
+  </div>
+  <div class="saison-warning-card">
+    <h4>🍂 Automne (Sève-Vendange)</h4>
+    <p><strong>Migrations de bêtes</strong> — routes forestières de Lumini nord traversées par des meutes. Risque d'attaque doublé.</p>
+  </div>
+</div>
+
+<h2 class="section-title">🌀 Points de téléportation — les Arches d'Ancien</h2>
+
+<div class="telep-box">
+  <h2>Le Réseau des Arches</h2>
+  <div class="quote-mag">« Les Anciens avaient un art. Cet art est mort avec eux. Nous ne faisons qu'user de ce qu'ils ont laissé. »</div>
+
+  <p>Il existe encore, éparpillées dans le monde, quelques <strong>arches de téléportation</strong> pré-Rupture. Ce sont d'immenses portails en pierre gravée, aux cristaux incrustés dans leurs bords, qui permettent un voyage instantané entre deux points fixes du monde.</p>
+
+  <p><strong>Leur fabrication est perdue.</strong> Même les races revenues avec le Retour de la magie (Nains, Elfes, Tengu, Géants du Givre semi-éveillés) — dont certains étaient là avant la Rupture — ont oublié le procédé. Nul ne sait comment on les crée. On sait seulement les activer, en payant le prix.</p>
+
+  <h3>🏛️ Structure du réseau : un HUB + arches externes</h3>
+  <p>Le <strong>QG des Veilleurs à Me'yn Prus</strong> est le <strong>hub central</strong> du réseau. Une grande salle enterrée y abrite plusieurs arches, chacune reliée à <strong>une seule arche externe</strong> dans le monde. Chaque paire est fixe : voyage aller-retour uniquement entre ces deux points.</p>
+  <p>Pour aller d'une arche externe A à une arche externe B, il faut donc <strong>2 sauts</strong> : A → HUB → B. Le HUB des Veilleurs est le seul point de correspondance possible.</p>
+
+  <div class="hub-diagram">
+    <div class="hub-central">🏛️ HUB VEILLEURS · Me'yn Prus</div>
+    <div class="hub-branches">
+      <div class="hub-branch"><strong>Lo'Yvilli</strong>Cave sous la ville cachée (canon livre 1)</div>
+      <div class="hub-branch"><strong>Tour du Renouveau</strong>Sous la tour, Cité d'Armonia</div>
+      <div class="hub-branch"><strong>Cercle d'Anh</strong>Sous la fosse mystérieuse (Sol'Ambaïre)</div>
+      <div class="hub-branch"><strong>Ællskarn</strong>Près du Nœud du Givre (No'Ord)</div>
+      <div class="hub-branch"><strong>Tour de l'Oasis</strong>Ruines livre 1 (Drun-Kar)</div>
+      <div class="hub-branch perdu"><strong>Cordéheim ⚠️</strong>Enfouie, perdue (à redécouvrir)</div>
+      <div class="hub-branch perdu"><strong>Massif des Échos ⚠️</strong>Ruine perdue, gardée par des monstres</div>
+    </div>
+  </div>
+
+  <h3>🔮 Activation</h3>
+  <ul>
+    <li><strong>Mot primordial requis : Sorenth mai</strong> (Mot suprême, DD 25, coût Éther important). Sans le mot, aucune activation possible.</li>
+    <li><strong>Cristaux d'Éther</strong> : 3-5 cristaux moyens (6-10 Aur) ou 1-2 cristaux purs (16-24 Aur) par voyage, écrasés dans les logements du portail.</li>
+    <li><strong>Temps d'activation</strong> : plusieurs minutes à plusieurs heures selon la qualité des cristaux et l'expérience du prononceur.</li>
+    <li><strong>Visuel</strong> : liquide opaque de couleur <em>Octarine</em> qui se propage depuis les bords de l'arche jusqu'au centre — quand la surface est pleine, on peut passer.</li>
+  </ul>
+
+  <h3>⚠️ Effets secondaires</h3>
+  <ul>
+    <li><strong>Mal des transports magiques</strong> : la moitié des voyageurs arrivent pâles, nauséeux, 1d4 tours à récupérer (CON DD 12 pour l'éviter).</li>
+    <li><strong>Signal magique</strong> : chaque activation est ressentie par les Veilleurs à 500 m et par les créatures magiques proches. Impossible de voyager en secret.</li>
+    <li><strong>Sur 1 nat</strong> : les voyageurs arrivent à un point aléatoire (peut-être un Nœud du Monde !). 1d6 dégâts psychiques.</li>
+  </ul>
+
+  <h3>🔒 Contrôle du réseau</h3>
+  <p>Les <strong>Veilleurs contrôlent</strong> le HUB de Me'yn Prus. Aucun voyage ne s'y fait sans leur autorisation. Certaines factions <strong>connaissent l'existence</strong> du réseau (Roses d'Armonia, Guilde des Marchands, Baron Von Guinity peut-être) — mais aucune ne peut l'utiliser sans compromis avec Jack.</p>
+  <p>Les <strong>arches perdues</strong> (Cordéheim, Massif des Échos) sont un enjeu majeur : les retrouver donnerait à leur découvreur un accès non-contrôlé au HUB.</p>
+</div>
+
+<h2 class="section-title">💰 Coûts de voyage — récapitulatif</h2>
+
+<div class="cout-box">
+  <h3>Transports terrestres</h3>
+  <ul>
+    <li><strong>Passage caravane Karambol</strong> (500 km) : 5-10 Aur / personne</li>
+    <li><strong>Location cheval + monture</strong> : 1 Aur / jour (caution 30 Aur)</li>
+    <li><strong>Escorte de brigade privée</strong> : 5 Aur / jour / homme (Protectoria)</li>
+    <li><strong>Péage Massif des Échos</strong> : 1 Aur / cavalier, 3 Aur / chariot</li>
+  </ul>
+  <h3>Transports maritimes</h3>
+  <ul>
+    <li><strong>Bateau côtier</strong> (Me'yn Prus ↔ Armonia) : 3-5 Aur</li>
+    <li><strong>Bateau haute mer</strong> (Lumini ↔ No'Ord) : 20-40 Aur</li>
+    <li><strong>Cabine privée</strong> : +50 %</li>
+    <li><strong>Corsaire heledérien</strong> (voyage rapide illégal) : 15-30 Aur, garanties incertaines</li>
+  </ul>
+  <h3>Téléportation</h3>
+  <ul>
+    <li><strong>Activation arche</strong> : 6-24 Aur en cristaux + coût Éther du prononceur + faveur des Veilleurs (souvent une mission en échange)</li>
+    <li><strong>Nacelle de vent Villa Virtue</strong> : 50 Aur / mille (réservée nobles / mission)</li>
+    <li><strong>Aigle-messager Tengu</strong> (petit objet seulement) : 10 Aur / trajet</li>
+  </ul>
+</div>
+
+<h2 class="section-title">🎲 Hooks de voyage</h2>
+
+<div class="hooks-box">
+  <p>• Un PJ Ingénieur affirme avoir <strong>compris la fabrication d'une arche</strong>. Les Veilleurs veulent l'en empêcher. Aïruk semble d'accord. Qui a raison ?</p>
+  <p>• Une <strong>arche perdue à Cordéheim</strong> est redécouverte — mais un noble Von Guinity l'a achetée avant les Veilleurs. Négociation ou confrontation ?</p>
+  <p>• Un voyage par arche <strong>rate</strong> — les PJ arrivent au Nœud d'Ombre (Île-Sang). Comment revenir ?</p>
+  <p>• Le <strong>col du Massif des Échos</strong> est bloqué par une avalanche magique. Vaal'Skyria en cause ?</p>
+  <p>• Un <strong>corsaire heledérien</strong> propose aux PJ un voyage rapide mais suspect. Où finit-on vraiment ?</p>
+  <p>• Les <strong>relais Karambol</strong> disparaissent un par un sur une route donnée. Enquête urgente.</p>
+  <p>• Un <strong>vaisseau seahertz</strong> attaque un bateau Daluvio en route pour Cordéheim. Les PJ sont à bord.</p>
+  <p>• Jack demande aux PJ d'utiliser une arche pour <strong>récupérer un artefact</strong> à Ællskarn — mais l'arche de Me'yn Prus est en panne au retour.</p>
+</div>
+
+<footer>
+  Voyage & Téléportation d'Armonia · Vitesses, distances, arches · Système Bilal · 2026
+</footer>
+
+</div>
+</body>
+</html>
