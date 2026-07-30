@@ -191,8 +191,8 @@ footer {
   <!-- 1. MÉCANIQUE DE BASE -->
   <div class="panel">
     <h2>⚙️ Mécanique de base</h2>
-    <div class="formule">1d20 + Carac + Compétence (+ Spécialité) vs DD</div>
-    <p style="font-size:11px;color:var(--muted,#9a8a7a);margin:2px 2px 6px">Caractéristique (0→+3) + Compétence plafonnée <b>+3</b> (Novice +1 / Confirmé +2 / Expert +3). Ajoute <b>+1</b> si une <b>Spécialité</b> colle au contexte. Magie : 1d20 + INT + Affinité. Sans compétence : 1d20 + Carac seul.</p>
+    <div class="formule">1d20 + Caractéristique + Spécialité vs DD</div>
+    <p style="font-size:11px;color:var(--muted,#9a8a7a);margin:2px 2px 6px"><b>Caractéristique 0→+5 = le cœur</b> (le gros chiffre, sur chaque jet). <b>Spécialité rang I +1 / II +2 / III +3</b> (III via XP) : bonus léger, ajouté <b>seulement si elle colle</b> au contexte — sinon on lance juste 1d20 + carac. « Compétences » (larges) et « spécialités » (étroites) = même mécanique. Magie : 1d20 + INT + Affinité (affinité plafonnée <b>+3</b>).</p>
     <h3>Paliers de réussite</h3>
     <table class="compact">
       <tr><td class="num">1 nat</td><td><span class="tier crit">Échec critique</span>Rate + complication grave — prime sur tout</td></tr>
@@ -222,6 +222,22 @@ footer {
     <p style="font-size:12px;color:var(--muted,#9a8a7a);margin:4px 2px 0">
       <b>DD lus, pas choisis :</b> attaque = <b>Défense</b> de la cible (10 + DEX + armure) ; artisanat/magie ont leurs propres tables.
     </p>
+  </div>
+
+  <!-- 1b. PROGRESSION / XP -->
+  <div class="panel">
+    <h2>💠 Progression (XP)</h2>
+    <p style="font-size:12px;margin:2px 0 6px">Une monnaie unique. Caractéristiques chères et lentes ; spécialités rapides et fréquentes.</p>
+    <table class="compact">
+      <tr><td class="num">3</td><td>Spécialité rang I (+1)</td></tr>
+      <tr><td class="num">5</td><td>Monter I → II (+2)</td></tr>
+      <tr><td class="num">8</td><td>Monter II → III (+3)</td></tr>
+      <tr><td class="num">4</td><td>Affinité +1</td></tr>
+      <tr><td class="num">×5</td><td><b>Caractéristique +1</b> = valeur visée × 5 (→+4 = 20, →+5 = 25)</td></tr>
+      <tr><td class="num">8</td><td>Cap d'Écho +1</td></tr>
+      <tr><td class="num">3-8</td><td>Mot / script appris</td></tr>
+    </table>
+    <p style="font-size:11px;color:var(--muted,#9a8a7a);margin:6px 2px 0"><b>Gains :</b> 2-4 XP / session + objectifs d'histoire + expéditions hors-session (carte). La création ne coûte pas d'XP.</p>
   </div>
 
   <!-- 2. ÉTHER -->
@@ -308,7 +324,7 @@ footer {
     <div class="formule">Init = 1d20 + DEX</div>
     <ul class="compact">
       <li><strong>3 actions/tour</strong></li>
-      <li><strong>Vitalité = 10 + CON×3</strong></li>
+      <li><strong>Vitalité = 10 + CON×2</strong></li>
       <li><strong>Défense = 10 + DEX + armure</strong></li>
     </ul>
     <h3>Paliers d'attaque</h3>

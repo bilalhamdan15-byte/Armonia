@@ -127,7 +127,7 @@ button.danger {
   letter-spacing: 0.5px;
 }
 input[type="text"], input[type="number"], select, textarea {
-  background: white;
+  background: var(--paper);
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 8px;
@@ -238,7 +238,7 @@ textarea {
   text-align: center;
   font-weight: bold;
   color: var(--primary);
-  background: #f5ebd6;
+  background: var(--paper);
   padding: 4px;
   border-radius: 4px;
 }
@@ -271,7 +271,7 @@ textarea {
 .affinity-row .value {
   text-align: center;
   font-weight: bold;
-  background: #f5ebd6;
+  background: var(--paper);
   border-radius: 4px;
   padding: 4px;
 }
@@ -283,7 +283,7 @@ textarea {
   gap: 8px;
   padding: 8px;
   border: 1px solid var(--border);
-  background: #fffaf0;
+  background: var(--paper);
   border-radius: 4px;
   margin-bottom: 6px;
   align-items: center;
@@ -294,7 +294,7 @@ textarea {
   border-bottom: 1px dotted var(--border);
 }
 .dyn-list-item input:focus {
-  background: white;
+  background: var(--paper);
   border: 1px solid var(--primary);
 }
 .dyn-list-item button {
@@ -308,14 +308,14 @@ textarea {
   gap: 8px;
   padding: 8px;
   border: 1px solid var(--border);
-  background: #fffaf0;
+  background: var(--paper);
   border-radius: 4px;
   margin-bottom: 6px;
   align-items: center;
 }
 .atout-item.used {
   opacity: 0.5;
-  background: #eee;
+  background: var(--paper);
 }
 .atout-item input[type="text"] {
   background: transparent;
@@ -323,7 +323,7 @@ textarea {
   border-bottom: 1px dotted var(--border);
 }
 .atout-item input[type="text"]:focus {
-  background: white;
+  background: var(--paper);
   border: 1px solid var(--primary);
 }
 .atout-item .lvl {
@@ -355,7 +355,7 @@ button.add-btn {
   height: 32px;
   border-radius: 50%;
   border: 2px solid var(--accent);
-  background: #fffaf0;
+  background: var(--paper);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -382,16 +382,16 @@ button.add-btn {
   border-bottom: 1px dotted var(--border);
 }
 .inv-row input:focus {
-  background: white;
+  background: var(--paper);
   border: 1px solid var(--primary);
 }
 
 /* Print */
 @media print {
-  body { background: white; padding: 0; }
+  body { background: var(--paper); padding: 0; }
   .toolbar, .no-print, button { display: none !important; }
   .section { break-inside: avoid; box-shadow: none; border-color: #888; }
-  header.title-bar { background: white; }
+  header.title-bar { background: var(--paper); }
 }
 
 /* Notes section */
@@ -403,7 +403,7 @@ button.add-btn {
 
 /* Symboles grid */
 .sym-category {
-  background: #fffaf0;
+  background: var(--paper);
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 10px 12px;
@@ -430,14 +430,14 @@ button.add-btn {
   align-items: center;
   gap: 6px;
   padding: 6px 8px;
-  background: white;
+  background: var(--paper);
   border: 1px solid var(--border);
   border-radius: 4px;
   cursor: pointer;
   font-size: 13px;
   transition: all 0.15s;
 }
-.sym-checkbox:hover { border-color: var(--primary); background: #f5ebd6; }
+.sym-checkbox:hover { border-color: var(--primary); background: var(--paper); }
 .sym-checkbox input { width: auto; margin: 0; }
 .sym-checkbox.checked {
   background: #d5e8f0;
@@ -446,7 +446,7 @@ button.add-btn {
 }
 .mot-item {
   border: 1px solid var(--border);
-  background: #fffaf0;
+  background: var(--paper);
   padding: 8px;
   border-radius: 4px;
   margin-bottom: 6px;
@@ -458,7 +458,7 @@ button.add-btn {
   align-items: center;
   gap: 10px;
   padding: 6px 14px;
-  background: #f5ebd6;
+  background: var(--paper);
   border: 1px solid var(--border);
   border-radius: 6px;
   margin-bottom: 12px;
@@ -514,6 +514,12 @@ button.add-btn {
   <button onclick="window.print()">🖨️ Imprimer / PDF</button>
   <button class="danger" onclick="if(confirm('Effacer toute la fiche ?')) resetAll()">🗑️ Nouvelle fiche</button>
   <input type="file" id="fileInput" accept=".json" style="display:none" onchange="handleFileLoad(event)">
+</div>
+
+<div class="section" style="border-left:4px solid var(--accent)">
+  <h2>🎲 Comment lancer</h2>
+  <p style="margin:4px 0;font-size:15px"><b>1d20 + Caractéristique</b> (le cœur, 0→+5) <b>+ Spécialité</b> (rang I +1 / II +2 / III +3, <i>seulement si elle s'applique</i>) vs DD.</p>
+  <p style="margin:4px 0;font-size:13px" class="muted">Le reste du temps, tu lances juste 1d20 + caractéristique. Le <b>1 naturel</b> = échec critique, le <b>20 naturel</b> = réussite critique (ils priment toujours). Magie : 1d20 + INT + Affinité. DD : Très facile 5 · Facile 10 · Standard 15 · Difficile 20 · Très difficile 25 · Héroïque 30. Ta caractéristique définit qui tu es ; les <b>spécialités</b> (compétences larges ou traits étroits) nuancent — catalogue complet dans la <a href="bibliotheque_competences.html" target="_blank" style="color:var(--accent)">📚 bibliothèque Compétences &amp; Spécialités</a>.</p>
 </div>
 
 <!-- IDENTITÉ -->
@@ -594,7 +600,7 @@ button.add-btn {
     <label>Description physique / personnalité</label>
     <textarea data-key="description" placeholder="Apparence, traits de caractère marquants..."></textarea>
   </div>
-  <div id="race_traits_panel" style="display:none; margin-top:14px; padding:12px; background:#f5ebd6; border-left:4px solid var(--accent); border-radius:4px;">
+  <div id="race_traits_panel" style="display:none; margin-top:14px; padding:12px; background:var(--paper); border-left:4px solid var(--accent); border-radius:4px;">
     <div style="font-weight:bold; color:var(--primary); margin-bottom:6px;">📚 Bonus raciaux (rappel — à appliquer manuellement aux jets)</div>
     <div id="race_traits_content" style="font-size:13px;"></div>
   </div>
@@ -602,42 +608,45 @@ button.add-btn {
 
 <!-- CARACTÉRISTIQUES -->
 <div class="section">
-  <h2>Caractéristiques <span class="muted">(0 à +3 · création : 2 pts, max +1/carac)</span></h2>
+  <h2>Caractéristiques <span class="muted">(0 → +5 · LE CŒUR du perso · création : 8 pts, max +3 · monte à +5 via l'XP)</span></h2>
+  <p class="muted" style="font-size:12px;margin:0 0 10px;line-height:1.6">
+    <b>FOR</b> force physique, corps-à-corps · <b>DEX</b> agilité, visée, réflexes · <b>CON</b> vigueur, santé, endurance · <b>INT</b> savoir, logique, magie · <b>SAG</b> perception, instinct, <b>volonté &amp; sang-froid</b> · <b>CHA</b> présence, social, autorité.
+  </p>
   <div class="points-counter" id="counter_caracs">
     <span class="counter-label">Points utilisés :</span>
-    <span class="counter-value" id="counter_caracs_val">0 / 2</span>
+    <span class="counter-value" id="counter_caracs_val">0 / 8</span>
     <span class="counter-status" id="counter_caracs_status"></span>
   </div>
   <div class="grid grid-6 grid-2-mobile">
     <div class="carac-block">
       <div class="carac-name">FOR</div>
       <div class="carac-full">Force</div>
-      <input type="number" data-key="for" data-carac min="0" max="3" value="0" oninput="recompute()">
+      <input type="number" data-key="for" data-carac min="0" max="5" value="0" oninput="recompute()">
     </div>
     <div class="carac-block">
       <div class="carac-name">DEX</div>
       <div class="carac-full">Dextérité</div>
-      <input type="number" data-key="dex" data-carac min="0" max="3" value="0" oninput="recompute()">
+      <input type="number" data-key="dex" data-carac min="0" max="5" value="0" oninput="recompute()">
     </div>
     <div class="carac-block">
       <div class="carac-name">CON</div>
       <div class="carac-full">Constitution</div>
-      <input type="number" data-key="con" data-carac min="0" max="3" value="0" oninput="recompute()">
+      <input type="number" data-key="con" data-carac min="0" max="5" value="0" oninput="recompute()">
     </div>
     <div class="carac-block">
       <div class="carac-name">INT</div>
       <div class="carac-full">Intelligence</div>
-      <input type="number" data-key="int" data-carac min="0" max="3" value="0" oninput="recompute()">
+      <input type="number" data-key="int" data-carac min="0" max="5" value="0" oninput="recompute()">
     </div>
     <div class="carac-block">
       <div class="carac-name">SAG</div>
       <div class="carac-full">Sagesse</div>
-      <input type="number" data-key="sag" data-carac min="0" max="3" value="0" oninput="recompute()">
+      <input type="number" data-key="sag" data-carac min="0" max="5" value="0" oninput="recompute()">
     </div>
     <div class="carac-block">
       <div class="carac-name">CHA</div>
       <div class="carac-full">Charisme</div>
-      <input type="number" data-key="cha" data-carac min="0" max="3" value="0" oninput="recompute()">
+      <input type="number" data-key="cha" data-carac min="0" max="5" value="0" oninput="recompute()">
     </div>
   </div>
 </div>
@@ -649,22 +658,22 @@ button.add-btn {
     <div class="stat-block">
       <div class="stat-label">Vitalité</div>
       <div class="stat-value"><input type="number" class="stat-edit" data-key="vit_actuel" value="0" oninput="recompute()"> / <span id="vit_max">10</span></div>
-      <div class="stat-sub formula">10 + CON × 3</div>
+      <div class="stat-sub formula">10 + CON × 2</div>
     </div>
     <div class="stat-block">
       <div class="stat-label">Éther</div>
       <div class="stat-value"><input type="number" class="stat-edit" data-key="ether_actuel" value="3" oninput="recompute()"> / <span id="ether_max">3</span></div>
-      <div class="stat-sub formula">3 + INT + CON</div>
+      <div class="stat-sub formula" title="Ta réserve de magie : elle se vide quand tu lances des sorts, se recharge à 50% après 1h de repos et complètement la nuit.">3 + INT + CON · réserve de magie</div>
     </div>
     <div class="stat-block">
       <div class="stat-label">Défense passive</div>
       <div class="stat-value"><span id="defense">10</span></div>
-      <div class="stat-sub formula">10 + DEX + Défense + Armure</div>
+      <div class="stat-sub formula">10 + DEX + Armure</div>
     </div>
     <div class="stat-block" id="surcharge_block">
       <div class="stat-label">Surcharge</div>
       <div class="stat-value"><input type="number" class="stat-edit" data-key="surcharge" value="0" min="0" max="5" oninput="recompute()"> / 5</div>
-      <div class="stat-sub">À 5 = coma 3 jours</div>
+      <div class="stat-sub" title="Chaque point de Surcharge (Éther dépensé au-delà de ta réserve) = −1 à TOUS tes jets pendant 24h. À 5 = coma de 3 jours.">−1 à tous les jets/24h par point · 5 = coma</div>
     </div>
   </div>
   <div style="margin-top: 14px;">
@@ -693,25 +702,31 @@ button.add-btn {
 
 <!-- COMPÉTENCES -->
 <div class="section">
-  <h2>Compétences <span class="muted">(0 à +6 · création : 15 pts, cap initial +3)</span></h2>
+  <h2>Compétences &amp; Spécialités <span class="muted">(3 au choix · CONTEXTUEL · rangs I +1 / II +2 / III +3 · rang III via XP)</span></h2>
+  <div class="field" style="max-width:320px;margin-bottom:10px">
+    <label>Filtrer par caractéristique</label>
+    <select id="spec_filter" onchange="renderSpecSlots()">
+      <option value="">Toutes</option>
+      <option value="for">Force</option>
+      <option value="dex">Dextérité</option>
+      <option value="con">Constitution</option>
+      <option value="int">Intelligence</option>
+      <option value="sag">Sagesse</option>
+      <option value="cha">Charisme</option>
+    </select>
+  </div>
   <div class="points-counter" id="counter_comp">
-    <span class="counter-label">Points utilisés :</span>
-    <span class="counter-value" id="counter_comp_val">0 / 15</span>
+    <span class="counter-label">Spécialités (points) :</span>
+    <span class="counter-value" id="counter_comp_val">0 / 5</span>
     <span class="counter-status" id="counter_comp_status"></span>
   </div>
-  <div class="comp-row header">
-    <div>Compétence</div>
-    <div>Carac</div>
-    <div>Carac val.</div>
-    <div>Compétence</div>
-    <div>Total</div>
-  </div>
-  <div id="comp_list"></div>
+  <div id="spec_slots"></div>
+  <div class="muted" style="margin-top:8px">Le bonus ne s'ajoute que si la spécialité colle à l'action. Besoin de plus fin (jeu de hasard, régions, races, Célestes) ? Vois la <a href="bibliotheque_competences.html" target="_blank" style="color:var(--accent)">📚 bibliothèque</a>.</div>
 </div>
 
 <!-- AFFINITÉS -->
 <div class="section">
-  <h2>Affinités élémentaires <span class="muted">(-2 à +5 · création : 6 pts, max +3/élément)</span></h2>
+  <h2>Affinités élémentaires <span class="muted">(-2 à +3 · création : 6 pts · plafond +3/élément)</span></h2>
   <div class="points-counter" id="counter_aff">
     <span class="counter-label">Points utilisés :</span>
     <span class="counter-value" id="counter_aff_val">0 / 6</span>
@@ -722,15 +737,16 @@ button.add-btn {
 
 <!-- ATOUTS -->
 <div class="section">
-  <h2>Atouts narratifs <span class="muted">(+1/+2/+3 selon niveau · 1× par scène)</span></h2>
+  <h2>Atouts / Spécialités <span class="muted">(+1 situationnel · 2 au départ · montent en +2/+3 via l'XP)</span></h2>
   <div id="atouts_list"></div>
-  <button class="add-btn" onclick="addAtout()">+ Ajouter un Atout</button>
-  <div class="muted" style="margin-top: 8px;">Coche la case pour marquer comme « utilisé cette scène ». Décoche en début de scène suivante.</div>
+  <button class="add-btn" onclick="addAtout()">+ Ajouter une Spécialité</button>
+  <div class="muted" style="margin-top: 8px;">Pioche dans le <a href="bibliotheque_competences.html" target="_blank" style="color:var(--accent)">📚 catalogue de Spécialités</a> (jeu de hasard, affinités, régions, races, Célestes…). Une <b>Contrepartie</b> (défaut) débloque une Spécialité de plus — et quand le MJ l'invoque en jeu, tu regagnes 1 Écho. Coche « utilisé » après emploi dans la scène.</div>
 </div>
 
 <!-- POINTS D'ÉCHO -->
 <div class="section">
   <h2>Points d'Écho <span class="muted">(ressource narrative)</span></h2>
+  <p class="muted" style="font-size:12px;margin:0 0 8px">Ce <b>n'est pas</b> de la magie : c'est une ressource d'histoire. Dépense 1 Écho pour <b>+5 à un jet</b>, réactiver un Atout/Spécialité, ou peser sur la fiction. Tu en regagnes en tenant tes <b>Promesses</b> et en jouant tes <b>Contreparties</b>.</p>
   <div class="grid grid-2">
     <div>
       <div class="field">
@@ -750,11 +766,32 @@ button.add-btn {
   </div>
 </div>
 
+<!-- EXPÉRIENCE -->
+<div class="section" style="border-left:4px solid var(--accent)">
+  <h2>💠 Expérience <span class="muted">(investis ton XP)</span></h2>
+  <div class="grid grid-3">
+    <div class="field"><label>XP gagné (total)</label><input type="number" data-key="xp_total" value="0" min="0" oninput="recomputeXP()"></div>
+    <div class="field"><label>XP dépensé</label><input type="number" data-key="xp_depense" value="0" min="0" oninput="recomputeXP()"></div>
+    <div class="field"><label>XP disponible</label><div class="stat-value" id="xp_dispo" style="font-size:22px;color:var(--accent)">0</div></div>
+  </div>
+  <div style="margin-top:10px;font-size:13px;line-height:1.7">
+    <b>Barème d'achat :</b>
+    Spécialité rang I (+1) = <b>3 XP</b> ·
+    monter I→II (+2) = <b>5 XP</b> ·
+    monter II→III (+3) = <b>8 XP</b> ·
+    Affinité +1 = <b>4 XP</b> ·
+    <b>Caractéristique +1 = valeur visée × 5</b> (→+4 = 20, →+5 = 25) ·
+    Cap d'Écho +1 = <b>8 XP</b> ·
+    Mot / script appris = 3–8 XP.
+    <div class="muted" style="margin-top:4px">Gains typiques : 2–4 XP par session + objectifs + expéditions hors-session. Les caractéristiques sont chères et lentes (elles définissent le perso) ; les spécialités rapides et fréquentes.</div>
+  </div>
+</div>
+
 <!-- MAGIE SCRIPT -->
 <div class="section">
   <h2>Magie Script</h2>
   <h3>Symboles connus <span class="muted">(2 à la création · 4 pour Ingénieur)</span></h3>
-  <label style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; background: #fffaf0; border: 1px solid var(--border); border-radius: 4px; margin-bottom: 10px; cursor: pointer; font-size: 13px;">
+  <label style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--paper); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 10px; cursor: pointer; font-size: 13px;">
     <input type="checkbox" data-key="is_ingenieur" onchange="updateSymCounter(); save()">
     <span>🛠️ <strong>Je suis Ingénieur</strong> (cap symboles à 4)</span>
   </label>
@@ -894,6 +931,14 @@ const COMPETENCES = [
   ['Pratique', 'Artisanat', 'dex'],
   ['Pratique', 'Larcins', 'dex'],
   ['Pratique', 'Représentation', 'cha'],
+  ['Combat', 'Endurance', 'con'],
+  ['Physique', 'Volonté', 'sag'],
+  ['Savoir', 'Investigation', 'int'],
+  ['Savoir', 'Ingénierie & Artéfacts', 'int'],
+  ['Savoir', 'Dressage & Lien animal', 'sag'],
+  ['Social', 'Étiquette & Mondanités', 'cha'],
+  ['Social', 'Commandement & Prestance', 'cha'],
+  ['Pratique', 'Pièges & mécanismes', 'dex'],
 ];
 
 const ELEMENTS = [
@@ -917,32 +962,63 @@ let state = {
   mots: [],      // [{ nom, effet, niveau }]
   inv: [],       // [{ nom, qte }]
   echo: 0,
+  specs: [],     // [{ name, rank }] — 3 spécialités au choix
 };
 
 // ========== INIT ==========
 
-function initComp() {
-  const list = document.getElementById('comp_list');
-  let lastFamily = '';
-  list.innerHTML = '';
+function specCaracOf(name){ const f = COMPETENCES.find(c => c[1] === name); return f ? f[2] : null; }
+
+function specOptions(filterCarac, current){
+  let html = '<option value="">— choisir une spécialité —</option>';
   COMPETENCES.forEach(([fam, name, carac]) => {
-    if (fam !== lastFamily) {
-      const h = document.createElement('div');
-      h.className = 'comp-family-header';
-      h.textContent = fam;
-      list.appendChild(h);
-      lastFamily = fam;
-    }
+    if (filterCarac && carac !== filterCarac && name !== current) return;
+    const sel = (name === current) ? ' selected' : '';
+    html += `<option value="${name}"${sel}>${name} (${carac.toUpperCase()})</option>`;
+  });
+  return html;
+}
+
+function renderSpecSlots(){
+  const cont = document.getElementById('spec_slots');
+  if (!cont) return;
+  const filter = document.getElementById('spec_filter') ? document.getElementById('spec_filter').value : '';
+  if (!state.specs) state.specs = [];
+  while (state.specs.length < 3) state.specs.push({ name: '', rank: 1 });
+  cont.innerHTML = '';
+  state.specs.slice(0,3).forEach((s, i) => {
     const row = document.createElement('div');
-    row.className = 'comp-row';
+    row.style.cssText = 'display:flex;gap:8px;align-items:center;margin:6px 0;flex-wrap:wrap';
     row.innerHTML = `
-      <div>${name}</div>
-      <div style="text-align:center; color: var(--muted); font-weight: bold;">${carac.toUpperCase()}</div>
-      <div style="text-align:center;" id="caracval_${name.replace(/[^a-zA-Z]/g,'')}">0</div>
-      <input type="number" min="0" max="6" value="0" data-comp="${name}" data-carac-link="${carac}" oninput="recompute()">
-      <div class="total" id="total_${name.replace(/[^a-zA-Z]/g,'')}">0</div>
-    `;
-    list.appendChild(row);
+      <select class="spec-name" data-i="${i}" onchange="onSpecChange(${i})" style="flex:1;min-width:200px">${specOptions(filter, s.name)}</select>
+      <select class="spec-rank" data-i="${i}" onchange="onSpecChange(${i})" style="width:160px">
+        <option value="1"${s.rank == 1 ? ' selected' : ''}>I · +1 formé</option>
+        <option value="2"${s.rank == 2 ? ' selected' : ''}>II · +2 maîtrisé</option>
+        <option value="3"${s.rank == 3 ? ' selected' : ''}>III · +3 expert (XP)</option>
+      </select>
+      <span class="muted" id="spec_total_${i}" style="min-width:150px;font-size:13px"></span>`;
+    cont.appendChild(row);
+  });
+  updateSpecTotals();
+}
+
+function onSpecChange(i){
+  const nameSel = document.querySelector(`.spec-name[data-i="${i}"]`);
+  const rankSel = document.querySelector(`.spec-rank[data-i="${i}"]`);
+  state.specs[i] = { name: nameSel.value, rank: parseInt(rankSel.value) || 1 };
+  updateSpecTotals();
+  recompute();
+}
+
+function updateSpecTotals(){
+  const caracs = {};
+  document.querySelectorAll('[data-carac]').forEach(inp => caracs[inp.dataset.key] = parseInt(inp.value) || 0);
+  (state.specs || []).slice(0,3).forEach((s, i) => {
+    const el = document.getElementById('spec_total_' + i);
+    if (!el) return;
+    if (!s.name) { el.textContent = ''; return; }
+    const cv = caracs[specCaracOf(s.name)] || 0;
+    el.textContent = `→ 1d20 +${cv + s.rank} (carac +${cv} + spé +${s.rank})`;
   });
 }
 
@@ -1026,7 +1102,7 @@ function initAffinity() {
     row.className = 'affinity-row';
     row.innerHTML = `
       <div class="elem-name">${icon} ${name}</div>
-      <input type="range" min="-2" max="5" value="0" data-affinity="${name}" oninput="updateAffinityValue('${name}', this.value); save()">
+      <input type="range" min="-2" max="3" value="0" data-affinity="${name}" oninput="updateAffinityValue('${name}', this.value); save()">
       <div class="value" id="aff_${name}">0</div>
     `;
     list.appendChild(row);
@@ -1137,7 +1213,7 @@ function renderScripts() {
   list.innerHTML = '';
   state.scripts.forEach((s, idx) => {
     const item = document.createElement('div');
-    item.style.cssText = 'border: 1px solid var(--border); background: #fffaf0; padding: 8px; border-radius: 4px; margin-bottom: 6px;';
+    item.style.cssText = 'border: 1px solid var(--border); background: var(--paper); padding: 8px; border-radius: 4px; margin-bottom: 6px;';
     item.innerHTML = `
       <div style="display: grid; grid-template-columns: 2fr 3fr 1fr 1fr 30px; gap: 6px; align-items: center;">
         <input type="text" value="${escapeHtml(s.nom)}" placeholder="Nom (ex : Brassard du Vent)" oninput="state.scripts[${idx}].nom = this.value; save()">
@@ -1273,6 +1349,13 @@ function renderEcho() {
 
 // ========== RECOMPUTE STATS ==========
 
+function recomputeXP() {
+  const tot = parseInt(document.querySelector('[data-key="xp_total"]')?.value) || 0;
+  const dep = parseInt(document.querySelector('[data-key="xp_depense"]')?.value) || 0;
+  const el = document.getElementById('xp_dispo');
+  if (el) el.textContent = (tot - dep);
+}
+
 function recompute() {
   // Read caracs
   const caracs = {};
@@ -1280,45 +1363,35 @@ function recompute() {
     caracs[input.dataset.key] = parseInt(input.value) || 0;
   });
   // Vit max
-  const vit_max = 10 + caracs.con * 3;
+  const vit_max = 10 + caracs.con * 2;
   document.getElementById('vit_max').textContent = vit_max;
   // Ether max
   const ether_max = 3 + caracs.int + caracs.con;
   document.getElementById('ether_max').textContent = ether_max;
   // Défense
-  const compDef = parseInt(document.querySelector('[data-comp="Défense"]')?.value) || 0;
   const armure = parseInt(document.querySelector('[data-key="armure_bonus"]').value) || 0;
   const bouclier = parseInt(document.querySelector('[data-key="bouclier"]').value) || 0;
   const actDef = parseInt(document.querySelector('[data-key="action_def"]').value) || 0;
-  const defense = 10 + caracs.dex + compDef + armure + bouclier + actDef;
+  const defense = 10 + caracs.dex + armure + bouclier + actDef;
   document.getElementById('defense').textContent = defense;
   // Surcharge warning
   const sur = parseInt(document.querySelector('[data-key="surcharge"]').value) || 0;
   document.getElementById('surcharge_block').classList.toggle('warning', sur >= 4);
-  // Compétences totals
+  // Spécialités : somme des rangs choisis
   let compTotal = 0;
   let compOver = false;
-  document.querySelectorAll('[data-comp]').forEach(input => {
-    const compName = input.dataset.comp;
-    const caracLink = input.dataset.caracLink;
-    const compVal = parseInt(input.value) || 0;
-    compTotal += compVal;
-    if (compVal > 3) compOver = true;
-    const caracVal = caracs[caracLink] || 0;
-    const id = compName.replace(/[^a-zA-Z]/g,'');
-    document.getElementById('caracval_' + id).textContent = (caracVal >= 0 ? '+' : '') + caracVal;
-    const total = caracVal + compVal;
-    document.getElementById('total_' + id).textContent = (total >= 0 ? '+' : '') + total;
-  });
+  (state.specs || []).slice(0,3).forEach(s => { if (s && s.name) compTotal += (parseInt(s.rank) || 0); });
+  if (compTotal > 5) compOver = true;
+  updateSpecTotals();
 
   // === Compteurs de points ===
-  // Caracs : 2 pts à la création, max +1 par carac
+  // Caracs : 8 pts à la création, max +3 par carac (monte à +5 via XP)
   const caracTotal = Object.values(caracs).reduce((a,b) => a + b, 0);
-  const caracOver = Object.values(caracs).some(v => v > 1);
-  updateCounter('caracs', caracTotal, 2, caracOver, 'Max +1 par carac à la création');
+  const caracOver = Object.values(caracs).some(v => v > 3);
+  updateCounter('caracs', caracTotal, 8, caracOver, 'Max +3 par carac à la création (jusqu\'à +5 via l\'XP)');
 
-  // Compétences : 15 pts à la création, cap initial +3
-  updateCounter('comp', compTotal, 15, compOver, 'Cap +3/compétence à la création');
+  // Spécialités : ~5 pts au départ (3 au choix, +1/+2 chacune)
+  updateCounter('comp', compTotal, 5, compOver, 'Max +2/spécialité · ~5 pts au départ');
 
   // Affinités : 6 pts à la création, max +3 par élément
   let affTotal = 0;
@@ -1330,6 +1403,7 @@ function recompute() {
   });
   updateCounter('aff', affTotal, 6, affOver, 'Max +3 par élément à la création');
 
+  recomputeXP();
   save();
 }
 
@@ -1393,6 +1467,12 @@ function setFormData(data) {
   state.inv = data.state?.inv || [];
   state.affinity = data.state?.affinity || {};
   state.echo = data.state?.echo || 0;
+  state.specs = (data.state && data.state.specs) ? data.state.specs : [];
+  // Migration des anciennes fiches (compétences → 3 meilleures en spécialités)
+  if ((!state.specs || !state.specs.length) && data.competences) {
+    const arr = Object.entries(data.competences).map(([n,v]) => [n, parseInt(v)||0]).filter(x => x[1] > 0).sort((a,b) => b[1]-a[1]).slice(0,3);
+    state.specs = arr.map(([n,v]) => ({ name: n, rank: Math.min(2, Math.max(1, v)) }));
+  }
   // Set inputs
   Object.keys(data).forEach(key => {
     if (key === 'state' || key === 'competences' || key === 'affinities') return;
@@ -1402,13 +1482,8 @@ function setFormData(data) {
       else el.value = data[key];
     }
   });
-  // Compétences
-  if (data.competences) {
-    Object.keys(data.competences).forEach(name => {
-      const el = document.querySelector(`[data-comp="${name}"]`);
-      if (el) el.value = data.competences[name];
-    });
-  }
+  // Spécialités (menus déroulants)
+  renderSpecSlots();
   // Affinities
   if (data.affinities) {
     Object.keys(data.affinities).forEach(name => {
@@ -1504,7 +1579,7 @@ function escapeHtml(s) {
 // ========== INITIALIZE ==========
 
 window.addEventListener('DOMContentLoaded', () => {
-  initComp();
+  renderSpecSlots();
   initAffinity();
   initSymbols();
   autoload();

@@ -30,3 +30,43 @@ body, .card, header, section, table, th, td, nav, aside, .panel, .box {
 }
 #theme-toggle:hover{ border-color:var(--primary); transform:scale(1.1); }
 @media print{ #theme-toggle{ display:none; } }
+
+/* ===== Animations de navigation (partagées, tout le site) ===== */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+
+  /* fondu doux à l'ouverture de la page */
+  body { animation: ar-fade-in .45s ease both; }
+  @keyframes ar-fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+  /* entrée en douceur des blocs de contenu */
+  .card, .panel, .section, .step-card, .intro-box, .box, .atout,
+  header.hero, header.title-bar, .pnj-card, .place-card, .comp-card, .name-item {
+    animation: ar-rise .5s ease both;
+  }
+  @keyframes ar-rise {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* transitions fluides sur les éléments interactifs */
+  a, button, .card, .panel, .tag, .pill, .stat, .lk, .add-btn, input, select,
+  .choice-card, .place-card, .pnj-card, .filter-btn, #theme-toggle {
+    transition: transform .18s ease, box-shadow .22s ease,
+                background-color .22s ease, color .2s ease,
+                border-color .2s ease, filter .2s ease;
+  }
+
+  /* survol : les cartes se soulèvent joliment */
+  .card:hover, .panel:hover, .step-card:hover, .box:hover,
+  .choice-card:hover, .pnj-card:hover, .place-card:hover, .comp-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 26px rgba(0,0,0,.30);
+  }
+  a:hover { filter: brightness(1.18); }
+  button:hover, .add-btn:hover, .lk:hover, .filter-btn:hover { transform: translateY(-1px); }
+  button:active, .add-btn:active { transform: translateY(0); }
+
+  /* liens du sommaire : léger glissement */
+  a.card:hover { transform: translateY(-4px) scale(1.01); }
+}

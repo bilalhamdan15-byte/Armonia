@@ -178,7 +178,7 @@ header.title-bar .subtitle {
   margin: 12px 0;
 }
 .choice-card {
-  background: white;
+  background: var(--paper);
   border: 1px solid var(--border);
   padding: 10px 12px;
   border-radius: 6px;
@@ -202,7 +202,7 @@ header.title-bar .subtitle {
   text-decoration: none;
   font-weight: bold;
   padding: 8px 14px;
-  background: white;
+  background: var(--paper);
   border-radius: 6px;
   border: 1px solid var(--border);
 }
@@ -376,7 +376,7 @@ footer {
   <div class="step-content">
     <h3>Statistiques calculées</h3>
     <ul>
-      <li><strong>Vitalité (PV)</strong> = 10 + CON × 3</li>
+      <li><strong>Vitalité (PV)</strong> = 10 + CON × 2</li>
       <li><strong>Éther</strong> = 3 + INT + CON</li>
       <li><strong>Défense</strong> = 10 + DEX + armure</li>
       <li><strong>Initiative</strong> = 1d20 + DEX (en combat)</li>
@@ -397,8 +397,8 @@ footer {
 <h2>🎲 Comment se fait un jet de dés</h2>
 
 <div class="intro-box">
-  <p style="margin:0 0 8px"><strong>La règle d'or :</strong> <span style="font-size:16px;color:var(--primary)"><strong>1d20 + Caractéristique + Compétence</strong></span> (+ <strong>Spécialité</strong> si le contexte s'y prête) comparé au <strong>DD</strong>.</p>
-  <p style="margin:0 0 8px;font-size:13px;color:var(--muted)">La <strong>caractéristique</strong> (0→+3) porte ton talent brut ; la <strong>compétence</strong> (plafonnée à +3 : Novice/Confirmé/Expert) ton entraînement ; une <strong>Spécialité</strong> ajoute +1 dans un contexte précis. Sans compétence : 1d20 + Caractéristique seule. En magie : <strong>1d20 + INT + Affinité</strong> (sens) ou <strong>+ Arcanes</strong> (script).</p>
+  <p style="margin:0 0 8px"><strong>La règle d'or :</strong> <span style="font-size:16px;color:var(--primary)"><strong>1d20 + Caractéristique + Spécialité</strong></span> comparé au <strong>DD</strong>.</p>
+  <p style="margin:0 0 8px;font-size:13px;color:var(--muted)">La <strong>caractéristique</strong> (0→+5) est <strong>le cœur</strong> de ton personnage : c'est le gros chiffre, présent sur chaque jet. Une <strong>Spécialité</strong> ajoute un petit bonus — <strong>rang I +1 / II +2 / III +3</strong> (le rang III s'obtient via l'XP) — mais <strong>seulement quand elle s'applique</strong> ; sinon tu lances juste 1d20 + caractéristique. « Compétences » (larges) et « spécialités » (étroites) sont la même mécanique. En magie : <strong>1d20 + INT + Affinité</strong>.</p>
   <p style="margin:0"><strong>Échelle des DD :</strong> Très facile <strong>5</strong> · Facile <strong>10</strong> · Standard <strong>15</strong> · Difficile <strong>20</strong> · Très difficile <strong>25</strong> · Héroïque <strong>30</strong>.</p>
 </div>
 
@@ -423,6 +423,20 @@ footer {
     <li><strong>Éther</strong> ou <strong>Point d'Écho</strong> : +5 chacun. <em>(Atout et Pousser ne se cumulent pas entre eux.)</em></li>
   </ul>
   <p style="margin:8px 0 0"><strong>On ne lance pas</strong> si c'est joué d'avance : réussite automatique quand ton bonus garantit le DD (bonus ≥ DD−1), et pas de jet si même un 19 n'atteint pas le DD (impossible sans levier).</p>
+</div>
+
+<h2>💠 Progresser : l'expérience (XP)</h2>
+
+<div class="intro-box">
+  <p style="margin:0 0 6px">Ton personnage grandit en dépensant de l'<strong>XP</strong>, une monnaie unique. Le principe : les <strong>caractéristiques sont chères et lentes</strong> (elles définissent qui tu es), les <strong>spécialités rapides et fréquentes</strong> (elles nuancent).</p>
+  <ul style="margin:6px 0">
+    <li>Nouvelle <strong>Spécialité rang I (+1)</strong> : <strong>3 XP</strong></li>
+    <li>Monter une spécialité <strong>I → II (+2)</strong> : <strong>5 XP</strong> · <strong>II → III (+3)</strong> : <strong>8 XP</strong></li>
+    <li><strong>Affinité +1</strong> : <strong>4 XP</strong></li>
+    <li><strong>Caractéristique +1</strong> : <strong>valeur visée × 5</strong> (passer à +4 = 20 XP, à +5 = 25 XP)</li>
+    <li><strong>Cap d'Écho +1</strong> : 8 XP · <strong>Mot / script</strong> : 3–8 XP</li>
+  </ul>
+  <p style="margin:6px 0 0;font-size:13px;color:var(--muted)">Tu gagnes environ <strong>2 à 4 XP par session</strong>, plus des bonus pour les objectifs d'histoire et les <strong>expéditions hors-session</strong> (sur la carte). La création, elle, ne coûte pas d'XP.</p>
 </div>
 
 <h2 style="color:var(--primary); text-align:center; margin-top:30px;">✅ Ton personnage est prêt !</h2>
