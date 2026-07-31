@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barème de référence · Armonia</title>
+<style>
+ :root{--bg:#1a1a2e;--paper:#2a2a3e;--primary:#c9a85a;--accent:#d97c47;--text:#f4e8d0;--muted:#9a8a7a;--border:#3a3a4e;--crystal:#7ec8e8;--danger:#c44040;--success:#5aa850;--info:#5a8ec9}
+ *{box-sizing:border-box} body{font-family:Georgia,serif;background:var(--bg);color:var(--text);margin:0;padding:24px;line-height:1.55}
+ .wrap{max-width:1000px;margin:0 auto}
+ a.back{color:var(--muted);text-decoration:none;font-size:14px} a.back:hover{color:var(--primary)}
+ header.hero{background:linear-gradient(135deg,#232338,#2a2a3e);border:2px solid var(--primary);border-radius:12px;padding:22px 28px;margin:14px 0 20px;position:relative;overflow:hidden}
+ header.hero::after{content:"📊";position:absolute;right:22px;top:12px;font-size:58px;opacity:.12}
+ h1{font-size:27px;color:var(--primary);margin:0 0 4px} .sub{color:var(--crystal);font-style:italic;margin:0}
+ h2{color:var(--accent);font-size:19px;border-bottom:1px solid var(--border);padding-bottom:5px;margin:26px 0 10px}
+ .card{background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0}
+ table{width:100%;border-collapse:collapse;font-size:14px}
+ th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--border)}
+ th{color:var(--primary);font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+ td.c,th.c{text-align:center}
+ .tip{background:#20281f;border-left:4px solid var(--success);border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:14px}
+ .warn{background:#2a1f2e;border-left:4px solid var(--accent);border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:14px}
+ .foot{text-align:center;color:var(--muted);font-size:11px;margin:24px 0 4px}
+ b.g{color:var(--success)} b.o{color:var(--accent)}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body><div class="wrap">
+<a class="back" href="index.html">← Retour au sommaire</a>
+<header class="hero"><h1>Barème de référence</h1><p class="sub">La base pour calibrer un personnage à création libre — dégâts, sorts, soins</p></header>
+
+<div class="tip">🎯 <b>Comment s'en servir :</b> quand un joueur invente un pouvoir « maison », compare son <b>effet</b> et son <b>coût</b> à ces valeurs standard. Un pouvoir gratuit doit rester faible ; un pouvoir fort doit coûter de l'Éther/Écho, être limité (1×/scène) ou porter un risque.</div>
+
+<h2>⚔️ Attaques & dégâts (armes)</h2>
+<div class="card">
+<table>
+<tr><th>Arme</th><th class="c">Dégâts</th><th>Jet d'attaque</th></tr>
+<tr><td>Mains nues / dague</td><td class="c">1d4</td><td rowspan="5">1d20 + Caractéristique + Spécialité<br><span class="sub" style="color:var(--muted);font-size:12px">contact = FOR · distance = DEX</span></td></tr>
+<tr><td>Arme légère (épée courte…)</td><td class="c">1d6</td></tr>
+<tr><td>Arme moyenne (épée longue…)</td><td class="c">1d8</td></tr>
+<tr><td>Arme lourde à 2 mains</td><td class="c">1d10 <span style="color:var(--muted)">(−1 init)</span></td></tr>
+<tr><td>Arc / arbalète</td><td class="c">1d6–1d8</td></tr>
+</table>
+<p style="font-size:13px;color:var(--muted);margin-top:8px">Les dégâts s'ajoutent à la caractéristique de l'attaque (une brute FOR+4 à l'épée moyenne = 1d8+4). Palier de touche : <b>arraché</b> = dégâts min · <b>pleine</b> = normal · <b>éclatante</b> = +50 % · <b>coup d'éclat / 20 nat</b> = critique.</p>
+</div>
+
+<h2>✨ Sorts — Magie de Sens</h2>
+<div class="card">
+<p style="margin:0 0 8px">Jet : <b>1d20 + INT + Affinité</b> vs DD. L'échec critique (1 nat) peut coûter de la Surcharge.</p>
+<table>
+<tr><th>Puissance</th><th class="c">DD</th><th class="c">Dégâts</th><th class="c">Coût Éther</th><th>Exemple</th></tr>
+<tr><td>Mineur</td><td class="c">10</td><td class="c">1d4</td><td class="c">1</td><td>étincelle, jet d'eau</td></tr>
+<tr><td>Standard</td><td class="c">15</td><td class="c">2d6</td><td class="c">2</td><td>boule de feu</td></tr>
+<tr><td>Puissant</td><td class="c">20</td><td class="c">3d6</td><td class="c">4</td><td>pieux multiples</td></tr>
+<tr><td>Spectaculaire</td><td class="c">25</td><td class="c">4d8</td><td class="c">8</td><td>carbonisation de zone</td></tr>
+</table>
+</div>
+
+<h2>💚 Soins (affinité Chaos)</h2>
+<div class="card">
+<table>
+<tr><th>Soin</th><th class="c">DD</th><th class="c">PV rendus</th><th class="c">Coût Éther</th></tr>
+<tr><td>Léger</td><td class="c">12</td><td class="c">1d6</td><td class="c">2</td></tr>
+<tr><td>Moyen</td><td class="c">15</td><td class="c">2d6</td><td class="c">4</td></tr>
+<tr><td>Majeur</td><td class="c">18</td><td class="c">3d6</td><td class="c">6</td></tr>
+</table>
+<p style="font-size:13px;color:var(--muted);margin-top:8px">Stabiliser un allié à 0 PV : jet de <b>Médecine DD 12</b> (ou un soin). Sans secours 3 tours à 0 PV = mort. <b>💠 Second souffle</b> : en tombant à 0 PV, un PJ peut dépenser <b>1 Écho</b> pour rester à <b>1 PV</b> (1×/scène).</p>
+</div>
+
+<h2>⚡ Leviers d'Éther</h2>
+<div class="card">
+<table>
+<tr><th class="c">Coût</th><th>Effet</th></tr>
+<tr><td class="c">1 Éther</td><td>+5 à un jet physique (attaque ou esquive)</td></tr>
+<tr><td class="c">2 Éther</td><td>+5 dégâts sur une attaque</td></tr>
+</table>
+<p style="font-size:13px;color:var(--muted);margin-top:8px">Réserve d'Éther = 3 + INT + CON. Dépasser sa réserve = <b>Surcharge</b> (−1 à tous les jets/24h par point ; 5 = coma 3 jours).</p>
+</div>
+
+<h2>🛡️ Postures & Manœuvres</h2>
+<div class="card">
+<table>
+<tr><th>Manœuvre</th><th>Effet</th></tr>
+<tr><td><b>Posture défensive</b> (action)</td><td>+5 à ta Défense jusqu'à ton prochain tour</td></tr>
+<tr><td><b>Viser</b> (action mineure)</td><td>+3 à ton attaque ce tour</td></tr>
+<tr><td><b>Bousculer</b></td><td>pas de dégâts, repousse la cible de 2 m</td></tr>
+<tr><td><b>Désarmer</b></td><td>dégâts ÷2, l'ennemi lâche son arme</td></tr>
+<tr><td><b>Mettre à terre</b></td><td>dégâts ÷2, ennemi à terre (−5 à ses jets au prochain tour)</td></tr>
+<tr><td><b>Saisir</b></td><td>pas de dégâts, immobilise la cible</td></tr>
+<tr><td><b>Pousser le jet</b></td><td>+5 au jet, mais conséquence aggravée en cas d'échec</td></tr>
+</table>
+<p style="font-size:13px;color:var(--muted);margin-top:8px">Tour de jeu : <b>1 action</b> + <b>1 mouvement</b> + <b>1 action mineure</b>. Une manœuvre remplace l'attaque de ton action principale.</p>
+</div>
+
+<h2>🧍 Repères de puissance (pour l'œil)</h2>
+<div class="card">
+<table>
+<tr><th>Palier</th><th class="c">Carac principale</th><th class="c">PV</th><th class="c">Défense</th><th class="c">Meilleur jet</th></tr>
+<tr><td>Débutant</td><td class="c">+2 à +3</td><td class="c">12–16</td><td class="c">12–14</td><td class="c">~+4 à +5</td></tr>
+<tr><td>Confirmé</td><td class="c">+3 à +4</td><td class="c">16–18</td><td class="c">14–15</td><td class="c">~+6</td></tr>
+<tr><td>Héros aguerri</td><td class="c">+4 à +5</td><td class="c">18–20</td><td class="c">15–17</td><td class="c">~+7 à +8</td></tr>
+</table>
+<p style="font-size:13px;color:var(--muted);margin-top:8px">Rappels : <b>PV = 10 + CON×2</b> · <b>Défense = 10 + DEX + armure</b> · meilleur jet = carac principale + spécialité (max +3). Si un perso libre dépasse nettement ces repères, il est trop fort pour son palier.</p>
+</div>
+
+<h2>🧪 Valider un pouvoir « maison » — règle du pouce</h2>
+<div class="card">
+<p style="margin:0 0 6px">Pour un pouvoir signature inventé par un joueur, pose-toi 3 questions :</p>
+<ol style="margin:6px 0">
+<li><b>Combien il fait ?</b> Compare ses dégâts/soins au tableau ci-dessus. Un pouvoir « gratuit » ≈ Mineur (1d4). Au-delà, il doit coûter.</li>
+<li><b>Combien il coûte ?</b> Fort = <b class="o">Éther</b> (selon le palier), <b class="o">Écho</b>, ou une <b>limite</b> (1×/scène, 1×/jour).</li>
+<li><b>Quel est le risque ?</b> Un pouvoir puissant gagne à avoir un <b>revers</b> (comme l'auto-électrocution de l'Éclair Jaune sur un 1 naturel). Ça équilibre <i>et</i> ça raconte.</li>
+</ol>
+<div class="warn">En résumé : <b>effet ↔ coût ↔ risque</b> doivent s'équilibrer. Un joueur qui veut « soigner 3d6 gratuitement à volonté » sort du barème (c'est un soin Majeur à 6 Éther) — ramène-le dans la grille.</div>
+</div>
+
+<p class="foot">Barème de référence · Système Bilal · Armonia 2026 — valeurs tirées de l'écran MJ et de la bibliothèque de magie.</p>
+</div></body></html>

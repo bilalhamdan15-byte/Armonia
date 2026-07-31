@@ -1,0 +1,9 @@
+# Fichiers sources lourds, inutiles au site en ligne (on a la carte interactive)
+Armonia_Custom.json
+Armonia_Custom.map
+armonia_relief.png
+
+# Outils MJ privés — NE PAS publier sur le site des joueurs
+simulateur_combat.html
+bestiaire_fiches.html
+bestiaire_mj.html
