@@ -1,0 +1,205 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Armonia Pixel — Forêt Julia</title>
+<style>
+ body{margin:0;background:#0e1410;color:#cfe8c0;font-family:'Courier New',monospace;display:flex;flex-direction:column;align-items:center;padding:14px;min-height:100vh}
+ a{color:#8ac07a;text-decoration:none;font-size:13px;align-self:flex-start}
+ h1{font-size:20px;color:#8ad06a;letter-spacing:2px;margin:8px 0 4px}
+ .hint{font-size:12px;color:#6a8a5a;margin-bottom:10px}
+ canvas{image-rendering:pixelated;border:3px solid #2a3a24;border-radius:6px;background:#182018;box-shadow:0 6px 24px #0009}
+ .foot{font-size:11px;color:#5a7a4a;margin-top:10px}
+</style></head>
+<body>
+<a href="index.html">← Retour au sommaire</a>
+<h1>🌲 ARMONIA — Forêt Julia</h1>
+<div class="hint">Flèches / WASD : bouger · les <b>hautes herbes</b> cachent des créatures · parle au Sylvestre · Entrée/Espace : valider</div>
+<canvas id="game" width="480" height="352"></canvas>
+<div class="foot">Prototype pixel · Système Armonia (1d20 + carac + spécialité) · tu incarnes Nymphéa, Gardienne de la Forêt Julia.</div>
+<script>
+const cv=document.getElementById('game'), ctx=cv.getContext('2d');
+const TS=32, VW=15, VH=11;
+// ===== CARTE =====  . grass  T tree  P path  W water  H herbes hautes  N pnj
+const MAP=[
+"TTTTTTTTTTTTTTTTTTTT",
+"T..HH...TT....HH...T",
+"T..HH...TT....HH..TT",
+"T.......PP.........T",
+"TT.TT...PP...TT....T",
+"T...T...PP....T....T",
+"T..WWW..PP.....N...T",
+"T..WWW..PP.........T",
+"T.......PP...TT....T",
+"T..HHH..PP...T.....T",
+"T..HHH..PP........TT",
+"TT......PP..HHH....T",
+"T...TT..PP..HHH....T",
+"T.......PP.........T",
+"TTTTTTTTTTTTTTTTTTTT"];
+const MW=MAP[0].length, MH=MAP.length;
+function tile(x,y){ if(y<0||y>=MH||x<0||x>=MW) return 'T'; return MAP[y][x]; }
+function solid(x,y){ const t=tile(x,y); return t==='T'||t==='W'||t==='N'; }
+
+// ===== ÉTAT =====
+let state='map'; // map | dialogue | combat | over
+const player={x:8,y:13,dir:'up',pv:14,pvmax:14,eth:5,ethmax:5,def:15,atk:6,name:'Nymphéa'};
+let dlg=null, dlgTimer=0;
+
+// ===== SPRITES (dessin pixel) =====
+function px(x,y,w,h,c){ ctx.fillStyle=c; ctx.fillRect(x,y,w,h); }
+function drawGrass(sx,sy){ px(sx,sy,TS,TS,'#3a7a3a'); ctx.fillStyle='#2f6a2f';
+  for(const[a,b]of[[6,8],[20,6],[12,22],[24,18],[4,24]]) px(sx+a,sy+b,3,3,'#2f6a2f'); }
+function drawPath(sx,sy){ px(sx,sy,TS,TS,'#b09560'); ctx.fillStyle='#a08850';
+  for(const[a,b]of[[5,6],[22,10],[10,20],[26,24]]) px(sx+a,sy+b,4,4,'#9c8348'); }
+function drawTree(sx,sy){ drawGrass(sx,sy); px(sx+13,sy+18,6,12,'#5a3a1e');
+  px(sx+6,sy+4,20,18,'#245a24'); px(sx+9,sy+1,14,8,'#2f6e2f'); px(sx+11,sy+8,7,6,'#3f8a3f'); }
+function drawWater(sx,sy){ px(sx,sy,TS,TS,'#2f6a9a'); ctx.fillStyle='#4f8aba';
+  px(sx+4,sy+8,10,2,'#5aa0d0'); px(sx+18,sy+16,9,2,'#5aa0d0'); px(sx+8,sy+24,12,2,'#5aa0d0'); }
+function drawTall(sx,sy){ drawGrass(sx,sy); ctx.fillStyle='#1f5a1f';
+  for(let i=0;i<7;i++){ let a=3+i*4, b=20+(i%3)*3; px(sx+a,sy+b-10,2,12,'#256a25'); } }
+function drawNPC(sx,sy){ drawGrass(sx,sy);
+  px(sx+11,sy+6,10,7,'#e0d090'); // visage
+  px(sx+9,sy+13,14,15,'#2e7a4a'); // robe verte
+  px(sx+12,sy+3,8,5,'#6a4a2a'); // capuche
+  px(sx+13,sy+9,2,2,'#111'); px(sx+17,sy+9,2,2,'#111'); }
+function drawPlayer(sx,sy){
+  // capuche/cape verte de rôdeuse
+  px(sx+10,sy+5,12,7,'#f0d8b0'); // visage
+  px(sx+9,sy+2,14,6,'#2a5a2a'); // capuche
+  px(sx+8,sy+12,16,16,'#3a7a4a'); // cape
+  px(sx+8,sy+12,16,4,'#4a8a5a');
+  px(sx+13,sy+8,2,2,'#222'); px(sx+18,sy+8,2,2,'#222');
+  // arc
+  ctx.strokeStyle='#7a5a2a'; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(sx+26,sy+16,7,-1.3,1.3); ctx.stroke();
+}
+
+// ===== RENDU CARTE =====
+function camera(){ let cx=player.x-Math.floor(VW/2), cy=player.y-Math.floor(VH/2);
+  cx=Math.max(0,Math.min(cx,MW-VW)); cy=Math.max(0,Math.min(cy,MH-VH)); return {cx,cy}; }
+function drawMap(){ const {cx,cy}=camera();
+  for(let vy=0;vy<VH;vy++)for(let vx=0;vx<VW;vx++){
+    const mx=cx+vx,my=cy+vy,sx=vx*TS,sy=vy*TS,t=tile(mx,my);
+    if(t==='T')drawTree(sx,sy); else if(t==='W')drawWater(sx,sy);
+    else if(t==='P')drawPath(sx,sy); else if(t==='H')drawTall(sx,sy);
+    else if(t==='N')drawNPC(sx,sy); else drawGrass(sx,sy);
+  }
+  drawPlayer((player.x-cx)*TS,(player.y-cy)*TS);
+  // HUD
+  px(0,0,150,20,'#0c130ccc'); ctx.fillStyle='#cfe8c0'; ctx.font='12px "Courier New"';
+  ctx.fillText('♥ '+player.pv+'/'+player.pvmax+'   ✦ '+player.eth+'/'+player.ethmax, 8, 14);
+  if(dlg){ drawBox(dlg); }
+}
+function drawBox(text){ const h=64,y=cv.height-h;
+  px(0,y,cv.width,h,'#0c130cf0'); ctx.strokeStyle='#5a8a4a'; ctx.strokeRect(3,y+3,cv.width-6,h-6);
+  ctx.fillStyle='#dff0d0'; ctx.font='14px "Courier New"';
+  wrap(text,12,y+24,cv.width-24,18); }
+function wrap(t,x,y,mw,lh){ const words=t.split(' '); let line='',yy=y;
+  for(const w of words){ if(ctx.measureText(line+w+' ').width>mw){ ctx.fillText(line,x,yy); line=w+' '; yy+=lh; } else line+=w+' '; }
+  ctx.fillText(line,x,yy); }
+
+// ===== COMBAT =====
+const ENEMIES=[
+ {name:'Loup-feuille',pv:10,def:12,atk:3,dmg:6,db:0,col:'#7a9a4a'},
+ {name:'Ours-arbre',pv:18,def:11,atk:4,dmg:8,db:1,col:'#6a4a2a'},
+ {name:'Corrompu',pv:14,def:11,atk:4,dmg:6,db:2,col:'#8a5aa8',drain:true},
+];
+let foe=null, cmenu=0, clog='', cturn='player', aim=0;
+const OPTIONS=['Tir à l\'arc','Ronces (2✦)','Viser (+3)','Fuir'];
+function startCombat(){ const e=ENEMIES[Math.floor(Math.random()* (Math.random()<0.15?3:2))];
+  foe={...e,pvmax:e.pv}; state='combat'; cmenu=0; cturn='player'; aim=0;
+  clog='Une créature surgit des herbes : '+foe.name+' !'; }
+function d20(){ return 1+Math.floor(Math.random()*20); }
+function roll(n,s,b){ let t=b; for(let i=0;i<n;i++)t+=1+Math.floor(Math.random()*s); return t; }
+function drawCombat(){
+  px(0,0,cv.width,cv.height,'#101810');
+  // décor
+  px(0,0,cv.width,120,'#1a2a1a');
+  ctx.fillStyle='#2a3a2a'; for(let i=0;i<6;i++) px(20+i*80,20,50,70,'#22331f');
+  // ennemi
+  const ex=cv.width/2-40, ey=40;
+  px(ex,ey,80,70,foe.col); px(ex+18,ey+18,12,12,'#111'); px(ex+50,ey+18,12,12,'#111');
+  px(ex+26,ey+46,28,8,'#111');
+  // barre PV ennemi
+  bar(cv.width/2-70,18,140,10,foe.pv/foe.pvmax,'#c44');
+  ctx.fillStyle='#dff0d0'; ctx.font='13px "Courier New"'; ctx.fillText(foe.name,cv.width/2-68,14);
+  // joueuse (dos)
+  drawPlayer(60,150);
+  bar(40,196,120,10,player.pv/player.pvmax,'#5a5'); ctx.fillStyle='#cfe8c0';
+  ctx.fillText('Nymphéa ♥'+player.pv+' ✦'+player.eth,40,192);
+  // menu
+  px(0,cv.height-96,cv.width,96,'#0c130cf2'); ctx.strokeStyle='#5a8a4a'; ctx.strokeRect(3,cv.height-93,cv.width-6,90);
+  ctx.font='14px "Courier New"';
+  for(let i=0;i<OPTIONS.length;i++){ const ox=20+(i%2)*230, oy=cv.height-66+Math.floor(i/2)*26;
+    ctx.fillStyle = (cturn==='player'&&i===cmenu)?'#ffe08a':'#bcd0ac';
+    ctx.fillText((cturn==='player'&&i===cmenu?'▶ ':'  ')+OPTIONS[i], ox, oy); }
+  // log
+  ctx.fillStyle='#dff0d0'; ctx.font='12px "Courier New"'; wrap(clog,14,cv.height-14,cv.width-28,14);
+}
+function bar(x,y,w,h,pct,c){ px(x,y,w,h,'#000'); px(x+1,y+1,Math.max(0,(w-2)*pct),h-2,c); }
+function playerAct(i){
+  if(cturn!=='player') return;
+  if(i===3){ // Fuir
+    if(Math.random()<0.6){ clog='Tu t\'esquives dans les fourrés. (fuite réussie)'; endCombat(true,true); }
+    else { clog='La créature te barre la route ! Fuite ratée.'; enemyTurn(); }
+    return;
+  }
+  if(i===2){ aim=3; clog='Tu prends ton temps pour viser (+3 au prochain tir).'; enemyTurn(); return; }
+  let atk, dmg, label;
+  if(i===0){ atk=player.atk+aim; dmg=()=>roll(1,8,3); label='ton tir à l\'arc'; }
+  else { if(player.eth<2){ clog='Pas assez d\'Éther pour les Ronces !'; return; } player.eth-=2; atk=3+aim; dmg=()=>roll(2,6,0); label='tes Ronces'; }
+  aim=0;
+  const r=d20(), tot=r+atk;
+  if(r===1){ clog='Échec critique ! '+label+' rate lamentablement.'; }
+  else if(r===20||tot>=foe.def){ let d=dmg(); if(r===20){ d=Math.floor(d*1.5); } foe.pv-=d;
+    clog=(r===20?'COUP D\'ÉCLAT ! ':'Touché ! ')+label+' inflige '+d+' dégâts.'; }
+  else clog='Manqué… '+foe.name+' esquive '+label+'.';
+  if(foe.pv<=0){ clog='Tu terrasses le '+foe.name+' ! (+2 XP)'; endCombat(true,false); return; }
+  enemyTurn();
+}
+function enemyTurn(){ cturn='foe';
+  setTimeout(()=>{
+    const r=d20(), tot=r+foe.atk;
+    if(r>1 && (r===20||tot>=player.def)){ let d=roll(1,foe.dmg,foe.db); if(r===20)d=Math.floor(d*1.5);
+      player.pv-=d; let extra=''; if(foe.drain&&player.eth>0){ player.eth=Math.max(0,player.eth-1); extra=' (+ draine 1 Éther)'; }
+      clog=foe.name+' te frappe : '+d+' dégâts'+extra+'.';
+      if(player.pv<=0){ // Second souffle
+        clog='Tu tombes… mais un souffle te relève à 1 PV (Second souffle).'; player.pv=1; }
+    } else clog=foe.name+' attaque mais te rate.';
+    cturn='player'; cmenu=0; draw();
+  },650);
+  draw();
+}
+function endCombat(win,fled){ setTimeout(()=>{ if(win&&!fled&&player.pv>0){} state='map'; foe=null; draw(); }, 900); }
+
+// ===== BOUCLE / INPUT =====
+function draw(){ if(state==='combat') drawCombat(); else drawMap(); }
+function tryMove(dx,dy,dir){ player.dir=dir; const nx=player.x+dx, ny=player.y+dy;
+  const t=tile(nx,ny);
+  if(t==='N'){ dlg='Sylvestre : « Prends garde, Gardienne. Les hautes herbes grouillent depuis le Retour. Quelque chose de corrompu rôde vers le Nœud… »'; state='dialogue'; draw(); return; }
+  if(solid(nx,ny)) return;
+  player.x=nx; player.y=ny;
+  if(tile(nx,ny)==='H' && Math.random()<0.20){ startCombat(); }
+  draw();
+}
+document.addEventListener('keydown',e=>{
+  const k=e.key.toLowerCase();
+  if(['arrowup','arrowdown','arrowleft','arrowright',' '].includes(k)||k==='w'||k==='a'||k==='s'||k==='d') e.preventDefault();
+  if(state==='dialogue'){ if(k==='enter'||k===' '||k.startsWith('arrow')){ dlg=null; state='map'; draw(); } return; }
+  if(state==='combat'){
+    if(cturn!=='player') return;
+    if(k==='arrowup'||k==='w') cmenu=(cmenu+2)%4;
+    else if(k==='arrowdown'||k==='s') cmenu=(cmenu+2)%4;
+    else if(k==='arrowleft'||k==='a') cmenu=(cmenu+3)%4;
+    else if(k==='arrowright'||k==='d') cmenu=(cmenu+1)%4;
+    else if(k==='enter'||k===' ') { playerAct(cmenu); }
+    draw(); return;
+  }
+  if(state==='map'){
+    if(k==='arrowup'||k==='w') tryMove(0,-1,'up');
+    else if(k==='arrowdown'||k==='s') tryMove(0,1,'down');
+    else if(k==='arrowleft'||k==='a') tryMove(-1,0,'left');
+    else if(k==='arrowright'||k==='d') tryMove(1,0,'right');
+  }
+});
+draw();
+</script>
+</body></html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Armonia — Livret de règles v1.0</title>
+<style>
+ :root{--bg:#1a1a2e;--paper:#2a2a3e;--primary:#c9a85a;--accent:#d97c47;--text:#f4e8d0;--muted:#9a8a7a;--border:#3a3a4e;--danger:#c44040;--success:#5aa850;--info:#5a8ec9;--mystere:#b088c8}
+ *{box-sizing:border-box} body{font-family:Georgia,serif;background:var(--bg);color:var(--text);margin:0;padding:24px;line-height:1.55}
+ .wrap{max-width:900px;margin:0 auto}
+ a.back{color:var(--muted);text-decoration:none;font-size:14px} a.back:hover{color:var(--primary)} a{color:var(--accent)}
+ .print-btn{position:fixed;bottom:18px;right:70px;z-index:9999;background:var(--accent);color:#1a1a2e;border:none;border-radius:24px;padding:10px 16px;font:inherit;font-weight:bold;cursor:pointer;box-shadow:0 3px 12px #0007}
+ header.book{text-align:center;border:2px solid var(--primary);border-radius:12px;padding:26px;margin:14px 0 20px;background:linear-gradient(135deg,#232338,#2a2a3e)}
+ header.book h1{color:var(--primary);font-size:34px;letter-spacing:3px;margin:0}
+ header.book .sub{color:var(--muted);font-style:italic;margin-top:6px}
+ h2{color:var(--accent);font-size:22px;border-bottom:2px solid var(--border);padding-bottom:6px;margin:30px 0 10px;page-break-after:avoid}
+ h3{color:var(--primary);font-size:16px;margin:16px 0 6px}
+ .card{background:var(--paper);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin:10px 0;page-break-inside:avoid}
+ table{width:100%;border-collapse:collapse;font-size:13.5px} th,td{text-align:left;padding:6px 9px;border-bottom:1px solid var(--border);vertical-align:top} th{color:var(--primary);font-size:10px;text-transform:uppercase} td.c{text-align:center;white-space:nowrap}
+ .key{background:#20281f;border-left:4px solid var(--success);border-radius:0 6px 6px 0;padding:8px 12px;margin:8px 0;font-size:14px}
+ ul{padding-left:20px} li{margin:4px 0}
+ .toc{columns:2;font-size:14px} .toc a{display:block;margin:3px 0}
+ .foot{text-align:center;color:var(--muted);font-size:11px;margin:28px 0 6px}
+ @media print{
+   body{background:#fff;color:#111;padding:0} .print-btn,a.back{display:none}
+   header.book{background:#fff;border-color:#111} header.book h1,h2,h3{color:#111}
+   .card{background:#fff;border-color:#999} .key{background:#f2f2f2;border-color:#333}
+   th{color:#111} a{color:#111;text-decoration:none} .toc{display:none}
+   :root{--border:#bbb;--muted:#555;--text:#111}
+ }
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body><div class="wrap">
+<a class="back" href="index.html">← Retour au sommaire</a>
+<button class="print-btn" onclick="window.print()">🖨️ Imprimer / PDF</button>
+
+<header class="book"><h1>⚜ ARMONIA</h1><div class="sub">Livret de règles — version 1.0</div></header>
+
+<div class="card toc">
+<b>Sommaire</b>
+<a href="#jet">1 · Le jet de dés</a>
+<a href="#creation">2 · Créer un personnage</a>
+<a href="#comp">3 · Compétences & Spécialités</a>
+<a href="#combat">4 · Le combat</a>
+<a href="#magie">5 · La magie</a>
+<a href="#echo">6 · Points d'Écho</a>
+<a href="#xp">7 · Progression (XP)</a>
+<a href="#corruption">8 · La corruption</a>
+</div>
+
+<h2 id="jet">1 · Le jet de dés</h2>
+<div class="card">
+<div class="key"><b>1d20 + Caractéristique + Spécialité</b> vs la Difficulté (DD) fixée par le MJ.</div>
+<p>La <b>caractéristique</b> (0→+5) est le cœur du personnage. Une <b>spécialité</b> ajoute +1 à +3, mais <b>seulement si elle s'applique</b>. Sinon, on lance juste 1d20 + caractéristique.</p>
+<h3>Lecture du résultat</h3>
+<table>
+<tr><td class="c"><b>1 naturel</b></td><td><b>Échec critique</b> — rate + complication grave (prime sur tout).</td></tr>
+<tr><td class="c">&lt; DD</td><td>Échec.</td></tr>
+<tr><td class="c">DD à DD+1</td><td>Réussite à l'arraché (avec un prix).</td></tr>
+<tr><td class="c">+2 à +5</td><td>Pleine réussite.</td></tr>
+<tr><td class="c">+6 à +9</td><td>Réussite éclatante (bonus).</td></tr>
+<tr><td class="c">+10 et +</td><td>Coup d'éclat (héroïque).</td></tr>
+<tr><td class="c"><b>20 naturel</b></td><td><b>Réussite critique</b> — réussite + bonus (prime sur tout).</td></tr>
+</table>
+<h3>Échelle des difficultés (le MJ fixe)</h3>
+<p>Très facile <b>5</b> · Facile <b>10</b> · Standard <b>15</b> · Difficile <b>20</b> · Très difficile <b>25</b> · Héroïque <b>30</b>.<br>
+<b>Calibrer sur le perso :</b> DD ≈ 11 + son bonus pour un défi juste (~60 %). On ne lance pas si c'est acquis d'avance ni impossible.</p>
+</div>
+
+<h2 id="creation">2 · Créer un personnage</h2>
+<div class="card">
+<ol>
+<li><b>Concept</b> — une phrase : qui es-tu ?</li>
+<li><b>Race</b> — donne des affinités et des traits gratuits (voir la bibliothèque des Races).</li>
+<li><b>Caractéristiques</b> — 6 (FOR, DEX, CON, INT, SAG, CHA). Réparti <b>8 points</b>, max <b>+3</b> à la création (monte à +5 via l'XP). <i>FOR</i> force · <i>DEX</i> agilité, visée · <i>CON</i> vigueur · <i>INT</i> savoir, magie · <i>SAG</i> perception, volonté & sang-froid · <i>CHA</i> présence, social.</li>
+<li><b>Spécialités</b> — choisis-en <b>3</b> (rangs I ou II ; le rang III s'obtient via l'XP).</li>
+<li><b>Affinités magiques</b> — 5 éléments, −2 à +3, réparti <b>6 points</b>.</li>
+<li><b>Stats dérivées</b> (calculées) :
+  <ul>
+    <li><b>Vitalité (PV)</b> = 10 + CON×2</li>
+    <li><b>Éther</b> = 3 + INT + CON</li>
+    <li><b>Défense</b> = 10 + DEX + armure</li>
+    <li><b>Initiative</b> = 1d20 + DEX</li>
+  </ul></li>
+<li><b>Points d'Écho</b> — départ 3, plafond 5. Écris une <b>Promesse</b>.</li>
+</ol>
+<p class="key">Une <b>Contrepartie</b> (défaut) offre une spécialité de plus — et rapporte de l'Écho quand le MJ l'invoque en jeu.</p>
+</div>
+
+<h2 id="comp">3 · Compétences & Spécialités</h2>
+<div class="card">
+<p>« Compétence » (large) et « spécialité » (étroite) sont <b>la même mécanique</b> : un bonus contextuel de <b>+1 (formé)</b>, <b>+2 (maîtrisé)</b> ou <b>+3 (expert)</b>, ajouté quand il colle à l'action.</p>
+<p><b>Les 26 compétences de base</b>, par caractéristique — <i>Combat</i> : Armes au contact, Armes à distance, Défense · <i>Physique</i> : Athlétisme, Acrobaties, Discrétion, Vigilance, Endurance · <i>Savoir</i> : Arcanes, Histoire &amp; Religion, Investigation, Médecine, Ingénierie &amp; Artéfacts · <i>Nature/Instinct</i> : Nature &amp; Survie, Intuition, Dressage &amp; Lien animal, Volonté · <i>Social</i> : Persuasion, Tromperie, Intimidation, Commandement &amp; Prestance, Étiquette &amp; Mondanités, Représentation · <i>Pratique</i> : Artisanat, Larcins, Pièges &amp; mécanismes.</p>
+<p>Au-delà, un vaste catalogue de <b>spécialités étroites</b> (jeu de hasard, régions, races, Célestes…) est dans la bibliothèque dédiée. Chacune monte en rang via l'XP.</p>
+</div>
+
+<h2 id="combat">4 · Le combat</h2>
+<div class="card">
+<h3>Le tour</h3>
+<p><b>Initiative</b> 1d20 + DEX (ordre fixé pour la scène). Chaque tour : <b>1 action principale</b> + <b>1 mouvement</b> + <b>1 action mineure</b>.</p>
+<h3>Attaquer</h3>
+<p><b>1d20 + Caractéristique + Spécialité</b> vs la <b>Défense</b> de la cible (contact = FOR, distance = DEX, sort = INT + Affinité). Paliers de touche : arraché = dégâts min · pleine = normal · éclatante = +50 % · coup d'éclat / 20 nat = critique.</p>
+<h3>Dégâts par arme</h3>
+<table>
+<tr><th>Arme</th><th class="c">Dégâts</th></tr>
+<tr><td>Mains nues / dague</td><td class="c">1d4 + carac</td></tr>
+<tr><td>Arme légère</td><td class="c">1d6 + carac</td></tr>
+<tr><td>Arme moyenne</td><td class="c">1d8 + carac</td></tr>
+<tr><td>Arme lourde (2 mains)</td><td class="c">1d10 + carac (−1 init)</td></tr>
+<tr><td>Arc / arbalète</td><td class="c">1d6–1d8 + DEX</td></tr>
+</table>
+<h3>Défense & manœuvres</h3>
+<p><b>Défense passive</b> = 10 + DEX + armure (légère +1, moyenne +2, lourde +3 ; bouclier +2). <b>Action défensive</b> : +5 Défense jusqu'à ton prochain tour. <b>Manœuvres</b> (à la place de l'attaque) : Viser (+3 ce tour), Bousculer, Désarmer, Mettre à terre, Saisir.</p>
+<h3>Blessures & mort</h3>
+<p><b>0 PV</b> = à terre, inconscient (pas mort). Stabiliser : <b>Médecine DD 12</b> ou un soin. Sans secours pendant 3 tours = mort. <span class="key" style="display:inline-block"><b>💠 Second souffle :</b> en tombant à 0 PV, dépense <b>1 Écho</b> pour rester à <b>1 PV</b> (1×/scène).</span></p>
+</div>
+
+<h2 id="magie">5 · La magie</h2>
+<div class="card">
+<p><b>Éther</b> = 3 + INT + CON. Récupère <b>50 % en 1 h</b>, <b>100 % la nuit</b>. Dépasser sa réserve = <b>Surcharge</b> (−1 à tous les jets/24 h par point ; 5 = coma 3 jours).</p>
+<h3>Magie de Sens (improvisée)</h3>
+<p>Le joueur décrit son effet, le MJ le range sur l'échelle. Jet : <b>1d20 + INT + Affinité</b>.</p>
+<table>
+<tr><th>Palier</th><th class="c">DD</th><th class="c">Éther</th><th class="c">Dégâts</th></tr>
+<tr><td>Mineur (étincelle, brise)</td><td class="c">10</td><td class="c">1</td><td class="c">1d4</td></tr>
+<tr><td>Standard (boule de feu, vague)</td><td class="c">15</td><td class="c">2</td><td class="c">2d6</td></tr>
+<tr><td>Puissant (mur, vortex)</td><td class="c">20</td><td class="c">4</td><td class="c">3d6</td></tr>
+<tr><td>Spectaculaire (tornade, geyser)</td><td class="c">25</td><td class="c">8</td><td class="c">4d8</td></tr>
+</table>
+<p><b>5 affinités :</b> Feu (offensif) · Eau (contrôle, soin léger) · Vent (mobilité) · Terre (défense, terrain) · Chaos (soins, mort, l'inattendu). <b>Soins (Chaos) :</b> Léger DD12 1d6 2É · Moyen 15 2d6 4É · Majeur 18 3d6 6É.</p>
+<p><b>Leviers d'Éther :</b> 1 Éther = +5 à un jet physique · 2 Éther = +5 dégâts.</p>
+<p><b>Magie Script</b> (symboles inscrits, coût élevé, sans concentration) et <b>Mots Primordiaux</b> (la magie la plus puissante et dangereuse) : voir les bibliothèques dédiées.</p>
+</div>
+
+<h2 id="echo">6 · Points d'Écho</h2>
+<div class="card">
+<p>Une ressource d'<b>histoire</b>, pas de la magie. Stock 3, plafond 5.</p>
+<ul>
+<li><b>Dépenser 1 Écho :</b> +5 à un jet · réactiver une spécialité déjà utilisée · rester debout à 1 PV (Second souffle) · peser sur la fiction.</li>
+<li><b>Regagner de l'Écho :</b> tenir une <b>Promesse</b> dans une scène clé ; jouer une <b>Contrepartie</b> quand le MJ l'invoque (le <i>compel</i>).</li>
+</ul>
+<p>Rappel des leviers de jet (ne se cumulent pas tous) : Spécialité (+1/+2/+3) · Pousser (+5, conséquence aggravée) · Éther (+5) · Écho (+5). <b>Spécialité et Pousser ne se cumulent pas.</b></p>
+</div>
+
+<h2 id="xp">7 · Progression (XP)</h2>
+<div class="card">
+<p>Gains : <b>2–4 XP / session</b> + objectifs d'histoire + expéditions hors-session.</p>
+<table>
+<tr><th>Achat</th><th class="c">Coût</th></tr>
+<tr><td>Nouvelle spécialité rang I (+1)</td><td class="c">3 XP</td></tr>
+<tr><td>Monter I→II (+2) · II→III (+3)</td><td class="c">5 · 8 XP</td></tr>
+<tr><td>Affinité +1</td><td class="c">4 XP</td></tr>
+<tr><td><b>Caractéristique +1</b></td><td class="c">valeur visée × 5</td></tr>
+<tr><td>Cap d'Écho +1</td><td class="c">8 XP</td></tr>
+</table>
+<p class="key">Les caractéristiques sont chères et lentes (elles définissent le perso) ; les spécialités rapides et fréquentes.</p>
+</div>
+
+<h2 id="corruption">8 · La corruption</h2>
+<div class="card">
+<p>S'exposer au <b>Script des Anciens</b> laisse des <b>Marques de Corruption</b> (jauge de 6). Elle <b>tente</b> autant qu'elle punit : elle offre du pouvoir (drainer l'Éther, entendre des vérités) au prix d'une glissade. Se purifier est rare (rituel Céleste, Nœud purifié). Détails complets dans la bibliothèque de la Corruption.</p>
+</div>
+
+<p class="foot">Armonia — Livret de règles v1.0 · Système Bilal · 2026. Astuce : <b>Ctrl+P</b> pour exporter en PDF.</p>
+</div></body></html>

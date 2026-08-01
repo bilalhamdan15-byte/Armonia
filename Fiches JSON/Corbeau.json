@@ -1,0 +1,94 @@
+{
+  "nom": "Corbeau",
+  "joueur": "Corbeau",
+  "classe": "Runiste leshen · Joueur",
+  "race": "custom",
+  "sousrace": "Leshen humanoïde",
+  "age": "23",
+  "description": "Mi-humain mi-leshen. Crâne de rapace, yeux jaunes sans pupille, cape de branchages. Compagnon corbeau.",
+  "for": "0",
+  "dex": "2",
+  "con": "1",
+  "int": "3",
+  "sag": "1",
+  "cha": "2",
+  "vit_actuel": "12",
+  "ether_actuel": "7",
+  "surcharge": "0",
+  "armure_bonus": "1",
+  "bouclier": "0",
+  "action_def": "0",
+  "echo_max": "5",
+  "is_ingenieur": false,
+  "arme_principale": "Deck en bois de leshen (runes)",
+  "arme_secondaire": "Dague",
+  "armure": "Tunique de cuir des falaises (+1)",
+  "or": "100 pièces d'or",
+  "notes": "",
+  "capacites": "Deck runique en bois de leshen : focus magique + cartes-projectiles liées à lui. Compagnon corbeau (éclaireur). Discrétion excellente en forêt, gênée en ville.",
+  "xp_total": "0",
+  "xp_depense": "0",
+  "competences": {},
+  "affinities": {
+    "Feu": "-1",
+    "Eau": "3",
+    "Vent": "0",
+    "Terre": "2",
+    "Chaos": "1"
+  },
+  "symboles_array": [],
+  "state": {
+    "comp": {},
+    "affinity": {
+      "Feu": "-1",
+      "Eau": "3",
+      "Vent": "0",
+      "Terre": "2",
+      "Chaos": "1"
+    },
+    "atouts": [
+      {
+        "nom": "Jeux de hasard",
+        "niveau": "II",
+        "used": false
+      },
+      {
+        "nom": "Addict aux jeux (contrepartie)",
+        "niveau": "II",
+        "used": false
+      }
+    ],
+    "promesses": [],
+    "scripts": [],
+    "mots": [],
+    "inv": [
+      {
+        "nom": "Étui de cartes",
+        "qte": "1"
+      },
+      {
+        "nom": "Bourse ×2",
+        "qte": "1"
+      },
+      {
+        "nom": "Dé & pièce pile ou face",
+        "qte": "1"
+      }
+    ],
+    "echo": 3,
+    "specs": [
+      {
+        "name": "Arcanes",
+        "rank": 3
+      },
+      {
+        "name": "Nature & Survie",
+        "rank": 2
+      },
+      {
+        "name": "Dressage & Lien animal",
+        "rank": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 0 — Cadre de campagne · Armonia</title>
+<style>
+ :root{--bg:#1a1a2e;--paper:#2a2a3e;--primary:#c9a85a;--accent:#d97c47;--text:#f4e8d0;--muted:#9a8a7a;--border:#3a3a4e;--danger:#c44040;--success:#5aa850;--info:#5a8ec9;--crystal:#7ec8e8;--mystere:#b088c8}
+ *{box-sizing:border-box} body{font-family:Georgia,serif;background:var(--bg);color:var(--text);margin:0;padding:22px;line-height:1.6}
+ .wrap{max-width:920px;margin:0 auto}
+ a.back{color:var(--muted);text-decoration:none;font-size:14px} a.back:hover{color:var(--primary)}
+ header.hero{background:linear-gradient(135deg,#232338,#2a2a3e);border:2px solid var(--primary);border-radius:12px;padding:24px 28px;margin:12px 0 18px;position:relative;overflow:hidden}
+ header.hero::after{content:"⚜";position:absolute;right:24px;top:14px;font-size:58px;opacity:.14}
+ h1{font-size:28px;color:var(--primary);margin:0 0 4px} .sub{color:var(--crystal);font-style:italic;margin:0}
+ h2{color:var(--accent);font-size:20px;border-bottom:1px solid var(--border);padding-bottom:5px;margin:28px 0 10px}
+ .card{background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:12px 0}
+ .lead{font-size:16px}
+ ul{padding-left:20px} li{margin:6px 0}
+ .pills{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+ .pill{background:#1f1f34;border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:13px}
+ .box{background:#20281f;border-left:4px solid var(--success);border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:14px}
+ .box.warn{background:#2a1f2e;border-left-color:var(--mystere)} .box.warn b{color:#c8a0d8}
+ .foot{text-align:center;color:var(--muted);font-size:11px;margin:24px 0 4px}
+ a{color:var(--accent)}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body><div class="wrap">
+<a class="back" href="index.html">← Retour au sommaire</a>
+<header class="hero"><h1>Session 0 — Bienvenue à Armonia</h1><p class="sub">Tout ce qu'il faut savoir avant la première partie</p></header>
+
+<div class="card lead">
+Armonia est un monde où <b>la magie vient de renaître</b> après une longue absence. C'est une aube fragile : partout, de vieux pouvoirs se réveillent — et avec eux, quelque chose de plus sombre. Vous jouez des aventuriers <b>au tout début d'une crise</b> que personne ne voit encore venir.
+</div>
+
+<h2>🎭 Le ton</h2>
+<div class="card">
+  <div class="pills"><span class="pill">Héroïque</span><span class="pill">Narratif</span><span class="pill">Tactique &amp; rapide</span><span class="pill">Place à l'humour</span><span class="pill">Choix qui comptent</span></div>
+  <p>On raconte une histoire ensemble : des héros modestes qui grandissent, des dilemmes moraux, des combats qui font mal mais qui laissent des choix. On peut rire (un squelette qui lance ses propres os, ça arrive) et frissonner dans la même séance.</p>
+</div>
+
+<h2>🌍 L'état du monde — maintenant</h2>
+<div class="card">
+  <ul>
+    <li><b>La magie revient.</b> L'Éther recircule, des dons de sang oubliés se rallument. Merveilleux… et instable.</li>
+    <li><b>La corruption s'éveille.</b> Un mal ancien — le <a href="bibliotheque_corruption.html">Script des Anciens</a> — recommence à drainer la magie. Récoltes qui pourrissent, créatures dévoyées. Encore discret.</li>
+    <li><b>Les puissants se disputent.</b> Marchands de Me'yn Prus contre Aventuriers de Villa Virtue, les 6 Grandes Familles de la Cité d'Armonia, une cité elfique au bord de la sécession.</li>
+    <li><b>Une guerre secrète.</b> L'Ordre des Veilleurs veille dans l'ombre sur un équilibre fragile — et un secret capable de tout faire basculer.</li>
+  </ul>
+  <p style="font-size:13px;color:var(--muted)">Vos personnages ignorent presque tout de ça au départ. Ils vont le découvrir — et peser dessus.</p>
+</div>
+
+<h2>🎲 Le système en une minute</h2>
+<div class="card">
+  <p><b>Chaque test :</b> 1d20 + <b>Caractéristique</b> (0→+5, le cœur de ton perso) + <b>Spécialité</b> (+1/+2/+3, si elle s'applique) vs une difficulté fixée par le MJ.</p>
+  <ul>
+    <li><b>1 naturel</b> = échec critique · <b>20 naturel</b> = réussite critique.</li>
+    <li><b>Points d'Écho</b> : ta ressource d'histoire — +5 à un jet, ou <b>rester debout à 1 PV</b> quand tu tombes.</li>
+    <li>Tu progresses en <b>XP</b> : les spécialités montent vite, les caractéristiques lentement.</li>
+  </ul>
+  <p>Tout est détaillé dans le <a href="guide_creation.html">guide de création</a> et la <a href="bibliotheque_competences.html">bibliothèque Compétences &amp; Spécialités</a>. Remplis ta <a href="fiche_personnage.html">fiche interactive</a>.</p>
+</div>
+
+<h2>🤝 Créer le groupe (ensemble)</h2>
+<div class="card">
+  <p>Avant la première partie, on répond à ces questions <b>à la table</b> :</p>
+  <ul>
+    <li><b>Qui es-tu ?</b> Un concept en une phrase (« ex-caravanière rusée qui a fui une dette de sang »).</li>
+    <li><b>Pourquoi es-tu là ?</b> Chacun reçoit une accroche qui l'amène au même endroit (voir la première aventure).</li>
+    <li><b>Un lien avec un autre PJ.</b> Vous vous connaissez déjà un peu — une dette, un secret partagé, une vieille amitié. Un lien chacun, ça soude le groupe dès la scène 1.</li>
+    <li><b>Une attache au monde.</b> Un lieu, une personne, une Promesse. C'est ce que le MJ utilisera pour te toucher.</li>
+  </ul>
+</div>
+
+<div class="box warn">
+  <b>🛟 Sécurité à la table.</b> On joue pour s'amuser tous ensemble. On pose ce qui est <b>bienvenu</b> et ce qu'on préfère <b>éviter</b> (violence graphique, certains thèmes…). N'importe qui peut demander à <b>couper ou adoucir</b> une scène, sans avoir à se justifier. Le confort passe avant l'histoire.
+</div>
+
+<h2>🚪 On démarre</h2>
+<div class="card">
+  <p>La première aventure vous réunit dans une <b>taverne de bord de route</b>, où l'on traque une créature qui change les gens en pierre. Chacun y arrive pour sa propre raison — et en repart lié aux autres.</p>
+  <p style="font-size:13px;color:var(--muted)">Ce qu'on attend d'un joueur : sois <b>proactif</b> (tes objectifs font avancer l'histoire), <b>attaché au monde</b> (donne au MJ de quoi jouer), et <b>joueur d'équipe</b> (les projecteurs tournent).</p>
+</div>
+
+<p class="foot">Session 0 · Système Bilal · Armonia 2026 — prêt à jouer.</p>
+</div></body></html>

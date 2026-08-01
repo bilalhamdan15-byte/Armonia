@@ -1,0 +1,95 @@
+{
+  "nom": "Clac Clac",
+  "joueur": "",
+  "classe": "Arsenal osseux · Chaos",
+  "race": "Squelette invoqué (nécromancie)",
+  "sousrace": "Invocation orpheline du Chevalier de la Mort Glad Artor",
+  "age": "?",
+  "description": "Autrefois l'invocation loyale de Glad Artor, qu'il aimait comme un père. À sa mort, glissé dans le Sac du Trésor Inversé et jeté dans une rivière. Recueilli par Moony, sa meilleure amie et grande sœur de coeur. Mignon et dangereux.",
+  "for": "0",
+  "dex": "3",
+  "con": "2",
+  "int": "0",
+  "sag": "1",
+  "cha": "2",
+  "vit_actuel": "14",
+  "ether_actuel": "5",
+  "surcharge": "0",
+  "armure_bonus": "0",
+  "bouclier": "0",
+  "action_def": "0",
+  "echo_max": "5",
+  "is_ingenieur": false,
+  "arme_principale": "Ses propres os (lancer, tête-boomerang, doigt-mitraillette)",
+  "arme_secondaire": "Sac du Trésor Inversé",
+  "armure": "Aucune (squelette)",
+  "or": "Babioles volées",
+  "notes": "Faiblesse vitale : la flamme bleue de sa cage thoracique. Tant qu'elle brûle, il revient toujours. Liens : Glad Artor (papa, mort) · Moony (grande soeur de coeur).",
+  "capacites": "ARSENAL OSSEUX (Atk +6 = DEX+3 + Armes à distance III) :\n- Lancer d'os : +6, 1d6.\n- Tête-boomerang « clong ! » : +6, 1d6 (peut revenir toucher une 2e cible).\n- Doigt-mitraillette « tkl-tkl » : +6, 2d6, mais -2 à ses attaques jusqu'au réassemblage.\n- Explosion n'Os Éabonde : 0 dégât, nuage puant (ennemis à 2m : SAG DD12 ou -1 aux jets 1 tour).\n- Corps-à-corps : +0, 1d4 (nul, démontable d'un coup de pied).\n\nULTI — Sac du Trésor Inversé (1x/scène, réactivable 1 Écho), jet 1d20 chance INVERSÉE :\n1-2 arme épique -> 0 à 1d4 · 3-9 arme classe -> 1d6 · 10-17 arme banale -> 2d6 · 18-20 objet pitoyable (cure-dent) -> 4d8 ignore l'armure. (20 naturel = apocalypse !)\n\nRÉSILIENCE : à 0 PV, il s'effondre puis se réassemble à la fin de son 2e tour à PV/2 (7), illimité.\nFLAMME BLEUE (vraie vie) : seule faiblesse. On peut la viser (attaque ciblée -5, ou feu/zone) ; éteinte pendant qu'il est démonté = MORT DÉFINITIVE.",
+  "xp_total": "0",
+  "xp_depense": "0",
+  "competences": {},
+  "affinities": {
+    "Feu": "0",
+    "Eau": "0",
+    "Vent": "0",
+    "Terre": "1",
+    "Chaos": "3"
+  },
+  "symboles_array": [],
+  "state": {
+    "comp": {},
+    "affinity": {
+      "Feu": "0",
+      "Eau": "0",
+      "Vent": "0",
+      "Terre": "1",
+      "Chaos": "3"
+    },
+    "atouts": [
+      {
+        "nom": "Os aimantés (réassemblage)",
+        "niveau": "II",
+        "used": false
+      },
+      {
+        "nom": "Sac du Trésor Inversé (ulti)",
+        "niveau": "III",
+        "used": false
+      }
+    ],
+    "promesses": [
+      {
+        "texte": "Retrouver Papa (Glad Artor) — ou apprendre à le laisser partir.",
+        "statut": "active"
+      }
+    ],
+    "scripts": [],
+    "mots": [],
+    "inv": [
+      {
+        "nom": "Sac du Trésor Inversé",
+        "qte": "1"
+      },
+      {
+        "nom": "Babioles volées (diverses)",
+        "qte": "1"
+      }
+    ],
+    "echo": 3,
+    "specs": [
+      {
+        "name": "Armes à distance",
+        "rank": 3
+      },
+      {
+        "name": "Larcins",
+        "rank": 2
+      },
+      {
+        "name": "Acrobaties",
+        "rank": 1
+      }
+    ]
+  }
+}

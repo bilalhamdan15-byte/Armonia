@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clac Clac — Fiche de personnage · Armonia</title>
+<style>
+  :root{
+    --bg:#1a1a2e; --paper:#2a2a3e; --primary:#c9a85a; --accent:#d97c47;
+    --text:#f4e8d0; --muted:#9a8a7a; --border:#3a3a4e;
+    --danger:#c44040; --success:#5aa850; --info:#5a8ec9; --flame:#5ad0e8; --mystere:#b088c8;
+  }
+  *{box-sizing:border-box}
+  body{font-family:'Georgia',serif;background:var(--bg);color:var(--text);margin:0;padding:24px;line-height:1.55}
+  .wrap{max-width:920px;margin:0 auto}
+  a.back{color:var(--muted);text-decoration:none;font-size:14px} a.back:hover{color:var(--primary)}
+  header.hero{background:linear-gradient(135deg,#20222f,#2a2a3e);border:2px solid var(--flame);border-radius:12px;padding:26px 30px;margin:14px 0 24px;position:relative;overflow:hidden}
+  header.hero::after{content:"💀";position:absolute;right:22px;top:14px;font-size:64px;opacity:.12}
+  h1{font-size:30px;color:var(--flame);margin:0 0 4px}
+  .sub{color:var(--muted);font-style:italic;font-size:16px;margin:0}
+  .tags{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+  .tag{background:#1f1f34;border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;color:var(--muted)}
+  h2{color:var(--accent);font-size:20px;border-bottom:1px solid var(--border);padding-bottom:6px;margin-top:34px}
+  .card{background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin:14px 0}
+  .grid{display:grid;gap:12px}
+  .g6{grid-template-columns:repeat(6,1fr)}
+  .stat{background:#1f1f34;border:1px solid var(--border);border-radius:8px;padding:12px 8px;text-align:center}
+  .stat .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  .stat .val{font-size:26px;color:var(--flame);font-weight:bold;margin-top:3px}
+  .stat .note{font-size:10px;color:var(--muted);margin-top:2px}
+  .derived{display:flex;flex-wrap:wrap;gap:10px}
+  .pill{background:#1f1f34;border:1px solid var(--border);border-radius:8px;padding:10px 16px;flex:1;min-width:120px;text-align:center}
+  .pill .lbl{font-size:11px;color:var(--muted);text-transform:uppercase}
+  .pill .val{font-size:22px;color:var(--text);font-weight:bold}
+  .pill.hp .val{color:var(--danger)} .pill.eth .val{color:var(--info)} .pill.def .val{color:var(--success)}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--border)}
+  th{color:var(--primary);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+  .a{color:var(--success);font-weight:bold;text-align:center;white-space:nowrap}
+  .d{color:var(--danger);text-align:center;white-space:nowrap}
+  .bonus{color:var(--flame);font-weight:bold} .neg{color:var(--danger)}
+  .aff{display:flex;align-items:center;gap:8px}
+  .bar{flex:1;height:8px;background:#1f1f34;border-radius:4px;overflow:hidden}
+  .bar span{display:block;height:100%;background:var(--flame)}
+  .atout{border-left:3px solid var(--accent);padding:8px 14px;margin:10px 0;background:#1f1f34;border-radius:0 8px 8px 0}
+  .atout b{color:var(--flame)}
+  .lvl{font-size:11px;background:var(--accent);color:#1a1a2e;border-radius:10px;padding:1px 8px;font-weight:bold;margin-left:6px}
+  .echo{display:flex;gap:6px;margin-top:6px}
+  .orb{width:18px;height:18px;border-radius:50%;border:2px solid var(--primary)}
+  .orb.full{background:var(--primary)}
+  .flamebox{background:#12222a;border:1px solid var(--flame);border-left:4px solid var(--flame);border-radius:8px;padding:14px 18px;margin:14px 0}
+  .flamebox b{color:var(--flame)}
+  .ulti td:first-child{color:var(--primary);font-weight:bold;text-align:center;width:70px}
+  .ulti tr:last-child td{color:var(--flame)}
+  .flavor{font-style:italic;color:var(--muted);border-left:3px solid var(--flame);padding:6px 14px;margin:10px 0}
+  ul{padding-left:20px} li{margin:4px 0}
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin:30px 0 6px}
+  @media(max-width:640px){.g6{grid-template-columns:repeat(3,1fr)}}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">← Retour au sommaire</a>
+
+<header class="hero">
+  <h1>Clac Clac</h1>
+  <p class="sub">Squelette invoqué · Arsenal osseux · Invocation orpheline de Glad Artor</p>
+  <div class="tags">
+    <span class="tag">💀 Nécromancie (Chaos)</span>
+    <span class="tag">🦴 Lance ses propres os</span>
+    <span class="tag">🔵 Flamme bleue (vie)</span>
+    <span class="tag">🎒 Sac du Trésor Inversé</span>
+  </div>
+</header>
+
+<p class="flavor">« …clac… clac… <span style="opacity:.6">(Papa…)</span> » — Mignon. Et dangereux.</p>
+
+<h2>Caractéristiques</h2>
+<div class="card">
+  <div class="grid g6">
+    <div class="stat"><div class="lbl">FOR</div><div class="val" style="color:var(--danger)">0</div><div class="note">« démontable d'un coup de pied »</div></div>
+    <div class="stat"><div class="lbl">DEX</div><div class="val">+3</div><div class="note">lancers, esquives</div></div>
+    <div class="stat"><div class="lbl">CON</div><div class="val">+2</div><div class="note">résilience osseuse</div></div>
+    <div class="stat"><div class="lbl">INT</div><div class="val">0</div><div class="note">—</div></div>
+    <div class="stat"><div class="lbl">SAG</div><div class="val">+1</div><div class="note">instinct</div></div>
+    <div class="stat"><div class="lbl">CHA</div><div class="val">+2</div><div class="note">charme involontaire</div></div>
+  </div>
+</div>
+
+<h2>Statistiques calculées</h2>
+<div class="card">
+  <div class="derived">
+    <div class="pill hp"><div class="lbl">Vitalité (PV)</div><div class="val">14</div><div style="font-size:10px;color:var(--muted)">10 + CON×2</div></div>
+    <div class="pill eth"><div class="lbl">Éther</div><div class="val">5</div><div style="font-size:10px;color:var(--muted)">3 + INT + CON</div></div>
+    <div class="pill def"><div class="lbl">Défense</div><div class="val">13</div><div style="font-size:10px;color:var(--muted)">10 + DEX (pas d'armure)</div></div>
+    <div class="pill"><div class="lbl">Initiative</div><div class="val">1d20+3</div><div style="font-size:10px;color:var(--muted)">1d20 + DEX</div></div>
+  </div>
+  <p style="font-size:12px;color:var(--muted);margin:12px 0 0">Jet = <b>1d20 + Caractéristique + Spécialité</b>. Le 1 nat = échec critique, le 20 nat = réussite critique.</p>
+</div>
+
+<h2>Spécialités</h2>
+<div class="card">
+  <table>
+    <tr><th>Spécialité</th><th style="text-align:center">Rang</th><th>Jet</th></tr>
+    <tr><td>Armes à distance</td><td style="text-align:center" class="bonus">III · +3</td><td>1d20 + DEX + 3 = <b>+6</b> (tout son arsenal osseux)</td></tr>
+    <tr><td>Larcins</td><td style="text-align:center" class="bonus">II · +2</td><td>vol de babioles, tours de main</td></tr>
+    <tr><td>Acrobaties</td><td style="text-align:center" class="bonus">I · +1</td><td>se dégager, esquiver, rouler</td></tr>
+  </table>
+</div>
+
+<h2>Affinités élémentaires</h2>
+<div class="card">
+  <div class="grid" style="grid-template-columns:1fr;gap:10px">
+    <div class="aff"><span style="width:90px">🌀 Chaos</span><div class="bar"><span style="width:100%"></span></div><b class="bonus">+3</b></div>
+    <div class="aff"><span style="width:90px">🪨 Terre</span><div class="bar"><span style="width:33%"></span></div><b class="bonus">+1</b></div>
+    <div class="aff"><span style="width:90px">🔥 Feu</span><div class="bar"><span style="width:0"></span></div><b>0</b></div>
+    <div class="aff"><span style="width:90px">💧 Eau</span><div class="bar"><span style="width:0"></span></div><b>0</b></div>
+    <div class="aff"><span style="width:90px">🌬️ Vent</span><div class="bar"><span style="width:0"></span></div><b>0</b></div>
+  </div>
+  <p style="font-size:13px;color:var(--muted);margin:12px 0 0"><b>Chaos +3</b> : la magie nécromantique qui l'anime, l'imprévu, le réassemblage. <b>Terre +1</b> : os et matière.</p>
+</div>
+
+<h2>⚔️ Arsenal osseux</h2>
+<div class="card">
+  <table>
+    <tr><th>Attaque</th><th class="a">Atk</th><th class="d">Dégâts</th><th>Effet</th></tr>
+    <tr><td><b>Lancer d'os</b></td><td class="a">+6</td><td class="d">1d6</td><td>Il jette ce qu'il trouve sur son squelette.</td></tr>
+    <tr><td><b>Tête-boomerang « clong ! »</b></td><td class="a">+6</td><td class="d">1d6</td><td>Touche à l'aller ; peut revenir frapper une 2ᵉ cible (jet séparé).</td></tr>
+    <tr><td><b>Doigt-mitraillette « tkl-tkl »</b></td><td class="a">+6</td><td class="d">2d6</td><td>Lance tous les os de ses bras : gros dégâts, mais <b>−2</b> à ses attaques jusqu'à réassemblage (fin de son prochain tour).</td></tr>
+    <tr><td><b>Explosion n'Os Éabonde</b></td><td class="a">—</td><td class="d">0</td><td>Aucun dégât : nuage nauséabond. Ennemis à 2 m : jet <b>SAG DD 12</b> ou −1 aux jets 1 tour (et débandade cocasse).</td></tr>
+    <tr><td>Armes au contact (os improvisé)</td><td class="a">+0</td><td class="d">1d4</td><td>Nul au contact. On peut le démonter d'un coup de pied.</td></tr>
+  </table>
+</div>
+
+<h2>🎒 Ulti — Sac du Trésor Inversé</h2>
+<div class="card">
+  <p style="margin:0 0 10px">Action principale, <b>1×/scène</b> (réactivable en dépensant 1 Écho). Il plonge la main dans le sac et sort une arme — mais la <b>chance est inversée</b> : plus l'arme a l'air épique, plus elle est nulle.</p>
+  <table class="ulti">
+    <tr><th>1d20</th><th>Ce qu'il sort</th><th>Effet</th></tr>
+    <tr><td>1–2</td><td>Arme gigantesque, épique, effrayante</td><td>Effet inexistant ou ridicule (0 à 1d4)</td></tr>
+    <tr><td>3–9</td><td>Arme classe</td><td>Effet médiocre (1d6)</td></tr>
+    <tr><td>10–17</td><td>Arme banale, bidon</td><td>Dégâts corrects (2d6)</td></tr>
+    <tr><td>18–20</td><td>Objet pitoyable (cure-dent…)</td><td><b>EFFET DIVIN DESTRUCTEUR (4d8, ignore l'armure)</b></td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--muted);margin:10px 0 0">✨ <b>Synergie parfaite avec le système :</b> un <b>20 naturel</b> = le cure-dent apocalyptique. Le destin adore Clac Clac quand il ne s'y attend pas.</p>
+</div>
+
+<h2>🔵 Résilience & flamme bleue</h2>
+<div class="card">
+  <div class="flamebox">
+    <b>Os aimantés (réassemblage) :</b> quand Clac Clac tombe à 0 PV, il s'effondre en morceaux (hors de combat). Il se <b>réassemble tout seul</b> et se relève à la <b>fin de son 2ᵉ tour</b> avec la moitié de ses PV (7). <b>Illimité</b> — les aimants nécromantiques font le boulot.
+  </div>
+  <div class="flamebox" style="border-color:var(--danger);border-left-color:var(--danger)">
+    <b style="color:var(--danger)">Flamme bleue = sa vraie vie.</b> Dans sa cage thoracique brûle une flamme bleue. C'est sa <b>seule vraie faiblesse</b> : une attaque peut la <b>viser directement</b> (attaque ciblée à <b>−5</b>, ou une attaque de feu / de zone). Si la flamme est <b>éteinte</b> pendant qu'il est démonté → <b>mort définitive</b>. Tant qu'elle brûle, il revient toujours.
+  </div>
+</div>
+
+<h2>Atouts</h2>
+<div class="card">
+  <div class="atout"><b>Os aimantés</b> <span class="lvl">Niv. II</span><br>
+    <span style="font-size:13px;color:var(--muted)">Le réassemblage nécromantique (voir ci-dessus). Peut aussi rattacher un os lancé, ou se désolidariser volontairement d'un membre pour se faufiler.</span></div>
+  <div class="atout"><b>Sac du Trésor Inversé</b> <span class="lvl">Niv. III</span><br>
+    <span style="font-size:13px;color:var(--muted)">Son ulti (voir ci-dessus). Le sac de son père — son trésor le plus précieux.</span></div>
+</div>
+
+<h2>Points d'Écho</h2>
+<div class="card">
+  <p style="margin:0 0 6px">Stock de départ : <b class="bonus">3</b> · Plafond : 5</p>
+  <div class="echo"><div class="orb full"></div><div class="orb full"></div><div class="orb full"></div><div class="orb"></div><div class="orb"></div></div>
+  <p style="font-size:13px;color:var(--muted);margin:10px 0 0">
+    <b>Promesse :</b> « Retrouver Papa (Glad Artor) — ou apprendre à le laisser partir. »
+    Avancer dans son deuil dans une scène clé → gain d'Écho. Sombrer dans le déni destructeur → perte.
+  </p>
+</div>
+
+<h2>Personnalité &amp; liens</h2>
+<div class="card">
+  <ul>
+    <li><b>Deuil &amp; déni :</b> il cherche encore son papa. Il ne dit que « clac clac » — mais on comprend « Papa ».</li>
+    <li><b>Moony :</b> la femme qui a récupéré le sac. Sa meilleure amie et sa figure parentale bis (grande sœur). Elle lui a réappris à rire.</li>
+    <li><b>Humour involontaire :</b> tout ce qu'il fait est mignon… et dangereux. Destructions involontaires garanties.</li>
+    <li><b>Résilience :</b> même en pièces, il revient toujours — tant que la flamme bleue brûle.</li>
+  </ul>
+</div>
+
+<p class="foot">Fiche de personnage · Système Bilal · Armonia 2026 — Clac Clac, créé par ton joueur, statué pour le système maison.</p>
+</div>
+</body>
+</html>

@@ -781,6 +781,10 @@ button.add-btn {
     <div class="field"><label>XP dépensé</label><input type="number" data-key="xp_depense" value="0" min="0" oninput="recomputeXP()"></div>
     <div class="field"><label>XP disponible</label><div class="stat-value" id="xp_dispo" style="font-size:22px;color:var(--accent)">0</div></div>
   </div>
+  <div id="exp_xp_row" style="display:none;margin-top:8px;background:#1f2a1f;border:1px solid #3a5a3a;border-radius:8px;padding:8px 12px;font-size:14px">
+    🗺️ <b>XP d'expéditions (carte) :</b> <span id="exp_xp_val" style="color:var(--success);font-weight:bold">0</span>
+    <button type="button" class="add-btn" style="margin-left:8px" onclick="claimExpXP()">＋ Ajouter au XP gagné</button>
+  </div>
   <div style="margin-top:10px;font-size:13px;line-height:1.7">
     <b>Barème d'achat :</b>
     Spécialité rang I (+1) = <b>3 XP</b> ·
@@ -889,7 +893,7 @@ const RACE_BONUSES = {
   'Halfelins': { affinities: '—', traits: ['Chance halfeline : 1×/session, reroll gratuit (en plus des Écho)', 'Petite taille : +1 Discrétion', 'Voyageur : +1 Nature & Survie'] },
   'Demi-elfes': { affinities: '+1 à un élément au libre choix', traits: ['Adaptabilité culturelle : +1 Persuasion', 'Longévité partielle (200 ans environ)'] },
   'Géant-né': { affinities: 'Eau +1, Terre +1', traits: ['Stature imposante : +1 Intimidation, +2 Vitalité max', 'Résiste au froid extrême'], penalty: '−1 Discrétion (taille)' },
-  'Aasimars': { affinities: 'Chaos +1, Vent +1', traits: ['Aura de paix : 1×/scène, calme un PNJ hostile (Persuasion)', 'Lien céleste : +1 Volonté contre charme/peur'] },
+  'Aasimars': { affinities: 'Vent +1 (+1 selon lignée)', traits: ['Enfant des Vents : Vent +1', 'Souffle Céleste : effet mineur de ton Céleste 1×/scène', 'Lignée d\'un des Cinq Célestes (Hyal-Roon givre/Eau · Sîr-Vhel savoir/Chaos · Kor-Drun brasier/Feu · Mae-Lor négoce/Terre · Ay-Senna justice/Chaos) : +1 à un 2e élément + un don', 'Vertu impérative : l\'honorer = +Écho, la trahir gravement = −2 Écho'], penalty: 'Marqué : nature céleste toujours visible' },
   'Tiefling': { affinities: 'Feu +1, Chaos +1', traits: ['Résiste au feu : −2 dégâts attaques de Feu', 'Présence troublante : +1 Intimidation'], penalty: '−1 social en société pieuse' },
   'Dragonné': { affinities: '+1 à l\'élément du dragon ancestral (libre choix)', traits: ['Souffle élémentaire : 1×/scène, cône 5m, 1d6 + INT dégâts (élément)', 'Écailles : +1 Défense passive'] },
   'Genasi': { affinities: '+2 à un élément (5 variantes : Feu/Eau/Vent/Terre/Chaos)', traits: ['Manipulation élémentaire mineure : 1 Éther = effet trivial gratuit', 'Marqué visiblement par son élément'] },
@@ -1356,11 +1360,27 @@ function renderEcho() {
 
 // ========== RECOMPUTE STATS ==========
 
+function readExpXP() {
+  try { return (JSON.parse(localStorage.getItem('armonia_exp_totals')) || {}).xp || 0; } catch (e) { return 0; }
+}
+function refreshExpXP() {
+  const v = readExpXP(), row = document.getElementById('exp_xp_row'), val = document.getElementById('exp_xp_val');
+  if (!row) return;
+  if (v > 0) { row.style.display = 'block'; val.textContent = v; } else { row.style.display = 'none'; }
+}
+function claimExpXP() {
+  const v = readExpXP(); if (v <= 0) return;
+  const t = document.querySelector('[data-key="xp_total"]');
+  t.value = (parseInt(t.value) || 0) + v;
+  try { const o = JSON.parse(localStorage.getItem('armonia_exp_totals')) || {}; o.xp = 0; localStorage.setItem('armonia_exp_totals', JSON.stringify(o)); } catch (e) {}
+  refreshExpXP(); recomputeXP();
+}
 function recomputeXP() {
   const tot = parseInt(document.querySelector('[data-key="xp_total"]')?.value) || 0;
   const dep = parseInt(document.querySelector('[data-key="xp_depense"]')?.value) || 0;
   const el = document.getElementById('xp_dispo');
   if (el) el.textContent = (tot - dep);
+  refreshExpXP();
 }
 
 function recompute() {

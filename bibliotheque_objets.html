@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Objets magiques & Butin · Armonia</title>
+<style>
+ :root{--bg:#1a1a2e;--paper:#2a2a3e;--primary:#c9a85a;--accent:#d97c47;--text:#f4e8d0;--muted:#9a8a7a;--border:#3a3a4e;--danger:#c44040;--success:#5aa850;--info:#5a8ec9;
+   --commun:#9aa0a8;--peucommun:#5aa850;--rare:#5a8ec9;--epique:#b088c8;--artefact:#c9a85a}
+ *{box-sizing:border-box} body{font-family:Georgia,serif;background:var(--bg);color:var(--text);margin:0;padding:22px;line-height:1.55}
+ .wrap{max-width:1000px;margin:0 auto}
+ a.back{color:var(--muted);text-decoration:none;font-size:14px} a.back:hover{color:var(--primary)} a{color:var(--accent)}
+ header.hero{background:linear-gradient(135deg,#232338,#2a2a3e);border:2px solid var(--primary);border-radius:12px;padding:22px 28px;margin:12px 0 16px;position:relative;overflow:hidden}
+ header.hero::after{content:"💎";position:absolute;right:22px;top:14px;font-size:56px;opacity:.14}
+ h1{font-size:27px;color:var(--primary);margin:0 0 4px} .sub{color:var(--muted);font-style:italic;margin:0}
+ h2{color:var(--accent);font-size:19px;border-bottom:1px solid var(--border);padding-bottom:5px;margin:26px 0 10px}
+ .card{background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin:12px 0}
+ table{width:100%;border-collapse:collapse;font-size:14px} th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+ th{color:var(--primary);font-size:11px;text-transform:uppercase;letter-spacing:.4px} td.c{text-align:center;white-space:nowrap}
+ .r-commun{color:var(--commun)} .r-peucommun{color:var(--peucommun)} .r-rare{color:var(--rare)} .r-epique{color:var(--epique)} .r-artefact{color:var(--artefact);font-weight:bold}
+ .box{background:#20281f;border-left:4px solid var(--success);border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:14px}
+ .warn{background:#2a1f2e;border-left:4px solid var(--epique);border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:14px}
+ .foot{text-align:center;color:var(--muted);font-size:11px;margin:24px 0 4px}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body><div class="wrap">
+<a class="back" href="index.html">← Retour au sommaire</a>
+<header class="hero"><h1>Objets magiques & Butin</h1><p class="sub">Raretés, consommables, harmonisation — comment récompenser sans casser l'équilibre</p></header>
+
+<h2>🎖️ Les cinq raretés</h2>
+<div class="card">
+<table>
+<tr><th>Rareté</th><th>Ce que ça donne</th><th>Exemple</th></tr>
+<tr><td class="r-commun">Commun</td><td>Équipement de qualité, non magique.</td><td>Bonne épée, cotte de mailles, corde.</td></tr>
+<tr><td class="r-peucommun">Peu commun</td><td><b>+1</b> à une arme/armure, ou un petit effet utilitaire.</td><td>Lame bien trempée +1, cape qui garde au chaud.</td></tr>
+<tr><td class="r-rare">Rare</td><td><b>+2</b>, ou un <b>pouvoir mineur</b> (1×/scène).</td><td>Anneau qui rend 1d6 Éther/jour.</td></tr>
+<tr><td class="r-epique">Épique</td><td><b>+3</b>, ou un <b>pouvoir fort</b> ; souvent lié à une faction ou un lieu.</td><td>Brassard des Cinq Vents.</td></tr>
+<tr><td class="r-artefact">Artefact</td><td><b>Unique et légendaire</b>, avec une histoire — et souvent un <b>revers</b>.</td><td>La Clé de Fulgura, le Cristal-Cœur… → <a href="bibliotheque_artefacts.html">Bibliothèque d'Artefacts</a>.</td></tr>
+</table>
+<p style="font-size:13px;color:var(--muted);margin-top:6px">Règle d'or : un bonus d'objet <b>plafonne à +3</b> (comme une spécialité). Au-delà, c'est un pouvoir spécial, pas un chiffre.</p>
+</div>
+
+<h2>🔗 Harmonisation (attunement)</h2>
+<div class="card">
+<p>Un objet <b>Rare ou plus</b> doit être <b>harmonisé</b> pour livrer son pouvoir : une nuit de repos passée à s'accorder à lui.</p>
+<ul>
+  <li>Un personnage peut être harmonisé à <b>3 objets magiques</b> au maximum.</li>
+  <li>En porter d'actifs au-delà de 3 = <b>Surcharge</b> : l'Éther du monde te rejette, <b>−1 à tous tes jets par objet en trop</b>.</li>
+  <li>Les <b>Artefacts</b> comptent double (ils sont exigeants) — souvent un seul à la fois.</li>
+</ul>
+<p style="font-size:13px;color:var(--muted)">Ça évite le « sapin de Noël » : les héros choisissent ce qui les définit.</p>
+</div>
+
+<h2>🧪 Consommables</h2>
+<div class="card">
+<table>
+<tr><th>Objet</th><th class="c">Effet</th><th class="c">Prix indicatif</th></tr>
+<tr><td>Potion de soin légère</td><td class="c">rend 1d6 PV</td><td class="c">25 po</td></tr>
+<tr><td>Potion de soin moyenne</td><td class="c">2d6 PV</td><td class="c">60 po</td></tr>
+<tr><td>Potion de soin majeure</td><td class="c">3d6 PV</td><td class="c">120 po</td></tr>
+<tr><td>Élixir d'Éther</td><td class="c">rend 1d6 Éther</td><td class="c">50 po</td></tr>
+<tr><td>Bombe alchimique</td><td class="c">2d6 en zone (voir <a href="bibliotheque_craft.html">Craft</a>)</td><td class="c">40 po</td></tr>
+<tr><td>Parchemin de script</td><td class="c">lance 1× un sort inscrit</td><td class="c">selon palier (×15 po)</td></tr>
+<tr><td>Antidote / antidote-fumée</td><td class="c">annule un poison / crée un écran</td><td class="c">15 po</td></tr>
+</table>
+<p style="font-size:13px;color:var(--muted);margin-top:6px">Prix à ajuster selon ta <a href="bibliotheque_economie.html">bibliothèque Économie</a>. Les soins reprennent la table de la magie de Chaos (1d6 / 2d6 / 3d6).</p>
+</div>
+
+<h2>🎁 Distribuer le butin (par palier)</h2>
+<div class="card">
+<table>
+<tr><th>Palier des PJ</th><th>Rythme conseillé</th></tr>
+<tr><td><b>Débutant</b></td><td>Surtout des <b>consommables</b> + 1 objet <span class="r-peucommun">Peu commun</span> par arc d'aventure.</td></tr>
+<tr><td><b>Confirmé</b></td><td>1 objet <span class="r-rare">Rare</span> par arc ; les consommables coulent plus librement.</td></tr>
+<tr><td><b>Héros</b></td><td>Un <span class="r-epique">Épique</span> en récompense majeure ; un <span class="r-artefact">Artefact</span> = <b>jalon de campagne</b> (jamais un simple loot).</td></tr>
+</table>
+</div>
+
+<div class="warn">💡 <b>Le butin le plus fort n'est pas un chiffre.</b> Un objet lié à l'histoire (l'arme d'un PNJ vaincu, un artefact des 6 Roses, une relique de la Forêt Julia) marque bien plus qu'un +1. Les meilleurs objets <b>racontent</b> quelque chose et <b>coûtent</b> quelque chose — un serment, un secret, une Marque de corruption.</div>
+
+<p class="foot">Objets magiques & Butin · Système Bilal · Armonia 2026 — voir aussi Artefacts, Craft, Économie.</p>
+</div></body></html>

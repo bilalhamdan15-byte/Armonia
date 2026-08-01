@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Corruption — mécanique · Armonia</title>
+<style>
+ :root{--bg:#1a1a2e;--paper:#2a2a3e;--primary:#c9a85a;--accent:#d97c47;--text:#f4e8d0;--muted:#9a8a7a;--border:#3a3a4e;--danger:#c44040;--success:#5aa850;--info:#5a8ec9;--mystere:#b088c8}
+ *{box-sizing:border-box} body{font-family:Georgia,serif;background:var(--bg);color:var(--text);margin:0;padding:22px;line-height:1.55}
+ .wrap{max-width:1000px;margin:0 auto}
+ a.back{color:var(--muted);text-decoration:none;font-size:14px} a.back:hover{color:var(--primary)}
+ header.hero{background:linear-gradient(135deg,#241a2e,#2a2a3e);border:2px solid var(--mystere);border-radius:12px;padding:22px 28px;margin:12px 0 18px;position:relative;overflow:hidden}
+ header.hero::after{content:"🟣";position:absolute;right:22px;top:14px;font-size:56px;opacity:.15}
+ h1{font-size:27px;color:var(--mystere);margin:0 0 4px} .sub{color:var(--muted);font-style:italic;margin:0}
+ h2{color:var(--accent);font-size:19px;border-bottom:1px solid var(--border);padding-bottom:5px;margin:26px 0 10px}
+ .card{background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin:12px 0}
+ table{width:100%;border-collapse:collapse;font-size:14px} th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+ th{color:var(--primary);font-size:11px;text-transform:uppercase;letter-spacing:.4px} td.c{text-align:center;white-space:nowrap}
+ .track{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+ .mk{width:38px;height:38px;border-radius:8px;border:2px solid var(--mystere);display:flex;align-items:center;justify-content:center;font-weight:bold;color:var(--mystere);background:#1f1730}
+ .mk.b{background:var(--mystere);color:#1a1a2e}
+ .mj{background:#2a1f2e;border-left:4px solid var(--mystere);border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:14px}
+ .mj b{color:#c8a0d8}
+ .tip{background:#20281f;border-left:4px solid var(--success);border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:14px}
+ ul{padding-left:20px} li{margin:5px 0}
+ .foot{text-align:center;color:var(--muted);font-size:11px;margin:24px 0 4px}
+ b.p{color:var(--mystere)}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body><div class="wrap">
+<a class="back" href="index.html">← Retour au sommaire</a>
+<header class="hero"><h1>La Corruption</h1><p class="sub">Quand le Script des Anciens laisse sa marque — une mécanique de tentation, pas seulement de punition</p></header>
+
+<div class="card">
+Le <b>Script des Anciens</b> draine la magie et corrompt tout ce qu'il touche. S'y exposer laisse des <b class="p">Marques de Corruption</b>. La corruption ne fait pas que salir : elle <b>offre du pouvoir</b> — c'est ce qui la rend dangereuse.
+</div>
+
+<h2>🟣 La jauge — les Marques</h2>
+<div class="card">
+  <p>Chaque personnage a une piste de <b>6 Marques</b>. On les coche de gauche à droite.</p>
+  <div class="track"><div class="mk">1</div><div class="mk">2</div><div class="mk">3</div><div class="mk">4</div><div class="mk">5</div><div class="mk" style="border-color:var(--danger);color:var(--danger)">6</div></div>
+  <p style="font-size:13px;color:var(--muted)">La 6ᵉ Marque est le <b>point de bascule</b>.</p>
+</div>
+
+<h2>Comment on gagne une Marque</h2>
+<div class="card">
+  <p>Face à une source de corruption, jet de <b>Volonté (SAG)</b> ou tu gagnes 1 Marque :</p>
+  <table>
+    <tr><th>Source</th><th class="c">DD de Volonté</th></tr>
+    <tr><td>Frôler une zone/créature corrompue, dormir en terre gâtée</td><td class="c">13</td></tr>
+    <tr><td>Être <b>drainé de tout son Éther</b> par un Corrompu · échec critique en magie près d'un foyer</td><td class="c">15</td></tr>
+    <tr><td>Toucher le Script directement · pacte · <b>user d'un pouvoir corrompu</b></td><td class="c">18 (ou automatique)</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--muted);margin-top:6px">Réussir le jet = tu résistes cette fois. <b>Utiliser volontairement</b> le pouvoir corrompu (voir seuils) ne se résiste pas : c'est un choix.</p>
+</div>
+
+<h2>Les seuils — effets</h2>
+<div class="card">
+  <table>
+    <tr><th class="c">Marques</th><th>Effet</th></tr>
+    <tr><td class="c"><b>1</b> · Murmures</td><td>Cauchemars, une voix qui connaît tes peurs. <b>−1</b> aux jets de Volonté contre la corruption.</td></tr>
+    <tr><td class="c"><b>2</b> · Stigmate</td><td>Une marque visible (veines noires, un œil qui change). Les animaux se méfient de toi.</td></tr>
+    <tr><td class="c"><b>3</b> · Faim d'Éther</td><td><b>Pouvoir :</b> tu peux <b>drainer l'Éther</b> d'autrui au toucher (+ ton Éther). Mais chaque usage = jet de Volonté DD 15 ou <b>+1 Marque</b>. La tentation commence.</td></tr>
+    <tr><td class="c"><b>4</b> · Vérités</td><td><b>Pouvoir :</b> le Script te souffle une info vraie et utile (1×/scène). Prix : jet de Volonté DD 15 ou +1 Marque. Il ne ment jamais — c'est ça le piège.</td></tr>
+    <tr><td class="c"><b>5</b> · Marqué</td><td>Corruption manifeste : rejet et peur autour de toi (malus social), mais tu deviens <b>immunisé à la peur</b> et résistes aux effets mentaux (+2).</td></tr>
+    <tr><td class="c" style="color:var(--danger)"><b>6</b> · Bascule</td><td><b>Point de non-retour.</b> À la prochaine grande épreuve, le PJ risque de <b>devenir un Corrompu</b> (PNJ du MJ) — sauf sacrifice héroïque ou rédemption (voir ci-dessous).</td></tr>
+  </table>
+</div>
+
+<h2>💧 Se purifier</h2>
+<div class="card">
+  <p>Retirer une Marque est <b>rare et coûteux</b> :</p>
+  <ul>
+    <li>Un <b>rituel Céleste</b> à Sol'Ambaïre (les Cinq Vents brûlent la souillure).</li>
+    <li>Baigner dans un <b>Nœud du Monde purifié</b>.</li>
+    <li>Un <b>grand sacrifice</b> ou une Promesse d'Écho tenue au prix fort (à l'arbitrage du MJ).</li>
+  </ul>
+  <p style="font-size:13px;color:var(--muted)">Chaque méthode retire <b>1 Marque</b>. On ne « repose » pas la corruption.</p>
+</div>
+
+<div class="mj">
+  <b>🔮 L'horloge du Monde (MJ)</b> — en parallèle des PJ, tiens une <b>horloge de corruption</b> à 8 crans pour la région. Elle avance quand : les PJ ignorent un foyer, un antagoniste ([[Lysca Vœnir]], Cendre) sert le Script, une source n'est pas purgée. À 8 crans, une <b>région bascule</b> (relie ça au pinceau de corruption de la carte). C'est le compte à rebours de ta campagne.
+</div>
+
+<div class="tip">
+  🎯 <b>Le bon dosage :</b> la corruption doit <b>tenter</b> avant de punir. Offre le pouvoir (drain d'Éther, vérités du Script) au moment où les PJ en ont désespérément besoin — le drame naît du <b>choix</b>, pas du malus. Un héros qui refuse la 4ᵉ Marque pour rester lui-même, c'est ta meilleure scène.
+</div>
+
+<p class="foot">La Corruption · Système Bilal · Armonia 2026 — origine : le Script des Anciens.</p>
+</div></body></html>

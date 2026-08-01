@@ -1,0 +1,86 @@
+{
+  "nom": "Nymphéa Thaloriel",
+  "joueur": "",
+  "classe": "Gardienne · Archère-diplomate",
+  "race": "Elfe Sylvestre",
+  "sousrace": "",
+  "age": "",
+  "description": "Née sous le Grand Frêne d'Argent. Les animaux ne la craignent pas, les rivières se purifient sur son passage.",
+  "for": "0",
+  "dex": "3",
+  "con": "2",
+  "int": "0",
+  "sag": "3",
+  "cha": "1",
+  "vit_actuel": "14",
+  "ether_actuel": "5",
+  "surcharge": "0",
+  "armure_bonus": "2",
+  "bouclier": "0",
+  "action_def": "0",
+  "echo_max": "5",
+  "is_ingenieur": false,
+  "arme_principale": "Arc de l'If Millénaire",
+  "arme_secondaire": "Dague elfique de cérémonie",
+  "armure": "Cuir sylvestre + cape de camouflage",
+  "or": "3d20 pièces d'argent",
+  "notes": "",
+  "capacites": "Lien à la Forêt Julia : les arbres répondent, les rivières se purifient sur son passage (à discrétion du MJ).",
+  "xp_total": "0",
+  "xp_depense": "0",
+  "competences": {},
+  "affinities": {
+    "Feu": "-1",
+    "Eau": "2",
+    "Vent": "1",
+    "Terre": "3",
+    "Chaos": "1"
+  },
+  "symboles_array": [],
+  "state": {
+    "comp": {},
+    "affinity": {
+      "Feu": "-1",
+      "Eau": "2",
+      "Vent": "1",
+      "Terre": "3",
+      "Chaos": "1"
+    },
+    "atouts": [
+      {
+        "nom": "De la Forêt Julia",
+        "niveau": "II",
+        "used": false
+      },
+      {
+        "nom": "Sensible à l'Éther",
+        "niveau": "I",
+        "used": false
+      }
+    ],
+    "promesses": [
+      {
+        "texte": "Préserver l'équilibre entre les peuples et la nature, empêcher le réveil des forces oubliées.",
+        "statut": "active"
+      }
+    ],
+    "scripts": [],
+    "mots": [],
+    "inv": [],
+    "echo": 3,
+    "specs": [
+      {
+        "name": "Armes à distance",
+        "rank": 3
+      },
+      {
+        "name": "Nature & Survie",
+        "rank": 3
+      },
+      {
+        "name": "Persuasion",
+        "rank": 2
+      }
+    ]
+  }
+}

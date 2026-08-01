@@ -200,7 +200,7 @@ const RACES = [
   // === HUMAINS ===
   {
     cat: 'humains', nom: 'Humains des villes',
-    desc: "Polyvalents et adaptables, les Humains des villes connaissent toutes les ficelles des métiers urbains. Marchands, artisans, érudits, soldats — ils peuplent les capitales et tirent leur force de leur diversité.",
+    desc: "Le peuple le plus répandu d'Armonia, maîtres des capitales et des guildes. Ni les plus forts ni les plus magiques, mais les plus adaptables : ils apprennent tout, se faufilent partout, et rebondissent quand les autres s'effondrent. Marchands, soldats, érudits — un Humain peut devenir n'importe qui. Idéal pour un personnage polyvalent qui ne se ferme aucune porte.",
     affinities: [],
     traits: [
       "Polyvalence : +1 à une compétence au choix à la création",
@@ -209,7 +209,7 @@ const RACES = [
   },
   {
     cat: 'humains', nom: 'Tribu de la Forêt',
-    desc: "Gardiens de lieux sacrés, alliés des Elfes Sylvestres, ils vivent en harmonie avec la nature. Leur talent à l'arc rivalise avec celui des elfes eux-mêmes.",
+    desc: "Communautés semi-nomades des grandes forêts, dont la Forêt Julia. Mi-hommes, mi-esprits des bois, ils vivent selon des lois orales et une révérence profonde pour la nature. Peints d'argile et de sève, ils parlent aux bêtes et lisent les sentiers comme un livre. Idéal pour un pisteur, un chasseur ou un gardien du monde sauvage.",
     affinities: [{el: 'Chaos', val: 1}],
     traits: [
       "Pisteur : +1 Nature & Survie",
@@ -218,7 +218,7 @@ const RACES = [
   },
   {
     cat: 'humains', nom: 'Nordiques',
-    desc: "Ils vivent pour se battre. Leur sang bouillonne à l'approche du combat. Leurs muscles sont forgés par le froid du nord et leur cœur par les chants des Jarls.",
+    desc: "Hommes et femmes du No'Ord glacé, taillés par les fjords et l'honneur. Grands, endurants, la parole rare et le serment sacré. On les dit rudes ; ils sont surtout loyaux jusqu'à la mort. Idéal pour un combattant robuste qui encaisse et ne recule jamais.",
     affinities: [{el: 'Eau', val: 1}],
     traits: [
       "Endurance du Nord : +2 Vitalité max",
@@ -227,7 +227,7 @@ const RACES = [
   },
   {
     cat: 'humains', nom: 'Sadiens',
-    desc: "Humains du désert. Leur peau dorée et leur regard perçant cachent une endurance hors norme. Ils sont habiles dans les vastes étendues arides et redoutés en marchandage.",
+    desc: "Peuple des déserts et des routes caravanières du Sud. Peau hâlée, œil vif, langue d'or : survivre au sable rend malin. Marchands-nés et négociateurs redoutables, ils lisent un interlocuteur comme une carte. Idéal pour un baratineur, un marchand ou un survivant du désert.",
     affinities: [{el: 'Feu', val: 1}],
     traits: [
       "Survivant du désert : résiste naturellement à la chaleur et à la soif",
@@ -236,7 +236,7 @@ const RACES = [
   },
   {
     cat: 'humains', nom: 'Jindos',
-    desc: "Humains des îles tropicales. Réputés pour leur agilité, leur maîtrise des océans et leur connaissance des vents marins. Les meilleurs marins d'Armonia.",
+    desc: "Gens des côtes et des îles, un pied dans l'eau depuis l'enfance. Nageurs et navigateurs hors pair, ils connaissent les courants, les marées et les humeurs de la mer. Superstitieux et joyeux. Idéal pour un marin, un explorateur ou un aventurier des flots.",
     affinities: [{el: 'Eau', val: 1}],
     traits: [
       "Nageur expert : +1 Athlétisme en milieu aquatique",
@@ -247,7 +247,7 @@ const RACES = [
   // === ELFES ===
   {
     cat: 'elfes', nom: 'Hauts-Elfes',
-    desc: "Autrefois vénérés comme des dieux pour leur puissance magique, aujourd'hui amoindris depuis le retour de la magie. Ils gardent leur arrogance et leur haine ancienne des humains.",
+    desc: "Aristocratie elfique millénaire, gardienne du savoir et de la magie raffinée. Beauté froide, intelligence supérieure, longévité qui rend le temps abstrait. Hautains envers les humains, mais lanceurs de sorts sans égal. Idéal pour un mage érudit qui domine la magie de sens.",
     affinities: [{el: 'Vent', val: 1}, {el: 'Chaos', val: 1}],
     traits: [
       "INT supérieure : 3 points de carac à la création au lieu de 2",
@@ -257,7 +257,7 @@ const RACES = [
   },
   {
     cat: 'elfes', nom: 'Elfes Sylvestres (des Bois)',
-    desc: "Vivent aujourd'hui avec la Tribu de la Forêt qui a perpétué leurs traditions pendant la Rupture. Honorés de cette protection, ils sont des archers et trackers hors pair.",
+    desc: "Elfes des forêts profondes, souples et silencieux comme le vent dans les feuilles. Archers naturels aux sens acérés, ils se fondent dans les bois. Peuple de la Forêt Julia et de Lumini. Idéal pour un archer, un éclaireur ou un rôdeur.",
     affinities: [{el: 'Chaos', val: 1}, {el: 'Vent', val: 1}],
     traits: [
       "Acuité elfique : +1 Vigilance",
@@ -266,7 +266,7 @@ const RACES = [
   },
   {
     cat: 'elfes', nom: 'Elfes Noirs (des Montagnes)',
-    desc: "Peau cendrée par l'exposition aux fournaises naines. Les seuls elfes tolérés par les Nains grâce à leurs talents de forgerons. Ils combinent magie et artisanat avec maîtrise.",
+    desc: "Elfes des cavernes et des hauteurs, à la peau grise et aux yeux qui percent l'obscurité. Forgerons-mages capables de marier le script et l'acier. Réservés, endurants, méfiants. Idéal pour un artisan-magicien ou un combattant des profondeurs.",
     affinities: [{el: 'Terre', val: 1}],
     traits: [
       "Forgeron-mage : peut combiner magie script et forge sans malus",
@@ -275,7 +275,7 @@ const RACES = [
   },
   {
     cat: 'elfes', nom: 'Elfes Yle (Bannis)',
-    desc: "Autrefois bannis par les Hauts-Elfes, ils ont rejoint les autres races pour vivre et s'adapter. Mélangés, métissés, en pleine croissance démographique — ils portent l'idéologie de l'unité.",
+    desc: "Elfes exilés, coupés de leur cité — dont les graveurs de scripts de vent qui portent Villa Virtue. Adaptables par nécessité, ils apprennent vite et se réinventent, marqués par la perte d'un foyer. Idéal pour un touche-à-tout magique, libre de toute caste.",
     affinities: [{el: 'Libre', val: 1, label: '+1 à un élément au choix'}],
     traits: [
       "Adaptabilité : +1 à une compétence au choix",
@@ -286,7 +286,7 @@ const RACES = [
   // === NAINS ===
   {
     cat: 'nains', nom: 'Nains Montagnards',
-    desc: "Vivent à l'extérieur des cités naines, peu attachés au système hiérarchique. Ils sont des nomades de montagne, durs au mal et libres d'esprit.",
+    desc: "Peuple des cités creusées dans la roche, robuste et têtu comme la pierre. Endurance légendaire, œil sûr sous terre, mémoire des lignées. On ne déloge pas un Nain de son idée ni de son poste. Idéal pour un frontliner endurant ou un explorateur souterrain.",
     affinities: [{el: 'Terre', val: 1}],
     traits: [
       "Endurance naine : +1 Vitalité max",
@@ -295,7 +295,7 @@ const RACES = [
   },
   {
     cat: 'nains', nom: 'Forgefeux',
-    desc: "Nains très liés à leur foi : forger est une bénédiction. Seul le plus chaud des brasiers révèle l'âme du métal. Maîtres du fer rouge et des incantations runiques au marteau.",
+    desc: "Nains liés au feu de la forge, la barbe roussie et les mains calleuses. Pour eux, forger est une prière ; leurs œuvres passent pour bénies. Fiers, chaleureux, obstinés. Idéal pour un artisan-forgeron ou un Ingénieur qui bâtit son arsenal.",
     affinities: [{el: 'Feu', val: 1}],
     traits: [
       "Maître forgeron : +1 Artisanat (forge)",
@@ -316,7 +316,7 @@ const RACES = [
   // === ORQUES ===
   {
     cat: 'orques', nom: 'Orques Guerriers',
-    desc: "Puissants et féroces, ils incarnent l'archétype du combattant brut. Mais derrière la barbarie réputée se cachent parfois honneur, code, et culture du défi.",
+    desc: "Colosses à la peau verte, nés pour la bataille. Muscles, cicatrices et cri de guerre qui glace le sang. Brutaux mais loyaux à leur clan, ils frappent fort et intimident plus fort encore. Idéal pour un bourrin de mêlée qui fait mal.",
     affinities: [{el: 'Feu', val: 1}],
     traits: [
       "Force brute : +1 dégâts au corps à corps",
@@ -325,7 +325,7 @@ const RACES = [
   },
   {
     cat: 'orques', nom: 'Orques Shamans',
-    desc: "Gardiens des esprits ancestraux orques. Communient avec les vents, les ancêtres, les forces du givre. Ils interprètent les songes et conseillent les Chefs.",
+    desc: "Orques tournés vers les esprits plutôt que vers la hache. Visionnaires, ils lisent les présages et communient avec les morts et la nature. Respectés, un peu craints. Idéal pour un mystique, un guide spirituel ou un soutien magique.",
     affinities: [{el: 'Chaos', val: 1}],
     traits: [
       "Don visionnaire : +1 Intuition",
@@ -334,7 +334,7 @@ const RACES = [
   },
   {
     cat: 'orques', nom: 'Orques Chasseurs',
-    desc: "Pisteurs féroces, traqueurs des bêtes magiques et des proies impossibles. Liés à la nature sauvage et à la chasse rituelle.",
+    desc: "Orques des grandes plaines et des terres sauvages, traqueurs infatigables. Ils pistent une proie sur des lieues et connaissent le langage des bêtes magiques. Endurants, patients, silencieux. Idéal pour un pisteur ou un rôdeur de combat.",
     affinities: [{el: 'Vent', val: 1}],
     traits: [
       "Pisteur : +1 Nature & Survie",
@@ -345,7 +345,7 @@ const RACES = [
   // === HOMMES-BÊTES ===
   {
     cat: 'hommes-betes', nom: 'Mi-félin',
-    desc: "Élégants et silencieux, les Mi-félins ont une grâce instinctive. Leurs sens félins et leur souplesse les rendent excellents éclaireurs et escaladeurs. Souvent solitaires mais charmants en société.",
+    desc: "Hommes-chats souples et curieux, réflexes fulgurants et regard qui brille dans le noir. Élégants, indépendants, joueurs. Ils tombent toujours sur leurs pieds — ou presque. Idéal pour un acrobate, un voleur ou un duelliste agile.",
     affinities: [{el: 'Vent', val: 1}],
     traits: [
       "Réflexes félins : +1 Acrobaties",
@@ -354,7 +354,7 @@ const RACES = [
   },
   {
     cat: 'hommes-betes', nom: 'Mi-ours',
-    desc: "Massifs et puissants, les Mi-ours sont des protecteurs nés. Ils incarnent la force brute mais aussi la patience et la sagesse. Souvent druidiques ou guerriers de tribu.",
+    desc: "Colosses velus au cœur souvent doux, force tranquille et résistance au froid extrême. Lents à la colère, terribles une fois lancés, protecteurs par nature. Idéal pour un tank chaleureux qui défend les siens.",
     affinities: [{el: 'Terre', val: 1}],
     traits: [
       "Force naturelle : FOR compte +1 au combat corps à corps",
@@ -364,7 +364,7 @@ const RACES = [
   },
   {
     cat: 'hommes-betes', nom: 'Mi-taureau',
-    desc: "Massifs, droits dans leur posture, les Mi-taureaux portent leur héritage avec fierté. Honneur, force, parole donnée. Ils sont souvent gardes, forgerons ou défenseurs de causes. Leurs cornes sont un signe de noblesse.",
+    desc: "Montagnes de muscles cornues, dont la charge peut défoncer une porte — ou un ennemi. Robustes, francs, entêtés, on les respecte au premier regard. Idéal pour un briseur de ligne qui charge et encaisse.",
     affinities: [{el: 'Terre', val: 1}],
     traits: [
       "Charge dévastatrice : +2 dégâts si attaque après une course de 5m+",
@@ -373,7 +373,7 @@ const RACES = [
   },
   {
     cat: 'hommes-betes', nom: 'Mi-chien',
-    desc: "Loyaux et fidèles, les Mi-chiens sont reconnus pour leur courage et leur sens du devoir. Souvent gardes, messagers ou compagnons dévoués. Leur odorat fait d'eux d'excellents pisteurs. Très attachés à leur 'meute' (groupe d'aventuriers).",
+    desc: "Hommes-chiens au flair surnaturel et à la loyauté à toute épreuve. Rien n'échappe à leur nez ; rien ne brise leur fidélité à un ami. Chaleureux et protecteurs. Idéal pour un pisteur loyal, très dur à tromper ou à manipuler.",
     affinities: [{el: 'Vent', val: 1}],
     traits: [
       "Odorat surnaturel : +2 sur jets de pistage",
@@ -382,7 +382,7 @@ const RACES = [
   },
   {
     cat: 'hommes-betes', nom: 'Mi-loup',
-    desc: "Sauvages et libres, les Mi-loups vivent en meutes ou en marge des sociétés humaines. Pisteurs hors pair, ils sont rapides et solidaires. Liés au cycle de la lune et à leurs frères de meute.",
+    desc: "Hommes-loups de meute, rapides et endurants, l'instinct toujours en alerte. Ils chassent en groupe et se déplacent comme le vent. Fiers, sauvages, solidaires. Idéal pour un traqueur mobile ou un combattant de meute.",
     affinities: [{el: 'Vent', val: 1}],
     traits: [
       "Odorat surnaturel : +2 sur jets de pistage",
@@ -391,7 +391,7 @@ const RACES = [
   },
   {
     cat: 'hommes-betes', nom: 'Mi-lapin',
-    desc: "Discrets et toujours en alerte, les Mi-lapins sont d'excellents éclaireurs. Leur agilité et leur perception aiguisée en font des espions et messagers redoutables. Souvent timides en société, ils s'épanouissent en plein air. Méfiance et fuite sont leur instinct premier.",
+    desc: "Petits et vifs, tout en bonds et en réflexes. On les sous-estime — jusqu'à ce qu'ils vous esquivent trois fois et frappent au quatrième. Nerveux, malins, increvables. Idéal pour un esquiveur rapide, insaisissable au combat.",
     affinities: [{el: 'Vent', val: 1}],
     traits: [
       "Saut amplifié : +2m vertical, double la distance horizontale",
@@ -402,7 +402,7 @@ const RACES = [
   // === TENGU ===
   {
     cat: 'autres', nom: 'Karasu-Tengu (Corbeaux)',
-    desc: "Sages, mystiques, gardiens des traditions. Ce sont les lettrés, les scribes, les moines du vent. Ils maîtrisent la magie du vent sous sa forme la plus spirituelle. Très respectés mais rarement combattants.",
+    desc: "Tengu-corbeaux de Sol'Ambaïre, sages et méditatifs, plumes d'encre et œil perçant. Érudits du vent, ils accumulent le savoir et régénèrent leur Éther par la méditation. Idéal pour un moine-mage ou un érudit magique.",
     affinities: [{el: 'Vent', val: 1}, {el: 'Chaos', val: 1}],
     traits: [
       "Sagesse du vent : +1 Histoire & Religion",
@@ -411,7 +411,7 @@ const RACES = [
   },
   {
     cat: 'autres', nom: 'Taka-Tengu (Faucons)',
-    desc: "Guerriers, éclaireurs, protecteurs du royaume. Ils servent de gardes aux falaises et de patrouilles aériennes. Les plus fiers, attachés à l'honneur et aux duels rituels. Ceux que les humains redoutent le plus.",
+    desc: "Tengu-faucons, seigneurs du ciel, plumes fauves et regard d'aigle. Ils volent pleinement et frappent en piqué. Fiers et directs. Idéal pour un combattant aérien qui domine le champ de bataille d'en haut.",
     affinities: [{el: 'Vent', val: 1}],
     traits: [
       "Vol complet : peut voler pour toute la scène (1 Éther par scène d'envol prolongé)",
@@ -420,7 +420,7 @@ const RACES = [
   },
   {
     cat: 'autres', nom: 'Hane-Tengu (Harmoniques)',
-    desc: "Hybrides plus humains que volants. Pont culturel entre les Tengu et les humains. Artisans, musiciens, combattants légers, éclaireurs. Ce sont eux qui voyagent le plus dans le monde — « ceux qui marchent entre ciel et terre ».",
+    desc: "Tengu au vol limité mais aux legs prodigieux, danseurs de l'air. Ils planent, bondissent et amortissent toute chute. Agiles et joueurs. Idéal pour un acrobate aérien, mobile et imprévisible.",
     affinities: [{el: 'Vent', val: 1}],
     traits: [
       "Vol limité : Athlétisme DD 12 pour planer 1 minute sur courte distance",
@@ -432,7 +432,7 @@ const RACES = [
   // === AUTRES RACES ===
   {
     cat: 'autres', nom: 'Vorpal',
-    desc: "Lapins humanoïdes de grande taille, dotés d'une intelligence semblable à celle des humains. Très habiles et rapides. Souvent réputés pour être des voleurs ou… des banquiers. Tactiques fines et patte légère.",
+    desc: "Petit peuple ailé et vif, mi-lutin mi-oiseau, main leste et sens du commerce. Sauteurs, chapardeurs, négociateurs — ils flairent une bonne affaire et un objet mal gardé. Idéal pour un filou marchand, agile et débrouillard.",
     affinities: [{el: 'Vent', val: 1}],
     traits: [
       "Saut amplifié : +2m vertical, double horizontal",
@@ -442,7 +442,7 @@ const RACES = [
   },
   {
     cat: 'autres', nom: 'Hobgobelins',
-    desc: "Organisés et disciplinés, souvent issus de cultures militaires. Fort sens de la hiérarchie et de l'ordre. Une race d'élite par rapport aux gobelins, étrangère à la dispersion chaotique de leurs cousins.",
+    desc: "Gobelinoïdes disciplinés, nés pour la guerre organisée. Là où les gobelins pillent, les Hobgobelins manœuvrent : rigueur militaire, esprit d'équipe, initiative. Idéal pour un tacticien de mêlée qui renforce ses alliés.",
     affinities: [{el: 'Feu', val: 1}],
     traits: [
       "Discipline militaire : +1 à l'initiative",
@@ -451,7 +451,7 @@ const RACES = [
   },
   {
     cat: 'autres', nom: 'Tengu (sans caste précise)',
-    desc: "Corbeaux humanoïdes dotés d'une grande agilité et d'une affinité pour les voyages et les récits. Voir les sous-castes pour plus de précisions.",
+    desc: "Tengu au sang mêlé, sans caste ailée dominante — un peu de chaque, maître d'aucun. Adaptables, curieux, bavards. Idéal pour qui veut le thème Tengu (vent, plumes, malice) sans se spécialiser.",
     affinities: [{el: 'Vent', val: 1}],
     traits: [
       "Legs du Vent : ignore les dégâts de chute jusqu'à 5m",
@@ -460,7 +460,7 @@ const RACES = [
   },
   {
     cat: 'autres', nom: 'Kitsune',
-    desc: "Renards anthropomorphes dotés de pouvoirs magiques, souvent rusés et mystérieux. Maîtres de l'illusion et du déguisement. Leurs queues multiples sont signe de sagesse — et de danger.",
+    desc: "Esprits-renards à forme humaine, malicieux et charmeurs. Illusionnistes-nés, ils brouillent les pistes et retournent une conversation d'un sourire. Insaisissables. Idéal pour un trompeur, un séducteur ou un manipulateur magique.",
     affinities: [{el: 'Chaos', val: 1}, {el: 'Vent', val: 1}],
     traits: [
       "Illusionniste : peut produire 1 illusion mineure 1×/scène sans coût d'Éther",
@@ -469,7 +469,7 @@ const RACES = [
   },
   {
     cat: 'autres', nom: 'Nagaji',
-    desc: "Reptiles humanoïdes, souvent vénérés pour leur force et leur dévotion. Loyaux à leurs serments jusqu'à la mort. Cultures rituelles intenses, codes d'honneur stricts.",
+    desc: "Hommes-serpents à écailles, au sang froid et à la loyauté brûlante. Résistants au poison, présence imposante, parole tenue coûte que coûte. Idéal pour un gardien loyal, dur à empoisonner et à intimider.",
     affinities: [{el: 'Terre', val: 1}],
     traits: [
       "Résistance au poison : avantage sur tous les jets contre poison",
@@ -479,7 +479,7 @@ const RACES = [
   },
   {
     cat: 'autres', nom: 'Vishkanya',
-    desc: "Êtres reptiliens dotés de poison et de charme, souvent énigmatiques et intrigants. Leur sang lui-même est venimeux. Beauté trompeuse et instinct de prédateur.",
+    desc: "Peuple au sang venimeux, gracieux et mortel. Un baiser, une lame effleurée, et le poison agit. Charmeurs et dangereux à la fois. Idéal pour un assassin élégant ou un séducteur venimeux.",
     affinities: [{el: 'Chaos', val: 1}],
     traits: [
       "Poison naturel : peut empoisonner son arme 1×/scène (1d4 dégâts supplémentaires pendant 3 tours)",
@@ -488,7 +488,7 @@ const RACES = [
   },
   {
     cat: 'autres', nom: 'Gnomes',
-    desc: "Espiègles et curieux, les gnomes sont des créatures petites mais ingénieuses. Souvent passionnées par la magie et la découverte. Inventeurs nés, ils ont peuplé Armonia de gadgets parfois géniaux, parfois explosifs.",
+    desc: "Petit peuple inventif et curieux, la tête pleine d'idées et les poches pleines de gadgets. Ingénieux, bavards, increvablement optimistes. Idéal pour un bricoleur, un érudit farfelu ou un Ingénieur.",
     affinities: [{el: 'Chaos', val: 1}],
     traits: [
       "Ingéniosité : +1 Artisanat",
@@ -498,7 +498,7 @@ const RACES = [
   },
   {
     cat: 'autres', nom: 'Halfelins',
-    desc: "Amicaux et chanceux, les halfelins sont des voyageurs et des explorateurs nés. Accueillis avec chaleur partout où ils vont. Petits, agiles, optimistes — la chance semble les suivre.",
+    desc: "Petites gens au grand cœur et à la chance insolente. Discrets, chaleureux, voyageurs dans l'âme, le destin semble toujours leur tendre une perche. Idéal pour un touche-à-tout chanceux et sympathique.",
     affinities: [],
     traits: [
       "Chance halfeline : 1× par session, peut faire un reroll gratuit (en plus des Écho)",
@@ -508,7 +508,7 @@ const RACES = [
   },
   {
     cat: 'autres', nom: 'Demi-elfes',
-    desc: "Issus de l'union d'humains et d'elfes (souvent Sylvestres ou Yle). Métissage culturel et physique. Leur longévité partielle et leur adaptabilité en font des intermédiaires recherchés.",
+    desc: "Nés entre deux mondes, elfe et humain, à cheval sur deux cultures. Charmeurs et adaptables, ils font le pont — sans appartenir tout à fait à aucun camp. Idéal pour un diplomate ou un électron libre polyvalent.",
     affinities: [{el: 'Libre', val: 1, label: '+1 à un élément au choix'}],
     traits: [
       "Adaptabilité culturelle : +1 Persuasion",
@@ -519,7 +519,7 @@ const RACES = [
   // === LIGNÉES SPÉCIALES ===
   {
     cat: 'lignees', nom: 'Géant-né',
-    desc: "Descendants affaiblis des anciens Géants du Givre, après la Rupture. Plus grands que la moyenne (2m+), peau légèrement bleutée, cheveux pâles. Ils gardent en mémoire ancestrale le murmure des montagnes.",
+    desc: "Descendants lointains des géants, dépassant tout le monde d'une tête ou deux. Stature qui impose le respect et le silence, résistance au froid, force tranquille. Idéal pour un colosse intimidant qui encaisse et domine physiquement.",
     affinities: [{el: 'Eau', val: 1}, {el: 'Terre', val: 1}],
     traits: [
       "Stature imposante : +1 Intimidation, +2 Vitalité max",
@@ -529,16 +529,19 @@ const RACES = [
   },
   {
     cat: 'lignees', nom: 'Aasimars (Célestiel)',
-    desc: "Descendants des 5 Célestes de Sol'Ambaïre. Yeux dorés, légère lueur sous la peau dans le noir. Reconnaissables, parfois adorés, parfois redoutés. Le retour de la magie a réveillé leur héritage.",
-    affinities: [{el: 'Chaos', val: 1}, {el: 'Vent', val: 1}],
+    desc: "Les « Enfants des Vents » : des mortels nés avec l'étincelle de l'un des Cinq Célestes de Sol'Ambaïre. Yeux lumineux, faible lueur sous la peau dans le noir, parfois un souffle d'air qui les suit. Vénérés comme des bénédictions, redoutés comme des présages — jamais anonymes. Chaque Célestiel porte la marque d'UN Céleste précis, et l'attente, parfois écrasante, d'incarner sa vertu. Le retour de la magie a rallumé leur héritage endormi.",
+    affinities: [{el: 'Vent', val: 1}],
     traits: [
-      "Aura de paix : 1×/scène, peut calmer un PNJ hostile (jet Persuasion)",
-      "Lien céleste : +1 sur tous les jets de Volonté contre charme ou peur"
-    ]
+      "Enfant des Vents : Vent +1 (commun à tous les Célestiels)",
+      "Souffle Céleste : 1×/scène, un effet mineur de ton Céleste (rafale, lueur apaisante, bouffée de chaleur, murmure de vérité…)",
+      "LIGNÉE — choisis ton Céleste (+1 à un 2ᵉ élément et un don) : Hyal-Roon givre/serment (Eau +1, +1 Volonté tant que tu tiens ta parole) · Sîr-Vhel savoir (Chaos +1, +1 Savoir & Histoire) · Kor-Drun brasier/courage (Feu +1, +1 contre la peur) · Mae-Lor sèves/négoce (Terre +1, +1 Persuasion) · Ay-Senna justice (Chaos +1, +1 Intuition pour juger le vrai)",
+      "Vertu impérative : ton Céleste attend que tu incarnes sa vertu — l'honorer dans une scène clé = +Écho ; la trahir gravement = −2 Écho (comme une Promesse brisée)"
+    ],
+    penalty: "Marqué : ta nature céleste transparaît toujours — impossible de la cacher totalement."
   },
   {
     cat: 'lignees', nom: 'Tiefling (Sang infernal)',
-    desc: "Issus du contact ancien avec des démons. Cornes, queue parfois, yeux rougeoyants. Souvent mal vus en société pieuse — mais respectés des Veilleurs qui voient au-delà des apparences.",
+    desc: "Marqués par un contact démoniaque ancien : cornes, yeux rougeoyants, parfois une queue. Mal vus des dévots, mais forgés dans l'épreuve et durs à effrayer — les Veilleurs jugent l'âme, pas les cornes. Idéal pour un personnage sulfureux, résistant au feu et à la peur.",
     affinities: [{el: 'Feu', val: 1}, {el: 'Chaos', val: 1}],
     traits: [
       "Résiste au feu : -2 dégâts de toute attaque de Feu",
@@ -548,7 +551,7 @@ const RACES = [
   },
   {
     cat: 'lignees', nom: 'Dragonné',
-    desc: "Issus du sang de dragons — créatures légendaires qu'on dit endormies dans les Nœuds du Monde. Écailles sur les bras et le visage. Hérite de l'élément de son ancêtre draconique.",
+    desc: "Héritiers du sang des dragons, écailles chatoyantes et souffle élémentaire. Fiers, puissants, marqués par l'élément de leur ancêtre. Idéal pour un guerrier-mage qui crache la foudre, le feu ou le givre.",
     affinities: [{el: 'Libre', val: 1, label: '+1 à l\'élément du dragon ancestral'}],
     traits: [
       "Souffle élémentaire : 1×/scène, attaque de cône 5m, 1d6 + INT dégâts (élément choisi)",
@@ -557,7 +560,7 @@ const RACES = [
   },
   {
     cat: 'lignees', nom: 'Genasi élémentaire',
-    desc: "Humanoïdes nés au contact d'un Nœud du Monde, marqués par un élément. Cheveux de feu, peau d'écorce, traits de vent... 5 variantes possibles : Feu, Eau, Vent, Terre, ou Chaos. Choisis l'élément à la création.",
+    desc: "Enfants d'un élément incarné (feu, eau, vent, terre, chaos), visiblement marqués : cheveux de flamme, peau de pierre, souffle de brume. Ils manient leur élément d'instinct. Idéal pour un mage élémentaire au thème très fort.",
     affinities: [{el: 'Libre', val: 2, label: '+2 à un élément (double bonus)'}],
     traits: [
       "Manipulation élémentaire mineure : 1 Éther = effet trivial gratuit (allumer bougie, courant d'air, glace fondre, etc.)",
@@ -566,7 +569,7 @@ const RACES = [
   },
   {
     cat: 'lignees', nom: 'Construit / Homoncule',
-    desc: "Création de magie script avancée, animé par un cœur de cristal de mana. Œuvre d'un Ingénieur de haut niveau, ou héritage retrouvé d'un atelier oublié. Conscient, mais étranger à la chair.",
+    desc: "Êtres artificiels animés par la magie — armures vivantes, poupées runiques. Ni faim, ni sommeil, ni maladie. Étranges et incompris, ils cherchent souvent un sens. Idéal pour un personnage inhumain, endurant, en quête de son âme.",
     affinities: [{el: 'Libre', val: 1, label: '+1 à l\'élément du créateur ou du cristal'}],
     traits: [
       "Pas besoin de respirer, manger ou dormir",
@@ -576,7 +579,7 @@ const RACES = [
   },
   {
     cat: 'lignees', nom: 'Mort-vivant éveillé',
-    desc: "Squelette, goule, revenant — toute forme de mort-vivant ayant conservé conscience et libre arbitre. Souvent lié à un ancien nécromancien ou à un nœud chaotique. Catégorie générique pour Clac Clac et autres concepts.",
+    desc: "Un défunt revenu à la conscience — squelette, revenant. Il ne respire plus, ne dort plus, ne craint plus la mort. Rejeté des vivants mais libre de ses peurs. Idéal pour un personnage macabre et résilient (voir aussi Clac Clac).",
     affinities: [{el: 'Chaos', val: 2}],
     traits: [
       "Pas besoin de respirer, manger ou dormir",
@@ -597,7 +600,7 @@ const RACES = [
   },
   {
     cat: 'lignees', nom: 'Gobelin intelligent (mutant)',
-    desc: "Référence directe à la menace du livre 2 — gobelins qui parlent et s'organisent. Rare en début de campagne, mais possible pour un joueur audacieux. Peau verte ou grise, taille modeste, yeux luisants d'intelligence rusée.",
+    desc: "Un gobelin qui a percé le plafond de sa race : rusé, vif, calculateur. Toujours petit, toujours sous-estimé — ce qui est sa meilleure arme. Idéal pour un filou malin qui joue de son apparence anodine.",
     affinities: [{el: 'Chaos', val: 1}],
     traits: [
       "Petite taille : +1 Discrétion",
@@ -608,7 +611,7 @@ const RACES = [
   },
   {
     cat: 'lignees', nom: 'Veilleur initié',
-    desc: "Pas une race en soi, mais un héritage spirituel. Humain ou autre race ayant été initié aux mystères des Veilleurs (l'ordre de Silver Argenti et Jack). Se combine avec une race de base (Veilleur humain, Veilleur elfe Yle, etc.) — choisis ta race habituelle ET coche ce trait.",
+    desc: "Non pas une race, mais une voie : un personnage marqué par l'Ordre des Veilleurs, qui perçoit les âmes et les mourants. À combiner avec une race de base. Idéal pour lier un PJ au grand secret de la campagne.",
     affinities: [{el: 'Chaos', val: 1}],
     traits: [
       "Sens des âmes : perçoit la présence d'un mourant ou d'un esprit à 50m",

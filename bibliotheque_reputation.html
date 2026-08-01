@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Réputation & Factions · Armonia</title>
+<style>
+ :root{--bg:#1a1a2e;--paper:#2a2a3e;--primary:#c9a85a;--accent:#d97c47;--text:#f4e8d0;--muted:#9a8a7a;--border:#3a3a4e;--danger:#c44040;--success:#5aa850;--info:#5a8ec9}
+ *{box-sizing:border-box} body{font-family:Georgia,serif;background:var(--bg);color:var(--text);margin:0;padding:22px;line-height:1.55}
+ .wrap{max-width:1000px;margin:0 auto}
+ a.back{color:var(--muted);text-decoration:none;font-size:14px} a.back:hover{color:var(--primary)} a{color:var(--accent)}
+ header.hero{background:linear-gradient(135deg,#232338,#2a2a3e);border:2px solid var(--primary);border-radius:12px;padding:22px 28px;margin:12px 0 16px;position:relative;overflow:hidden}
+ header.hero::after{content:"⚖️";position:absolute;right:22px;top:14px;font-size:56px;opacity:.14}
+ h1{font-size:27px;color:var(--primary);margin:0 0 4px} .sub{color:var(--muted);font-style:italic;margin:0}
+ h2{color:var(--accent);font-size:19px;border-bottom:1px solid var(--border);padding-bottom:5px;margin:26px 0 10px}
+ .card{background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin:12px 0}
+ table{width:100%;border-collapse:collapse;font-size:14px} th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--border)} th{color:var(--primary);font-size:11px;text-transform:uppercase} td.c{text-align:center;white-space:nowrap;font-weight:bold}
+ .n3{color:var(--danger)} .n2{color:#d9744a} .n1{color:#c9a85a} .z{color:var(--muted)} .p1{color:#8ac07a} .p2{color:var(--success)} .p3{color:#6affc7}
+ .box{background:#20281f;border-left:4px solid var(--success);border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:14px}
+ .warn{background:#2a1f2e;border-left:4px solid var(--accent);border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:14px}
+ .foot{text-align:center;color:var(--muted);font-size:11px;margin:24px 0 4px}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body><div class="wrap">
+<a class="back" href="index.html">← Retour au sommaire</a>
+<header class="hero"><h1>Réputation & Factions</h1><p class="sub">Rendre le jeu politique concret — chaque camp se souvient de vous</p></header>
+
+<h2>📊 L'échelle de réputation</h2>
+<div class="card">
+<p>Le groupe (ou chaque PJ) tient une jauge par faction, de <b>−3 à +3</b>.</p>
+<table>
+<tr><th class="c">Niveau</th><th>Titre</th><th>Ce que ça change</th></tr>
+<tr><td class="c n3">−3</td><td>Ennemi juré</td><td>Attaqué à vue, primes et chasseurs lancés à vos trousses.</td></tr>
+<tr><td class="c n2">−2</td><td>Hostile</td><td>Portes fermées, services refusés, sabotages discrets.</td></tr>
+<tr><td class="c n1">−1</td><td>Méfiant</td><td>Surveillé ; prix majorés (+25 %), aide rare.</td></tr>
+<tr><td class="c z">0</td><td>Neutre</td><td>Traité comme un inconnu ordinaire. Prix normaux.</td></tr>
+<tr><td class="c p1">+1</td><td>Cordial</td><td>Petites faveurs, infos, prix −10 %.</td></tr>
+<tr><td class="c p2">+2</td><td>Allié</td><td>Aide active, accès à des lieux/contacts, renforts, prix −25 %.</td></tr>
+<tr><td class="c p3">+3</td><td>Champion</td><td>La faction se mobilise pour vous : ressources majeures, dettes appelées.</td></tr>
+</table>
+</div>
+
+<h2>↕️ Gagner et perdre</h2>
+<div class="card">
+<ul>
+  <li><b>+1</b> : accomplir une mission pour la faction, défendre publiquement ses intérêts, sauver l'un des siens.</li>
+  <li><b>+2</b> : un service majeur, un secret rendu, une victoire éclatante en son nom.</li>
+  <li><b>−1</b> : nuire à ses intérêts, humilier un membre, aider discrètement un rival.</li>
+  <li><b>−2 / −3</b> : trahison ouverte, meurtre d'un des siens, sabotage d'un projet vital.</li>
+</ul>
+<div class="warn">⚔️ <b>Les bras de fer comptent.</b> Certains camps sont <b>partenaires-rivaux</b> : les <b>Marchands</b> et les <b>Aventuriers</b> se rendent service mais se disputent le contrôle du marché de la sécurité. Trop pencher pour l'un fait grincer l'autre — sans être une déclaration de guerre.</div>
+</div>
+
+<h2>🏛️ Les factions à suivre</h2>
+<div class="card">
+<table>
+<tr><th>Faction</th><th>Ce que son amitié apporte</th></tr>
+<tr><td><b>Guilde des Marchands</b> (Me'yn Prus)</td><td>Prix, routes, contacts, information commerciale. <b>Partenaire-rivale</b> des Aventuriers (bras de fer sur la sécurité).</td></tr>
+<tr><td><b>Guilde des Aventuriers</b> (Villa Virtue)</td><td>Contrats, renforts, accès à la cité volante et aux mécènes. <b>Partenaire-rivale</b> des Marchands.</td></tr>
+<tr><td><b>Ordre des Veilleurs</b></td><td>Réputation <b>secrète</b> (peu la connaissent) : soutien invisible, infos impossibles à obtenir ailleurs.</td></tr>
+<tr><td><b>Les 6 Grandes Familles</b></td><td>Chaque Rose a <b>sa propre jauge</b> — le vrai jeu politique de la Cité d'Armonia. En servir une, c'est irriter les autres.</td></tr>
+<tr><td><b>La Tribu de la Forêt</b></td><td>Guides, sanctuaires, secrets de la Forêt Julia — mais elle hait les routes marchandes.</td></tr>
+<tr><td><b>L'Ombre</b></td><td>On ne « gagne » pas sa faveur sans se souiller. Une réputation qui monte ici en dit long…</td></tr>
+</table>
+<p style="font-size:13px;color:var(--muted);margin-top:6px">Détails et intrigues : voir <a href="bibliotheque_factions.html">bibliothèque des Factions</a>.</p>
+</div>
+
+<div class="box">🎲 <b>Hors-session :</b> les <b>expéditions</b> de la carte peuvent rapporter (ou coûter) de la réputation, pas seulement de l'or. Envoyer un PJ défendre une caravane marchande = +1 chez les Marchands, peut-être −1 chez les Aventuriers. La politique se joue même entre deux parties.</div>
+
+<p class="foot">Réputation & Factions · Système Bilal · Armonia 2026</p>
+</div></body></html>

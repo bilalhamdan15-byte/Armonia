@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Magie libre — Improviser un sort · Armonia</title>
+<style>
+ :root{--bg:#1a1a2e;--paper:#2a2a3e;--primary:#c9a85a;--accent:#d97c47;--text:#f4e8d0;--muted:#9a8a7a;--border:#3a3a4e;--danger:#c44040;--success:#5aa850;--info:#5a8ec9;--mystere:#b088c8}
+ *{box-sizing:border-box} body{font-family:Georgia,serif;background:var(--bg);color:var(--text);margin:0;padding:22px;line-height:1.55}
+ .wrap{max-width:920px;margin:0 auto}
+ a.back{color:var(--muted);text-decoration:none;font-size:14px} a.back:hover{color:var(--primary)} a{color:var(--accent)}
+ header.hero{background:linear-gradient(135deg,#232338,#2a2a3e);border:2px solid var(--primary);border-radius:12px;padding:22px 28px;margin:12px 0 16px;position:relative;overflow:hidden}
+ header.hero::after{content:"🪄";position:absolute;right:22px;top:14px;font-size:56px;opacity:.14}
+ h1{font-size:27px;color:var(--primary);margin:0 0 4px} .sub{color:var(--muted);font-style:italic;margin:0}
+ h2{color:var(--accent);font-size:19px;border-bottom:1px solid var(--border);padding-bottom:5px;margin:24px 0 8px}
+ .card{background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin:12px 0}
+ .step{display:flex;gap:14px;align-items:flex-start;margin:10px 0}
+ .num{font-size:26px;font-weight:bold;color:var(--primary);min-width:34px;text-align:center}
+ table{width:100%;border-collapse:collapse;font-size:14px} th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--border);vertical-align:top}
+ th{color:var(--primary);font-size:11px;text-transform:uppercase} td.c{text-align:center;white-space:nowrap}
+ .box{background:#20281f;border-left:4px solid var(--success);border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:14px}
+ .warn{background:#2a1f2e;border-left:4px solid var(--mystere);border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:14px} .warn b{color:#c8a0d8}
+ ul{padding-left:20px} li{margin:5px 0}
+ .foot{text-align:center;color:var(--muted);font-size:11px;margin:24px 0 4px}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body><div class="wrap">
+<a class="back" href="index.html">← Retour au sommaire</a>
+<header class="hero"><h1>Magie libre — Improviser un sort</h1><p class="sub">Le joueur imagine l'effet, le MJ pose la difficulté. Pas de liste fermée.</p></header>
+
+<div class="card">La magie de Sens d'Armonia n'est <b>pas une liste de sorts</b> : c'est une <b>intention</b>. Un joueur décrit ce qu'il veut faire avec son élément, et le MJ le <b>range sur l'échelle des paliers</b> — ce qui donne aussitôt la difficulté, le coût et les dégâts. L'imagination d'abord, le chiffre ensuite.</div>
+
+<h2>La méthode en 4 temps</h2>
+<div class="card">
+  <div class="step"><div class="num">1</div><div><b>Le joueur décrit.</b> Quel <b>élément</b> (affinité) et quel <b>effet concret</b> ? « J'écarte les gardes d'une bourrasque », « je gèle le sol sous eux », « je fais jaillir des ronces ».</div></div>
+  <div class="step"><div class="num">2</div><div><b>L'affinité doit coller.</b> 🔥 Feu = brûler, éblouir (offensif) · 💧 Eau = ralentir, geler, soigner un peu · 💨 Vent = déplacer, projeter · 🪨 Terre = mur, racines, façonner le sol · ✨ Chaos = soigner, flétrir, l'inattendu. <b>Forcer un élément hors de son thème</b> (soigner avec du Feu ?) = +1 palier de difficulté, ou refus.</div></div>
+  <div class="step"><div class="num">3</div><div><b>Le MJ juge le palier</b> (grille ci-dessous) → il en tire <b>DD, coût Éther et dégâts repères</b>.</div></div>
+  <div class="step"><div class="num">4</div><div><b>On lance :</b> 1d20 + INT + Affinité vs le DD. Le <b>1 nat</b> rate (Surcharge possible), le <b>20 nat</b> est un coup d'éclat. Un échec dépense quand même l'Éther.</div></div>
+</div>
+
+<h2>🎚️ La grille de jugement</h2>
+<div class="card">
+<table>
+<tr><th>Palier</th><th>« Ça ressemble à… » (canon)</th><th class="c">DD</th><th class="c">Éther</th><th class="c">Dégâts</th></tr>
+<tr><td><b>Mineur</b></td><td>étincelle, mèche, brise — effet local et modeste</td><td class="c">10</td><td class="c">1</td><td class="c">1d4</td></tr>
+<tr><td><b>Standard</b></td><td>boule de feu, vague, pieu — un effet net de combat</td><td class="c">15</td><td class="c">2</td><td class="c">2d6</td></tr>
+<tr><td><b>Puissant</b></td><td>mur élémentaire, vortex — fort, zone ou contrôle durable</td><td class="c">20</td><td class="c">4</td><td class="c">3d6</td></tr>
+<tr><td><b>Spectaculaire</b></td><td>tornade, geyser, dragon — un effet qui change la scène</td><td class="c">25</td><td class="c">8</td><td class="c">4d8</td></tr>
+</table>
+<p style="font-size:13px;color:var(--muted);margin-top:6px">Besoin d'un point de comparaison ? Le <a href="bibliotheque_sorts.html">Grimoire</a> donne des dizaines de sorts déjà calibrés — sers-t'en comme mètre étalon.</p>
+</div>
+
+<h2>➕ Modificateurs (montent le palier ou le coût)</h2>
+<div class="card">
+<ul>
+  <li><b>Zone / plusieurs cibles</b> : +1 palier (ou +2 Éther).</li>
+  <li><b>Durée persistante</b> (le mur reste, le poison agit plusieurs tours) : +1 palier.</li>
+  <li><b>Contrôle fort en plus des dégâts</b> (immobiliser, dominer) : +2 Éther.</li>
+  <li><b>Portée extrême ou précision chirurgicale</b> : +2 au DD.</li>
+</ul>
+</div>
+
+<div class="box">🎯 <b>Règle du pouce pour le MJ :</b> en cas de doute, prends le <b>palier au-dessus</b>. L'Éther est cher — un joueur qui veut « tout, tout de suite » paiera le prix, et ça s'auto-équilibre. Récompense l'imagination, mais fais payer la puissance.</div>
+
+<div class="warn"><b>🔒 Au-delà des éléments.</b> Certains effets sortent de la magie de Sens : ressusciter, arrêter le temps, réécrire un serment… Ce sont des <b>Mots Primordiaux</b> (voir la <a href="bibliotheque_mots_primordiaux.html">bibliothèque dédiée</a>) ou de la <a href="bibliotheque_magie.html">magie Script</a> — plus puissants, plus lents, plus dangereux. Ou tout simplement hors de portée.</div>
+
+<p class="foot">Magie libre · Système Bilal · Armonia 2026 — l'imagination d'abord, le chiffre ensuite.</p>
+</div></body></html>

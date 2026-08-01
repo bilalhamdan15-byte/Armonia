@@ -1,0 +1,96 @@
+{
+  "nom": "Ross",
+  "joueur": "Freerick",
+  "classe": "Épée élémentaire",
+  "race": "Humains des villes",
+  "sousrace": "Demi-élémentaire de foudre",
+  "age": "24",
+  "description": "Porte un masque cachant ses traits d'élémentaire. Se bat à l'épée et maîtrise la foudre — sans y être immunisé.",
+  "for": "1",
+  "dex": "3",
+  "con": "2",
+  "int": "2",
+  "sag": "0",
+  "cha": "1",
+  "vit_actuel": "14",
+  "ether_actuel": "7",
+  "surcharge": "0",
+  "armure_bonus": "2",
+  "bouclier": "0",
+  "action_def": "0",
+  "echo_max": "5",
+  "is_ingenieur": false,
+  "arme_principale": "Épée moyenne (1m10, fer)",
+  "arme_secondaire": "Dague",
+  "armure": "Vêtement noir renforcé",
+  "or": "Grande richesse",
+  "notes": "",
+  "capacites": "Éclair Jaune : canalise la foudre dans sa lame (+5 dégâts, 2 Éther). Sur un 1 naturel avec la foudre, il s'électrocute → étourdi 1 tour.",
+  "xp_total": "0",
+  "xp_depense": "0",
+  "competences": {},
+  "affinities": {
+    "Feu": "-1",
+    "Eau": "2",
+    "Vent": "3",
+    "Terre": "-2",
+    "Chaos": "2"
+  },
+  "symboles_array": [
+    "Vent",
+    "Lame"
+  ],
+  "state": {
+    "comp": {},
+    "affinity": {
+      "Feu": "-1",
+      "Eau": "2",
+      "Vent": "3",
+      "Terre": "-2",
+      "Chaos": "2"
+    },
+    "atouts": [
+      {
+        "nom": "Éclair Jaune",
+        "niveau": "I",
+        "used": false
+      },
+      {
+        "nom": "Réflexes d'orage",
+        "niveau": "I",
+        "used": false
+      }
+    ],
+    "promesses": [
+      {
+        "texte": "Servir Vesper et l'Ordre, sans révéler ce que je suis à un non-Veilleur.",
+        "statut": "active"
+      }
+    ],
+    "scripts": [
+      {
+        "nom": "Lame de foudre",
+        "symboles": "Vent+Lame",
+        "charges": "",
+        "cout": "1"
+      }
+    ],
+    "mots": [],
+    "inv": [],
+    "echo": 3,
+    "specs": [
+      {
+        "name": "Armes au contact",
+        "rank": 3
+      },
+      {
+        "name": "Intimidation",
+        "rank": 2
+      },
+      {
+        "name": "Nature & Survie",
+        "rank": 2
+      }
+    ]
+  }
+}

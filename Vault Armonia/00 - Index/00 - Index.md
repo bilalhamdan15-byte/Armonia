@@ -24,6 +24,16 @@ Bienvenue dans le codex vivant d'**[[Armonia — le monde]]**. Ouvre la vue **Gr
 ## 🔒 Lore secret (MJ)
 - [[Le Script des Anciens]] · [[Le Sceau d'Alm-Merthas]] · [[Rex Démonium]]
 
+## ⚔️ Conflits & Drame
+- [[Le Web des Conflits]] — la carte des tensions
+- [[Marchands contre Aventuriers]] · [[Les Veilleurs contre l'Ombre]] · [[La Corruption montante]] · [[Les Roses se déchirent]] · [[Sylvarn en sécession]] · [[La Forêt refuse les routes]]
+
+## 🎭 Personnages (PNJ)
+- [[PNJ - Index]] — [[Corvet]] · [[Lysca Vœnir]] · [[Cendre]] · [[Lotain Ur Windor]] · [[Damaïr]]
+
+## 🎲 Aventures
+- [[Session 1 - Le Sanglier Pétrifié]] — la chasse à la Médusa
+
 ## Manuscrits
 - [[Le Monde d'Armonia — Le calme avant la dévastation]] · [[Le Veilleur de Nuit]]
 

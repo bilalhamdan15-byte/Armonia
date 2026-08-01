@@ -1,0 +1,86 @@
+{
+  "nom": "Dame Ysandre Ur Vairenne",
+  "joueur": "",
+  "classe": "Ambassadrice · Cristallomancienne",
+  "race": "Humaine (noble)",
+  "sousrace": "",
+  "age": "",
+  "description": "Ambassadrice des Maisons humaines à Villa Virtue. Héritière de l'Éclat de Vairenne.",
+  "for": "0",
+  "dex": "1",
+  "con": "1",
+  "int": "3",
+  "sag": "2",
+  "cha": "3",
+  "vit_actuel": "12",
+  "ether_actuel": "7",
+  "surcharge": "0",
+  "armure_bonus": "1",
+  "bouclier": "0",
+  "action_def": "0",
+  "echo_max": "5",
+  "is_ingenieur": false,
+  "arme_principale": "Chevalière de cristal (focus)",
+  "arme_secondaire": "Éclat-mère (pendentif)",
+  "armure": "Tenue de cour enchantée (+1)",
+  "or": "3d20 pièces d'or + traites",
+  "notes": "",
+  "capacites": "Éclat de Vairenne : fige le mana en cristal/glace (lames, barrières). Résonance de vérité : un fragment vibre près du mensonge et des anomalies magiques (1×/scène avec Œil du cristal).",
+  "xp_total": "0",
+  "xp_depense": "0",
+  "competences": {},
+  "affinities": {
+    "Feu": "-1",
+    "Eau": "3",
+    "Vent": "1",
+    "Terre": "1",
+    "Chaos": "0"
+  },
+  "symboles_array": [],
+  "state": {
+    "comp": {},
+    "affinity": {
+      "Feu": "-1",
+      "Eau": "3",
+      "Vent": "1",
+      "Terre": "1",
+      "Chaos": "0"
+    },
+    "atouts": [
+      {
+        "nom": "Héritière de Vairenne",
+        "niveau": "II",
+        "used": false
+      },
+      {
+        "nom": "Œil du cristal",
+        "niveau": "I",
+        "used": false
+      }
+    ],
+    "promesses": [
+      {
+        "texte": "Préserver la neutralité des Maisons et l'équilibre de Villa Virtue.",
+        "statut": "active"
+      }
+    ],
+    "scripts": [],
+    "mots": [],
+    "inv": [],
+    "echo": 3,
+    "specs": [
+      {
+        "name": "Persuasion",
+        "rank": 3
+      },
+      {
+        "name": "Étiquette & Mondanités",
+        "rank": 3
+      },
+      {
+        "name": "Arcanes",
+        "rank": 2
+      }
+    ]
+  }
+}

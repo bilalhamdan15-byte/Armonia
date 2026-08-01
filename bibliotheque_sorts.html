@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grimoire — Sorts prêts à l'emploi · Armonia</title>
+<style>
+ :root{--bg:#1a1a2e;--paper:#2a2a3e;--primary:#c9a85a;--accent:#d97c47;--text:#f4e8d0;--muted:#9a8a7a;--border:#3a3a4e;--danger:#c44040;--success:#5aa850;--info:#5a8ec9;
+   --feu:#e0603a;--eau:#5aa8e0;--vent:#8ad0a0;--terre:#c0a060;--chaos:#b088c8}
+ *{box-sizing:border-box} body{font-family:Georgia,serif;background:var(--bg);color:var(--text);margin:0;padding:22px;line-height:1.55}
+ .wrap{max-width:1000px;margin:0 auto}
+ a.back{color:var(--muted);text-decoration:none;font-size:14px} a.back:hover{color:var(--primary)} a{color:var(--accent)}
+ header.hero{background:linear-gradient(135deg,#232338,#2a2a3e);border:2px solid var(--primary);border-radius:12px;padding:22px 28px;margin:12px 0 16px;position:relative;overflow:hidden}
+ header.hero::after{content:"✨";position:absolute;right:22px;top:14px;font-size:56px;opacity:.14}
+ h1{font-size:27px;color:var(--primary);margin:0 0 4px} .sub{color:var(--muted);font-style:italic;margin:0}
+ h2{font-size:20px;padding-bottom:5px;border-bottom:1px solid var(--border);margin:26px 0 8px}
+ .feu h2,.h-feu{color:var(--feu)} .eau h2,.h-eau{color:var(--eau)} .vent h2,.h-vent{color:var(--vent)} .terre h2,.h-terre{color:var(--terre)} .chaos h2,.h-chaos{color:var(--chaos)}
+ .theme{font-size:13px;color:var(--muted);font-style:italic;margin:-4px 0 6px}
+ .card{background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:8px 16px;margin:8px 0}
+ table{width:100%;border-collapse:collapse;font-size:13.5px} th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:top}
+ th{color:var(--primary);font-size:10px;text-transform:uppercase} td.c{text-align:center;white-space:nowrap}
+ .t{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)} .dmg{color:var(--danger);font-weight:bold} .cost{color:var(--info)}
+ .rule{background:#20281f;border:1px solid var(--success);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:14px}
+ .foot{text-align:center;color:var(--muted);font-size:11px;margin:24px 0 4px}
+</style>
+<link rel="stylesheet" href="theme.css"><script>document.documentElement.dataset.theme=(function(){try{return localStorage.getItem("armonia_theme")}catch(e){return null}})()||"dark";</script><script src="theme.js" defer></script></head>
+<body><div class="wrap">
+<a class="back" href="index.html">← Retour au sommaire</a>
+<header class="hero"><h1>Grimoire — Sorts prêts à l'emploi</h1><p class="sub">Magie de Sens, par élément et par palier — à lancer directement</p></header>
+
+<div style="background:#2a1f2e;border-left:4px solid #b088c8;border-radius:0 8px 8px 0;padding:10px 14px;margin:0 0 14px;font-size:14px">🪄 Ces sorts sont des <b>exemples calibrés</b>, pas une liste fermée : tes joueurs peuvent <b>inventer les leurs</b> et tu poses la difficulté d'après ces repères. Voir <a href="magie_libre.html" style="color:#d97c47">Magie libre — Improviser un sort</a>.</div>
+
+<div class="rule">
+🎲 <b>Lancer un sort :</b> <b>1d20 + INT + Affinité</b> vs Défense (attaque) ou DD (utilitaire). <b>Paliers :</b> Mineur (DD 10 · 1 Éther · ~1d4) · Standard (DD 15 · 2 É · ~2d6) · Puissant (DD 20 · 4 É · ~3d6) · Spectaculaire (DD 25 · 8 É · ~4d8). Le 1 nat rate (Surcharge possible), le 20 nat est un coup d'éclat. <b>Fabriquer les tiens :</b> voir la <a href="bibliotheque_magie.html">bibliothèque de Magie</a> (Sens, Script, Mots).
+</div>
+
+<div class="feu"><h2>🔥 Feu</h2><p class="theme">Flammes, chaleur, lumière vive — offensif direct.</p>
+<div class="card"><table>
+<tr><th>Palier</th><th>Sort</th><th class="c">Coût</th><th class="c">Dégâts</th><th>Effet</th></tr>
+<tr><td class="t h-feu">Mineur</td><td><b>Étincelle</b></td><td class="c cost">1É</td><td class="c dmg">1d4</td><td>Enflamme, éblouit brièvement (−1 à sa prochaine attaque).</td></tr>
+<tr><td class="t h-feu">Standard</td><td><b>Boule de feu</b></td><td class="c cost">2É</td><td class="c dmg">2d6</td><td>Peut toucher une petite zone (2 cibles proches).</td></tr>
+<tr><td class="t h-feu">Puissant</td><td><b>Mur de flammes</b></td><td class="c cost">4É</td><td class="c dmg">3d6</td><td>Barrière brûlante : 3d6 à qui la traverse, bloque le passage.</td></tr>
+<tr><td class="t h-feu">Spectaculaire</td><td><b>Souffle du dragon</b></td><td class="c cost">8É</td><td class="c dmg">4d8</td><td>Cône dévastateur, met le feu au décor.</td></tr>
+</table></div></div>
+
+<div class="eau"><h2>💧 Eau</h2><p class="theme">Liquide, glace, courants — contrôle et soin léger.</p>
+<div class="card"><table>
+<tr><th>Palier</th><th>Sort</th><th class="c">Coût</th><th class="c">Effet</th><th>Détail</th></tr>
+<tr><td class="t h-eau">Mineur</td><td><b>Jet glacé</b></td><td class="c cost">1É</td><td class="c dmg">1d4</td><td>La cible est ralentie 1 tour.</td></tr>
+<tr><td class="t h-eau">Standard</td><td><b>Lien de givre</b></td><td class="c cost">2É</td><td class="c">contrôle</td><td>Immobilise une cible (Athlétisme DD 14 pour se libérer) ; 2d6 si tu la brises sur elle.</td></tr>
+<tr><td class="t h-eau">Standard</td><td><b>Onde apaisante</b></td><td class="c cost">2É</td><td class="c">soin</td><td>Soin léger : rend 1d6 PV (l'eau qui répare).</td></tr>
+<tr><td class="t h-eau">Puissant</td><td><b>Prison de glace</b></td><td class="c cost">4É</td><td class="c dmg">3d6</td><td>Enferme une cible dans la glace (hors combat 1 tour).</td></tr>
+<tr><td class="t h-eau">Spectaculaire</td><td><b>Geyser</b></td><td class="c cost">8É</td><td class="c dmg">4d8</td><td>Colonne d'eau qui projette et noie une zone.</td></tr>
+</table></div></div>
+
+<div class="vent"><h2>💨 Vent</h2><p class="theme">Souffles, pressions, mobilité — vitesse et projection.</p>
+<div class="card"><table>
+<tr><th>Palier</th><th>Sort</th><th class="c">Coût</th><th class="c">Effet</th><th>Détail</th></tr>
+<tr><td class="t h-vent">Mineur</td><td><b>Bourrasque</b></td><td class="c cost">1É</td><td class="c dmg">1d4</td><td>Repousse la cible de 2 m.</td></tr>
+<tr><td class="t h-vent">Standard</td><td><b>Pas du vent</b></td><td class="c cost">2É</td><td class="c">mobilité</td><td>Double ta vitesse ce tour, ou franchis un obstacle d'un bond. Pas de dégâts.</td></tr>
+<tr><td class="t h-vent">Standard</td><td><b>Lame d'air</b></td><td class="c cost">2É</td><td class="c dmg">2d6</td><td>Tranchant invisible à distance.</td></tr>
+<tr><td class="t h-vent">Puissant</td><td><b>Vortex</b></td><td class="c cost">4É</td><td class="c dmg">3d6</td><td>Aspire et déséquilibre une zone (cibles à terre).</td></tr>
+<tr><td class="t h-vent">Spectaculaire</td><td><b>Tornade</b></td><td class="c cost">8É</td><td class="c dmg">4d8</td><td>Soulève et disperse tout dans un large rayon.</td></tr>
+</table></div></div>
+
+<div class="terre"><h2>🪨 Terre</h2><p class="theme">Roche, racines, mur — défense et contrôle de terrain.</p>
+<div class="card"><table>
+<tr><th>Palier</th><th>Sort</th><th class="c">Coût</th><th class="c">Effet</th><th>Détail</th></tr>
+<tr><td class="t h-terre">Mineur</td><td><b>Éclat de pierre</b></td><td class="c cost">1É</td><td class="c dmg">1d4</td><td>Projectile de roche.</td></tr>
+<tr><td class="t h-terre">Standard</td><td><b>Mur de roche</b></td><td class="c cost">2É</td><td class="c">défense</td><td>Dresse une couverture solide (+3 Défense derrière, bloque un passage).</td></tr>
+<tr><td class="t h-terre">Standard</td><td><b>Ronces / Racines</b></td><td class="c cost">2É</td><td class="c dmg">2d6</td><td>La cible est agrippée (Athlétisme DD 13 pour se libérer).</td></tr>
+<tr><td class="t h-terre">Puissant</td><td><b>Séisme localisé</b></td><td class="c cost">4É</td><td class="c dmg">3d6</td><td>Zone : cibles à terre + terrain difficile durable.</td></tr>
+<tr><td class="t h-terre">Spectaculaire</td><td><b>Rempart vivant</b></td><td class="c cost">8É</td><td class="c dmg">4d8</td><td>Un colosse de pierre surgit : frappe (4d8) puis protège comme un mur mobile.</td></tr>
+</table></div></div>
+
+<div class="chaos"><h2>✨ Chaos</h2><p class="theme">Soins, croissance, mort, mots primordiaux — l'inattendu.</p>
+<div class="card"><table>
+<tr><th>Palier</th><th>Sort</th><th class="c">Coût</th><th class="c">Effet</th><th>Détail</th></tr>
+<tr><td class="t h-chaos">Soin léger</td><td><b>Sève de vie</b></td><td class="c cost">2É</td><td class="c">1d6 PV</td><td>DD 12. Soigne soi ou un allié.</td></tr>
+<tr><td class="t h-chaos">Soin moyen</td><td><b>Renouveau</b></td><td class="c cost">4É</td><td class="c">2d6 PV</td><td>DD 15.</td></tr>
+<tr><td class="t h-chaos">Soin majeur</td><td><b>Grand souffle</b></td><td class="c cost">6É</td><td class="c">3d6 PV</td><td>DD 18. Peut relever un allié à terre.</td></tr>
+<tr><td class="t h-chaos">Standard</td><td><b>Flétrissure</b></td><td class="c cost">2É</td><td class="c dmg">2d6</td><td>Mort et décomposition : + pourriture (1d6/tour, 2 tours).</td></tr>
+<tr><td class="t h-chaos">Puissant</td><td><b>Caprice du Chaos</b></td><td class="c cost">4É</td><td class="c">variable</td><td>L'inattendu : lance 1d6 pour l'effet (croissance folle, mini-portail, aura de chance, essaim…). Au MJ d'improviser.</td></tr>
+</table></div>
+<p style="font-size:12px;color:var(--muted)">Le Chaos touche aussi aux <b>Mots Primordiaux</b> — voir la <a href="bibliotheque_mots_primordiaux.html">bibliothèque dédiée</a> (magie la plus puissante et la plus dangereuse).</p></div>
+
+<div class="rule">💡 <b>Note d'équilibre :</b> ces sorts suivent tes paliers officiels (coût &amp; DD), donc ils s'intègrent sans casser l'économie d'Éther. Un lanceur avec Éther 7 place ~3 sorts Standard avant de sécher — d'où l'alternance avec les Mineurs à 1 Éther.</div>
+
+<p class="foot">Grimoire · Système Bilal · Armonia 2026 — sorts fidèles aux 5 affinités et aux paliers de la magie de Sens.</p>
+</div></body></html>
